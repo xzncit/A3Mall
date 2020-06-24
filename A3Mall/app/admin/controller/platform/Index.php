@@ -42,10 +42,30 @@ class Index extends Auth {
             ->join("users u","o.user_id=u.id","LEFT")
             ->where("o.user_id > 0 AND o.status=5")
             ->group("o.user_id")->order("total DESC")
-            ->limit(10)->select();
-        $i=1;
+            ->limit(10)->select()->toArray();
+
         foreach($order_hot as $k=>$v){
-            $order_hot[$k]['p'] = $i++;
+            $order_hot[$k]['p'] = $k+1;
+        }
+
+        $stime = date('Y-m-d 00:00:00', strtotime("-30 day"));
+        $etime = date('Y-m-d 23:59:59', time());
+        $group = 'days having create_time >= ' . strtotime($stime);
+        $group .= ' and create_time <= ' . strtotime($etime);
+
+        $field = 'SUM(order_amount) as amount,count(*) as total,create_time,FROM_UNIXTIME(create_time,"%Y%m%d") as days';
+        $data = Db::name("order")
+            ->field($field)
+            ->where("status","in",[2,5])
+            ->group($group)->select()->toArray();
+
+        $count = [];
+        $days = [];
+        $amount = [];
+        foreach ($data as $key => $val) {
+            $days[] = $val['days'];
+            $amount[] = $val['amount'];
+            $count[] = $val['total'];
         }
 
         return View::fetch("",[
@@ -53,6 +73,9 @@ class Index extends Auth {
             "goods_total"=>Db::name("goods")->count(),
             "users_total"=>Db::name("users")->count(),
             "users_comment_total"=>Db::name("users_comment")->count(),
+            "days"=>implode(',',$days),
+            "order_amount"=>implode(',',$amount),
+            "order_count"=>implode(',',$count),
             "e"=>empty($order["order_amount"]) ? "0.00" : number_format($order["order_amount"],2),
             "f"=>empty($order["order_amount"]) ? "0.00" : number_format($order["order_amount"]/$users_goods_count["count"],2),
             "g"=>$order_hot
