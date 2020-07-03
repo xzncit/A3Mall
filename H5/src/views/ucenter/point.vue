@@ -67,8 +67,7 @@ export default {
             this.$tools.prev();
         },
         onLoad() {
-
-            this.$request.get("/ucenter/point",{
+            this.$http.getUcenterPointList({
                 page: this.page
             }).then((res) => {
                 // 加载状态结束

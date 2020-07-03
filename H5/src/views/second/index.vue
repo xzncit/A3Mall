@@ -84,7 +84,7 @@
                     this.page = 1;
                 }
 
-                this.$request.get("/second",{
+                this.$http.getSecondList({
                     page: this.page
                 }).then((result)=>{
                     if(result.data.list == undefined && this.page == 1){

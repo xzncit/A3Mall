@@ -49,7 +49,7 @@
 <script>
     import { NavBar } from 'vant';
     export default {
-        name: 'CartConfirm',
+        name: 'CartInfo',
         components: {
             [NavBar.name]: NavBar
         },

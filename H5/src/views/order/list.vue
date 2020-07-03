@@ -121,7 +121,7 @@ export default {
         onLoad() {
             this.isEmpty = false;
             let emptyImage = this.$request.domain() + 'static/images/order-empty.png';
-            this.$request.get("/order/list",{
+            this.$http.getOrderList({
                 type: this.$route.params.id,
                 page: this.page
             }).then(result=>{
@@ -156,7 +156,7 @@ export default {
                 loadingType: 'spinner',
                 duration: 0
             });
-            this.$request.get("/order/cancel",{
+            this.$http.getOrderListCancel({
                 order_id: order_id
             }).then(res=>{
                 Toast.clear();

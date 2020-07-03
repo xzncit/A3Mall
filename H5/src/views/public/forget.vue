@@ -97,7 +97,7 @@
                     return false;
                 }
 
-                this.$request.get("/send_sms",{
+                this.$http.sendSMS({
                     username: this.username,
                     type: "repassword"
                 }).then(function (result) {
@@ -142,7 +142,7 @@
                 }
 
                 this.loading = true;
-                this.$request.post("/forget",{
+                this.$http.sendForget({
                     username: this.username,
                     password: this.password,
                     code: this.code

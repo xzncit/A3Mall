@@ -50,7 +50,7 @@ export default {
         };
     },
     created() {
-        this.$request.get("/search").then((result)=>{
+        this.$http.getSearchKeywords().then((result)=>{
             if(result.status){
                 this.keywords = result.data;
             }

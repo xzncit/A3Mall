@@ -43,7 +43,7 @@
             };
         },
         created() {
-            this.$request.get("/news/view",{
+            this.$http.getNewsDetail({
                 id: this.$route.params.id
             }).then(res=>{
                 this.isEmpty = false;

@@ -67,7 +67,7 @@
     import { Cell, CellGroup } from 'vant';
     import { Empty,Toast,Popup,Button } from 'vant';
     export default {
-        name: 'OrderList',
+        name: 'OrderConfirmDelivery',
         components: {
             [NavBar.name]: NavBar,
             [Step.name]: Step,
@@ -108,7 +108,7 @@
                 }
                 this.btn = true;
                 this.isEmpty = false;
-                this.$request.post("/order/confirm_delivery",{
+                this.$http.getOrderConfirmDelivery({
                     id: this.$route.params.id
                 }).then(res=>{
                     if(res.status){
@@ -128,7 +128,7 @@
             onLoadOrder(){
                 let id = this.$route.params.id;
                 this.isEmpty = false;
-                this.$request.post("/order/delivery",{
+                this.$http.getOrderDeliveryList({
                     id: id
                 }).then((res)=>{
                     if(res.status){

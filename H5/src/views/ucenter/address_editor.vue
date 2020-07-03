@@ -1,11 +1,11 @@
 <template>
     <div>
         <van-nav-bar
-                title="编辑地址"
-                left-arrow
-                :fixed="true"
-                :placeholder="true"
-                @click-left="prev"
+            title="编辑地址"
+            left-arrow
+            :fixed="true"
+            :placeholder="true"
+            @click-left="prev"
         />
 
         <van-address-edit
@@ -26,7 +26,7 @@ import { AddressEdit } from 'vant';
 import AreaList from '../../utils/Area';
 import { Toast } from 'vant';
 export default {
-    name: 'Address',
+    name: 'AddressEditor',
     components: {
         [NavBar.name]: NavBar,
         [AddressEdit.name]: AddressEdit,
@@ -61,7 +61,7 @@ export default {
         },
         onSave(content) {
             Toast('save');
-            this.$request.post("ucenter/address/save",{
+            this.$http.editorAddress({
                 id: this.addressId,
                 name: content.name,
                 tel: content.tel,
@@ -84,10 +84,11 @@ export default {
         },
         onDelete() {
             if(this.addressId){
-                this.$request.get("/ucenter/address/delete",{
+                this.$http.editorAddressDelete({
                     id: this.addressId
                 });
             }
+
             Toast('删除成功');
             setTimeout(()=>{
                 this.$router.push({ path: "/ucenter/address" });

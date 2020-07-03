@@ -104,7 +104,7 @@
                     this.page = 1;
                 }
 
-                this.$request.get("/products/recommend",{
+                this.$http.getGoodsRecommend({
                     page: this.page,
                     sort: this.goodsValue,
                     type: this.sortValue

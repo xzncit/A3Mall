@@ -53,6 +53,7 @@
 <script>
 import { NavBar } from 'vant';
 import { Form,Field,Button,Toast } from 'vant';
+import Storage from "../../utils/Storage";
 Toast.setDefaultOptions({ duration: 5000 });
 export default {
     name: 'Register',
@@ -105,7 +106,7 @@ export default {
                 return false;
             }
 
-            this.$request.get("/send_sms",{
+            this.$http.sendSMS({
                 username: this.username,
                 type: "register"
             }).then(function (result) {
@@ -149,12 +150,19 @@ export default {
                 return ;
             }
 
-            this.loading = true;
-            this.$request.post("/register",{
+            let params = {
                 username: this.username,
                 password: this.password,
                 code: this.code
-            }).then((result)=>{
+            }
+
+            let spread_id = parseInt(this.$cookie.get("spread_id"));
+            if(spread_id > 0){
+                params.spread_id = spread_id;
+            }
+
+            this.loading = true;
+            this.$http.register(params).then((result)=>{
                 if(result.status){
                     this.$store.commit("UPDATEUSERS",result.data);
                     let path = this.$storage.get("VUE_REFERER");

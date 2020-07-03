@@ -61,7 +61,7 @@
     import { DropdownMenu, DropdownItem } from 'vant';
     import { Empty } from 'vant';
     export default {
-        name: 'GoodsList',
+        name: 'UcenterGoodsList',
         components: {
             [NavBar.name]: NavBar,
             [PullRefresh.name]: PullRefresh,
@@ -104,7 +104,7 @@
                     this.page = 1;
                 }
 
-                this.$request.get("/ucenter/coupon/goods",{
+                this.$http.getUcenterGoodsList({
                     page: this.page,
                     sort: this.goodsValue,
                     type: this.sortValue

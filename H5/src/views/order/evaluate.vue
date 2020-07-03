@@ -75,7 +75,7 @@
     import { Cell, CellGroup } from 'vant';
     import { Empty,Toast,Popup,Button,Rate,Field } from 'vant';
     export default {
-        name: 'OrderList',
+        name: 'OrderEvaluate',
         components: {
             [NavBar.name]: NavBar,
             [Step.name]: Step,
@@ -117,7 +117,7 @@
                 }
                 this.btn = true;
                 this.isEmpty = false;
-                this.$request.post("/order/do_evaluate",{
+                this.$http.sendOrderEvaluate({
                     id: this.$route.params.id,
                     message: this.message,
                     rate: this.rate
@@ -139,7 +139,7 @@
             onLoadOrder(){
                 let id = this.$route.params.id;
                 this.isEmpty = false;
-                this.$request.post("/order/evaluate",{
+                this.$http.getOrderEvaluate("/order/evaluate",{
                     id: id
                 }).then((res)=>{
                     if(res.status == 1){

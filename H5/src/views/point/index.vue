@@ -83,7 +83,7 @@
                     this.page = 1;
                 }
 
-                this.$request.get("/point",{
+                this.$http.getPointList({
                     page: this.page
                 }).then((result)=>{
                     if(result.data.list == undefined && this.page == 1){

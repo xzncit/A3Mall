@@ -70,7 +70,7 @@
     import { NavBar } from 'vant';
     import { List,Empty,Toast } from 'vant';
     export default {
-        name: 'OrderList',
+        name: 'OrderService',
         components: {
             [NavBar.name]: NavBar,
             [List.name]: List,
@@ -104,7 +104,7 @@
             onLoad() {
                 this.isEmpty = false;
                 let emptyImage = this.$request.domain() + 'static/images/order-empty.png';
-                this.$request.get("/order/service",{
+                this.$http.getOrderService({
                     page: this.page
                 }).then(result=>{
                     if(result.data.list == undefined && this.page == 1){

@@ -219,9 +219,12 @@ export default {
             this.$tools.prev();
         }
 
-        if(this.$tools.in_array(type,["buy","point","second","group","special"])){
+        if(this.$tools.in_array(type,["buy","point","second","group","special","activity"])){
             params.sku_id = this.$route.query.sku_id;
             params.num = this.$route.query.num;
+            if(this.$route.query.kid){
+                params.kid = this.$route.query.kid;
+            }
         }
 
         this.params = params;
@@ -241,7 +244,7 @@ export default {
                 loadingType: 'spinner',
                 duration: 0
             });
-            this.$request.get("/order/confirm",this.params).then((res)=>{
+            this.$http.getCartConfirm(this.params).then((res)=>{
                 Toast.clear();
                 if(res.status){
                     this.orderData = res.data;
@@ -269,9 +272,6 @@ export default {
                 }else{
                     Toast(res.info);
                 }
-            }).catch((err)=>{
-                Toast.clear();
-                Toast("网络连接错误，请检查网络是否可用");
             });
         },
         prev(){
@@ -301,7 +301,7 @@ export default {
                 source: this.$tools.isWeiXin() ? 2 : 1,
                 url: document.location.href
             },this.params);
-            this.$request.post("/order/create",params).then((res)=>{
+            this.$http.createOrder(params).then((res)=>{
                 Toast.clear();
                 if(res.status){
                     this.resultOrderData(res.data);
@@ -333,7 +333,7 @@ export default {
                     this.$wx.chooseWXPay(options);
                     break;
                 case "2":
-                    location.href = data.result.url+"&redirect_url="+document.location.protocol+'//' + document.domain+'/order/detail/'+data.order_id;
+                    location.href = data.result.url+"&redirect_url="+location.origin+'/order/detail/'+data.order_id;
                     break;
                 case "99":
                     Toast(data.msg);

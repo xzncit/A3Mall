@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from "../views/home/home";
+import store from "../store";
+import { login } from "../libs/Users"
 
 Vue.use(VueRouter);
 const routes = [
@@ -250,6 +252,21 @@ const routes = [
         component:()=>import("../views/goods/recommend")
     },
     {
+        path:'/404',
+        meta: { title: "", tabbar: false, auth: false },
+        component:()=>import("../views/public/404")
+    },
+    {
+        path:'/error',
+        meta: { title: "", tabbar: false, auth: false },
+        component:()=>import("../views/public/error")
+    },
+    {
+        path:'/empty',
+        meta: { title: "", tabbar: false, auth: false },
+        component:()=>import("../views/public/empty")
+    },
+    {
         path: '*',
         redirect: '/',
         meta: { title: "", tabbar: true, auth: false },
@@ -260,7 +277,15 @@ const routes = [
 const router = new VueRouter({
     mode: "history",
     routes
-})
+});
 
+router.beforeEach(function(to,from,next){
+    if(login(to,from)){
+        return ;
+    }
+    document.title = to.meta.title || process.env.WEB_NAME || "A3Mall B2C商城";
+    store.commit("UPDATETABBAR",to.meta.tabbar);
+    next();
+});
 
 export default router

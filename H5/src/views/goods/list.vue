@@ -109,7 +109,7 @@
                     this.page = 1;
                 }
 
-                this.$request.get("/goods/list",{
+                this.$http.getGoodsList({
                     page: this.page,
                     id: this.cat_id,
                     sort: this.goodsValue,

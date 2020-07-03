@@ -61,7 +61,7 @@
     import { DropdownMenu, DropdownItem } from 'vant';
     import { Empty } from 'vant';
     export default {
-        name: 'GoodsList',
+        name: 'GoodsHotList',
         components: {
             [NavBar.name]: NavBar,
             [PullRefresh.name]: PullRefresh,
@@ -104,7 +104,7 @@
                     this.page = 1;
                 }
 
-                this.$request.get("/products/hot",{
+                this.$http.getGoodsHot({
                     page: this.page,
                     sort: this.goodsValue,
                     type: this.sortValue

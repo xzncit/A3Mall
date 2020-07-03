@@ -84,7 +84,7 @@
                     this.page = 1;
                 }
 
-                this.$request.get("/group",{
+                this.$http.getGroupList({
                     page: this.page
                 }).then((result)=>{
                     if(result.data.list == undefined && this.page == 1){

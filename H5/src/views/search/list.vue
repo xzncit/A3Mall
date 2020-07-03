@@ -105,7 +105,7 @@ export default {
                 this.page = 1;
             }
 
-            this.$request.get("/list",{
+            this.$http.getSearchList({
                 page: this.page,
                 keywords: this.keywords,
                 sort: this.goodsValue,

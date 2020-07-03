@@ -79,7 +79,7 @@
     import { Cell, CellGroup } from 'vant';
     import { Empty,Toast,Popup,Button,Field } from 'vant';
     export default {
-        name: 'OrderList',
+        name: 'OrderRefund',
         components: {
             [NavBar.name]: NavBar,
             [Step.name]: Step,
@@ -120,7 +120,7 @@
         methods: {
             onSubmit(){
                 this.isEmpty = false;
-                this.$request.post("/order/apply_refund",{
+                this.$http.sendOrderRefund({
                     id: this.$route.params.id,
                     message: this.message
                 }).then(res=>{
@@ -139,7 +139,7 @@
             onLoadOrder(){
                 let id = this.$route.params.id;
                 this.isEmpty = false;
-                this.$request.post("/order/refund",{
+                this.$http.getOrderRefund({
                     id: id
                 }).then((res)=>{
                     if(res.status){

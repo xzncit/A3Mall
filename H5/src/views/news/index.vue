@@ -85,7 +85,7 @@
                     this.page = 1;
                 }
 
-                this.$request.get("/news",{
+                this.$http.getNewsList({
                     page: this.page
                 }).then((result)=>{
                     if(result.data.list == undefined && this.page == 1){

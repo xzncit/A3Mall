@@ -133,7 +133,7 @@ export default {
     },
     methods: {
         onLoad(){
-            this.$request.get("/goods/view",{
+            this.$http.getGoodsDetail({
                 id: this.$route.params.id
             }).then((result)=>{
                 if(result.status){
@@ -143,12 +143,16 @@ export default {
                     this.goods.picture = result.data.goods.photo;
                     this.goodsId = this.$route.params.id;
                     this.sku = result.data.sku;
+                }else{
+                    this.$router.replace("/404");
                 }
+            }).catch(err=>{
+                this.$router.replace("/404");
             });
         },
         favorite(){
             this.$store.dispatch("isUsers").then(()=>{
-                this.$request.get("/goods/favorite",{
+                this.$http.goodsDetailFavorite({
                     id: this.$route.params.id
                 }).then((result)=>{
                     if(result.status){
@@ -158,7 +162,7 @@ export default {
                     }
                 });
             }).catch(()=>{
-                let path = this.$storage.set("VUE_REFERER","/goods/view");
+                let path = this.$storage.set("VUE_REFERER","/goods/view/"+this.$route.params.id);
                 this.$router.push("/public/login");
             });
         },
@@ -183,13 +187,13 @@ export default {
                     type: "buy"
                 }});
             }).catch(()=>{
-                let path = this.$storage.set("VUE_REFERER","/goods/view");
+                let path = this.$storage.set("VUE_REFERER","/goods/view/"+this.$route.params.id);
                 this.$router.push("/public/login");
             });
         },
         onAddCartClicked(data){
             this.$store.dispatch("isUsers").then(()=>{
-                this.$request.post("/cart/add",{
+                this.$http.goodsDetailAddCart({
                     id: data.goodsId,
                     sku_id: data.selectedSkuComb.id,
                     num: data.selectedNum
@@ -206,7 +210,7 @@ export default {
                     Toast("网络出错，请检查网络是否连接");
                 });
             }).catch(()=>{
-                let path = this.$storage.set("VUE_REFERER","/goods/view");
+                let path = this.$storage.set("VUE_REFERER","/goods/view/"+this.$route.params.id);
                 this.$router.push("/public/login");
             });
         },

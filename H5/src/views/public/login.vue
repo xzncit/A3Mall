@@ -91,11 +91,18 @@
                     return ;
                 }
 
-                this.loading = true;
-                this.$request.post('/public/login',{
+                let params = {
                     username: this.username,
                     password: this.password
-                }).then((result)=>{
+                };
+
+                let spread_id = parseInt(this.$cookie.get("spread_id"));
+                if(spread_id > 0){
+                    params.spread_id = spread_id;
+                }
+
+                this.loading = true;
+                this.$http.sendLogin(params).then((result)=>{
                     if(result.status){
                         this.$store.commit("UPDATEUSERS",result.data);
                         let path = this.$storage.get("VUE_REFERER");

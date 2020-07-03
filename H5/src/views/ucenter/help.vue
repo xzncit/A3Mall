@@ -37,7 +37,7 @@ export default {
         };
     },
     created() {
-        this.$request.get("/ucenter/help").then((res)=>{
+        this.$http.gethelp().then((res)=>{
             if(res.status){
                 this.list = res.data;
                 this.activeNames = res.data[0].id;

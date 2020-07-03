@@ -75,7 +75,7 @@ export default {
                 return ;
             }
 
-            this.$request.get("/bonus/receive",{
+            this.$http.getCouponList({
                 id: this.list[index].id
             }).then(res=>{
                 if(res.status){
@@ -92,7 +92,7 @@ export default {
         onLoad() {
             this.isEmpty = false;
             let emptyImage = this.$request.domain() + 'static/images/coupon-empty.png';
-            this.$request.get("/bonus",{
+            this.$http.getCouponLoad({
                 page: this.page
             }).then(result=>{
                 if(result.data.list == undefined && this.page == 1){

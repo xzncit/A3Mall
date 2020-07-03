@@ -68,7 +68,7 @@ export default {
         loadGoods(){
             this.isEmpty = false;
             let emptyCollect = this.$request.domain() + 'static/images/collect-empty.png';
-            this.$request.get("/ucenter/favorite",{
+            this.$http.getCollectList({
                 page: this.page
             }).then((result)=>{
                 if(result.data.list == undefined && this.page == 1){
@@ -99,7 +99,7 @@ export default {
             this.$tools.prev();
         },
         deleteGoods(index,id){
-            this.$request.get("/ucenter/favorite_delete",{
+            this.$http.deleteCollect({
                 id: id
             }).then((res) => {
                 if(res.status){

@@ -100,7 +100,7 @@ export default {
         };
     },
     created() {
-        this.$request.get("/ucenter/info").then((res)=>{
+        this.$http.getUserInfo().then((res)=>{
             if(res.status){
                 this.username  = res.data.nickname;
                 this.sex  = res.data.sex;
@@ -113,7 +113,7 @@ export default {
             this.$tools.prev();
         },
         onSubmit(){
-            this.$request.post("/ucenter/setting",{
+            this.$http.editUserInfo({
                 username: this.username,
                 sex: this.sex,
                 birthday: this.birthday

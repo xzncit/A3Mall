@@ -28,5 +28,17 @@ export default {
 
     isWeiXin() {
         return window.navigator.userAgent.toLowerCase().indexOf("micromessenger") !== -1;
+    },
+
+    ltrim(str,char){
+        let pos = str.indexOf(char);
+        let sonstr = str.substr(pos+1);
+        return sonstr;
+    },
+
+    rtrim(str,char){
+        let pos = str.lastIndexOf(char);
+        let sonstr = str.substr(0,pos);
+        return sonstr;
     }
 }

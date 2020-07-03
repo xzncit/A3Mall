@@ -127,7 +127,7 @@ export default {
             }
 
             let emptyCart = this.$request.domain() + 'static/images/cart-empty.png';
-            this.$request.get("/cart",{
+            this.$http.getCartList({
                 page: this.page
             }).then((result)=>{
                 if(result.data.list == undefined && this.page == 1){
@@ -203,7 +203,7 @@ export default {
                 id.push(item.id);
             })
 
-            this.$request.post("/cart/delete",{
+            this.$http.deleteCart({
                 id: id.join(",")
             });
         },
@@ -213,7 +213,7 @@ export default {
          * @param detail    索引
          */
         stepperNum(value,goods_id,products_id){
-            this.$request.post("/cart/change",{
+            this.$http.updateCartGoods({
                 id: goods_id,
                 sku_id: products_id,
                 num: value

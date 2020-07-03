@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <van-overlay :show="show">
             <div id="loading">
                 <van-loading type="spinner" />
@@ -10,7 +9,7 @@
 </template>
 
 <script>
-    import {Overlay, Loading, Toast} from 'vant';
+    import {Overlay, Loading} from 'vant';
     export default {
         name: 'Oauth',
         components: {
@@ -24,10 +23,18 @@
         },
         created() {
             if(this.$tools.isWeiXin()){
-                this.$request.post("/oauth",{
+
+                let params = {
                     code: this.$route.query.code,
                     state: this.$route.query.state
-                }).then(result=>{
+                };
+
+                let spread_id = parseInt(this.$cookie.get("spread_id"));
+                if(spread_id > 0){
+                    params.spread_id = spread_id;
+                }
+
+                this.$http.sendOauth(params).then(result=>{
                     if(result.status == 2){
                         this.$store.commit("UPDATEUSERS",result.data);
                         let path = this.$storage.get("VUE_REFERER");
@@ -42,7 +49,6 @@
                 });
             }else{
                 this.$router.push('/');
-                //console.log(this.$route.query);
             }
         },
         methods: {

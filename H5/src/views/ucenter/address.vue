@@ -34,7 +34,7 @@ export default {
         };
     },
     created() {
-        this.$request.get("ucenter/address/list").then(res=>{
+        this.$http.getAddress().then(res=>{
             if(res.status){
                 this.list = res.data.list;
                 this.chosenAddressId = res.data.chosenAddressId;

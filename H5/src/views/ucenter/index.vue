@@ -111,7 +111,7 @@ export default {
         this.username = users.nickname || users.username || users.mobile;
         this.amount = users.amount;
         this.coupon = users.coupon_count;
-        this.$request.get("/ucenter/info").then((res)=>{
+        this.$http.getUcenter().then((res)=>{
             if(res.status){
                 this.username = res.data.nickname || res.data.username || res.data.mobile;
                 this.amount = res.data.amount;

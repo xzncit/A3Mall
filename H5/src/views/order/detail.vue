@@ -134,7 +134,7 @@ import { Step, Steps } from 'vant';
 import { Cell, CellGroup } from 'vant';
 import { Empty,Toast,Popup,Button } from 'vant';
 export default {
-    name: 'OrderList',
+    name: 'OrderDetail',
     components: {
         [NavBar.name]: NavBar,
         [Step.name]: Step,
@@ -184,7 +184,7 @@ export default {
         onLoadOrder(){
             let id = this.$route.params.id;
             this.isEmpty = false;
-            this.$request.post("/order/detail",{
+            this.$http.getOrderDetail({
                 id: id
             }).then((res)=>{
                 if(res.status){
@@ -213,7 +213,7 @@ export default {
                 duration: 0
             });
 
-            this.$request.get("/order/payment",{
+            this.$http.getOrderDetailPayment({
                 order_id: this.$route.params.id
             }).then(res=>{
                 Toast.clear();
@@ -230,8 +230,26 @@ export default {
         resultOrderData(data){
             switch (data.pay+"") {
                 case "0":
-                    this.onLoadOrder();
+                    this.$router.replace('/order/detail/'+data.order_id);
                     break;
+                case "1":
+                    this.$wx.config(data.result.config);
+                    var options = data.result.options;
+                    options.success = function(){
+                        Toast("支付成功");
+                        setTimeout(()=>{
+                            this.$router.replace('/order/detail/'+data.order_id);
+                        },1500);
+                    }
+                    this.$wx.chooseWXPay(options);
+                    break;
+                case "2":
+                    location.href = data.result.url+"&redirect_url="+location.origin+'/order/detail/'+data.order_id;
+                    break;
+                case "99":
+                    Toast(data.msg);
+                    break;
+
             }
         },
         confirm(){
@@ -252,7 +270,7 @@ export default {
             });
 
             let order_id = this.$route.params.id;
-            this.$request.get("/order/cancel",{
+            this.$http.getOrderDetailCancel({
                 order_id: order_id
             }).then(res=>{
                 Toast.clear();

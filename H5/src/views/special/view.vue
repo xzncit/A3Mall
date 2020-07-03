@@ -60,8 +60,6 @@
 
         <van-goods-action>
             <van-goods-action-icon replace to="/home" icon="wap-home-o" text="首页" />
-            <van-goods-action-icon replace to="/cart/index" icon="cart-o" text="购物车" :badge="cartCount" />
-            <van-goods-action-icon icon="star" @click="favorite" text="收藏" :color="collect" />
             <van-goods-action-button @click="skuShow" type="danger" text="立即购买" />
         </van-goods-action>
     </div>
@@ -133,7 +131,7 @@ export default {
     },
     methods: {
         onLoad(){
-            this.$request.get("/special/view",{
+            this.$http.getSpeciaDetail({
                 id: this.$route.params.id
             }).then((result)=>{
                 if(result.status){
@@ -146,28 +144,6 @@ export default {
                     this.activityId = result.data.activityId;
                 }
             });
-        },
-        favorite(){
-            this.$store.dispatch("isUsers").then(()=>{
-                this.$request.get("/special/favorite",{
-                    id: this.$route.params.id
-                }).then((result)=>{
-                    if(result.status){
-                        this.collect = result.data == 1 ? "#ff5000" : "#ccc";
-                    }else{
-                        Toast(result.info);
-                    }
-                });
-            }).catch(()=>{
-                let path = this.$storage.set("VUE_REFERER","/goods/view");
-                this.$router.push("/public/login");
-            });
-        },
-        skuShow(){
-          this.isShow = true;
-        },
-        onChange(index) {
-            this.current = index;
         },
         onRefresh(){
             setTimeout(()=>{

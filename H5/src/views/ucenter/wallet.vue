@@ -40,7 +40,7 @@
         created() {
             let users = this.$storage.get("users",true);
             this.amount = users.amount;
-            this.$request.get("/ucenter/info").then((res)=>{
+            this.$http.getWallet().then((res)=>{
                 if(res.status){
                     this.amount = res.data.amount;
                     this.$store.commit("UPDATEUSERS",res.data);

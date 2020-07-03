@@ -86,7 +86,7 @@ export default {
         onLoad() {
             this.isEmpty = false;
             let emptyImage = this.$request.domain() + 'static/images/coupon-empty.png';
-            this.$request.get("/ucenter/coupon",{
+            this.$http.getCoupon({
                 type: this.isActive,
                 page: this.page
             }).then(result=>{

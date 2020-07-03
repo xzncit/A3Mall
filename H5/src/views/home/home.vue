@@ -1,28 +1,29 @@
 <template>
     <div>
-        <div class="search-box" @click="onSearch">
-            <van-search
-                v-model="searchValue"
-                readonly
-                shape="round"
-                background="#b71c1c"
-                placeholder="请输入搜索关键词"
-            >
-            </van-search>
-        </div>
-        <div class="search-placeholder-box"></div>
-
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-            <div class="swiper-box">
-                <van-swipe class="my-swipe" :autoplay="3000">
-                    <van-swipe-item v-for="(image, index) in images" :key="index">
-                        <img v-lazy="image" />
-                    </van-swipe-item>
-                </van-swipe>
-            </div>
+            <div class="top-wrap">
+                <div class="header">
+                    <div class="logo">
+                        <span>A3Mall</span>
+                        <span>素烟姿</span>
+                    </div>
+                    <div class="cart" @click="$router.push('/cart/index')"></div>
+                </div>
+                <div class="search-box" @click="onSearch">
+                    <van-icon color="search-icon" name="search" />
+                    <span class="search-text">请输入搜索关键词</span>
+                </div>
+                <div class="swiper-box">
+                    <van-swipe class="my-swipe" :autoplay="3000">
+                        <van-swipe-item v-for="(image, index) in images" :key="index">
+                            <img v-lazy="image" />
+                        </van-swipe-item>
+                    </van-swipe>
+                </div>
 
-            <div class="notice-box">
-                <van-notice-bar @click="noticeEvent" color="#666" background="#fff" left-icon="volume-o" :text="noticeText" />
+                <div class="notice-box">
+                    <van-notice-bar @click="noticeEvent" color="#b91922" background="transparent" left-icon="volume-o" :text="noticeText" />
+                </div>
             </div>
 
             <div class="grid-box">
@@ -169,7 +170,7 @@
         },
         methods: {
             onLoadData(){
-                this.$request.get("/index").then(res=>{
+                this.$http.getHomeCommon().then(res=>{
                     this.images = res.data.banner;
                     this.category = res.data.nav;
                     this.img_1 = res.data.img_1;
@@ -188,7 +189,7 @@
                     this.page = 1;
                 }
 
-                this.$request.get("/index/list",{
+                this.$http.getHomeList({
                     page: this.page
                 }).then((result)=>{
                     if(result.data.list == undefined && this.page == 1){
@@ -233,26 +234,90 @@
 </script>
 
 <style lang="scss" scoped>
-.search-placeholder-box{ width: 100%; height: 54px; }
-.search-box { width: 100%; height: 54px; position: fixed; top: 0; left: 0; z-index: 11111; }
-.my-swipe {width: 100%;height: 150px;}
+.top-wrap { background: linear-gradient(to bottom,#b91922,#fefdfd); }
+.swiper-box{ width: 93%; margin: 0 auto; }
+.header{
+    width: 93%;
+    height: 35px;
+    line-height: 45px;
+    margin: 0 auto;
+    position: relative;
+    .logo {
+        float: left;
+        span:first-child{
+            color:#fff;
+            font-size: 21px;
+            padding-right: 8px;
+            position: relative;
+        }
+        span:first-child:after {
+            border-right: 1px solid #dc8c91;
+            width: 1px;
+            height: 18px;
+            content: " ";
+            position: absolute;
+            right: -2px;
+            top: 4px;
+        }
+        span:last-child{
+            color: #fff000;
+            font-size: 19px;
+            padding-left: 8px;
+        }
+    }
+    .cart {
+        float: right;
+        width: 24px;
+        height: 20px;
+        background-image: url("../../assets/images/cart.png");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        position: relative;
+        top: 12px;
+    }
+}
+.search-box {
+    width: 93%; height: 35px;
+    background-color: #fff;
+    margin: 15px auto;
+    border-radius: 50px;
+    position: relative;
+    .van-icon-search {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666666;
+        font-size: 25px;
+    }
+    .search-text {
+        position: absolute;
+        left: 40px;
+        color: #666;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 15px;
+    }
+}
+.my-swipe {width: 100%;height: 150px; border-radius: 6px;}
 .my-swipe .van-swipe-item img {display: block;width: 100%;height: 150px;background-color: #fff;pointer-events: none;}
 .my-swipe /deep/ .van-swipe__indicator--active { background-color: #b71c1c }
-.grid-box{background: #fff;margin-top: 5px;display: flex;flex-direction: row;flex-wrap: wrap;padding-top: 10px;}
+.notice-box /deep/ .van-notice-bar { background: transparent; }
+.grid-box{background: #fff;display: flex;flex-direction: row;flex-wrap: wrap;padding-top: 10px;}
 .grid-box-item {width: 25%;height: 80px;text-align: center;}
 .grid-box-item-img {display: block;}
-.grid-box-item-img img {width: 45px;height: 45px;border-radius: 50%;}
+.grid-box-item-img img {width: 50px;height: 50px;border-radius: 50%;}
 .grid-box-item-text {display: block;font-size: 13px;color: #666;width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.host-box { margin: 10px 0; width: 100%; height: 230px; background-color: #fff; background-image: url("../../assets/images/red_bg.png"); background-size: 100%; background-repeat: no-repeat; }
+.host-box { margin: 10px 0; width: 100%; height: 260px; background-color: #b91922; }
 .host-box .host-title { color: #fff; width: 92%; height: 45px; line-height: 45px; margin: 0 auto; }
 .host-box .host-title span:first-child { font-size: 16px; float: left; font-weight: bold; }
 .host-box .host-title span:last-child { position: relative; font-size: 13px; float: right; padding-right: 15px; }
 .host-box .host-title span:last-child:after { position: absolute; right: 0; top: -1px; content: '>'; }
-.host-middle { width: 92%; margin: 0 auto; background: #fff; border-radius: 5px; display: flex; justify-content: center; flex-wrap: nowrap; flex-direction: row; }
-.host-middle-box { width: 33%; padding-top: 10px; text-align: center; }
+.host-middle { padding-bottom: 10px; width: 92%; margin: 0 auto; background: #fff; border-radius: 5px; display: flex; justify-content: center; flex-wrap: nowrap; flex-direction: row; }
+.host-middle-box { width: 31%; padding: 0 1%; padding-top: 10px; text-align: center; }
 .host-middle-box span { display: block; width: 100%; font-size: 14px; }
 .host-middle-box span:nth-child(1) img { width: 110px; height: 110px; border-radius: 5px; }
-.host-middle-box span:nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.host-middle-box span:nth-child(2) { height: 40px; display: -webkit-box;overflow: hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical; }
 .host-middle-box span:nth-child(3) { color: red; text-align: left; }
 .m-1{height: 100px;margin: 10px 0;}
 .m-1 img{display: block;width: 100%;height: 100%;}
