@@ -121,6 +121,6 @@ class Auth extends Base {
             return true;
         }
 
-        return false;
+        throw new \Exception("本操作您没有执行权限。",0);
     }
 }
