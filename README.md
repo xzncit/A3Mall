@@ -23,7 +23,7 @@
  <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=de316f1a1dbf61859529484891ee50369e3c2bc6fe37e15bb94f8bf731cc3482"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="A3Mall开发交流群" title="A3Mall开发交流群"></a>
 ## 前台H5演示
 
-<img src="/readme/images/qrcode.png" width="300" height="300" alt="前台H5演示" align="center" />
+<img src="https://gitee.com/xzncit/A3Mall/raw/master/readme/images/qrcode.png" width="300" height="300" alt="前台H5演示" align="center" />
 
 <br>
 
@@ -49,19 +49,19 @@ npm run build 打包前端页面，复制到public目录替换 index.html static
 ```
 
 ### 前台截图演示
-![输入图片说明](/readme/images/web/1.jpg "1.jpg")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/1.jpg "1.jpg")
 
 ### 后台截图演示
-![输入图片说明](/readme/images/a/0.png "0.png")
-![输入图片说明](/readme/images/a/1.png "1.png")
-![输入图片说明](/readme/images/a/2.png "2.png")
-![输入图片说明](/readme/images/a/3.png "3.png")
-![输入图片说明](/readme/images/a/4.png "4.png")
-![输入图片说明](/readme/images/a/5.png "5.png")
-![输入图片说明](/readme/images/a/6.png "6.png")
-![输入图片说明](/readme/images/a/7.png "7.png")
-![输入图片说明](/readme/images/a/8.png "8.png")
-![输入图片说明](/readme/images/a/9.png "9.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/0.png "0.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/1.png "1.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/2.png "2.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/3.png "3.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/4.png "4.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/5.png "5.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/6.png "6.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/7.png "7.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/8.png "8.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/9.png "9.png")
 
 
 
