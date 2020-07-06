@@ -40,7 +40,7 @@ if (
 }
 
 if (!class_exists(Application::class)) {
-    fwrite(STDERR, 'You need the "symfony/console" component in index to run the VarDumper server.'.PHP_EOL);
+    fwrite(STDERR, 'You need the "symfony/console" component in order to run the VarDumper server.'.PHP_EOL);
     exit(1);
 }
 

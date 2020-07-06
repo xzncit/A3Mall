@@ -28,6 +28,5 @@
                 "captcha": "src/config.php"
             }            
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
