@@ -1,37 +1,43 @@
 <template>
     <div>
-        <van-nav-bar
-            title="登录"
-            left-arrow
-            @click-left="prev"
-        />
+        <div class="wrap">
+            <div class="top">
+                <div class="title">A3Mall</div>
+                <div class="ctitle">素烟姿</div>
+            </div>
 
-        <div class="login" :style="'height:'+clientHeight+'px'">
             <van-form @submit="onSubmit">
-                <van-field
-                    v-model="username"
-                    type="tel"
-                    name="用户名"
-                    left-icon="phone-o"
-                    placeholder="请输入手机号码"
-                />
-                <van-field
-                    v-model="password"
-                    type="password"
-                    name="密码"
-                    left-icon="lock"
-                    placeholder="请填写密码"
-                />
-                <div class="forget-password">
-                    <span @click="goForget">忘记密码？</span>
-                </div>
-                <div style="margin: 16px;">
-                    <van-button :loading="loading" loading-text="数据提交中" round block color="#f35447" type="info" native-type="submit">
-                        登录
-                    </van-button>
-                </div>
-                <div class="tips-box">
-                    没有帐号？<i @click="goRegister">立即注册</i>
+                <div class="the-form-box">
+                    <div class="the-form-fields">
+                        <van-field
+                                v-model="username"
+                                type="tel"
+                                name="用户名"
+                                left-icon="contact"
+                                placeholder="请输入手机号码"
+                                class="the-form-field"
+                        />
+                        <van-field
+                                v-model="password"
+                                type="password"
+                                name="密码"
+                                left-icon="lock"
+                                placeholder="请填写密码"
+                                class="the-form-field"
+                        />
+                    </div>
+
+                    <div class="btn">
+                        <van-button :loading="loading" loading-text="数据提交中" block color="#b91922" type="info" native-type="submit">
+                            登 录
+                        </van-button>
+                    </div>
+
+                    <div class="hp-box">
+                        <span @click="goRegister">立即注册</span>
+                        <span @click="goForget">忘记密码？</span>
+                    </div>
+
                 </div>
             </van-form>
         </div>
@@ -40,12 +46,10 @@
 </template>
 
 <script>
-    import { NavBar } from 'vant';
     import { Form,Field,Button,Toast } from 'vant';
     export default {
         name: 'Login',
         components: {
-            [NavBar.name]: NavBar,
             [Form.name]: Form,
             [Field.name]: Field,
             [Button.name]: Button
@@ -126,27 +130,111 @@
 </script>
 
 <style lang="scss" scoped>
-.login{
-    width: 100%;
-    background-color: #fff;
-    padding-top: 50px;
-}
-.forget-password{
-    color: #999;
-    height: 25px;
-    line-height: 25px;
-    padding-top: 5px;
-    span {
-        float: right;
-        font-size: 14px;
+    .top {
+        width: 100%;
+        height: 210px;
+        background-image: url("../../assets/images/user-login-bg.png");
+        .title {
+            width: 100%;
+            float: left;
+            text-align: center;
+            position: relative;
+            color: #fff;
+            font-size: 40px;
+            margin-top: 60px;
+        }
+        .title:after {
+            position: absolute;
+            width: 115px;
+            height: 3px;
+            background-color: #cf656b;
+            content: " ";
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -7px;
+        }
+        .ctitle {
+            width: 100%;
+            float: left;
+            text-align: center;
+            font-size: 31px;
+            color: #fff000;
+            margin-top: 10px;
+        }
     }
-}
-.tips-box{
-    text-align: center;
-    color: #999;
-    i {
-        font-style: normal;
-        color: #ff7159;
+    .wrap{
+        width: 100%;
+        height: 100vh;
+        background-color: #fff;
     }
-}
+    .the-form-box{
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 40px;
+        .the-form-fields{
+            width: 100%;
+            border-radius: 10px;
+            border:1px solid #d6d2d2;
+            overflow: hidden;
+            .the-form-field{
+                position: relative;
+                display: block;
+                box-sizing: content-box;
+                width: 100%;
+                height: 50px;
+                line-height: 10px;
+                padding: 0;
+                overflow: hidden;
+                color: #323233;
+                font-size: 14px;
+                background-color: #fff;
+                &:first-child {
+                    border-bottom: 1px solid #d6d2d2;
+                }
+                /deep/ .van-field__left-icon{
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 15px;
+                    /deep/ .van-icon {
+                        font-size: 20px;
+                        color: #aaa;
+                    }
+                }
+                /deep/ .van-field__value {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 45px;
+                    width: 80%;
+                    font-size: 15px;
+                }
+            }
+        }
+        .btn{
+            margin: 25px auto 0 auto;
+            /deep/ .van-button{
+                background-color: #b91922;
+                border-radius: 5px;
+                font-size: 18px;
+            }
+        }
+    }
+    .hp-box{
+        color: #999;
+        height: 25px;
+        line-height: 25px;
+        padding-top: 25px;
+        span {
+            font-size: 15px;
+            color:#888888;
+            &:first-child{
+                float: left;
+            }
+            &:last-child {
+                float: right;
+            }
+        }
+    }
+
 </style>
