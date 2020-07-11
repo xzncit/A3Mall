@@ -50,6 +50,7 @@ npm run build 打包前端页面，复制到public目录替换 index.html static
 
 ### 前台截图演示
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/1.jpg "1.jpg")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/2.jpg "2.jpg")
 
 ### 后台截图演示
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/0.png "0.png")
