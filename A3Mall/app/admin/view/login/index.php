@@ -88,11 +88,16 @@
                 $(that).addClass("on");
                 $.post('{:createUrl("login/post")}',$("#theForm").serialize(),function(result){
                     if(result.code){
-                        layer.msg(result.msg,{ time:3000 },function (){
+                        layer.msg(result.msg, {
+                            offset: '60px', anim: 5, time:3000
+                        },function (){
                             window.location.href = result.data;
                         });
                     }else{
-                        layer.msg(result.msg,{ icon : 2 });
+                        layer.msg(result.msg, {
+                            offset: '60px',
+                            anim: 5
+                        });
                         $(that).removeClass("on");
                         $('[alt="code"]').trigger("click");
                     }
