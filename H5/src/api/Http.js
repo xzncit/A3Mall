@@ -203,7 +203,7 @@ export function getNewsList(params) {
 export function getNewsDetail(params) {
     return new Promise((resolve, reject) => {
         request.get("/news/view",params).then(res=>{
-            resolve(resolve);
+            resolve(res);
         }).catch(err=>{
             router.replace("/404");
         });
