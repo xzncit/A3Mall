@@ -15,7 +15,7 @@ Route::group(function(){
     Route::get('index', 'api/wap.index/index');
     Route::get('index/list', 'api/wap.index/get_list');
     Route::get('search', 'api/wap.search/index');
-    Route::get('list', 'api/wap.search/get_list');
+    Route::get('search/list', 'api/wap.search/get_list');
     Route::get('category', 'api/wap.category/index');
     Route::get('goods/list', 'api/wap.goods/index');
     Route::get('products/hot', 'api/wap.products/hot');

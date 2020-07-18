@@ -26,21 +26,22 @@ class Search extends Auth {
     public function get_list(){
         $page = Request::param("page","1","intval");
         $keywords = Request::param("keywords","","strip_tags,trim");
-        $type = Request::param("type","default","strip_tags,trim");
-        $sort = Request::param("sort","0","intval");
+        $type = Request::param("type","0","strip_tags,trim");
+        $sort = Request::param("sort","1","intval");
 
-        $text = $sort == 0 ? "ASC" : "DESC";
-        $order = '';
         switch($type){
-            case 'price':
+            case '2':
                 $order = 'sell_price';
+                $text = $sort == 1 ? "ASC" : "DESC";
                 break;
-            case 'sales':
+            case '1':
                 $order = 'sale';
+                $text = 'DESC';
                 break;
-            case 'default':
+            case '0':
             default :
                 $order = 'id';
+                $text = 'DESC';
                 break;
         }
 
@@ -53,7 +54,12 @@ class Search extends Auth {
 
         $total = ceil($count/$size);
         if($total == $page -1){
-            return $this->returnAjax("empty",-1,[]);
+            return $this->returnAjax("empty",-1,[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>$total,
+                "size"=>$size
+            ]);
         }
 
         $result = Db::name("goods")

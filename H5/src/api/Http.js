@@ -292,7 +292,7 @@ export function getSearchKeywords() {
 
 export function getSearchList(params) {
     return new Promise((resolve, reject) => {
-        request.get("/list",params).then((result)=>{
+        request.get("search/list",params).then((result)=>{
             resolve(result)
         }).catch((error)=>{
             reject(error)
