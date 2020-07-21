@@ -402,10 +402,7 @@ export function deleteCollect(params) {
 
 export function getCoupon(params) {
     return new Promise((resolve, reject) => {
-        request.get("/ucenter/coupon",{
-            type: this.isActive,
-            page: this.page
-        }).then(result=>{
+        request.get("/ucenter/coupon",params).then(result=>{
             resolve(result)
         }).catch((error)=>{
             reject(error)
@@ -505,9 +502,7 @@ export function getOrderDetail(params) {
 
 export function getOrderDetailPayment(params) {
     return new Promise((resolve, reject) => {
-        request.get("/order/payment",{
-            order_id: this.$route.params.id
-        }).then(res=>{
+        request.get("/order/payment",params).then(res=>{
             resolve(res)
         }).catch(err=>{
             reject(err)
@@ -517,9 +512,7 @@ export function getOrderDetailPayment(params) {
 
 export function getOrderDetailCancel(params) {
     return new Promise((resolve, reject) => {
-        request.get("/order/cancel",{
-            order_id: this.$route.params.id
-        }).then(res=>{
+        request.get("/order/cancel",params).then(res=>{
             resolve(res)
         }).catch(err=>{
             reject(err)
