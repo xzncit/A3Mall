@@ -25,24 +25,6 @@
     PDO PHP Extension
     MBstring PHP Extension
    
-## QQ交流群
- <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=de316f1a1dbf61859529484891ee50369e3c2bc6fe37e15bb94f8bf731cc3482"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="A3Mall开发交流群" title="A3Mall开发交流群"></a>
-
-## 前台H5演示
-
-<img src="https://gitee.com/xzncit/A3Mall/raw/master/readme/images/qrcode.png" width="300" height="300" alt="前台H5演示" align="center" />
-
-<br>
-
-账号：18319517777  密码：admin888
-
-
-## 演示站后台
-后台演示暂时不提供，如果需要可以自行安装查看默认帐号密码是
-
-账号：admin  密码：admin888
-
-
 ## 安装A3Mall
 
 ```html
@@ -58,7 +40,7 @@ npm run serve 调试前端页面
 npm run build 打包前端页面，复制dist目录内容到public目录替换 index.html static/wap 
 ```
 
-### Linux Shell命令
+## Linux Shell命令
 ```html
 定时取消未支付订单
 php think task cancle
@@ -77,7 +59,7 @@ php think task cart
 php think task cancle|sign|complete|cart --time 30 (单位：天)
 ```
 
-### 功能介绍
+## 功能介绍
 - 平台，微信管理，内容管理，运营管理，媒体管理，版本管理
 - 商品，商品，分类，品牌，规格，模型，配送，物流，地区，发货
 - 订单，支付，收款，发货，退款，售后等
@@ -85,6 +67,24 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
 - 营销，商品促销、订单促销、优惠券、团购，秒杀，特价，积分
 - 统计，搜索统计，数据统计
 - 系统，站点设置，邮箱设置，门店设置，上传设置，短信，权限，管理员，日志
+
+   
+## QQ交流群
+ <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=de316f1a1dbf61859529484891ee50369e3c2bc6fe37e15bb94f8bf731cc3482"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="A3Mall开发交流群" title="A3Mall开发交流群"></a>
+
+## 前台H5演示
+
+<img src="https://gitee.com/xzncit/A3Mall/raw/master/readme/images/qrcode.png" width="300" height="300" alt="前台H5演示" align="center" />
+
+<br>
+
+账号：18319517777  密码：admin888
+
+
+## 演示站后台
+后台演示暂时不提供，如果需要可以自行安装查看默认帐号密码是
+
+账号：admin  密码：admin888
 
 
 ### 前台截图演示
