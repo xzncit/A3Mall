@@ -9,7 +9,8 @@
 namespace app\admin\controller\users;
 
 use app\admin\controller\Auth;
-use mall\utils\Date;
+use app\common\model\users\Log as UsersLog;
+use app\common\model\users\WithdrawLog as UsersWithdrawLog;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
@@ -20,31 +21,37 @@ class Finance extends Auth {
     private $type = ["1"=>"银行卡","2"=>"支付宝","3"=>"微信"];
     private $status = ["0"=>"审核中","1"=>"已提现","2"=>"未通过"];
 
-    public function fund(){
+    public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $condition = ["action"=>0];
-            $count = Db::name("users_log")
-                ->alias('l')
-                ->join("users u","u.id=l.user_id","LEFT")
-                ->where($condition)->count();
-            $data = Db::name("users_log")
-                ->field("l.*,u.username")
-                ->alias('l')
-                ->join("users u","u.id=l.user_id","LEFT")
-                ->where($condition)->order("l.id DESC")->paginate($limit);
+            $condition = ["log.action"=>4];
 
-            if($data->isEmpty()){
+            $usersLog = new UsersLog();
+            $list = $usersLog->getList($condition,$limit);
+
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
+        }
 
-            foreach($list as $key=>$item){
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
+        return View::fetch();
+    }
+
+    public function fund(){
+        if(Request::isAjax()){
+            $limit = Request::get("limit");
+            $condition = ["log.action"=>0];
+
+            $usersLog = new UsersLog();
+            $list = $usersLog->getList($condition,$limit);
+
+            if(empty($list['data'])){
+                return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -53,28 +60,16 @@ class Finance extends Auth {
     public function point(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $condition = ["action"=>1];
-            $count = Db::name("users_log")
-                ->alias('l')
-                ->join("users u","u.id=l.user_id","LEFT")
-                ->where($condition)->count();
-            $data = Db::name("users_log")
-                ->field("l.*,u.username")
-                ->alias('l')
-                ->join("users u","u.id=l.user_id","LEFT")
-                ->where($condition)->order("l.id DESC")->paginate($limit);
+            $condition = ["log.action"=>1];
 
-            if($data->isEmpty()){
+            $usersLog = new UsersLog();
+            $list = $usersLog->getList($condition,$limit);
+
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -83,28 +78,16 @@ class Finance extends Auth {
     public function exp(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $condition = ["action"=>2];
-            $count = Db::name("users_log")
-                ->alias('l')
-                ->join("users u","u.id=l.user_id","LEFT")
-                ->where($condition)->count();
-            $data = Db::name("users_log")
-                ->field("l.*,u.username")
-                ->alias('l')
-                ->join("users u","u.id=l.user_id","LEFT")
-                ->where($condition)->order("l.id DESC")->paginate($limit);
+            $condition = ["log.action"=>2];
 
-            if($data->isEmpty()){
+            $usersLog = new UsersLog();
+            $list = $usersLog->getList($condition,$limit);
+
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -113,30 +96,18 @@ class Finance extends Auth {
     public function apply(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $condition = ["l.withdraw_type"=>0];
-            $count = Db::name("users_withdraw_log")
-                ->alias('l')
-                ->join("users u","u.id=l.user_id","LEFT")
-                ->where($condition)->count();
-            $data = Db::name("users_withdraw_log")
-                ->field("l.*,u.username")
-                ->alias('l')
-                ->join("users u","u.id=l.user_id","LEFT")
-                ->where($condition)->order("l.id DESC")->paginate($limit);
+            $condition = ["withdraw_log.withdraw_type"=>0];
 
-            if($data->isEmpty()){
+            $usersWithdrawLog = new UsersWithdrawLog();
+            $list = $usersWithdrawLog->get_list($condition,$limit);
+
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]["username"] = $item["username"];
-                $list[$key]["url"] = createUrl("handle",["id"=>$item["id"]]);
-                $list[$key]["price"] = $item["price"];
-                $list[$key]["type"] = $this->type[$item["type"]];
-                $list[$key]["status"] = $this->status[$item["status"]];
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
+            foreach($list['data'] as $key=>$item){
+                $list['data'][$key]["type"] = $this->type[$item["type"]];
+                $list['data'][$key]["status"] = $this->status[$item["status"]];
                 // 提现方式
                 $str = '';
                 if($item["type"] == 1){
@@ -151,10 +122,10 @@ class Finance extends Auth {
                     $str .= "<p>微信：" . $item["account"] . '</p>';
                 }
 
-                $list[$key]['string'] = $str;
+                $list['data'][$key]['string'] = $str;
             }
 
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();

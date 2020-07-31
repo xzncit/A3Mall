@@ -74,7 +74,7 @@
                                                         <div class="layui-btn-group">
                                                             <button class="layui-btn layui-btn-sm attr-up-btn layui-bg-light-blue">上移</button>
                                                             <button class="layui-btn layui-btn-sm attr-up-dowm-btn layui-bg-light-blue">下移</button>
-                                                            <button class="layui-btn layui-btn-sm attr-delete-btn layui-bg-light-blue">删除</button>
+                                                            <button type="button" class="layui-btn layui-btn-sm attr-delete-btn layui-bg-light-blue">删除</button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -119,7 +119,7 @@
                 <div class="layui-btn-group">
                     <button class="layui-btn layui-btn-sm attr-up-btn layui-bg-light-blue">上移</button>
                     <button class="layui-btn layui-btn-sm attr-up-dowm-btn layui-bg-light-blue">下移</button>
-                    <button class="layui-btn layui-btn-sm attr-delete-btn layui-bg-light-blue">删除</button>
+                    <button type="button" class="layui-btn layui-btn-sm attr-delete-btn layui-bg-light-blue">删除</button>
                 </div>
             </td>
         </tr>
@@ -177,9 +177,10 @@
             });
 
             $(document).on("click", ".attr-delete-btn", function () {
-                if ($(".layui-table tbody tr").size() > 1) {
+                if($(".layui-table tbody tr").length > 1) {
                     $(this).parent().parent().parent().remove();
                 }
+
                 return false;
             });
             

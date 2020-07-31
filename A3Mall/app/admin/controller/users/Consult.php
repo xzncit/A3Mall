@@ -9,8 +9,7 @@
 namespace app\admin\controller\users;
 
 use app\admin\controller\Auth;
-use mall\utils\Date;
-use mall\utils\Tool;
+use app\common\model\users\Consult as UsersConsult;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
@@ -28,32 +27,18 @@ class Consult extends Auth {
             $condition = [];
             $condition[] = ["pid","=",0];
             if(isset($key["cat_id"]) && $key["cat_id"] != '-1'){
-                $filed = $key["cat_id"] == 0 ? "u.username" : "g.title";
+                $filed = $key["cat_id"] == 0 ? "users.username" : "goods.title";
                 $condition[] = [$filed,"like",'%'.$key["title"].'%'];
             }
 
-            $count = Db::name("users_consult")
-                ->alias('c')
-                ->join("users u","c.user_id=u.id","LEFT")
-                ->join("goods g","c.goods_id=g.id")->where($condition)->count();
+            $usersConsult = new UsersConsult();
+            $list = $usersConsult->getList($condition,$limit);
 
-            $data = Db::name("users_consult")
-                ->alias('c')
-                ->field("c.*,g.title as goods_name,u.username")
-                ->join("users u","c.user_id=u.id","LEFT")
-                ->join("goods g","c.goods_id=g.id")->where($condition)->order("c.id DESC")->paginate($limit);
-
-            if($data->isEmpty()){
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-            foreach($list as $key=>$item){
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-                $list[$key]['url'] = createUrl("detail",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -67,14 +52,17 @@ class Consult extends Auth {
                 return Response::returnArray("请填写回复内容",0);
             }
 
-            $data["content"] = Tool::editor($data["content"]);
+            $usersConsult = new UsersConsult();
             $data["admin_id"] = Session::get("system_user_id");
             $data["reply_time"] = time();
             $data["status"] = 1;
-            Db::name("users_consult")->strict(false)->where("id",$data["id"])->update($data);
+
+            if(($obj=$usersConsult::find($data["id"])) != false){
+                $obj->save($data);
+            }
 
             $data["pid"] = $data["id"];
-            Db::name("users_consult")->strict(false)->insert($data);
+            $usersConsult->save($data);
             return Response::returnArray("操作成功");
         }
 

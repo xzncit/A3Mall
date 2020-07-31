@@ -12,6 +12,7 @@ use mall\utils\CString;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\Session;
+use mall\basic\Spread;
 
 class Order {
 
@@ -162,7 +163,7 @@ class Order {
                 ]);
             }
 
-            //Spread::backBrokerage($index);
+            Spread::backBrokerage($order);
         }
 
         //获取此订单中的商品种类
@@ -491,7 +492,7 @@ class Order {
     }
 
     public static function getOrderType($type=""){
-        $arr = ["point"=>1,"group"=>2,"second"=>3,"special"=>4,"buy"=>0,"cart"=>0];
+        $arr = ["point"=>1,"group"=>2,"second"=>3,"special"=>4,"activity"=>5,"buy"=>0,"cart"=>0];
         return isset($arr[$type]) ? $arr[$type] : 0;
     }
 
@@ -505,6 +506,9 @@ class Order {
                 break;
             case "3":
                 $string = "秒杀订单";
+                break;
+            case "5":
+                $string = "拼团订单";
                 break;
             case '4':
             default:

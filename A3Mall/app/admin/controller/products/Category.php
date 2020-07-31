@@ -11,7 +11,6 @@ namespace app\admin\controller\products;
 use app\admin\controller\Auth;
 use mall\basic\Attachments;
 use mall\utils\Data;
-use mall\utils\Date;
 use mall\utils\Tool;
 use mall\response\Response;
 use think\facade\Db;
@@ -24,29 +23,14 @@ class Category extends Auth {
         if(Request::isAjax()){
             $limit = Request::get("limit");
             $condition = ["pid"=>0,"module"=>"goods"];
-            $count = Db::name("category")->where($condition)->count();
-            $data = Db::name("category")->where($condition)->order('id desc')->paginate($limit);
+            $categoryModel = new \app\common\model\base\Category();
+            $list = $categoryModel->getList($condition,$limit);
 
-            if($data->isEmpty()){
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-            $_list = [];
-            foreach($list as $key=>$value){
-                $_list[] = $value;
-                $children = \mall\basic\Category::getCategoryChildren($value["id"]);
-                $arr = Data::analysisTree(Data::familyProcess($children,[],$value["id"]));
-                array_splice($_list, count($_list), 0, $arr);
-            }
-
-            foreach($_list as $key=>$item){
-                $_list[$key]['title'] = (empty($item['level']) ? '' : $item['level']) . $item["title"];
-                $_list[$key]['create_time'] = Date::format($item["create_time"]);
-                $_list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$_list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -69,27 +53,26 @@ class Category extends Auth {
         }
 
         $data = Request::post();
-
+        $categoryModel = new \app\common\model\base\Category();
         $data["module"] = "goods";
-        if(!empty($data["id"])){
-            if (!Data::checkTree(Db::name("category")->where(["module"=>"goods"])->select()->toArray(), $data)) {
+        if(($obj=$categoryModel::find($data["id"])) != false){
+            if(!$categoryModel->check_tree($categoryModel->where(["module"=>"goods"])->select()->toArray(),$data)){
                 return Response::returnArray("{$data['title']} 是 ID {$data['pid']} 的父栏目,不能修改！", 0);
             }
 
             try {
-                $data['update_time'] = time();
-                Db::name("category")->strict(false)->where(["id"=>$data['id']])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
-
         }else{
-            $data['create_time'] = time();
-            if(!Db::name("category")->strict(false)->insert($data)){
+            try{
+                $categoryModel->save($data);
+            }catch (\Exception $e){
                 return Response::returnArray("操作失败，请重试。",0);
             }
 
-            $data['id'] = Db::name("category")->getLastInsID();
+            $data['id'] = $categoryModel->id;
         }
 
         $attachment_id = Db::name("attachments")->where([

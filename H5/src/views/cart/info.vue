@@ -14,33 +14,33 @@
             <div class="list">
                 <div class="m">
                     <span>订单编号</span>
-                    <span>wx159034757880255724</span>
+                    <span>{{order.order_no||""}}</span>
                 </div>
 
                 <div class="m">
                     <span>下单时间</span>
-                    <span>1590347578</span>
+                    <span>{{order.create_time||""}}</span>
                 </div>
 
                 <div class="m">
                     <span>支付方式</span>
-                    <span>H5微信支付</span>
+                    <span>{{order.payment_type||""}}</span>
                 </div>
 
                 <div class="m">
                     <span>支付金额</span>
-                    <span>178.20</span>
+                    <span>{{order.order_amount||""}}</span>
                 </div>
 
                 <div class="m">
                     <span>支付状态</span>
-                    <span class="err">失败</span>
+                    <span class="err">{{order.order_status||""}}</span>
                 </div>
             </div>
 
             <div class="btn">
-                <span>查看订单</span>
-                <span class="err">重新发起支付</span>
+                <span class="success" @click="$router.push('/order/detail/'+order.order_id)">查看订单</span>
+<!--                <span class="err">重新发起支付</span>-->
             </div>
         </div>
     </div>
@@ -54,7 +54,34 @@
             [NavBar.name]: NavBar
         },
         data() {
-            return {}
+            return {
+                order: {
+                    order_id: "",
+                    order_no: "",
+                    create_time: "",
+                    order_amount: "",
+                    order_status: "",
+                    payment_type: ""
+                }
+            };
+        },
+        created() {
+            let order_id = parseInt(this.$route.query.order_id);
+            if(order_id <= 0){
+                this.$router.push('/');
+            }
+
+            this.$request.get("/order/info",{
+                order_id: order_id
+            }).then(res=>{
+                if(res.status){
+                    this.order = res.data;
+                }else{
+                    this.$router.push('/');
+                }
+            }).catch(err=>{
+                this.$router.push('/');
+            });
         },
         methods: {
             prev() {
@@ -118,8 +145,6 @@
         width: 100%;
         padding: 10px 0 20px 0;
         span {
-            background-color: #e93323;
-            color: #fff;
             border-radius: 15px;
             text-align: center;
             width: 95%;
@@ -129,12 +154,17 @@
             font-size: 16px;
             margin: 0 2.5%;
             margin-top: 10px;
+            &.success {
+                background-color: #e93323;
+                color: #fff;
+            }
+            &.err{
+                background-color: #fff;
+                color: #e93323;
+                border:1px solid #e93323;
+            }
         }
-        span:last-child{
-            background-color: #fff;
-            color: #e93323;
-            border:1px solid #e93323;
-        }
+
     }
 }
 

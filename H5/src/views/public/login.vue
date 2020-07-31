@@ -10,20 +10,20 @@
                 <div class="the-form-box">
                     <div class="the-form-fields">
                         <van-field
-                                v-model="username"
-                                type="tel"
-                                name="用户名"
-                                left-icon="contact"
-                                placeholder="请输入手机号码"
-                                class="the-form-field"
+                            v-model="username"
+                            type="tel"
+                            name="用户名"
+                            left-icon="contact"
+                            placeholder="请输入手机号码"
+                            class="the-form-field"
                         />
                         <van-field
-                                v-model="password"
-                                type="password"
-                                name="密码"
-                                left-icon="lock"
-                                placeholder="请填写密码"
-                                class="the-form-field"
+                            v-model="password"
+                            type="password"
+                            name="密码"
+                            left-icon="lock"
+                            placeholder="请填写密码"
+                            class="the-form-field"
                         />
                     </div>
 
@@ -130,111 +130,111 @@
 </script>
 
 <style lang="scss" scoped>
-    .top {
+.top {
+    width: 100%;
+    height: 210px;
+    background-image: url("../../assets/images/user-login-bg.png");
+    .title {
         width: 100%;
-        height: 210px;
-        background-image: url("../../assets/images/user-login-bg.png");
-        .title {
-            width: 100%;
-            float: left;
-            text-align: center;
+        float: left;
+        text-align: center;
+        position: relative;
+        color: #fff;
+        font-size: 40px;
+        margin-top: 60px;
+    }
+    .title:after {
+        position: absolute;
+        width: 115px;
+        height: 3px;
+        background-color: #cf656b;
+        content: " ";
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -7px;
+    }
+    .ctitle {
+        width: 100%;
+        float: left;
+        text-align: center;
+        font-size: 31px;
+        color: #fff000;
+        margin-top: 10px;
+    }
+}
+.wrap{
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+}
+.the-form-box{
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 40px;
+    .the-form-fields{
+        width: 100%;
+        border-radius: 10px;
+        border:1px solid #d6d2d2;
+        overflow: hidden;
+        .the-form-field{
             position: relative;
-            color: #fff;
-            font-size: 40px;
-            margin-top: 60px;
-        }
-        .title:after {
-            position: absolute;
-            width: 115px;
-            height: 3px;
-            background-color: #cf656b;
-            content: " ";
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -7px;
-        }
-        .ctitle {
+            display: block;
+            box-sizing: content-box;
             width: 100%;
-            float: left;
-            text-align: center;
-            font-size: 31px;
-            color: #fff000;
-            margin-top: 10px;
-        }
-    }
-    .wrap{
-        width: 100%;
-        height: 100vh;
-        background-color: #fff;
-    }
-    .the-form-box{
-        width: 90%;
-        margin: 0 auto;
-        padding-top: 40px;
-        .the-form-fields{
-            width: 100%;
-            border-radius: 10px;
-            border:1px solid #d6d2d2;
+            height: 50px;
+            line-height: 10px;
+            padding: 0;
             overflow: hidden;
-            .the-form-field{
-                position: relative;
-                display: block;
-                box-sizing: content-box;
-                width: 100%;
-                height: 50px;
-                line-height: 10px;
-                padding: 0;
-                overflow: hidden;
-                color: #323233;
-                font-size: 14px;
-                background-color: #fff;
-                &:first-child {
-                    border-bottom: 1px solid #d6d2d2;
-                }
-                /deep/ .van-field__left-icon{
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    left: 15px;
-                    /deep/ .van-icon {
-                        font-size: 20px;
-                        color: #aaa;
-                    }
-                }
-                /deep/ .van-field__value {
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    left: 45px;
-                    width: 80%;
-                    font-size: 15px;
+            color: #323233;
+            font-size: 14px;
+            background-color: #fff;
+            &:first-child {
+                border-bottom: 1px solid #d6d2d2;
+            }
+            /deep/ .van-field__left-icon{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 15px;
+                /deep/ .van-icon {
+                    font-size: 20px;
+                    color: #aaa;
                 }
             }
-        }
-        .btn{
-            margin: 25px auto 0 auto;
-            /deep/ .van-button{
-                background-color: #b91922;
-                border-radius: 5px;
-                font-size: 18px;
+            /deep/ .van-field__value {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 45px;
+                width: 80%;
+                font-size: 15px;
             }
         }
     }
-    .hp-box{
-        color: #999;
-        height: 25px;
-        line-height: 25px;
-        padding-top: 25px;
-        span {
-            font-size: 15px;
-            color:#888888;
-            &:first-child{
-                float: left;
-            }
-            &:last-child {
-                float: right;
-            }
+    .btn{
+        margin: 25px auto 0 auto;
+        /deep/ .van-button{
+            background-color: #b91922;
+            border-radius: 5px;
+            font-size: 18px;
         }
     }
+}
+.hp-box{
+    color: #999;
+    height: 25px;
+    line-height: 25px;
+    padding-top: 25px;
+    span {
+        font-size: 15px;
+        color:#888888;
+        &:first-child{
+            float: left;
+        }
+        &:last-child {
+            float: right;
+        }
+    }
+}
 
 </style>

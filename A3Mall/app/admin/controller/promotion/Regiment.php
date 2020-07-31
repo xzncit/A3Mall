@@ -46,7 +46,6 @@ class Regiment extends Auth {
             $list = $data->items();
             foreach($list as $key=>$item){
                 $list[$key]["id"] = $item["id"];
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
                 $list[$key]["title"] = $item["title"];
                 $list[$key]["photo"] = Tool::thumb($item["photo"]);
                 $list[$key]['create_time'] = Date::format($item["create_time"]);
@@ -56,92 +55,6 @@ class Regiment extends Auth {
         }
 
         return View::fetch();
-    }
-
-    public function editor(){
-        if(!Request::isAjax()){
-            $id = (int)Request::param("id");
-            $row = empty($id) ? [] : Db::name("promotion_regiment")->where("id",$id)->find();
-
-            if(!empty($row)){
-                $row = Db::name("promotion_regiment")->where(["id"=>$row["id"]])->find();
-                if(empty($row)){
-                    $this->error("您查找的数据不存在！");
-                }
-
-                $row["start_time"] = date("Y-m-d H:i:s",$row["start_time"]);
-                $row["end_time"] = date("Y-m-d H:i:s",$row["end_time"]);
-                $goods = Db::name("goods")->where(["id"=>$row["goods_id"]])->find();
-                $row["goods"] = $goods;
-                if(!empty($row["product_id"])){
-                    $product_id = explode(",",$row["product_id"]);
-                    $products = Db::name("goods_item")->where(["goods_id"=>$row["goods_id"]])->select()->toArray();
-
-                    $temp = [];
-                    foreach($products as $key=>$item){
-                        $temp[$key] = $item;
-                        $temp[$key]["checked"] = in_array($item["id"],$product_id) ? true : false;
-                        $arr = explode(",",$item["spec_key"]);
-                        foreach($arr as $value){
-                            $param = explode(":",$value);
-                            $name = Db::name("products_attribute")->where(["id"=>$param[0]])->value("name");
-                            $value = Db::name("products_attribute_data")->where(["id"=>$param[1],"pid"=>$param[0]])->value("value");
-                            $temp[$key]['spec_item'][] = $name . ':' . $value;
-                        }
-                        if(!empty($temp[$key]['spec_item'])){
-                            $temp[$key]['spec_item'] = implode(",", $temp[$key]['spec_item']);
-                        }
-                    }
-
-                    $row["products"] = $temp;
-                }
-
-            }
-
-            return View::fetch("",[
-                "data"=>$row
-            ]);
-        }
-
-        $data = Request::post();
-        $row = Db::name("promotion_regiment")->where(["goods_id"=>$data["goods_id"]])->find();
-        if(!empty($row)){
-            if($row["id"] != $data["id"]){
-                return Response::returnArray("该商品己添加过团购",0);
-            }
-        }
-
-        if(!empty($data["product_id"])){
-            $data["product_id"] = implode(",",$data["product_id"]);
-        }
-
-        $data["sell_price"] = Db::name("goods")->where(["id"=>$data["goods_id"]])->value("sell_price");
-
-        if(empty($data["start_time"])){
-            return Response::returnArray("请填写团购开始时间",0);
-        }
-
-        if(empty($data["end_time"])){
-            return Response::returnArray("请填写团购结束时间",0);
-        }
-
-        $data["start_time"] = strtotime($data["start_time"]);
-        $data["end_time"] = strtotime($data["end_time"]);
-
-        if($data["start_time"] > $data["end_time"]){
-            return Response::returnArray("团购开始时间不能大于结束时间",0);
-        }
-
-        if(empty($data["id"])){
-            $data["create_time"] = time();
-            if(!Db::name("promotion_regiment")->strict(false)->insert($data)){
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-        }else{
-            Db::name("promotion_regiment")->strict(false)->where(["id"=>$data["id"]])->update($data);
-        }
-
-        return Response::returnArray("操作成功！");
     }
 
     public function delete(){
@@ -157,6 +70,7 @@ class Regiment extends Auth {
             }
 
             Db::name("promotion_regiment")->delete($id);
+            Db::name("promotion_regiment_item")->where("pid",$id)->delete();
         } catch (\Exception $ex) {
             return Response::returnArray("操作失败，请稍候在试。",0);
         }

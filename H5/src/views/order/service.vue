@@ -1,11 +1,11 @@
 <template>
     <div>
         <van-nav-bar
-                title="售后列表"
-                left-arrow
-                :fixed="true"
-                :placeholder="true"
-                @click-left="prev"
+            title="售后列表"
+            left-arrow
+            :fixed="true"
+            :placeholder="true"
+            @click-left="prev"
         />
 
         <div class="list-wrap">

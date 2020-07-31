@@ -24,7 +24,11 @@ class Tool {
     }
 
     public static function removeContentAttr($content){
-        return preg_replace( '/(<img.*?)(style=.+?[\'|"])|((width)=[\'"]+[0-9]+[\'"]+)|((height)=[\'"]+[0-9]+[\'"]+)/i', '$1' , $content);
+        return preg_replace([
+            '/(<img [^<>]*?)width=.+?[\'|\"]/',
+            '/(<img.*?)((height)=[\'"]+[0-9|%]+[\'"]+)/',
+            '/(<img.*?)((style)=[\'"]+(.*?)+[\'"]+)/'
+        ],['$1', '$1', '$1'],$content);
     }
 
     public static function replaceContentImage($content){
@@ -150,5 +154,13 @@ class Tool {
     public static function getRootPath(): string{
         $path   = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR;
         return $path;
+    }
+
+    public static function odd($num){
+        return (is_numeric($num)&($num&1));
+    }
+
+    public static function even($num){
+        return (is_numeric($num)&(!($num&1)));
     }
 }

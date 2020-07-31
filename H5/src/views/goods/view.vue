@@ -136,16 +136,12 @@ export default {
             this.$http.getGoodsDetail({
                 id: this.$route.params.id
             }).then((result)=>{
-                if(result.status){
-                    this.collect = result.data.collect ? "#ff5000" : "#ccc";
-                    this.products = result.data.goods;
-                    this.images = result.data.photo;
-                    this.goods.picture = result.data.goods.photo;
-                    this.goodsId = this.$route.params.id;
-                    this.sku = result.data.sku;
-                }else{
-                    this.$router.replace("/404");
-                }
+                this.collect = result.data.collect ? "#ff5000" : "#ccc";
+                this.products = result.data.goods;
+                this.images = result.data.photo;
+                this.goods.picture = result.data.goods.photo;
+                this.goodsId = this.$route.params.id;
+                this.sku = result.data.sku;
             }).catch(err=>{
                 this.$router.replace("/404");
             });

@@ -22,6 +22,7 @@ class Uploadfiy extends Auth {
 
     public function image() {
         $file = Request::file('file');
+        $isthumb = Request::param("isthumb","1","int");
         try {
             if(!in_array($file->extension(),["jpg","png","gif","jpeg","bmp"])){
                 throw new \Exception("您所选择的文件不允许上传。",0);
@@ -34,7 +35,7 @@ class Uploadfiy extends Auth {
 
             //生成缩略图
             $thumb = $dir . '/' . $uploadFile;
-            if(Config::get("base.is_thumb_image")){
+            if(Config::get("base.is_thumb_image") && $isthumb){
                 $thumb_image_list = Config::get("base.thumb_image_list");
                 foreach($thumb_image_list as $key=>$val){
                     $image = Image::open($thumb);

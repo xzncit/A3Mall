@@ -46,7 +46,7 @@ return [
             // 指定从服务器序号
             'slave_no'          => '',
             // 是否严格检查字段是否存在
-            'fields_strict'     => true,
+            'fields_strict'     => false,
             // 是否需要断线重连
             'break_reconnect'   => false,
             // 监听SQL

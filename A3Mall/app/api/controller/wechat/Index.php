@@ -44,4 +44,21 @@ class Index {
         }catch (\Exception $e){}
         return WeChat::Payment()->getNotifySuccessReply();
     }
+
+    public function config(){
+        try{
+            $sign = WeChat::Script()->getJsSign();
+        }catch(\Exception $e){
+            return json([
+                "info"=>$e->getMessage(),
+                "status"=>0
+            ]);
+        }
+
+        return json([
+            "info"=>"ok",
+            "status"=>1,
+            "data"=>$sign
+        ]);
+    }
 }

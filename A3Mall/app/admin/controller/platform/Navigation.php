@@ -19,21 +19,15 @@ class Navigation extends Auth {
     public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("navigation")->count();
-            $data = Db::name("navigation")->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $nav = new \app\common\model\base\Navigation();
+            $list = $nav->getList([],$limit);
+
+            if(empty($list["data"])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['data_url'] = $item["url"];
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -50,17 +44,19 @@ class Navigation extends Auth {
         }
 
         $data = Request::post();
-        if(!empty($data["id"])){
+        $nav = new \app\common\model\base\Navigation();
+        if(($obj=$nav::find($data["id"])) != false){
             try {
-                Db::name("navigation")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            if(!Db::name("navigation")->strict(false)->insert($data)){
+            try {
+                $nav->save($data);
+            }catch (\Exception $ex){
                 return Response::returnArray("操作失败，请重试。",0);
             }
-
         }
 
         return Response::returnArray("操作成功！");

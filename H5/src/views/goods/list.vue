@@ -1,22 +1,29 @@
 <template>
     <div>
         <van-nav-bar
-                title="商品列表"
-                left-arrow
-                :fixed="true"
-                :placeholder="true"
-                @click-left="prev"
+            title="商品列表"
+            left-arrow
+            :fixed="true"
+            :placeholder="true"
+            @click-left="prev"
         />
 
-        <div style="position: fixed; top: 46px;width: 100%;z-index: 1000;">
-            <div class="dropdown-menu">
-                <van-dropdown-menu>
-                    <van-dropdown-item @change="sortdownMenu" v-model="sortValue" :options="optionSort" />
-                    <van-dropdown-item @change="dropdownMenu" v-model="goodsValue" :options="optionGoods" />
-                </van-dropdown-menu>
+        <div class="navbar">
+            <div class="nav-item" :class="{current: filterIndex === 0}" @click="tabClick(0)">
+                综合排序
+            </div>
+            <div class="nav-item" :class="{current: filterIndex === 1}" @click="tabClick(1)">
+                销量优先
+            </div>
+            <div class="nav-item" :class="{current: filterIndex === 2}" @click="tabClick(2)">
+                <span>价格</span>
+                <div class="arrow-box">
+                    <span :class="{active: priceOrder === 1 && filterIndex === 2,'icon-arrow-up-active':priceOrder === 1 && filterIndex === 2}" class="icon icon-arrow-up"></span>
+                    <span :class="{active: priceOrder === 2 && filterIndex === 2,'icon-arrow-down-active':priceOrder === 2 && filterIndex === 2}" class="icon icon-arrow-down"></span>
+                </div>
             </div>
         </div>
-        <div class="nav-placeholder"></div>
+        <div style="width: 100%; height: 50px"></div>
 
         <div class="pull-refresh-box">
             <van-empty v-if="isEmpty" :image="emptyImage" :description="emptyDescription" />
@@ -66,8 +73,6 @@
             [NavBar.name]: NavBar,
             [PullRefresh.name]: PullRefresh,
             [List.name]: List,
-            [DropdownMenu.name]: DropdownMenu,
-            [DropdownItem.name]: DropdownItem,
             [Empty.name]: Empty,
         },
         data() {
@@ -75,17 +80,8 @@
                 isEmpty: false,
                 emptyImage: "search",
                 emptyDescription: "您搜索的关键字暂无内容",
-                goodsValue: 0,
-                sortValue: 'default',
-                optionGoods: [
-                    { text: '正序排列', value: 0 },
-                    { text: '倒序排列', value: 1 }
-                ],
-                optionSort: [
-                    { text: '默认排序', value: 'default' },
-                    { text: '价格排序', value: 'price' },
-                    { text: '销量排序', value: 'sales' },
-                ],
+                filterIndex: 0,
+                priceOrder: 1,
                 list: [],
                 loading: false,
                 finished: false,
@@ -101,6 +97,25 @@
             }
         },
         methods: {
+            tabClick(index){
+                if(this.filterIndex === index && index !== 2){
+                    return;
+                }
+                this.filterIndex = index;
+                if(index === 2){
+                    this.priceOrder = this.priceOrder === 1 ? 2: 1;
+                }else{
+                    this.priceOrder = 0;
+                }
+
+                // 清空列表数据
+                this.finished = false;
+                this.refreshing = true;
+                // 重新加载数据
+                // 将 loading 设置为 true，表示处于加载状态
+                this.loading = true;
+                this.loadGoods();
+            },
             loadGoods(){
                 this.isEmpty = false;
                 if (this.refreshing) {
@@ -112,8 +127,8 @@
                 this.$http.getGoodsList({
                     page: this.page,
                     id: this.cat_id,
-                    sort: this.goodsValue,
-                    type: this.sortValue
+                    type: this.filterIndex,
+                    sort: this.priceOrder
                 }).then((result)=>{
                     if(result.data.list == undefined && this.page == 1){
                         this.isEmpty = true;
@@ -150,27 +165,86 @@
             },
             prev() {
                 this.$tools.prev();
-            },
-            sortdownMenu(value){
-                this.sortValue = value;
-                this.finished = false;
-                this.loading = true;
-                this.refreshing = true;
-                this.loadGoods();
-            },
-            dropdownMenu(value){
-                this.goodsValue = value;
-                this.finished = false;
-                this.loading = true;
-                this.refreshing = true;
-                this.loadGoods();
             }
         },
     }
 </script>
 
 <style lang="scss" scoped>
-    .nav-placeholder{ width: 100%; height: 46px; }
+    .navbar{
+        position: fixed;
+        left: 0;
+        top: 46px;
+        display: flex;
+        width: 100%;
+        height: 40px;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        z-index: 10;
+        .nav-item{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-size: 14px;
+            color: #303133;
+            position: relative;
+            &.current{
+                color: #fa436a;
+                &:after{
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    bottom: 0;
+                    transform: translateX(-50%);
+                    width: 60px;
+                    height: 0;
+                    border-bottom: 2px solid #fa436a;
+                }
+            }
+            .arrow-box{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 30px;
+                    height: 10px;
+                    line-height: 10px;
+                    margin-left: 4px;
+                    font-size: 26px;
+                    color: #888;
+                    background-repeat: no-repeat;
+                    background-size: 94px 56px;
+                    background-position: center;
+                    background-size: 30%;
+                    &.active{
+                        color: #fa436a;
+                    }
+                }
+                .icon-arrow-up {
+                    background-image: url(../../assets/images/arrow.png);
+                }
+
+                .icon-arrow-up-active {
+                    background-image: url(../../assets/images/arrow-active.png);
+                }
+
+                .icon-arrow-down {
+                    transform:rotate(-180deg);
+                    background-image: url(../../assets/images/arrow.png);
+                }
+
+                .icon-arrow-down-active {
+                    transform:rotate(-180deg);
+                    background-image: url(../../assets/images/arrow-active.png);
+                }
+
+            }
+        }
+    }
     .pull-refresh-box{ margin-top: 10px; }
     .goods-list-box{ width: 100%;display: flex; flex-direction: row;flex-wrap: wrap; }
     .goods-list-item-box{width: 50%; margin-bottom: 10px; }

@@ -13,22 +13,19 @@ use think\facade\Db;
 use think\facade\Request;
 use mall\response\Response;
 use think\facade\View;
+use app\common\model\system\Setting as SettingConfig;
 
 class Setting extends Auth {
 
     public function index(){
         if(Request::isAjax()){
             $post = Request::post();
-
+            $setting = new SettingConfig();
             foreach($post as $key=>$value){
                 if(Db::name("setting")->where('name',$key)->count()){
-                    Db::name("setting")->where("name",$key)->update([
-                        "value"=>$value
-                    ]);
+                    $setting->where("name",$key)->save(["value"=>$value]);
                 }else{
-                    Db::name("setting")->insert([
-                        "name"=>$key,"value"=>$value
-                    ]);
+                    $setting->save(["name"=>$key,"value"=>$value]);
                 }
             }
 
@@ -48,13 +45,10 @@ class Setting extends Auth {
 
     public function email(){
         if(Request::isAjax()){
-
             $post = Request::post();
             $data = json_encode($post,JSON_UNESCAPED_UNICODE);
-
-            Db::name("setting")->where("name","email")->update([
-                "value"=>$data
-            ]);
+            $setting = new SettingConfig();
+            $setting->where("name","email")->save(["value"=>$data]);
             return Response::returnArray("操作成功！");
         }
 
@@ -73,10 +67,8 @@ class Setting extends Auth {
 
             $post = Request::post();
             $data = json_encode($post,JSON_UNESCAPED_UNICODE);
-
-            Db::name("setting")->where("name","store")->update([
-                "value"=>$data
-            ]);
+            $setting = new SettingConfig();
+            $setting->where("name","store")->save(["value"=>$data]);
             return Response::returnArray("操作成功！");
         }
 
@@ -95,10 +87,8 @@ class Setting extends Auth {
 
             $post = Request::post();
             $data = json_encode($post,JSON_UNESCAPED_UNICODE);
-
-            Db::name("setting")->where("name","upload")->update([
-                "value"=>$data
-            ]);
+            $setting = new SettingConfig();
+            $setting->where("name","upload")->save(["value"=>$data]);
             return Response::returnArray("操作成功！");
         }
 

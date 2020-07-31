@@ -9,12 +9,12 @@
 namespace app\admin\controller\promotion;
 
 use app\admin\controller\Auth;
-use mall\utils\Date;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\View;
 use mall\basic\Promotion;
+use app\common\model\promotion\Order;
 
 class Index extends Auth {
 
@@ -28,26 +28,19 @@ class Index extends Auth {
                 $condition[] = ["name","like",'%'.$key["title"].'%'];
             }
 
-            $count = Db::name("promotion_order")
-                ->where($condition)->count();
+            $order = new Order();
+            $list = $order->getList($condition,$limit);
 
-            $data = Db::name("promotion_order")
-                ->where($condition)->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['type'] = Promotion::getType($item["type"]);
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-                $list[$key]['start_time'] = Date::format($item["start_time"]);
-                $list[$key]['end_time'] = Date::format($item["end_time"]);
+            foreach($list['data'] as $key=>$item){
+                $list['data'][$key]['type'] = Promotion::getType($item["type"]);
             }
 
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -56,12 +49,8 @@ class Index extends Auth {
     public function editor(){
         if(!Request::isAjax()){
             $id = (int)Request::param("id");
-            $rs = empty($id) ? [] : Db::name("promotion_order")->where("id",$id)->find();
-
-            if(!empty($rs)){
-                $rs["start_time"] = date("Y-m-d H:i:s",$rs["start_time"]);
-                $rs["end_time"] = date("Y-m-d H:i:s",$rs["end_time"]);
-            }
+            $order = new Order();
+            $rs = empty($id) ? [] : $order->where("id",$id)->find();
 
             return View::fetch("",[
                 "type"=>Promotion::getType(),
@@ -78,15 +67,17 @@ class Index extends Auth {
             return Response::returnArray("开始时间不能小于结束时间",0);
         }
 
-        if(!empty($data["id"])){
+        $order = new Order();
+        if(($obj=$order->where('id',$data["id"])->find()) != false){
             try {
-                Db::name("promotion_order")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            $data['create_time'] = time();
-            if(!Db::name("promotion_order")->strict(false)->insert($data)){
+            try {
+                $order->save($data);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }

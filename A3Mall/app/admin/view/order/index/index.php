@@ -168,7 +168,7 @@ layui.use(['table','form'], function () {
                 },"json");
             });
         } else if (obj.event === 'edit') {
-            window.location.href = data.url;
+            window.location.href = '{:createUrl("detail")}?id='+data.id;
         }else if(obj.event == 'update'){
             layer.open({
                 type: 2,
@@ -176,7 +176,7 @@ layui.use(['table','form'], function () {
                 shadeClose: true,
                 shade: 0.3,
                 area: ['60%', '58%'],
-                content: data.update_amount
+                content: '{:createUrl("update_amount")}?id='+data.id
             });
         }
     });

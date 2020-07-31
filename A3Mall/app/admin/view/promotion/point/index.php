@@ -15,7 +15,6 @@
 
 <script type="text/html" id="list-toolbar">
     <div class="layui-btn-container">
-        <button lay-event="url" type="button" class="layui-btn layui-btn-sm layui-bg-light-blue"><i class="layui-icon">&#xe61f;</i> 添加</button>
         <button lay-event="refresh" type="button" class="layui-btn layui-btn-sm layui-bg-red"><i class="layui-icon">&#xe9aa;</i> 刷新</button>
     </div>
 </script>
@@ -47,9 +46,9 @@
                         return '<img src="'+ res.photo +'" style="max-width:30px; max-height:30px;">';
                 }}
                 , {field: 'title', title: '商品名称',align: "center"}
-                , {field: 'price', title: '兑换积分', width: 160,align: "center"}
-                , {field: 'create_time', title: '创建时间',width: 160,align: "center"}
+                , {field: 'point', title: '兑换积分', width: 160,align: "center"}
                 , {field: 'status', title: '状态', width: 110,templet: '#checkboxTpl',align:"center"}
+                , {field: 'create_time', title: '创建时间',width: 180,align: "center"}
                 , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 130}
             ]]
             , page: true
@@ -87,7 +86,7 @@
                     },"json");
                 });
             } else if (obj.event === 'edit') {
-                window.location.href = data.url;
+                window.location.href = '{:createUrl("products.index/editor_point")}?id='+data.goods_id;
             }
         });
 

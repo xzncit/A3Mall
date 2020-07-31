@@ -20,22 +20,15 @@ class Area extends Auth {
         $pid = (int)Request::param("pid");
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("area")->where('pid',$pid)->count();
-            $data = Db::name("area")->where('pid',$pid)->order('id asc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $area = new \app\common\model\base\Area();
+            $list = $area->getList(['pid'=>$pid],$limit);
+
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-            foreach($list as $key=>$item){
-                $list[$key]['edit'] = createUrl("editor",["pid"=>$item["id"]]);
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-                $list[$key]['node'] = createUrl("bonus",['pid'=>$item["id"]]);
-                $list[$key]['count'] = Db::name('area')->where(['pid' => $item['id']])->count();
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
 
@@ -57,19 +50,20 @@ class Area extends Auth {
         }
 
         $data = Request::post();
-
-        if(!empty($data["id"])){
+        $area = new \app\common\model\base\Area();
+        if(($obj=$area::find($data["id"])) != false){
             try {
                 unset($data['pid']);
-                Db::name("area")->where("id",$data['id'])->update($data);
+                $obj->update($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            if(!Db::name("area")->insert($data)){
+            try {
+                $area->save($data);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
-
         }
 
         return Response::returnArray("操作成功！");

@@ -8,7 +8,7 @@
                 @click-left="prev"
         />
         <van-empty v-if="isEmpty" :image="emptyImage" :description="emptyDescription" />
-        <div class="main clear">
+        <div v-if="!isEmpty" class="main clear">
             <div class="title">{{data.title}}</div>
             <div class="info">
                 <span>{{data.cat_name}}</span>

@@ -190,7 +190,8 @@ export default {
                 font-size: 12px;
                 border-radius: 5px;
             }
-            .active{border:1px solid #999;
+            .active{
+                border:1px solid #999;
                 background-color: #fff;
                 color: #666;
             }

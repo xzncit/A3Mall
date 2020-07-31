@@ -8,76 +8,29 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wap;
 
-use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
+use app\common\model\base\Cart as ShopCart;
+use mall\basic\Users;
 
 class Cart extends Auth {
 
     public function index(){
         $page = Request::param("page","1","intval");
-        $count = Db::name("cart")->where("user_id",$this->users["id"])->count();
         $size = 10;
-        $total = ceil($count/$size);
+        $condition = ["user_id"=>Users::get("id")];
 
-        if($total == $page -1){
-            return $this->returnAjax("empty",-1,[]);
-        }
-
-        $result = Db::name("cart")
-            ->where("user_id",$this->users["id"])
-            ->order("id","DESC")
-            ->limit((($page - 1) * $size),$size)->select()->toArray();
-
-        $data = [];
-        foreach($result as $key=>$value){
-            $goods = Db::name("goods")
-                ->where("id",$value["goods_id"])
-                ->where("status",0)->find();
-            $data[$key] = [
-                "id"=>$value["id"],
-                "title"=>$goods["title"],
-                "price"=>$goods["sell_price"],
-                "photo"=>Tool::thumb($goods["photo"],"medium",true),
-                "nums"=>$goods["store_nums"],
-                "goods_nums"=>$value["goods_nums"],
-                "goods_id"=>$value["goods_id"],
-                "product_id"=>$value["product_id"],
-            ];
-            if(!empty($goods) && $value["product_id"] > 0){
-                $products = Db::name("goods_item")->where([
-                    "goods_id"=>$value["goods_id"],
-                    "spec_key"=>$value["spec_key"],
-                ])->find();
-
-                if(empty($products)){
-                    unset($data[$key]);
-                    continue;
-                }
-
-                $arr = explode(",",$value["spec_key"]);
-                $attr = [];
-                foreach ($arr as $val){
-                    $spec = explode(":",$val);
-                    $attribute = Db::name("goods_attribute")->where([
-                        "goods_id"=>$value["goods_id"],
-                        "attr_id"=>$spec[0],
-                        "attr_data_id"=>$spec[1]
-                    ])->find();
-                    $attr[] = $attribute["name"] . ":" . $attribute["value"];
-                }
-
-                $data[$key]["attr"] = implode(",",$attr);
-                $data[$key]["price"] = $products["sell_price"];
-                $data[$key]["nums"] = $products["store_nums"];
-                $data[$key]["product_id"] = $products["id"];
-            }
+        try {
+            $shopCart = new ShopCart();
+            $list = $shopCart->getList($condition,$size,$page);
+        }catch (\Exception $ex){
+            return $this->returnAjax($ex->getMessage(),$ex->getCode());
         }
 
         return $this->returnAjax("ok",1, [
-            "list"=>$data,
+            "list"=>$list['data'],
             "page"=>$page,
-            "total"=>$total,
+            "total"=>$list['total'],
             "size"=>$size
         ]);
     }
@@ -124,7 +77,7 @@ class Cart extends Auth {
 
         $cart = [
             "session_id"=>session_id(),
-            "user_id"=>$this->users["id"],
+            "user_id"=>Users::get("id"),
             "goods_id"=>$id,
             "product_id"=>!empty($products["id"]) ? $products["id"] : 0,
             "spec_key"=>!empty($products["spec_key"]) ? $products["spec_key"] : "",
@@ -138,7 +91,7 @@ class Cart extends Auth {
 
         $map = [
             "goods_id"=>$id,
-            "user_id"=>$this->users["id"]
+            "user_id"=>Users::get("id")
         ];
         if(!empty($products["spec_key"])){
             $map["spec_key"] = $products["spec_key"];
@@ -153,7 +106,7 @@ class Cart extends Auth {
         }
 
         return $this->returnAjax("商品添加至购物车成功",1,[
-            "count" => Db::name("cart")->where('user_id',$this->users["id"])->sum("goods_nums")
+            "count" => Db::name("cart")->where('user_id',Users::get("id"))->sum("goods_nums")
         ]);
     }
 
@@ -199,7 +152,7 @@ class Cart extends Auth {
 
         $cart = [
             "session_id"=>session_id(),
-            "user_id"=>$this->users["id"],
+            "user_id"=>Users::get("id"),
             "goods_id"=>$id,
             "product_id"=>!empty($products["id"]) ? $products["id"] : 0,
             "spec_key"=>!empty($products["spec_key"]) ? $products["spec_key"] : "",
@@ -213,7 +166,7 @@ class Cart extends Auth {
 
         $map = [
             "goods_id"=>$id,
-            "user_id"=>$this->users["id"]
+            "user_id"=>Users::get("id")
         ];
         if(!empty($products["spec_key"])){
             $map["spec_key"] = $products["spec_key"];
@@ -230,7 +183,7 @@ class Cart extends Auth {
         }
 
         return $this->returnAjax("ok",1,[
-            "count" => Db::name("cart")->where('user_id',$this->users["id"])->sum("goods_nums")
+            "count" => Db::name("cart")->where('user_id',Users::get("id"))->sum("goods_nums")
         ]);
     }
 

@@ -10,6 +10,9 @@ namespace app\api\controller\wap;
 
 use think\facade\Db;
 use think\facade\Request;
+use app\common\model\promotion\Bonus as PromotionBonus;
+use app\common\model\users\Bonus as UsersBonus;
+use mall\basic\Users;
 
 class Bonus extends Auth {
 
@@ -17,40 +20,33 @@ class Bonus extends Auth {
         $page = Request::param("page","1","intval");
         $size = 10;
 
-        $condition = 'status=0 && end_time > ' . time();
-
-        $count = Db::name("promotion_bonus")
-            ->where($condition)
-            ->count();
-
-        $total = ceil($count / $size);
-        if($total == $page -1){
-            return $this->returnAjax("empty",-1,[]);
+        try{
+            $condition = 'status=0 && end_time > ' . time();
+            $bonus = new PromotionBonus();
+            $list = $bonus->getList($condition,$size,$page);
+        }catch(\Exception $ex){
+            return $this->returnAjax($ex->getMessage(),$ex->getCode());
         }
 
-        $bonus = Db::name("promotion_bonus")
-            ->field("id,name,amount,order_amount,end_time")
-            ->where($condition)
-            ->order("id","DESC")
-            ->limit((($page - 1) * $size),$size)
-            ->select()->toArray();
-
         $data = [];
-        foreach($bonus as $key=>$value){
+        foreach($list['data'] as $key=>$value){
             $data[$key] = [
                 "id"=>$value["id"],
                 "name"=>$value["name"],
                 "amount"=>number_format($value["amount"]),
                 "price"=>$value["order_amount"],
-                "end_time"=>date('Y-m-d',$value["end_time"]),
-                "is_receive"=>Db::name("users_bonus")->where("bonus_id",$value["id"])->count()
+                "end_time"=>date('Y-m-d',$value->getData("end_time")),
+                "is_receive"=>Db::name("users_bonus")
+                    ->where("bonus_id",$value["id"])
+                    ->where("user_id",Users::get("id"))
+                    ->count()
             ];
         }
 
         return $this->returnAjax("ok",1,[
             "list"=>$data,
             "page"=>$page,
-            "total"=>$total,
+            "total"=>$list["total"],
             "size"=>$size
         ]);
     }
@@ -63,12 +59,14 @@ class Bonus extends Auth {
             return $this->returnAjax("优惠劵己过期",0);
         }
 
-        if(Db::name("users_bonus")->where(["user_id"=>$this->users["id"],"bonus_id"=>$id])->count()){
-            return $this->returnAjax("本优惠劵您己领取过了");
+        if(Db::name("users_bonus")
+            ->where(["user_id"=>Users::get("id"),"bonus_id"=>$id])->count()){
+            return $this->returnAjax("该优惠劵您己领取过了");
         }
 
-        Db::name("users_bonus")->insert([
-            "user_id"=>$this->users["id"],
+        $bonus = new UsersBonus();
+        $bonus->save([
+            "user_id"=>Users::get("id"),
             "type"=>$row["type"],
             "bonus_id"=>$id,
             "create_time"=>time()

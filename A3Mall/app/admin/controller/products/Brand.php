@@ -9,10 +9,8 @@
 namespace app\admin\controller\products;
 
 use app\admin\controller\Auth;
+use app\common\model\products\Brand as ProductsBrand;
 use mall\basic\Attachments;
-use mall\utils\Data;
-use mall\utils\Date;
-use mall\utils\Tool;
 use mall\response\Response;
 use think\facade\Request;
 use think\facade\View;
@@ -23,22 +21,15 @@ class Brand extends Auth {
     public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("products_brand")->count();
-            $data = Db::name("products_brand")->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $productsBrand = new ProductsBrand();
+            $list = $productsBrand->getList([],$limit);
+
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-                $list[$key]['photo'] = Tool::thumb($item["photo"]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -58,26 +49,25 @@ class Brand extends Auth {
         }
 
         $data = Request::post();
-
-        $data["content"] = Tool::editor($data["content"]);
+        $productsBrand = new ProductsBrand();
         $data['attachment_id'] = empty($data['attachment_id']) ? [] : $data['attachment_id'];
-        if(!empty($data["id"])){
+        if(($obj=$productsBrand::find($data["id"])) != false){
             try {
-                Db::name("products_brand")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            $data['create_time'] = time();
-            if(!Db::name("products_brand")->strict(false)->insert($data)){
+            try {
+                $productsBrand->save($data);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
 
-            $data['id'] = Db::name('products_brand')->getLastInsID();
+            $data['id'] = $productsBrand->id;
         }
 
         Attachments::handle($data["attachment_id"],$data['id']);
-
         return Response::returnArray("操作成功！");
     }
 

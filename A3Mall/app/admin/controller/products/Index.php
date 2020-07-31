@@ -9,10 +9,13 @@
 namespace app\admin\controller\products;
 
 use app\admin\controller\Auth;
+use app\common\model\goods\GoodsAttribute;
+use app\common\model\goods\GoodsExtends;
+use app\common\model\goods\GoodsItem;
+use app\common\model\goods\GoodsModel;
 use mall\basic\Attachments;
 use mall\utils\Data;
 use mall\utils\Date;
-use mall\utils\Tool;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
@@ -27,44 +30,29 @@ class Index extends Auth {
 
             $condition = [];
             if(isset($key["cat_id"]) && $key["cat_id"] != '-1'){
-                $condition["g.cat_id"] = $key["cat_id"];
+                $condition["goods.cat_id"] = $key["cat_id"];
             }
 
             if(isset($key["status"]) && $key["status"] != '-1'){
-                $condition["g.status"] = $key["status"];
+                $condition["goods.status"] = $key["status"];
             }
 
             if(isset($key["brand_id"]) && $key["brand_id"] != '-1'){
-                $condition["g.brand_id"] = $key["brand_id"];
+                $condition["goods.brand_id"] = $key["brand_id"];
             }
 
             if(!empty($key["title"])){
-                $condition[] = ["g.title","like",'%'.$key["title"].'%'];
+                $condition[] = ["goods.title","like",'%'.$key["title"].'%'];
             }
 
-            $count = Db::name("goods")
-                ->alias("g")
-                ->join("category c","g.cat_id=c.id","LEFT")
-                ->where($condition)->count();
+            $goods = new \app\common\model\goods\Goods();
+            $list = $goods->getList($condition,$limit);
 
-            $data = Db::name("goods")
-                ->field("g.*,c.title as cat_name")
-                ->alias("g")
-                ->join("category c","g.cat_id=c.id","LEFT")
-                ->where($condition)->order('g.id desc')->paginate($limit);
-
-            if($data->isEmpty()){
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-            foreach($list as $key=>$item){
-                $list[$key]['create_time'] = Date::format($item['create_time']);
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-                $list[$key]['photo'] = Tool::thumb($item["photo"],"small");
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         $cat = Db::name("category")->where(["status"=>0,"module"=>"goods"])->select()->toArray();
@@ -116,23 +104,24 @@ class Index extends Auth {
         $post['cost_price'] = $data['product_cost_price'];
         $post['goods_weight'] = $data['product_weight'];
         $post['store_nums'] = $data['product_store_nums'];
-        if(!empty($data["id"])){
+        $goods = new \app\common\model\goods\Goods();
+        if(($obj=$goods::find($data["id"])) != false){
             try {
-                $post['update_time'] = time();
-                Db::name("goods")->strict(false)->where("id",$data['id'])->update($post);
-                $data['goods_number'] = Db::name("goods")->where("id",$data['id'])->value("goods_number");
+                $obj->save($post);
+                $data['goods_number'] = $goods->where("id",$data['id'])->value("goods_number");
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            $post['create_time'] = time();
-            $post['upper_time'] = time();
-            $post['goods_number'] = \mall\basic\Goods::goods_number();
-            if(!Db::name("goods")->strict(false)->insert($post)){
+            try {
+                $post['upper_time'] = time();
+                $post['goods_number'] = \mall\basic\Goods::goods_number();
+                $goods->save($post);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
 
-            $data["id"] = Db::name("goods")->getLastInsID();
+            $data["id"] = $goods->id;
         }
 
         $i = 0;
@@ -166,18 +155,20 @@ class Index extends Auth {
             $spec_temp_data[$value['goods_id'] . '_' . $value['attr_id'] . '_' . $value["attr_data_id"]] = $value;
         }
 
-        Db::name('goods_attribute')->where(["goods_id" => $data["id"]])->delete();
+        $goodsAttributeModel = new GoodsAttribute();
+        $goodsAttributeModel::where(["goods_id" => $data["id"]])->delete();
         $shop_goods_attribute = [];
         foreach ($spec_temp_data as $item) {
             $shop_goods_attribute[] = $item;
         }
 
         if(!empty($shop_goods_attribute)){
-            Db::name('goods_attribute')->insertAll($shop_goods_attribute);
+            $goodsAttributeModel->saveAll($shop_goods_attribute);
         }
 
+        $goodsItemModel = new GoodsItem();
         $order_no = 1;
-        Db::name("goods_item")->where(["goods_id" => $data["id"]])->delete();
+        $goodsItemModel->where(["goods_id" => $data["id"]])->delete();
         $shop_goods_item = [];
         $data['sell_price'] = !empty($data['sell_price']) ? $data['sell_price'] : [];
         foreach ($data['sell_price'] as $key => $item) {
@@ -196,13 +187,14 @@ class Index extends Auth {
         }
 
         if(!empty($shop_goods_item)){
-            Db::name("goods_item")->insertAll($shop_goods_item);
+            $goodsItemModel->saveAll($shop_goods_item);
         }
 
-        Db::name("goods_extends")->where(['goods_id' => $data['id']])->delete();
+        $goodsExtendsModel = new GoodsExtends();
+        $goodsExtendsModel::where(['goods_id' => $data['id']])->delete();
         $data['goods_extends'] = !empty($data['goods_extends']) ? $data['goods_extends'] : [];
         foreach ($data['goods_extends'] as $val) {
-            Db::name('goods_extends')->insert([
+            $goodsExtendsModel->save([
                 'attribute' => $val, 'goods_id' => $data['id']
             ]);
         }
@@ -214,29 +206,351 @@ class Index extends Auth {
             }
         }
 
-        Db::name('goods_model')->where(['goods_id' => $data["id"]])->delete();
+        $goodsModel = new GoodsModel();
+        $goodsModel::where(['goods_id' => $data["id"]])->delete();
         $shop_goods_module = [];
         if ($data['model_id'] > 0 && !empty($attr)) {
             $sort = 0;
             foreach ($attr as $key => $val) {
-                $shop_goods_module[] = array(
+                $shop_goods_module[] = [
                     'goods_id' => $data["id"],
                     'model_id' => $data['model_id'],
                     'attribute_id' => $key,
                     'attribute_value' => is_array($val) ? join(',', $val) : $val,
                     'sort' => $sort
-                );
+                ];
 
                 $sort++;
             }
 
             if(!empty($shop_goods_module)){
-                Db::name('goods_model')->insertAll($shop_goods_module);
+                $goodsModel->saveAll($shop_goods_module);
             }
         }
 
         $data["attachment_id"] = !empty($data["attachment_id"]) ? $data["attachment_id"] : [];
         Attachments::handle($data["attachment_id"],$data['id']);
+        return Response::returnArray("操作成功！");
+    }
+
+    public function editor_regiment(){
+        if(!Request::isAjax()){
+            $id = (int)Request::param("id","0","intval");
+            if(($goods=Db::name("goods")->where("id",$id)->find()) == false){
+                $this->error("商品不存在");
+            }
+
+            $row = empty($id) ? [] : Db::name("promotion_regiment")->where("goods_id",$id)->find();
+            $row["goods"] = $goods;
+            $row["goods_id"] = $id;
+            if($products = Db::name("goods_item")->where(["goods_id"=>$id])->select()->toArray()){
+                $group_item = [];
+                if(!empty($row["id"])){
+                    $promotion_group_item = Db::name("promotion_regiment_item")->where('pid',$row["id"])->select()->toArray();
+                    foreach($promotion_group_item as $v) {
+                        $group_item[] = $v["spec_key"];
+                    }
+                }
+
+                $temp = [];
+                foreach($products as $key=>$item){
+                    $temp[$key] = $item;
+                    $temp[$key]["checked"] = in_array($item["spec_key"],$group_item) ? true : false;
+                    $arr = explode(",",$item["spec_key"]);
+                    foreach($arr as $value){
+                        $param = explode(":",$value);
+                        $name = Db::name("products_attribute")->where(["id"=>$param[0]])->value("name");
+                        $value = Db::name("products_attribute_data")->where(["id"=>$param[1],"pid"=>$param[0]])->value("value");
+                        $temp[$key]['spec_item'][] = $name . ':' . $value;
+                    }
+                    if(!empty($temp[$key]['spec_item'])){
+                        $temp[$key]['spec_item'] = implode(",", $temp[$key]['spec_item']);
+                    }
+                }
+
+                $row["products"] = $temp;
+            }
+
+            if(!empty($row["id"])){
+                $row["start_time"] = Date::format($row["start_time"]);
+                $row["end_time"] = Date::format($row["end_time"]);
+            }else{
+                $row["start_time"] = Date::format(time());
+                $row["end_time"] = Date::format(strtotime("+10 day"));
+            }
+
+            return View::fetch("",[
+                "data"=>$row
+            ]);
+        }
+
+        $data = Request::post();
+        if(empty($data["start_time"])){
+            return Response::returnArray("请填写拼团开始时间",0);
+        }
+
+        if(empty($data["end_time"])){
+            return Response::returnArray("请填写拼团结束时间",0);
+        }
+
+        $data["start_time"] = strtotime($data["start_time"]);
+        $data["end_time"] = strtotime($data["end_time"]);
+
+        if($data["start_time"] > $data["end_time"]){
+            return Response::returnArray("拼团开始时间不能大于结束时间",0);
+        }
+
+        if(!Db::name("goods")->where("id",$data["goods_id"])->count()){
+            return Response::returnArray("您选择的商品不存在！",0);
+        }
+
+        if(Db::name("goods_item")->where('goods_id',$data["goods_id"])->count() && empty($data["product_id"])){
+            return Response::returnArray("请选择要参加拼团活动的货品",0);
+        }
+
+        if(($group=Db::name("promotion_regiment")->where(["goods_id"=>$data["goods_id"]])->find()) != false){
+            Db::name("promotion_regiment")->strict(false)->where(["goods_id"=>$data["goods_id"]])->update($data);
+            $id = $group["id"];
+        }else{
+            $data["create_time"] = time();
+            if(!Db::name("promotion_regiment")->strict(false)->insert($data)){
+                return Response::returnArray("操作失败，请重试。",0);
+            }
+            $id = Db::name("promotion_regiment")->getLastInsID();
+        }
+
+        Db::name("promotion_regiment_item")->where('pid',$id)->delete();
+        if(!empty($data["product_id"])){
+            $goods_item = Db::name("goods_item")->where('goods_id',$data["goods_id"])->where("id","in",$data["product_id"])->select()->toArray();
+            $item = [];
+            foreach($goods_item as $value){
+                $item[] = [
+                    "pid"=>$id,
+                    "spec_key"=>$value["spec_key"],
+                    "store_nums"=>$value["store_nums"],
+                    "market_price"=>$value["market_price"],
+                    "sell_price"=>$value["sell_price"],
+                    "cost_price"=>$value["cost_price"]
+                ];
+            }
+
+            Db::name("promotion_regiment_item")->insertAll($item);
+        }
+
+        return Response::returnArray("操作成功！");
+    }
+
+    public function editor_second(){
+        if(!Request::isAjax()){
+            $id = (int)Request::param("id","0","intval");
+            if(($goods=Db::name("goods")->where("id",$id)->find()) == false){
+                $this->error("商品不存在");
+            }
+
+            $row = empty($id) ? [] : Db::name("promotion_second")->where("goods_id",$id)->find();
+            $row["goods"] = $goods;
+            $row["goods_id"] = $id;
+            if($products = Db::name("goods_item")->where(["goods_id"=>$id])->select()->toArray()){
+                $group_item = [];
+                if(!empty($row["id"])){
+                    $promotion_group_item = Db::name("promotion_second_item")->where('pid',$row["id"])->select()->toArray();
+                    foreach($promotion_group_item as $v) {
+                        $group_item[] = $v["spec_key"];
+                    }
+                }
+
+                $temp = [];
+                foreach($products as $key=>$item){
+                    $temp[$key] = $item;
+                    $temp[$key]["checked"] = in_array($item["spec_key"],$group_item) ? true : false;
+                    $arr = explode(",",$item["spec_key"]);
+                    foreach($arr as $value){
+                        $param = explode(":",$value);
+                        $name = Db::name("products_attribute")->where(["id"=>$param[0]])->value("name");
+                        $value = Db::name("products_attribute_data")->where(["id"=>$param[1],"pid"=>$param[0]])->value("value");
+                        $temp[$key]['spec_item'][] = $name . ':' . $value;
+                    }
+                    if(!empty($temp[$key]['spec_item'])){
+                        $temp[$key]['spec_item'] = implode(",", $temp[$key]['spec_item']);
+                    }
+                }
+
+                $row["products"] = $temp;
+            }
+
+            if(!empty($row["id"])){
+                $row["start_time"] = Date::format($row["start_time"]);
+                $row["end_time"] = Date::format($row["end_time"]);
+            }else{
+                $row["start_time"] = Date::format(time());
+                $row["end_time"] = Date::format(strtotime("+10 day"));
+            }
+
+            return View::fetch("",[
+                "data"=>$row
+            ]);
+        }
+
+        $data = Request::post();
+        if(empty($data["start_time"])){
+            return Response::returnArray("请填写拼团开始时间",0);
+        }
+
+        if(empty($data["end_time"])){
+            return Response::returnArray("请填写拼团结束时间",0);
+        }
+
+        $data["start_time"] = strtotime($data["start_time"]);
+        $data["end_time"] = strtotime($data["end_time"]);
+
+        if($data["start_time"] > $data["end_time"]){
+            return Response::returnArray("拼团开始时间不能大于结束时间",0);
+        }
+
+        if(!Db::name("goods")->where("id",$data["goods_id"])->count()){
+            return Response::returnArray("您选择的商品不存在！",0);
+        }
+
+        if(Db::name("goods_item")->where('goods_id',$data["goods_id"])->count() && empty($data["product_id"])){
+            return Response::returnArray("请选择要参加拼团活动的货品",0);
+        }
+
+        if(($group=Db::name("promotion_second")->where(["goods_id"=>$data["goods_id"]])->find()) != false){
+            Db::name("promotion_second")->strict(false)->where(["goods_id"=>$data["goods_id"]])->update($data);
+            $id = $group["id"];
+        }else{
+            $data["create_time"] = time();
+            if(!Db::name("promotion_second")->strict(false)->insert($data)){
+                return Response::returnArray("操作失败，请重试。",0);
+            }
+            $id = Db::name("promotion_second")->getLastInsID();
+        }
+
+        Db::name("promotion_second_item")->where('pid',$id)->delete();
+        if(!empty($data["product_id"])){
+            $goods_item = Db::name("goods_item")->where('goods_id',$data["goods_id"])->where("id","in",$data["product_id"])->select()->toArray();
+            $item = [];
+            foreach($goods_item as $value){
+                $item[] = [
+                    "pid"=>$id,
+                    "spec_key"=>$value["spec_key"],
+                    "store_nums"=>$value["store_nums"],
+                    "market_price"=>$value["market_price"],
+                    "sell_price"=>$value["sell_price"],
+                    "cost_price"=>$value["cost_price"]
+                ];
+            }
+
+            Db::name("promotion_second_item")->insertAll($item);
+        }
+
+        return Response::returnArray("操作成功！");
+    }
+
+    public function editor_point(){
+        if(!Request::isAjax()){
+            $id = (int)Request::param("id","0","intval");
+            if(($goods=Db::name("goods")->where("id",$id)->find()) == false){
+                $this->error("商品不存在");
+            }
+
+            $row = empty($id) ? [] : Db::name("promotion_point")->where("goods_id",$id)->find();
+            $row["goods"] = $goods;
+            $row["goods_id"] = $id;
+            if($products = Db::name("goods_item")->where(["goods_id"=>$id])->select()->toArray()){
+                $group_item = [];
+                if(!empty($row["id"])){
+                    $promotion_group_item = Db::name("promotion_point_item")->where('pid',$row["id"])->select()->toArray();
+                    foreach($promotion_group_item as $v) {
+                        $group_item[] = $v["spec_key"];
+                    }
+                }
+
+                $temp = [];
+                foreach($products as $key=>$item){
+                    $temp[$key] = $item;
+                    $temp[$key]["checked"] = in_array($item["spec_key"],$group_item) ? true : false;
+                    $arr = explode(",",$item["spec_key"]);
+                    foreach($arr as $value){
+                        $param = explode(":",$value);
+                        $name = Db::name("products_attribute")->where(["id"=>$param[0]])->value("name");
+                        $value = Db::name("products_attribute_data")->where(["id"=>$param[1],"pid"=>$param[0]])->value("value");
+                        $temp[$key]['spec_item'][] = $name . ':' . $value;
+                    }
+                    if(!empty($temp[$key]['spec_item'])){
+                        $temp[$key]['spec_item'] = implode(",", $temp[$key]['spec_item']);
+                    }
+                }
+
+                $row["products"] = $temp;
+            }
+
+            if(!empty($row["id"])){
+                $row["start_time"] = Date::format($row["start_time"]);
+                $row["end_time"] = Date::format($row["end_time"]);
+            }else{
+                $row["start_time"] = Date::format(time());
+                $row["end_time"] = Date::format(strtotime("+10 day"));
+            }
+
+            return View::fetch("",[
+                "data"=>$row
+            ]);
+        }
+
+        $data = Request::post();
+        if(empty($data["start_time"])){
+            return Response::returnArray("请填写拼团开始时间",0);
+        }
+
+        if(empty($data["end_time"])){
+            return Response::returnArray("请填写拼团结束时间",0);
+        }
+
+        $data["start_time"] = strtotime($data["start_time"]);
+        $data["end_time"] = strtotime($data["end_time"]);
+
+        if($data["start_time"] > $data["end_time"]){
+            return Response::returnArray("拼团开始时间不能大于结束时间",0);
+        }
+
+        if(!Db::name("goods")->where("id",$data["goods_id"])->count()){
+            return Response::returnArray("您选择的商品不存在！",0);
+        }
+
+        if(Db::name("goods_item")->where('goods_id',$data["goods_id"])->count() && empty($data["product_id"])){
+            return Response::returnArray("请选择要参加拼团活动的货品",0);
+        }
+
+        if(($group=Db::name("promotion_point")->where(["goods_id"=>$data["goods_id"]])->find()) != false){
+            Db::name("promotion_point")->strict(false)->where(["goods_id"=>$data["goods_id"]])->update($data);
+            $id = $group["id"];
+        }else{
+            $data["create_time"] = time();
+            if(!Db::name("promotion_point")->strict(false)->insert($data)){
+                return Response::returnArray("操作失败，请重试。",0);
+            }
+            $id = Db::name("promotion_point")->getLastInsID();
+        }
+
+        Db::name("promotion_point_item")->where('pid',$id)->delete();
+        if(!empty($data["product_id"])){
+            $goods_item = Db::name("goods_item")->where('goods_id',$data["goods_id"])->where("id","in",$data["product_id"])->select()->toArray();
+            $item = [];
+            foreach($goods_item as $value){
+                $item[] = [
+                    "pid"=>$id,
+                    "spec_key"=>$value["spec_key"],
+                    "store_nums"=>$value["store_nums"],
+                    "market_price"=>$value["market_price"],
+                    "sell_price"=>$value["sell_price"],
+                    "cost_price"=>$value["cost_price"]
+                ];
+            }
+
+            Db::name("promotion_point_item")->insertAll($item);
+        }
+
         return Response::returnArray("操作成功！");
     }
 

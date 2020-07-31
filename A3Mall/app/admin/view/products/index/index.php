@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{__SYSTEM_PATH__}/js/layui/css/dropdown.css">
 <div class="row content-nav">
     <div class="col-xs-12">
         <ul>
@@ -19,7 +20,7 @@
                             <option value="-1">全部</option>
                             {if !empty($cat)}
                             {volist name="cat" id="value"}
-                            <option value="{$value.id}">{$value.level}{$value.title}</option>
+                            <option value="{$value.id}">{$value.level|raw}{$value.title|raw}</option>
                             {/volist}
                             {/if}
                         </select>   
@@ -85,13 +86,18 @@
 </script>
 
 <script type="text/html" id="list-bar">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <button class="layui-btn layui-btn-xs layui-btn-danger" lay-dropdown="{align:'right', menus: [{layIcon:'layui-icon-username',txt: '团购', event:'regiment'},{layIcon:'layui-icon-fire',txt: '秒杀', event:'second'},{layIcon:'layui-icon-diamond',txt: '积分', event:'point'}, {layIcon: 'layui-icon-edit',txt: '编辑', event:'edit'}, {layIcon: 'layui-icon-delete', txt: '删除', event:'del'}]}">
+        <span>操作</span>
+        <i class="layui-icon layui-icon-triangle-d"></i>
+    </button>
 </script>
 
 <script>
-layui.use(['table','form'], function () {
+layui.config({
+    base: "{__SYSTEM_PATH__}/js/layui/extend/"
+}).use(['table','dropdown','form'], function () {
     var table = layui.table;
+    var dropdown = layui.dropdown;
     var form = layui.form;
 
     table.render({
@@ -111,8 +117,11 @@ layui.use(['table','form'], function () {
                 , {field: 'sell_price', title: '商品价格',width:150,align:'center'}
                 , {field: 'sort', title: '排序', edit:true, width: 100, align:"center"}
                 , {field: 'create_time', title: '创建时间',width:180,align:'center'}
-                , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 130}
+                , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 100}
             ]]
+        , done: function (res) {
+            dropdown.suite();
+        }
         , page: true
         , id: 'list-table'
         , height: 'full-310'
@@ -165,7 +174,15 @@ layui.use(['table','form'], function () {
                 },"json");
             });
         } else if (obj.event === 'edit') {
-            window.location.href = data.url;
+            window.location.href = '{:createUrl("editor")}?id='+data.id;
+        }else if(obj.event == 'group'){
+            window.location.href = '{:createUrl("editor_group")}?id='+data.id;
+        }else if(obj.event == 'regiment'){
+            window.location.href = '{:createUrl("editor_regiment")}?id='+data.id;
+        }else if(obj.event == 'second'){
+            window.location.href = '{:createUrl("editor_second")}?id='+data.id;
+        }else if(obj.event == 'point'){
+            window.location.href = '{:createUrl("editor_point")}?id='+data.id;
         }
     });
     

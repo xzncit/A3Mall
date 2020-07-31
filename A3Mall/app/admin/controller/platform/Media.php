@@ -11,8 +11,6 @@ namespace app\admin\controller\platform;
 use app\admin\controller\Auth;
 use mall\basic\Attachments;
 use mall\response\Response;
-use mall\utils\Date;
-use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\View;
@@ -23,22 +21,15 @@ class Media extends Auth {
         if(Request::isAjax()){
             $limit = Request::get("limit");
             $condition = "FIND_IN_SET(suffix,'rar,zip,doc')";
-            $count = Db::name("attachments")->where($condition)->count();
-            $data = Db::name("attachments")->where($condition)->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $attachmentsModel = new \app\common\model\base\Attachments();
+            $list = $attachmentsModel->getList($condition,$limit);
+
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key] = $item;
-                $list[$key]['size'] = Tool::convert($item["size"]);
-                $list[$key]['create_time'] = Date::format($item["time"]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();

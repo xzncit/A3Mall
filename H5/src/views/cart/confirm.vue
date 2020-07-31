@@ -230,12 +230,6 @@ export default {
         this.params = params;
         this.onLoadOrder();
     },
-    mounted() {
-
-    },
-    computed:{
-
-    },
     methods: {
         onLoadOrder(){
             Toast.loading({

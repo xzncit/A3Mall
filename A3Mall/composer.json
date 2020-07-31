@@ -30,7 +30,8 @@
         "ezyang/htmlpurifier": "^4.12.0",
         "endroid/qr-code": "1.9.3",
         "alibabacloud/client": "^1.5",
-        "phpmailer/phpmailer": "~6.1"
+        "phpmailer/phpmailer": "~6.1",
+        "liliuwei/thinkphp-jump": "^1.5"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",

@@ -150,7 +150,7 @@ export default {
                     this.products = result.data.goods;
                     this.images = result.data.photo;
                     this.goods.picture = result.data.goods.photo;
-                    this.goodsId = this.$route.params.id;
+                    this.goodsId = result.data.goods_id;
                     this.sku = result.data.sku;
                     this.activityId = result.data.activityId;
                 }
@@ -177,7 +177,7 @@ export default {
                     type: "point"
                 }});
             }).catch(()=>{
-                let path = this.$storage.set("VUE_REFERER","/goods/view");
+                let path = this.$storage.set("VUE_REFERER","/point/view/"+this.activityId);
                 this.$router.push("/public/login");
             });
         },

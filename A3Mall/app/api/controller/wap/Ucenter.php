@@ -8,11 +8,16 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wap;
 
+use mall\basic\Area;
 use mall\utils\Check;
 use mall\utils\CString;
 use mall\utils\Tool;
+use think\exception\ValidateException;
 use think\facade\Db;
+use think\facade\Filesystem;
 use think\facade\Request;
+use mall\basic\Users;
+use think\Image;
 
 class Ucenter extends Auth {
 
@@ -21,7 +26,7 @@ class Ucenter extends Auth {
         $size = 10;
 
         $count = Db::name("users_favorite")->where([
-            "user_id"=>$this->users["id"]
+            "user_id"=>Users::get("id")
         ])->count();
 
         $total = ceil($count/$size);
@@ -33,7 +38,7 @@ class Ucenter extends Auth {
             ->alias("f")
             ->field("g.*,f.id as f_id")
             ->join("goods g","f.goods_id=g.id","LEFT")
-            ->where("f.user_id",$this->users["id"])
+            ->where("f.user_id",Users::get("id"))
             ->order("f.id","DESC")
             ->limit((($page - 1) * $size),$size)->select()->toArray();
 
@@ -60,7 +65,7 @@ class Ucenter extends Auth {
     public function favorite_delete(){
         $id = Request::param("id","","intval");
         $condition = [
-            "user_id"=>$this->users["id"],
+            "user_id"=>Users::get("id"),
             "id"=>$id
         ];
 
@@ -97,7 +102,12 @@ class Ucenter extends Auth {
 
         $total = ceil($count / $size);
         if($total == $page -1){
-            return $this->returnAjax("empty",-1,[]);
+            return $this->returnAjax("empty",-1,[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>$total,
+                "size"=>$size
+            ]);
         }
 
         $bonus = Db::name("users_bonus")
@@ -129,21 +139,22 @@ class Ucenter extends Auth {
 
     public function goods(){
         $page = Request::param("page","1","intval");
-        $type = Request::param("type","default","strip_tags,trim");
-        $sort = Request::param("sort","0","intval");
+        $type = Request::param("type","0","intval");
+        $sort = Request::param("sort","1","intval");
 
-        $text = $sort == 0 ? "ASC" : "DESC";
-        $order = '';
         switch($type){
-            case 'price':
+            case '2':
                 $order = 'sell_price';
+                $text = $sort == 1 ? "ASC" : "DESC";
                 break;
-            case 'sales':
+            case '1':
                 $order = 'sale';
+                $text = 'DESC';
                 break;
-            case 'default':
+            case '0':
             default :
                 $order = 'id';
+                $text = 'DESC';
                 break;
         }
 
@@ -153,7 +164,12 @@ class Ucenter extends Auth {
 
         $total = ceil($count/$size);
         if($total == $page -1){
-            return $this->returnAjax("empty",-1,[]);
+            return $this->returnAjax("empty",-1,[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>$total,
+                "size"=>$size
+            ]);
         }
 
         $result = Db::name("goods")
@@ -179,17 +195,22 @@ class Ucenter extends Auth {
         $size = 10;
 
         $count = Db::name("users_log")->where([
-            "user_id"=>$this->users["id"]
+            "user_id"=>Users::get("id")
         ])->count();
 
         $total = ceil($count/$size);
         if($total == $page -1){
-            return $this->returnAjax("empty",-1,[]);
+            return $this->returnAjax("empty",-1,[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>$total,
+                "size"=>$size
+            ]);
         }
 
         $result = Db::name("users_log")
             ->field("operation,point,description,create_time")
-            ->where("user_id",$this->users["id"])
+            ->where("user_id",Users::get("id"))
             ->where("action",1)
             ->order("id","DESC")
             ->limit((($page - 1) * $size),$size)->select()->toArray();
@@ -208,25 +229,39 @@ class Ucenter extends Auth {
             "list"=>$data,
             "page"=>$page,
             "total"=>$total,
-            "size"=>$size
+            "size"=>$size,
+            "point"=>Users::get("point")
         ]);
     }
 
     public function info(){
-        $info = \mall\basic\Users::info($this->users["id"]);
+        $info = Users::info(Users::get("id"));
         return $this->returnAjax("ok",1,[
-            "token"=>$this->token,
             "username"=>$info["username"],
             "nickname"=>$info["nickname"],
-            "group_name"=>$info["group_name"],
-            "shop_count"=>$info["shop_count"],
-            "coupon_count"=>$info["coupon_count"],
             "mobile"=>$info["mobile"],
-            "sex"=>$info["sex"],
-            "point"=>$info["point"],
+            "coupon_count"=>$info["coupon_count"],
             "amount"=>$info["amount"],
-            "last_ip"=>$info["last_ip"],
-            "last_login"=>$info["last_login"]
+            "avatar"=> !empty($info["avatar"]) ? Tool::thumb($info["avatar"],'',true) : ''
+        ]);
+    }
+
+    public function wallet(){
+        $info = Users::info(Users::get("id"));
+        return $this->returnAjax("ok",1,[
+            "amount"=>$info["amount"],
+            "recharge_amount"=>Db::name("recharge")->where("user_id",Users::get("id"))->where("status",1)->sum("order_amount"),
+            "consume_amount"=>Db::name("order")->where("user_id",Users::get("id"))->where("status",5)->sum("order_amount")
+        ]);
+    }
+
+    public function get_setting(){
+        $info = Users::info(Users::get("id"));
+        return $this->returnAjax("ok",1,[
+            "nickname"=>$info["nickname"],
+            "birthday"=>date("Y-m-d",$info["birthday"]),
+            "sex"=>$info["sex"],
+            "avatar"=>!empty($info["avatar"]) ? Tool::thumb($info["avatar"],'',true) : ""
         ]);
     }
 
@@ -246,7 +281,7 @@ class Ucenter extends Auth {
             return $this->returnAjax("您填写的日期不合法",0);
         }
 
-        Db::name("users")->where("id",$this->users["id"])->update([
+        Db::name("users")->where("id",Users::get("id"))->update([
             "nickname"=>$post["username"],
             "sex"=>$post["sex"],
             "birthday"=>strtotime($post["birthday"])
@@ -259,7 +294,7 @@ class Ucenter extends Auth {
         $id = Request::param("id","","intval");
 
         if(($row = Db::name("users_address")->where([
-                "user_id"=>$this->users["id"],
+                "user_id"=>Users::get("id"),
                 "id"=>$id
             ])->find()) == false){
             return $this->returnAjax("address empty",0);
@@ -267,25 +302,25 @@ class Ucenter extends Auth {
 
         $extends_info = json_decode($row["extends_info"],true);
         return $this->returnAjax("ok",1,[
-            "addressDetail"=>$row["address"],
             "areaCode"=>$extends_info["areaCode"],
             "isDefault"=>$row["is_default"] ? true : false,
             "name"=> $row["accept_name"],
             "tel"=>$row["mobile"],
+            "addressDetail"=>$row["address"],
+            "province"=>$row["province"],
+            "county"=>$row["city"],
+            "city"=>$row["area"],
+            "area_name"=>Area::get_area([$row["province"],$row["city"],$row["area"]],',')
         ]);
     }
 
     public function address_list(){
         $data = Db::name("users_address")->where([
-            "user_id"=>$this->users["id"]
+            "user_id"=>Users::get("id")
         ])->select()->toArray();
 
         $list = [];
-        $chosenAddressId = 0;
         foreach($data as $key=>$item){
-            if($item["is_default"]){
-                $chosenAddressId = $item["id"];
-            }
 
             $area = [];
             foreach([$item["province"],$item["city"],$item["area"]] as $value){
@@ -294,23 +329,21 @@ class Ucenter extends Auth {
 
             $list[$key] = [
                 "id"=>$item["id"],
+                "is_default"=>$item['is_default'],
                 "name"=>$item["accept_name"],
                 "tel"=>$item["mobile"],
-                "address"=>implode(" ", $area) . $item["address"],
+                "address"=>implode(" ", $area) . $item["address"]
             ];
         }
 
-        return $this->returnAjax("ok",1,[
-            "list"=>$list,
-            "chosenAddressId"=>$chosenAddressId
-        ]);
+        return $this->returnAjax("ok",1,$list);
     }
 
     public function address_delete(){
         $id = Request::param("id","","intval");
 
         Db::name("users_address")->where([
-            "user_id"=>$this->users["id"],
+            "user_id"=>Users::get("id"),
             "id"=>$id,
         ])->delete();
 
@@ -329,9 +362,9 @@ class Ucenter extends Auth {
             return $this->returnAjax("请填写地址",0);
         }else if(empty($post["province"])){
             return $this->returnAjax("请选择省份",0);
-        }else if(empty($post["county"])){
-            return $this->returnAjax("请选择地区",0);
         }else if(empty($post["city"])){
+            return $this->returnAjax("请选择区",0);
+        }else if(empty($post["county"])){
             return $this->returnAjax("请选择市",0);
         }else if(empty($post["areaCode"])){
             return $this->returnAjax("请选择所在地区",0);
@@ -345,29 +378,24 @@ class Ucenter extends Auth {
         $city = Db::name("area")
             ->where("pid",$province["id"])
             ->where("level",2)
-            ->where("name","like",'%'.$post["city"].'%')
+            ->where("name","like",'%'.$post["county"].'%')
             ->find();
 
         $county = Db::name("area")
             ->where("pid",$city["id"])
             ->where("level",3)
-            ->where("name","like",'%'.$post["county"].'%')
+            ->where("name","like",'%'.$post["city"].'%')
             ->find();
 
         DB::startTrans();
         try{
             $is_default = isset($post["is_default"]) ? intval($post["is_default"]) : 0;
+            if($is_default){
+                Db::name("users_address")->where(["user_id"=>Users::get("id")])->update(["is_default"=>0]);
+            }
             if(empty($post["id"])){
-                if($is_default){
-                    Db::name("users_address")->where([
-                        "user_id"=>$this->users["id"]
-                    ])->update([
-                        "is_default"=>0
-                    ]);
-                }
-
                 Db::name("users_address")->insert([
-                    "user_id"=>$this->users["id"],
+                    "user_id"=>Users::get("id"),
                     "accept_name"=>$post["name"],
                     "mobile"=>$post["tel"],
                     "province"=>$province["id"],
@@ -382,7 +410,7 @@ class Ucenter extends Auth {
             }else{
                 Db::name("users_address")
                     ->where("id",intval($post["id"]))
-                    ->where("user_id",$this->users["id"])
+                    ->where("user_id",Users::get("id"))
                     ->update([
                         "accept_name"=>$post["name"],
                         "mobile"=>$post["tel"],
@@ -413,6 +441,118 @@ class Ucenter extends Auth {
         },$archives = Db::name("archives")->where([
             "pid"=>"70"
         ])->select()->toArray()));
+    }
+
+    public function fund(){
+        $page = Request::param("page","1","intval");
+        $size = 10;
+
+        $count = Db::name("users_log")
+            ->where("user_id",Users::get("id"))
+            ->where("action","0")
+            ->count();
+
+        $total = ceil($count/$size);
+        if($total == $page -1){
+            return $this->returnAjax("empty",-1,[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>$total,
+                "size"=>$size
+            ]);
+        }
+
+        $data = Db::name("users_log")
+            ->where("user_id",Users::get("id"))
+            ->where("action","0")
+            ->order('id','DESC')->select()->toArray();
+
+        $list = [];
+        foreach($data as $key=>$value){
+            $list[$key]["description"] = $value["description"];
+            $list[$key]["amount"] = $value["amount"];
+            $list[$key]['time'] = date("Y-m-d H:i:s",$value["create_time"]);
+        }
+
+        return $this->returnAjax("ok",1,[
+            "list"=>$list,
+            "page"=>$page,
+            "total"=>$total,
+            "size"=>$size
+        ]);
+    }
+
+    public function cashlist(){
+        $page = Request::param("page","1","intval");
+        $size = 10;
+
+        $count = Db::name("users_withdraw_log")
+            ->where("user_id",Users::get("id"))
+            ->where("withdraw_type","1")
+            ->count();
+
+        $total = ceil($count/$size);
+        if($total == $page -1){
+            return $this->returnAjax("empty",-1,[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>$total,
+                "size"=>$size
+            ]);
+        }
+
+        $data = Db::name("users_withdraw_log")
+            ->where("user_id",Users::get("id"))
+            ->where("withdraw_type","1")
+            ->order('id DESC')->select()->toArray();
+
+        $list = [];
+        foreach($data as $key=>$value){
+            $list[$key]["description"] = $value["msg"];
+            $list[$key]["amount"] = $value["price"];
+            $list[$key]['time'] = date("Y-m-d H:i:s",$value["create_time"]);
+        }
+
+        return $this->returnAjax("ok",1,[
+            "list"=>$list,
+            "page"=>$page,
+            "total"=>$total,
+            "size"=>$size
+        ]);
+    }
+
+    public function avatar() {
+        $file = Request::file('file');
+        $isthumb = Request::param("isthumb","1","int");
+        try {
+            if(!in_array($file->extension(),["jpg","png","gif","jpeg","bmp"])){
+                return $this->returnAjax("您所选择的文件不允许上传。",0);
+            }
+
+            $dir = "uploads";
+            $uploadFile = Filesystem::putFile( 'images', $file);
+
+            //生成缩略图
+            $thumb = $dir . '/' . $uploadFile;
+            $image = Image::open($thumb);
+            $image->thumb(80, 80)->save($thumb);
+
+            $users = Db::name("users")->where(["id"=>Users::get("id")])->find();
+            if($users['avatar']){
+                $path = trim($users['avatar'],'/');
+                file_exists($path) && unlink($path);
+            }
+
+            Db::name("users")->where(["id"=>Users::get("id")])->update([
+                'avatar'=>'/' . $thumb
+            ]);
+
+            return $this->returnAjax("ok",1,Tool::thumb('/'.trim($thumb,"/"),'',true));
+        } catch (ValidateException $e) {
+            //return $this->returnAjax($e->getMessage(),0);
+        }
+
+        return $this->returnAjax("上传参数错误",0);
     }
 
 }

@@ -9,8 +9,8 @@
 namespace app\admin\controller\platform;
 
 use app\admin\controller\Auth;
+use app\common\model\statistics\SearchKeywords;
 use mall\response\Response;
-use mall\utils\Date;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\View;
@@ -20,23 +20,15 @@ class Keywords extends Auth {
     public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("search_keywords")->count();
-            $data = Db::name("search_keywords")->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $keywordsModel = new SearchKeywords();
+            $list = $keywordsModel->getList([],$limit);
+
+            if(empty($list["data"])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key] = $item;
-                $list[$key]['name'] = $item["name"];
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -53,18 +45,19 @@ class Keywords extends Auth {
         }
 
         $data = Request::post();
-        if(!empty($data["id"])){
+        $keywordsModel = new SearchKeywords();
+        if(($obj=$keywordsModel::find($data['id'])) != false){
             try {
-                Db::name("search_keywords")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            $data["create_time"] = time();
-            if(!Db::name("search_keywords")->strict(false)->insert($data)){
+            try {
+                $keywordsModel->save($data);
+            }catch (\Exception $ex){
                 return Response::returnArray("操作失败，请重试。",0);
             }
-
         }
 
         return Response::returnArray("操作成功！");

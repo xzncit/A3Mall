@@ -37,12 +37,12 @@ layui.use(['table','form'], function () {
         , defaultToolbar: []
         , title: '数据表'
         , cols: [[
-                  {type: 'checkbox'}
-                , {field: 'name', title: '名称'}
-                , {field: 'count', title: '属性数量',width:100,align:'center'}
-                , {field: 'create_time', title: '创建时间',width:180,align:'center'}
-                , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 120}
-            ]]
+              {type: 'checkbox'}
+            , {field: 'name', title: '名称'}
+            , {field: 'count', title: '属性数量',width:100,align:'center'}
+            , {field: 'create_time', title: '创建时间',width:180,align:'center'}
+            , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 120}
+        ]]
         , page: true
         , height: 'full-200'
         // ,limit:30
@@ -77,7 +77,7 @@ layui.use(['table','form'], function () {
                 },"json");
             });
         } else if (obj.event === 'edit') {
-            window.location.href = data.url;
+            window.location.href = '{:createUrl("editor")}?id='+data.id;
         }
     });
     

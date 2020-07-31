@@ -44,7 +44,7 @@ class Menu {
                 $item = ['name' => $vo['name'], 'sub_button' => []];
                 foreach ($vo['sub_button'] as &$sub) {
                     unset($sub['active'], $sub['show']);
-                    array_push($item['sub_button'], self::buildMenuItemData($sub));
+                    array_push($item['sub_button'],self::buildMenuItemData($sub));
                 }
                 $vo = $item;
             }

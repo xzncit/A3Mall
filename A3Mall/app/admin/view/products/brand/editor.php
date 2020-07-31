@@ -164,7 +164,7 @@
                 var index = layer.load(1, { shade: [0.2,'#fff'] });
                 $.post('{:url("editor")}', data.field, function (result) {
                     layer.close(index);
-                    if(result.status){
+                    if(result.code){
                         layer.msg(result.info, {
                             time: 0
                             ,btn: ['继续发布', '返回列表']

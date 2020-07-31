@@ -132,7 +132,7 @@ layui.use(['table','form'], function () {
                 },"json");
             });
         } else if (obj.event === 'edit') {
-            window.location.href = data.url;
+            window.location.href = '{:createUrl("detail")}?id='+data.id;
         }
     });
     

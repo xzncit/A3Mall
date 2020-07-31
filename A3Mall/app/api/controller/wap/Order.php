@@ -25,7 +25,7 @@ class Order extends Auth {
         $id = Request::param("id","","trim,strip_tags");
         $bonus_id = Request::param("bonus_id","0","trim,strip_tags");
         $address_id = Request::param("address_id","0","trim,strip_tags");
-        $product_id = Request::param("sku_id","","trim,strip_tags");
+        $product_id = Request::param("sku_id","0","trim,strip_tags");
         $type = Request::param("type","","trim,strip_tags");
         $num = Request::param("num","1","intval");
 
@@ -36,7 +36,7 @@ class Order extends Auth {
 
         if(count($array) <= 0){
             return $this->returnAjax("请选择需要购买的商品",0);
-        }else if(empty($type) || !in_array($type,["buy","cart","group","point","second","special"])){
+        }else if(empty($type) || !in_array($type,["buy","cart","group","point","second","special","activity"])){
             return $this->returnAjax("非法操作",0);
         }
 
@@ -153,7 +153,6 @@ class Order extends Auth {
         return $this->returnAjax("ok",1,$data);
     }
 
-
     public function create(){
         $id = Request::param("id","","trim,strip_tags");
         $bonus_id = Request::param("bonus_id","0","trim,strip_tags");
@@ -172,7 +171,7 @@ class Order extends Auth {
 
         if(count($array) <= 0){
             return $this->returnAjax("请选择需要购买的商品",0);
-        }else if(empty($type) || !in_array($type,["buy","cart","group","point","second","special"])){
+        }else if(empty($type) || !in_array($type,["buy","cart","group","point","second","special","activity"])){
             return $this->returnAjax("非法操作",0);
         }
 
@@ -248,8 +247,8 @@ class Order extends Auth {
             $data["remarks"] = $remarks;
             $data["user_id"] = $this->users["id"];
             $data["source"] = $source;
-            $order_id = \mall\basic\Order::create($data);
-            $result = Payment::handle($order_id);
+            $data['order_id'] = \mall\basic\Order::create($data);
+            $result = Payment::handle($data['order_id']);
             if($type == 'cart'){
                 Cart::delete(array_map(function ($res){
                     return $res["cart_id"];
@@ -296,7 +295,12 @@ class Order extends Auth {
 
         $total = ceil($count / $size);
         if($total == $page -1){
-            return $this->returnAjax("empty",-1,[]);
+            return $this->returnAjax("empty",-1,[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>$total,
+                "size"=>$size
+            ]);
         }
 
         $list = Db::name("order")
@@ -712,6 +716,22 @@ class Order extends Auth {
             "page"=>$page,
             "total"=>$total,
             "size"=>$size
+        ]);
+    }
+
+    public function info(){
+        $id = Request::param("order_id","0","intval");
+        if(($row=Db::name("order")->where("id",$id)->find()) == false){
+            return $this->returnAjax("订单不存在",0);
+        }
+
+        return $this->returnAjax("ok",1,[
+            "order_id"=>$row["id"],
+            "order_no"=>$row["order_no"],
+            "create_time"=>date("Y-m-d H:i:s",$row["create_time"]),
+            "order_amount"=>number_format($row["order_amount"],2),
+            "order_status"=>\mall\basic\Order::getPaymentStatusText($row["pay_status"]),
+            "payment_type"=>Db::name("payment")->where("id",$row["pay_type"])->value("name")
         ]);
     }
 }

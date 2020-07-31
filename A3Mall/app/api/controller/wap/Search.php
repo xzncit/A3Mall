@@ -26,7 +26,7 @@ class Search extends Auth {
     public function get_list(){
         $page = Request::param("page","1","intval");
         $keywords = Request::param("keywords","","strip_tags,trim");
-        $type = Request::param("type","0","strip_tags,trim");
+        $type = Request::param("type","0","intval");
         $sort = Request::param("sort","1","intval");
 
         switch($type){
@@ -79,6 +79,34 @@ class Search extends Auth {
             "total"=>$total,
             "size"=>$size
         ]);
+    }
+
+    public function keywords(){
+        $keywords = Request::param("keywords","","trim,strip_tags");
+        $goods_id = Request::param("goods_id","0","intval");
+        $client_type = Request::param("client_type","0","intval");
+        $type = Request::param("type","0","intval");
+        if(empty($keywords)){
+            return $this->returnAjax("ok",1);
+        }
+
+        if(Db::name("statistics_search")->where("name",$keywords)->count()){
+            Db::name("statistics_search")->where("name",$keywords)->inc("num")->update();
+        }else{
+            Db::name("statistics_search")->insert(["name"=>$keywords,"num"=>1]);
+        }
+
+        if(Db::name("goods")->where('id',$goods_id)->count()){
+            Db::name("statistics_search_goods")->insert([
+                "goods_id"=>$goods_id,
+                "name"=>$keywords,
+                "referer"=>$client_type,
+                "type"=>(in_array($client_type,[0,1,3]) ? $client_type : $type),
+                "create_time"=>time()
+            ]);
+        }
+
+        return $this->returnAjax("ok",1);
     }
 
 }

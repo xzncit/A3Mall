@@ -46,7 +46,7 @@ export default {
     },
     created() {
         if(this.$router.path != '/ucenter/address/add' && this.$route.params.id != undefined){
-            this.$request.get("/ucenter/address",{
+            this.$http.getAddressData({
                 id: this.$route.params.id,
             }).then(res=>{
                 this.addressId = this.$route.params.id;
@@ -60,7 +60,6 @@ export default {
             this.$tools.prev();
         },
         onSave(content) {
-            Toast('save');
             this.$http.editorAddress({
                 id: this.addressId,
                 name: content.name,

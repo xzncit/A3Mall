@@ -9,7 +9,8 @@
 namespace app\admin\controller\products;
 
 use app\admin\controller\Auth;
-use mall\utils\Date;
+use app\common\model\products\Model as ProductsModel;
+use app\common\model\products\ModelData as ProductsModelData;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
@@ -20,21 +21,15 @@ class Model extends Auth {
     public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("products_model")->count();
-            $data = Db::name("products_model")->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $productsModel = new ProductsModel();
+            $list = $productsModel->getList([],$limit);
+
+            if(empty($list["data"])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-            foreach($list as $key=>$item){
-                $list[$key]['create_time'] = Date::format($item['create_time']);
-                $list[$key]['count'] = Db::name("products_model_data")->where(["pid"=>$item["id"]])->count();
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -55,47 +50,50 @@ class Model extends Auth {
         }
 
         $data = Request::post();
-        if(!empty($data["id"])){
+        $productsModel = new ProductsModel();
+        if(($obj=$productsModel::find($data["id"])) != false){
             try {
-                Db::name("products_model")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            $data['create_time'] = time();
-            if(!Db::name("products_model")->strict(false)->insert($data)){
+            try {
+                $productsModel->save($data);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
-            $data["id"] = Db::name("products_model")->getLastInsID();
+
+            $data["id"] = $productsModel->id;
         }
 
         $i = 0;
-        $arr = array();
+        $arr = [];
+        $productsModelData = new ProductsModelData();
         if(!empty($data["attr"]["name"])){
             foreach($data["attr"]["name"] as $key=>$val){
-                $attr = array(
+                $attr = [
                     "pid"=>$data["id"],
                     "name"=>$val,
                     "value"=>$data["attr"]["value"][$key],
                     "type"=>$data["attr"]["type"][$key],
                     "sort"=>$i
-                );
+                ];
 
                 $id = intval($data["attr"]["id"][$key]);
-                if($id <= 0){
-                    Db::name("products_model_data")->insert($attr);
-                    $arr[] = Db::name("products_model_data")->getLastInsID();
+                if(($model = $productsModelData::find($id)) == false){
+                    $productsModelData->save($attr);
+                    $arr[] = $productsModelData->id;
                 }else{
                     $arr[] = $id;
-                    Db::name("products_model_data")->where(["id"=>$id])->update($attr);
+                    $model->save($attr);
                 }
                 $i++;
             }
         }
 
         if(!empty($arr)){
-            $condition = 'pid="'.$data["id"].'" AND id NOT in('.implode(",",$arr).')';
-            Db::name("products_model_data")->where($condition)->delete();
+            $productsModelData->where('pid',$data["id"])->where("id","not in",$arr)->delete();
         }
 
         return Response::returnArray("操作成功！");

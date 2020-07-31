@@ -8,14 +8,16 @@
 // +----------------------------------------------------------------------
 namespace mall\basic;
 
+use mall\library\wechat\chat\WeChat;
 use think\facade\Db;
+use think\facade\Request;
 
 class Users {
 
     private static $data = [];
 
-    public static function get($field){
-        return isset(self::$data[$field]) ? self::$data[$field] : null;
+    public static function get($field=null){
+        return !is_null($field) && isset(self::$data[$field]) ? self::$data[$field] : self::$data;
     }
 
     public static function set($data){
@@ -56,6 +58,6 @@ class Users {
 
     public static function statusInfo($status){
         $arr = ["0"=>"正常","1"=>"审核","2"=>"锁定","3"=>"删除"];
-        return isset($arr[$status]) ? $arr[$status] : "未知错误";
+        return isset($arr[$status]) ? $arr[$status] : "未知";
     }
 }

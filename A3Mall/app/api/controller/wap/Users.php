@@ -8,8 +8,8 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wap;
 
+use app\common\model\system\Setting;
 use mall\basic\Sms;
-use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
 use mall\utils\Check;
@@ -49,10 +49,22 @@ class Users extends Base {
             return $this->returnAjax("您当前用户状态：" . $status . "，如有疑问请联系管理员。",0);
         }
 
-        Db::name("users")->where("id",$users["id"])->update([
+        $data = [
             "last_ip"=>Request::ip(),
             "last_login"=>time()
-        ]);
+        ];
+
+        //关联推广
+        $spread_id = Request::param("spread_id","0","intval");
+        if($users["spread_id"] == 0 && ($r = Db::name("users")->where("id",(int)$spread_id)->find()) != false){
+            if($r["id"] != $users["id"]){
+                $data["is_spread"] = 1;
+                $data["spread_id"] = $spread_id;
+                $data["spread_time"] = time();
+            }
+        }
+
+        Db::name("users")->where("id",$users["id"])->update($data);
 
         $salt = mt_rand(100,10000);
         $token = sha1($users["id"].$users["username"].$users["password"].$salt.time());
@@ -67,6 +79,7 @@ class Users extends Base {
         $info = \mall\basic\Users::info($users["id"]);
 
         return $this->returnAjax("ok",1,[
+            "id"=>$users["id"],
             "token"=>$token,
             "username"=>$info["username"],
             "nickname"=>$info["nickname"],
@@ -86,6 +99,7 @@ class Users extends Base {
         $username = Request::param("username","","trim,strip_tags");
         $password = Request::param("password","","trim,strip_tags");
         $code = Request::param("code","","intval");
+        $spread_id = Request::param("spread_id","0","intval");
 
         if(empty($username)){
             return $this->returnAjax("请填写手机号码！",0);
@@ -107,7 +121,8 @@ class Users extends Base {
         }
 
         $group_id = Db::name("users_group")->order('minexp','ASC')->value("id");
-        Db::name("users")->insert([
+
+        $data = [
             "group_id"=>$group_id,
             "username"=>$username,
             "mobile"=>$username,
@@ -117,7 +132,15 @@ class Users extends Base {
             "last_ip"=>Request::ip(),
             "create_time"=>time(),
             "last_login"=>time()
-        ]);
+        ];
+
+        if(Db::name("users")->where("id",(int)$spread_id)->count()){
+            $data["is_spread"] = 1;
+            $data["spread_id"] = $spread_id;
+            $data["spread_time"] = time();
+        }
+
+        Db::name("users")->insert($data);
 
         $user_id = Db::name("users")->getLastInsID();
         $salt = mt_rand(100,10000);
@@ -135,6 +158,7 @@ class Users extends Base {
         $info = \mall\basic\Users::info($user_id);
 
         return $this->returnAjax("注册成功！",1,[
+            "id"=>$user_id,
             "token"=>$token,
             "username"=>$info["username"],
             "nickname"=>$info["nickname"],
@@ -196,6 +220,7 @@ class Users extends Base {
         $info = \mall\basic\Users::info($user_id);
 
         return $this->returnAjax("修改密码成功！",1,[
+            "id"=>$info["id"],
             "token"=>$token,
             "username"=>$info["username"],
             "nickname"=>$info["nickname"],
@@ -229,8 +254,10 @@ class Users extends Base {
             return $this->returnAjax("您填写的手机号码不存在！",0);
         }
 
+        $setting = new Setting();
+        $config = $setting->getConfigData("sms");
         $sms = Db::name("users_sms")->where("mobile",$username)->order("id","DESC")->find();
-        if(!empty($sms) && ($sms["create_time"] + (60 * 5)) > time()){
+        if(!empty($sms) && ($sms["create_time"] + (60 * $config["duration_time"])) > time()){
             return $this->returnAjax("您的验证码己发送，请注意查收");
         }
 
@@ -240,7 +267,7 @@ class Users extends Base {
             //return $this->returnAjax($e->getMessage());
         }
 
-        return $this->returnAjax("发送成功，验证码5分钟内有效");
+        return $this->returnAjax("发送成功，验证码".$config["duration_time"]."分钟内有效");
     }
 
 }

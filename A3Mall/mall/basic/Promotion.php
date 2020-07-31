@@ -11,6 +11,7 @@ namespace mall\basic;
 use mall\utils\BC;
 use think\facade\Db;
 use mall\basic\Users;
+use think\facade\Request;
 
 class Promotion {
 
@@ -32,6 +33,7 @@ class Promotion {
             case "2":
             case "3":
             case "4":
+            case "5":
                 return self::activity($data);
             case "0":
             default:
@@ -51,13 +53,11 @@ class Promotion {
             $num += $val["goods_nums"];
         }
 
-        if($num > $point["limit_max_count"]){
-            throw new \Exception("积分商品每人只能兑换{$point["limit_max_count"]}件",0);
-        }else if($num > $point["store_nums"]){
+        if($num > $point["store_nums"]){
             throw new \Exception("商品库存不足",0);
         }
 
-        $order["real_point"] = $point["price"] * $num;
+        $order["real_point"] = $point["point"] * $num;
         $order["payable_amount"] = $order["real_freight"];
         $order["point"] = 0;
         $order["exp"] = 0;
@@ -73,48 +73,46 @@ class Promotion {
 
         switch ($order["type"]){
             case "2":
-                $group = Db::name("promotion_regiment")
+                $regiment = Db::name("promotion_regiment")
                     ->where("unix_timestamp(now()) between start_time AND end_time")
                     ->where(["id"=>$id,"status"=>0])->find();
 
-                if(empty($group)){
+                if(empty($regiment)){
                     throw new \Exception("您要购买的商品团购己结束",0);
                 }
 
-                if($num < $group["limit_min_count"]){
-                    throw new \Exception("团购商品每人只能兑换{$group["limit_min_count"]}件",0);
-                }else if($num > $group["limit_max_count"]){
-                    throw new \Exception("团购商品每人只能兑换{$group["limit_max_count"]}件",0);
-                }else if($num > $group["store_nums"]){
+                if($num < $regiment["limit_min_count"]){
+                    throw new \Exception("团购商品每人只能兑换{$regiment["limit_min_count"]}件",0);
+                }else if($num > $regiment["limit_max_count"]){
+                    throw new \Exception("团购商品每人只能兑换{$regiment["limit_max_count"]}件",0);
+                }else if($num > $regiment["store_nums"]){
                     throw new \Exception("商品库存不足",0);
                 }
 
                 foreach($order["item"] as $key=>$val){
-                    $order["item"][$key]['real_price'] = $group["regiment_price"];
+                    $order["item"][$key]['real_price'] = $regiment["sell_price"];
                 }
 
-                $order["payable_amount"] = BC::mul($group["regiment_price"],$num);
+                $order["payable_amount"] = BC::mul($regiment["sell_price"],$num);
                 $order["point"] = 0;
                 $order["exp"] = 0;
                 break;
             case "3":
-                if(($group = Db::name("promotion_seckill")
+                if(($seckill = Db::name("promotion_second")
                         ->where("unix_timestamp(now()) between start_time AND end_time")
                         ->where(["id"=>$id,"status"=>0])->find()) == false){
                     throw new \Exception("您要购买的商品秒杀己结束",0);
                 }
 
-                if($num > $group["limit_count"]){
-                    throw new \Exception("秒杀商品每人只能兑换{$group["limit_count"]}件",0);
-                }else if($num > $group["store_nums"]){
+                if($num > $seckill["store_nums"]){
                     throw new \Exception("商品库存不足",0);
                 }
 
                 foreach($order["item"] as $key=>$val){
-                    $order["item"][$key]['real_price'] = $group["sell_price"];
+                    $order["item"][$key]['real_price'] = $seckill["sell_price"];
                 }
 
-                $order["payable_amount"] = BC::mul($group["sell_price"],$num);
+                $order["payable_amount"] = BC::mul($seckill["sell_price"],$num);
                 $order["point"] = 0;
                 $order["exp"] = 0;
                 break;
@@ -183,7 +181,7 @@ class Promotion {
 
         switch($type){
             case "second":
-                if(($second = Db::name("promotion_seckill")
+                if(($second = Db::name("promotion_second")
                         ->where("store_nums",">","0")
                         ->where("end_time",">",time())
                         ->where(["id"=>$id,"status"=>0])->find()) == false){
@@ -244,8 +242,7 @@ class Promotion {
 
         switch($order["type"]){
             case 1: // 积分
-                if(($point = Db::name("promotion_point")
-                        ->where(["id"=>$order["activity_id"]])->find()) == false){
+                if(!Db::name("promotion_point")->where(["id"=>$order["activity_id"]])->count()){
                     return true;
                 }
 
@@ -255,8 +252,7 @@ class Promotion {
                     ->inc("sum_count",$goods["goods_nums"])->update();
                 break;
             case 2: // 团购
-                if(($group = Db::name("promotion_regiment")
-                        ->where(["id"=>$order["activity_id"]])->find()) == false){
+                if(!Db::name("promotion_regiment")->where(["id"=>$order["activity_id"]])->count()){
                     return true;
                 }
 
@@ -266,15 +262,57 @@ class Promotion {
                     ->inc("sum_count",$goods["goods_nums"])->update();
                 break;
             case 3: // 秒杀
-                if(($seckill = Db::name("promotion_seckill")
-                        ->where(["id"=>$order["activity_id"]])->find()) == false){
+                if(!Db::name("promotion_second")->where(["id"=>$order["activity_id"]])->count()){
                     return true;
                 }
 
                 $goods = current($order["item"]);
-                Db::name("promotion_seckill")
+                Db::name("promotion_second")
                     ->where(["id"=>$order["activity_id"]])
                     ->inc("sum_count",$goods["goods_nums"])->update();
+                break;
+            case 5:
+                if(!$group=Db::name("promotion_group")->where(["id"=>$order["activity_id"]])->find()){
+                    return true;
+                }
+
+                $goods = current($order["item"]);
+                Db::name("promotion_group")
+                    ->where(["id"=>$order["activity_id"]])
+                    ->inc("sum_count",$goods["goods_nums"])->update();
+
+                $kid = Request::param("kid","0","intval");
+                $data = [
+                    "pid"=>0,
+                    "user_id"=>$order["user_id"],
+                    "order_id"=>$order["order_id"],
+                    "goods_nums"=>$goods["goods_nums"],
+                    "order_amount"=>$order["order_amount"],
+                    "group_id"=>$order["activity_id"],
+                    "goods_id"=>$goods["goods_id"],
+                    "goods_title"=>$goods["title"],
+                    "people"=>1,
+                    "sell_price"=>$goods["real_price"],
+                    "start_time"=>time(),
+                    "end_time"=>strtotime("+{$group['effective_time']} hours"),
+                    "is_refund"=>0,
+                    "status"=>1,
+                    "create_time"=>time()
+                ];
+
+                if($kid != 0 && ($og = Db::name("order_group")->where([
+                    "pid"=>$kid,
+                    "group_id"=>$order["activity_id"],
+                    "goods_id"=>$goods["goods_id"],
+                    "is_refund"=>0,
+                    "status"=>1
+                ])->find()) != false){
+                    $data["pid"] = $kid;
+                    $data["people"] = $og["people"] + 1;
+                    Db::name("order_group")->insert($data);
+                }else{
+                    Db::name("order_group")->insert($data);
+                }
                 break;
         }
     }

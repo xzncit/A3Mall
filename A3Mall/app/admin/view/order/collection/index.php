@@ -110,7 +110,7 @@ layui.use(['table','form'], function () {
     table.on('tool(list-box)', function (obj) {
         var data = obj.data;
         if (obj.event === 'edit') {
-            window.location.href = data.url;
+            window.location.href = '{:createUrl("detail")}?id='+data.id;
         }
     });
     

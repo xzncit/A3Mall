@@ -1,5 +1,5 @@
 <script src="{__SYSTEM_PATH__}/js/echarts/echarts.min.js"></script>
-
+<script src="{__SYSTEM_PATH__}/js/echarts/theme/walden.js"></script>
 <style type="text/css">
     .echarts-box {
         width: 97.5%;
@@ -17,7 +17,7 @@
                     <div id="echarts-1" style="width: 100%;height:500px; padding: 25px; padding-top: 50px;"></div>
                 </div>
                 <script type="text/javascript">
-                    var myChart = echarts.init(document.getElementById('echarts-1'));
+                    var myChart = echarts.init(document.getElementById('echarts-1'),'walden');
                     var option = {
                         title: {
                             text: 'APP',
@@ -60,7 +60,7 @@
                     <div id="echarts-2" style="width: 100%;height:500px; padding: 25px; padding-top: 50px;"></div>
                 </div>
                 <script type="text/javascript">
-                    var myChart = echarts.init(document.getElementById('echarts-2'));
+                    var myChart = echarts.init(document.getElementById('echarts-2'),'walden');
                     var option = {
                         title: {
                             text: '网页搜索',
@@ -104,7 +104,7 @@
                     <div id="echarts-3" style="width: 100%;height:500px; padding: 25px; padding-top: 50px;"></div>
                 </div>
                 <script type="text/javascript">
-                    var myChart = echarts.init(document.getElementById('echarts-3'));
+                    var myChart = echarts.init(document.getElementById('echarts-3'),'walden');
                     var option = {
                         title: {
                             text: '小程序',
@@ -153,7 +153,7 @@
                     <div id="echarts-4" style="width: 100%;height:500px; padding: 25px; padding-top: 50px;"></div>
                 </div>
                 <script type="text/javascript">
-                    var myChart = echarts.init(document.getElementById('echarts-4'));
+                    var myChart = echarts.init(document.getElementById('echarts-4'),'walden');
                     var option = {
                         title: {
                             text: '搜索访问统计',

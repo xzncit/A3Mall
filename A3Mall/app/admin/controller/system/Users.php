@@ -9,8 +9,7 @@
 namespace app\admin\controller\system;
 
 use app\admin\controller\Auth;
-use mall\utils\Date;
-use mall\utils\Tool;
+use app\common\model\system\Users as SystemUsers;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
@@ -21,22 +20,14 @@ class Users extends Auth {
     public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("system_users")->count();
-            $data = Db::name("system_users")->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $systemUsers = new SystemUsers();
+            $list = $systemUsers->getList([],$limit);
+            if(empty($list["data"])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]["cat_name"] = Db::name("system_manage")->where(["id"=>$item["role_id"]])->value("title");
-                $list[$key]['create_time'] = Date::format($item["time"]);
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list["data"],$list["count"]);
         }
 
         return View::fetch();
@@ -55,21 +46,19 @@ class Users extends Auth {
         }
 
         $data = Request::post();
-
-        if(!empty($data["id"])){
+        $systemUsers = new SystemUsers();
+        if(($obj=$systemUsers::find($data["id"])) != false){
             if(!empty($data["password"]) || !empty($data["confirm_password"])){
                 if($data["password"] != $data["confirm_password"]){
                     return Response::returnArray("您输入的两次密码不致。",0);
                 }
                 $data["password"] = md5($data["password"]);
-            }
-
-            if(empty($data["password"])){
+            }else{
                 unset($data["password"],$data["confirm_password"]);
             }
 
             try {
-                Db::name("system_users")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
@@ -84,10 +73,12 @@ class Users extends Auth {
 
             $data["password"] = md5($data["password"]);
             $data["time"] = time();
-            if(!Db::name("system_users")->strict(false)->insert($data)){
+
+            try{
+                $systemUsers->save($data);
+            }catch (\Exception $e){
                 return Response::returnArray("操作失败，请重试。",0);
             }
-
         }
 
         return Response::returnArray("操作成功！");

@@ -34,6 +34,14 @@
                                 </div>
                             </div>
 
+                            <div class="layui-form-item">
+                                <label class="layui-form-label" style="width: 10%">验证码有效期</label>
+                                <div class="layui-input-inline">
+                                    <input style="width: 97%" type="text" name="duration_time" value="{$data.duration_time|default='5'}" lay-reqtext="请填写验证码有效期" lay-verify="required" placeholder="请输入验证码有效期" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">单位（分钟）</div>
+                            </div>
+
                     </div>
 
                 </div>

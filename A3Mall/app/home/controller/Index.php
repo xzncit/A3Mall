@@ -9,15 +9,10 @@
 namespace app\home\controller;
 
 use app\BaseController;
-use mall\library\wechat\chat\WeChat;
-use mall\utils\Tool;
-use think\facade\Db;
-use think\facade\Request;
-use function GuzzleHttp\Psr7\str;
 
-class Index {
+class Index extends BaseController {
 
-    private function index(){
-        return '';
+    public function index(){
+        return json(["aa",'bb']);
     }
 }

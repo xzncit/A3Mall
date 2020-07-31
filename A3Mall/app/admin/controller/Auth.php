@@ -8,12 +8,10 @@
 // +----------------------------------------------------------------------
 namespace app\admin\controller;
 
-use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\Session;
 use think\facade\View;
-use function Stringy\create;
 
 class Auth extends Base {
 
@@ -23,14 +21,14 @@ class Auth extends Base {
         }catch (\Exception $e){
             $code = $e->getCode();
             if(Request::isAjax()){
-                return Response::returnArray($e->getMessage(),$code);
+                exit(json_encode(["msg"=>$e->getMessage(),"code"=>$code],JSON_UNESCAPED_UNICODE));
             }
 
             switch($code){
-                case 0:
+                case -999:
                     $this->error($e->getMessage());
                     break;
-                case -1:
+                case -1000:
                      $this->redirect(createUrl('login/index'));
                     break;
             }
@@ -91,7 +89,7 @@ class Auth extends Base {
 
     private function checkAccess(){
         if(!Session::has("system_user_id")){
-            throw new \Exception("您还没有登录，请先登录。",-1);
+            throw new \Exception("您还没有登录，请先登录。",-1000);
         }
 
         $user = Db::name("system_users")->where("id",Session::get("system_user_id"))->find();
@@ -100,12 +98,12 @@ class Auth extends Base {
         $user['purview'] = $manage['purview'];
         Session::set("users",$user);
 
+        $controller = Request::controller(true);
+        $action = Request::action(true);
+
         if($user["purview"] == '-1'){
             return true;
         }
-
-        $controller = Request::controller(true);
-        $action = Request::action(true);
 
         if($controller == 'platform.index' && $action == 'index'){
             return true;
@@ -121,6 +119,6 @@ class Auth extends Base {
             return true;
         }
 
-        throw new \Exception("本操作您没有执行权限。",0);
+        throw new \Exception("您无权限执行此操作",-999);
     }
 }

@@ -9,6 +9,7 @@
 namespace app\admin\controller\users;
 
 use app\admin\controller\Auth;
+use app\common\model\users\Group as UsersGroup;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
@@ -19,20 +20,14 @@ class Group extends Auth {
     public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("users_group")->count();
-            $data = Db::name("users_group")->paginate($limit);
+            $usersGroup = new UsersGroup();
+            $list = $usersGroup->getList([],$limit);
 
-            if($data->isEmpty()){
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -49,18 +44,19 @@ class Group extends Auth {
         }
 
         $data = Request::post();
-
-        if(!empty($data["id"])){
+        $usersGroup = new UsersGroup();
+        if(($obj=$usersGroup::find($data["id"])) != false){
             try {
-                Db::name("users_group")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            if(!Db::name("users_group")->strict(false)->insert($data)){
+            try {
+                $usersGroup->save($data);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
-
         }
 
         return Response::returnArray("操作成功！");

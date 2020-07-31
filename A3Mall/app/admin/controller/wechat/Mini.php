@@ -9,8 +9,8 @@
 namespace app\admin\controller\wechat;
 
 use app\admin\controller\Auth;
+use app\common\model\system\Setting;
 use mall\response\Response;
-use think\facade\Db;
 use think\facade\Request;
 use think\facade\View;
 
@@ -21,13 +21,11 @@ class Mini extends Auth {
             $post = Request::post();
             $data = json_encode($post,JSON_UNESCAPED_UNICODE);
 
-            Db::name("setting")->where("name","wemini")->update([
-                "value"=>$data
-            ]);
+            Setting::where("name","wemini")->update(["value"=>$data]);
             return Response::returnArray("操作成功！");
         }
 
-        $content = Db::name("setting")->where("name","wemini")->value("value");
+        $content = Setting::where("name","wemini")->value("value");
         if(!empty($content)){
             $content = json_decode($content,true);
         }

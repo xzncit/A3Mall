@@ -185,7 +185,7 @@ export default {
                     type: "second"
                 }});
             }).catch(()=>{
-                let path = this.$storage.set("VUE_REFERER","/goods/view");
+                let path = this.$storage.set("VUE_REFERER","/second/view/"+this.activityId);
                 this.$router.push("/public/login");
             });
         },

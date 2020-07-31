@@ -44,7 +44,7 @@ layui.use(['table','form'], function () {
                   {type: 'checkbox'}
                 , {field: 'id', title: 'ID', width: 80, unresize: true, sort: true,align:"center"}
                 , {field: 'title', title: '物流名称'}
-                , {field: 'web_url', title: '网址',width:250,align:'center'}
+                , {field: 'url', title: '网址',width:250,align:'center'}
                 , {field: 'sort', title: '排序',width:150,edit:true,align:'center'}
                 , {field: 'status', title: '状态', width: 110,templet: '#checkboxTpl'}
                 , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 130}
@@ -83,7 +83,7 @@ layui.use(['table','form'], function () {
                 },"json");
             });
         } else if (obj.event === 'edit') {
-            window.location.href = data.url;
+            window.location.href = "{:createUrl('editor')}?id="+data.id;
         }
     });
     

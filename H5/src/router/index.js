@@ -79,14 +79,14 @@ const routes = [
         component:()=>import("../views/point/view")
     },
     {
-        path:'/group',
+        path:'/regiment',
         meta: { title: "", tabbar: false, auth: true },
-        component:()=>import("../views/group/index")
+        component:()=>import("../views/regiment/index")
     },
     {
-        path:'/group/view/:id',
+        path:'/regiment/view/:id',
         meta: { title: "", tabbar: false, auth: true },
-        component:()=>import("../views/group/view")
+        component:()=>import("../views/regiment/view")
     },
     {
         path:'/second',
@@ -174,6 +174,16 @@ const routes = [
         path:'/ucenter/wallet',
         meta: { title: "", tabbar: false, auth: true },
         component:()=>import("../views/ucenter/wallet")
+    },
+    {
+        path:'/ucenter/bill/cashlist',
+        meta: { title: "", tabbar: false, auth: true },
+        component:()=>import("../views/ucenter/cashlist")
+    },
+    {
+        path:'/ucenter/bill/fund',
+        meta: { title: "", tabbar: false, auth: true },
+        component:()=>import("../views/ucenter/fund")
     },
     {
         path:'/ucenter/collect',

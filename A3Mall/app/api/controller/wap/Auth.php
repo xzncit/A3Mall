@@ -10,6 +10,7 @@ namespace app\api\controller\wap;
 
 use think\facade\Request;
 use think\facade\Db;
+use mall\basic\Users;
 
 class Auth extends Base{
 
@@ -21,7 +22,7 @@ class Auth extends Base{
         if (!empty($this->token)) {
             $userToken = Db::name("users_token")->where(["token"=>$this->token])->find();
             if(!empty($userToken)){
-                $this->users = \mall\basic\Users::info($userToken["user_id"]);
+                $this->users = Users::info($userToken["user_id"]);
             }
         }
     }

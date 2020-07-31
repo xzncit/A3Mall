@@ -9,8 +9,7 @@
 namespace app\admin\controller\users;
 
 use app\admin\controller\Auth;
-use mall\utils\Date;
-use mall\utils\Tool;
+use app\common\model\users\Comment as UsersComment;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
@@ -26,35 +25,14 @@ class Comment extends Auth {
 
             $condition = [];
             if(isset($key["cat_id"]) && $key["cat_id"] != '-1'){
-                $filed = $key["cat_id"] == 0 ? "u.username" : "g.title";
+                $filed = $key["cat_id"] == 0 ? "users.username" : "goods.title";
                 $condition[] = [$filed,"like",'%'.$key["title"].'%'];
             }
 
-            $count = Db::name("users_comment")
-                ->alias('c')
-                ->join("users u","c.user_id=u.id","LEFT")
-                ->join("goods g","c.goods_id=g.id")
-                ->where($condition)->count();
+            $usersComment = new UsersComment();
+            $list = $usersComment->getList($condition,$limit);
 
-            $data = Db::name("users_comment")
-                ->alias('c')
-                ->field("c.*,g.title as goods_name,u.username")
-                ->join("users u","c.user_id=u.id","LEFT")
-                ->join("goods g","c.goods_id=g.id")->order("c.id DESC")
-                ->where($condition)->paginate($limit);
-
-            if($data->isEmpty()){
-                return Response::returnArray("当前还没有数据哦！",1);
-            }
-
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-                $list[$key]['url'] = createUrl("detail",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -68,11 +46,11 @@ class Comment extends Auth {
                 return Response::returnArray("请填写回复内容",0);
             }
 
-            $data["reply_content"] = Tool::editor($data["reply_content"]);
+            $usersComment = new UsersComment();
             $data["admin_id"] = Session::get("system_user_id");
             $data["reply_time"] = time();
             $data["status"] = 1;
-            Db::name("users_comment")->where("id",$data["id"])->update($data);
+            $usersComment->where("id",$data["id"])->save($data);
 
             return Response::returnArray("操作成功");
         }

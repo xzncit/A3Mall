@@ -41,8 +41,8 @@ layui.use(['table','form'], function () {
                     return '<img src="'+ res.path +'" style="max-width:30px; max-height:30px;">';
                 }}
                 , {field: 'name', title: '名称'}
-                , {field: 'sort', title: '排序',width:160,align:'center',edit:true}
-                , {field: 'size', title: '大小',width:160,align:'center'}
+                , {field: 'sort', title: '排序',width:160,align:'center',edit:true,}
+                , {field: 'size', title: '大小',width:160,align:'center',edit:true,}
                 , {field: 'create_time', title: '时间', width: 180}
                 , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 80}
             ]]
@@ -76,6 +76,8 @@ layui.use(['table','form'], function () {
                     }
                 },"json");
             });
+        } else if (obj.event === 'edit') {
+            window.location.href = data.url;
         }
     });
 

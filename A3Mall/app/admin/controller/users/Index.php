@@ -9,8 +9,8 @@
 namespace app\admin\controller\users;
 
 use app\admin\controller\Auth;
+use app\common\model\users\Users;
 use mall\utils\Date;
-use mall\utils\Tool;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
@@ -26,38 +26,21 @@ class Index extends Auth {
 
             $condition = [];
             if(isset($key["cat_id"]) && $key["cat_id"] != '-1'){
-                $condition["u.group_id"] = $key["cat_id"];
+                $condition["users.group_id"] = $key["cat_id"];
             }
 
             if(!empty($key["title"])){
-                $condition[] = ["u.username","like",'%'.$key["title"].'%'];
+                $condition[] = ["users.username","like",'%'.$key["title"].'%'];
             }
 
-            $count = Db::name("users")
-                ->alias("u")
-                ->join("users_group g","u.group_id=g.id","LEFT")
-                ->where($condition)->count();
+            $users = new Users();
+            $list = $users->getList($condition,$limit);
 
-            $data = Db::name("users")
-                ->field("u.*,g.name as group_name")
-                ->alias("u")
-                ->join("users_group g","u.group_id=g.id","LEFT")
-                ->where($condition)->order('u.id desc')->paginate($limit);
-
-            if($data->isEmpty()){
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['time'] = Date::format($item["create_time"]);
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-                $list[$key]['log_url'] = createUrl("log",["id"=>$item["id"]]);
-                $list[$key]['finance_url'] = createUrl("finance",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch("",[
@@ -77,22 +60,20 @@ class Index extends Auth {
         }
 
         $data = Request::post();
-
-        if(!empty($data["id"])){
+        $users = new Users();
+        if(($obj=$users::find($data["id"])) != false){
             if(!empty($data["password"]) || !empty($data["confirm_password"])){
                 if($data["password"] != $data["confirm_password"]){
                     return Response::returnArray("您输入的两次密码不致。",0);
                 }
 
                 $data["password"] = md5($data["password"]);
-            }
-
-            if(empty($data["password"])){
-                unset($data["password"],$data["confirm_password"]);
+            }else{
+                unset($data['password'],$data['confirm_password']);
             }
 
             try {
-                Db::name("users")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
@@ -106,11 +87,11 @@ class Index extends Auth {
             }
 
             $data["password"] = md5($data["password"]);
-            $data["create_time"] = time();
-            if(!Db::name("users")->strict(false)->insert($data)){
+            try {
+                $users->save($data);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
-
         }
 
         return Response::returnArray("操作成功！");

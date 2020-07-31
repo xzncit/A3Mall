@@ -9,42 +9,27 @@
 namespace app\admin\controller\products;
 
 use app\admin\controller\Auth;
-use mall\utils\Date;
+use app\common\model\products\Attribute as ProductsAttribute;
+use app\common\model\products\AttributeData as ProductsAttributeData;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\View;
-use mall\utils\Data;
 
 class Attribute extends Auth {
 
     public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("products_attribute")->where(['pid'=>0])->count();
-            $data = Db::name("products_attribute")->where(['pid'=>0])->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $productsAttribute = new ProductsAttribute();
+            $list = $productsAttribute->getList(['pid'=>0],$limit);
+
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-            $_list = [];
-            foreach($list as $key=>$value){
-                $_list[] = $value;
-                $children = \mall\basic\Category::getCategoryChildren($value["id"],'products_attribute');
-                $arr = Data::analysisTree(Data::familyProcess($children,[],$value["id"]));
-                array_splice($_list, count($_list), 0, $arr);
-            }
-
-            foreach($_list as $key=>$item){
-                $_list[$key]['name'] = (empty($item['level']) ? '' : $item['level']) . $item["name"];
-                $_list[$key]['create_time'] = Date::format($item['create_time']);
-                $_list[$key]['count'] = Db::name("products_attribute_data")->where(["pid"=>$item["id"]])->count();
-                $_list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$_list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -66,45 +51,47 @@ class Attribute extends Auth {
         }
 
         $data = Request::post();
-        if(!empty($data["id"])){
+        $productsAttribute = new ProductsAttribute();
+        if(($obj=$productsAttribute::find($data["id"])) != false){
             try {
-                Db::name("products_attribute")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            $data['create_time'] = time();
-            if(!Db::name("products_attribute")->strict(false)->insert($data)){
+            try {
+                $productsAttribute->save($data);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
-            $data["id"] = Db::name("products_attribute")->getLastInsID();
+            $data["id"] = $productsAttribute->id;
         }
 
         $i = 0;
-        $arr = array();
+        $arr = [];
+        $productsAttributeData = new ProductsAttributeData();
         if(!empty($data["attr"]["name"])){
             foreach($data["attr"]["name"] as $key=>$val){
-                $attr = array(
+                $attr = [
                     "pid"=>$data["id"],
                     "value"=>$val,
                     "sort"=>$i
-                );
+                ];
 
                 $id = intval($data["attr"]["id"][$key]);
-                if($id <= 0){
-                    Db::name("products_attribute_data")->insert($attr);
-                    $arr[] = Db::name("products_attribute_data")->getLastInsID();
+                if(($obj=$productsAttributeData::find($id)) == false){
+                    $productsAttributeData->save($attr);
+                    $arr[] = $productsAttributeData->id;
                 }else{
                     $arr[] = $id;
-                    Db::name("products_attribute_data")->where(["id"=>$id])->update($attr);
+                    $obj->save($attr);
                 }
                 $i++;
             }
         }
 
         if(!empty($arr)){
-            $condition = 'pid="'.$data["id"].'" AND id NOT in('.implode(",",$arr).')';
-            Db::name("products_attribute_data")->where($condition)->delete();
+            $productsAttributeData->where('pid',$data["id"])->where('id','not in',$arr)->delete();
         }
 
         return Response::returnArray("操作成功！");

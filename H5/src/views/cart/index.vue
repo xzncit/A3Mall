@@ -194,6 +194,7 @@ export default {
                 return !this.$tools.in_array(item.id,this.array);
             });
 
+            this.$store.commit("UPDATECART",this.list.length);
             if(arr.length <= 0){
                 return ;
             }

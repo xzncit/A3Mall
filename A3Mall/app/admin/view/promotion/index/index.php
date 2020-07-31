@@ -117,7 +117,7 @@
                     },"json");
                 });
             } else if (obj.event === 'edit') {
-                window.location.href = data.url;
+                window.location.href = '{:createUrl("editor")}?id='+data.id;
             }
         });
 

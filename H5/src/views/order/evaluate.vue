@@ -139,7 +139,7 @@
             onLoadOrder(){
                 let id = this.$route.params.id;
                 this.isEmpty = false;
-                this.$http.getOrderEvaluate("/order/evaluate",{
+                this.$http.getOrderEvaluate({
                     id: id
                 }).then((res)=>{
                     if(res.status == 1){

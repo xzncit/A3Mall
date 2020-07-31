@@ -11,12 +11,11 @@ namespace app\admin\controller\platform;
 use app\admin\controller\Auth;
 use think\facade\Request;
 use think\facade\Db;
-use mall\utils\Tool;
 use mall\response\Response;
 use think\facade\View;
 use mall\utils\Data;
 use mall\basic\Attachments;
-use mall\utils\Date;
+use app\common\model\base\Archives as Article;
 
 class Archives extends Auth {
 
@@ -27,37 +26,20 @@ class Archives extends Auth {
 
             $condition = [];
             if(isset($key["cat_id"]) && $key["cat_id"] != '-1'){
-                $condition["a.pid"] = $key["cat_id"];
+                $condition["Archives.pid"] = $key["cat_id"];
             }
 
             if(!empty($key["title"])){
-                $condition[] = ["a.title","like",'%'.$key["title"].'%'];
+                $condition[] = ["Archives.title","like",'%'.$key["title"].'%'];
             }
 
-            $count = Db::name("archives")
-                ->alias("a")
-                ->join("category c","a.pid=c.id","LEFT")
-                ->where($condition)->count();
-
-            $data = Db::name("archives")
-                ->field("a.*,c.title as cat_name")
-                ->alias("a")
-                ->join("category c","a.pid=c.id","LEFT")
-                ->where($condition)->order('a.id desc')->paginate($limit);
-
-            if($data->isEmpty()){
+            $article = new Article();
+            $result = $article->getList($condition,$limit);
+            if(empty($result["data"])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-                $list[$key]['photo'] = Tool::thumb($item["photo"],"small");
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$result["data"],$result["count"]);
         }
 
         $cat = Db::name("category")->where(["status"=>0,"module"=>"article"])->select()->toArray();
@@ -81,24 +63,23 @@ class Archives extends Auth {
             ]);
         }
 
+        $article = new Article();
         $data = Request::post();
-
-        $data["content"] = Tool::editor($data["content"]);
         $data['attachment_id'] = empty($data['attachment_id']) ? [] : $data['attachment_id'];
-        if(!empty($data["id"])){
-            try {
-                $data['update_time'] = time();
-                Db::name("archives")->strict(false)->where("id",$data['id'])->update($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        if(($obj = $article::find($data["id"])) != false){
+            try{
+                $obj->save($data);
+            }catch (\Exception $e){
+                return Response::returnArray($e->getMessage(),0);
             }
         }else{
-            $data['create_time'] = time();
-            if(!Db::name("archives")->strict(false)->insert($data)){
+            try{
+                $article->save($data);
+            }catch (\Exception $e){
                 return Response::returnArray("操作失败，请重试。",0);
             }
 
-            $data['id'] = Db::name('archives')->getLastInsID();
+            $data['id'] = $article->id;
         }
 
         Attachments::handle($data["attachment_id"],$data['id']);

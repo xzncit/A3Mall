@@ -9,23 +9,21 @@
 namespace app\admin\controller\system;
 
 use app\admin\controller\Auth;
+use app\common\model\system\SmsTemplate;
 use mall\response\Response;
-use mall\utils\Date;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\View;
+use app\common\model\system\Setting;
 
 class Sms extends Auth {
 
     public function setting(){
         if(Request::isAjax()){
-
             $post = Request::post();
             $data = json_encode($post,JSON_UNESCAPED_UNICODE);
-
-            Db::name("setting")->where("name","sms")->update([
-                "value"=>$data
-            ]);
+            $setting = new Setting();
+            $setting->where("name","sms")->save(["value"=>$data]);
             return Response::returnArray("操作成功！");
         }
 
@@ -42,21 +40,15 @@ class Sms extends Auth {
     public function template(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("sms_template")->count();
-            $data = Db::name("sms_template")->order("id DESC")->paginate($limit);
 
-            if($data->isEmpty()){
+            $smsTemplate = new SmsTemplate();
+            $list = $smsTemplate->getList([],$limit);
+
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['url'] = createUrl('template_editor',["id"=>$item["id"]]);
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -73,14 +65,17 @@ class Sms extends Auth {
         }
 
         $data = Request::post();
-        if(!empty($data["id"])){
+        $smsTemplate = new SmsTemplate();
+        if(($obj=$smsTemplate::find($data["id"])) != false){
             try {
-                Db::name("sms_template")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            if(!Db::name("sms_template")->strict(false)->insert($data)){
+            try {
+                $smsTemplate->save($data);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }

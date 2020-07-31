@@ -17,7 +17,7 @@ class Setting {
             return false;
         }
 
-        $array["value"] = json_encode($data,JSON_UNESCAPED_UNICODE);
+        $array["value"] = is_array($data) ? json_encode($data,JSON_UNESCAPED_UNICODE) : $data;
         if(Db::name("setting")->where(["name"=>$name])->count()){
             Db::name("setting")->where(["name"=>$name])->update($array);
         }else{

@@ -14,6 +14,7 @@ use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\View;
+use app\common\model\promotion\Bonus as BonusModel;
 
 class Bonus extends Auth {
 
@@ -27,25 +28,19 @@ class Bonus extends Auth {
                 $condition[] = ['name',"like",'%'.$key["title"].'%'];
             }
 
-            $count = Db::name("promotion_bonus")
-                ->where($condition)->count();
+            $bonus = new BonusModel();
+            $list = $bonus->getList($condition,$limit);
 
-            $data = Db::name("promotion_bonus")
-                ->where($condition)->order('id desc')->paginate($limit);
-
-            if($data->isEmpty()){
+            if(empty($list["data"])){
                 return Response::returnArray("当前还没有数据哦",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['total'] = $item["used"] . ' / ' . $item["giveout"];
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-                $list[$key]['time'] = Date::format($item["start_time"]) . ' ~ ' . Date::format($item["end_time"]);
+            foreach($list['data'] as $key=>$item){
+                $list['data'][$key]['total'] = $item["used"] . ' / ' . $item["giveout"];
+                $list['data'][$key]['time'] = $item["start_time"] . ' ~ ' . $item["end_time"];
             }
 
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -54,12 +49,8 @@ class Bonus extends Auth {
     public function editor(){
         if(!Request::isAjax()){
             $id = (int)Request::param("id");
-            $rs = empty($id) ? [] : Db::name("promotion_bonus")->where("id",$id)->find();
-
-            if(!empty($rs)){
-                $rs["start_time"] = date("Y-m-d H:i:s",$rs["start_time"]);
-                $rs["end_time"] = date("Y-m-d H:i:s",$rs["end_time"]);
-            }
+            $bonus = new BonusModel();
+            $rs = empty($id) ? [] : $bonus::where("id",$id)->find();
 
             return View::fetch("",[
                 "data"=>$rs
@@ -75,15 +66,17 @@ class Bonus extends Auth {
             return Response::returnArray("开始时间不能小于结束时间",0);
         }
 
-        if(!empty($data["id"])){
+        $bonus = new BonusModel();
+        if(($obj=$bonus->where("id",$data["id"])->find()) != false){
             try {
-                Db::name("promotion_bonus")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            $data['create_time'] = time();
-            if(!Db::name("promotion_bonus")->strict(false)->insert($data)){
+            try {
+                $bonus->save($data);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }

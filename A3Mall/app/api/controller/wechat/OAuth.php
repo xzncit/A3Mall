@@ -31,6 +31,7 @@ class OAuth extends Base {
             return $this->returnAjax("获取授权信息失败，请稍后在试",0);
         }
 
+        $spread_id = Request::param("spread_id","0","intval");
         if (isset($token['openid'])) {
             $user = WeChat::Oauth()->getUserInfo($token['access_token'],$token['openid']);
             if(($row=Db::name("wechat_users")->where([
@@ -40,7 +41,7 @@ class OAuth extends Base {
                 if($row["user_id"] == 0){
                     $group_id = Db::name("users_group")->order('minexp','ASC')->value("id");
                     $password = md5($appid . $user["openid"]);
-                    Db::name("users")->insert([
+                    $data = [
                         "group_id"=>$group_id,
                         "username"=>'wx_'.uniqid(),
                         "nickname"=>$user["nickname"],
@@ -51,9 +52,28 @@ class OAuth extends Base {
                         "last_ip"=>Request::ip(),
                         "create_time"=>time(),
                         "last_login"=>time()
-                    ]);
+                    ];
+
+                    if(Db::name("users")->where("id",(int)$spread_id)->count()){
+                        $data["is_spread"] = 1;
+                        $data["spread_id"] = $spread_id;
+                        $data["spread_time"] = time();
+                    }
+
+                    Db::name("users")->insert($data);
 
                     $row["user_id"] = Db::name("users")->getLastInsID();
+                }else{
+                    $users = Db::name("users")->where('id',$row["user_id"])->find();
+                    if($users["spread_id"] == 0 && ($r = Db::name("users")->where("id",(int)$spread_id)->find()) != false){
+                        if($r["id"] != $users["id"]){
+                            Db::name("users")->where('id',$row["user_id"])->update([
+                                "is_spread"=>1,
+                                "spread_id"=>$spread_id,
+                                "spread_time"=>time()
+                            ]);
+                        }
+                    }
                 }
 
                 $info = \mall\basic\Users::info($row["user_id"]);
@@ -69,6 +89,7 @@ class OAuth extends Base {
                 ]);
 
                 return $this->returnAjax("登录成功！",2,[
+                    "id"=>$info["id"],
                     "token"=>$token,
                     "username"=>$info["username"],
                     "nickname"=>$info["nickname"],
@@ -85,7 +106,8 @@ class OAuth extends Base {
             }else{
                 $group_id = Db::name("users_group")->order('minexp','ASC')->value("id");
                 $password = md5($appid . $user["openid"]);
-                Db::name("users")->insert([
+
+                $data = [
                     "group_id"=>$group_id,
                     "username"=>'wx_'.uniqid(),
                     "nickname"=>$user["nickname"],
@@ -96,7 +118,15 @@ class OAuth extends Base {
                     "last_ip"=>Request::ip(),
                     "create_time"=>time(),
                     "last_login"=>time()
-                ]);
+                ];
+
+                if(Db::name("users")->where("id",(int)$spread_id)->count()){
+                    $data["is_spread"] = 1;
+                    $data["spread_id"] = $spread_id;
+                    $data["spread_time"] = time();
+                }
+
+                Db::name("users")->insert($data);
 
                 $user_id = Db::name("users")->getLastInsID();
 
@@ -126,6 +156,7 @@ class OAuth extends Base {
 
                 $info = \mall\basic\Users::info($user_id);
                 return $this->returnAjax("注册成功！",2,[
+                    "id"=>$info["id"],
                     "token"=>$token,
                     "username"=>$info["username"],
                     "nickname"=>$info["nickname"],

@@ -1,6 +1,9 @@
 import request from '../utils/Request'
 import router from '../router';
-import {Toast} from "vant";
+
+export function getHomeData(param) {
+    return request.get("/custom",param);
+}
 
 export function getHomeCommon() {
     return request.get("/index");
@@ -10,9 +13,9 @@ export function getHomeList(param) {
     return request.get("/index/list",param);
 }
 
-export function getActivityList(param) {
+export function getGroupList(param) {
     return new Promise((resolve,reject)=>{
-        request.get("/activity",param).then(res=>{
+        request.get("/group",param).then(res=>{
             resolve(res)
         }).catch(error=>{
             router.replace("/404");
@@ -20,10 +23,14 @@ export function getActivityList(param) {
     });
 }
 
-export function getActivityDetail(param) {
+export function getGroupDetail(param) {
     return new Promise((resolve, reject)=>{
-        request.get("/activity/viewa",param).then(res=>{
-            resolve(res);
+        request.get("/group/view",param).then(res=>{
+            if(res.status != 1){
+                router.replace("/404");
+            }else{
+                resolve(res);
+            }
         }).catch(error=>{
             router.replace("/404");
         })
@@ -143,7 +150,11 @@ export function getGoodsRecommend(params) {
 export function getGoodsDetail(params) {
     return new Promise((resolve, reject) => {
         request.get("/goods/view",params).then((result)=>{
-            resolve(result);
+            if(result.status != 1){
+                router.replace("/404");
+            }else{
+                resolve(result);
+            }
         }).catch(err=>{
             reject(err);
         });
@@ -170,9 +181,9 @@ export function goodsDetailAddCart(params) {
     });
 }
 
-export function getGroupList(params) {
+export function getRegimentList(params) {
     return new Promise((resolve, reject) => {
-        request.get("/group",params).then((result)=>{
+        request.get("/regiment",params).then((result)=>{
             resolve(result)
         }).catch((error)=>{
             reject(error)
@@ -180,10 +191,14 @@ export function getGroupList(params) {
     });
 }
 
-export function getGroupDetail(params) {
+export function getRegimentDetail(params) {
     return new Promise((resolve, reject) => {
-        request.get("/group/view",params).then((result)=>{
-            resolve(result);
+        request.get("/regiment/view",params).then((result)=>{
+            if(result.status != 1){
+                router.replace("/404");
+            }else{
+                resolve(result);
+            }
         }).catch(err=>{
             router.replace("/404");
         });
@@ -290,9 +305,19 @@ export function getSearchKeywords() {
     })
 }
 
+export function searchKeywords(params) {
+    return new Promise((resolve, reject) => {
+        request.get("/search/keywords",params).then((result)=>{
+            resolve(result)
+        }).catch(err=>[
+            reject(err)
+        ]);
+    })
+}
+
 export function getSearchList(params) {
     return new Promise((resolve, reject) => {
-        request.get("search/list",params).then((result)=>{
+        request.get("/search/list",params).then((result)=>{
             resolve(result)
         }).catch((error)=>{
             reject(error)
@@ -350,9 +375,19 @@ export function getUcenter() {
     });
 }
 
+export function getAddressData(params) {
+    return new Promise((resolve, reject) => {
+        request.get("/ucenter/address",params).then(res=>{
+            resolve(res)
+        }).catch(err=>{
+            reject(err);
+        });
+    });
+}
+
 export function getAddress() {
     return new Promise((resolve, reject) => {
-        request.get("ucenter/address/list").then(res=>{
+        request.get("/ucenter/address/list").then(res=>{
             resolve(res)
         }).catch(err=>{
             router.replace("/404");
@@ -362,7 +397,7 @@ export function getAddress() {
 
 export function editorAddress(params) {
     return new Promise((resolve, reject) => {
-        request.post("ucenter/address/save",params).then((res)=>{
+        request.post("/ucenter/address/save",params).then((res)=>{
             resolve(res)
         }).catch(err=>{
             reject(err)
@@ -442,7 +477,7 @@ export function getUcenterPointList(params) {
 
 export function getUserInfo() {
     return new Promise((resolve, reject) => {
-        request.get("/ucenter/info").then((res)=>{
+        request.get("/ucenter/get_setting").then((res)=>{
             resolve(res)
         }).catch(err=>{
             reject(err)
@@ -460,9 +495,45 @@ export function editUserInfo(params) {
     })
 }
 
+export function uploadUsersAvatar(params) {
+    return new Promise(function (resolve, reject) {
+        let form = new FormData();
+        if(params.event.target.value){
+            form.append("file",params.event.target.files[0]);
+            request.uploadfiy(form,'/ucenter/avatar').then(res=>{
+                resolve(res);
+            }).catch(err=>{
+                reject(err);
+            });
+        }else{
+            reject("请选择需要上传的内容");
+        }
+    })
+}
+
 export function getWallet() {
     return new Promise((resolve, reject) => {
-        request.get("/ucenter/info").then((res)=>{
+        request.get("/ucenter/wallet").then((res)=>{
+            resolve(res)
+        }).catch(err=>{
+            reject(err)
+        });
+    })
+}
+
+export function getWalletFund(params) {
+    return new Promise((resolve, reject) => {
+        request.get("/ucenter/wallet/fund",params).then((res)=>{
+            resolve(res)
+        }).catch(err=>{
+            reject(err)
+        });
+    })
+}
+
+export function getWalletCashlist(params) {
+    return new Promise((resolve, reject) => {
+        request.get("/ucenter/wallet/cashlist",params).then((res)=>{
             resolve(res)
         }).catch(err=>{
             reject(err)
@@ -589,4 +660,3 @@ export function getOrderService(params) {
         });
     })
 }
-

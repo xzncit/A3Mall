@@ -1,5 +1,8 @@
 import axios from 'axios';
 import Storage from "./Storage";
+import tools from "./Tools";
+import {oAuth} from "../libs/Wechat";
+import router from "../router";
 
 export default {
 
@@ -49,7 +52,15 @@ export default {
             httpService.get(url,{
                 params: params
             }).then(function (response) {
-                resolve(response.data);
+                if(response.data.status == '-1001'){
+                    if(tools.isWeiXin()){
+                        oAuth();
+                    }else{
+                        router.push('/public/login');
+                    }
+                }else{
+                    resolve(response.data);
+                }
             }).catch(function (error) {
                 //console.log(error)
                 reject(error);
@@ -61,7 +72,15 @@ export default {
         let httpService = this.create();
         return new Promise(function (resolve, reject) {
             httpService.post(url,params).then(function (response) {
-                resolve(response.data);
+                if(response.data.status == '-1001'){
+                    if(tools.isWeiXin()){
+                        oAuth();
+                    }else{
+                        router.push('/public/login');
+                    }
+                }else{
+                    resolve(response.data);
+                }
             }).catch(function (error) {
                 reject(error);
             });
@@ -78,5 +97,44 @@ export default {
      */
     instance(){
         return this.create();
+    },
+
+    uploadfiy: function(form,url){
+      let http = this.instance();
+      return new Promise(function (resolve, reject) {
+          http.post(url,form).then(function (response) {
+              if(response.data.status == '-1001'){
+                  if(tools.isWeiXin()){
+                      oAuth();
+                  }else{
+                      router.push('/public/login');
+                  }
+              }else{
+                  resolve(response.data);
+              }
+          }).catch(function (error) {
+              reject(error);
+          });
+      });
+    },
+
+    _uploadfiy: function(form,url){
+        return Promise(function (resolve, reject) {
+            if(window.XMLHttpRequest){
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST',this.domain() + "api" + url);
+                xhr.send(form);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200){
+                        let res = JSON.parse(xhr.response);
+                        resolve(res);
+                    }else{
+                        reject("Request data failed");
+                    }
+                };
+            }else{
+                reject("您的浏览器过于老旧，请使用现代浏览器");
+            }
+        });
     }
 }

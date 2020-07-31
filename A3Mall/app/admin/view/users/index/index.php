@@ -147,7 +147,7 @@ layui.use(['table','form'], function () {
                 },"json");
             });
         } else if (obj.event === 'edit') {
-            window.location.href = data.url;
+            window.location.href = '{:createUrl("editor")}?id='+data.id;
         }else if(obj.event == 'finance'){
             layer.open({
                 type: 2,
@@ -155,10 +155,10 @@ layui.use(['table','form'], function () {
                 shadeClose: true,
                 shade: 0.3,
                 area: ['60%', '58%'],
-                content: data.finance_url
+                content: '{:createUrl("finance")}?id='+data.id
             });
         }else if(obj.event == 'log'){
-            window.location.href = data.log_url;
+            window.location.href = '{:createUrl("log")}?id='+data.id;
         }
     });
 

@@ -24,7 +24,7 @@
                                 <select lay-verify="required" name="pid">
                                     <option value="0">顶级分类</option>
                                     {volist name="cat" id="v"}
-                                    <option value="{$v.id}" {if !empty($data.pid) && $v.id == $data.pid}selected{/if}>{$v.level}{$v.title}</option>
+                                    <option value="{$v.id}" {if !empty($data.pid) && $v.id == $data.pid}selected{/if}>{$v.level|raw}{$v.title|raw}</option>
                                     {/volist}
                                 </select>
                             </div>

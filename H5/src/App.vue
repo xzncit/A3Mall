@@ -3,11 +3,36 @@
     <div class="container" :class="{'container-wrap': isTabbar}">
       <router-view></router-view>
     </div>
+
     <van-tabbar v-if="isTabbar" route v-model="active" active-color="#b71c1c" inactive-color="#333">
-      <van-tabbar-item icon="wap-home-o" to="/" replace>首页</van-tabbar-item>
-      <van-tabbar-item icon="apps-o" to="/category/index">分类</van-tabbar-item>
-      <van-tabbar-item icon="cart-o" to="/cart/index" :badge="cartCount">购物车</van-tabbar-item>
-      <van-tabbar-item icon="friends-o" to="/ucenter/index">我的</van-tabbar-item>
+      <van-tabbar-item icon="wap-home-o" to="/" replace>
+        <span>首页</span>
+        <template #icon="props">
+          <img v-if="!props.active" src="@/assets/images/tabbar/menu-1.png">
+          <img v-if="props.active" src="@/assets/images/tabbar/menu-active-1.png">
+        </template>
+      </van-tabbar-item>
+      <van-tabbar-item icon="apps-o" to="/category/index">
+        <span>分类</span>
+        <template #icon="props">
+          <img v-if="!props.active" src="@/assets/images/tabbar/menu-2.png">
+          <img v-if="props.active" src="@/assets/images/tabbar/menu-active-2.png">
+        </template>
+      </van-tabbar-item>
+      <van-tabbar-item icon="cart-o" to="/cart/index" :badge="cartCount">
+        <span>购物车</span>
+        <template #icon="props">
+          <img v-if="!props.active" src="@/assets/images/tabbar/menu-3.png">
+          <img v-if="props.active" src="@/assets/images/tabbar/menu-active-3.png">
+        </template>
+      </van-tabbar-item>
+      <van-tabbar-item icon="friends-o" to="/ucenter/index">
+        <span>我的</span>
+        <template #icon="props">
+          <img v-if="!props.active" src="@/assets/images/tabbar/menu-4.png">
+          <img v-if="props.active" src="@/assets/images/tabbar/menu-active-4.png">
+        </template>
+      </van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -18,7 +43,13 @@ export default {
   name: 'App',
   data() {
     return {
-      active: 0
+      active: 0,
+      icon: {
+        home: {
+          active: '../assets/images/tabbar/menu-1.png',
+          inactive: '../../assets/images/tabbar/menu-1.png',
+        }
+      },
     };
   },
   components: {
@@ -55,4 +86,5 @@ i{
 .container-wrap {
   bottom: 50px;
 }
+
 </style>

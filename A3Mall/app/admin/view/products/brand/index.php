@@ -74,7 +74,7 @@ layui.use(['table','form'], function () {
                     id : data.id
                 },function(result){
                     layer.close(index);
-                    if(result.status){
+                    if(result.code){
                         obj.del();
                     }else{
                         layer.msg(result.info,{ icon : 2 });
@@ -82,7 +82,7 @@ layui.use(['table','form'], function () {
                 },"json");
             });
         } else if (obj.event === 'edit') {
-            window.location.href = data.url;
+            window.location.href = '{:createUrl("editor")}?id='+data.id;
         }
     });
     
@@ -94,7 +94,7 @@ layui.use(['table','form'], function () {
             value : (obj.elem.checked ? 0 : 1),
             id : that.value
         },function (result){
-            if(!result.status){
+            if(!result.code){
                 layer.msg(result.info,{ icon : 2 });
             }
         },"json");
@@ -107,7 +107,7 @@ layui.use(['table','form'], function () {
             value : obj.value,
             id : obj.data.id
         },function (result){
-            if(!result.status){
+            if(!result.code){
                 layer.msg(result.info,{ icon : 2 });
             }
         },"json");

@@ -10,8 +10,6 @@ namespace app\admin\controller\platform;
 
 use app\admin\controller\Auth;
 use mall\response\Response;
-use mall\utils\Date;
-use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\View;
@@ -21,22 +19,14 @@ class Version extends Auth {
     public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("version")->count();
-            $data = Db::name("version")->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $versionModel = new \app\common\model\base\Version();
+            $list = $versionModel->getList([],$limit);
+            if(empty($list["data"])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key] = $item;
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-                $list[$key]['url'] = url("editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -54,16 +44,17 @@ class Version extends Auth {
 
         $data = Request::post();
 
-        $data["content"] = Tool::editor($data["content"]);
-        if(!empty($data["id"])){
+        $versionModel = new \app\common\model\base\Version();
+        if(($obj=$versionModel::find($data["id"])) != false){
             try {
-                Db::name("version")->strict(false)->where("id",$data['id'])->update($data);
-            } catch (\Exception $ex) {
+                $obj->save($data);
+            }catch(\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            $data['create_time'] = time();
-            if(!Db::name("version")->strict(false)->insert($data)){
+            try {
+                $versionModel->save($data);
+            }catch(\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
 

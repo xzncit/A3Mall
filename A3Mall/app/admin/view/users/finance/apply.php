@@ -69,7 +69,7 @@ layui.use(['table','form'], function () {
                 shadeClose: true,
                 shade: 0.3,
                 area: ['60%', '80%'],
-                content: data.url
+                content: '{:createUrl("handle")}?id='+data.id
             });
         }
     });

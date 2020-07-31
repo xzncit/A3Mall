@@ -41,7 +41,6 @@ class Special extends Auth {
 
             foreach($list as $key=>$item){
                 $goods = Db::name("goods")->where(["id"=>$item["goods_id"]])->find();
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
                 $list[$key]["title"] = $goods["title"];
                 $list[$key]["sell_price"] = $goods["sell_price"];
                 $list[$key]["thumb_image"] = $goods["photo"];

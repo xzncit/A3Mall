@@ -77,6 +77,7 @@ export default {
                 } else if(res.status == 1){
                     this.list = this.list.concat(res.data.list);
                     this.page++;
+                    this.point = res.data.point;
                 }else if(res.status == -1){
                     this.finished = true;
                 }

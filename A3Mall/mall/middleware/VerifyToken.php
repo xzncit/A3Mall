@@ -23,7 +23,7 @@ class VerifyToken {
     public function handle(Request $request, Closure $next){
         $token = $request->header("Auth-Token");
         if(empty($token) || Db::name("users_token")->where(["token"=>$token])->count() <= 0){
-            return json(["info"=>"您还没有登录，请先登录","status"=>0]);
+            return json(["info"=>"您还没有登录，请先登录","status"=>"-1001"]);
         }
 
         return $next($request);

@@ -9,38 +9,24 @@
 namespace app\admin\controller\products;
 
 use app\admin\controller\Auth;
-use mall\utils\Tool;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\View;
-use mall\basic\Area;
 
 class Deliver extends Auth {
 
     public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("deliver")->count();
-            $data = Db::name("deliver")->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $deliver = new \app\common\model\base\Deliver();
+            $list = $deliver->getList([],$limit);
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-            foreach($list as $key=>$item){
-                if($item["province"] && $item["city"] && $item["area"]){
-                    $list[$key]['area_name'] = Area::get_area([
-                        $item["province"],$item["city"],$item["area"]
-                    ]);
-                }else{
-                    $list[$key]['area_name'] = "";
-                }
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -72,26 +58,24 @@ class Deliver extends Auth {
         }
 
         $data = Request::post();
-
+        $deliver = new \app\common\model\base\Deliver();
         $data["is_default"] = isset($data["is_default"]) && is_numeric($data["is_default"]) ? $data["is_default"] : 0;
-
         if($data["is_default"] == 1){
-            Db::name("deliver")->where("1=1")->update([
-                "is_default" => 0
-            ]);
+            $deliver->where("1=1")->update(["is_default" => 0]);
         }
 
-        if(!empty($data["id"])){
+        if(($obj=$deliver::find($data["id"])) != false){
             try {
-                Db::name("deliver")->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            if(!Db::name("deliver")->insert($data)){
+            try {
+                $deliver->save($data);
+            } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
-
         }
 
         return Response::returnArray("操作成功！");

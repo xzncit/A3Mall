@@ -9,16 +9,13 @@
 namespace app\admin\controller\order;
 
 use app\admin\controller\Auth;
-use mall\utils\Data;
 use mall\utils\Date;
 use mall\basic\Order;
-use mall\utils\Tool;
 use mall\response\Response;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\Session;
 use think\facade\View;
-use mall\basic\Area;
 
 class Index extends Auth {
 
@@ -29,51 +26,36 @@ class Index extends Auth {
 
             $condition = [];
             if(isset($key["pay_type"]) && $key["pay_type"] != '-1'){
-                $condition["o.pay_type"] = $key["pay_type"];
+                $condition["order.pay_type"] = $key["pay_type"];
             }
 
             if(isset($key["status"]) && $key["status"] != '-1'){
-                $condition["o.status"] = $key["status"];
+                $condition["order.status"] = $key["status"];
             }
 
             if(isset($key["distribution_status"]) && $key["distribution_status"] != '-1'){
-                $condition["o.distribution_status"] = $key["distribution_status"];
+                $condition["order.distribution_status"] = $key["distribution_status"];
             }
 
             if(!empty($key["title"])){
-                $condition[] = ["o.order_no","like",'%'.$key["title"].'%'];
+                $condition[] = ["order.order_no","like",'%'.$key["title"].'%'];
             }
 
-            $count = Db::name("order")
-                ->alias("o")
-                ->join("users u","o.user_id=u.id","LEFT")
-                ->join("payment p","o.pay_type=p.id","LEFT")
-                ->where($condition)->count();
+            $order = new \app\common\model\order\Order();
+            $list = $order->getList($condition,$limit);
 
-            $data = Db::name("order")
-                ->field("o.*,u.username,p.name as payment_name")
-                ->alias("o")
-                ->join("users u","o.user_id=u.id","LEFT")
-                ->join("payment p","o.pay_type=p.id","LEFT")
-                ->where($condition)->order('o.id DESC')->paginate($limit);
-
-            if($data->isEmpty()){
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key] = $item;
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-                $list[$key]['url'] = createUrl("detail",["id"=>$item["id"]]);
-                $list[$key]['update_amount'] = createUrl("update_amount",["id"=>$item["id"]]);
-                $list[$key]['distribution_status_name'] = Order::getStatusText(Order::getStatus($item));
-                $list[$key]['pay_status_name'] = Order::getPaymentStatusText($item["pay_status"]);
-                $list[$key]['order_type_name'] = Order::getOrderTypeText($item['type']);
+            foreach($list['data'] as $key=>$item){
+                $list['data'][$key] = $item;
+                $list['data'][$key]['distribution_status_name'] = Order::getStatusText(Order::getStatus($item));
+                $list['data'][$key]['pay_status_name'] = Order::getPaymentStatusText($item["pay_status"]);
+                $list['data'][$key]['order_type_name'] = Order::getOrderTypeText($item['type']);
             }
 
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -437,6 +419,7 @@ class Index extends Auth {
             Db::name("order_delivery")->where(["order_id"=>$id])->delete();
             Db::name("order_goods")->where(["order_id"=>$id])->delete();
             Db::name("order_refundment")->where(["order_id"=>$id])->delete();
+            Db::name("order_log")->where(["order_id"=>$id])->delete();
         } catch (\Exception $ex) {
             return Response::returnArray("操作失败，请稍候在试。",0);
         }

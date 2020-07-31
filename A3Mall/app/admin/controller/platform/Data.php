@@ -9,9 +9,9 @@
 namespace app\admin\controller\platform;
 
 use app\admin\controller\Auth;
+use app\common\model\base\DataItem;
 use think\facade\Request;
 use think\facade\Db;
-use mall\utils\Date;
 use mall\basic\Attachments;
 use mall\response\Response;
 use think\facade\View;
@@ -21,21 +21,15 @@ class Data extends Auth {
     public function index(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $count = Db::name("data_category")->count();
-            $data = Db::name("data_category")->order('id desc')->paginate($limit);
 
-            if($data->isEmpty()){
+            $dataModel = new \app\common\model\base\Data();
+            $list = $dataModel->getList([],$limit);
+
+            if(empty($list["data"])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-
-            foreach($list as $key=>$item){
-                $list[$key]['time'] = Date::format($item["create_time"]);
-                $list[$key]['url'] = createUrl("editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list["count"]);
         }
 
         return View::fetch();
@@ -44,7 +38,7 @@ class Data extends Auth {
     public function editor(){
         if(!Request::isAjax()){
             $id = (int)Request::param("id");
-            $rs = empty($id) ? [] : Db::name("data_category")->where("id",$id)->find();
+            $rs = empty($id) ? [] : Db::name("data")->where("id",$id)->find();
 
             $marketing = Db::name("data_item")->where('pid',$id)->order('sort ASC')->select()->toArray();
             foreach($marketing as $key=>$value){
@@ -58,20 +52,22 @@ class Data extends Auth {
         }
 
         $data = Request::post();
-
-        if(!empty($data["id"])){
+        $dataModel = new \app\common\model\base\Data();
+        $dataItemModel = new DataItem();
+        if(($obj = $dataModel::find($data["id"])) != false){
             try {
-                Db::name("data_category")->strict(false)->where("id",$data['id'])->update($data);
+                $obj->save($data);
             } catch (\Exception $ex) {
                 return Response::returnArray("操作失败，请重试。",0);
             }
         }else{
-            $data["create_time"] = time();
-            if(!Db::name("data_category")->strict(false)->insert($data)){
+            try{
+                $dataModel->save($data);
+            }catch (\Exception $e){
                 return Response::returnArray("操作失败，请重试。",0);
             }
 
-            $data['id'] = Db::name('data_category')->getLastInsID();
+            $data['id'] = $dataModel->id;
         }
 
         $marketing = $data['marketing'];
@@ -88,12 +84,12 @@ class Data extends Auth {
                 "target"=>!empty($marketing["target"][$key]) ? $marketing["target"][$key] : 0
             ];
 
-            if(empty($value)){
-                Db::name("data_item")->insert($arr);
-                $in[] = Db::name("data_item")->getLastInsID();
-            }else{
+            if(($objItem = $dataItemModel::find($value)) != false){
                 $in[] = $value;
-                Db::name("data_item")->where(['id'=>$value])->update($arr);
+                $objItem->save($arr);
+            }else{
+                $dataItemModel->save($arr);
+                $in[] = $dataItemModel->id;
             }
 
             $i++;
@@ -102,9 +98,9 @@ class Data extends Auth {
         Attachments::handle($marketing["attachment_id"],$data['id']);
 
         if(!empty($in)){
-            $r = Db::name("data_item")->where("pid",$data['id'])->where("id","not in",$in)->select()->toArray();
+            $r = $dataItemModel::where("pid",$data['id'])->where("id","not in",$in)->select()->toArray();
             foreach($r as $val){
-                Db::name("data_item")->delete($val['id']);
+                $dataItemModel->delete($val['id']);
                 Attachments::clear(['path'=>$val['photo']]);
             }
         }
@@ -119,12 +115,12 @@ class Data extends Auth {
 
         $id = (int)Request::get("id");
         try {
-            $row = Db::name("data_category")->where('id',$id)->find();
+            $row = Db::name("data")->where('id',$id)->find();
             if(empty($row)){
                 throw new \Exception("您要查找的数据不存在！",0);
             }
 
-            if(!Db::name("data_category")->delete($id)){
+            if(!Db::name("data")->delete($id)){
                 throw new \Exception("删除失败，请重试！",0);
             }
 

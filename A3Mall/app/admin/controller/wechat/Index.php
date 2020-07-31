@@ -9,36 +9,25 @@
 namespace app\admin\controller\wechat;
 
 use app\admin\controller\Auth;
-use mall\basic\Attachments;
-use mall\basic\Setting;
-use mall\basic\Users;
-use mall\library\wechat\chat\classes\Fans;
+use app\common\model\system\Setting;
 use mall\library\wechat\chat\classes\Menu;
-use mall\library\wechat\chat\WeChat;
-use mall\utils\Data;
-use mall\utils\Date;
-use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
 use mall\response\Response;
-use think\facade\Session;
 use think\facade\View;
-use mall\utils\CString;
 
 class Index extends Auth {
 
     public function api(){
-        if(Request::isAjax()){
+        if(Request::isAjax()) {
             $post = Request::post();
             $data = json_encode($post,JSON_UNESCAPED_UNICODE);
 
-            Db::name("setting")->where("name","wechat")->update([
-                "value"=>$data
-            ]);
+            Setting::where("name","wechat")->save(["value"=>$data]);
             return Response::returnArray("操作成功！");
         }
 
-        $content = Db::name("setting")->where("name","wechat")->value("value");
+        $content = Setting::where("name","wechat")->value("value");
         if(!empty($content)){
             $content = json_decode($content,true);
         }
@@ -55,13 +44,11 @@ class Index extends Auth {
             $post = Request::post();
             $data = json_encode($post,JSON_UNESCAPED_UNICODE);
 
-            Db::name("setting")->where("name","wepay")->update([
-                "value"=>$data
-            ]);
+            Setting::where("name","wepay")->save(["value"=>$data]);
             return Response::returnArray("操作成功！");
         }
 
-        $content = Db::name("setting")->where("name","wepay")->value("value");
+        $content = Setting::where("name","wepay")->value("value");
         if(!empty($content)){
             $content = json_decode($content,true);
         }
@@ -73,10 +60,11 @@ class Index extends Auth {
 
     public function menu(){
         if(Request::isAjax()){
-            $data = Request::post("post","");
-            Setting::save("wechat_menu",$data);
+            $post = Request::post("post");
+            $data = json_encode($post,JSON_UNESCAPED_UNICODE);
+            Setting::where("name","wechat_menu")->save(["value"=>$data]);
             try {
-                Menu::save(Setting::get("wechat_menu",false));
+                Menu::save($post);
             }catch (\Exception $e){
                 return Response::returnArray($e->getMessage(),0);
             }
@@ -84,8 +72,9 @@ class Index extends Auth {
             return Response::returnArray("操作成功");
         }
 
+        $content = Setting::where("name","wechat_menu")->value("value");
         return View::fetch("",[
-            "data"=>Setting::get("wechat_menu",true),
+            "data"=>$content,
             "keys"=>Db::name("wechat_keys")->where("keys","not in","default,subscribe")->select()->toArray()
         ]);
     }

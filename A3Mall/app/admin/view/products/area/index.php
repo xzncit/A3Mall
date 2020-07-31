@@ -81,11 +81,11 @@ layui.use(['table','form'], function () {
                 },"json");
             });
         } else if (obj.event === 'edit') {
-            window.location.href = data.url;
+            window.location.href = '{:createUrl("editor")}?id='+data.id;
         }else if(obj.event === 'node'){
-            window.location.href = data.node;
+            window.location.href = '{:createUrl("index")}?pid='+data.id;
         }else if(obj.event === 'add'){
-            window.location.href = data.edit;
+            window.location.href = '{:createUrl("editor")}?pid='+data.id;
         }
     });
     

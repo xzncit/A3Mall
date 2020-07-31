@@ -20,20 +20,19 @@ class Second extends Auth {
         $size = 10;
 
 
-        $count = Db::name("promotion_seckill")
+        $count = Db::name("promotion_second")
             ->alias('r')
             ->join("goods g","r.goods_id=g.id","LEFT")
             ->where('g.status',0)->count();
-
 
         $total = ceil($count/$size);
         if($total == $page -1){
             return $this->returnAjax("empty",-1,[]);
         }
 
-        $result = Db::name("promotion_seckill")
+        $result = Db::name("promotion_second")
             ->alias('r')
-            ->field("g.id,r.id as p_id,g.title,g.photo,r.sell_price as price,g.sell_price,g.sale")
+            ->field("r.id,g.title,g.photo,r.sell_price as price,g.sell_price,g.sale")
             ->join("goods g","r.goods_id=g.id","LEFT")
             ->where('g.status',0)
             ->order('r.id','desc')->limit((($page - 1) * $size),$size)->select()->toArray();
@@ -53,35 +52,44 @@ class Second extends Auth {
 
     public function view(){
         $id = Request::param("id","0","intval");
-        if(($goods = Db::name("goods")->where("id",$id)->where("status",0)->find()) == false){
+        if(($promotion_second = Db::name("promotion_second")->where("id",$id)->find()) == false){
+            return $this->returnAjax("秒杀商品不存在",0);
+        }
+
+        if(($goods = Db::name("goods")->where("id",$promotion_second["goods_id"])->where("status",0)->find()) == false){
             return $this->returnAjax("商品不存在",0);
         }
 
-        if(($promotion_seckill = Db::name("promotion_seckill")->where("goods_id",$goods["id"])->find()) == false){
-            return $this->returnAjax("团购商品不存在",0);
-        }
-
         $data = [];
-        $data["activityId"] = $promotion_seckill["id"];
+        $data["activityId"] = $promotion_second["id"];
+        $data["goods_id"] = $promotion_second["goods_id"];
         $data["collect"] = false;
         if(!empty($this->users)){
             $data["collect"] = Db::name("users_favorite")->where([
                 "user_id"=>$this->users["id"],
-                "goods_id"=>$id
+                "goods_id"=>$goods["id"]
             ])->count() ? true : false;
         }
 
         $data["photo"] = array_map(function ($result){
             return Tool::thumb($result["photo"],"",true);
         }, Db::name("attachments")->field("path as photo")->where([
-            "pid"=>$id,
+            "pid"=>$goods["id"],
             "module"=>"goods",
             "method"=>"photo"
         ])->select()->toArray());
 
+        $promotionSecondItem = Db::name("promotion_second_item")
+            ->where("pid",$id)->select()->toArray();
+
+        $spec_key = [];
+        foreach($promotionSecondItem as $v){
+            $spec_key[] = $v["spec_key"];
+        }
+
         $goods_item = Db::name("goods_item")
-            ->where("id",'in',$promotion_seckill['product_id'])
-            ->where(["goods_id"=>$promotion_seckill['goods_id']])->select()->toArray();
+            ->where("spec_Key",'in',$spec_key)
+            ->where("goods_id",$goods['id'])->select()->toArray();
 
         $goods_attribute = [];
         $___attr = [];
@@ -92,7 +100,7 @@ class Second extends Auth {
                 if(!in_array($spec_Key[0].'_'.$spec_Key[1],$___attr)){
                     $___attr[] = $spec_Key[0].'_'.$spec_Key[1];
                     $goods_attribute[] = Db::name("goods_attribute")->where([
-                        "goods_id"=>$id,
+                        "goods_id"=>$goods["id"],
                         "attr_id"=>$spec_Key[0],
                         "attr_data_id"=>$spec_Key[1],
                     ])->find();
@@ -113,7 +121,7 @@ class Second extends Auth {
             }
 
             $goodsItem = Db::name("goods_item")->where([
-                "goods_id"=>$id
+                "goods_id"=>$goods["id"]
             ])->select()->toArray();
 
             $sku = [];
@@ -186,12 +194,12 @@ class Second extends Auth {
             $item = [];
             foreach($goodsItem as $key=>$value){
                 $item[$key]['id'] = $value["id"];
-                $item[$key]['price'] = BC::mul(100,$promotion_seckill["sell_price"],2);
+                $item[$key]['price'] = BC::mul(100,$promotion_second["sell_price"],2);
                 $arr = explode(",",$value["spec_key"]);
                 foreach($sku as $k=>$v){
                     $item[$key][$v["k_s"]] = $arr[$k];
                 }
-                $item[$key]['stock_num'] = $promotion_seckill["store_nums"];
+                $item[$key]['stock_num'] = $promotion_second["store_nums"];
             }
 
             $data["sku"]["tree"] = $sku;
@@ -201,8 +209,8 @@ class Second extends Auth {
             $data["sku"]["list"] = [];
         }
 
-        $data["sku"]["price"] = $promotion_seckill["sell_price"];
-        $data["sku"]["stock_num"] = $promotion_seckill["store_nums"];
+        $data["sku"]["price"] = $promotion_second["sell_price"];
+        $data["sku"]["stock_num"] = $promotion_second["store_nums"];
         $data["sku"]["collection_id"] = $goods["id"];
         $data["sku"]["none_sku"] = empty($goods_attribute) ? true : false;
         $data["sku"]["hide_stock"] = false;
@@ -212,13 +220,13 @@ class Second extends Auth {
         $data["goods"] = [
             "title"=>$goods["title"],
             "photo"=>Tool::thumb($goods["photo"],'medium',true),
-            "sell_price"=>$promotion_seckill["sell_price"],
+            "sell_price"=>$promotion_second["sell_price"],
             "market_price"=>$goods["sell_price"],
-            "store_nums"=>$promotion_seckill["store_nums"],
-            "sale"=>$promotion_seckill["sum_count"],
+            "store_nums"=>$promotion_second["store_nums"],
+            "sale"=>$promotion_second["sum_count"],
             "content"=>$goods["content"],
             "start_time"=>time(),
-            "end_time"=>$promotion_seckill["end_time"],
+            "end_time"=>$promotion_second["end_time"],
             "now_time"=>time()
         ];
 

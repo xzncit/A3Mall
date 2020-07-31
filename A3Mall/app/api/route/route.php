@@ -12,9 +12,12 @@ Route::group(function() {
 
 Route::group(function(){
     Route::any('oauth', 'api/wechat.OAuth/index');
+    Route::any('config', 'api/wechat.index/config');
     Route::get('index', 'api/wap.index/index');
+    Route::get('custom', 'api/wap.index/custom');
     Route::get('index/list', 'api/wap.index/get_list');
     Route::get('search', 'api/wap.search/index');
+    Route::get('search/keywords', 'api/wap.search/keywords');
     Route::get('search/list', 'api/wap.search/get_list');
     Route::get('category', 'api/wap.category/index');
     Route::get('goods/list', 'api/wap.goods/index');
@@ -30,10 +33,12 @@ Route::group(function(){
     Route::get('news/view', 'api/wap.news/view');
     Route::get('point', 'api/wap.point/index');
     Route::get('point/view', 'api/wap.point/view');
-    Route::get('group', 'api/wap.group/index');
-    Route::get('group/view', 'api/wap.group/view');
+    Route::get('regiment', 'api/wap.regiment/index');
+    Route::get('regiment/view', 'api/wap.regiment/view');
     Route::get('second', 'api/wap.second/index');
     Route::get('second/view', 'api/wap.second/view');
+    Route::get('special', 'api/wap.special/index');
+    Route::get('special/view', 'api/wap.special/view');
 })->middleware(AllowOrigin::class);
 
 Route::group(function(){
@@ -46,8 +51,10 @@ Route::group(function(){
     Route::get('ucenter/coupon', 'api/wap.ucenter/coupon');
     Route::get('ucenter/coupon/goods', 'api/wap.ucenter/goods');
     Route::get('ucenter/point', 'api/wap.ucenter/point');
+    Route::get('ucenter/get_setting', 'api/wap.ucenter/get_setting');
     Route::post('ucenter/setting', 'api/wap.ucenter/setting');
     Route::get('ucenter/info', 'api/wap.ucenter/info');
+    Route::get('ucenter/wallet', 'api/wap.ucenter/wallet');
     Route::get('ucenter/address', 'api/wap.ucenter/address');
     Route::get('ucenter/address/list', 'api/wap.ucenter/address_list');
     Route::post('ucenter/address/save', 'api/wap.ucenter/address_editor');
@@ -68,10 +75,12 @@ Route::group(function(){
     Route::post('order/evaluate', 'api/wap.order/evaluate');
     Route::get('order/cancel', 'api/wap.order/cancel');
     Route::get('order/service', 'api/wap.order/service');
+    Route::get('order/info', 'api/wap.order/info');
     Route::get('bonus', 'api/wap.bonus/index');
     Route::get('bonus/receive', 'api/wap.bonus/receive');
-    Route::get('special', 'api/wap.special/index');
-    Route::get('special/view', 'api/wap.special/view');
+    Route::get('ucenter/wallet/fund', 'api/wap.ucenter/fund');
+    Route::get('ucenter/wallet/cashlist', 'api/wap.ucenter/cashlist');
+    Route::post('ucenter/avatar', 'api/wap.ucenter/avatar');
 })->middleware(AllowOrigin::class)->middleware(VerifyToken::class);
 
 Route::miss(function(){

@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wap;
 
+use app\common\model\custom\Pages;
 use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
@@ -15,12 +16,12 @@ use think\facade\Request;
 class Index extends Auth {
 
     public function index(){
-        $banner = Db::name("data_category")->where("sign","banner")->find();
+        $banner = Db::name("data")->where("sign","banner")->find();
         $slider = array_map(function($res){
             return Tool::thumb($res["photo"],"",true);
         },Db::name("data_item")->where("pid",$banner["id"])->order("sort","ASC")->select()->toArray());
 
-        $category = Db::name("data_category")->where("sign","category")->find();
+        $category = Db::name("data")->where("sign","category")->find();
         $nav = array_map(function($res){
             return [
                 "url"=>$res["url"],
@@ -29,7 +30,7 @@ class Index extends Auth {
             ];
         },Db::name("data_item")->where("pid",$category["id"])->order("sort","ASC")->select()->toArray());
 
-        $adOne = Db::name("data_category")->where("sign","home_ad_one")->find();
+        $adOne = Db::name("data")->where("sign","home_ad_one")->find();
         $adItemOne = array_map(function($res){
             return [
                 "url"=>$res["url"],
@@ -38,7 +39,7 @@ class Index extends Auth {
             ];
         },Db::name("data_item")->where("pid",$adOne["id"])->order("sort","ASC")->select()->toArray());
 
-        $adTwo = Db::name("data_category")->where("sign","home_ad_two")->find();
+        $adTwo = Db::name("data")->where("sign","home_ad_two")->find();
         $adItemTwo = array_map(function($res){
             return [
                 "url"=>$res["url"],
@@ -114,4 +115,5 @@ class Index extends Auth {
             "size"=>$size
         ]);
     }
+
 }

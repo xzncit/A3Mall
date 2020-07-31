@@ -9,6 +9,7 @@
 namespace app\admin\controller\wechat;
 
 use app\admin\controller\Auth;
+use app\common\model\wechat\Keys;
 use mall\basic\Attachments;
 use mall\response\Response;
 use mall\utils\Date;
@@ -31,23 +32,14 @@ class Reply extends Auth {
 
             $condition[] = ["keys","not in","defaults,subscribe"];
 
-            $count = Db::name("wechat_keys")
-                ->where($condition)->count();
+            $wechatKeys = new Keys();
+            $list = $wechatKeys->getList($condition,$limit);
 
-            $data = Db::name("wechat_keys")
-                ->where($condition)->order('id desc')->paginate($limit);
-
-            if($data->isEmpty()){
+            if(empty($list['count'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
-            $list = $data->items();
-            foreach($list as $key=>$item){
-                $list[$key]["create_time"] = Date::format($item["create_time"]);
-                $list[$key]['url'] = createUrl("reply_editor",["id"=>$item["id"]]);
-            }
-
-            return Response::returnArray("ok",0,$list,$count);
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch();
@@ -57,15 +49,20 @@ class Reply extends Auth {
         $id = Request::get('id',"","intval");
         if(Request::isAjax()){
             $data = Request::post();
-            if(Db::name("wechat_keys")->where(["keys"=>$data["keys"]])->count()){
+
+            $wechatKeys = new Keys();
+            if($wechatKeys::where(["keys"=>$data["keys"]])->count()){
                 return Response::returnArray("关键字己存在！",0);
             }
 
-            if(Db::name("wechat_keys")->where(["id"=>$data["id"]])->count()){
-                Db::name("wechat_keys")->strict(false)->where(["id"=>$data["id"]])->update($data);
-            }else{
-                $data["create_time"] = time();
-                Db::name("wechat_keys")->strict(false)->insert($data);
+            try{
+                if(($obj=$wechatKeys::where(["id"=>$data["id"]])->find()) !=false){
+                    $obj->where(["id"=>$data["id"]])->save($data);
+                }else{
+                    $wechatKeys->save($data);
+                }
+            }catch (\Exception $ex){
+                return Response::returnArray("操作失败，请稍后在试。".$ex->getMessage(),0);
             }
 
             return Response::returnArray("操作成功");

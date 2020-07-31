@@ -33,7 +33,7 @@ class Point extends Auth {
 
         $result = Db::name("promotion_point")
             ->alias('p')
-            ->field("g.id,p.id as p_id,g.title,g.photo,p.price,g.sale")
+            ->field("p.id,g.title,g.photo,p.point as price,g.sale")
             ->join("goods g","p.goods_id=g.id","LEFT")
             ->where('g.status',0)
             ->order('g.id','desc')->limit((($page - 1) * $size),$size)->select()->toArray();
@@ -53,35 +53,43 @@ class Point extends Auth {
 
     public function view(){
         $id = Request::param("id","0","intval");
-        if(($goods = Db::name("goods")->where("id",$id)->where("status",0)->find()) == false){
-            return $this->returnAjax("商品不存在",0);
+        if(($promotion_point = Db::name("promotion_point")->where("id",$id)->find()) == false){
+            return $this->returnAjax("积分商品不存在",0);
         }
-
-        if(($promotion_point = Db::name("promotion_point")->where("goods_id",$goods["id"])->find()) == false){
-            return $this->returnAjax("特价商品不存在",0);
+        if(($goods = Db::name("goods")->where("id",$promotion_point["goods_id"])->where("status",0)->find()) == false){
+            return $this->returnAjax("商品不存在",0);
         }
 
         $data = [];
         $data["activityId"] = $promotion_point["id"];
+        $data["goods_id"] = $promotion_point["goods_id"];
         $data["collect"] = false;
         if(!empty($this->users)){
             $data["collect"] = Db::name("users_favorite")->where([
                 "user_id"=>$this->users["id"],
-                "goods_id"=>$id
+                "goods_id"=>$goods["id"]
             ])->count() ? true : false;
         }
 
         $data["photo"] = array_map(function ($result){
             return Tool::thumb($result["photo"],"",true);
         }, Db::name("attachments")->field("path as photo")->where([
-            "pid"=>$id,
+            "pid"=>$goods["id"],
             "module"=>"goods",
             "method"=>"photo"
         ])->select()->toArray());
 
+        $promotionGroupItem = Db::name("promotion_point_item")
+            ->where("pid",$id)->select()->toArray();
+
+        $spec_key = [];
+        foreach($promotionGroupItem as $v){
+            $spec_key[] = $v["spec_key"];
+        }
+
         $goods_item = Db::name("goods_item")
-            ->where("id",'in',$promotion_point['product_id'])
-            ->where(["goods_id"=>$promotion_point['goods_id']])->select()->toArray();
+            ->where("spec_Key",'in',$spec_key)
+            ->where("goods_id",$goods['id'])->select()->toArray();
 
         $goods_attribute = [];
         $___attr = [];
@@ -92,7 +100,7 @@ class Point extends Auth {
                 if(!in_array($spec_Key[0].'_'.$spec_Key[1],$___attr)){
                     $___attr[] = $spec_Key[0].'_'.$spec_Key[1];
                     $goods_attribute[] = Db::name("goods_attribute")->where([
-                        "goods_id"=>$id,
+                        "goods_id"=>$goods["id"],
                         "attr_id"=>$spec_Key[0],
                         "attr_data_id"=>$spec_Key[1],
                     ])->find();
@@ -113,7 +121,7 @@ class Point extends Auth {
             }
 
             $goodsItem = Db::name("goods_item")->where([
-                "goods_id"=>$id
+                "goods_id"=>$goods["id"]
             ])->select()->toArray();
 
             $sku = [];
@@ -186,7 +194,7 @@ class Point extends Auth {
             $item = [];
             foreach($goodsItem as $key=>$value){
                 $item[$key]['id'] = $value["id"];
-                $item[$key]['price'] = $promotion_point["price"] * 100;
+                $item[$key]['price'] = $promotion_point["point"] * 100;
                 $arr = explode(",",$value["spec_key"]);
                 foreach($sku as $k=>$v){
                     $item[$key][$v["k_s"]] = $arr[$k];
@@ -201,7 +209,7 @@ class Point extends Auth {
             $data["sku"]["list"] = [];
         }
 
-        $data["sku"]["price"] = $promotion_point["price"];
+        $data["sku"]["price"] = $promotion_point["point"];
         $data["sku"]["stock_num"] = $promotion_point["store_nums"];
         $data["sku"]["collection_id"] = $goods["id"];
         $data["sku"]["none_sku"] = empty($goods_attribute) ? true : false;
@@ -212,7 +220,7 @@ class Point extends Auth {
         $data["goods"] = [
             "title"=>$goods["title"],
             "photo"=>Tool::thumb($goods["photo"],'medium',true),
-            "sell_price"=>$promotion_point["price"],
+            "sell_price"=>$promotion_point["point"],
             "market_price"=>$goods["sell_price"],
             "store_nums"=>$promotion_point["store_nums"],
             "sale"=>$promotion_point["sum_count"],

@@ -18,6 +18,24 @@
     <script src="{__SYSTEM_PATH__}/js/adminlte/adminlte.min.js"></script>
     <script src="{__SYSTEM_PATH__}/js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="{__SYSTEM_PATH__}/js/common/common.js"></script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            contentType:"application/x-www-form-urlencoded;charset=utf-8",
+            complete:function(XMLHttpRequest,textStatus){
+                var res = XMLHttpRequest.responseText;
+                try{
+                    var jsonData = JSON.parse(res);
+                    if(jsonData.code == -1000){
+                        window.location.href = '{:createUrl("login/index")}';
+                    }else if(jsonData.code == -999){
+                        layer.msg(jsonData.msg,{ icon: 2, time: 5000 },function () {
+                            window.history.go(-1);
+                        });
+                    }
+                }catch(e){}
+            }
+        });
+    </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini fixed">
 <div class="wrapper">

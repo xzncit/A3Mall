@@ -9,6 +9,7 @@
 namespace app\admin\controller\order;
 
 use app\admin\controller\Auth;
+use app\common\model\order\Collection as OrderCollection;
 use think\facade\Request;
 use think\facade\Db;
 use mall\utils\Date;
@@ -21,40 +22,21 @@ class Collection extends Auth {
         if(Request::isAjax()){
             $limit = Request::get("limit");
             $key = Request::get("key/a","","trim,strip_tags");
-            
+
             $condition = [];
-            $arr = ["o.order_no","u.username"];
+            $arr = ["lorder.order_no","users.username"];
             if((isset($key["type"]) && isset($arr[$key["type"]])) && !empty($key["title"])){
                 $condition[] = [$arr[$key["type"]],"like",'%'.$key["title"].'%'];
             }
-            
-            $count = Db::name("order_collection")
-                    ->alias("c")
-                    ->join("order o","c.order_id=o.id","LEFT")
-                    ->join("users u","u.id=c.user_id","LEFT")
-                    ->join("payment p","c.payment_id=p.id","LEFT")
-                    ->where($condition)->count();
-            
-            $data = Db::name("order_collection")
-                    ->alias("c")
-                    ->field('o.order_no,c.amount,u.username,p.name,c.id,c.pay_status,c.create_time')
-                    ->join("order o","c.order_id=o.id","LEFT")
-                    ->join("users u","c.user_id=u.id","LEFT")
-                    ->join("payment p","c.payment_id=p.id","LEFT")
-                    ->where($condition)->order('c.id DESC')->paginate($limit);
-    
-            if($data->isEmpty()){
+
+            $orderCollection = new OrderCollection();
+            $list = $orderCollection->getList($condition,$limit);
+
+            if(empty($list['data'])){
                 return Response::returnArray("当前还没有数据哦！",1);
             }
-            
-            $list = $data->items();
-            
-            foreach($list as $key=>$item){
-                $list[$key]['create_time'] = Date::format($item["create_time"]);
-                $list[$key]['url'] = createUrl("detail",["id"=>$item["id"]]);
-            }
-            
-            return Response::returnArray("ok",0,$list,$count);
+
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
         
         return View::fetch();
