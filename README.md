@@ -48,7 +48,7 @@ php think task cancle
 定时签收已发货订单
 php think task sign
 
-定时完成已评价订单
+定时处理完成订单
 php think task complete
 
 定时清理购物车
