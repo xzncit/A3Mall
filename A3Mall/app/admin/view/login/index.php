@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>A3Mall | Dashboard</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="{__SYSTEM_PATH__}/js/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{__SYSTEM_PATH__}/js/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="{__SYSTEM_PATH__}/font/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="{__SYSTEM_PATH__}/css/AdminLTE.min.css">
     <link rel="stylesheet" href="{__SYSTEM_PATH__}/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="{__SYSTEM_PATH__}/css/base.css">
     <script src="{__SYSTEM_PATH__}/js/jquery/jquery.min.js"></script>
-    <script src="{__SYSTEM_PATH__}/js/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{__SYSTEM_PATH__}/js/bootstrap/js/bootstrap.min.js"></script>
     <script src="{__SYSTEM_PATH__}/js/fastclick/fastclick.js"></script>
     <script src="{__SYSTEM_PATH__}/js/adminlte/adminlte.min.js"></script>
     <script src="{__SYSTEM_PATH__}/js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
