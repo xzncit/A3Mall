@@ -20,7 +20,7 @@
                             <td colspan='2'>产品名称：A3Mall</td>
                         </tr>
                         <tr>
-                            <td style="width: 50%;">程序版本：{$app_version}</td>
+                            <td style="width: 50%;">程序版本：{$Think.config.base.app_version}</td>
                             <td>ThinkPHP版本	：{$think_ver}</td>
                         </tr>
                         <tr>

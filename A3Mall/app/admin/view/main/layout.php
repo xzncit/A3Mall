@@ -119,7 +119,7 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 1.0
+            <b>Version</b> {$Think.config.base.app_version}
         </div>
         <strong>Copyright &copy; 2019-<?php echo date("Y"); ?> <a href="http://www.a3-mall.com">A3Mall</a>.</strong> All rights
         reserved.

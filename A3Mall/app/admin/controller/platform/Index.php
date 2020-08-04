@@ -87,7 +87,6 @@ class Index extends Auth {
         return View::fetch("info",[
             "version"=>$version[0]['version'],
             "think_ver"=>App::VERSION,
-            "app_version"=>'1.0',
             "ip"=>$_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_PORT']
         ]);
     }
