@@ -12,7 +12,6 @@ use mall\utils\CString;
 use think\facade\Db;
 use think\facade\Request;
 use think\facade\Session;
-use mall\basic\Spread;
 
 class Order {
 
@@ -285,6 +284,13 @@ class Order {
             'note' => '订单【' . $order["order_no"] . '】由【管理员】' . $admin["username"] . '发货',
             'create_time' => time()
         ]);
+
+        try {
+            Sms::send(
+                ["mobile"=>$order["mobile"],"order_no"=>$order["order_no"]],
+                "deliver_goods"
+            );
+        }catch (\Exception $e){}
 
         return true;
     }

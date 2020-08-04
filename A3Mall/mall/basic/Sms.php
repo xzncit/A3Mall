@@ -12,33 +12,46 @@ use think\facade\Db;
 
 class Sms {
 
-    public static function send($mobile="",$type=""){
-        if(empty($mobile)){
+    public static function send($data=[],$type=""){
+        if(empty($data["mobile"])){
             throw new \Exception("手机号码不能为空");
-        }
-
-        $config = Db::name("sms_template")->where("sign",$type)->find();
-        switch($type){
-            case "register":
-            case "repassword":
-                $num = mt_rand(1000,9999);
-                $str = str_replace('${code}',$num,$config["template_param"]);
-                break;
         }
 
         Db::startTrans();
         try{
+            $config = Db::name("sms_template")->where("sign",$type)->find();
+            if(empty($config)){
+                throw new \Exception("短信模板不存在");
+            }else if($config["status"] == 1){
+                throw new \Exception("当前短信模板己被禁用");
+            }
+
+            switch($type){
+                case "register":
+                case "repassword":
+                    $num = mt_rand(1000,9999);
+                    $str = str_replace('${code}',$num,$config["template_param"]);
+                    Db::name("users_sms")->insert([
+                        "mobile"=>$data["mobile"],
+                        "code"=>$num,
+                        "create_time"=>time()
+                    ]);
+                    break;
+                case "payment_success":
+                case "deliver_goods":
+                    if(empty($data['order_no'])){
+                        throw new \Exception("订单号不能为空");
+                    }
+
+                    $str = str_replace('${order_no}',$data['order_no'],$config["template_param"]);
+                    break;
+            }
+
             \mall\library\sms\Sms::send([
-                "PhoneNumbers"=>$mobile,
+                "PhoneNumbers"=>$data["mobile"],
                 "SignName"=>$config["sign_name"],
                 "TemplateCode"=>$config["template_code"],
                 "TemplateParam"=>$str
-            ]);
-
-            Db::name("users_sms")->insert([
-                "mobile"=>$mobile,
-                "code"=>$num,
-                "create_time"=>time()
             ]);
 
             Db::commit();

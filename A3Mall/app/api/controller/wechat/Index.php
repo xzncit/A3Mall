@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wechat;
 
+use mall\basic\Sms;
 use mall\library\wechat\chat\WeChat;
 use mall\library\wechat\chat\WeChatMessage;
 use mall\library\wechat\chat\WeChatPush;
@@ -40,6 +41,11 @@ class Index {
                     "pay_time"=>time(),
                     "trade_no"=>$data["transaction_id"]
                 ]);
+
+                Sms::send(
+                    ["mobile"=>$order["mobile"],"order_no"=>$order["order_no"]],
+                    "payment_success"
+                );
             }
         }catch (\Exception $e){}
         return WeChat::Payment()->getNotifySuccessReply();

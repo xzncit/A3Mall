@@ -262,7 +262,7 @@ class Users extends Base {
         }
 
         try{
-            Sms::send($username,$type);
+            Sms::send(["mobile"=>$username],$type);
         }catch (\Exception $e){
             //return $this->returnAjax($e->getMessage());
         }
