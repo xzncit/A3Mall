@@ -94,25 +94,33 @@ class Index extends Auth {
     public function cache(){
         if(Request::isAjax()){
             $type = Request::get("type","","trim,strip_tags");
-            $path = (new App())->getRuntimePath();
+            $path = Tool::getRootPath() . 'runtime/';
             if(empty($type)){
                 return ["code"=>0,"msg"=>"","data"=>[
                     [
-                        "type"=>"cache","info"=>"数据缓存",
+                        "type"=>"db-token","info"=>"清理前台登录状态（ Token ）",
+                        'size'=>Db::name("users_token")->where("create_time","<=", strtotime("-1 day"))->count() . " 条"
+                    ],
+                    [
+                        "type"=>"db-sms","info"=>"清理己过期短信验证码",
+                        'size'=>Db::name("users_sms")->where("create_time","<=", strtotime("-1 day"))->count() . " 条"
+                    ],
+                    [
+                        "type"=>"file-cache","info"=>"数据缓存",
                         'size'=>Tool::convert(
                             Tool::getDirSize($path . "admin/cache") +
                             Tool::getDirSize($path . "home/cache")
                         )
                     ],
                     [
-                        "type"=>"log","info"=>"日志数据",
+                        "type"=>"file-log","info"=>"日志数据",
                         'size'=>Tool::convert(
                             Tool::getDirSize($path . "admin/log") +
                             Tool::getDirSize($path . "admin/log")
                         )
                     ],
                     [
-                        "type"=>"temp","info"=>"模板缓存",
+                        "type"=>"file-temp","info"=>"模板缓存",
                         'size'=>Tool::convert(
                             Tool::getDirSize($path . "admin/temp") +
                             Tool::getDirSize($path . "home/temp")
@@ -121,20 +129,26 @@ class Index extends Auth {
                 ]];
             }
 
-            if(!in_array($type, ["cache","log","temp"])){
+            if(!in_array($type, ["file-cache","file-log","file-temp","db-token","db-sms"])){
                 return Response::returnArray("非法操作！",0);
             }
 
             switch($type){
-                case "cache":
+                case "db-token":
+                    Db::name("users_token")->where("create_time","<=", strtotime("-1 day"))->delete();
+                    break;
+                case "db-sms":
+                    Db::name("users_sms")->where("create_time","<=", strtotime("-1 day"))->delete();
+                    break;
+                case "file-cache":
                     Tool::deleteFile($path . "admin/cache");
                     Tool::deleteFile($path . "home/cache");
                     break;
-                case "log":
+                case "file-log":
                     Tool::deleteFile($path . "admin/log");
                     Tool::deleteFile($path . "admin/log");
                     break;
-                case "temp":
+                case "file-temp":
                     Tool::deleteFile($path . "admin/temp");
                     Tool::deleteFile($path . "home/temp");
                     break;
@@ -145,6 +159,5 @@ class Index extends Auth {
 
         return View::fetch();
     }
-
 
 }

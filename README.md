@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.0.1-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.0.2-blue.svg" />
     </a>
 </p>
 <p align="center">    
@@ -111,3 +111,7 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
 
 
 
+ **bug反馈**
+
+如果您发现了bug，请发送邮件到 158373108@qq.com，我们将及时修复并更新。
+ 
