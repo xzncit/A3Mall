@@ -162,7 +162,6 @@ class Order {
                 ]);
             }
 
-            Spread::backBrokerage($order);
         }
 
         //获取此订单中的商品种类

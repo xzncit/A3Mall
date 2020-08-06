@@ -20,14 +20,10 @@ class Token extends A3Mall {
         "user_id"=>"integer",
         "referer"=>"integer",
         "type"=>"integer",
-        "create_time"=>"integer"
+        "expire_time"=>"integer"
     ];
 
     public function setTokenAttr($value){
-        return strip_tags(trim($value));
-    }
-
-    public function setSaltAttr($value){
         return strip_tags(trim($value));
     }
 

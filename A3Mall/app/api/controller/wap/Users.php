@@ -13,6 +13,7 @@ use mall\basic\Sms;
 use think\facade\Db;
 use think\facade\Request;
 use mall\utils\Check;
+use mall\basic\Token;
 
 class Users extends Base {
 
@@ -54,28 +55,8 @@ class Users extends Base {
             "last_login"=>time()
         ];
 
-        //关联推广
-        $spread_id = Request::param("spread_id","0","intval");
-        if($users["spread_id"] == 0 && ($r = Db::name("users")->where("id",(int)$spread_id)->find()) != false){
-            if($r["id"] != $users["id"]){
-                $data["is_spread"] = 1;
-                $data["spread_id"] = $spread_id;
-                $data["spread_time"] = time();
-            }
-        }
-
         Db::name("users")->where("id",$users["id"])->update($data);
-
-        $salt = mt_rand(100,10000);
-        $token = sha1($users["id"].$users["username"].$users["password"].$salt.time());
-        Db::name("users_token")->insert([
-            "user_id"=>$users["id"],
-            "token"=>$token,
-            "salt"=>$salt,
-            "ip"=>Request::ip(),
-            "create_time"=>time()
-        ]);
-
+        $token = Token::set($users["id"]);
         $info = \mall\basic\Users::info($users["id"]);
 
         return $this->returnAjax("ok",1,[
@@ -112,8 +93,14 @@ class Users extends Base {
         }
 
         $sms = Db::name("users_sms")->where("mobile",$username)->order("id","DESC")->find();
-        if(empty($sms) || time() > ($sms["create_time"] + (60 * 5))){
+        if(empty($sms)){
             return $this->returnAjax("您填写的验证码错误",0);
+        }
+
+        $setting = new Setting();
+        $config = $setting->getConfigData("sms");
+        if(($sms["create_time"] + (60 * $config["duration_time"])) > time()){
+            return $this->returnAjax("您的验证码己发送，请注意查收");
         }
 
         if(Db::name("users")->where("mobile",$username)->count()){
@@ -143,16 +130,7 @@ class Users extends Base {
         Db::name("users")->insert($data);
 
         $user_id = Db::name("users")->getLastInsID();
-        $salt = mt_rand(100,10000);
-        $token = sha1($user_id.$username.$password.$salt.time());
-        Db::name("users_token")->insert([
-            "user_id"=>$user_id,
-            "token"=>$token,
-            "salt"=>$salt,
-            "ip"=>Request::ip(),
-            "create_time"=>time()
-        ]);
-
+        $token = Token::set($user_id);
         Db::name("users_sms")->where("mobile",$username)->delete();
 
         $info = \mall\basic\Users::info($user_id);
@@ -190,8 +168,14 @@ class Users extends Base {
         }
 
         $sms = Db::name("users_sms")->where("mobile",$username)->order("id","DESC")->find();
-        if(empty($sms) || time() > ($sms["create_time"] + (60 * 5))){
+        if(empty($sms)){
             return $this->returnAjax("您填写的验证码错误",0);
+        }
+
+        $setting = new Setting();
+        $config = $setting->getConfigData("sms");
+        if(($sms["create_time"] + (60 * $config["duration_time"])) > time()){
+            return $this->returnAjax("您的验证码己发送，请注意查收");
         }
 
         if(($users = Db::name("users")->where("mobile",$username)->find()) == false){
@@ -205,18 +189,8 @@ class Users extends Base {
         ]);
 
         $user_id = $users["id"];
-        $salt = mt_rand(100,10000);
-        $token = sha1($user_id.$username.$password.$salt.time());
-        Db::name("users_token")->insert([
-            "user_id"=>$user_id,
-            "token"=>$token,
-            "salt"=>$salt,
-            "ip"=>Request::ip(),
-            "create_time"=>time()
-        ]);
-
+        $token = Token::set($user_id);
         Db::name("users_sms")->where("mobile",$username)->delete();
-
         $info = \mall\basic\Users::info($user_id);
 
         return $this->returnAjax("修改密码成功！",1,[

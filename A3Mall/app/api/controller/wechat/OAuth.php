@@ -12,6 +12,8 @@ use mall\library\wechat\chat\WeChat;
 use mall\library\wechat\chat\WeConfig;
 use think\facade\Db;
 use think\facade\Request;
+use mall\basic\Token;
+use mall\basic\Users;
 
 class OAuth extends Base {
 
@@ -31,7 +33,6 @@ class OAuth extends Base {
             return $this->returnAjax("获取授权信息失败，请稍后在试",0);
         }
 
-        $spread_id = Request::param("spread_id","0","intval");
         if (isset($token['openid'])) {
             $user = WeChat::Oauth()->getUserInfo($token['access_token'],$token['openid']);
             if(($row=Db::name("wechat_users")->where([
@@ -54,39 +55,13 @@ class OAuth extends Base {
                         "last_login"=>time()
                     ];
 
-                    if(Db::name("users")->where("id",(int)$spread_id)->count()){
-                        $data["is_spread"] = 1;
-                        $data["spread_id"] = $spread_id;
-                        $data["spread_time"] = time();
-                    }
-
                     Db::name("users")->insert($data);
 
                     $row["user_id"] = Db::name("users")->getLastInsID();
-                }else{
-                    $users = Db::name("users")->where('id',$row["user_id"])->find();
-                    if($users["spread_id"] == 0 && ($r = Db::name("users")->where("id",(int)$spread_id)->find()) != false){
-                        if($r["id"] != $users["id"]){
-                            Db::name("users")->where('id',$row["user_id"])->update([
-                                "is_spread"=>1,
-                                "spread_id"=>$spread_id,
-                                "spread_time"=>time()
-                            ]);
-                        }
-                    }
                 }
 
-                $info = \mall\basic\Users::info($row["user_id"]);
-
-                $salt = mt_rand(100,10000);
-                $token = sha1($info["id"].$user["openid"].$info["password"].$salt.time());
-                Db::name("users_token")->insert([
-                    "user_id"=>$info["id"],
-                    "token"=>$token,
-                    "salt"=>$salt,
-                    "ip"=>Request::ip(),
-                    "create_time"=>time()
-                ]);
+                $info = Users::info($row["user_id"]);
+                $token = Token::set($info["id"]);
 
                 return $this->returnAjax("登录成功！",2,[
                     "id"=>$info["id"],
@@ -120,12 +95,6 @@ class OAuth extends Base {
                     "last_login"=>time()
                 ];
 
-                if(Db::name("users")->where("id",(int)$spread_id)->count()){
-                    $data["is_spread"] = 1;
-                    $data["spread_id"] = $spread_id;
-                    $data["spread_time"] = time();
-                }
-
                 Db::name("users")->insert($data);
 
                 $user_id = Db::name("users")->getLastInsID();
@@ -144,17 +113,9 @@ class OAuth extends Base {
                     'user_id'=>$user_id
                 ]));
 
-                $salt = mt_rand(100,10000);
-                $token = sha1($user_id.$user["openid"].$password.$salt.time());
-                Db::name("users_token")->insert([
-                    "user_id"=>$user_id,
-                    "token"=>$token,
-                    "salt"=>$salt,
-                    "ip"=>Request::ip(),
-                    "create_time"=>time()
-                ]);
+                $token = Token::set($user_id);
 
-                $info = \mall\basic\Users::info($user_id);
+                $info = Users::info($user_id);
                 return $this->returnAjax("注册成功！",2,[
                     "id"=>$info["id"],
                     "token"=>$token,

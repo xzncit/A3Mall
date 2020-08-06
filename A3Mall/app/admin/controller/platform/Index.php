@@ -99,11 +99,11 @@ class Index extends Auth {
                 return ["code"=>0,"msg"=>"","data"=>[
                     [
                         "type"=>"db-token","info"=>"清理前台登录状态（ Token ）",
-                        'size'=>Db::name("users_token")->where("create_time","<=", strtotime("-1 day"))->count() . " 条"
+                        'size'=>Db::name("users_token")->where("expire_time","<=", strtotime("-1 day"))->count() . " 条"
                     ],
                     [
                         "type"=>"db-sms","info"=>"清理己过期短信验证码",
-                        'size'=>Db::name("users_sms")->where("create_time","<=", strtotime("-1 day"))->count() . " 条"
+                        'size'=>Db::name("users_sms")->where("expire_time","<=", strtotime("-1 day"))->count() . " 条"
                     ],
                     [
                         "type"=>"file-cache","info"=>"数据缓存",
@@ -135,10 +135,10 @@ class Index extends Auth {
 
             switch($type){
                 case "db-token":
-                    Db::name("users_token")->where("create_time","<=", strtotime("-1 day"))->delete();
+                    Db::name("users_token")->where("expire_time","<=", strtotime("-1 day"))->delete();
                     break;
                 case "db-sms":
-                    Db::name("users_sms")->where("create_time","<=", strtotime("-1 day"))->delete();
+                    Db::name("users_sms")->where("expire_time","<=", strtotime("-1 day"))->delete();
                     break;
                 case "file-cache":
                     Tool::deleteFile($path . "admin/cache");
