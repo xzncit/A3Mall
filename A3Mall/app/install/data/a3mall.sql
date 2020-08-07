@@ -3,6 +3,16 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+--
+-- 数据库： `a3mall`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mall_archives`
+--
+
 CREATE TABLE `mall_archives` (
   `id` int(11) NOT NULL,
   `pid` int(11) NOT NULL DEFAULT 0,
@@ -11,7 +21,7 @@ CREATE TABLE `mall_archives` (
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `sort` smallint(6) NOT NULL DEFAULT 0,
   `photo` varchar(255) NOT NULL DEFAULT '',
-  `intro` text,
+  `intro` text NOT NULL,
   `content` longtext NOT NULL,
   `create_time` int(10) NOT NULL DEFAULT 0,
   `update_time` int(10) NOT NULL DEFAULT 0
@@ -3805,11 +3815,6 @@ INSERT INTO `mall_area` (`id`, `pid`, `name`, `level`, `zip`, `lng`, `lat`, `sor
 (3747, 3738, '路环岛', 2, '999078', '113.564857', '22.116226', 0, 0),
 (3748, 3747, '圣方济各堂区', 3, '999078', '113.559954', '22.123486', 0, 0);
 
--- --------------------------------------------------------
-
---
--- 表的结构 `mall_attachments`
---
 
 CREATE TABLE `mall_attachments` (
   `id` bigint(20) NOT NULL,
@@ -4633,12 +4638,6 @@ INSERT INTO `mall_attachments` (`id`, `pid`, `module`, `method`, `name`, `path`,
 (1391, 2, 'marketing', '', '2d94a8c35c0f93a11d282d7a63982f32.png', '/uploads/images/20200731/2d94a8c35c0f93a11d282d7a63982f32.png', 'png', '10236', 0, '', 1596155651),
 (1392, 2, 'marketing', '', '8b8fb2a9cedac7192d5cff85b77446ae.png', '/uploads/images/20200731/8b8fb2a9cedac7192d5cff85b77446ae.png', 'png', '9919', 0, '', 1596155654);
 
--- --------------------------------------------------------
-
---
--- 表的结构 `mall_cart`
---
-
 CREATE TABLE `mall_cart` (
   `id` bigint(20) NOT NULL,
   `session_id` char(32) CHARACTER SET utf8 NOT NULL DEFAULT '',
@@ -5225,7 +5224,7 @@ CREATE TABLE `mall_goods_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `goods_id` bigint(20) UNSIGNED NOT NULL,
   `goods_number` varchar(255) NOT NULL DEFAULT '',
-  `spec_key` text,
+  `spec_key` text NOT NULL,
   `store_nums` bigint(20) NOT NULL DEFAULT 0,
   `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
   `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
@@ -5515,7 +5514,7 @@ CREATE TABLE `mall_order_log` (
   `username` varchar(128) NOT NULL DEFAULT '',
   `action` varchar(255) DEFAULT '',
   `result` varchar(255) NOT NULL DEFAULT '',
-  `note` text,
+  `note` text NOT NULL,
   `create_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6108,7 +6107,7 @@ CREATE TABLE `mall_system_menu` (
   `controller` varchar(128) NOT NULL DEFAULT '',
   `method` varchar(255) NOT NULL DEFAULT '',
   `param` varchar(255) NOT NULL DEFAULT '',
-  `active` text,
+  `active` text NOT NULL,
   `menu_table` varchar(128) DEFAULT '',
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `sort` int(11) NOT NULL DEFAULT 0
@@ -6214,7 +6213,8 @@ INSERT INTO `mall_system_menu` (`id`, `pid`, `name`, `icon`, `module`, `controll
 (93, 81, '支付设置', '', 'admin', 'wechat.mini', 'pay', '', '', '', 0, 0),
 (97, 33, '佣金日志', '', 'admin', 'users.finance', 'index', '', '', '', 0, 5),
 (118, 3, '订单设置', 'fa fa-cog', 'admin', '', '', '', '', '', 0, 0),
-(119, 118, '基本设置', '', 'admin', 'order.setting', 'index', '', '', '', 0, 0);
+(119, 118, '基本设置', '', 'admin', 'order.setting', 'index', '', '', '', 0, 0),
+(120, 27, '会员标签', '', 'admin', 'users.tags', 'index', '', 'editor', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -6454,7 +6454,12 @@ INSERT INTO `mall_system_purview` (`id`, `pid`, `name`, `module`, `controller`, 
 (239, 17, '编辑秒杀', 'admin', 'products.index', 'editor_second', '', 0),
 (240, 17, '编辑积分', 'admin', 'products.index', 'editor_point', '', 0),
 (247, 3, '订单设置', 'admin', '', '', '', 0),
-(248, 247, '基本设置', 'admin', 'order.setting', 'index', '', 0);
+(248, 247, '基本设置', 'admin', 'order.setting', 'index', '', 0),
+(255, 4, '会员标签', '', '', '', '', 0),
+(256, 255, '列表', 'admin', 'users.tags', 'index', '', 0),
+(257, 255, '编辑', 'admin', 'users.tags', 'editor', '', 0),
+(258, 255, '删除', 'admin', 'users.tags', 'delete', '', 0),
+(259, 96, '会员标签', 'admin', 'users.index', 'tags', '', 0);
 
 -- --------------------------------------------------------
 
@@ -6506,7 +6511,7 @@ CREATE TABLE `mall_system_users` (
 --
 
 INSERT INTO `mall_system_users` (`id`, `role_id`, `avatar`, `username`, `password`, `salt`, `email`, `ip`, `status`, `lock`, `count`, `time`) VALUES
-(1, 1, '', 'admin', '7fef6171469e80d32c0559f88b377245', '', 'admin@qq.com', '127.0.0.1', 0, 1, 671, 1596161212),
+(1, 1, '', 'admin', '7fef6171469e80d32c0559f88b377245', '', 'admin@qq.com', '127.0.0.1', 0, 1, 677, 1596732330),
 (2, 3, '', 'demo', '', '', 'demo@qq.com', '127.0.0.1', 0, 0, 3, 1584624122);
 
 -- --------------------------------------------------------
@@ -6519,7 +6524,7 @@ CREATE TABLE `mall_system_users_log` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT 0,
   `type` tinyint(1) NOT NULL DEFAULT 0,
-  `intro` text,
+  `intro` text NOT NULL,
   `ip` varchar(30) NOT NULL DEFAULT '',
   `time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -6527,6 +6532,15 @@ CREATE TABLE `mall_system_users_log` (
 --
 -- 转存表中的数据 `mall_system_users_log`
 --
+
+INSERT INTO `mall_system_users_log` (`id`, `user_id`, `type`, `intro`, `ip`, `time`) VALUES
+(1, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-07-31 10:06:52 登录地点：127.0.0.1', '127.0.0.1', 1596161212),
+(2, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-07-31 15:20:08 登录地点：127.0.0.1', '127.0.0.1', 1596180008),
+(3, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-02 18:51:01 登录地点：127.0.0.1', '127.0.0.1', 1596365461),
+(4, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-02 18:56:16 登录地点：127.0.0.1', '127.0.0.1', 1596365776),
+(5, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-04 10:11:18 登录地点：127.0.0.1', '127.0.0.1', 1596507078),
+(6, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-04 20:02:13 登录地点：127.0.0.1', '127.0.0.1', 1596542533),
+(7, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-07 00:45:30 登录地点：127.0.0.1', '127.0.0.1', 1596732330);
 
 -- --------------------------------------------------------
 
@@ -6549,6 +6563,7 @@ CREATE TABLE `mall_users` (
   `exp` bigint(20) NOT NULL DEFAULT 0,
   `point` bigint(20) NOT NULL DEFAULT 0,
   `status` tinyint(1) NOT NULL DEFAULT 1,
+  `tags` varchar(255) NOT NULL DEFAULT '',
   `is_spread` tinyint(1) NOT NULL DEFAULT 0,
   `spread_id` bigint(20) NOT NULL DEFAULT 0,
   `spread_time` int(10) NOT NULL DEFAULT 0,
@@ -6566,11 +6581,11 @@ CREATE TABLE `mall_users` (
 -- 转存表中的数据 `mall_users`
 --
 
-INSERT INTO `mall_users` (`id`, `group_id`, `username`, `password`, `email`, `avatar`, `nickname`, `realname`, `mobile`, `birthday`, `sex`, `exp`, `point`, `status`, `is_spread`, `spread_id`, `spread_time`, `pay_count`, `spread_count`, `amount`, `spread_amount`, `create_ip`, `last_ip`, `create_time`, `last_login`) VALUES
-(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'demo', 'demo', '18319517777', 1595779200, 1, 1092, 1520, 0, 1, 0, 1592917652, 0, 0, '58927.19', '10017.21', '', '127.0.0.1', 1584028900, 1596154327),
-(10, 1, 'test', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'test', '', '18319517778', 1590163200, 1, 0, 0, 0, 1, 1, 1592917588, 0, 0, '0.00', '123.62', '', '127.0.0.1', 0, 1592917588),
-(11, 1, 'usres', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'users', '', '18319517779', 1590163200, 1, 0, 40, 0, 1, 10, 1592917652, 0, 0, '4444.00', '90.20', '', '127.0.0.1', 0, 1592917652),
-(12, 2, 'blue', '7fef6171469e80d32c0559f88b377245', '', '', 'blue', '', '18319517776', 0, 1, 0, 20, 0, 1, 11, 1592917652, 0, 0, '186.00', '0.00', '', '127.0.0.1', 0, 1592918687);
+INSERT INTO `mall_users` (`id`, `group_id`, `username`, `password`, `email`, `avatar`, `nickname`, `realname`, `mobile`, `birthday`, `sex`, `exp`, `point`, `status`, `tags`, `is_spread`, `spread_id`, `spread_time`, `pay_count`, `spread_count`, `amount`, `spread_amount`, `create_ip`, `last_ip`, `create_time`, `last_login`) VALUES
+(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'demo', 'demo', '18319517777', 1595779200, 1, 1092, 1520, 0, '', 1, 0, 1592917652, 0, 0, '58927.19', '10017.21', '', '127.0.0.1', 1584028900, 1596154327),
+(10, 1, 'test', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'test', '', '18319517778', 1590163200, 1, 0, 0, 0, '', 1, 1, 1592917588, 0, 0, '0.00', '123.62', '', '127.0.0.1', 0, 1592917588),
+(11, 1, 'usres', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'users', '', '18319517779', 1590163200, 1, 0, 40, 0, '', 1, 10, 1592917652, 0, 0, '4444.00', '90.20', '', '127.0.0.1', 0, 1592917652),
+(12, 2, 'blue', '7fef6171469e80d32c0559f88b377245', '', '', 'blue', '', '18319517776', 0, 1, 0, 20, 0, '2', 1, 11, 1592917652, 0, 0, '186.00', '0.00', '', '127.0.0.1', 0, 1592918687);
 
 -- --------------------------------------------------------
 
@@ -6752,6 +6767,25 @@ CREATE TABLE `mall_users_log` (
 -- 转存表中的数据 `mall_users_log`
 --
 
+INSERT INTO `mall_users_log` (`id`, `order_no`, `user_id`, `admin_id`, `action`, `operation`, `amount`, `point`, `exp`, `description`, `create_time`) VALUES
+(1, '2020062321122633491', 11, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321122633491中的商品,奖励积分10', 1592917951),
+(2, '2020062321122633491', 10, 0, 4, 0, '28.55', 0, 0, 'usres成功消费订单总额571元,奖励推广佣金28.55', 1592917951),
+(3, '2020062321131252567', 11, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321131252567中的商品,奖励积分10', 1592917995),
+(4, '2020062321131252567', 10, 0, 4, 0, '13.65', 0, 0, 'usres成功消费订单总额273元,奖励推广佣金13.65', 1592917995),
+(5, '2020062321155397388', 11, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321155397388中的商品,奖励积分10', 1592918155),
+(6, '2020062321155397388', 10, 0, 4, 0, '13.65', 0, 0, 'usres成功消费订单总额273元,奖励推广佣金13.65', 1592918155),
+(7, '2020062321221703712', 11, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321221703712中的商品,奖励积分10', 1592918538),
+(8, '2020062321221703712', 10, 0, 4, 0, '13.65', 0, 0, 'usres成功消费订单总额273元,奖励推广佣金13.65', 1592918539),
+(9, '2020062321221703712', 1, 0, 4, 0, '8.19', 0, 0, '二级推广人 test成功消费订单总额273元,奖励推广佣金8.19', 1592918539),
+(10, '2020062321280859363', 12, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321280859363中的商品,奖励积分10', 1592918891),
+(11, '2020062321280859363', 11, 0, 4, 0, '45.10', 0, 0, 'blue成功消费订单总额902元,奖励推广佣金45.1', 1592918891),
+(12, '2020062321280859363', 10, 0, 4, 0, '27.06', 0, 0, '二级推广人 usres成功消费订单总额902元,奖励推广佣金27.06', 1592918891),
+(13, '2020062321290610179', 12, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321290610179中的商品,奖励积分10', 1592918948),
+(14, '2020062321290610179', 11, 0, 4, 0, '45.10', 0, 0, 'blue成功消费订单总额902元,奖励推广佣金45.1', 1592918948),
+(15, '2020062321290610179', 10, 0, 4, 0, '27.06', 0, 0, '二级推广人 usres成功消费订单总额902元,奖励推广佣金27.06', 1592918948),
+(16, '2020062321290610179', 1, 0, 4, 0, '9.02', 0, 0, '三级推广人 test成功消费订单总额902元,奖励推广佣金9.02', 1592918948),
+(17, '2020072417195346318', 1, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020072417195346318中的商品,奖励积分10', 1595642963);
+
 -- --------------------------------------------------------
 
 --
@@ -6766,6 +6800,28 @@ CREATE TABLE `mall_users_sms` (
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mall_users_tags`
+--
+
+CREATE TABLE `mall_users_tags` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `intro` text NOT NULL,
+  `create_time` int(10) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 转存表中的数据 `mall_users_tags`
+--
+
+INSERT INTO `mall_users_tags` (`id`, `name`, `intro`, `create_time`) VALUES
+(1, '常客', '', 1596732372),
+(2, '老客户', '', 1596732487),
+(3, '潜在客户', '', 1596732492);
 
 -- --------------------------------------------------------
 
@@ -6785,6 +6841,7 @@ CREATE TABLE `mall_users_token` (
   `expire_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
 --
 -- 表的结构 `mall_users_withdraw_log`
@@ -7368,6 +7425,12 @@ ALTER TABLE `mall_users_sms`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 表的索引 `mall_users_tags`
+--
+ALTER TABLE `mall_users_tags`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 表的索引 `mall_users_token`
 --
 ALTER TABLE `mall_users_token`
@@ -7705,13 +7768,13 @@ ALTER TABLE `mall_system_manage`
 -- 使用表AUTO_INCREMENT `mall_system_menu`
 --
 ALTER TABLE `mall_system_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- 使用表AUTO_INCREMENT `mall_system_purview`
 --
 ALTER TABLE `mall_system_purview`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=260;
 
 --
 -- 使用表AUTO_INCREMENT `mall_system_queue`
@@ -7729,7 +7792,7 @@ ALTER TABLE `mall_system_users`
 -- 使用表AUTO_INCREMENT `mall_system_users_log`
 --
 ALTER TABLE `mall_system_users_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users`
@@ -7786,6 +7849,12 @@ ALTER TABLE `mall_users_sms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- 使用表AUTO_INCREMENT `mall_users_tags`
+--
+ALTER TABLE `mall_users_tags`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- 使用表AUTO_INCREMENT `mall_users_token`
 --
 ALTER TABLE `mall_users_token`
@@ -7833,9 +7902,7 @@ ALTER TABLE `mall_wechat_news_article`
 ALTER TABLE `mall_wechat_users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
---
--- 使用表AUTO_INCREMENT `mall_wechat_users_tags`
---
+
 ALTER TABLE `mall_wechat_users_tags`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 COMMIT;

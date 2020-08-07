@@ -40,11 +40,23 @@ class Index extends Auth {
                 return Response::returnArray("当前还没有数据哦！",1);
             }
 
+            foreach($list['data'] as $k=>$v){
+                $tags = Db::name("users_tags")->where('id','in',$v['tags'])->select()->toArray();
+
+                $arr = [];
+                foreach($tags as $val){
+                    $arr[] = $val['name'];
+                }
+
+                $list['data'][$k]['tags'] = implode(",",$arr);
+            }
+
             return Response::returnArray("ok",0,$list['data'],$list['count']);
         }
 
         return View::fetch("",[
-            "cat"=>Db::name("users_group")->select()->toArray()
+            "cat"=>Db::name("users_group")->select()->toArray(),
+            "tags"=>Db::name("users_tags")->select()->toArray()
         ]);
     }
 
@@ -220,6 +232,18 @@ class Index extends Auth {
         }
 
         return View::fetch("",["id"=>$id]);
+    }
+
+    public function tags(){
+        $user_id = Request::post("user_id","","intval");
+        $id = Request::post("id","","intval");
+        if(Db::name("users")->where("id",$user_id)->count()){
+            Db::name("users")->where("id",$user_id)->update([
+                "tags"=>implode(",",$id)
+            ]);
+        }
+
+        return Response::returnArray("ok",0);
     }
 
 }
