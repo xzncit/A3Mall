@@ -17,7 +17,7 @@ use mall\utils\Check;
 use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
-use mall\basic\Cart;
+use mall\basic\Shopping;
 
 class Order extends Auth {
 
@@ -76,7 +76,7 @@ class Order extends Auth {
         }
 
         try {
-            $data = Cart::get($cart);
+            $data = Shopping::get($cart);
         }catch (\Exception $e){
             return $this->returnAjax($e->getMessage(),$e->getCode() > 0 ? 1 : 0,$e->getCode());
         }
@@ -236,7 +236,7 @@ class Order extends Auth {
         }
 
         try {
-            $data = Cart::get($cart);
+            $data = Shopping::get($cart);
             Distribution::get($data,$address);
             if($bonus_id > 0 && Db::name("users_bonus")->where("user_id",$this->users["id"])->where("id",$bonus_id)->count()){
                 Bonus::apply($data,$bonus_id);
@@ -250,7 +250,7 @@ class Order extends Auth {
             $data['order_id'] = \mall\basic\Order::create($data);
             $result = Payment::handle($data['order_id']);
             if($type == 'cart'){
-                Cart::delete(array_map(function ($res){
+                Shopping::delete(array_map(function ($res){
                     return $res["cart_id"];
                 },$cart));
             }
