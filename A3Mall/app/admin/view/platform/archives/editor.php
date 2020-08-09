@@ -26,7 +26,7 @@
                                     <option value="">请选择分类</option>
                                     {if !empty($cat)}
                                     {volist name="cat" id="value"}
-                                    <option value="{$value.id}"{if isset($data.pid) && $value.id==$data.pid} selected{/if}>{$value.level}{$value.title}</option>
+                                    <option value="{$value.id}"{if isset($data.pid) && $value.id==$data.pid} selected{/if}>{$value.level|raw}{$value.title}</option>
                                     {/volist}
                                     {/if}
                                 </select>
