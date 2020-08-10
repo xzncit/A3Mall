@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="notice-box">
-                    <van-notice-bar @click="noticeEvent" color="#b91922" background="transparent" left-icon="volume-o" :text="noticeText" />
+                    <van-notice-bar @click="noticeEvent" color="#b91922" background="transparent" left-icon="volume-o" :text="notice.title" />
                 </div>
             </div>
 
@@ -139,7 +139,6 @@
         data() {
             return {
                 searchValue: '',
-                noticeText: "A3Mall v1.0 即将上线",
                 images: [],
                 category:[],
                 img_1: {},
@@ -151,7 +150,8 @@
                 finished: false,
                 refreshing: false,
                 page: 1,
-                isEmpty: false
+                isEmpty: false,
+                notice: {id:"",title:""}
             };
         },
         created() {
@@ -177,6 +177,7 @@
                     this.img_2 = res.data.img_2;
                     this.hot = res.data.hot;
                     this.recommend = res.data.recommend;
+                    this.notice = res.data.notice;
                 }).catch(err=>{
                     Toast("网络出错，请检查网络是否连接");
                 });
@@ -220,7 +221,7 @@
                 this.$router.push('/search/index');
             },
             noticeEvent(){
-                Toast('公告');
+                this.$router.push('/news/view/'+this.notice.id);
             },
             url(string){
                 if(string == ''){

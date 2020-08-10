@@ -82,7 +82,8 @@ class Index extends Auth {
             "img_1"=>isset($adItemOne[0]) ? $adItemOne[0] : [],
             "img_2"=>$adItemTwo,
             "hot"=>$hot,
-            "recommend"=>$recommend
+            "recommend"=>$recommend,
+            "notice"=>Db::name("archives")->field('id,title')->where('pid',71)->find()
         ]);
     }
 
