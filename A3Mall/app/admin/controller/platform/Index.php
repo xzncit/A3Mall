@@ -109,14 +109,16 @@ class Index extends Auth {
                         "type"=>"file-cache","info"=>"数据缓存",
                         'size'=>Tool::convert(
                             Tool::getDirSize($path . "admin/cache") +
-                            Tool::getDirSize($path . "home/cache")
+                            Tool::getDirSize($path . "home/cache") +
+                            Tool::getDirSize($path . "cache")
                         )
                     ],
                     [
                         "type"=>"file-log","info"=>"日志数据",
                         'size'=>Tool::convert(
                             Tool::getDirSize($path . "admin/log") +
-                            Tool::getDirSize($path . "admin/log")
+                            Tool::getDirSize($path . "home/log") +
+                            Tool::getDirSize($path . "api/log")
                         )
                     ],
                     [
@@ -141,12 +143,14 @@ class Index extends Auth {
                     Db::name("users_sms")->where("create_time","<=", strtotime("-1 day"))->delete();
                     break;
                 case "file-cache":
+                    Tool::deleteFile($path . "cache");
                     Tool::deleteFile($path . "admin/cache");
                     Tool::deleteFile($path . "home/cache");
                     break;
                 case "file-log":
                     Tool::deleteFile($path . "admin/log");
-                    Tool::deleteFile($path . "admin/log");
+                    Tool::deleteFile($path . "home/log");
+                    Tool::deleteFile($path . "api/log");
                     break;
                 case "file-temp":
                     Tool::deleteFile($path . "admin/temp");
