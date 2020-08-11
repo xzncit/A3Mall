@@ -80,13 +80,16 @@ class Users extends Base {
         $username = Request::param("username","","trim,strip_tags");
         $password = Request::param("password","","trim,strip_tags");
         $code = Request::param("code","","intval");
-        $spread_id = Request::param("spread_id","0","intval");
 
         if(empty($username)){
             return $this->returnAjax("请填写手机号码！",0);
         }else if(empty($password)){
             return $this->returnAjax("请填写密码！",0);
-        }else if(!Check::mobile($username)){
+        }else if(preg_match("/(\s)/i",$password)){
+            return $this->returnAjax("密码不能包含空格字符！",0);
+        }else if(!Check::password($password)){
+            return $this->returnAjax("密码长度请控制在6-18字符！",0);
+        } else if(!Check::mobile($username)){
             return $this->returnAjax("您填写的手机号码不正确！",0);
         }else if(empty($code)){
             return $this->returnAjax("请填写验证码！",0);
@@ -120,12 +123,6 @@ class Users extends Base {
             "create_time"=>time(),
             "last_login"=>time()
         ];
-
-        if(Db::name("users")->where("id",(int)$spread_id)->count()){
-            $data["is_spread"] = 1;
-            $data["spread_id"] = $spread_id;
-            $data["spread_time"] = time();
-        }
 
         Db::name("users")->insert($data);
 
