@@ -18,7 +18,7 @@ class Model extends A3Mall {
 
     protected $type = [
         "id"=>"integer",
-        "id"=>"create_time"
+        "create_time"=>"integer"
     ];
 
     public function getList($condition=[],$size=10,$page=1){

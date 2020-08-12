@@ -41,7 +41,7 @@ class Attribute extends Auth {
             $rs = empty($id) ? [] : Db::name("products_attribute")->where("id",$id)->find();
 
             if(!empty($rs)){
-                $rs["attr"] = Db::name("products_attribute_data")->where(["pid"=>$rs["id"]])->order("sort ASC")->select()->toArray();
+                $rs["attr"] = Db::name("products_attribute_data")->where(["pid"=>$rs["id"]])->order("sort","ASC")->select()->toArray();
             }
 
             return View::fetch("",[
@@ -80,7 +80,7 @@ class Attribute extends Auth {
 
                 $id = intval($data["attr"]["id"][$key]);
                 if(($obj=$productsAttributeData::find($id)) == false){
-                    $productsAttributeData->save($attr);
+                    $productsAttributeData->insert($attr);
                     $arr[] = $productsAttributeData->id;
                 }else{
                     $arr[] = $id;
