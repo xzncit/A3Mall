@@ -34,13 +34,13 @@ class Setting extends A3Mall{
         return true;
     }
 
-    public function getConfigData($name="",$json=false){
+    public function getConfigData($name="",$json=true){
         $content = $this->where(["name"=>$name])->value("value");
         if(empty($content)){
             return "";
         }
 
-        return $json ? $content : json_decode($content,true);
+        return $json ? json_decode($content,true) : $content;
     }
 
     public function setNameAttr($value){

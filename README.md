@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.0.7-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.0.8-blue.svg" />
     </a>
 </p>
 <p align="center">    
@@ -79,7 +79,7 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
 
 
 ### 功能介绍
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/10.png "10.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/10.png "10.png")
 
 
 ### 前台截图演示
