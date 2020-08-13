@@ -23,6 +23,7 @@ class Second extends Auth {
         $count = Db::name("promotion_second")
             ->alias('r')
             ->join("goods g","r.goods_id=g.id","LEFT")
+            ->where("r.end_time",">",time())
             ->where('g.status',0)->count();
 
         $total = ceil($count/$size);
@@ -35,6 +36,7 @@ class Second extends Auth {
             ->field("r.id,g.title,g.photo,r.sell_price as price,g.sell_price,g.sale")
             ->join("goods g","r.goods_id=g.id","LEFT")
             ->where('g.status',0)
+            ->where("r.end_time",">",time())
             ->order('r.id','desc')->limit((($page - 1) * $size),$size)->select()->toArray();
 
         $data = array_map(function ($rs){

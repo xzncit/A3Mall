@@ -23,6 +23,7 @@ class Point extends Auth {
         $count = Db::name("promotion_point")
             ->alias('p')
             ->join("goods g","p.goods_id=g.id","LEFT")
+            ->where("p.end_time",">",time())
             ->where('g.status',0)->count();
 
 
@@ -36,6 +37,7 @@ class Point extends Auth {
             ->field("p.id,g.title,g.photo,p.point as price,g.sale")
             ->join("goods g","p.goods_id=g.id","LEFT")
             ->where('g.status',0)
+            ->where("p.end_time",">",time())
             ->order('g.id','desc')->limit((($page - 1) * $size),$size)->select()->toArray();
 
         $data = array_map(function ($rs){
