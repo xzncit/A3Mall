@@ -55,7 +55,7 @@ class Point extends Auth {
 
     public function view(){
         $id = Request::param("id","0","intval");
-        if(($promotion_point = Db::name("promotion_point")->where("id",$id)->find()) == false){
+        if(($promotion_point = Db::name("promotion_point")->where("id",$id)->where('end_time','>',time())->find()) == false){
             return $this->returnAjax("积分商品不存在",0);
         }
         if(($goods = Db::name("goods")->where("id",$promotion_point["goods_id"])->where("status",0)->find()) == false){

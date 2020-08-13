@@ -55,7 +55,7 @@ class Regiment extends Auth {
 
     public function view(){
         $id = Request::param("id","0","intval");
-        if(($promotion_regiment = Db::name("promotion_regiment")->where("id",$id)->find()) == false){
+        if(($promotion_regiment = Db::name("promotion_regiment")->where("id",$id)->where('end_time','>',time())->find()) == false){
             return $this->returnAjax("团购商品不存在",0);
         }
 
