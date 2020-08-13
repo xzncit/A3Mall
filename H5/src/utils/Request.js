@@ -53,6 +53,7 @@ export default {
                 params: params
             }).then(function (response) {
                 if(response.data.status == '-1001'){
+                    Storage.clear();
                     if(tools.isWeiXin()){
                         oAuth();
                     }else{
@@ -73,6 +74,7 @@ export default {
         return new Promise(function (resolve, reject) {
             httpService.post(url,params).then(function (response) {
                 if(response.data.status == '-1001'){
+                    Storage.clear();
                     if(tools.isWeiXin()){
                         oAuth();
                     }else{
@@ -104,6 +106,7 @@ export default {
       return new Promise(function (resolve, reject) {
           http.post(url,form).then(function (response) {
               if(response.data.status == '-1001'){
+                  Storage.clear();
                   if(tools.isWeiXin()){
                       oAuth();
                   }else{
@@ -116,25 +119,5 @@ export default {
               reject(error);
           });
       });
-    },
-
-    _uploadfiy: function(form,url){
-        return Promise(function (resolve, reject) {
-            if(window.XMLHttpRequest){
-                let xhr = new XMLHttpRequest();
-                xhr.open('POST',this.domain() + "api" + url);
-                xhr.send(form);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200){
-                        let res = JSON.parse(xhr.response);
-                        resolve(res);
-                    }else{
-                        reject("Request data failed");
-                    }
-                };
-            }else{
-                reject("您的浏览器过于老旧，请使用现代浏览器");
-            }
-        });
     }
 }

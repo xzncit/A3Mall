@@ -41,7 +41,7 @@ class Token {
             throw new \Exception("Token己过期，请重新登录","-1002");
         }
 
-        $time = $expires - (60 * 5);
+        $time = $expires + (60 * 30);
         if($time > $row["expire_time"]){
             Db::name("users_token")->where("token",$token)->update([
                 "expire_time"=>time()
