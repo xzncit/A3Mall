@@ -19,7 +19,6 @@ class Second extends Auth {
         $page = Request::param("page","1","intval");
         $size = 10;
 
-
         $count = Db::name("promotion_second")
             ->alias('r')
             ->join("goods g","r.goods_id=g.id","LEFT")
@@ -63,7 +62,7 @@ class Second extends Auth {
             ->find();
 
         if(empty($goods)){
-            return $this->returnAjax("团购商品不存在",0);
+            return $this->returnAjax("秒杀商品不存在",0);
         }
 
         $data = [];

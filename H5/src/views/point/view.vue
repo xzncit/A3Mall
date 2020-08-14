@@ -1,12 +1,12 @@
 <template>
     <div>
         <van-nav-bar
-            title="商品详情"
-            left-arrow
-            :fixed="true"
-            :placeholder="true"
-            :z-index="9999"
-            @click-left="prev"
+                title="商品详情"
+                left-arrow
+                :fixed="true"
+                :placeholder="true"
+                :z-index="9999"
+                @click-left="prev"
         />
         <div>
             <div :style="'height:'+clientHeight+'px'">
@@ -46,230 +46,209 @@
                 </van-pull-refresh>
             </div>
 
-            <van-sku
-                v-model="isShow"
-                :sku="sku"
-                :goods="goods"
-                :goods-id="goodsId"
-                :quota="quota"
-                :quota-used="quotaUsed"
-                :hide-stock="sku.hide_stock"
-                :show-add-cart-btn="false"
-                price-tag="积分"
-                buy-text="积分兑换"
-                @buy-clicked="onBuyClicked"
+            <sku-action
+                v-model="isSkuStatus"
+                :goods="products"
+                :attribute="attribute"
+                :item="item"
+                :goods-info.sync="selectedGoodsInfo"
+                :fields="fields"
             >
-                <!-- 自定义 sku-header-price -->
                 <template #sku-header-price="props">
-                    <div class="van-sku__goods-price">
-                      <span class="van-sku__price-symbol"></span
-                      ><span class="van-sku__price-num">{{ parseInt(props.price) }} 分</span>
+                    <div class="sku-header-goods-price">
+                        <span class="symbol"></span>
+                        <span class="price">{{props.price}} <i style="font-size: 12px;">积分</i></span>
                     </div>
                 </template>
-            </van-sku>
+            </sku-action>
 
-            <van-goods-action>
+            <van-goods-action style="z-index: 100000">
                 <van-goods-action-icon replace to="/home" icon="wap-home-o" text="首页" />
-                <van-goods-action-button @click="skuShow" type="danger" text="积分兑换" />
+                <van-goods-action-button @click="onGoBuy" type="warning" text="去购买" />
+                <van-goods-action-button @click="onBuyClicked" type="danger" text="积分兑换" />
             </van-goods-action>
         </div>
     </div>
 </template>
 
 <script>
-import Vue from 'vue';
-import { PullRefresh,NavBar, Swipe, SwipeItem } from 'vant';
-import { GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant';
-import { Sku } from 'vant';
-import { Lazyload,Toast } from 'vant';
-import session from '../../utils/SessionStorage';
-Toast.setDefaultOptions({ duration: 5000 });
-Vue.use(Lazyload);
-export default {
-    name: 'PointView',
-    components: {
-        [PullRefresh.name]: PullRefresh,
-        [NavBar.name]: NavBar,
-        [Swipe.name]: Swipe,
-        [SwipeItem.name]: SwipeItem,
-        [GoodsAction.name]: GoodsAction,
-        [GoodsActionIcon.name]: GoodsActionIcon,
-        [GoodsActionButton.name]: GoodsActionButton,
-        [Sku.name]: Sku,
-    },
-    data() {
-        return {
-            images: [],
-            isShow: false,
-            collect: '#ccc',
-            cartCount: 0,
-            goodsId: 1,
-            quota: 0, // 限购数，0 表示不限购
-            quotaUsed: 0, // 已经购买过的数量
-            sku: {
-                // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
-                // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
-                tree: [],
-                // 所有 sku 的组合列表，比如红色、M 码为一个 sku 组合，红色、S 码为另一个组合
-                list: [],
-                price: '0.00', // 默认价格（单位元）
-                stock_num: 0, // 商品总库存
-                collection_id: 0, // 无规格商品 skuId 取 collection_id，否则取所选 sku 组合对应的 id
-                none_sku: false, // 是否无规格商品
-                hide_stock: false // 是否隐藏剩余库存
+    import Vue from 'vue';
+    import { PullRefresh,NavBar, Swipe, SwipeItem } from 'vant';
+    import { GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant';
+    import { Lazyload,Toast } from 'vant';
+    import SkuAction from '../../components/sku-action/sku-action';
+    Toast.setDefaultOptions({ duration: 5000 });
+    Vue.use(Lazyload);
+    export default {
+        name: 'PointView',
+        components: {
+            [PullRefresh.name]: PullRefresh,
+            [NavBar.name]: NavBar,
+            [Swipe.name]: Swipe,
+            [SwipeItem.name]: SwipeItem,
+            [GoodsAction.name]: GoodsAction,
+            [GoodsActionIcon.name]: GoodsActionIcon,
+            [GoodsActionButton.name]: GoodsActionButton,
+            [SkuAction.name]: SkuAction
+        },
+        data() {
+            return {
+                fields:["id","goods_id"],
+                isSkuStatus: false,
+                selectedGoodsInfo: {},
+                products: {},
+                attribute: [],
+                images: [],
+                item:{},
+                cartCount: 0,
+                current: 0,
+                isRefresh: false,
+                clientHeight: window.outerHeight - 50
+            };
+        },
+        created() {
+            let users = this.$storage.get("users",true);
+            this.cartCount = users != null ? users.shop_count : 0;
+            this.onLoad();
+        },
+        methods: {
+            onLoad(){
+                this.$request.get("/point/view",{
+                    id: this.$route.params.id
+                }).then((result)=>{
+                    if(result.status){
+                        this.products = result.data.goods;
+                        this.attribute = result.data.attr;
+                        this.item = result.data.item;
+                        this.images = result.data.photo;
+                    }
+                });
             },
-            goods: { // 默认商品 sku 缩略图
-                picture: ''
+
+            onChange(index) {
+                this.current = index;
             },
-            current: 0,
-            isRefresh: false,
-            activityId: 0,
-            products: {
-                "title": "",
-                "sell_price": "",
-                "market_price": "",
-                "store_nums": "",
-                "sale": "",
-                "content": "",
+            onRefresh(){
+                setTimeout(()=>{
+                    this.isRefresh = false;
+                    this.onLoad();
+                },1500);
             },
-            clientHeight: window.outerHeight - 50
-        };
-    },
-    created() {
-        let users = this.$storage.get("users",true);
-        this.cartCount = users != null ? users.shop_count : 0;
-        this.onLoad();
-    },
-    methods: {
-        onLoad(){
-            this.$request.get("/point/view",{
-                id: this.$route.params.id
-            }).then((result)=>{
-                if(result.status){
-                    this.collect = result.data.collect ? "#ff5000" : "#ccc";
-                    this.products = result.data.goods;
-                    this.images = result.data.photo;
-                    this.goods.picture = result.data.goods.photo;
-                    this.goodsId = result.data.goods_id;
-                    this.sku = result.data.sku;
-                    this.activityId = result.data.activityId;
+            onGoBuy(){
+                this.$router.push("/goods/view/"+this.products.goods_id);
+            },
+            onBuyClicked(){
+                if(this.isSkuStatus == false){
+                    this.isSkuStatus = true;
+                    return ;
                 }
-            });
+
+                if(!this.selectedGoodsInfo.isSubmit){
+                    Toast("请选择规格！");
+                    return false;
+                }
+
+                this.$store.dispatch("isUsers").then(()=>{
+                    this.$router.push({ path: "/cart/confirm", query: {
+                            id: this.selectedGoodsInfo.id,
+                            sku_id: this.selectedGoodsInfo.selectedSku.id,
+                            num: this.selectedGoodsInfo.num,
+                            type: "point"
+                        }});
+                }).catch(()=>{
+                    this.$storage.set("VUE_REFERER","/point/view/"+this.$route.params.id);
+                    this.$router.push("/public/login");
+                });
+            },
+            prev(){
+                this.$tools.prev();
+            }
         },
-        skuShow(){
-          this.isShow = true;
-        },
-        onChange(index) {
-            this.current = index;
-        },
-        onRefresh(){
-            setTimeout(()=>{
-                this.isRefresh = false;
-                this.onLoad();
-            },1500);
-        },
-        onBuyClicked(data){
-            this.$store.dispatch("isUsers").then(()=>{
-                this.$router.push({ path: "/cart/confirm", query: {
-                    id: this.activityId,
-                    sku_id: data.selectedSkuComb.id,
-                    num: data.selectedNum,
-                    type: "point"
-                }});
-            }).catch(()=>{
-                let path = this.$storage.set("VUE_REFERER","/point/view/"+this.activityId);
-                this.$router.push("/public/login");
-            });
-        },
-        prev(){
-            this.$tools.prev();
-        }
-    },
-}
+    }
 </script>
 
 <style lang="scss" scoped>
-.swiper-box{
-    width: 100%;
-    height: 400px;
-    img {
+    .swiper-box{
         width: 100%;
         height: 400px;
-    }
-    .custom-indicator {
-        position: absolute;
-        right: 20px;
-        bottom: 20px;
-        padding: 6px 15px;
-        font-size: 14px;
-        background: rgba(0, 0, 0, 0.3);
-        color: #fff;
-        border-radius: 6px;
-    }
-}
-.goods-info{
-    background-color: #fff;
-    i {
-        font-style: normal;
-    }
-    .price{
-        display: block;
-        padding: 15px 15px 5px 15px;
-        color: red;
-        font-size: 14px;
-        i {
-            font-size: 18px;
-            position: relative;
-            top: 1px;
+        img {
+            width: 100%;
+            height: 400px;
+        }
+        .custom-indicator {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            padding: 6px 15px;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            border-radius: 6px;
         }
     }
-    .title{
-        display: block;
-        padding: 0 15px;
-        color: #333;
-        font-size: 16px;
-    }
-    .goods-info-box{
-        display: block;
-        padding: 0 15px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: center;
-        span {
-            width: 33.33%;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            font-size: 13px;
-            color: #555;
-        }
-        span:nth-child(1){
-            text-align: left;
-        }
-        span:nth-child(3){
-            text-align: right;
-        }
-    }
-}
-.goods-content{
-    background-color: #fff;
-    width: 100%;
-    margin-top: 15px;
-    margin-bottom: 50px;
-    .title {
-        font-size: 16px;
-        color: #282828;
-        height: 48px;
-        width: 100%;
+    .goods-info{
         background-color: #fff;
-        text-align: center;
-        line-height: 48px;
+        i {
+            font-style: normal;
+        }
+        .price{
+            display: block;
+            padding: 15px 15px 5px 15px;
+            color: red;
+            font-size: 14px;
+            i {
+                font-size: 18px;
+                position: relative;
+                top: 1px;
+            }
+        }
+        .title{
+            display: block;
+            padding: 0 15px;
+            color: #333;
+            font-size: 16px;
+        }
+        .goods-info-box{
+            display: block;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            span {
+                width: 33.33%;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                font-size: 13px;
+                color: #555;
+            }
+            span:nth-child(1){
+                text-align: left;
+            }
+            span:nth-child(3){
+                text-align: right;
+            }
+        }
     }
-    img {
+    .goods-content{
+        background-color: #fff;
         width: 100%;
-        height: auto;
-        float: left;
+        margin-top: 15px;
+        margin-bottom: 50px;
+        .title {
+            font-size: 16px;
+            color: #282828;
+            height: 48px;
+            width: 100%;
+            background-color: #fff;
+            text-align: center;
+            line-height: 48px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            float: left;
+        }
     }
-}
 </style>
