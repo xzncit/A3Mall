@@ -1,66 +1,72 @@
 <template>
     <div>
-        <div class="search" @click="$router.push('/search/index')">
-            <van-search
-                v-model="value"
-                shape="round"
-                background="#fff"
-                placeholder="请输入搜索关键词"
-                @search="onSearchSubmit"
-            />
-        </div>
-
-        <div class="category-box" :style="'height:'+clientHeight+'px'">
-            <div class="menu">
-                <div class="wrapper-menu" ref="menu" :style="'height:'+clientHeight+'px'">
-                    <ul>
-                        <li
-                            v-for="(data,i) in category"
-                            :key="i" @click="selectMenu(i)"
-                            :class="{active:currentIndex==i}"
-                            ref="cat"
-                        >{{ data.title }}</li>
-                    </ul>
-                </div>
+        <div v-if="!isLoading">
+            <div class="search" @click="$router.push('/search/index')">
+                <van-search
+                        v-model="value"
+                        shape="round"
+                        background="#fff"
+                        placeholder="请输入搜索关键词"
+                        @search="onSearchSubmit"
+                />
             </div>
 
-            <div class="content">
-                <div class="wrapper-content" ref="content" :style="'height:'+clientHeight+'px'">
-                    <ul>
-                        <li v-for="(data,i) in category" :key="i" ref="item">
-                            <div class="title">
-                                <span>{{ data.title }}</span>
-                            </div>
-                            <div class="children">
-                                <div
-                                    v-for="(children, index) in data.children"
-                                    :key="index"
-                                    @click="$router.push({ path: '/goods/list/' + children.id })"
-                                    class="n"
-                                >
-                                    <span><img :src="children.thumb_img"></span>
-                                    <span>{{ children.name }}</span>
+            <div class="category-box" :style="'height:'+clientHeight+'px'">
+                <div class="menu">
+                    <div class="wrapper-menu" ref="menu" :style="'height:'+clientHeight+'px'">
+                        <ul>
+                            <li
+                                    v-for="(data,i) in category"
+                                    :key="i" @click="selectMenu(i)"
+                                    :class="{active:currentIndex==i}"
+                                    ref="cat"
+                            >{{ data.title }}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="wrapper-content" ref="content" :style="'height:'+clientHeight+'px'">
+                        <ul>
+                            <li v-for="(data,i) in category" :key="i" ref="item">
+                                <div class="title">
+                                    <span>{{ data.title }}</span>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>
+                                <div class="children">
+                                    <div
+                                            v-for="(children, index) in data.children"
+                                            :key="index"
+                                            @click="$router.push({ path: '/goods/list/' + children.id })"
+                                            class="n"
+                                    >
+                                        <span><img :src="children.thumb_img"></span>
+                                        <span>{{ children.name }}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+        <loading v-if="isLoading"></loading>
     </div>
 </template>
 
 <script>
 import { Form,Search } from 'vant';
+import Loading from '../../components/loading/loading';
 import BScroll from 'better-scroll';
 export default {
     name: 'Category',
     components: {
         [Form.name]: Form,
         [Search.name]: Search,
+        [Loading.name]: Loading
     },
     data() {
         return {
+            isLoading:true,
             value: "",
             clientHeight: window.outerHeight - 100,
             scrollMenu: null,
@@ -80,6 +86,7 @@ export default {
         this.$http.getCategoryList().then((result)=>{
             if(result.status){
                 this.category = result.data;
+                this.isLoading = false;
                 this.$nextTick(()=>{
                     this.initScroll();
                 });
