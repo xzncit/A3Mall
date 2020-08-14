@@ -128,7 +128,7 @@
                         isSubmit:true,
                         selectedSku: { id: "", specSelected: "" }
                     });
-                    console.log(fields)
+
                     this.selectedGoodsInfo = fields;
                 },
                 deep: true
