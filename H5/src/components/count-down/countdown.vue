@@ -99,6 +99,7 @@
     methods: {
       gogogo: function () {
         //判断是秒还是毫秒
+        if(this.startTime==undefined) return ;
         this.startTime.toString().length == 10 ? this.star = this.startTime * 1000 : this.star = this.startTime;
         this.endTime.toString().length == 10 ? this.end = this.endTime * 1000 : this.end = this.endTime;
         if (this.currentTime) {
