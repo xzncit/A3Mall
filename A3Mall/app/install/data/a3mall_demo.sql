@@ -6491,30 +6491,6 @@ INSERT INTO `mall_system_purview` (`id`, `pid`, `name`, `module`, `controller`, 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `mall_system_queue`
---
-
-CREATE TABLE `mall_system_queue` (
-  `id` bigint(20) NOT NULL,
-  `type` tinyint(1) DEFAULT 1 ,
-  `code` varchar(20) NOT NULL DEFAULT '' ,
-  `title` varchar(50) NOT NULL DEFAULT '' ,
-  `command` varchar(500) DEFAULT '' ,
-  `exec_pid` bigint(20) DEFAULT 0 ,
-  `exec_data` longtext DEFAULT NULL ,
-  `exec_time` bigint(20) DEFAULT 0 ,
-  `exec_desc` varchar(500) DEFAULT '' ,
-  `start_time` decimal(20,4) DEFAULT 0.0000 ,
-  `end_time` decimal(20,4) DEFAULT 0.0000 ,
-  `loops_time` bigint(20) DEFAULT 0 ,
-  `count` int(11) DEFAULT 0 ,
-  `status` tinyint(1) DEFAULT 1 ,
-  `create_time` int(10) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- 表的结构 `mall_system_users`
 --
 
@@ -7340,11 +7316,6 @@ ALTER TABLE `mall_system_menu`
 ALTER TABLE `mall_system_purview`
   ADD PRIMARY KEY (`id`);
 
---
--- 表的索引 `mall_system_queue`
---
-ALTER TABLE `mall_system_queue`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- 表的索引 `mall_system_users`
@@ -7766,11 +7737,6 @@ ALTER TABLE `mall_system_menu`
 ALTER TABLE `mall_system_purview`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
 
---
--- 使用表AUTO_INCREMENT `mall_system_queue`
---
-ALTER TABLE `mall_system_queue`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用表AUTO_INCREMENT `mall_system_users`

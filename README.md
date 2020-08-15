@@ -65,6 +65,7 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
 ## QQ交流群
  <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=de316f1a1dbf61859529484891ee50369e3c2bc6fe37e15bb94f8bf731cc3482"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="A3Mall开发交流群" title="A3Mall开发交流群"></a>
 
+
 ## 前台H5演示
 
 <img src="https://gitee.com/xzncit/A3Mall/raw/master/readme/images/qrcode.png" width="300" height="300" alt="前台H5演示" align="center" />
@@ -101,12 +102,6 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/9.png "9.png")
 
 
-
-
-
-
-
  **bug反馈**
 
-如果您发现了bug，请发送邮件到 158373108@qq.com，我们将及时修复并更新。
- 
+如果您使用过程中发现BUG或者其他问题都欢迎大家提交Issue,或者发送邮件给我 158373108@qq.com，我们将及时修复并更新。
