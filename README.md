@@ -79,27 +79,16 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
 后台演示暂时不提供，如果需要可以自行安装查看
 
 
-### 功能介绍
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/10.png "10.png")
-
 
 ### 前台截图演示
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/1.jpg "1.jpg")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/2.jpg "2.jpg")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/3.jpg "3.jpg")
-
-
-### 后台截图演示
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/0.png "0.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/1.png "1.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/2.png "2.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/3.png "3.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/4.png "4.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/5.png "5.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/6.png "6.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/7.png "7.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/8.png "8.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/a/9.png "9.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/1.png "1.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/2.png "2.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/3.png "3.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/4.png "4.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/5.png "5.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/6.png "6.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/7.png "7.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/8.png "8.png")
 
 
  **bug反馈**
