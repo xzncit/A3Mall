@@ -38,7 +38,7 @@ class Delivery extends A3Mall{
             ->bind(["order_no"])->joinType("LEFT");
     }
 
-    public function freight(){
+    public function hasFreight(){
         return $this->hasOne(Freight::class,"id","freight_id")
             ->bind(["title"])->joinType("LEFT");
     }
@@ -49,8 +49,8 @@ class Delivery extends A3Mall{
     }
 
     public function getList($condition,$size=10,$page=1){
-        $count = $this->withJoin(["lorder","users","freight"])->where($condition)->count();
-        $data = $this->withJoin(["lorder","users","freight"])->where($condition)->order('delivery.id','DESC')->paginate($size);
+        $count = $this->withJoin(["lorder","users","hasFreight"])->where($condition)->count();
+        $data = $this->withJoin(["lorder","users","hasFreight"])->where($condition)->order('delivery.id','DESC')->paginate($size);
 
         return [
             "count"=>$count,

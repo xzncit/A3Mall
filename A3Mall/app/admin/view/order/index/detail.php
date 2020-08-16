@@ -303,9 +303,9 @@
         {if in_array($data.order_status,[2])}
         $(".order-event-btn").eq(1).removeClass("layui-btn-disabled");
         {/if}
-        
+
         // 退款 
-        {if in_array($data.order_status,[2,3,4])}
+        {if in_array($data.order_status,[2,3,4,5,11])}
         $(".order-event-btn").eq(2).removeClass("layui-btn-disabled");
         {/if}
      

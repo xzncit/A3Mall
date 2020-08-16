@@ -233,6 +233,8 @@ class Index extends Auth {
             $type = Request::post("type","0","intval");
             $amount = Request::post("amount","0","float");
             $id = Request::post("id","0","intval");
+            $status = Request::post("status","0","intval");
+            $desc = Request::post("desc","","strip_tags,trim");
             $order_goods_id = Request::post("order_goods_id/a",0,"intval");
 
             if(empty($order_goods_id)){
@@ -241,6 +243,19 @@ class Index extends Auth {
 
             if(($order = Db::name("order")->where(["id"=>$id])->find()) == false){
                 return Response::returnArray("您要操作的订单不存在！",0);
+            }
+
+            $admin_id = Session::get("system_user_id");
+            if($status == 1){
+                if(Db::name("order_refundment")->where("order_id",$order["id"])->count()){
+                    Db::name("order_refundment")->where("order_id",$order["id"])->update([
+                        'admin_id' => $admin_id,'dispose_idea' => $desc,"pay_status"=>1,"dispose_time"=>time()
+                    ]);
+                }else{
+                    return Response::returnArray("该用户未申请退款！",0);
+                }
+
+                return Response::returnArray("操作成功！",1,createUrl("detail",["id"=>$id]));
             }
 
             $orderGoodsList = Db::name("order_goods")->where('id','in',$order_goods_id)->where('is_send',"<>",'2')->select()->toArray();
@@ -260,22 +275,26 @@ class Index extends Auth {
                 return Response::returnArray('填写的退款金额不能大于实际用户支付的金额', 0);
             }
 
-            $admin_id = Session::get("system_user_id");
-            $refunds_id = Db::name("order_refundment")->insert([
-                'order_no' => $order["order_no"],
-                'order_id' => $order["id"],
-                "user_id"=>$order['user_id'],
-                'admin_id' => $admin_id,
-                'type' => $type,
-                'pay_status' => 2,
-                'dispose_time' => time(),
-                'dispose_idea' => '退款成功',
-                'create_time' => time(),
-                'amount' => $amount,
-                'order_goods_id' => implode(",", $order_goods_id)
-            ]);
-
             try{
+                if(($refunds_id = Db::name("order_refundment")->where("order_id",$order["id"])->value("id")) == false){
+                    $refunds_id = Db::name("order_refundment")->insert([
+                        'order_no' => $order["order_no"],
+                        'order_id' => $order["id"],
+                        "user_id"=>$order['user_id'],
+                        'admin_id' => $admin_id,
+                        'type' => $type,
+                        'pay_status' => 0,
+                        'dispose_time' => time(),
+                        'content' => '系统退款',
+                        'dispose_idea' => $desc,
+                        'create_time' => time(),
+                        'amount' => $amount,
+                        'order_goods_id' => implode(",", $order_goods_id)
+                    ]);
+                }else{
+                    Db::name("order_refundment")->where("order_id",$order["id"])->update(['admin_id' => $admin_id,'dispose_idea' => $desc]);
+                }
+
                 Order::refund($refunds_id,$admin_id);
             } catch (\Exception $ex) {
                 return Response::returnArray($ex->getMessage(),0);
@@ -292,13 +311,16 @@ class Index extends Auth {
 
         $row["goods"] = Db::name("order_goods")->where(["order_id" =>$row["id"]])->order("id DESC")->select()->toArray();
 
+        $orderRefundment = Db::name("order_refundment")->where("order_id",$row["id"])->find();
+        $order_goods_id = isset($orderRefundment["order_goods_id"]) ? explode(",",$orderRefundment["order_goods_id"]) : [];
+
         foreach ($row["goods"] as $key => $val) {
             $row["goods"][$key]["send_status"] = Order::getSendStatus($val["is_send"]);
             $row["goods"][$key]["goods_array"] = "";
             if(!empty($val["goods_array"])){
                 $row["goods"][$key]["goods_array"] = json_decode($val["goods_array"],true);
             }
-
+            $row["goods"][$key]["checked"] = in_array($val["id"],$order_goods_id) ? true : false;
             $row["goods"][$key]["order_price"] = number_format($val["goods_nums"]*$val["sell_price"],2);
         }
 

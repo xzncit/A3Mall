@@ -72,6 +72,10 @@ class Refundment extends A3Mall{
         return strip_tags(trim($value));
     }
 
+    public function getCreateTimeAttr($value){
+        return date("Y-m-d H:i:s",$value);
+    }
+
     public function getUrlAttr($value,$data){
         return createUrl("detail",["id"=>$data["id"]]);
     }

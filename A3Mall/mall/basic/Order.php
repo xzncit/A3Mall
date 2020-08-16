@@ -314,11 +314,7 @@ class Order {
             $autoMount += $val['goods_nums'] * $val['real_price'];
 
             //库存增加
-            self::updateStock([
-                "goods_id" => $val["goods_id"],
-                "product_id" => $val["product_id"],
-                "goods_nums"=>$val["goods_nums"]
-            ], '+');
+            self::updateStock(["goods_id" => $val["goods_id"], "product_id" => $val["product_id"], "goods_nums"=>$val["goods_nums"]], '+');
 
             //更新退款状态
             Db::name("order_goods")->where('id',$val['id'])->update(['is_send' => 2]);
@@ -639,8 +635,6 @@ class Order {
 
     /**
      * 更新库存
-     * @param type $data
-     * @param type $type
      * @return boolean
      */
     public static function updateStock($data, $type = "-") {
