@@ -79,16 +79,9 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
 后台演示暂时不提供，如果需要可以自行安装查看
 
 
-
-### 前台截图演示
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/1.png "1.png")
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/2.png "2.png")
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/3.png "3.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/4.png "4.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/5.png "5.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/6.png "6.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/7.png "7.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/8.png "8.png")
 
 
  **bug反馈**
