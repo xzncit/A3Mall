@@ -242,7 +242,13 @@ class Ucenter extends Auth {
             "mobile"=>$info["mobile"],
             "coupon_count"=>$info["coupon_count"],
             "amount"=>$info["amount"],
-            "avatar"=> !empty($info["avatar"]) ? Tool::thumb($info["avatar"],'',true) : ''
+            "avatar"=>Users::avatar($info["avatar"]),
+            "order_count"=>[
+                "a"=>Db::name("order")->where(["status"=>1,"pay_status"=>0,"user_id"=>Users::get("id")])->count(),
+                "b"=>Db::name("order")->where(["status"=>2,"pay_status"=>1,"user_id"=>Users::get("id")])->where('distribution_status','=','0')->count(),
+                "c"=>Db::name("order")->where(["status"=>2,"pay_status"=>1,"user_id"=>Users::get("id")])->where('distribution_status','in','1,2')->count(),
+                "d"=>Db::name("order")->where(["status"=>5,"pay_status"=>1,"delivery_status"=>1,"user_id"=>Users::get("id")])->where('evaluate_status','in','0,2')->count()
+            ]
         ]);
     }
 
@@ -261,7 +267,7 @@ class Ucenter extends Auth {
             "nickname"=>$info["nickname"],
             "birthday"=>date("Y-m-d",$info["birthday"]),
             "sex"=>$info["sex"],
-            "avatar"=>!empty($info["avatar"]) ? Tool::thumb($info["avatar"],'',true) : ""
+            "avatar"=>Users::avatar($info["avatar"])
         ]);
     }
 

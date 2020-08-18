@@ -5,7 +5,7 @@
             <div class="my">我的</div>
             <div class="info">
                 <span class="avatar">
-                    <img :src="avatar||a3mall">
+                    <img :src="avatar">
                 </span>
                 <span>{{username}}</span>
             </div>
@@ -27,19 +27,31 @@
                 <div class="title">我的订单</div>
                 <div class="list-box">
                     <div class="box" @click="go('/order/list/1')">
-                        <span><img src="../../assets/images/ucenter/1.png"></span>
+                        <span>
+                            <img src="../../assets/images/ucenter/1.png">
+                            <i v-if="order_count.a">{{order_count.a}}</i>
+                        </span>
                         <span>待付款</span>
                     </div>
                     <div class="box" @click="go('/order/list/2')">
-                        <span><img src="../../assets/images/ucenter/2.png"></span>
+                        <span>
+                            <img src="../../assets/images/ucenter/2.png">
+                            <i v-if="order_count.b">{{order_count.b}}</i>
+                        </span>
                         <span>待发货</span>
                     </div>
                     <div class="box" @click="go('/order/list/3')">
-                        <span><img src="../../assets/images/ucenter/3.png"></span>
+                        <span>
+                            <img src="../../assets/images/ucenter/3.png">
+                            <i v-if="order_count.c">{{order_count.c}}</i>
+                        </span>
                         <span>待收货</span>
                     </div>
                     <div class="box" @click="go('/order/list/4')">
-                        <span><img src="../../assets/images/ucenter/4.png"></span>
+                        <span>
+                            <img src="../../assets/images/ucenter/4.png">
+                            <i v-if="order_count.d">{{order_count.d}}</i>
+                        </span>
                         <span>待评价</span>
                     </div>
                     <div class="box" @click="go('/order/service')">
@@ -52,6 +64,10 @@
             <div class="content-box">
                 <div class="title">我的服务</div>
                 <div class="list-box service-box">
+                    <div class="box" @click="go('/spread/index')">
+                        <span><img src="../../assets/images/ucenter/6.png"></span>
+                        <span>我的推广</span>
+                    </div>
                     <div class="box" @click="go('/ucenter/wallet')">
                         <span><img src="../../assets/images/ucenter/7.png"></span>
                         <span>我的钱包</span>
@@ -96,7 +112,7 @@
                 amount:0.00,
                 coupon:0,
                 avatar: "",
-                a3mall: require("@/assets/images/avatar.png"),
+                order_count: {}
             };
         },
         created() {
@@ -113,6 +129,7 @@
                     users.amount = res.data.amount;
                     users.coupon_count = res.data.coupon_count;
                     users.avatar = res.data.avatar;
+                    this.order_count = res.data.order_count;
                     this.$store.commit("UPDATEUSERS",users);
                 }
             });
@@ -203,7 +220,30 @@
                 .box{
                     width: 20%;
                     padding: 20px 0;
-                    span { display: block; text-align: center; font-size: 13px; color: #666; }
+                    span {
+                        display: block; text-align: center; font-size: 13px; color: #666;
+                        &:first-child {
+                            position: relative;
+                            i {
+                                position: absolute;
+                                top: 5px;
+                                right: 19px;
+                                box-sizing: border-box;
+                                min-width: 16px;
+                                padding: 0 3px;
+                                color: #fff;
+                                font-weight: 500;
+                                font-size: 12px;
+                                line-height: 14px;
+                                text-align: center;
+                                background-color: #ee0a24;
+                                border: 1px solid #fff;
+                                border-radius: 16px;
+                                transform: translate(50%,-50%);
+                                transform-origin: 100%;
+                            }
+                        }
+                    }
                     img { width: 40px; height: 40px; display: inline-block; }
                 }
             }

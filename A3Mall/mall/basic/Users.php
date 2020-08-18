@@ -42,6 +42,17 @@ class Users {
         return $row;
     }
 
+    public static function avatar($image="",$root=true){
+        $domain = $root ? trim(Request::domain(),"/") : "";
+        $default = $domain . "/static/images/avatar.png";
+        $file = trim($image,"/");
+        if(empty($image) || !file_exists($file)){
+            return $default;
+        }
+
+        return $domain . '/' . $file;
+    }
+
     public static function delete($id=""){
         if(($row = Db::name("users")->where(['id'=>$id])->find()) == false){
             return true;
