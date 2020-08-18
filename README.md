@@ -66,22 +66,10 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
  <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=de316f1a1dbf61859529484891ee50369e3c2bc6fe37e15bb94f8bf731cc3482"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="A3Mall开发交流群" title="A3Mall开发交流群"></a>
 
 
-## 前台H5演示
-
-<img src="https://gitee.com/xzncit/A3Mall/raw/master/readme/images/qrcode.png" width="300" height="300" alt="前台H5演示" align="center" />
-
-<br>
-
-账号：18319517777  密码：admin888
-
-
-## 演示站后台
-后台演示暂时不提供，如果需要可以自行安装查看
-
-
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/1.png "1.png")
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/2.png "2.png")
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/3.png "3.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/4.png "4.png")
 
 
  **bug反馈**

@@ -124,11 +124,9 @@
             this.$http.getUcenter().then((res)=>{
                 if(res.status){
                     this.username = res.data.nickname || res.data.username || res.data.mobile;
-                    this.amount = res.data.amount;
-                    this.coupon = res.data.coupon_count;
-                    users.amount = res.data.amount;
-                    users.coupon_count = res.data.coupon_count;
-                    users.avatar = res.data.avatar;
+                    this.amount = users.amount = res.data.amount;
+                    this.coupon = users.coupon_count = res.data.coupon_count;
+                    this.avatar = users.avatar = res.data.avatar;
                     this.order_count = res.data.order_count;
                     this.$store.commit("UPDATEUSERS",users);
                 }
