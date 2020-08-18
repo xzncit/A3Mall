@@ -369,9 +369,9 @@ class Ucenter extends Auth {
         }else if(empty($post["province"])){
             return $this->returnAjax("请选择省份",0);
         }else if(empty($post["city"])){
-            return $this->returnAjax("请选择区",0);
-        }else if(empty($post["county"])){
             return $this->returnAjax("请选择市",0);
+        }else if(empty($post["county"])){
+            return $this->returnAjax("请选择区",0);
         }else if(empty($post["areaCode"])){
             return $this->returnAjax("请选择所在地区",0);
         }
@@ -384,14 +384,18 @@ class Ucenter extends Auth {
         $city = Db::name("area")
             ->where("pid",$province["id"])
             ->where("level",2)
-            ->where("name","like",'%'.$post["county"].'%')
+            ->where("name","like",'%'.$post["city"].'%')
             ->find();
 
         $county = Db::name("area")
             ->where("pid",$city["id"])
             ->where("level",3)
-            ->where("name","like",'%'.$post["city"].'%')
+            ->where("name","like",'%'.$post["county"].'%')
             ->find();
+
+        if(empty($province) || empty($city)){
+            return $this->returnAjax("您选择的地址不存在",0);
+        }
 
         DB::startTrans();
         try{
