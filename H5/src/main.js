@@ -8,8 +8,9 @@ import Storage from "./utils/Storage";
 import Cookie from './utils/Cookie'
 import wx from "weixin-js-sdk";
 import * as users from './libs/Users'
-import './assets/css/font-awesome.min.css';
 import * as http from './api/Http'
+import './assets/css/font-awesome.min.css';
+import './assets/css/iconfont.css';
 
 Vue.config.devtools = process.env.NODE_ENV === 'development'
 Vue.config.productionTip = false

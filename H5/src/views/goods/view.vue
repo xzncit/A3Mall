@@ -1,13 +1,14 @@
 <template>
     <div>
-        <van-nav-bar
-                title="商品详情"
-                left-arrow
-                :fixed="true"
-                :placeholder="true"
-                :z-index="9999"
-                @click-left="prev"
+        <nav-bar
+            title="商品详情"
+            left-arrow
+            :fixed="true"
+            :placeholder="true"
+            :z-index="9999"
+            @click-left="prev"
         />
+
         <div :style="'height:'+clientHeight+'px'">
             <van-pull-refresh v-model="isRefresh" @refresh="onRefresh">
                 <van-swipe class="swiper-box" :autoplay="3000" @change="onChange">
@@ -47,30 +48,33 @@
         </div>
 
         <sku-action
-                v-model="isSkuStatus"
-                :goods="products"
-                :attribute="attribute"
-                :item="item"
-                :goods-info.sync="selectedGoodsInfo"
-                :fields="fields"
+            v-model="isSkuStatus"
+            :goods="products"
+            :attribute="attribute"
+            :item="item"
+            :goods-info.sync="selectedGoodsInfo"
+            :fields="fields"
         ></sku-action>
 
-        <van-goods-action style="z-index: 100000">
-            <van-goods-action-icon replace to="/home" icon="wap-home-o" text="首页" />
-            <van-goods-action-icon replace to="/cart/index" icon="cart-o" text="购物车" :badge="cartCount" />
-            <van-goods-action-icon icon="star" @click="favorite" text="收藏" :color="collect" />
-            <van-goods-action-button @click="onAddCartClicked" type="warning" text="加入购物车" />
-            <van-goods-action-button @click="onBuyClicked" type="danger" text="立即购买" />
-        </van-goods-action>
+        <goods-action>
+            <goods-action-icon icon="home" @click="$router.replace('/')" text="首页"></goods-action-icon>
+            <goods-action-icon icon="cart" @click="$router.replace('/cart/index')" text="购物车" :count="cartCount"></goods-action-icon>
+            <goods-action-icon icon="collect" text="收藏" @click="favorite" :active="collect"></goods-action-icon>
+            <goods-action-button type="cart" @click="onAddCartClicked" text="加入购物车"></goods-action-button>
+            <goods-action-button type="buy" @click="onBuyClicked" text="立即购买"></goods-action-button>
+        </goods-action>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
-    import { PullRefresh,NavBar, Swipe, SwipeItem } from 'vant';
-    import { GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant';
+    import { PullRefresh, Swipe, SwipeItem } from 'vant';
     import { Lazyload,Toast } from 'vant';
     import SkuAction from '../../components/sku-action/sku-action';
+    import GoodsAction from "../../components/goods-action/goods-action";
+    import GoodsActionButton from "../../components/goods-action/goods-action-button";
+    import GoodsActionIcon from "../../components/goods-action/goods-action-icon";
+    import NavBar from '../../components/nav-bar/nav-bar';
     Toast.setDefaultOptions({ duration: 5000 });
     Vue.use(Lazyload);
     export default {
@@ -90,7 +94,7 @@
                 fields:["id"],
                 isSkuStatus: false,
                 images: [],
-                collect: '#ccc',
+                collect: false,
                 cartCount: 0,
                 current: 0,
                 isRefresh: false,
@@ -111,7 +115,7 @@
                 this.$http.getGoodsDetail({
                     id: this.$route.params.id
                 }).then((result)=>{
-                    this.collect = result.data.collect ? "#ff5000" : "#ccc";
+                    this.collect = result.data.collect ? true : false;
                     this.products = result.data.goods;
                     this.attribute = result.data.attr;
                     this.item = result.data.item;
@@ -126,7 +130,7 @@
                         id: this.$route.params.id
                     }).then((result)=>{
                         if(result.status){
-                            this.collect = result.data == 1 ? "#ff5000" : "#ccc";
+                            this.collect = result.data == 1 ? true : false;
                         }else{
                             Toast(result.info);
                         }
@@ -274,7 +278,7 @@
         background-color: #fff;
         width: 100%;
         margin-top: 15px;
-        margin-bottom: 50px;
+        margin-bottom: 0px;
         .title {
             font-size: 16px;
             color: #282828;
