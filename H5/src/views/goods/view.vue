@@ -278,7 +278,7 @@
         background-color: #fff;
         width: 100%;
         margin-top: 15px;
-        margin-bottom: 0px;
+        margin-bottom: 50px;
         .title {
             font-size: 16px;
             color: #282828;

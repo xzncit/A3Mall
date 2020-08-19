@@ -147,6 +147,16 @@ export function getGoodsRecommend(params) {
     });
 }
 
+export function getGoodsComments(params) {
+    return new Promise((resolve, reject) => {
+        request.get("/comments/list",params).then((result)=>{
+            resolve(result);
+        }).catch((error)=>{
+            reject(error);
+        });
+    });
+}
+
 export function getGoodsDetail(params) {
     return new Promise((resolve, reject) => {
         request.get("/goods/view",params).then((result)=>{

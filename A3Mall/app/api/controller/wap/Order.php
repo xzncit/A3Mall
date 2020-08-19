@@ -36,7 +36,7 @@ class Order extends Auth {
 
         if(count($array) <= 0){
             return $this->returnAjax("请选择需要购买的商品",0);
-        }else if(empty($type) || !in_array($type,["buy","cart","group","point","second","special","activity"])){
+        }else if(empty($type) || !in_array($type,["buy","cart","group","point","second","special","regiment"])){
             return $this->returnAjax("非法操作",0);
         }
 
@@ -171,7 +171,7 @@ class Order extends Auth {
 
         if(count($array) <= 0){
             return $this->returnAjax("请选择需要购买的商品",0);
-        }else if(empty($type) || !in_array($type,["buy","cart","group","point","second","special","activity"])){
+        }else if(empty($type) || !in_array($type,["buy","cart","group","point","second","special","regiment"])){
             return $this->returnAjax("非法操作",0);
         }
 

@@ -64,10 +64,6 @@
             <div class="content-box">
                 <div class="title">我的服务</div>
                 <div class="list-box service-box">
-                    <div class="box" @click="go('/spread/index')">
-                        <span><img src="../../assets/images/ucenter/6.png"></span>
-                        <span>我的推广</span>
-                    </div>
                     <div class="box" @click="go('/ucenter/wallet')">
                         <span><img src="../../assets/images/ucenter/7.png"></span>
                         <span>我的钱包</span>

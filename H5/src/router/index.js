@@ -250,6 +250,12 @@ const routes = [
         component:()=>import("../views/goods/view")
     },
     {
+        path:'/comments/:type/:id/',
+        name: 'Comments',
+        meta: { title: "", tabbar: false, auth: false },
+        component:()=>import("../views/comments/view")
+    },
+    {
         path:'/goods/hot',
         name: 'GoodsHot',
         meta: { title: "", tabbar: false, auth: false },

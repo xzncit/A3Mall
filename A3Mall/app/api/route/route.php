@@ -23,6 +23,7 @@ Route::group(function(){
     Route::get('goods/list', 'api/wap.goods/index');
     Route::get('products/hot', 'api/wap.products/hot');
     Route::get('products/recommend', 'api/wap.products/recommend');
+    Route::get('comments/list', 'api/wap.comments/index');
     Route::post('public/login', 'api/wap.users/login');
     Route::get('send_sms', 'api/wap.users/send_sms');
     Route::post('register', 'api/wap.users/register');

@@ -8,7 +8,6 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wap;
 
-use mall\utils\BC;
 use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
@@ -19,13 +18,11 @@ class Regiment extends Auth {
         $page = Request::param("page","1","intval");
         $size = 10;
 
-
         $count = Db::name("promotion_regiment")
             ->alias('r')
             ->join("goods g","r.goods_id=g.id","LEFT")
             ->where("r.end_time",">",time())
             ->where('g.status',0)->count();
-
 
         $total = ceil($count/$size);
         if($total == $page -1){
@@ -57,10 +54,9 @@ class Regiment extends Auth {
         $id = Request::param("id","0","intval");
         $goods = Db::name("promotion_regiment")
             ->alias("pg")
-            ->field("g.*,pg.id as regiment_id,pg.sell_price as pg_sell_price,pg.store_nums as pg_store_nums,pg.sum_count as pg_sum_count,pg.end_time")
+            ->field("g.*,pg.id as regiment_id,pg.sell_price as pg_sell_price,pg.store_nums as pg_store_nums,pg.sum_count as pg_sum_count,pg.start_time,pg.end_time")
             ->join("goods g","pg.goods_id=g.id","LEFT")
             ->where("g.status",0)->where("pg.id",$id)
-            ->where("pg.end_time",">",time())
             ->find();
 
         if(empty($goods)){
@@ -155,9 +151,9 @@ class Regiment extends Auth {
             "store_nums"=>$goods["pg_store_nums"],
             "sale"=>$goods["pg_sum_count"],
             "content"=>$goods["content"],
-            "start_time"=>time(),
-            "end_time"=>$goods["end_time"],
-            "now_time"=>time()
+            "now_time"=>time(),
+            "start_time"=>$goods["start_time"],
+            "end_time"=>$goods["end_time"]
         ];
 
         return $this->returnAjax("ok",1,$data);

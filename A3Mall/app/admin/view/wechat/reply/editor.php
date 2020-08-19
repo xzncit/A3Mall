@@ -84,7 +84,7 @@
                                                 <div class="layui-form-item data-type" data-type="text">
                                                     <label class="layui-form-label">回复内容</label>
                                                     <div class="layui-input-block">
-                                                        <textarea class="layui-textarea" name="content">{$data.content}</textarea>
+                                                        <textarea class="layui-textarea" name="content">{$data.content|default=''}</textarea>
                                                     </div>
                                                 </div>
 

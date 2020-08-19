@@ -219,7 +219,7 @@ export default {
             this.$tools.prev();
         }
 
-        if(this.$tools.in_array(type,["buy","point","second","group","special","activity"])){
+        if(this.$tools.in_array(type,["buy","point","second","regiment","special","activity"])){
             params.sku_id = this.$route.query.sku_id;
             params.num = this.$route.query.num;
             if(this.$route.query.kid){

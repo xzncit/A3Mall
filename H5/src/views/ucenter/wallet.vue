@@ -1,6 +1,12 @@
 <template>
     <div>
-
+        <nav-bar
+                left-arrow
+                :fixed="true"
+                :transparent="true"
+                :z-index="9999"
+                @click-left="prev"
+        />
         <div class="header">
             <div class="title">我的钱包</div>
 <!--            <div class="recharge">充值 &gt;</div>-->
@@ -75,8 +81,12 @@
 </template>
 
 <script>
+    import NavBar from '../../components/nav-bar/nav-bar';
     export default {
         name: 'Wallet',
+        components: {
+            [NavBar.name]: NavBar
+        },
         data() {
             return {
                 clientHeight: window.outerHeight - 50,
@@ -97,7 +107,9 @@
             });
         },
         methods: {
-
+            prev() {
+                this.$tools.prev();
+            }
         }
     }
 </script>
@@ -116,7 +128,7 @@
         color: #fff;
         font-size: 17px;
         position: absolute;
-        top: 20px;
+        top: 13px;
         left: 0;
         text-align: center;
     }

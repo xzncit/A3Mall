@@ -1,6 +1,6 @@
 <template>
     <div>
-        <van-nav-bar
+        <nav-bar
                 title="商品详情"
                 left-arrow
                 :fixed="true"
@@ -8,6 +8,7 @@
                 :z-index="9999"
                 @click-left="prev"
         />
+
         <div :style="'height:'+clientHeight+'px'">
             <van-pull-refresh v-model="isRefresh" @refresh="onRefresh">
                 <van-swipe class="swiper-box" :autoplay="3000" @change="onChange">
@@ -21,30 +22,26 @@
                     </template>
                 </van-swipe>
 
-                <div class="count-down-time">
-                    <count-down
-                            :currentTime="products.now_time"
-                            :startTime="products.start_time"
-                            :endTime="products.end_time"
-                            :tipText="'离团购开始:'"
-                            :tipTextEnd="'离团购结束'"
-                            :endText="'团购己结束'"
-                            :dayTxt="'天'"
-                            :hourTxt="'小时'"
-                            :minutesTxt="'分钟'"
-                            :secondsTxt="'秒'">
-                    </count-down>
+                <div class="goods-price">
+                    <div class="price">
+                        <span>￥<i>{{ products.sell_price }}</i></span>
+                        <span>原价格<i>￥{{ products.market_price }}</i></span>
+                    </div>
+                    <div class="count-down-box">
+                        <count-down
+                                :now-time="products.now_time"
+                                :start-time="products.start_time"
+                                :end-time="products.end_time"
+                                :status.sync="isActivityStatus"
+                        ></count-down>
+                    </div>
                 </div>
 
                 <div class="goods-info clear">
-                    <div class="price">
-                        <span>￥<i>{{ products.sell_price }}</i><strong>团购价</strong></span>
-                    </div>
                     <div class="title">
                         {{ products.title }}
                     </div>
                     <div class="goods-info-box">
-                        <span>￥<i>{{ products.market_price }}</i></span>
                         <span>库存: {{ products.store_nums }}件</span>
                         <span>销量: {{ products.sale }}件</span>
                     </div>
@@ -70,20 +67,23 @@
                 :fields="fields"
         ></sku-action>
 
-        <van-goods-action style="z-index: 100000">
-            <van-goods-action-icon replace to="/home" icon="wap-home-o" text="首页" />
-            <van-goods-action-button @click="onBuyClicked" type="danger" text="立即购买" />
-        </van-goods-action>
+        <goods-action>
+            <goods-action-icon icon="home" @click="$router.replace('/')" text="首页"></goods-action-icon>
+            <goods-action-button type="buy" @click="onBuyClicked" text="立即购买"></goods-action-button>
+        </goods-action>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
-    import { PullRefresh,NavBar, Swipe, SwipeItem } from 'vant';
-    import { GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant';
-    import CountDown from '../../components/count-down/countdown'
+    import { PullRefresh, Swipe, SwipeItem } from 'vant';
+    import CountDown from '../../components/count-down/count-down'
     import { Lazyload,Toast } from 'vant';
     import SkuAction from '../../components/sku-action/sku-action';
+    import NavBar from '../../components/nav-bar/nav-bar';
+    import GoodsAction from "../../components/goods-action/goods-action";
+    import GoodsActionButton from "../../components/goods-action/goods-action-button";
+    import GoodsActionIcon from "../../components/goods-action/goods-action-icon";
     Toast.setDefaultOptions({ duration: 5000 });
     Vue.use(Lazyload);
     export default {
@@ -111,6 +111,7 @@
                 cartCount: 0,
                 current: 0,
                 isRefresh: false,
+                isActivityStatus:false,
                 clientHeight: window.outerHeight - 50
             };
         },
@@ -140,6 +141,11 @@
                 },1500);
             },
             onBuyClicked(){
+                if(this.isActivityStatus == false){
+                    Toast("活动己结束！");
+                    return false;
+                }
+
                 if(this.isSkuStatus == false){
                     this.isSkuStatus = true;
                     return ;
@@ -152,11 +158,11 @@
 
                 this.$store.dispatch("isUsers").then(()=>{
                     this.$router.push({ path: "/cart/confirm", query: {
-                            id: this.selectedGoodsInfo.id,
-                            sku_id: this.selectedGoodsInfo.selectedSku.id,
-                            num: this.selectedGoodsInfo.num,
-                            type: "group"
-                        }});
+                        id: this.selectedGoodsInfo.id,
+                        sku_id: this.selectedGoodsInfo.selectedSku.id,
+                        num: this.selectedGoodsInfo.num,
+                        type: "regiment"
+                    }});
                 }).catch(()=>{
                     this.$storage.set("VUE_REFERER","/regiment/view/"+this.$route.params.id);
                     this.$router.push("/public/login");
@@ -188,39 +194,79 @@
             border-radius: 6px;
         }
     }
-    .count-down-time{
-        padding: 5px 15px 5px 15px;
-        background-color: #fff;
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-        div{
-            color: #c21313;
+    .goods-price{
+        width: 100%;
+        height: 70px;
+        background-image: url(../../assets/images/bg/regiment-bg.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        .price {
+            height: 70px;
+            float: left;
+            margin-left: 16px;
+            span {
+                display: block;
+                color: #fff;
+                &:first-child {
+                    font-size: 21px;
+                    padding-top: 12px;
+                    font-style: normal;
+                }
+                &:last-child {
+                    font-size: 12px;
+                    padding-top: 0px;
+                    i {
+                        font-style: normal;
+                        font-size: 13px;
+                        position: relative;
+                        top: 1px;
+                        text-decoration:line-through;
+                        padding-left: 2px;
+                    }
+                }
+            }
         }
-        font-size: 14px;
+    }
+    .count-down-box {
+        float: right;
+        height: 70px;
+        /deep/.simple{
+            .wrap-simple{
+                color: #fff;
+                height: 70px;
+                font-size: 13px;
+                padding-right: 16px;
+                padding-top: 10px;
+                .before {
+                    color: #ffed51;
+                    display: block;
+                }
+                .day,.hour,.minute,.second{
+                    i {
+                        display: inline-block;
+                    }
+                    i:first-child{
+                        background-color: #ffc241;
+                        color: #000;
+                        border-radius: 3px;
+                        min-width: 20px;
+                        height: 18px;
+                        text-align: center;
+                    }
+                    i:last-child{
+                        color: #ffc241;
+                        padding: 0 2px;
+                    }
+                }
+            }
+            .tips-simple{ color: #ffc241; padding-right: 16px; height: 70px; line-height: 70px }
+        }
     }
     .goods-info{
         background-color: #fff;
-        i {
-            font-style: normal;
-        }
-        .price{
-            display: block;
-            padding: 15px 15px 5px 15px;
-            color: red;
-            font-size: 14px;
-            i {
-                font-size: 18px;
-            }
-            strong{
-                position: relative;
-                top: -1px;
-                font-size: 15px;
-                left: 3px;
-            }
-        }
         .title{
             display: block;
-            padding: 0 15px;
+            padding: 12px 15px 3px 15px;
             color: #333;
             font-size: 16px;
         }
@@ -232,18 +278,12 @@
             flex-wrap: nowrap;
             justify-content: center;
             span {
-                width: 33.33%;
+                width: 50%;
                 height: 40px;
                 line-height: 40px;
-                text-align: center;
-                font-size: 13px;
-                color: #555;
-            }
-            span:nth-child(1){
                 text-align: left;
-            }
-            span:nth-child(3){
-                text-align: right;
+                font-size: 15px;
+                color: #888;
             }
         }
     }

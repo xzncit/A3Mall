@@ -202,7 +202,7 @@ class Promotion {
                 $data["activity_id"] = $point["id"];
                 $data["goods_id"] = $point["goods_id"];
                 break;
-            case "group":
+            case "regiment":
                 if(($regiment = Db::name("promotion_regiment")
                         ->where("store_nums",">","0")
                         ->where("end_time",">",time())

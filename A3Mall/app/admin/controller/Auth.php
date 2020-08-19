@@ -46,10 +46,14 @@ class Auth extends Base {
             ->where('status=0 AND ((controller="'.$controller.'" AND method="'.$action.'") OR (controller="'.$controller.'" AND FIND_IN_SET("'.$action.'",active)))')
             ->find();
 
-        while ($data["pid"] != 0){
+        while(!empty($data) && $data["pid"] != 0){
             $data = Db::name("system_menu")
                 ->where(["status"=>0,"id"=>$data["pid"]])
                 ->find();
+        }
+
+        if(empty($data)){
+            return ;
         }
 
         foreach($result as $key=>$value){

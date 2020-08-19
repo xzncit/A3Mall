@@ -493,7 +493,7 @@ class Order {
     }
 
     public static function getOrderType($type=""){
-        $arr = ["point"=>1,"group"=>2,"second"=>3,"special"=>4,"activity"=>5,"buy"=>0,"cart"=>0];
+        $arr = ["point"=>1,"regiment"=>2,"second"=>3,"special"=>4,"group"=>5,"buy"=>0,"cart"=>0];
         return isset($arr[$type]) ? $arr[$type] : 0;
     }
 
