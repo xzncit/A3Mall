@@ -21,7 +21,6 @@ class Regiment extends Auth {
         $count = Db::name("promotion_regiment")
             ->alias('r')
             ->join("goods g","r.goods_id=g.id","LEFT")
-            ->where("r.end_time",">",time())
             ->where('g.status',0)->count();
 
         $total = ceil($count/$size);
