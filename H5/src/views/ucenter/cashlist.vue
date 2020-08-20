@@ -1,12 +1,17 @@
 <template>
     <div>
-        <van-nav-bar
-                title="提现记录"
-                left-arrow
-                :fixed="true"
-                :placeholder="true"
-                @click-left="prev"
+        <nav-bar
+            title="提现记录"
+            left-arrow
+            :fixed="true"
+            :placeholder="true"
+            @click-left="prev"
         />
+
+        <div class="top">
+            <span>总余额：￥{{amount}}</span>
+            <span @click="$router.push('/ucenter/recharge')">去提现</span>
+        </div>
 
         <div class="list-wrap">
             <van-empty v-if="isEmpty" :image="emptyImage" :description="emptyDescription" />
@@ -20,14 +25,20 @@
 
                 <div class="list-box clear">
                     <div class="list-item clear" v-for="(item, index) in list" :key="index">
-                        <div class="item-box clear">
-                            <div class="ll clear">
-                                <span>{{item.description}}</span>
+                        <div class="t">
+                            <span>转帐</span>
+                            <span>-￥{{item.amount}}</span>
+                        </div>
+                        <div class="box">
+                            <div>
+                                <span><i class="icon iconfont">&#xe619;</i>申请时间</span>
                                 <span>{{item.time}}</span>
                             </div>
-                            <div class="rr">
-                                -{{item.amount}}
+                            <div>
+                                <span><i class="icon iconfont">&#xe610;</i>申请状态</span>
+                                <span :class="{'c-1': item.status==0,'c-2': item.status==1,'c-3': item.status==2}">{{item.text}}</span>
                             </div>
+                            <div v-if="item.description">{{item.description}}</div>
                         </div>
                     </div>
                 </div>
@@ -39,7 +50,7 @@
 </template>
 
 <script>
-    import { NavBar } from 'vant';
+    import NavBar from '../../components/nav-bar/nav-bar';
     import { List,Empty,Toast } from 'vant';
     export default {
         components: {
@@ -49,6 +60,7 @@
         },
         data() {
             return {
+                amount: '',
                 list: [],
                 loading: false,
                 finished: false,
@@ -60,7 +72,14 @@
             };
         },
         created() {
-
+            let users = this.$storage.get("users",true);
+            this.amount = users.amount;
+            this.$http.getUcenter().then((res)=>{
+                if(res.status){
+                    this.amount = users.amount = res.data.amount;
+                    this.$store.commit("UPDATEUSERS",users);
+                }
+            });
         },
         methods: {
             changeData(index){
@@ -108,52 +127,58 @@
 </script>
 
 <style lang="scss" scoped>
+    .top{
+        height: 70px;
+        line-height: 70px;
+        background-color: #b91922;
+        color: #fff;
+        padding: 0 15px;font-size: 16px;
+        span:first-child { float: left; }
+        span:last-child { font-size: 15px; margin-top: 20px; float: right; width: 100px; height: 30px; line-height: 30px; text-align: center; border-radius: 30px; border:1px solid #fff; }
+    }
     .list-wrap{
         width: 100%;
         margin-top: 10px;
         .list-item{
-            width: 92%;
+            width: 100%;
             height: auto !important;
-            height: 80px;
-            min-height: 80px;
-            border-radius: 5px;
+            height: 110px;
             background-color: #fff;
-            margin:  0 auto;
-            margin-bottom: 10px;
             font-size: 13px;
-            .item-box{
-                height: auto !important;
-                height: 80px;
-                min-height: 80px;
-                position: relative;
-                .ll {
-                    float: left;
-                    width: 55%;
-                    span{
-                        display: block;
-                        padding-left: 5%;
-                        float: left;
-                    }
-                    span:first-child{
-                        font-size: 13px;
-                        color: #333;
-                        margin-top: 15px;
-                    }
-                    span:last-child{
-                        font-size: 12px;
-                        color: #999;
-                        margin-top: 5px;
-                    }
+            margin-bottom: 10px;
+            .t {
+                height: 40px;
+                line-height: 40px;
+                border-bottom: 1px solid #ebebeb;
+                span { font-size: 16px; color: #333; }
+                span:first-child {
+                    padding-left: 16px; float: left;
                 }
-                .rr {
-                    float: right;
-                    width: 35%;
-                    height: 80px;
-                    line-height: 80px;
-                    text-align: right;
-                    padding-right: 5%;
-                    color:#fc4141;
-                    font-size: 16px;
+                span:last-child {
+                    padding-right: 16px; float: right;
+                }
+            }
+            .box {
+                height: 68px;
+                width: 100%;
+                div {
+                    width: 100%;
+                    height: 16px;
+                    float: left;
+                    font-size: 14px; color: #888;
+                    padding-top: 10px;
+                    span {
+                        i { padding-right: 5px; position: relative; top: 1px; }
+                    }
+                    span:first-child { padding-left: 16px; float: left; }
+                    span:last-child { padding-right: 16px; float: right; }
+                    .c-1 { color: #888; }
+                    .c-3 { color: #b91922; }
+                    .c-2 { color: green; }
+
+                    &:nth-child(3) {
+                        padding: 10px 16px;
+                    }
                 }
             }
         }

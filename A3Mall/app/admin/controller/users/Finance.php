@@ -96,7 +96,7 @@ class Finance extends Auth {
     public function apply(){
         if(Request::isAjax()){
             $limit = Request::get("limit");
-            $condition = ["withdraw_log.withdraw_type"=>0];
+            $condition = [];
 
             $usersWithdrawLog = new UsersWithdrawLog();
             $list = $usersWithdrawLog->get_list($condition,$limit);
@@ -106,8 +106,8 @@ class Finance extends Auth {
             }
 
             foreach($list['data'] as $key=>$item){
-                $list['data'][$key]["type"] = $this->type[$item["type"]];
-                $list['data'][$key]["status"] = $this->status[$item["status"]];
+                $list['data'][$key]["type_name"] = $this->type[$item["type"]];
+                $list['data'][$key]["status_name"] = $this->status[$item["status"]];
                 // 提现方式
                 $str = '';
                 if($item["type"] == 1){

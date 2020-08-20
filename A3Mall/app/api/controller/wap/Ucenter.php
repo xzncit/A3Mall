@@ -63,17 +63,14 @@ class Ucenter extends Auth {
     }
 
     public function favorite_delete(){
-        $id = Request::param("id","","intval");
-        $condition = [
-            "user_id"=>Users::get("id"),
-            "id"=>$id
-        ];
+        $id = Request::param("id","");
+        $id = array_map("intval",explode(",",$id));
 
-        if(!Db::name("users_favorite")->where($condition)->count()){
+        if(!Db::name("users_favorite")->where("user_id",Users::get("id"))->where("id","in",$id)->count()){
             return $this->returnAjax("删除失败，请检查是否连接",0);
         }
 
-        Db::name("users_favorite")->where($condition)->delete();
+        Db::name("users_favorite")->where("user_id",Users::get("id"))->where("id","in",$id)->delete();
         return $this->returnAjax("ok",1);
     }
 
@@ -517,9 +514,12 @@ class Ucenter extends Auth {
             ->order('id DESC')->select()->toArray();
 
         $list = [];
+        $status = ["0"=>"审核中","1"=>"己提现","2"=>"未通过"];
         foreach($data as $key=>$value){
             $list[$key]["description"] = $value["msg"];
             $list[$key]["amount"] = $value["price"];
+            $list[$key]['status'] = $value["status"];
+            $list[$key]['text'] = $status[$value["status"]];
             $list[$key]['time'] = date("Y-m-d H:i:s",$value["create_time"]);
         }
 
@@ -529,6 +529,55 @@ class Ucenter extends Auth {
             "total"=>$total,
             "size"=>$size
         ]);
+    }
+
+    public function settlement(){
+        $setting = Db::name("setting")->where(["name"=>"users"])->value("value");
+        $setting = json_decode($setting,true);
+        $setting["bank"] = explode("|",$setting["bank"]);
+        return $this->returnAjax("ok",1,[
+            "bank"=>$setting["bank"],
+            "money"=>Users::get("amount")
+        ]);
+    }
+
+    public function settlement_save(){
+        $data = Request::post();
+        $setting = Db::name("setting")->where(["name"=>"users"])->value("value");
+        $setting = json_decode($setting,true);
+        if(Db::name("users_withdraw_log")->where(["user_id"=>Users::get("id"),"status"=>0,"withdraw_type"=>1])->count()){
+            return $this->returnAjax("您还有提现申请未处理。",0);
+        }
+
+        if(empty($data["name"])){
+            return $this->returnAjax("请填写持卡人。",0);
+        }
+
+        if(empty($data["code"])){
+            return $this->returnAjax("请填写卡号。",0);
+        }
+
+        if(empty($data["price"])){
+            return $this->returnAjax("请填写金额。",0);
+        }
+
+        if($data["price"] < $setting["amount"]){
+            return $this->returnAjax("提现金额不能小于" . $setting["amount"],0);
+        }
+
+        Db::name("users_withdraw_log")->insert([
+            "user_id"=>Users::get("id"),
+            "withdraw_type"=>1,
+            "bank_name"=>$data["bank_type"],
+            "bank_real_name"=>$data["name"],
+            "type"=>1,
+            "code"=>$data["code"],
+            "price"=>$data["price"],
+            "status"=>0,
+            "create_time"=>time()
+        ]);
+
+        return $this->returnAjax("申请提现成功，请等待管理员审核");
     }
 
     public function avatar() {

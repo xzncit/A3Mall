@@ -16,6 +16,19 @@
             <form action="" class="layui-form layui-form-pane">
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">提现金额</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="amount" value="{$data.amount|default='0.00'}" lay-reqtext="请填写提现最低金额" lay-verify="required" placeholder="请输入提现最低金额" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">提现银行</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="请输入提现银行" name="bank" class="layui-textarea">{$data.bank|default=""}</textarea>
+                            </div>
+                        </div>
 
                         <div class="layui-form-item">
                             <label class="layui-form-label">禁止名单</label>

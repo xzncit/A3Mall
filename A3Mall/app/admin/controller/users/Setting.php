@@ -22,12 +22,14 @@ class Setting extends Auth {
         if(Request::isAjax()){
             $data = Request::post();
             $data["username"] = strip_tags(trim($data["username"]));
-            $setting->saveConfigData("api",$data);
+            $data["amount"] = (float)$data["amount"];
+            $data["bank"] = strip_tags(trim($data["bank"]));
+            $setting->saveConfigData("users",$data);
             return Response::returnArray("操作成功",1);
         }
 
         return View::fetch("",[
-            "data"=>$setting->getConfigData("api")
+            "data"=>$setting->getConfigData("users")
         ]);
     }
 

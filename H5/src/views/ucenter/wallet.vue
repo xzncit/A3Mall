@@ -24,7 +24,7 @@
         <div class="log">
             <div @click="$router.push('/ucenter/bill/cashlist')">
                 <span><img src="../../assets/images/wallet/1.png"></span>
-                <span>提现记录</span>
+                <span>申请提现</span>
             </div>
             <div @click="$router.push('/ucenter/bill/fund')">
                 <span><img src="../../assets/images/wallet/2.png"></span>

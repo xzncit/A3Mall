@@ -57,9 +57,9 @@
                         </div>
 
                         <div class="layui-form-item">
-                            <label class="layui-form-label">备注：</label>
+                            <label class="layui-form-label">说明：</label>
                             <div class="layui-input-block">
-                                <textarea placeholder="请输入备注" name="msg" class="layui-textarea">{$row.msg|default=""}</textarea>
+                                <textarea placeholder="请输入说明" name="msg" class="layui-textarea">{$row.msg|default=""}</textarea>
                             </div>
                         </div>
 

@@ -20,7 +20,13 @@
 </script>
 
 <script type="text/html" id="list-bar">
-    <a class="layui-btn layui-btn-xs" lay-event="handle">处理</a>
+    {{# if(d.status == 0){ }}
+    <a class="layui-btn layui-btn-xs" lay-event="handle">待处理</a>
+    {{# } }}
+
+    {{# if(d.status != 0){ }}
+    <a class="layui-btn layui-btn-xs layui-btn-danger">己处理</a>
+    {{# } }}
 </script>
 
 <style type="text/css">.layui-table-cell{ height:auto !important; } </style>
@@ -38,10 +44,10 @@ layui.use(['table','form'], function () {
         , cols: [[
                   {type: 'checkbox'}
                 , {field: 'username', title: '会员名称',width:150}
-                , {field: 'type', title: '支付类型',width:150}
+                , {field: 'type_name', title: '支付类型',width:150}
                 , {field: 'string', title: '提现方式'}
                 , {field: 'price', title: '提现金额',width:150,align:'center'}
-                , {field: 'status', title: '审核状态',width:150,align:'center'}
+                , {field: 'status_name', title: '审核状态',width:150,align:'center'}
                 , {field: 'create_time', title: '创建时间',width:180,align:'center'}
                 , {align: 'center', title: '操作', toolbar: '#list-bar', width: 80}
             ]]

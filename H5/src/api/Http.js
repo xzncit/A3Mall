@@ -531,9 +531,9 @@ export function getWallet() {
     })
 }
 
-export function getWalletFund(params) {
+export function getWalletCashlist(params) {
     return new Promise((resolve, reject) => {
-        request.get("/ucenter/wallet/fund",params).then((res)=>{
+        request.get("/ucenter/wallet/cashlist",params).then((res)=>{
             resolve(res)
         }).catch(err=>{
             reject(err)
@@ -541,9 +541,29 @@ export function getWalletFund(params) {
     })
 }
 
-export function getWalletCashlist(params) {
+export function getWalletSettlement() {
     return new Promise((resolve, reject) => {
-        request.get("/ucenter/wallet/cashlist",params).then((res)=>{
+        request.get("/ucenter/settlement").then(res=>{
+            resolve(res)
+        }).catch(err=>{
+            reject(err)
+        });
+    })
+}
+
+export function editWalletSettlement(params) {
+    return new Promise((resolve, reject) => {
+        request.post("/ucenter/settlement_save",params).then(res=>{
+            resolve(res)
+        }).catch(err=>{
+            reject(err)
+        });
+    })
+}
+
+export function getWalletFund(params) {
+    return new Promise((resolve, reject) => {
+        request.get("/ucenter/wallet/fund",params).then((res)=>{
             resolve(res)
         }).catch(err=>{
             reject(err)

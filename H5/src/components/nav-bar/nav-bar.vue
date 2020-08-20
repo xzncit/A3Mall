@@ -4,9 +4,10 @@
             <div class="nav-bar-left" v-if="leftArrow" @click="left">
                 <i class="icon iconfont" :class="{'nav-bar-icon':transparent}" style="font-size: 18px;">&#xe60d;</i>
             </div>
-            <div class="nav-bar-middle">{{title}}</div>
+            <div class="nav-bar-middle" :class="{'nav-bar-title':transparent}">{{title}}</div>
             <div class="nav-bar-right" v-if="rightArrow" @click="right">
-                <i class="icon iconfont" :class="{'nav-bar-icon':transparent}" style="font-size: 20px;color: #999">&#xe60e;</i>
+                <i v-if="rightIcon=='share'" class="icon iconfont" :class="{'nav-bar-icon':transparent}" style="font-size: 18px;">&#xe60e;</i>
+                <i v-if="rightIcon=='delete'" class="icon iconfont" :class="{'nav-bar-icon':transparent}" style="font-size: 16px;">&#xe652;</i>
             </div>
         </div>
     </div>
@@ -43,6 +44,10 @@
             rightArrow: {
                 type: Boolean,
                 default: false
+            },
+            rightIcon: {
+                type: String,
+                default: ""
             }
         },
         data(){
@@ -112,6 +117,9 @@
         color: #323233;
         font-weight: 500;
         font-size: 16px;
+    }
+    .nav-bar-title {
+        color: #fff;
     }
     .nav-bar-left {
         left: 0;
