@@ -57,7 +57,7 @@ class Point extends Auth {
         $id = Request::param("id","0","intval");
         $goods = Db::name("promotion_point")
             ->alias("pg")
-            ->field("g.*,pg.id as point_id,pg.point,pg.store_nums as pg_store_nums,pg.sum_count as pg_sum_count,pg.end_time")
+            ->field("g.*,pg.id as point_id,pg.point,pg.store_nums as pg_store_nums,pg.sum_count as pg_sum_count,pg.start_time,pg.end_time")
             ->join("goods g","pg.goods_id=g.id","LEFT")
             ->where("g.status",0)->where("pg.id",$id)
             ->where("pg.end_time",">",time())
@@ -155,12 +155,11 @@ class Point extends Auth {
             "store_nums"=>$goods["pg_store_nums"],
             "sale"=>$goods["pg_sum_count"],
             "content"=>$goods["content"],
-            "start_time"=>time(),
+            "start_time"=>$goods["start_time"],
             "end_time"=>$goods["end_time"],
             "now_time"=>time()
         ];
 
         return $this->returnAjax("ok",1,$data);
     }
-
 }

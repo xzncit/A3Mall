@@ -1,6 +1,6 @@
 <template>
     <div>
-        <van-nav-bar
+        <nav-bar
                 title="商品详情"
                 left-arrow
                 :fixed="true"
@@ -22,15 +22,18 @@
                         </template>
                     </van-swipe>
 
-                    <div class="goods-info clear">
+                    <div class="goods-price">
                         <div class="price">
-                            <span><i>{{ products.sell_price }}</i> 分</span>
+                            <span><i class="icon iconfont">&#xe65e;</i><i>{{ products.sell_price }}</i><i>积分</i></span>
+                            <span>原价格<i>￥{{ products.market_price }}</i></span>
                         </div>
+                    </div>
+
+                    <div class="goods-info clear">
                         <div class="title">
                             {{ products.title }}
                         </div>
                         <div class="goods-info-box">
-                            <span>原价格：<i>{{ products.market_price }}</i></span>
                             <span>库存: {{ products.store_nums }}件</span>
                             <span>销量: {{ products.sale }}件</span>
                         </div>
@@ -47,12 +50,12 @@
             </div>
 
             <sku-action
-                v-model="isSkuStatus"
-                :goods="products"
-                :attribute="attribute"
-                :item="item"
-                :goods-info.sync="selectedGoodsInfo"
-                :fields="fields"
+                    v-model="isSkuStatus"
+                    :goods="products"
+                    :attribute="attribute"
+                    :item="item"
+                    :goods-info.sync="selectedGoodsInfo"
+                    :fields="fields"
             >
                 <template #sku-header-price="props">
                     <div class="sku-header-goods-price">
@@ -62,21 +65,24 @@
                 </template>
             </sku-action>
 
-            <van-goods-action style="z-index: 100000">
-                <van-goods-action-icon replace to="/home" icon="wap-home-o" text="首页" />
-                <van-goods-action-button @click="onGoBuy" type="warning" text="去购买" />
-                <van-goods-action-button @click="onBuyClicked" type="danger" text="积分兑换" />
-            </van-goods-action>
+            <goods-action>
+                <goods-action-icon icon="home" @click="$router.replace('/')" text="首页"></goods-action-icon>
+                <goods-action-button type="cart" @click="onGoBuy" text="去购买"></goods-action-button>
+                <goods-action-button type="buy" @click="onBuyClicked" text="积分兑换"></goods-action-button>
+            </goods-action>
         </div>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
-    import { PullRefresh,NavBar, Swipe, SwipeItem } from 'vant';
-    import { GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant';
+    import { PullRefresh, Swipe, SwipeItem } from 'vant';
     import { Lazyload,Toast } from 'vant';
     import SkuAction from '../../components/sku-action/sku-action';
+    import NavBar from '../../components/nav-bar/nav-bar';
+    import GoodsAction from "../../components/goods-action/goods-action";
+    import GoodsActionButton from "../../components/goods-action/goods-action-button";
+    import GoodsActionIcon from "../../components/goods-action/goods-action-icon";
     Toast.setDefaultOptions({ duration: 5000 });
     Vue.use(Lazyload);
     export default {
@@ -186,25 +192,57 @@
             border-radius: 6px;
         }
     }
-    .goods-info{
-        background-color: #fff;
-        i {
-            font-style: normal;
-        }
-        .price{
-            display: block;
-            padding: 15px 15px 5px 15px;
-            color: red;
-            font-size: 14px;
-            i {
-                font-size: 18px;
-                position: relative;
-                top: 1px;
+    .goods-price{
+        width: 100%;
+        height: 70px;
+        background-color: #b91922;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        .price {
+            height: 70px;
+            float: left;
+            margin-left: 16px;
+            span {
+                display: block;
+                color: #fff;
+                &:first-child {
+                    font-size: 21px;
+                    padding-top: 12px;
+                    font-style: normal;
+                    i:nth-child(1){
+                        font-size: 21px;
+                        color: #fbcb40; padding-right: 3px;
+                    }
+                    i:nth-child(2){
+                        font-size: 21px;
+                    }
+                    i:nth-child(3){
+                        font-size: 13px;
+                        position: relative;
+                        top: -2px;
+                        padding-left: 5px;
+                    }
+                }
+                &:last-child {
+                    font-size: 12px;
+                    padding-top: 0px;
+                    i {
+                        font-style: normal;
+                        font-size: 13px;
+                        position: relative;
+                        top: 1px;
+                        text-decoration:line-through;
+                        padding-left: 2px;
+                    }
+                }
             }
         }
+    }
+    .goods-info{
+        background-color: #fff;
         .title{
             display: block;
-            padding: 0 15px;
+            padding: 12px 15px 3px 15px;
             color: #333;
             font-size: 16px;
         }
@@ -216,18 +254,12 @@
             flex-wrap: nowrap;
             justify-content: center;
             span {
-                width: 33.33%;
+                width: 50%;
                 height: 40px;
                 line-height: 40px;
-                text-align: center;
-                font-size: 13px;
-                color: #555;
-            }
-            span:nth-child(1){
                 text-align: left;
-            }
-            span:nth-child(3){
-                text-align: right;
+                font-size: 15px;
+                color: #888;
             }
         }
     }
