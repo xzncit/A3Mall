@@ -7,17 +7,22 @@ import router from "../router";
 
 export function login(obj,from) {
     let users = Storage.get("users",true);
-    if(obj.meta.auth && users == null){
+    if(tools.isWeiXin() && users == null){
+        Storage.set("VUE_REFERER",obj.path);
+        oAuth();
+        return true;
+    }else if(obj.meta.auth && users == null){
         if(tools.in_array(from.name,["Login","Register","Forget"])){
             return true;
         }
 
         Storage.set("VUE_REFERER",obj.path);
-        if(tools.isWeiXin()){
-            oAuth();
-        }else{
-            router.push('/public/login');
-        }
+        // if(tools.isWeiXin()){
+        //     oAuth();
+        // }else{
+        //     router.push('/public/login');
+        // }
+        router.push('/public/login');
 
         return true;
     }else if(users != null && users.token){
