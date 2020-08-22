@@ -531,6 +531,16 @@ export function getWallet() {
     })
 }
 
+export function paymentWallet(params) {
+    return new Promise((resolve, reject) => {
+        request.post("/ucenter/rechange",params).then(res=>{
+            resolve(res)
+        }).catch(err=>{
+            reject(err)
+        });
+    })
+}
+
 export function getWalletCashlist(params) {
     return new Promise((resolve, reject) => {
         request.get("/ucenter/wallet/cashlist",params).then((res)=>{

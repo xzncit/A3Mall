@@ -3,6 +3,8 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+
+
 CREATE TABLE `mall_archives` (
   `id` int(11) NOT NULL,
   `pid` int(11) NOT NULL DEFAULT 0,
@@ -28,7 +30,7 @@ INSERT INTO `mall_archives` (`id`, `pid`, `title`, `hits`, `status`, `sort`, `ph
 (4, 72, '秋季养生正当时，顺季食补滋阴养肺', 16, 0, 0, '/uploads/images/20200602/74ecfaec958bbb60e5700938ef310631.png', '', '<p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">多预防才能少生病。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">俗话说：“一夏无病三分虚”，秋天一到，正是补身养神的时候，既能恢复调节身体各方面机能，储备营养度过冬季；又能通过滋补应对秋季燥热的气候特征，防范一些季节病症。在民间也素有“秋补”习俗，但秋补却也不能随便乱补。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">很多人一听说要秋补，就不管三七二十一，只挑贵的食品、药品吃，这种做法是极不科学的。秋补要根据自身身体情况，并遵循一定的道理和原则来进行。此外若无医嘱也切不可随意进行药补，正常食补就能很好应对秋季养生。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">——①——</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">营养谷物调理脾胃</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">因为夏季常吃过冷食品，我们的脾胃多少会有不适的情况，因此在秋季进补前宜先调理脾胃，给脾胃一个调整适应的时期，后续食补才不会增加脾胃负担。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">脾胃调理的方法很简单，首先是平日饮食避免吃过于辛辣刺激和油腻的食物，其次是补食一些富有营养又易于消化的食物，比如鱼肉、山药、新鲜蔬菜，以及红豆、苡仁等谷物。尤其是谷物类食品，平日炖汤和煮粥都可以添加一些，既增加营养又能调理脾胃。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">——②——</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">养生茶饮滋阴润燥</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">一年四季都有其独有特点，而秋天的特点就是气候干燥，我们的身体也容易因此变得燥热，故每天都需要补充大量水分。并且根据中医“春夏养阳，秋冬养阴”的原则，秋补还须要注意养阴生津润燥。为此，多喝一些秋季对应的养生茶饮，能很好地起到滋阴润燥的作用。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">菊花是秋天的“花中仙子”，菊花茶更是我们秋季润燥的常备饮品。不仅是润燥，常喝菊花茶还有提神醒脑、养肝明目、降压通脉的作用。</p><p><br /></p>', 1591047003, 0),
 (5, 70, 'asdfasdf', 0, 0, 0, '', 'ad', '<p>asdfadasd</p>', 1593506837, 1593506837),
 (6, 70, 'aaaaaa111', 3, 0, 0, '/uploads/images/20200630/bc9adc1809a818dc8ca3365f3dff78b9.png', 's', '<p>1111111</p>', 1593506891, 1593849896),
-(7, 71, 'A3Mall正式版1.0发布', 1, 0, 0, '', '', '<p>A3Mall正式版1.0发布</p>', 1597023849, 1597023849);
+(7, 71, 'A3Mall正式版1.0发布', 2, 0, 0, '', '', '<p>A3Mall正式版1.0发布</p>', 1597023849, 1597023849);
 
 -- --------------------------------------------------------
 
@@ -4643,7 +4645,7 @@ INSERT INTO `mall_attachments` (`id`, `pid`, `module`, `method`, `name`, `path`,
 CREATE TABLE `mall_cart` (
   `id` bigint(20) NOT NULL,
   `session_id` char(32) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `user_id` bigint(20) NOT NULL DEFAULT 0 ,
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
   `goods_id` bigint(20) NOT NULL DEFAULT 0,
   `product_id` bigint(20) NOT NULL DEFAULT 0,
   `spec_key` text CHARACTER SET utf8 NOT NULL,
@@ -4652,7 +4654,7 @@ CREATE TABLE `mall_cart` (
   `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
   `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00,
   `goods_nums` int(10) NOT NULL DEFAULT 0,
-  `create_time` int(10) NOT NULL DEFAULT 0 ,
+  `create_time` int(10) NOT NULL DEFAULT 0,
   `update_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -4999,19 +5001,19 @@ CREATE TABLE `mall_data_type` (
 
 CREATE TABLE `mall_deliver` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL ,
-  `username` varchar(255) NOT NULL ,
+  `title` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `company` varchar(255) NOT NULL DEFAULT '公司',
-  `country` bigint(20) DEFAULT NULL ,
-  `province` bigint(20) NOT NULL ,
-  `city` bigint(20) NOT NULL ,
-  `area` bigint(20) NOT NULL ,
-  `zip` varchar(6) DEFAULT '' ,
-  `address` varchar(255) NOT NULL ,
-  `mobile` varchar(20) NOT NULL ,
-  `phone` varchar(20) DEFAULT NULL ,
-  `is_default` tinyint(1) NOT NULL DEFAULT 0 ,
-  `note` text DEFAULT NULL 
+  `country` bigint(20) DEFAULT NULL,
+  `province` bigint(20) NOT NULL,
+  `city` bigint(20) NOT NULL,
+  `area` bigint(20) NOT NULL,
+  `zip` varchar(6) DEFAULT '',
+  `address` varchar(255) NOT NULL,
+  `mobile` varchar(20) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `is_default` tinyint(1) NOT NULL DEFAULT 0,
+  `note` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -5022,18 +5024,18 @@ CREATE TABLE `mall_deliver` (
 
 CREATE TABLE `mall_distribution` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT 0 ,
-  `title` varchar(128) DEFAULT '' ,
-  `area_group` text DEFAULT NULL ,
-  `first_price_group` text DEFAULT NULL ,
-  `second_price_group` text DEFAULT NULL ,
-  `first_weight` bigint(20) UNSIGNED NOT NULL ,
-  `second_weight` bigint(20) UNSIGNED NOT NULL ,
-  `first_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `second_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `status` tinyint(1) NOT NULL DEFAULT 0 ,
-  `is_lock` tinyint(1) NOT NULL DEFAULT 1 ,
-  `sort` smallint(6) NOT NULL DEFAULT 99 
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `title` varchar(128) DEFAULT '',
+  `area_group` text DEFAULT NULL,
+  `first_price_group` text DEFAULT NULL,
+  `second_price_group` text DEFAULT NULL,
+  `first_weight` bigint(20) UNSIGNED NOT NULL,
+  `second_weight` bigint(20) UNSIGNED NOT NULL,
+  `first_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `second_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `is_lock` tinyint(1) NOT NULL DEFAULT 1,
+  `sort` smallint(6) NOT NULL DEFAULT 99
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -5053,12 +5055,12 @@ INSERT INTO `mall_distribution` (`id`, `type`, `title`, `area_group`, `first_pri
 
 CREATE TABLE `mall_freight` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `type` varchar(255) NOT NULL ,
+  `type` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL ,
-  `url` varchar(255) NOT NULL ,
-  `sort` smallint(5) NOT NULL DEFAULT 99 ,
-  `status` tinyint(1) NOT NULL DEFAULT 1 ,
+  `title` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `sort` smallint(5) NOT NULL DEFAULT 99,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5089,34 +5091,34 @@ INSERT INTO `mall_freight` (`id`, `type`, `code`, `title`, `url`, `sort`, `statu
 --
 
 CREATE TABLE `mall_goods` (
-  `id` bigint(20) UNSIGNED NOT NULL ,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `cat_id` bigint(20) NOT NULL DEFAULT 0,
-  `attr_id` int(11) NOT NULL DEFAULT 0 ,
-  `brand_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `model_id` bigint(20) UNSIGNED NOT NULL ,
+  `attr_id` int(11) NOT NULL DEFAULT 0,
+  `brand_id` bigint(20) NOT NULL DEFAULT 0,
+  `model_id` bigint(20) UNSIGNED NOT NULL,
   `delivery_id` int(10) NOT NULL DEFAULT 0,
-  `title` varchar(255) NOT NULL ,
-  `goods_number` varchar(255) NOT NULL DEFAULT '' ,
-  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `sell_price` decimal(15,2) NOT NULL ,
-  `market_price` decimal(15,2) DEFAULT NULL ,
-  `cost_price` decimal(15,2) DEFAULT NULL ,
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 ,
-  `photo` varchar(255) DEFAULT '' ,
+  `title` varchar(255) NOT NULL,
+  `goods_number` varchar(255) NOT NULL DEFAULT '',
+  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL,
+  `market_price` decimal(15,2) DEFAULT NULL,
+  `cost_price` decimal(15,2) DEFAULT NULL,
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `photo` varchar(255) DEFAULT '',
   `briefly` text DEFAULT NULL,
-  `content` longtext DEFAULT NULL ,
-  `point` bigint(20) NOT NULL DEFAULT 0 ,
-  `status` tinyint(1) NOT NULL DEFAULT 0 ,
-  `visit` bigint(20) NOT NULL DEFAULT 0 ,
-  `favorite` bigint(20) NOT NULL DEFAULT 0 ,
-  `sort` smallint(5) NOT NULL DEFAULT 99 ,
-  `exp` bigint(20) NOT NULL DEFAULT 0 ,
-  `sale` bigint(20) NOT NULL DEFAULT 0 ,
-  `grade` bigint(20) NOT NULL DEFAULT 0 ,
-  `upper_time` int(10) DEFAULT 0 ,
-  `down_time` int(10) DEFAULT 0 ,
-  `create_time` int(10) NOT NULL DEFAULT 0 ,
-  `update_time` int(10) NOT NULL DEFAULT 0 
+  `content` longtext DEFAULT NULL,
+  `point` bigint(20) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `visit` bigint(20) NOT NULL DEFAULT 0,
+  `favorite` bigint(20) NOT NULL DEFAULT 0,
+  `sort` smallint(5) NOT NULL DEFAULT 99,
+  `exp` bigint(20) NOT NULL DEFAULT 0,
+  `sale` bigint(20) NOT NULL DEFAULT 0,
+  `grade` bigint(20) NOT NULL DEFAULT 0,
+  `upper_time` int(10) DEFAULT 0,
+  `down_time` int(10) DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0,
+  `update_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -5159,7 +5161,7 @@ INSERT INTO `mall_goods` (`id`, `cat_id`, `attr_id`, `brand_id`, `model_id`, `de
 (34, 1024, 0, 0, 0, 1, '柔幻星纱十色眼影盘防水眼影盒少女妆闪粉哑光', '202006152028543975', '96.00', '629.00', '1258.00', '314.50', 3316, '/uploads/images/20200615/76a22d30e54fc50bb890b3966fd67a12.jpg', '', '<p><img src=\"/uploads/images/20200615/202006152028541787.jpg\"/><img src=\"/uploads/images/20200615/202006152028552245.jpg\"/><img src=\"/uploads/images/20200615/202006152028558656.jpg\"/><img src=\"/uploads/images/20200615/202006152028557203.jpg\"/><img src=\"/uploads/images/20200615/202006152028555639.jpg\"/><img src=\"/uploads/images/20200615/202006152028554969.jpg\"/><img src=\"/uploads/images/20200615/202006152028557598.jpg\"/><img src=\"/uploads/images/20200615/202006152028564620.jpg\"/><img src=\"/uploads/images/20200615/202006152028569847.jpg\"/><img src=\"/uploads/images/20200615/202006152028565746.jpg\"/><img src=\"/uploads/images/20200615/202006152028564179.jpg\"/><img src=\"/uploads/images/20200615/202006152028568198.jpg\"/><img src=\"/uploads/images/20200615/202006152028566637.jpg\"/><img src=\"/uploads/images/20200615/202006152028567003.jpg\"/><img src=\"/uploads/images/20200615/202006152028577181.jpg\"/><br/></p><p><br/></p><p><br/></p>', 0, 0, 0, 0, 0, 0, 0, 0, 1592224134, 0, 1592224134, 1592224201),
 (35, 1023, 0, 0, 0, 1, 'colourpop单色眼影网红款大地色卡乐colorpop亮闪土豆泥卡拉泡泡眼影dgafAsyouwave', '202006152031202647', '270.00', '902.00', '1804.00', '451.00', 4134, '/uploads/images/20200615/c8ce064ef27fe1dbc58b1a9300e2e6d8.jpg', '', '<p style=\"text-align: center; \"><img src=\"/uploads/images/20200615/20200615203120717.jpg\"/><img src=\"/uploads/images/20200615/20200615203120766.jpg\" class=\"\"/><img src=\"/uploads/images/20200615/202006152031211360.jpg\"/><img src=\"/uploads/images/20200615/202006152031218095.jpg\"/><img src=\"/uploads/images/20200615/202006152031213033.jpg\"/><img src=\"/uploads/images/20200615/202006152031218018.jpg\"/><img src=\"/uploads/images/20200615/202006152031228845.jpg\"/><img src=\"/uploads/images/20200615/202006152031224893.jpg\"/><img src=\"/uploads/images/20200615/20200615203122395.jpg\"/><img src=\"/uploads/images/20200615/202006152031221458.jpg\"/><img src=\"/uploads/images/20200615/202006152031229784.jpg\"/><br/></p><p><br/></p><p><br/></p>', 0, 0, 0, 0, 0, 0, 0, 0, 1592224280, 0, 1592224280, 1592224339),
 (36, 1002, 0, 0, 0, 1, '花漾嫩色胭脂03#小蔷裸6.5g', '202006152033506284', '546.00', '571.00', '1142.00', '285.50', 121, '/uploads/images/20200615/aca2ade36d7875dc27818deff138f50f.jpg', '', '<p><br/></p><p><img src=\"/uploads/images/20200615/20200615203351781.jpg\"/></p><p><img src=\"/uploads/images/20200615/202006152033512308.jpg\"/></p><p><img src=\"/uploads/images/20200615/202006152033514413.jpg\"/></p><p><img src=\"/uploads/images/20200615/202006152033513387.jpg\"/></p><p><img src=\"/uploads/images/20200615/202006152033511727.jpg\"/></p><p><img src=\"/uploads/images/20200615/202006152033513608.jpg\"/></p><p><img src=\"/uploads/images/20200615/202006152033517179.jpg\"/></p>', 0, 0, 0, 0, 0, 0, 0, 0, 1592224430, 0, 1592224430, 1592224492),
-(37, 939, 0, 0, 0, 1, '清透润白焕亮乳液75ml提亮保湿法国原装进口', '202006152036516132', '904.00', '744.00', '1488.00', '372.00', 3012, '/uploads/images/20200615/202006152036518621.jpg', '', '<p><br/></p><p><img src=\"/uploads/images/20200615/202006152036527555.jpg\"/></p>', 0, 0, 0, 0, 0, 0, 0, 0, 1592224611, 0, 1592224611, 0),
+(37, 939, 0, 0, 0, 1, '清透润白焕亮乳液75ml提亮保湿法国原装进口', '202006152036516132', '904.00', '744.00', '1488.00', '372.00', 3011, '/uploads/images/20200615/202006152036518621.jpg', '', '<p><br/></p><p><img src=\"/uploads/images/20200615/202006152036527555.jpg\"/></p>', 0, 0, 0, 0, 0, 0, 0, 0, 1592224611, 0, 1592224611, 0),
 (38, 1044, 0, 0, 0, 1, '桃子炸蛋', '202006152048149890', '260.00', '989.00', '1978.00', '494.50', 4054, '/uploads/images/20200615/202006152048143288.jpg', '', '<p>adf</p>', 0, 0, 0, 0, 0, 0, 0, 0, 1592225294, 0, 1592225294, 1594690638);
 
 -- --------------------------------------------------------
@@ -5231,14 +5233,14 @@ INSERT INTO `mall_goods_extends` (`id`, `goods_id`, `attribute`) VALUES
 
 CREATE TABLE `mall_goods_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL ,
-  `goods_number` varchar(255) NOT NULL DEFAULT '' ,
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `goods_number` varchar(255) NOT NULL DEFAULT '',
   `spec_key` text NOT NULL,
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 ,
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00 
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -5280,11 +5282,11 @@ INSERT INTO `mall_goods_item` (`id`, `goods_id`, `goods_number`, `spec_key`, `st
 
 CREATE TABLE `mall_goods_model` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL ,
-  `attribute_id` bigint(20) UNSIGNED DEFAULT NULL ,
-  `attribute_value` varchar(255) DEFAULT NULL ,
-  `model_id` bigint(20) UNSIGNED DEFAULT NULL ,
-  `sort` smallint(8) NOT NULL DEFAULT 99 
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `attribute_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `attribute_value` varchar(255) DEFAULT NULL,
+  `model_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `sort` smallint(8) NOT NULL DEFAULT 99
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -5311,54 +5313,54 @@ CREATE TABLE `mall_navigation` (
 
 CREATE TABLE `mall_order` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `activity_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0 ,
-  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 ,
-  `order_no` varchar(255) NOT NULL DEFAULT '' ,
-  `pay_type` bigint(20) NOT NULL DEFAULT 0 ,
-  `distribution_id` bigint(20) DEFAULT 0 ,
-  `status` tinyint(1) DEFAULT 1 ,
-  `pay_status` tinyint(1) DEFAULT 0 ,
-  `distribution_status` tinyint(1) DEFAULT 0 ,
-  `delivery_status` tinyint(1) NOT NULL DEFAULT 0 ,
-  `evaluate_status` tinyint(1) NOT NULL DEFAULT 0 ,
-  `accept_name` varchar(32) NOT NULL DEFAULT '' ,
-  `zip` varchar(6) DEFAULT '' ,
-  `mobile` varchar(20) DEFAULT '' ,
-  `phone` varchar(20) DEFAULT '' ,
-  `country` varchar(32) DEFAULT '' ,
-  `province` varchar(32) DEFAULT '' ,
-  `city` varchar(32) DEFAULT '' ,
-  `area` varchar(32) DEFAULT '' ,
-  `address` varchar(255) DEFAULT '' ,
-  `message` varchar(255) DEFAULT '' ,
-  `note` text DEFAULT NULL ,
-  `remarks` text DEFAULT NULL ,
-  `is_delete` tinyint(1) DEFAULT 0 ,
-  `insured` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `pay_fee` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `taxes` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `promotions` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `discount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `increase_amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `reduce_amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `real_freight` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `payable_freight` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `real_point` bigint(20) NOT NULL DEFAULT 0 ,
-  `real_amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `payable_amount` decimal(15,2) DEFAULT 0.00 ,
-  `order_amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `exp` int(10) UNSIGNED NOT NULL DEFAULT 0 ,
-  `point` int(10) UNSIGNED NOT NULL DEFAULT 0 ,
-  `trade_no` varchar(255) DEFAULT NULL ,
-  `source` int(11) NOT NULL DEFAULT 0 ,
-  `admin_id` int(10) NOT NULL DEFAULT 0 ,
-  `send_time` int(10) DEFAULT 0 ,
-  `accept_time` int(10) DEFAULT 0 ,
-  `evaluate_time` int(10) NOT NULL DEFAULT 0 ,
-  `pay_time` int(10) DEFAULT 0 ,
-  `create_time` int(10) DEFAULT 0 ,
-  `completion_time` int(10) DEFAULT 0 
+  `activity_id` bigint(20) NOT NULL DEFAULT 0,
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `order_no` varchar(255) NOT NULL DEFAULT '',
+  `pay_type` bigint(20) NOT NULL DEFAULT 0,
+  `distribution_id` bigint(20) DEFAULT 0,
+  `status` tinyint(1) DEFAULT 1,
+  `pay_status` tinyint(1) DEFAULT 0,
+  `distribution_status` tinyint(1) DEFAULT 0,
+  `delivery_status` tinyint(1) NOT NULL DEFAULT 0,
+  `evaluate_status` tinyint(1) NOT NULL DEFAULT 0,
+  `accept_name` varchar(32) NOT NULL DEFAULT '',
+  `zip` varchar(6) DEFAULT '',
+  `mobile` varchar(20) DEFAULT '',
+  `phone` varchar(20) DEFAULT '',
+  `country` varchar(32) DEFAULT '',
+  `province` varchar(32) DEFAULT '',
+  `city` varchar(32) DEFAULT '',
+  `area` varchar(32) DEFAULT '',
+  `address` varchar(255) DEFAULT '',
+  `message` varchar(255) DEFAULT '',
+  `note` text DEFAULT NULL,
+  `remarks` text DEFAULT NULL,
+  `is_delete` tinyint(1) DEFAULT 0,
+  `insured` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `pay_fee` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `taxes` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `promotions` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `discount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `increase_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `reduce_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `real_freight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `payable_freight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `real_point` bigint(20) NOT NULL DEFAULT 0,
+  `real_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `payable_amount` decimal(15,2) DEFAULT 0.00,
+  `order_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `exp` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `point` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `trade_no` varchar(255) DEFAULT NULL,
+  `source` int(11) NOT NULL DEFAULT 0,
+  `admin_id` int(10) NOT NULL DEFAULT 0,
+  `send_time` int(10) DEFAULT 0,
+  `accept_time` int(10) DEFAULT 0,
+  `evaluate_time` int(10) NOT NULL DEFAULT 0,
+  `pay_time` int(10) DEFAULT 0,
+  `create_time` int(10) DEFAULT 0,
+  `completion_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -5388,7 +5390,8 @@ INSERT INTO `mall_order` (`id`, `activity_id`, `user_id`, `type`, `order_no`, `p
 (20, 0, 1, 0, '2020072417241339559', 8, 0, 3, 0, 0, 0, 0, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5.00', '5.00', 0, '295.00', '300.00', '300.00', 0, 10, NULL, 1, 0, 0, 0, 0, 0, 1595582653, 0),
 (21, 0, 1, 0, '2020072417250960309', 8, 0, 3, 0, 0, 0, 0, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5.00', '5.00', 0, '295.00', '300.00', '300.00', 0, 10, NULL, 1, 0, 0, 0, 0, 0, 1595582709, 0),
 (22, 0, 1, 0, '2020072417365462623', 8, 0, 3, 0, 0, 0, 0, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5.00', '5.00', 0, '295.00', '300.00', '300.00', 0, 10, NULL, 1, 0, 0, 0, 0, 0, 1595583414, 0),
-(23, 0, 1, 0, '2020072417371583611', 8, 0, 3, 0, 0, 0, 0, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5.00', '5.00', 0, '295.00', '300.00', '300.00', 0, 10, NULL, 1, 0, 0, 0, 0, 0, 1595583435, 0);
+(23, 0, 1, 0, '2020072417371583611', 8, 0, 3, 0, 0, 0, 0, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5.00', '5.00', 0, '295.00', '300.00', '300.00', 0, 10, NULL, 1, 0, 0, 0, 0, 0, 1595583435, 0),
+(24, 9, 1, 2, '2020082004262658261', 1, 0, 2, 1, 0, 0, 0, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '11.00', '11.00', 0, '744.00', '744.00', '744.00', 0, 0, '', 1, 0, 0, 0, 0, 1597868786, 1597868786, 0);
 
 -- --------------------------------------------------------
 
@@ -5398,15 +5401,15 @@ INSERT INTO `mall_order` (`id`, `activity_id`, `user_id`, `type`, `order_no`, `p
 
 CREATE TABLE `mall_order_collection` (
   `id` bigint(20) NOT NULL,
-  `order_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `user_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `payment_id` int(11) NOT NULL DEFAULT 0 ,
-  `admin_id` int(11) NOT NULL DEFAULT 0 ,
-  `pay_status` tinyint(1) NOT NULL DEFAULT 0 ,
-  `note` text DEFAULT NULL ,
-  `is_delete` tinyint(1) NOT NULL DEFAULT 0 ,
-  `create_time` int(10) NOT NULL DEFAULT 0 
+  `order_id` bigint(20) NOT NULL DEFAULT 0,
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `payment_id` int(11) NOT NULL DEFAULT 0,
+  `admin_id` int(11) NOT NULL DEFAULT 0,
+  `pay_status` tinyint(1) NOT NULL DEFAULT 0,
+  `note` text DEFAULT NULL,
+  `is_delete` tinyint(1) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -5426,7 +5429,8 @@ INSERT INTO `mall_order_collection` (`id`, `order_id`, `user_id`, `amount`, `pay
 (10, 14, 1, '744.00', 1, 0, 1, '', 0, 1594698422),
 (11, 15, 1, '273.00', 1, 0, 1, '', 0, 1594698606),
 (12, 17, 1, '300.00', 1, 0, 1, '', 0, 1595582393),
-(13, 19, 1, '300.00', 1, 0, 1, '', 0, 1595582490);
+(13, 19, 1, '300.00', 1, 0, 1, '', 0, 1595582490),
+(14, 24, 1, '744.00', 1, 0, 1, '', 0, 1597868786);
 
 -- --------------------------------------------------------
 
@@ -5435,26 +5439,26 @@ INSERT INTO `mall_order_collection` (`id`, `order_id`, `user_id`, `amount`, `pay
 --
 
 CREATE TABLE `mall_order_delivery` (
-  `id` bigint(20) NOT NULL ,
-  `order_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `user_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `admin_id` bigint(20) DEFAULT 0 ,
-  `name` varchar(255) NOT NULL DEFAULT '' ,
-  `zip` varchar(6) DEFAULT '' ,
-  `phone` varchar(32) DEFAULT '' ,
-  `country` bigint(20) DEFAULT 0 ,
-  `province` bigint(20) NOT NULL DEFAULT 0 ,
-  `city` bigint(20) NOT NULL DEFAULT 0 ,
-  `area` bigint(20) NOT NULL DEFAULT 0 ,
-  `address` varchar(250) NOT NULL DEFAULT '' ,
-  `mobile` varchar(20) DEFAULT '' ,
-  `freight` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `distribution_code` varchar(255) NOT NULL DEFAULT '' ,
-  `distribution_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `note` text DEFAULT NULL ,
-  `is_delete` tinyint(1) NOT NULL DEFAULT 0 ,
-  `freight_id` bigint(20) DEFAULT 0 ,
-  `create_time` int(10) NOT NULL DEFAULT 0 
+  `id` bigint(20) NOT NULL,
+  `order_id` bigint(20) NOT NULL DEFAULT 0,
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `admin_id` bigint(20) DEFAULT 0,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `zip` varchar(6) DEFAULT '',
+  `phone` varchar(32) DEFAULT '',
+  `country` bigint(20) DEFAULT 0,
+  `province` bigint(20) NOT NULL DEFAULT 0,
+  `city` bigint(20) NOT NULL DEFAULT 0,
+  `area` bigint(20) NOT NULL DEFAULT 0,
+  `address` varchar(250) NOT NULL DEFAULT '',
+  `mobile` varchar(20) DEFAULT '',
+  `freight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `distribution_code` varchar(255) NOT NULL DEFAULT '',
+  `distribution_id` bigint(20) NOT NULL DEFAULT 0,
+  `note` text DEFAULT NULL,
+  `is_delete` tinyint(1) NOT NULL DEFAULT 0,
+  `freight_id` bigint(20) DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -5465,21 +5469,21 @@ CREATE TABLE `mall_order_delivery` (
 
 CREATE TABLE `mall_order_goods` (
   `id` bigint(20) NOT NULL,
-  `order_id` bigint(20) NOT NULL ,
-  `goods_id` bigint(20) NOT NULL ,
-  `product_id` bigint(20) DEFAULT 0 ,
+  `order_id` bigint(20) NOT NULL,
+  `goods_id` bigint(20) NOT NULL,
+  `product_id` bigint(20) DEFAULT 0,
   `spec_key` text DEFAULT NULL,
   `goods_no` varchar(128) NOT NULL DEFAULT '',
-  `thumb_image` varchar(255) NOT NULL ,
-  `real_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `goods_nums` int(11) NOT NULL DEFAULT 1 ,
-  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `goods_array` text DEFAULT NULL ,
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `is_send` tinyint(1) NOT NULL DEFAULT 0 ,
-  `distribution_id` int(11) NOT NULL DEFAULT 0 
+  `thumb_image` varchar(255) NOT NULL,
+  `real_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `goods_nums` int(11) NOT NULL DEFAULT 1,
+  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `goods_array` text DEFAULT NULL,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `is_send` tinyint(1) NOT NULL DEFAULT 0,
+  `distribution_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -5509,7 +5513,8 @@ INSERT INTO `mall_order_goods` (`id`, `order_id`, `goods_id`, `product_id`, `spe
 (20, 20, 3, 0, NULL, '202006151623332623', '/uploads/images/20200615/202006151623339913.jpg', '295.00', 1, '132.00', '{\"title\":\"【玉兰油防晒乳】玉兰油（OLAY）三重隔离亮肤乳75ml女士护肤品隔离水嫩保湿SPF30\\/PA++隔离紫外线不油腻\",\"spec\":\"\"}', '590.00', '295.00', '0.00', 0, 1),
 (21, 21, 3, 0, NULL, '202006151623332623', '/uploads/images/20200615/202006151623339913.jpg', '295.00', 1, '132.00', '{\"title\":\"【玉兰油防晒乳】玉兰油（OLAY）三重隔离亮肤乳75ml女士护肤品隔离水嫩保湿SPF30\\/PA++隔离紫外线不油腻\",\"spec\":\"\"}', '590.00', '295.00', '0.00', 0, 1),
 (22, 22, 3, 0, NULL, '202006151623332623', '/uploads/images/20200615/202006151623339913.jpg', '295.00', 1, '132.00', '{\"title\":\"【玉兰油防晒乳】玉兰油（OLAY）三重隔离亮肤乳75ml女士护肤品隔离水嫩保湿SPF30\\/PA++隔离紫外线不油腻\",\"spec\":\"\"}', '590.00', '295.00', '0.00', 0, 1),
-(23, 23, 3, 0, NULL, '202006151623332623', '/uploads/images/20200615/202006151623339913.jpg', '295.00', 1, '132.00', '{\"title\":\"【玉兰油防晒乳】玉兰油（OLAY）三重隔离亮肤乳75ml女士护肤品隔离水嫩保湿SPF30\\/PA++隔离紫外线不油腻\",\"spec\":\"\"}', '590.00', '295.00', '0.00', 0, 1);
+(23, 23, 3, 0, NULL, '202006151623332623', '/uploads/images/20200615/202006151623339913.jpg', '295.00', 1, '132.00', '{\"title\":\"【玉兰油防晒乳】玉兰油（OLAY）三重隔离亮肤乳75ml女士护肤品隔离水嫩保湿SPF30\\/PA++隔离紫外线不油腻\",\"spec\":\"\"}', '590.00', '295.00', '0.00', 0, 1),
+(24, 24, 37, 0, NULL, '202006152036516132', '/uploads/images/20200615/202006152036518621.jpg', '744.00', 1, '904.00', '{\"title\":\"清透润白焕亮乳液75ml提亮保湿法国原装进口\",\"spec\":\"\"}', '1488.00', '744.00', '0.00', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -5551,7 +5556,8 @@ INSERT INTO `mall_order_log` (`id`, `order_id`, `username`, `action`, `result`, 
 (17, 20, 'demo', '取消订单', '成功', '订单【2020072417241339559】客户取消订单', 1595582662),
 (18, 21, 'demo', '取消订单', '成功', '订单【2020072417250960309】客户取消订单', 1595582715),
 (19, 22, 'demo', '取消订单', '成功', '订单【2020072417365462623】客户取消订单', 1595583422),
-(20, 23, 'demo', '取消订单', '成功', '订单【2020072417371583611】客户取消订单', 1595588995);
+(20, 23, 'demo', '取消订单', '成功', '订单【2020072417371583611】客户取消订单', 1595588995),
+(21, 24, 'system', '付款', '成功', '订单【2020082004262658261】付款744.00元', 1597868786);
 
 -- --------------------------------------------------------
 
@@ -5561,19 +5567,19 @@ INSERT INTO `mall_order_log` (`id`, `order_id`, `username`, `action`, `result`, 
 
 CREATE TABLE `mall_order_refundment` (
   `id` bigint(20) NOT NULL,
-  `order_no` varchar(255) NOT NULL DEFAULT '' ,
-  `order_id` bigint(20) NOT NULL ,
-  `user_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `type` tinyint(1) NOT NULL DEFAULT 0 ,
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `admin_id` bigint(20) DEFAULT 0 ,
-  `pay_status` tinyint(1) NOT NULL DEFAULT 0 ,
-  `content` text DEFAULT NULL ,
-  `dispose_idea` text DEFAULT NULL ,
-  `is_delete` tinyint(1) NOT NULL DEFAULT 0 ,
-  `order_goods_id` text DEFAULT NULL ,
-  `dispose_time` int(10) DEFAULT 0 ,
-  `create_time` int(10) DEFAULT 0 
+  `order_no` varchar(255) NOT NULL DEFAULT '',
+  `order_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `admin_id` bigint(20) DEFAULT 0,
+  `pay_status` tinyint(1) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `dispose_idea` text DEFAULT NULL,
+  `is_delete` tinyint(1) NOT NULL DEFAULT 0,
+  `order_goods_id` text DEFAULT NULL,
+  `dispose_time` int(10) DEFAULT 0,
+  `create_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -5591,17 +5597,17 @@ INSERT INTO `mall_order_refundment` (`id`, `order_no`, `order_id`, `user_id`, `t
 
 CREATE TABLE `mall_payment` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(50) NOT NULL ,
-  `type` tinyint(1) NOT NULL DEFAULT 1 ,
-  `code` varchar(50) NOT NULL ,
-  `description` text DEFAULT NULL ,
-  `status` tinyint(1) NOT NULL DEFAULT 1 ,
+  `name` varchar(50) NOT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT 1,
+  `code` varchar(50) NOT NULL,
+  `description` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
   `is_show` tinyint(1) NOT NULL DEFAULT 0,
-  `sort` smallint(5) NOT NULL DEFAULT 99 ,
-  `content` text DEFAULT NULL ,
-  `poundage` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `poundage_type` tinyint(1) NOT NULL DEFAULT 1 ,
-  `config` text DEFAULT NULL 
+  `sort` smallint(5) NOT NULL DEFAULT 99,
+  `content` text DEFAULT NULL,
+  `poundage` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `poundage_type` tinyint(1) NOT NULL DEFAULT 1,
+  `config` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -5622,8 +5628,8 @@ INSERT INTO `mall_payment` (`id`, `name`, `type`, `code`, `description`, `status
 CREATE TABLE `mall_products_attribute` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `pid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(50) NOT NULL ,
-  `note` varchar(255) DEFAULT NULL ,
+  `name` varchar(50) NOT NULL,
+  `note` varchar(255) DEFAULT NULL,
   `status` tinyint(1) DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -5647,7 +5653,7 @@ INSERT INTO `mall_products_attribute` (`id`, `pid`, `name`, `note`, `status`, `c
 CREATE TABLE `mall_products_attribute_data` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `pid` bigint(20) NOT NULL DEFAULT 0,
-  `value` text DEFAULT NULL ,
+  `value` text DEFAULT NULL,
   `sort` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5675,13 +5681,13 @@ INSERT INTO `mall_products_attribute_data` (`id`, `pid`, `value`, `sort`) VALUES
 --
 
 CREATE TABLE `mall_products_brand` (
-  `id` bigint(20) UNSIGNED NOT NULL ,
-  `is_hot` tinyint(1) NOT NULL DEFAULT 0 ,
-  `name` varchar(255) NOT NULL ,
-  `photo` varchar(255) DEFAULT NULL ,
-  `url` varchar(255) DEFAULT NULL ,
-  `content` longtext DEFAULT NULL ,
-  `sort` smallint(5) NOT NULL DEFAULT 0 ,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `is_hot` tinyint(1) NOT NULL DEFAULT 0,
+  `name` varchar(255) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `content` longtext DEFAULT NULL,
+  `sort` smallint(5) NOT NULL DEFAULT 0,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -5693,8 +5699,8 @@ CREATE TABLE `mall_products_brand` (
 --
 
 CREATE TABLE `mall_products_model` (
-  `id` bigint(20) UNSIGNED NOT NULL ,
-  `name` varchar(50) NOT NULL ,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5705,11 +5711,11 @@ CREATE TABLE `mall_products_model` (
 --
 
 CREATE TABLE `mall_products_model_data` (
-  `id` bigint(20) UNSIGNED NOT NULL ,
-  `pid` bigint(20) UNSIGNED DEFAULT 0 ,
-  `type` tinyint(1) DEFAULT NULL ,
-  `name` varchar(50) DEFAULT NULL ,
-  `value` text DEFAULT NULL ,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `pid` bigint(20) UNSIGNED DEFAULT 0,
+  `type` tinyint(1) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `value` text DEFAULT NULL,
   `sort` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5722,12 +5728,12 @@ CREATE TABLE `mall_products_model_data` (
 CREATE TABLE `mall_promotion_bonus` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL DEFAULT '',
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `type` tinyint(1) NOT NULL DEFAULT 0 ,
-  `point` int(11) NOT NULL DEFAULT 0 ,
-  `giveout` int(11) NOT NULL DEFAULT 0 ,
-  `used` int(11) NOT NULL DEFAULT 0 ,
-  `order_amount` decimal(15,2) UNSIGNED NOT NULL DEFAULT 0.00 ,
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `point` int(11) NOT NULL DEFAULT 0,
+  `giveout` int(11) NOT NULL DEFAULT 0,
+  `used` int(11) NOT NULL DEFAULT 0,
+  `order_amount` decimal(15,2) UNSIGNED NOT NULL DEFAULT 0.00,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `start_time` int(11) NOT NULL DEFAULT 0,
   `end_time` int(11) NOT NULL DEFAULT 0,
@@ -5750,11 +5756,11 @@ INSERT INTO `mall_promotion_bonus` (`id`, `name`, `amount`, `type`, `point`, `gi
 
 CREATE TABLE `mall_promotion_order` (
   `id` bigint(20) NOT NULL,
-  `group_id` int(11) NOT NULL DEFAULT 0 ,
-  `type` tinyint(1) NOT NULL DEFAULT 0 ,
+  `group_id` int(11) NOT NULL DEFAULT 0,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
   `name` varchar(128) DEFAULT '',
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `expression` varchar(255) NOT NULL DEFAULT '' ,
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `expression` varchar(255) NOT NULL DEFAULT '',
   `content` text DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `start_time` int(10) NOT NULL DEFAULT 0,
@@ -5780,17 +5786,17 @@ INSERT INTO `mall_promotion_order` (`id`, `group_id`, `type`, `name`, `amount`, 
 
 CREATE TABLE `mall_promotion_point` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL ,
-  `title` varchar(255) NOT NULL ,
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 ,
-  `sum_count` bigint(20) NOT NULL DEFAULT 0 ,
-  `content` text DEFAULT NULL ,
-  `status` tinyint(1) NOT NULL DEFAULT 0 ,
-  `point` bigint(20) NOT NULL DEFAULT 0 ,
-  `thumb_image` varchar(255) DEFAULT NULL ,
-  `sort` smallint(5) NOT NULL DEFAULT 99 ,
-  `start_time` int(10) NOT NULL DEFAULT 0 ,
-  `end_time` int(10) NOT NULL DEFAULT 0 ,
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `sum_count` bigint(20) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `point` bigint(20) NOT NULL DEFAULT 0,
+  `thumb_image` varchar(255) DEFAULT NULL,
+  `sort` smallint(5) NOT NULL DEFAULT 99,
+  `start_time` int(10) NOT NULL DEFAULT 0,
+  `end_time` int(10) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5809,12 +5815,12 @@ INSERT INTO `mall_promotion_point` (`id`, `goods_id`, `title`, `store_nums`, `su
 
 CREATE TABLE `mall_promotion_point_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `pid` bigint(20) NOT NULL DEFAULT 0 ,
+  `pid` bigint(20) NOT NULL DEFAULT 0,
   `spec_key` text DEFAULT NULL,
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 ,
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -5825,8 +5831,8 @@ CREATE TABLE `mall_promotion_point_item` (
 
 CREATE TABLE `mall_promotion_price` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL ,
-  `product_id` bigint(20) DEFAULT 0 ,
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5838,9 +5844,9 @@ CREATE TABLE `mall_promotion_price` (
 
 CREATE TABLE `mall_promotion_price_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `pid` bigint(20) NOT NULL DEFAULT 0 ,
-  `group_id` bigint(20) UNSIGNED NOT NULL ,
-  `price` decimal(15,2) NOT NULL DEFAULT 0.00 
+  `pid` bigint(20) NOT NULL DEFAULT 0,
+  `group_id` bigint(20) UNSIGNED NOT NULL,
+  `price` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -5851,19 +5857,19 @@ CREATE TABLE `mall_promotion_price_item` (
 
 CREATE TABLE `mall_promotion_regiment` (
   `id` bigint(20) NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL ,
-  `title` varchar(255) NOT NULL ,
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 ,
-  `sum_count` bigint(20) NOT NULL DEFAULT 0 ,
-  `limit_min_count` bigint(20) NOT NULL DEFAULT 0 ,
-  `limit_max_count` bigint(20) NOT NULL DEFAULT 0 ,
-  `content` text DEFAULT NULL ,
-  `status` tinyint(1) NOT NULL DEFAULT 0 ,
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `thumb_image` varchar(128) DEFAULT NULL ,
-  `sort` int(10) NOT NULL DEFAULT 99 ,
-  `start_time` int(10) NOT NULL DEFAULT 0 ,
-  `end_time` int(10) NOT NULL DEFAULT 0 ,
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `sum_count` bigint(20) NOT NULL DEFAULT 0,
+  `limit_min_count` bigint(20) NOT NULL DEFAULT 0,
+  `limit_max_count` bigint(20) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `thumb_image` varchar(128) DEFAULT NULL,
+  `sort` int(10) NOT NULL DEFAULT 99,
+  `start_time` int(10) NOT NULL DEFAULT 0,
+  `end_time` int(10) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5872,7 +5878,7 @@ CREATE TABLE `mall_promotion_regiment` (
 --
 
 INSERT INTO `mall_promotion_regiment` (`id`, `goods_id`, `title`, `store_nums`, `sum_count`, `limit_min_count`, `limit_max_count`, `content`, `status`, `sell_price`, `thumb_image`, `sort`, `start_time`, `end_time`, `create_time`) VALUES
-(9, 37, '清透润白焕亮乳液75ml提亮保湿法国原装进口', 3013, 591, 1, 3, NULL, 0, '744.00', NULL, 99, 1594698367, 1658634367, 1594698375);
+(9, 37, '清透润白焕亮乳液75ml提亮保湿法国原装进口', 3013, 592, 1, 3, NULL, 0, '744.00', NULL, 99, 1594698367, 1658634367, 1594698375);
 
 -- --------------------------------------------------------
 
@@ -5882,12 +5888,12 @@ INSERT INTO `mall_promotion_regiment` (`id`, `goods_id`, `title`, `store_nums`, 
 
 CREATE TABLE `mall_promotion_regiment_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `pid` bigint(20) NOT NULL DEFAULT 0 ,
+  `pid` bigint(20) NOT NULL DEFAULT 0,
   `spec_key` text DEFAULT NULL,
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 ,
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -5898,17 +5904,17 @@ CREATE TABLE `mall_promotion_regiment_item` (
 
 CREATE TABLE `mall_promotion_second` (
   `id` int(11) UNSIGNED NOT NULL,
-  `goods_id` int(11) UNSIGNED NOT NULL ,
-  `title` varchar(255) NOT NULL ,
+  `goods_id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
   `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
-  `store_nums` int(11) NOT NULL DEFAULT 0 ,
-  `sum_count` int(11) NOT NULL DEFAULT 0 ,
-  `content` text DEFAULT NULL ,
-  `status` tinyint(1) NOT NULL DEFAULT 1 ,
-  `thumb_image` varchar(255) DEFAULT NULL ,
-  `sort` int(10) NOT NULL DEFAULT 99 ,
-  `start_time` int(10) NOT NULL DEFAULT 0 ,
-  `end_time` int(10) NOT NULL DEFAULT 0 ,
+  `store_nums` int(11) NOT NULL DEFAULT 0,
+  `sum_count` int(11) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `thumb_image` varchar(255) DEFAULT NULL,
+  `sort` int(10) NOT NULL DEFAULT 99,
+  `start_time` int(10) NOT NULL DEFAULT 0,
+  `end_time` int(10) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5928,12 +5934,12 @@ INSERT INTO `mall_promotion_second` (`id`, `goods_id`, `title`, `sell_price`, `s
 
 CREATE TABLE `mall_promotion_second_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `pid` bigint(20) NOT NULL DEFAULT 0 ,
+  `pid` bigint(20) NOT NULL DEFAULT 0,
   `spec_key` text DEFAULT NULL,
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 ,
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -5948,29 +5954,12 @@ INSERT INTO `mall_promotion_second_item` (`id`, `pid`, `spec_key`, `store_nums`,
 -- --------------------------------------------------------
 
 --
--- 表的结构 `mall_recharge`
---
-
-CREATE TABLE `mall_recharge` (
-  `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL ,
-  `pay_type` int(11) NOT NULL DEFAULT 0,
-  `order_no` varchar(255) NOT NULL DEFAULT '' ,
-  `order_amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `payment_name` varchar(80) NOT NULL ,
-  `status` tinyint(1) NOT NULL DEFAULT 0 ,
-  `create_time` int(10) NOT NULL DEFAULT 0 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- 表的结构 `mall_search_keywords`
 --
 
 CREATE TABLE `mall_search_keywords` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL DEFAULT '' ,
+  `name` varchar(128) NOT NULL DEFAULT '',
   `is_top` tinyint(1) NOT NULL DEFAULT 1,
   `is_hot` tinyint(1) NOT NULL DEFAULT 1,
   `sort` smallint(6) NOT NULL DEFAULT 0,
@@ -6019,7 +6008,7 @@ INSERT INTO `mall_setting` (`id`, `name`, `value`) VALUES
 (14, 'sms', '{\"accessKeyId\":\"\",\"accessSecret\":\"\",\"duration_time\":\"5\"}'),
 (15, 'spread', '{\"type\":1,\"one\":5,\"two\":3,\"three\":\"1\",\"amount\":100,\"bank\":\"中国工商银行|中国农业银行|中国建设银行|招商银行|中国邮政储蓄银行\"}'),
 (16, 'order', '{\"cancel_time\":\"1\",\"complete_time\":\"15\",\"confirm_time\":\"10\"}'),
-(17, 'api', ''),
+(17, 'users', '{\"amount\":100,\"bank\":\"中国工商银行|中国农业银行|中国建设银行|招商银行|中国邮政储蓄银行\",\"username\":\"admin,demo,test\"}'),
 (18, 'register', '<p><span style=\"font-size:12px;\">一、总则</span></p><p><span style=\"font-size:12px;\">1.1 本站的所有权和运营权归有限公司所有。 </span></p><p><span style=\"font-size:12px;\">1.2 用户在注册之前，应当仔细阅读本协议，并同意遵守本协议后方可成为注册用户。一旦注册成功，则用户与本站之间自动形成协议关系，用户应当受本协议的约束。用户在使用特殊的服务或产品时，应当同意接受相关协议后方能使用。 </span></p><p><span style=\"font-size:12px;\">1.3 本协议则可由本站随时更新，用户应当及时关注并同意本站不承担通知义务。本站的通知、公告、声明或其它类似内容是本协议的一部分。</span></p><p><span style=\"font-size:12px;\">二、服务内容</span></p><p><span style=\"font-size:12px;\">2.1 本站的具体内容由本站根据实际情况提供。 </span></p><p><span style=\"font-size:12px;\">2.2 本站仅提供相关的网络服务，除此之外与相关网络服务有关的设备(如个人电脑、手机、及其他与接入互联网或移动网有关的装置)及所需的费用(如为接入互联网而支付的电话费及上网费、为使用移动网而支付的手机费)均应由用户自行负担。</span></p><p><span style=\"font-size:12px;\">三、用户帐号</span></p><p><span style=\"font-size:12px;\">3.1 经本站注册系统完成注册程序并通过身份认证的用户即成为正式用户，可以获得本站规定用户所应享有的一切权限；未经认证仅享有本站规定的部分会员权限。本站有权对会员的权限设计进行变更。 </span></p><p><span style=\"font-size:12px;\">3.2 用户只能按照注册要求使用真实姓名，及身份证号注册。用户有义务保证密码和帐号的安全，用户利用该密码和帐号所进行的一切活动引起的任何损失或损害，由用户自行承担全部责任，本站不承担任何责任。如用户发现帐号遭到未授权的使用或发生其他任何安全问题，应立即修改帐号密码并妥善保管，如有必要，请通知本站。因黑客行为或用户的保管疏忽导致帐号非法使用，本站不承担任何责任。</span></p><p><span style=\"font-size:12px;\">四、使用规则</span></p><p><span style=\"font-size:12px;\">4.1 遵守中华人民共和国相关法律法规，包括但不限于《中华人民共和国计算机信息系统安全保护条例》、《计算机软件保护条例》、《最高人民法院关于审理涉及计算机网络著作权纠纷案件适用法律若干问题的解释(法释[2004]1号)》、《全国人大常委会关于维护互联网安全的决定》、《互联网电子公告服务管理规定》、《互联网新闻信息服务管理规定》、《互联网著作权行政保护办法》和《信息网络传播权保护条例》等有关计算机互联网规定和知识产权的法律和法规、实施办法。 </span></p><p><span style=\"font-size:12px;\">4.2 用户对其自行发表、上传或传送的内容负全部责任，所有用户不得在本站任何页面发布、转载、传送含有下列内容之一的信息，否则本站有权自行处理并不通知用户：</span></p><p><span style=\"font-size:12px;\">(1)违反宪法确定的基本原则的； </span></p><p><span style=\"font-size:12px;\">(2)危害国家安全，泄漏国家机密，颠覆国家政权，破坏国家统一的； </span></p><p><span style=\"font-size:12px;\">(3)损害国家荣誉和利益的； </span></p><p><span style=\"font-size:12px;\">(4)煽动民族仇恨、民族歧视，破坏民族团结的； </span></p><p><span style=\"font-size:12px;\">(5)破坏国家宗教政策，宣扬邪教和封建迷信的； </span></p><p><span style=\"font-size:12px;\">(6)散布谣言，扰乱社会秩序，破坏社会稳定的；</span></p><p><span style=\"font-size:12px;\">(7)散布淫秽、色情、赌博、暴力、恐怖或者教唆犯罪的； </span></p><p><span style=\"font-size:12px;\">(8)侮辱或者诽谤他人，侵害他人合法权益的； </span></p><p><span style=\"font-size:12px;\">(9)煽动非法集会、结社、游行、示威、聚众扰乱社会秩序的； </span></p><p><span style=\"font-size:12px;\">(10)以非法民间组织名义活动的；</span></p><p><span style=\"font-size:12px;\">(11)含有法律、行政法规禁止的其他内容的。</span></p><p><span style=\"font-size:12px;\">4.3 用户承诺对其发表或者上传于本站的所有信息(即属于《中华人民共和国著作权法》规定的作品，包括但不限于文字、图片、音乐、电影、表演和录音录像制品和电脑程序等)均享有完整的知识产权，或者已经得到相关权利人的合法授权；如用户违反本条规定造成本站被第三人索赔的，用户应全额补偿本站一切费用(包括但不限于各种赔偿费、诉讼代理费及为此支出的其它合理费用)； </span></p><p><span style=\"font-size:12px;\">4.4 当第三方认为用户发表或者上传于本站的信息侵犯其权利，并根据《信息网络传播权保护条例》或者相关法律规定向本站发送权利通知书时，用户同意本站可以自行判断决定删除涉嫌侵权信息，除非用户提交书面证据材料排除侵权的可能性，本站将不会自动恢复上述删除的信息；</span></p><p><span style=\"font-size:12px;\">(1)不得为任何非法目的而使用网络服务系统； </span></p><p><span style=\"font-size:12px;\">(2)遵守所有与网络服务有关的网络协议、规定和程序； (3)不得利用本站进行任何可能对互联网的正常运转造成不利影响的行为； </span></p><p><span style=\"font-size:12px;\">(4)不得利用本站进行任何不利于本站的行为。</span></p><p><span style=\"font-size:12px;\">4.5 如用户在使用网络服务时违反上述任何规定，本站有权要求用户改正或直接采取一切必要的措施(包括但不限于删除用户张贴的内容、暂停或终止用户使用网络服务的权利)以减轻用户不当行为而造成的影响。</span></p><p><span style=\"font-size:12px;\">五、隐私保护</span></p><p><span style=\"font-size:12px;\">5.1 本站不对外公开或向第三方提供单个用户的注册资料及用户在使用网络服务时存储在本站的非公开内容，但下列情况除外：</span></p><p><span style=\"font-size:12px;\">(1)事先获得用户的明确授权； </span></p><p><span style=\"font-size:12px;\">(2)根据有关的法律法规要求；</span></p><p><span style=\"font-size:12px;\">(3)按照相关政府主管部门的要求；</span></p><p><span style=\"font-size:12px;\">(4)为维护社会公众的利益。</span></p><p><span style=\"font-size:12px;\">5.2 本站可能会与第三方合作向用户提供相关的网络服务，在此情况下，如该第三方同意承担与本站同等的保护用户隐私的责任，则本站有权将用户的注册资料等提供给该第三方。</span></p><p><span style=\"font-size:12px;\">5.3 在不透露单个用户隐私资料的前提下，本站有权对整个用户数据库进行分析并对用户数据库进行商业上的利用。</span></p><p><span style=\"font-size:12px;\">六、版权声明</span></p><p><span style=\"font-size:12px;\">6.1 本站的文字、图片、音频、视频等版权均归永兴元科技有限公司享有或与作者共同享有，未经本站许可，不得任意转载。 </span></p><p><span style=\"font-size:12px;\">6.2 本站特有的标识、版面设计、编排方式等版权均属永兴元科技有限公司享有，未经本站许可，不得任意复制或转载。 </span></p><p><span style=\"font-size:12px;\">6.3 使用本站的任何内容均应注明“来源于本站”及署上作者姓名，按法律规定需要支付稿酬的，应当通知本站及作者及支付稿酬，并独立承担一切法律责任。</span></p><p><span style=\"font-size:12px;\">6.4 本站享有所有作品用于其它用途的优先权，包括但不限于网站、电子杂志、平面出版等，但在使用前会通知作者，并按同行业的标准支付稿酬。</span></p><p><span style=\"font-size:12px;\">6.5 本站所有内容仅代表作者自己的立场和观点，与本站无关，由作者本人承担一切法律责任。 </span></p><p><span style=\"font-size:12px;\">6.6 恶意转载本站内容的，本站保留将其诉诸法律的权利。</span></p><p><span style=\"font-size:12px;\">七、责任声明</span></p><p><span style=\"font-size:12px;\">7.1 用户明确同意其使用本站网络服务所存在的风险及一切后果将完全由用户本人承担，本站对此不承担任何责任。 </span></p><p><span style=\"font-size:12px;\">7.2 本站无法保证网络服务一定能满足用户的要求，也不保证网络服务的及时性、安全性、准确性。 </span></p><p><span style=\"font-size:12px;\">7.3 本站不保证为方便用户而设置的外部链接的准确性和完整性，同时，对于该等外部链接指向的不由本站实际控制的任何网页上的内容，本站不承担任何责任。</span></p><p><span style=\"font-size:12px;\">7.4 对于因不可抗力或本站不能控制的原因造成的网络服务中断或其它缺陷，本站不承担任何责任，但将尽力减少因此而给用户造成的损失和影响。</span></p><p><span style=\"font-size:12px;\">7.5 对于站向用户提供的下列产品或者服务的质量缺陷本身及其引发的任何损失，本站无需承担任何责任：</span></p><p><span style=\"font-size:12px;\">(1)本站向用户免费提供的各项网络服务； </span></p><p><span style=\"font-size:12px;\">(2)本站向用户赠送的任何产品或者服务。</span></p><p><span style=\"font-size:12px;\">7.6 本站有权于任何时间暂时或永久修改或终止本服务(或其任何部分)，而无论其通知与否，本站对用户和任何第三人均无需承担任何责任。</span></p><p><span style=\"font-size:12px;\">八、附则</span></p><p><span style=\"font-size:12px;\">8.1 本协议的订立、执行和解释及争议的解决均应适用中华人民共和国法律。 </span></p><p><span style=\"font-size:12px;\">8.2 如本协议中的任何条款无论因何种原因完全或部分无效或不具有执行力，本协议的其余条款仍应有效并且有约束力。</span></p><p><span style=\"font-size:12px;\">8.3 本协议解释权及修订权归有限公司所有。</span></p><p><br /></p>');
 
 -- --------------------------------------------------------
@@ -6031,11 +6020,11 @@ INSERT INTO `mall_setting` (`id`, `name`, `value`) VALUES
 CREATE TABLE `mall_sms_template` (
   `id` int(11) NOT NULL,
   `sign` varchar(64) NOT NULL DEFAULT '',
-  `sign_name` varchar(64) NOT NULL DEFAULT '' ,
-  `template_code` varchar(128) NOT NULL DEFAULT '' ,
-  `template_name` varchar(255) NOT NULL DEFAULT '' ,
-  `template_param` text DEFAULT NULL ,
-  `status` tinyint(1) NOT NULL DEFAULT 0 ,
+  `sign_name` varchar(64) NOT NULL DEFAULT '',
+  `template_code` varchar(128) NOT NULL DEFAULT '',
+  `template_name` varchar(255) NOT NULL DEFAULT '',
+  `template_param` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6057,8 +6046,8 @@ INSERT INTO `mall_sms_template` (`id`, `sign`, `sign_name`, `template_code`, `te
 
 CREATE TABLE `mall_statistics_search` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(128) NOT NULL DEFAULT '' ,
-  `num` bigint(20) NOT NULL DEFAULT 0 
+  `name` varchar(128) NOT NULL DEFAULT '',
+  `num` bigint(20) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -6077,9 +6066,9 @@ INSERT INTO `mall_statistics_search` (`id`, `name`, `num`) VALUES
 CREATE TABLE `mall_statistics_search_goods` (
   `id` bigint(20) NOT NULL,
   `goods_id` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(128) NOT NULL DEFAULT '' ,
-  `referer` tinyint(1) NOT NULL DEFAULT 0 ,
-  `type` tinyint(1) NOT NULL DEFAULT 0 ,
+  `name` varchar(128) NOT NULL DEFAULT '',
+  `referer` tinyint(1) NOT NULL DEFAULT 0,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6488,6 +6477,7 @@ INSERT INTO `mall_system_purview` (`id`, `pid`, `name`, `module`, `controller`, 
 (261, 260, '基础设置', 'admin', 'users.setting', 'base', '', 0),
 (262, 260, '注册协议', 'admin', 'users.setting', 'register', '', 0);
 
+-- --------------------------------------------------------
 
 --
 -- 表的结构 `mall_system_users`
@@ -6513,7 +6503,7 @@ CREATE TABLE `mall_system_users` (
 --
 
 INSERT INTO `mall_system_users` (`id`, `role_id`, `avatar`, `username`, `password`, `salt`, `email`, `ip`, `status`, `lock`, `count`, `time`) VALUES
-(1, 1, '', 'admin', '7fef6171469e80d32c0559f88b377245', '', 'admin@qq.com', '127.0.0.1', 0, 1, 682, 1597395937),
+(1, 1, '', 'admin', '7fef6171469e80d32c0559f88b377245', '', 'admin@qq.com', '127.0.0.1', 0, 1, 688, 1597956325),
 (2, 3, '', 'demo', '', '', 'demo@qq.com', '127.0.0.1', 0, 0, 3, 1584624122);
 
 -- --------------------------------------------------------
@@ -6532,36 +6522,62 @@ CREATE TABLE `mall_system_users_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- 转存表中的数据 `mall_system_users_log`
+--
+
+INSERT INTO `mall_system_users_log` (`id`, `user_id`, `type`, `intro`, `ip`, `time`) VALUES
+(1, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-07-31 10:06:52 登录地点：127.0.0.1', '127.0.0.1', 1596161212),
+(2, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-07-31 15:20:08 登录地点：127.0.0.1', '127.0.0.1', 1596180008),
+(3, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-02 18:51:01 登录地点：127.0.0.1', '127.0.0.1', 1596365461),
+(4, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-02 18:56:16 登录地点：127.0.0.1', '127.0.0.1', 1596365776),
+(5, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-04 10:11:18 登录地点：127.0.0.1', '127.0.0.1', 1596507078),
+(6, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-04 20:02:13 登录地点：127.0.0.1', '127.0.0.1', 1596542533),
+(7, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-07 00:45:30 登录地点：127.0.0.1', '127.0.0.1', 1596732330),
+(8, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-09 10:10:34 登录地点：127.0.0.1', '127.0.0.1', 1596939034),
+(9, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-10 09:42:15 登录地点：127.0.0.1', '127.0.0.1', 1597023735),
+(10, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-12 01:48:37 登录地点：127.0.0.1', '127.0.0.1', 1597168117),
+(11, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-14 12:13:56 登录地点：127.0.0.1', '127.0.0.1', 1597378436),
+(12, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-14 17:05:37 登录地点：127.0.0.1', '127.0.0.1', 1597395937),
+(13, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-16 03:00:02 登录地点：127.0.0.1', '127.0.0.1', 1597518002),
+(14, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-19 18:59:15 登录地点：127.0.0.1', '127.0.0.1', 1597834755),
+(15, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-20 07:31:11 登录地点：127.0.0.1', '127.0.0.1', 1597879871),
+(16, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-20 14:40:11 登录地点：127.0.0.1', '127.0.0.1', 1597905611),
+(17, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-21 04:12:53 登录地点：127.0.0.1', '127.0.0.1', 1597954373),
+(18, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-21 04:45:25 登录地点：127.0.0.1', '127.0.0.1', 1597956325);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `mall_users`
 --
 
 CREATE TABLE `mall_users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `group_id` bigint(20) DEFAULT 0 ,
-  `username` varchar(20) NOT NULL ,
-  `password` varchar(40) NOT NULL ,
-  `email` varchar(255) DEFAULT '' ,
-  `avatar` varchar(255) DEFAULT '' ,
+  `group_id` bigint(20) DEFAULT 0,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `email` varchar(255) DEFAULT '',
+  `avatar` varchar(255) DEFAULT '',
   `nickname` varchar(255) NOT NULL DEFAULT '',
-  `realname` varchar(50) DEFAULT '' ,
-  `mobile` varchar(20) DEFAULT '' ,
+  `realname` varchar(50) DEFAULT '',
+  `mobile` varchar(20) DEFAULT '',
   `birthday` int(10) NOT NULL DEFAULT 0,
-  `sex` tinyint(1) NOT NULL DEFAULT 1 ,
-  `exp` bigint(20) NOT NULL DEFAULT 0 ,
-  `point` bigint(20) NOT NULL DEFAULT 0 ,
-  `status` tinyint(1) NOT NULL DEFAULT 1 ,
-  `tags` varchar(255) NOT NULL DEFAULT '' ,
-  `is_spread` tinyint(1) NOT NULL DEFAULT 0 ,
-  `spread_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `spread_time` int(10) NOT NULL DEFAULT 0 ,
-  `pay_count` bigint(20) NOT NULL DEFAULT 0 ,
-  `spread_count` bigint(20) NOT NULL DEFAULT 0 ,
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `spread_amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
-  `create_ip` varchar(128) NOT NULL DEFAULT '' ,
-  `last_ip` varchar(128) NOT NULL DEFAULT '' ,
-  `create_time` int(10) NOT NULL DEFAULT 0 ,
-  `last_login` int(10) DEFAULT 0 
+  `sex` tinyint(1) NOT NULL DEFAULT 1,
+  `exp` bigint(20) NOT NULL DEFAULT 0,
+  `point` bigint(20) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `tags` varchar(255) NOT NULL DEFAULT '',
+  `is_spread` tinyint(1) NOT NULL DEFAULT 0,
+  `spread_id` bigint(20) NOT NULL DEFAULT 0,
+  `spread_time` int(10) NOT NULL DEFAULT 0,
+  `pay_count` bigint(20) NOT NULL DEFAULT 0,
+  `spread_count` bigint(20) NOT NULL DEFAULT 0,
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `spread_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `create_ip` varchar(128) NOT NULL DEFAULT '',
+  `last_ip` varchar(128) NOT NULL DEFAULT '',
+  `create_time` int(10) NOT NULL DEFAULT 0,
+  `last_login` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -6569,7 +6585,7 @@ CREATE TABLE `mall_users` (
 --
 
 INSERT INTO `mall_users` (`id`, `group_id`, `username`, `password`, `email`, `avatar`, `nickname`, `realname`, `mobile`, `birthday`, `sex`, `exp`, `point`, `status`, `tags`, `is_spread`, `spread_id`, `spread_time`, `pay_count`, `spread_count`, `amount`, `spread_amount`, `create_ip`, `last_ip`, `create_time`, `last_login`) VALUES
-(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'demo', 'demo', '18319517777', 1595779200, 1, 1092, 1520, 0, '', 1, 0, 1592917652, 0, 0, '58927.19', '10017.21', '', '127.0.0.1', 1584028900, 1597395925),
+(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'demo', 'demo', '18319517777', 1595779200, 1, 1092, 1520, 0, '', 1, 0, 1592917652, 0, 0, '58183.19', '10017.21', '', '127.0.0.1', 1584028900, 1598037386),
 (10, 1, 'test', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'test', '', '18319517778', 1590163200, 1, 0, 0, 0, '', 1, 1, 1592917588, 0, 0, '0.00', '123.62', '', '127.0.0.1', 0, 1592917588),
 (11, 1, 'usres', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'users', '', '18319517779', 1590163200, 1, 0, 40, 0, '', 1, 10, 1592917652, 0, 0, '4444.00', '90.20', '', '127.0.0.1', 0, 1592917652),
 (12, 2, 'blue', '7fef6171469e80d32c0559f88b377245', '', '', 'blue', '', '18319517776', 0, 1, 0, 20, 0, '2', 1, 11, 1592917652, 0, 0, '186.00', '0.00', '', '127.0.0.1', 0, 1592918687);
@@ -6582,17 +6598,17 @@ INSERT INTO `mall_users` (`id`, `group_id`, `username`, `password`, `email`, `av
 
 CREATE TABLE `mall_users_address` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `accept_name` varchar(20) NOT NULL DEFAULT '' ,
-  `zip` varchar(6) DEFAULT '' ,
-  `mobile` varchar(20) DEFAULT '' ,
-  `phone` varchar(20) DEFAULT '' ,
-  `country` bigint(20) DEFAULT 0 ,
-  `province` bigint(20) NOT NULL DEFAULT 0 ,
-  `city` bigint(20) NOT NULL DEFAULT 0 ,
-  `area` bigint(20) NOT NULL DEFAULT 0 ,
-  `address` varchar(250) NOT NULL ,
-  `is_default` tinyint(1) NOT NULL DEFAULT 0 ,
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `accept_name` varchar(20) NOT NULL DEFAULT '',
+  `zip` varchar(6) DEFAULT '',
+  `mobile` varchar(20) DEFAULT '',
+  `phone` varchar(20) DEFAULT '',
+  `country` bigint(20) DEFAULT 0,
+  `province` bigint(20) NOT NULL DEFAULT 0,
+  `city` bigint(20) NOT NULL DEFAULT 0,
+  `area` bigint(20) NOT NULL DEFAULT 0,
+  `address` varchar(250) NOT NULL,
+  `is_default` tinyint(1) NOT NULL DEFAULT 0,
   `extends_info` text DEFAULT NULL,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -6618,10 +6634,10 @@ CREATE TABLE `mall_users_bonus` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT 0,
   `order_id` int(11) NOT NULL DEFAULT 0,
-  `bonus_id` int(11) NOT NULL ,
-  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 ,
-  `used_time` int(10) NOT NULL DEFAULT 0 ,
-  `status` tinyint(1) NOT NULL DEFAULT 0 ,
+  `bonus_id` int(11) NOT NULL,
+  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `used_time` int(10) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6640,20 +6656,20 @@ INSERT INTO `mall_users_bonus` (`id`, `user_id`, `order_id`, `bonus_id`, `type`,
 
 CREATE TABLE `mall_users_comment` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) NOT NULL ,
-  `order_no` varchar(20) NOT NULL ,
-  `user_id` bigint(20) NOT NULL ,
+  `goods_id` bigint(20) NOT NULL,
+  `order_no` varchar(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `admin_id` bigint(20) NOT NULL DEFAULT 0,
-  `contents` text DEFAULT NULL ,
-  `reply_content` text DEFAULT NULL ,
-  `point` tinyint(1) NOT NULL DEFAULT 0 ,
-  `describes` tinyint(1) NOT NULL DEFAULT 0 ,
-  `service` tinyint(1) NOT NULL DEFAULT 0 ,
-  `logistics` tinyint(1) NOT NULL DEFAULT 0 ,
-  `status` tinyint(1) NOT NULL DEFAULT 0 ,
-  `comment_time` int(10) NOT NULL DEFAULT 0 ,
-  `reply_time` int(10) NOT NULL DEFAULT 0 ,
-  `create_time` int(10) NOT NULL DEFAULT 0 
+  `contents` text DEFAULT NULL,
+  `reply_content` text DEFAULT NULL,
+  `point` tinyint(1) NOT NULL DEFAULT 0,
+  `describes` tinyint(1) NOT NULL DEFAULT 0,
+  `service` tinyint(1) NOT NULL DEFAULT 0,
+  `logistics` tinyint(1) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `comment_time` int(10) NOT NULL DEFAULT 0,
+  `reply_time` int(10) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -6674,13 +6690,13 @@ INSERT INTO `mall_users_comment` (`id`, `goods_id`, `order_no`, `user_id`, `admi
 CREATE TABLE `mall_users_consult` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `pid` bigint(20) NOT NULL DEFAULT 0,
-  `admin_id` bigint(20) DEFAULT 0 ,
-  `user_id` bigint(20) DEFAULT 0 ,
-  `goods_id` bigint(20) NOT NULL DEFAULT 0 ,
-  `content` text DEFAULT NULL ,
-  `status` tinyint(1) DEFAULT 0 ,
-  `create_time` int(10) DEFAULT 0 ,
-  `reply_time` int(10) DEFAULT 0 
+  `admin_id` bigint(20) DEFAULT 0,
+  `user_id` bigint(20) DEFAULT 0,
+  `goods_id` bigint(20) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 0,
+  `create_time` int(10) DEFAULT 0,
+  `reply_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -6701,8 +6717,7 @@ CREATE TABLE `mall_users_favorite` (
 --
 
 INSERT INTO `mall_users_favorite` (`id`, `user_id`, `goods_id`, `create_time`) VALUES
-(7, 1, 29, 1595732088),
-(8, 1, 26, 1595732091);
+(7, 1, 29, 1595732088);
 
 -- --------------------------------------------------------
 
@@ -6711,11 +6726,11 @@ INSERT INTO `mall_users_favorite` (`id`, `user_id`, `goods_id`, `create_time`) V
 --
 
 CREATE TABLE `mall_users_group` (
-  `id` bigint(20) UNSIGNED NOT NULL ,
-  `name` varchar(32) NOT NULL ,
-  `discount` decimal(15,2) NOT NULL DEFAULT 100.00 ,
-  `minexp` bigint(20) DEFAULT NULL ,
-  `maxexp` bigint(20) DEFAULT NULL 
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `discount` decimal(15,2) NOT NULL DEFAULT 100.00,
+  `minexp` bigint(20) DEFAULT NULL,
+  `maxexp` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -6740,14 +6755,56 @@ CREATE TABLE `mall_users_log` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `order_no` varchar(255) NOT NULL DEFAULT '',
   `user_id` int(10) NOT NULL DEFAULT 0,
-  `admin_id` bigint(20) DEFAULT 0 ,
-  `action` tinyint(1) NOT NULL DEFAULT 0 ,
-  `operation` tinyint(1) NOT NULL DEFAULT 0 ,
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 ,
+  `admin_id` bigint(20) DEFAULT 0,
+  `action` tinyint(1) NOT NULL DEFAULT 0,
+  `operation` tinyint(1) NOT NULL DEFAULT 0,
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
   `point` int(10) NOT NULL DEFAULT 0,
   `exp` int(10) NOT NULL DEFAULT 0,
   `description` text DEFAULT NULL,
-  `create_time` int(10) NOT NULL DEFAULT 0 
+  `create_time` int(10) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 转存表中的数据 `mall_users_log`
+--
+
+INSERT INTO `mall_users_log` (`id`, `order_no`, `user_id`, `admin_id`, `action`, `operation`, `amount`, `point`, `exp`, `description`, `create_time`) VALUES
+(1, '2020062321122633491', 11, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321122633491中的商品,奖励积分10', 1592917951),
+(2, '2020062321122633491', 10, 0, 4, 0, '28.55', 0, 0, 'usres成功消费订单总额571元,奖励推广佣金28.55', 1592917951),
+(3, '2020062321131252567', 11, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321131252567中的商品,奖励积分10', 1592917995),
+(4, '2020062321131252567', 10, 0, 4, 0, '13.65', 0, 0, 'usres成功消费订单总额273元,奖励推广佣金13.65', 1592917995),
+(5, '2020062321155397388', 11, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321155397388中的商品,奖励积分10', 1592918155),
+(6, '2020062321155397388', 10, 0, 4, 0, '13.65', 0, 0, 'usres成功消费订单总额273元,奖励推广佣金13.65', 1592918155),
+(7, '2020062321221703712', 11, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321221703712中的商品,奖励积分10', 1592918538),
+(8, '2020062321221703712', 10, 0, 4, 0, '13.65', 0, 0, 'usres成功消费订单总额273元,奖励推广佣金13.65', 1592918539),
+(9, '2020062321221703712', 1, 0, 4, 0, '8.19', 0, 0, '二级推广人 test成功消费订单总额273元,奖励推广佣金8.19', 1592918539),
+(10, '2020062321280859363', 12, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321280859363中的商品,奖励积分10', 1592918891),
+(11, '2020062321280859363', 11, 0, 4, 0, '45.10', 0, 0, 'blue成功消费订单总额902元,奖励推广佣金45.1', 1592918891),
+(12, '2020062321280859363', 10, 0, 4, 0, '27.06', 0, 0, '二级推广人 usres成功消费订单总额902元,奖励推广佣金27.06', 1592918891),
+(13, '2020062321290610179', 12, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020062321290610179中的商品,奖励积分10', 1592918948),
+(14, '2020062321290610179', 11, 0, 4, 0, '45.10', 0, 0, 'blue成功消费订单总额902元,奖励推广佣金45.1', 1592918948),
+(15, '2020062321290610179', 10, 0, 4, 0, '27.06', 0, 0, '二级推广人 usres成功消费订单总额902元,奖励推广佣金27.06', 1592918948),
+(16, '2020062321290610179', 1, 0, 4, 0, '9.02', 0, 0, '三级推广人 test成功消费订单总额902元,奖励推广佣金9.02', 1592918948),
+(17, '2020072417195346318', 1, 0, 1, 0, '0.00', 10, 0, '成功购买了订单号：2020072417195346318中的商品,奖励积分10', 1595642963);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mall_users_rechange`
+--
+
+CREATE TABLE `mall_users_rechange` (
+  `id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `pay_type` int(11) NOT NULL DEFAULT 0,
+  `order_no` varchar(255) NOT NULL DEFAULT '',
+  `order_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `payment_name` varchar(80) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `transaction_id` varchar(255) NOT NULL DEFAULT '',
+  `create_time` int(10) NOT NULL DEFAULT 0,
+  `pay_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -6761,7 +6818,7 @@ CREATE TABLE `mall_users_sms` (
   `user_id` int(11) NOT NULL DEFAULT 0,
   `mobile` varchar(255) NOT NULL DEFAULT '',
   `code` varchar(32) NOT NULL DEFAULT '',
-  `status` tinyint(1) NOT NULL DEFAULT 0 ,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6773,8 +6830,8 @@ CREATE TABLE `mall_users_sms` (
 
 CREATE TABLE `mall_users_tags` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL ,
-  `intro` text NOT NULL ,
+  `name` varchar(128) NOT NULL,
+  `intro` text NOT NULL,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6797,14 +6854,36 @@ CREATE TABLE `mall_users_token` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT 0,
   `token` varchar(255) NOT NULL DEFAULT '',
-  `referer` tinyint(1) NOT NULL DEFAULT 0 ,
-  `type` tinyint(1) NOT NULL DEFAULT 0 ,
-  `brand` varchar(128) NOT NULL DEFAULT '' ,
-  `model` varchar(255) NOT NULL DEFAULT '' ,
+  `referer` tinyint(1) NOT NULL DEFAULT 0,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `brand` varchar(128) NOT NULL DEFAULT '',
+  `model` varchar(255) NOT NULL DEFAULT '',
   `ip` varchar(255) NOT NULL DEFAULT '',
   `expire_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 转存表中的数据 `mall_users_token`
+--
+
+INSERT INTO `mall_users_token` (`id`, `user_id`, `token`, `referer`, `type`, `brand`, `model`, `ip`, `expire_time`) VALUES
+(106, 1, 'dc8e0723ed3dfccacf069d654c55a2c515522c6d', 0, 0, '', '', '127.0.0.1', 1596803712),
+(107, 1, '5762ba558c5cb06a626fb7346c9bf25ddfa137a2', 0, 0, '', '', '127.0.0.1', 1597378489),
+(108, 1, 'ebaad4332729e6795d96c6028c99e3aadc08cdef', 0, 0, '', '', '127.0.0.1', 1597379151),
+(109, 1, 'cf9dad1ee04f369fd80ced81ec13ad59723d7baa', 0, 0, '', '', '127.0.0.1', 1597395925),
+(110, 1, '8417c2e01f8e85907a284c00f3f90d7812b8a114', 0, 0, '', '', '127.0.0.1', 1597689228),
+(111, 1, '9574e59718549978137d001384f5048b7634faab', 0, 0, '', '', '127.0.0.1', 1597829611),
+(112, 1, '6d9442f2b4ea877f86ab1ee26ed28ff2c4e570e3', 0, 0, '', '', '127.0.0.1', 1597834083),
+(113, 1, 'a9759d295377fde151e6bd3759b6e3b288e9c0cf', 0, 0, '', '', '127.0.0.1', 1597868777),
+(114, 1, '5245456536a43251a945561082f37c9330160bb1', 0, 0, '', '', '127.0.0.1', 1597870283),
+(115, 1, '752c4f6582b7c032beb0a9b2c3202321171badcf', 0, 0, '', '', '127.0.0.1', 1597900796),
+(116, 1, 'c05827762c3ca9f1d65efc5f8fe856f2aef2aa42', 0, 0, '', '', '127.0.0.1', 1597902213),
+(117, 1, 'bae886ed0d68db65c7b5dd9c7025cb9a0e9042a4', 0, 0, '', '', '127.0.0.1', 1597925340),
+(118, 1, 'ddb73de0650238fa11c6ca4366b4aca97b7af59a', 0, 0, '', '', '127.0.0.1', 1597955762),
+(119, 1, 'cb6ff63fb7991e2b4c7ad062627fdbd7345e7f8b', 0, 0, '', '', '127.0.0.1', 1597956167),
+(120, 1, '2d4888c422f18de53ef9d23bc26ceae390f0ceb1', 0, 0, '', '', '127.0.0.1', 1597966933),
+(121, 1, '4a08b94f6125ce7c6224656cf56fe5c0aa1fcd7f', 0, 0, '', '', '127.0.0.1', 1597970086),
+(122, 1, 'c314dfde280e7056268465550a83784a7ad87acd', 0, 0, '', '', '127.0.0.1', 1598037386);
 
 -- --------------------------------------------------------
 
@@ -6815,19 +6894,19 @@ CREATE TABLE `mall_users_token` (
 CREATE TABLE `mall_users_withdraw_log` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) DEFAULT NULL,
-  `withdraw_type` tinyint(1) DEFAULT 0 ,
-  `bank_name` varchar(128) NOT NULL DEFAULT '' ,
-  `bank_real_name` varchar(32) NOT NULL DEFAULT '' ,
-  `type` tinyint(1) DEFAULT 1 ,
-  `code` varchar(32) DEFAULT '' ,
-  `address` varchar(256) DEFAULT '' ,
-  `account` varchar(64) DEFAULT '' ,
-  `price` decimal(15,2) DEFAULT 0.00 ,
+  `withdraw_type` tinyint(1) DEFAULT 0,
+  `bank_name` varchar(128) NOT NULL DEFAULT '',
+  `bank_real_name` varchar(32) NOT NULL DEFAULT '',
+  `type` tinyint(1) DEFAULT 1,
+  `code` varchar(32) DEFAULT '',
+  `address` varchar(256) DEFAULT '',
+  `account` varchar(64) DEFAULT '',
+  `price` decimal(15,2) DEFAULT 0.00,
   `mark` varchar(512) DEFAULT NULL,
-  `msg` varchar(255) DEFAULT '' ,
-  `status` tinyint(2) DEFAULT 0 ,
-  `create_time` int(10) DEFAULT NULL ,
-  `update_time` int(10) DEFAULT NULL 
+  `msg` varchar(255) DEFAULT '',
+  `status` tinyint(2) DEFAULT 0,
+  `create_time` int(10) DEFAULT NULL,
+  `update_time` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -6836,7 +6915,8 @@ CREATE TABLE `mall_users_withdraw_log` (
 
 INSERT INTO `mall_users_withdraw_log` (`id`, `user_id`, `withdraw_type`, `bank_name`, `bank_real_name`, `type`, `code`, `address`, `account`, `price`, `mark`, `msg`, `status`, `create_time`, `update_time`) VALUES
 (1, 1, 1, '中国工商银行', 'asd', 1, '6210812470004250007', '', '', '1000.00', NULL, '己转帐', 1, 1592929668, 1592929697),
-(2, 1, 1, '中国农业银行', 'afd', 1, '6210812470004250007', '', '', '500.00', NULL, '己转帐', 1, 1592929700, 1592929714);
+(2, 1, 1, '中国农业银行', 'afd', 1, '6210812470004250007', '', '', '500.00', NULL, '己转帐', 1, 1592929700, 1592929714),
+(3, 1, 1, '招商银行', 'asf', 1, '6210812470004250007', '', '', '222.00', NULL, '', 0, 1597956305, NULL);
 
 -- --------------------------------------------------------
 
@@ -6846,7 +6926,7 @@ INSERT INTO `mall_users_withdraw_log` (`id`, `user_id`, `withdraw_type`, `bank_n
 
 CREATE TABLE `mall_version` (
   `id` int(11) NOT NULL,
-  `api` varchar(32) NOT NULL DEFAULT '' ,
+  `api` varchar(32) NOT NULL DEFAULT '',
   `api_url` varchar(255) NOT NULL DEFAULT '',
   `name` varchar(128) NOT NULL DEFAULT '',
   `android_url` varchar(255) NOT NULL DEFAULT '',
@@ -6863,22 +6943,22 @@ CREATE TABLE `mall_version` (
 
 CREATE TABLE `mall_wechat_keys` (
   `id` bigint(20) NOT NULL,
-  `appid` char(100) NOT NULL DEFAULT '' ,
-  `type` varchar(20) NOT NULL DEFAULT '' ,
-  `keys` varchar(100) DEFAULT NULL ,
-  `content` text DEFAULT NULL ,
-  `image_url` varchar(255) DEFAULT '' ,
-  `voice_url` varchar(255) DEFAULT '' ,
-  `music_title` varchar(100) DEFAULT '' ,
-  `music_url` varchar(255) DEFAULT '' ,
-  `music_image` varchar(255) DEFAULT '' ,
-  `music_desc` varchar(255) DEFAULT '' ,
-  `video_title` varchar(100) DEFAULT '' ,
-  `video_url` varchar(255) DEFAULT '' ,
-  `video_desc` varchar(255) DEFAULT '' ,
-  `news_id` bigint(20) DEFAULT 0 ,
-  `sort` bigint(20) DEFAULT 0 ,
-  `status` tinyint(1) DEFAULT 1 ,
+  `appid` char(100) NOT NULL DEFAULT '',
+  `type` varchar(20) NOT NULL DEFAULT '',
+  `keys` varchar(100) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT '',
+  `voice_url` varchar(255) DEFAULT '',
+  `music_title` varchar(100) DEFAULT '',
+  `music_url` varchar(255) DEFAULT '',
+  `music_image` varchar(255) DEFAULT '',
+  `music_desc` varchar(255) DEFAULT '',
+  `video_title` varchar(100) DEFAULT '',
+  `video_url` varchar(255) DEFAULT '',
+  `video_desc` varchar(255) DEFAULT '',
+  `news_id` bigint(20) DEFAULT 0,
+  `sort` bigint(20) DEFAULT 0,
+  `status` tinyint(1) DEFAULT 1,
   `admin_id` int(11) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -6891,12 +6971,12 @@ CREATE TABLE `mall_wechat_keys` (
 
 CREATE TABLE `mall_wechat_media` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `appid` varchar(100) DEFAULT '' ,
-  `md5` varchar(32) DEFAULT '' ,
-  `type` varchar(20) DEFAULT '' ,
-  `media_id` varchar(100) DEFAULT '' ,
-  `local_url` varchar(300) DEFAULT '' ,
-  `media_url` varchar(300) DEFAULT '' ,
+  `appid` varchar(100) DEFAULT '',
+  `md5` varchar(32) DEFAULT '',
+  `type` varchar(20) DEFAULT '',
+  `media_id` varchar(100) DEFAULT '',
+  `local_url` varchar(300) DEFAULT '',
+  `media_url` varchar(300) DEFAULT '',
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6908,12 +6988,12 @@ CREATE TABLE `mall_wechat_media` (
 
 CREATE TABLE `mall_wechat_news` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `admin_id` int(11) DEFAULT 0 ,
-  `media_id` varchar(100) DEFAULT '' ,
-  `local_url` varchar(300) DEFAULT '' ,
-  `article_id` varchar(60) DEFAULT '' ,
-  `is_deleted` tinyint(1) UNSIGNED DEFAULT 0 ,
-  `create_time` int(10) DEFAULT 0 ,
+  `admin_id` int(11) DEFAULT 0,
+  `media_id` varchar(100) DEFAULT '',
+  `local_url` varchar(300) DEFAULT '',
+  `article_id` varchar(60) DEFAULT '',
+  `is_deleted` tinyint(1) UNSIGNED DEFAULT 0,
+  `create_time` int(10) DEFAULT 0,
   `update_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6925,14 +7005,14 @@ CREATE TABLE `mall_wechat_news` (
 
 CREATE TABLE `mall_wechat_news_article` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(50) DEFAULT '' ,
-  `local_url` varchar(300) DEFAULT '' ,
-  `show_cover_pic` tinyint(4) UNSIGNED DEFAULT 0 ,
-  `author` varchar(20) DEFAULT '' ,
-  `digest` varchar(300) DEFAULT '' ,
-  `content` longtext DEFAULT NULL ,
-  `content_source_url` varchar(200) DEFAULT '' ,
-  `visit` bigint(20) UNSIGNED DEFAULT 0 ,
+  `title` varchar(50) DEFAULT '',
+  `local_url` varchar(300) DEFAULT '',
+  `show_cover_pic` tinyint(4) UNSIGNED DEFAULT 0,
+  `author` varchar(20) DEFAULT '',
+  `digest` varchar(300) DEFAULT '',
+  `content` longtext DEFAULT NULL,
+  `content_source_url` varchar(200) DEFAULT '',
+  `visit` bigint(20) UNSIGNED DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6945,25 +7025,25 @@ CREATE TABLE `mall_wechat_news_article` (
 CREATE TABLE `mall_wechat_users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT 0,
-  `appid` varchar(50) DEFAULT '' ,
-  `unionid` varchar(100) DEFAULT '' ,
-  `openid` varchar(100) DEFAULT '' ,
-  `tagid_list` varchar(100) DEFAULT '' ,
-  `is_black` tinyint(1) UNSIGNED DEFAULT 0 ,
-  `subscribe` tinyint(1) UNSIGNED DEFAULT 0 ,
-  `nickname` varchar(200) DEFAULT '' ,
-  `sex` tinyint(1) UNSIGNED DEFAULT 0 ,
-  `country` varchar(50) DEFAULT '' ,
-  `province` varchar(50) DEFAULT '' ,
-  `city` varchar(50) DEFAULT '' ,
-  `language` varchar(50) DEFAULT '' ,
-  `headimgurl` varchar(500) DEFAULT '' ,
-  `subscribe_time` int(10) UNSIGNED DEFAULT 0 ,
-  `subscribe_create_time` int(10) DEFAULT 0 ,
-  `remark` varchar(50) DEFAULT '' ,
-  `subscribe_scene` varchar(200) DEFAULT '' ,
-  `qr_scene` varchar(100) DEFAULT '' ,
-  `qr_scene_str` varchar(200) DEFAULT '' ,
+  `appid` varchar(50) DEFAULT '',
+  `unionid` varchar(100) DEFAULT '',
+  `openid` varchar(100) DEFAULT '',
+  `tagid_list` varchar(100) DEFAULT '',
+  `is_black` tinyint(1) UNSIGNED DEFAULT 0,
+  `subscribe` tinyint(1) UNSIGNED DEFAULT 0,
+  `nickname` varchar(200) DEFAULT '',
+  `sex` tinyint(1) UNSIGNED DEFAULT 0,
+  `country` varchar(50) DEFAULT '',
+  `province` varchar(50) DEFAULT '',
+  `city` varchar(50) DEFAULT '',
+  `language` varchar(50) DEFAULT '',
+  `headimgurl` varchar(500) DEFAULT '',
+  `subscribe_time` int(10) UNSIGNED DEFAULT 0,
+  `subscribe_create_time` int(10) DEFAULT 0,
+  `remark` varchar(50) DEFAULT '',
+  `subscribe_scene` varchar(200) DEFAULT '',
+  `qr_scene` varchar(100) DEFAULT '',
+  `qr_scene_str` varchar(200) DEFAULT '',
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6974,11 +7054,11 @@ CREATE TABLE `mall_wechat_users` (
 --
 
 CREATE TABLE `mall_wechat_users_tags` (
-  `id` bigint(20) NOT NULL ,
-  `appid` varchar(50) DEFAULT '' ,
-  `name` varchar(35) DEFAULT NULL ,
-  `count` bigint(20) UNSIGNED DEFAULT 0 ,
-  `create_at` timestamp NULL DEFAULT current_timestamp() 
+  `id` bigint(20) NOT NULL,
+  `appid` varchar(50) DEFAULT '',
+  `name` varchar(35) DEFAULT NULL,
+  `count` bigint(20) UNSIGNED DEFAULT 0,
+  `create_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -7261,13 +7341,6 @@ ALTER TABLE `mall_promotion_second_item`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `mall_recharge`
---
-ALTER TABLE `mall_recharge`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
 -- 表的索引 `mall_search_keywords`
 --
 ALTER TABLE `mall_search_keywords`
@@ -7314,8 +7387,6 @@ ALTER TABLE `mall_system_menu`
 --
 ALTER TABLE `mall_system_purview`
   ADD PRIMARY KEY (`id`);
-
-
 
 --
 -- 表的索引 `mall_system_users`
@@ -7378,6 +7449,13 @@ ALTER TABLE `mall_users_group`
 --
 ALTER TABLE `mall_users_log`
   ADD PRIMARY KEY (`id`);
+
+--
+-- 表的索引 `mall_users_rechange`
+--
+ALTER TABLE `mall_users_rechange`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- 表的索引 `mall_users_sms`
@@ -7519,7 +7597,7 @@ ALTER TABLE `mall_freight`
 -- 使用表AUTO_INCREMENT `mall_goods`
 --
 ALTER TABLE `mall_goods`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT , AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- 使用表AUTO_INCREMENT `mall_goods_attribute`
@@ -7555,31 +7633,31 @@ ALTER TABLE `mall_navigation`
 -- 使用表AUTO_INCREMENT `mall_order`
 --
 ALTER TABLE `mall_order`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- 使用表AUTO_INCREMENT `mall_order_collection`
 --
 ALTER TABLE `mall_order_collection`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- 使用表AUTO_INCREMENT `mall_order_delivery`
 --
 ALTER TABLE `mall_order_delivery`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT ;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用表AUTO_INCREMENT `mall_order_goods`
 --
 ALTER TABLE `mall_order_goods`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- 使用表AUTO_INCREMENT `mall_order_log`
 --
 ALTER TABLE `mall_order_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- 使用表AUTO_INCREMENT `mall_order_refundment`
@@ -7609,19 +7687,19 @@ ALTER TABLE `mall_products_attribute_data`
 -- 使用表AUTO_INCREMENT `mall_products_brand`
 --
 ALTER TABLE `mall_products_brand`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT , AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用表AUTO_INCREMENT `mall_products_model`
 --
 ALTER TABLE `mall_products_model`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT , AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `mall_products_model_data`
 --
 ALTER TABLE `mall_products_model_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT , AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `mall_promotion_bonus`
@@ -7684,12 +7762,6 @@ ALTER TABLE `mall_promotion_second_item`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- 使用表AUTO_INCREMENT `mall_recharge`
---
-ALTER TABLE `mall_recharge`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
 -- 使用表AUTO_INCREMENT `mall_search_keywords`
 --
 ALTER TABLE `mall_search_keywords`
@@ -7699,7 +7771,7 @@ ALTER TABLE `mall_search_keywords`
 -- 使用表AUTO_INCREMENT `mall_setting`
 --
 ALTER TABLE `mall_setting`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- 使用表AUTO_INCREMENT `mall_sms_template`
@@ -7737,7 +7809,6 @@ ALTER TABLE `mall_system_menu`
 ALTER TABLE `mall_system_purview`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
 
-
 --
 -- 使用表AUTO_INCREMENT `mall_system_users`
 --
@@ -7748,7 +7819,7 @@ ALTER TABLE `mall_system_users`
 -- 使用表AUTO_INCREMENT `mall_system_users_log`
 --
 ALTER TABLE `mall_system_users_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users`
@@ -7784,19 +7855,25 @@ ALTER TABLE `mall_users_consult`
 -- 使用表AUTO_INCREMENT `mall_users_favorite`
 --
 ALTER TABLE `mall_users_favorite`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users_group`
 --
 ALTER TABLE `mall_users_group`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT , AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users_log`
 --
 ALTER TABLE `mall_users_log`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- 使用表AUTO_INCREMENT `mall_users_rechange`
+--
+ALTER TABLE `mall_users_rechange`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users_sms`
@@ -7814,13 +7891,13 @@ ALTER TABLE `mall_users_tags`
 -- 使用表AUTO_INCREMENT `mall_users_token`
 --
 ALTER TABLE `mall_users_token`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users_withdraw_log`
 --
 ALTER TABLE `mall_users_withdraw_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用表AUTO_INCREMENT `mall_version`
@@ -7862,5 +7939,5 @@ ALTER TABLE `mall_wechat_users`
 -- 使用表AUTO_INCREMENT `mall_wechat_users_tags`
 --
 ALTER TABLE `mall_wechat_users_tags`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT ;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 COMMIT;

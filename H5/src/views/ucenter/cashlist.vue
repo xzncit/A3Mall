@@ -10,7 +10,7 @@
 
         <div class="top">
             <span>总余额：￥{{amount}}</span>
-            <span @click="$router.push('/ucenter/recharge')">去提现</span>
+            <span @click="$router.push('/ucenter/withdraw')">去提现</span>
         </div>
 
         <div class="list-wrap">

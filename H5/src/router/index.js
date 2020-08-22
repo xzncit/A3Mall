@@ -176,9 +176,14 @@ const routes = [
         component:()=>import("../views/ucenter/wallet")
     },
     {
-        path:'/ucenter/recharge',
+        path:'/rechange/view',
         meta: { title: "", tabbar: false, auth: true },
-        component:()=>import("../views/ucenter/recharge")
+        component:()=>import("../views/rechange/view")
+    },
+    {
+        path:'/ucenter/withdraw',
+        meta: { title: "", tabbar: false, auth: true },
+        component:()=>import("../views/ucenter/withdraw")
     },
     {
         path:'/ucenter/bill/cashlist',

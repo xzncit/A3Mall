@@ -7,9 +7,11 @@
 // | Author: xzncit <158373108@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\common\model\base;
+namespace app\common\model\users;
 
-class Recharge extends A3Mall {
+class Rechange extends A3Mall {
+
+    protected $name = "users_rechange";
 
     protected $type = [
         "id"=>"integer",
@@ -17,8 +19,13 @@ class Recharge extends A3Mall {
         "pay_type"=>"integer",
         "order_amount"=>"float",
         "status"=>"integer",
-        "create_time"=>"integer"
+        "create_time"=>"integer",
+        "pay_time"=>"integer"
     ];
+
+    public function setTransactionIdAttr($value){
+        return strip_tags(trim($value));
+    }
 
     public function setOrderNoAttr($value){
         return strip_tags(trim($value));

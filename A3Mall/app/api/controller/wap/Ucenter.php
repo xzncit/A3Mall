@@ -9,6 +9,7 @@
 namespace app\api\controller\wap;
 
 use mall\basic\Area;
+use mall\basic\Payment;
 use mall\utils\Check;
 use mall\utils\CString;
 use mall\utils\Tool;
@@ -253,7 +254,7 @@ class Ucenter extends Auth {
         $info = Users::info(Users::get("id"));
         return $this->returnAjax("ok",1,[
             "amount"=>$info["amount"],
-            "recharge_amount"=>Db::name("recharge")->where("user_id",Users::get("id"))->where("status",1)->sum("order_amount"),
+            "recharge_amount"=>Db::name("users_rechange")->where("user_id",Users::get("id"))->where("status",1)->sum("order_amount"),
             "consume_amount"=>Db::name("order")->where("user_id",Users::get("id"))->where("status",5)->sum("order_amount")
         ]);
     }
@@ -529,6 +530,22 @@ class Ucenter extends Auth {
             "total"=>$total,
             "size"=>$size
         ]);
+    }
+
+    public function rechange(){
+        $payment = Request::post("payment","","trim,strip_tags");
+        $source = Request::post("source","","intval");
+        $price = Request::post("price/f","0");
+
+        $payment = $source = 2 ? "wechat" : "wechat-h5";
+
+        try{
+            $rs = Payment::rechang($payment,$price);
+        }catch (\Exception $ex){
+            return $this->returnAjax($ex->getMessage(),$ex->getCode());
+        }
+
+        return $this->returnAjax('ok',1,$rs);
     }
 
     public function settlement(){
