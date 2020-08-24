@@ -90,10 +90,12 @@ class Promotion {
                 }
 
                 foreach($order["item"] as $key=>$val){
+                    $order["item"][$key]['sell_price'] = $regiment["sell_price"];
                     $order["item"][$key]['real_price'] = $regiment["sell_price"];
                 }
 
-                $order["payable_amount"] = BC::mul($regiment["sell_price"],$num);
+                $order["real_amount"] = BC::mul($regiment["sell_price"],$num);
+                $order["payable_amount"] = BC::add($order['real_freight'],$order["real_amount"]);
                 $order["point"] = 0;
                 $order["exp"] = 0;
                 break;
@@ -109,10 +111,12 @@ class Promotion {
                 }
 
                 foreach($order["item"] as $key=>$val){
+                    $order["item"][$key]['sell_price'] = $seckill["sell_price"];
                     $order["item"][$key]['real_price'] = $seckill["sell_price"];
                 }
 
-                $order["payable_amount"] = BC::mul($seckill["sell_price"],$num);
+                $order["real_amount"] = BC::mul($seckill["sell_price"],$num);
+                $order["payable_amount"] = BC::add($order['real_freight'],$order["real_amount"]);
                 $order["point"] = 0;
                 $order["exp"] = 0;
                 break;
@@ -126,10 +130,19 @@ class Promotion {
                     "group_id"=>Users::get("group_id")
                 ])->value("price"));
 
+                foreach($order["item"] as $key=>$val){
+                    $order["item"][$key]['sell_price'] = $price;
+                    $order["item"][$key]['real_price'] = $price;
+                }
+
                 if($price > 0){
                     $data["promotions"] = $order["promotions"] > 0 ? $order["promotions"]+$price : $price;
-                    $order["payable_amount"] = $order["payable_amount"] > $price ? BC::sub($order["payable_amount"],$price) : $order["payable_amount"];
+                    $order["real_amount"] = $price;
+                    $order["payable_amount"] = BC::add($order['real_freight'],$price);
                 }
+
+                $order["point"] = 0;
+                $order["exp"] = 0;
                 break;
         }
 
@@ -270,49 +283,6 @@ class Promotion {
                 Db::name("promotion_second")
                     ->where(["id"=>$order["activity_id"]])
                     ->inc("sum_count",$goods["goods_nums"])->update();
-                break;
-            case 5:
-                if(!$group=Db::name("promotion_group")->where(["id"=>$order["activity_id"]])->find()){
-                    return true;
-                }
-
-                $goods = current($order["item"]);
-                Db::name("promotion_group")
-                    ->where(["id"=>$order["activity_id"]])
-                    ->inc("sum_count",$goods["goods_nums"])->update();
-
-                $kid = Request::param("kid","0","intval");
-                $data = [
-                    "pid"=>0,
-                    "user_id"=>$order["user_id"],
-                    "order_id"=>$order["order_id"],
-                    "goods_nums"=>$goods["goods_nums"],
-                    "order_amount"=>$order["order_amount"],
-                    "group_id"=>$order["activity_id"],
-                    "goods_id"=>$goods["goods_id"],
-                    "goods_title"=>$goods["title"],
-                    "people"=>1,
-                    "sell_price"=>$goods["real_price"],
-                    "start_time"=>time(),
-                    "end_time"=>strtotime("+{$group['effective_time']} hours"),
-                    "is_refund"=>0,
-                    "status"=>1,
-                    "create_time"=>time()
-                ];
-
-                if($kid != 0 && ($og = Db::name("order_group")->where([
-                    "pid"=>$kid,
-                    "group_id"=>$order["activity_id"],
-                    "goods_id"=>$goods["goods_id"],
-                    "is_refund"=>0,
-                    "status"=>1
-                ])->find()) != false){
-                    $data["pid"] = $kid;
-                    $data["people"] = $og["people"] + 1;
-                    Db::name("order_group")->insert($data);
-                }else{
-                    Db::name("order_group")->insert($data);
-                }
                 break;
         }
     }

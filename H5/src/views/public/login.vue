@@ -1,5 +1,12 @@
 <template>
     <div>
+        <nav-bar
+            left-arrow
+            :fixed="true"
+            :transparent="true"
+            :z-index="9999"
+            @click-left="prev"
+        />
         <div class="wrap">
             <div class="top">
                 <div class="title">A3Mall</div>
@@ -46,10 +53,12 @@
 </template>
 
 <script>
+    import NavBar from '../../components/nav-bar/nav-bar';
     import { Form,Field,Button,Toast } from 'vant';
     export default {
         name: 'Login',
         components: {
+            [NavBar.name]: NavBar,
             [Form.name]: Form,
             [Field.name]: Field,
             [Button.name]: Button
@@ -67,7 +76,7 @@
         },
         methods: {
             prev(){
-                this.$tools.prev();
+                this.$router.replace('/');
             },
             goRegister(){
                 this.$router.push({

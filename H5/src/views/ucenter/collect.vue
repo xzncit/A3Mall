@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color: #fff;height: 100vh;">
+    <div style="background-color: #fff;">
         <nav-bar
                 left-arrow
                 right-arrow
@@ -11,7 +11,7 @@
                 @click-left="prev"
                 @click-right="onDelete"
         />
-        <div style="width: 100%;height: 60px;background-color: #b91922"></div>
+        <div style="width: 100%;height: 50px;background-color: #b91922"></div>
 
         <van-empty v-if="isEmpty" :image="emptyImage" :description="emptyDescription" />
         <van-list
@@ -19,8 +19,8 @@
                 v-model="loading"
                 :finished="finished"
                 finished-text="没有更多了"
-                class="collect-list"
-                style="border-radius: 10px;background-color: #fff"
+                class="collect-list clear"
+                style="border-radius: 10px; background-color: #fff"
                 @load="loadGoods"
         >
             <van-checkbox-group v-model="array" ref="checkboxGroup">
@@ -140,11 +140,6 @@
 
 <style lang="scss" scoped>
     .collect-list{
-        position: relative;
-        top: -10px;
-        z-index: 1111;
-        border-radius: 10px;
-        overflow: hidden;
         .item-box {
             float: left;
             padding: 0 16px;

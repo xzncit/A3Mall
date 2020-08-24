@@ -170,7 +170,10 @@ class Shopping {
             throw new \Exception("非法参数",0);
         }
 
-        $id = array_map("intval",explode(",",$id));
+        if(!is_array($id)){
+            $id = array_map("intval",explode(",",$id));
+        }
+
         return Db::name("cart")->where("id","in",$id)->delete();
     }
 }

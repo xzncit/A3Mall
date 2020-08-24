@@ -1,15 +1,14 @@
 <template>
     <div>
         <nav-bar
-            title="商品详情"
-            left-arrow
-            :fixed="true"
-            :placeholder="true"
-            :z-index="9999"
-            @click-left="prev"
+                title="商品详情"
+                left-arrow
+                :fixed="true"
+                :placeholder="true"
+                :z-index="9999"
+                @click-left="prev"
         />
-
-        <div :style="'height:'+clientHeight+'px'">
+        <div>
             <van-pull-refresh v-model="isRefresh" @refresh="onRefresh">
                 <van-swipe class="swiper-box" :autoplay="3000" @change="onChange">
                     <van-swipe-item v-for="(image, index) in images" :key="index">
@@ -22,17 +21,47 @@
                     </template>
                 </van-swipe>
 
-                <div class="goods-info clear">
+                <div class="goods-price">
                     <div class="price">
                         <span>￥<i>{{ products.sell_price }}</i></span>
+                        <span>原价格<i>￥{{ products.market_price }}</i></span>
                     </div>
+                </div>
+
+                <div class="goods-info clear">
                     <div class="title">
                         {{ products.title }}
                     </div>
                     <div class="goods-info-box">
-                        <span>￥<i>{{ products.market_price }}</i></span>
                         <span>库存: {{ products.store_nums }}件</span>
                         <span>销量: {{ products.sale }}件</span>
+                    </div>
+                </div>
+
+                <div class="goods-comments clear">
+                    <div class="title">
+                        <span>商品评价</span>
+                        <span v-if="comments.length > 0" @click="$router.push(`/comments/goods/${$route.params.id}`)">更多 &gt;</span>
+                    </div>
+                    <div class="comments-empty" v-if="comments.length <= 0">该商品还没有评论哦！</div>
+                    <div
+                            class="goods-comments-list clear"
+                            v-if="comments.length > 0"
+                    >
+                        <div
+                                class="goods-comments-box clear"
+                                v-for="(item,index) in comments"
+                                :key="index"
+                        >
+                            <div class="t">
+                                <div class="u">
+                                    <span><img :src="item.avatar"></span>
+                                    <span>{{item.username}}</span>
+                                </div>
+                                <div class="time">{{item.time}}</div>
+                            </div>
+                            <div class="c">{{item.content}}</div>
+                        </div>
                     </div>
                 </div>
 
@@ -48,21 +77,22 @@
         </div>
 
         <sku-action
-            v-model="isSkuStatus"
-            :goods="products"
-            :attribute="attribute"
-            :item="item"
-            :goods-info.sync="selectedGoodsInfo"
-            :fields="fields"
+                v-model="isSkuStatus"
+                :goods="products"
+                :attribute="attribute"
+                :item="item"
+                :goods-info.sync="selectedGoodsInfo"
+                :fields="fields"
         ></sku-action>
 
         <goods-action>
             <goods-action-icon icon="home" @click="$router.replace('/')" text="首页"></goods-action-icon>
             <goods-action-icon icon="cart" @click="$router.replace('/cart/index')" text="购物车" :count="cartCount"></goods-action-icon>
-            <goods-action-icon icon="collect" text="收藏" @click="favorite" :active="collect"></goods-action-icon>
+            <goods-action-icon icon="collect" @click="favorite" text="收藏" :active="collect"></goods-action-icon>
             <goods-action-button type="cart" @click="onAddCartClicked" text="加入购物车"></goods-action-button>
             <goods-action-button type="buy" @click="onBuyClicked" text="立即购买"></goods-action-button>
         </goods-action>
+
     </div>
 </template>
 
@@ -80,14 +110,17 @@
     export default {
         name: 'GoodsView',
         components: {
+            GoodsActionIcon,
+            GoodsActionButton,
+            GoodsAction,
             [PullRefresh.name]: PullRefresh,
             [NavBar.name]: NavBar,
             [Swipe.name]: Swipe,
             [SwipeItem.name]: SwipeItem,
+            [SkuAction.name]: SkuAction,
             [GoodsAction.name]: GoodsAction,
-            [GoodsActionIcon.name]: GoodsActionIcon,
             [GoodsActionButton.name]: GoodsActionButton,
-            [SkuAction.name]: SkuAction
+            [GoodsActionIcon.name]: GoodsActionIcon,
         },
         data() {
             return {
@@ -101,8 +134,8 @@
                 selectedGoodsInfo: {},
                 products: {},
                 attribute: [],
-                item:{},
-                clientHeight: window.outerHeight - 50
+                comments: [],
+                item:{}
             };
         },
         created() {
@@ -118,6 +151,7 @@
                     this.collect = result.data.collect ? true : false;
                     this.products = result.data.goods;
                     this.attribute = result.data.attr;
+                    this.comments = result.data.comments;
                     this.item = result.data.item;
                     this.images = result.data.photo;
                 }).catch(err=>{
@@ -231,23 +265,44 @@
             border-radius: 6px;
         }
     }
-    .goods-info{
-        background-color: #fff;
-        i {
-            font-style: normal;
-        }
-        .price{
-            display: block;
-            padding: 15px 15px 5px 15px;
-            color: red;
-            font-size: 14px;
-            i {
-                font-size: 18px;
+    .goods-price{
+        width: 100%;
+        height: 70px;
+        background-image: url(../../assets/images/bg/goods-bg.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        .price {
+            height: 70px;
+            float: left;
+            margin-left: 16px;
+            span {
+                display: block;
+                color: #fff;
+                &:first-child {
+                    font-size: 21px;
+                    padding-top: 12px;
+                    font-style: normal;
+                }
+                &:last-child {
+                    font-size: 12px;
+                    padding-top: 0px;
+                    i {
+                        font-style: normal;
+                        font-size: 13px;
+                        position: relative;
+                        top: 1px;
+                        text-decoration:line-through;
+                        padding-left: 2px;
+                    }
+                }
             }
         }
+    }
+    .goods-info{
+        background-color: #fff;
         .title{
             display: block;
-            padding: 0 15px;
+            padding: 12px 15px 3px 15px;
             color: #333;
             font-size: 16px;
         }
@@ -259,18 +314,68 @@
             flex-wrap: nowrap;
             justify-content: center;
             span {
-                width: 33.33%;
+                width: 50%;
                 height: 40px;
                 line-height: 40px;
-                text-align: center;
-                font-size: 13px;
-                color: #555;
-            }
-            span:nth-child(1){
                 text-align: left;
+                font-size: 15px;
+                color: #888;
             }
-            span:nth-child(3){
-                text-align: right;
+        }
+    }
+    .goods-comments{
+        margin-top: 10px;
+        background-color: #fff;
+        .title {
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            width: 100%;
+            border-bottom: 1px solid #e8e8e8;
+            span:nth-child(1){
+                float: left;
+                color: #333;
+                padding-left: 15px;
+            }
+            span:nth-child(2){
+                float: right;
+                color: #999;
+                padding-right: 15px;
+            }
+        }
+        .comments-empty { padding: 50px 15px; text-align: center; font-size: 16px; color: #666; }
+        .goods-comments-list{
+            .goods-comments-box{
+                border-bottom: 1px solid #e8e8e8;
+                min-height: 120px;
+                .t {
+                    padding: 0 15px;
+                    height: 85px;
+                    line-height: 80px;
+                    color: #666;
+                    .u{
+                        float: left;
+                        font-size: 15px;
+                        span:first-child{
+                            width: 48px; height: 48px;
+                            overflow: hidden; border-radius: 50%;
+                            background-color: #eee; display: inline-block;
+                            position: relative; top: 15px;
+                            img {
+                                width: 48px; height: 48px;
+                            }
+                        }
+                        span:last-child { position: relative; left: 10px; }
+                    }
+                    .time{
+                        float: right;
+                        font-size: 14px;
+                    }
+                }
+                .c{
+                    padding: 0 15px 25px 15px;
+                    font-size: 15px; color: #333;
+                }
             }
         }
     }

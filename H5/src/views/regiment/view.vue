@@ -158,11 +158,11 @@
 
                 this.$store.dispatch("isUsers").then(()=>{
                     this.$router.push({ path: "/cart/confirm", query: {
-                        id: this.selectedGoodsInfo.id,
-                        sku_id: this.selectedGoodsInfo.selectedSku.id,
-                        num: this.selectedGoodsInfo.num,
-                        type: "regiment"
-                    }});
+                            id: this.selectedGoodsInfo.id,
+                            sku_id: this.selectedGoodsInfo.selectedSku.id,
+                            num: this.selectedGoodsInfo.num,
+                            type: "regiment"
+                        }});
                 }).catch(()=>{
                     this.$storage.set("VUE_REFERER","/regiment/view/"+this.$route.params.id);
                     this.$router.push("/public/login");

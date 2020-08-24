@@ -11,7 +11,7 @@ namespace app\api\controller\wap;
 use think\facade\Db;
 use think\facade\Request;
 use mall\utils\Tool;
-use mall\utils\BC;
+use mall\basic\Users;
 
 class Goods extends Auth {
 
@@ -106,7 +106,6 @@ class Goods extends Auth {
                 ];
             }
 
-            $flag = empty($goods_attr[$val["attr_id"]]['list']) ? true : false;
             $goods_attr[$val["attr_id"]]["list"][$val["attr_data_id"]] = [
                 "id"=>$val["attr_data_id"],
                 "pid"=>$val["attr_id"],
@@ -149,6 +148,12 @@ class Goods extends Auth {
             "sale"=>$goods["sale"],
             "content"=>$goods["content"]
         ];
+
+        $data["comments"] = [];
+        try{
+            $comments = Users::getComments($id,0);
+            $data["comments"] = $comments["data"];
+        }catch (\Exception $e){}
 
         return $this->returnAjax("ok",1,$data);
     }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <van-nav-bar
+        <nav-bar
             title="找回密码"
             left-arrow
             @click-left="prev"
@@ -9,29 +9,29 @@
         <div class="login" :style="'height:'+clientHeight+'px'">
             <van-form @submit="onSubmit">
                 <van-field
-                        v-model="username"
-                        type="tel"
-                        name="用户名"
-                        left-icon="phone-o"
-                        placeholder="请输入手机号码"
+                    v-model="username"
+                    type="tel"
+                    name="用户名"
+                    left-icon="phone-o"
+                    placeholder="请输入手机号码"
                 />
                 <van-field
-                        v-model="code"
-                        center
-                        clearable
-                        left-icon="phone-circle-o"
-                        placeholder="请输入短信验证码"
+                    v-model="code"
+                    center
+                    clearable
+                    left-icon="phone-circle-o"
+                    placeholder="请输入短信验证码"
                 >
                     <template #button>
                         <van-button @click.stop.prevent="sendSms" size="small" round color="#f35446" type="primary">{{ smsText }}</van-button>
                     </template>
                 </van-field>
                 <van-field
-                        v-model="password"
-                        type="password"
-                        name="密码"
-                        left-icon="lock"
-                        placeholder="请填写密码"
+                    v-model="password"
+                    type="password"
+                    name="密码"
+                    left-icon="lock"
+                    placeholder="请填写密码"
                 />
                 <div style="margin: 16px;">
                     <van-button :loading="loading" loading-text="数据提交中" round block color="#f35447" type="info" native-type="submit">
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-    import { NavBar } from 'vant';
+    import NavBar from '../../components/nav-bar/nav-bar';
     import { Form,Field,Button,Toast } from 'vant';
     Toast.setDefaultOptions({ duration: 5000 });
     export default {

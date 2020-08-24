@@ -55,7 +55,7 @@ const routes = [
     },
     {
         path:'/coupon',
-        meta: { title: "", tabbar: false, auth: true },
+        meta: { title: "", tabbar: false, auth: false },
         component:()=>import("../views/coupon/index")
     },
     {
@@ -70,32 +70,32 @@ const routes = [
     },
     {
         path:'/point',
-        meta: { title: "", tabbar: false, auth: true },
+        meta: { title: "", tabbar: false, auth: false },
         component:()=>import("../views/point/index")
     },
     {
         path:'/point/view/:id',
-        meta: { title: "", tabbar: false, auth: true },
+        meta: { title: "", tabbar: false, auth: false },
         component:()=>import("../views/point/view")
     },
     {
         path:'/regiment',
-        meta: { title: "", tabbar: false, auth: true },
+        meta: { title: "", tabbar: false, auth: false },
         component:()=>import("../views/regiment/index")
     },
     {
         path:'/regiment/view/:id',
-        meta: { title: "", tabbar: false, auth: true },
+        meta: { title: "", tabbar: false, auth: false },
         component:()=>import("../views/regiment/view")
     },
     {
         path:'/second',
-        meta: { title: "", tabbar: false, auth: true },
+        meta: { title: "", tabbar: false, auth: false },
         component:()=>import("../views/second/index")
     },
     {
         path:'/second/view/:id',
-        meta: { title: "", tabbar: false, auth: true },
+        meta: { title: "", tabbar: false, auth: false },
         component:()=>import("../views/second/view")
     },
     {
@@ -115,6 +115,12 @@ const routes = [
         name: 'CartInfo',
         meta: { title: "", tabbar: false, auth: true },
         component:()=>import("../views/cart/info")
+    },
+    {
+        path:'/cart/msg',
+        name: 'CartMsg',
+        meta: { title: "", tabbar: false, auth: true },
+        component:()=>import("../views/cart/msg")
     },
     {
         path:'/search/index',
@@ -302,7 +308,10 @@ const routes = [
 
 const router = new VueRouter({
     mode: "history",
-    routes
+    routes,
+    scrollBehavior (to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    }
 });
 
 router.beforeEach(function(to,from,next){

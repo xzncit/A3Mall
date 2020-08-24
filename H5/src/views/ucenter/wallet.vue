@@ -52,10 +52,6 @@
         </div>
 
         <div class="guide">
-            <div @click="$router.push('/group')">
-                <span><img src="../../assets/images/wallet/6.png"></span>
-                <span>拼团</span>
-            </div>
             <div @click="$router.push('/regiment')">
                 <span><img src="../../assets/images/wallet/7.png"></span>
                 <span>团购</span>
@@ -63,6 +59,10 @@
             <div @click="$router.push('/second')">
                 <span><img src="../../assets/images/wallet/8.png"></span>
                 <span>秒杀</span>
+            </div>
+            <div @click="$router.push('/point')">
+                <span><img src="../../assets/images/wallet/9.png"></span>
+                <span>积分兑换</span>
             </div>
             <div @click="$router.push('/special')">
                 <span><img src="../../assets/images/wallet/10.png"></span>

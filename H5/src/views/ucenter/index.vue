@@ -11,11 +11,11 @@
             </div>
 
             <div class="amount">
-                <div>
+                <div @click="go('/ucenter/wallet')">
                     <span>￥{{amount}}</span>
                     <span>我的余额</span>
                 </div>
-                <div>
+                <div @click="go('/ucenter/coupon')">
                     <span>{{coupon}}</span>
                     <span>优惠券</span>
                 </div>

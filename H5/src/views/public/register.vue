@@ -1,5 +1,12 @@
 <template>
     <div>
+        <nav-bar
+            left-arrow
+            :fixed="true"
+            :transparent="true"
+            :z-index="9999"
+            @click-left="prev"
+        />
         <div class="wrap">
             <div class="bg">
                 <img src="../../assets/images/register-banner.png">
@@ -55,10 +62,12 @@
 
 <script>
 import { Form,Field,Button,Toast } from 'vant';
+import NavBar from '../../components/nav-bar/nav-bar';
 Toast.setDefaultOptions({ duration: 5000 });
 export default {
     name: 'Register',
     components: {
+        [NavBar.name]: NavBar,
         [Form.name]: Form,
         [Field.name]: Field,
         [Button.name]: Button

@@ -1,12 +1,16 @@
 <template>
     <div>
-        <van-nav-bar
-                title="资讯内容"
+        <nav-bar
+                title="资讯详情"
                 left-arrow
                 :fixed="true"
+                :z-index="9999"
+                :transparent="true"
                 :placeholder="true"
+                background-color="#b91922"
                 @click-left="prev"
         />
+
         <van-empty v-if="isEmpty" :image="emptyImage" :description="emptyDescription" />
         <div v-if="!isEmpty" class="main clear">
             <div class="title">{{data.title}}</div>
@@ -22,7 +26,7 @@
 </template>
 
 <script>
-    import { NavBar } from 'vant';
+    import NavBar from '../../components/nav-bar/nav-bar';
     import { PullRefresh,List } from 'vant';
     import { Empty,Icon } from 'vant';
     export default {

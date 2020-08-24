@@ -1,10 +1,13 @@
 <template>
     <div>
-        <van-nav-bar
+        <nav-bar
                 title="资讯列表"
                 left-arrow
                 :fixed="true"
+                :z-index="9999"
+                :transparent="true"
                 :placeholder="true"
+                background-color="#b91922"
                 @click-left="prev"
         />
 
@@ -26,10 +29,10 @@
                     <div class="news-list-box">
                         <div class="news-wrap">
                             <div
-                                v-for="(item,index) in list"
-                                :key="index"
-                                class="news-item-box clear"
-                                @click="$router.push('/news/view/'+item.id)"
+                                    v-for="(item,index) in list"
+                                    :key="index"
+                                    class="news-item-box clear"
+                                    @click="$router.push('/news/view/'+item.id)"
                             >
                                 <div class="news-box">
                                     <span>{{item.title}}</span>
@@ -50,7 +53,7 @@
 </template>
 
 <script>
-    import { NavBar } from 'vant';
+    import NavBar from '../../components/nav-bar/nav-bar';
     import { PullRefresh,List } from 'vant';
     import { Empty } from 'vant';
     export default {

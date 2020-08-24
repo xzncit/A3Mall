@@ -16,21 +16,22 @@ class Products extends Auth {
 
     public function hot(){
         $page = Request::param("page","1","intval");
-        $type = Request::param("type","default","strip_tags,trim");
-        $sort = Request::param("sort","0","intval");
+        $type = Request::param("type","0","intval");
+        $sort = Request::param("sort","1","intval");
 
-        $text = $sort == 0 ? "ASC" : "DESC";
-        $order = '';
         switch($type){
-            case 'price':
-                $order = 'sell_price';
+            case '2':
+                $order = 'g.sell_price';
+                $text = $sort == 1 ? "ASC" : "DESC";
                 break;
-            case 'sales':
-                $order = 'sale';
+            case '1':
+                $order = 'g.sale';
+                $text = 'DESC';
                 break;
-            case 'default':
+            case '0':
             default :
-                $order = 'id';
+                $order = 'g.id';
+                $text = 'DESC';
                 break;
         }
 
@@ -43,7 +44,12 @@ class Products extends Auth {
 
         $total = ceil($count/$size);
         if($total == $page -1){
-            return $this->returnAjax("empty",-1,[]);
+            return $this->returnAjax("empty",-1,[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>$total,
+                "size"=>$size
+            ]);
         }
 
         $result = Db::name("goods_extends")
@@ -67,21 +73,22 @@ class Products extends Auth {
 
     public function recommend(){
         $page = Request::param("page","1","intval");
-        $type = Request::param("type","default","strip_tags,trim");
-        $sort = Request::param("sort","0","intval");
+        $type = Request::param("type","0","intval");
+        $sort = Request::param("sort","1","intval");
 
-        $text = $sort == 0 ? "ASC" : "DESC";
-        $order = '';
         switch($type){
-            case 'price':
-                $order = 'sell_price';
+            case '2':
+                $order = 'g.sell_price';
+                $text = $sort == 1 ? "ASC" : "DESC";
                 break;
-            case 'sales':
-                $order = 'sale';
+            case '1':
+                $order = 'g.sale';
+                $text = 'DESC';
                 break;
-            case 'default':
+            case '0':
             default :
-                $order = 'id';
+                $order = 'g.id';
+                $text = 'DESC';
                 break;
         }
 

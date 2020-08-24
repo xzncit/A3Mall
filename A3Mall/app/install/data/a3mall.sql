@@ -3,8 +3,6 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-
 CREATE TABLE `mall_archives` (
   `id` int(11) NOT NULL,
   `pid` int(11) NOT NULL DEFAULT 0,
@@ -27,10 +25,8 @@ INSERT INTO `mall_archives` (`id`, `pid`, `title`, `hits`, `status`, `sort`, `ph
 (1, 70, '支付方式', 1, 0, 0, '', '', '<p>支付支持，货到付款、在线支付、余额支付</p>', 1589957219, 0),
 (2, 70, '售后服务', 0, 0, 0, '', '', '<p>售后服务</p>', 1589957283, 0),
 (3, 70, '特色服务', 0, 0, 0, '', '', '<p>特色服务</p>', 1589957302, 0),
-(4, 72, '秋季养生正当时，顺季食补滋阴养肺', 16, 0, 0, '/uploads/images/20200602/74ecfaec958bbb60e5700938ef310631.png', '', '<p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">多预防才能少生病。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">俗话说：“一夏无病三分虚”，秋天一到，正是补身养神的时候，既能恢复调节身体各方面机能，储备营养度过冬季；又能通过滋补应对秋季燥热的气候特征，防范一些季节病症。在民间也素有“秋补”习俗，但秋补却也不能随便乱补。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">很多人一听说要秋补，就不管三七二十一，只挑贵的食品、药品吃，这种做法是极不科学的。秋补要根据自身身体情况，并遵循一定的道理和原则来进行。此外若无医嘱也切不可随意进行药补，正常食补就能很好应对秋季养生。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">——①——</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">营养谷物调理脾胃</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">因为夏季常吃过冷食品，我们的脾胃多少会有不适的情况，因此在秋季进补前宜先调理脾胃，给脾胃一个调整适应的时期，后续食补才不会增加脾胃负担。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">脾胃调理的方法很简单，首先是平日饮食避免吃过于辛辣刺激和油腻的食物，其次是补食一些富有营养又易于消化的食物，比如鱼肉、山药、新鲜蔬菜，以及红豆、苡仁等谷物。尤其是谷物类食品，平日炖汤和煮粥都可以添加一些，既增加营养又能调理脾胃。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">——②——</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">养生茶饮滋阴润燥</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">一年四季都有其独有特点，而秋天的特点就是气候干燥，我们的身体也容易因此变得燥热，故每天都需要补充大量水分。并且根据中医“春夏养阳，秋冬养阴”的原则，秋补还须要注意养阴生津润燥。为此，多喝一些秋季对应的养生茶饮，能很好地起到滋阴润燥的作用。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">菊花是秋天的“花中仙子”，菊花茶更是我们秋季润燥的常备饮品。不仅是润燥，常喝菊花茶还有提神醒脑、养肝明目、降压通脉的作用。</p><p><br /></p>', 1591047003, 0),
-(5, 70, 'asdfasdf', 0, 0, 0, '', 'ad', '<p>asdfadasd</p>', 1593506837, 1593506837),
-(6, 70, 'aaaaaa111', 3, 0, 0, '/uploads/images/20200630/bc9adc1809a818dc8ca3365f3dff78b9.png', 's', '<p>1111111</p>', 1593506891, 1593849896),
-(7, 71, 'A3Mall正式版1.0发布', 2, 0, 0, '', '', '<p>A3Mall正式版1.0发布</p>', 1597023849, 1597023849);
+(4, 72, '秋季养生正当时，顺季食补滋阴养肺', 18, 0, 0, '/uploads/images/20200602/74ecfaec958bbb60e5700938ef310631.png', '', '<p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">多预防才能少生病。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">俗话说：“一夏无病三分虚”，秋天一到，正是补身养神的时候，既能恢复调节身体各方面机能，储备营养度过冬季；又能通过滋补应对秋季燥热的气候特征，防范一些季节病症。在民间也素有“秋补”习俗，但秋补却也不能随便乱补。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">很多人一听说要秋补，就不管三七二十一，只挑贵的食品、药品吃，这种做法是极不科学的。秋补要根据自身身体情况，并遵循一定的道理和原则来进行。此外若无医嘱也切不可随意进行药补，正常食补就能很好应对秋季养生。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">——①——</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">营养谷物调理脾胃</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">因为夏季常吃过冷食品，我们的脾胃多少会有不适的情况，因此在秋季进补前宜先调理脾胃，给脾胃一个调整适应的时期，后续食补才不会增加脾胃负担。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">脾胃调理的方法很简单，首先是平日饮食避免吃过于辛辣刺激和油腻的食物，其次是补食一些富有营养又易于消化的食物，比如鱼肉、山药、新鲜蔬菜，以及红豆、苡仁等谷物。尤其是谷物类食品，平日炖汤和煮粥都可以添加一些，既增加营养又能调理脾胃。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">——②——</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">养生茶饮滋阴润燥</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">一年四季都有其独有特点，而秋天的特点就是气候干燥，我们的身体也容易因此变得燥热，故每天都需要补充大量水分。并且根据中医“春夏养阳，秋冬养阴”的原则，秋补还须要注意养阴生津润燥。为此，多喝一些秋季对应的养生茶饮，能很好地起到滋阴润燥的作用。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">菊花是秋天的“花中仙子”，菊花茶更是我们秋季润燥的常备饮品。不仅是润燥，常喝菊花茶还有提神醒脑、养肝明目、降压通脉的作用。</p><p><br /></p>', 1591047003, 0),
+(7, 71, 'A3Mall正式版1.2发布', 3, 0, 0, '', '', '<p>A3Mall正式版1.2发布</p>', 1597023849, 1598055564);
 
 -- --------------------------------------------------------
 
@@ -4611,7 +4607,6 @@ INSERT INTO `mall_attachments` (`id`, `pid`, `module`, `method`, `name`, `path`,
 (1288, 1, 'marketing', '', '3117776190e063e76fd5307cffaa523f.jpg', '/uploads/images/20200615/3117776190e063e76fd5307cffaa523f.jpg', 'jpg', '117126', 0, '', 1592228982),
 (1289, 1, 'marketing', '', '1cfcdbe59ffad78baa7923e934327f44.png', '/uploads/images/20200615/1cfcdbe59ffad78baa7923e934327f44.png', 'png', '320468', 0, '', 1592228985),
 (1290, 1, 'marketing', '', '24ea83b8b581352300ef3fe57538137a.jpg', '/uploads/images/20200615/24ea83b8b581352300ef3fe57538137a.jpg', 'jpg', '57899', 0, '', 1592228988),
-(1323, 6, 'archives', 'article', 'bc9adc1809a818dc8ca3365f3dff78b9.png', '/uploads/images/20200630/bc9adc1809a818dc8ca3365f3dff78b9.png', 'png', '141092', 0, '', 1593506885),
 (1369, 3, 'shop', 'decorate', '10627f8fa268875e7a556663a1654206.png', '/uploads/images/20200711/10627f8fa268875e7a556663a1654206.png', 'png', '1112', 0, '', 1594433161),
 (1370, 3, 'shop', 'decorate', '6a2ab6792c9f706fceab6760d6dc8bd4.jpg', '/uploads/images/20200711/6a2ab6792c9f706fceab6760d6dc8bd4.jpg', 'jpg', '117126', 0, '', 1594433168),
 (1371, 3, 'shop', 'decorate', '7c89b2ad155117842fec535a9bddd48b.png', '/uploads/images/20200711/7c89b2ad155117842fec535a9bddd48b.png', 'png', '320468', 0, '', 1594433171),
@@ -5805,7 +5800,12 @@ CREATE TABLE `mall_promotion_point` (
 --
 
 INSERT INTO `mall_promotion_point` (`id`, `goods_id`, `title`, `store_nums`, `sum_count`, `content`, `status`, `point`, `thumb_image`, `sort`, `start_time`, `end_time`, `create_time`) VALUES
-(10, 36, '花漾嫩色胭脂03#小蔷裸6.5g', 122, 614, NULL, 0, 571, NULL, 99, 1594698380, 1658634380, 1594698385);
+(10, 36, '花漾嫩色胭脂03#小蔷裸6.5g', 122, 614, NULL, 0, 571, NULL, 99, 1594698380, 1658634380, 1594698385),
+(11, 31, 'bb霜美颜大咖奢护水漾bb防晒霜保湿遮瑕补水持久裸妆控油', 4739, 494, NULL, 0, 363, NULL, 99, 1598211511, 1662147511, 1598211517),
+(12, 4, '【WISWIS玻尿酸面膜】WIS玻尿酸面膜24片（三重玻尿酸精华深层补水保湿面膜男女护肤品套装礼盒）', 695, 40, NULL, 0, 953, NULL, 99, 1598211522, 1662147522, 1598211528),
+(13, 24, '无印良品MUJI基础润肤乳液清爽型400ml', 2430, 665, NULL, 0, 629, NULL, 99, 1598211539, 1662147539, 1598211545),
+(14, 13, '稚优泉（CHIOTURE）新水光唇釉仙女棒口红持久保湿唇彩唇蜜滋润染唇液女学生S77冰糖草莓', 1924, 553, NULL, 0, 176, NULL, 99, 1598211552, 1662147552, 1598211558),
+(15, 35, 'colourpop单色眼影网红款大地色卡乐colorpop亮闪土豆泥卡拉泡泡眼影dgafAsyouwave', 4134, 579, NULL, 0, 902, NULL, 99, 1598211567, 1662147567, 1598211574);
 
 -- --------------------------------------------------------
 
@@ -5836,6 +5836,18 @@ CREATE TABLE `mall_promotion_price` (
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 转存表中的数据 `mall_promotion_price`
+--
+
+INSERT INTO `mall_promotion_price` (`id`, `goods_id`, `product_id`, `create_time`) VALUES
+(3, 18, 0, 1598206738),
+(4, 16, 0, 1598206795),
+(5, 35, 0, 1598211440),
+(6, 33, 0, 1598211455),
+(7, 28, 0, 1598211468),
+(8, 24, 0, 1598211495);
+
 -- --------------------------------------------------------
 
 --
@@ -5848,6 +5860,48 @@ CREATE TABLE `mall_promotion_price_item` (
   `group_id` bigint(20) UNSIGNED NOT NULL,
   `price` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 转存表中的数据 `mall_promotion_price_item`
+--
+
+INSERT INTO `mall_promotion_price_item` (`id`, `pid`, `group_id`, `price`) VALUES
+(13, 3, 1, '950.00'),
+(14, 3, 2, '950.00'),
+(15, 3, 3, '950.00'),
+(16, 3, 4, '950.00'),
+(17, 3, 5, '950.00'),
+(18, 3, 6, '950.00'),
+(19, 4, 1, '577.00'),
+(20, 4, 2, '577.00'),
+(21, 4, 3, '577.00'),
+(22, 4, 4, '577.00'),
+(23, 4, 5, '577.00'),
+(24, 4, 6, '577.00'),
+(25, 5, 1, '902.00'),
+(26, 5, 2, '902.00'),
+(27, 5, 3, '902.00'),
+(28, 5, 4, '902.00'),
+(29, 5, 5, '902.00'),
+(30, 5, 6, '902.00'),
+(31, 6, 1, '35.00'),
+(32, 6, 2, '35.00'),
+(33, 6, 3, '35.00'),
+(34, 6, 4, '35.00'),
+(35, 6, 5, '35.00'),
+(36, 6, 6, '35.00'),
+(37, 7, 1, '957.00'),
+(38, 7, 2, '957.00'),
+(39, 7, 3, '957.00'),
+(40, 7, 4, '957.00'),
+(41, 7, 5, '957.00'),
+(42, 7, 6, '957.00'),
+(43, 8, 1, '629.00'),
+(44, 8, 2, '629.00'),
+(45, 8, 3, '629.00'),
+(46, 8, 4, '629.00'),
+(47, 8, 5, '629.00'),
+(48, 8, 6, '629.00');
 
 -- --------------------------------------------------------
 
@@ -5878,7 +5932,12 @@ CREATE TABLE `mall_promotion_regiment` (
 --
 
 INSERT INTO `mall_promotion_regiment` (`id`, `goods_id`, `title`, `store_nums`, `sum_count`, `limit_min_count`, `limit_max_count`, `content`, `status`, `sell_price`, `thumb_image`, `sort`, `start_time`, `end_time`, `create_time`) VALUES
-(9, 37, '清透润白焕亮乳液75ml提亮保湿法国原装进口', 3013, 592, 1, 3, NULL, 0, '744.00', NULL, 99, 1594698367, 1658634367, 1594698375);
+(9, 37, '清透润白焕亮乳液75ml提亮保湿法国原装进口', 3013, 592, 1, 3, NULL, 0, '744.00', NULL, 99, 1594698367, 1658634367, 1594698375),
+(10, 8, '自然堂(CHANDO)轻透无瑕润白亮采修颜霜SPF35PA++(BB)35g修颜遮瑕防晒隔离润泽保湿细腻光滑清透提亮', 3273, 717, 1, 3, NULL, 0, '733.00', NULL, 99, 1598211283, 1662147283, 1598211291),
+(11, 12, '卡拉泡泡（Colourpop）高光土豆泥闪粉控油遮瑕定妆粉饼高光修容粉妆容的光泽底彩妆高光FLEXITARIAN（生姜替代）', 2638, 528, 1, 3, NULL, 0, '265.00', NULL, 99, 1598211297, 1662147297, 1598211304),
+(12, 32, '卡姿兰两用底妆盒遮瑕膏彩蛋气垫CC霜保湿控油提亮肤色粉底', 4764, 893, 1, 3, NULL, 0, '273.00', NULL, 99, 1598211314, 1662147314, 1598211320),
+(13, 28, '法国雅漾活泉恒润保湿凝露50ML', 3909, 197, 1, 3, NULL, 0, '957.00', NULL, 99, 1598211331, 1662147331, 1598211337),
+(14, 33, '【女神礼物】卡姿兰口红金致胶原美芯唇膏滋润持久保湿不易脱色持妆口红学生妆显气色双芯设计平价01#东京樱粉（热卖色）', 4389, 534, 1, 3, NULL, 0, '35.00', NULL, 99, 1598211344, 1662147344, 1598211350);
 
 -- --------------------------------------------------------
 
@@ -5924,7 +5983,11 @@ CREATE TABLE `mall_promotion_second` (
 
 INSERT INTO `mall_promotion_second` (`id`, `goods_id`, `title`, `sell_price`, `store_nums`, `sum_count`, `content`, `status`, `thumb_image`, `sort`, `start_time`, `end_time`, `create_time`) VALUES
 (5, 38, '桃子炸蛋	', '989.00', 4055, 890, NULL, 0, NULL, 99, 1594693637, 1658629637, 1594693641),
-(6, 1, '【玉兰油乳液】玉兰油（OLAY）白里透红嫩白乳液75ml女士面霜面部护肤品补水保湿提亮肤色改善暗黄美白修护', '58.00', 4303, 283, NULL, 0, NULL, 99, 1597379183, 1692851183, 1597379195);
+(6, 1, '【玉兰油乳液】玉兰油（OLAY）白里透红嫩白乳液75ml女士面霜面部护肤品补水保湿提亮肤色改善暗黄美白修护', '58.00', 4303, 283, NULL, 0, NULL, 99, 1597379183, 1692851183, 1597379195),
+(7, 26, '自然堂水润保湿霜50g', '545.00', 2241, 675, NULL, 0, NULL, 99, 1598211363, 1662147363, 1598211369),
+(8, 34, '柔幻星纱十色眼影盘防水眼影盒少女妆闪粉哑光', '629.00', 3316, 762, NULL, 0, NULL, 99, 1598211374, 1662147374, 1598211380),
+(9, 5, '颐莲（RELLET）玻尿酸原液30g安瓶精华液补水保湿滋养紧致抗皱定妆修护', '201.00', 1587, 312, NULL, 0, NULL, 99, 1598211397, 1662147397, 1598211403),
+(10, 3, '【玉兰油防晒乳】玉兰油（OLAY）三重隔离亮肤乳75ml女士护肤品隔离水嫩保湿SPF30/PA++隔离紫外线不油腻', '295.00', 2862, 278, NULL, 0, NULL, 99, 1598211409, 1662147409, 1598211415);
 
 -- --------------------------------------------------------
 
@@ -6503,7 +6566,7 @@ CREATE TABLE `mall_system_users` (
 --
 
 INSERT INTO `mall_system_users` (`id`, `role_id`, `avatar`, `username`, `password`, `salt`, `email`, `ip`, `status`, `lock`, `count`, `time`) VALUES
-(1, 1, '', 'admin', '7fef6171469e80d32c0559f88b377245', '', 'admin@qq.com', '127.0.0.1', 0, 1, 688, 1597956325),
+(1, 1, '', 'admin', '7fef6171469e80d32c0559f88b377245', '', 'admin@qq.com', '127.0.0.1', 0, 1, 692, 1598211246),
 (2, 3, '', 'demo', '', '', 'demo@qq.com', '127.0.0.1', 0, 0, 3, 1584624122);
 
 -- --------------------------------------------------------
@@ -6543,7 +6606,11 @@ INSERT INTO `mall_system_users_log` (`id`, `user_id`, `type`, `intro`, `ip`, `ti
 (15, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-20 07:31:11 登录地点：127.0.0.1', '127.0.0.1', 1597879871),
 (16, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-20 14:40:11 登录地点：127.0.0.1', '127.0.0.1', 1597905611),
 (17, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-21 04:12:53 登录地点：127.0.0.1', '127.0.0.1', 1597954373),
-(18, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-21 04:45:25 登录地点：127.0.0.1', '127.0.0.1', 1597956325);
+(18, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-21 04:45:25 登录地点：127.0.0.1', '127.0.0.1', 1597956325),
+(19, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-22 08:19:06 登录地点：127.0.0.1', '127.0.0.1', 1598055546),
+(20, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-23 04:28:12 登录地点：127.0.0.1', '127.0.0.1', 1598128092),
+(21, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-24 02:18:34 登录地点：127.0.0.1', '127.0.0.1', 1598206714),
+(22, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-08-24 03:34:06 登录地点：127.0.0.1', '127.0.0.1', 1598211246);
 
 -- --------------------------------------------------------
 
@@ -6585,7 +6652,7 @@ CREATE TABLE `mall_users` (
 --
 
 INSERT INTO `mall_users` (`id`, `group_id`, `username`, `password`, `email`, `avatar`, `nickname`, `realname`, `mobile`, `birthday`, `sex`, `exp`, `point`, `status`, `tags`, `is_spread`, `spread_id`, `spread_time`, `pay_count`, `spread_count`, `amount`, `spread_amount`, `create_ip`, `last_ip`, `create_time`, `last_login`) VALUES
-(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'demo', 'demo', '18319517777', 1595779200, 1, 1092, 1520, 0, '', 1, 0, 1592917652, 0, 0, '58183.19', '10017.21', '', '127.0.0.1', 1584028900, 1598037386),
+(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'demo', 'demo', '18319517777', 1595779200, 1, 1092, 1520, 0, '', 1, 0, 1592917652, 0, 0, '58183.19', '10017.21', '', '127.0.0.1', 1584028900, 1598211146),
 (10, 1, 'test', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'test', '', '18319517778', 1590163200, 1, 0, 0, 0, '', 1, 1, 1592917588, 0, 0, '0.00', '123.62', '', '127.0.0.1', 0, 1592917588),
 (11, 1, 'usres', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'users', '', '18319517779', 1590163200, 1, 0, 40, 0, '', 1, 10, 1592917652, 0, 0, '4444.00', '90.20', '', '127.0.0.1', 0, 1592917652),
 (12, 2, 'blue', '7fef6171469e80d32c0559f88b377245', '', '', 'blue', '', '18319517776', 0, 1, 0, 20, 0, '2', 1, 11, 1592917652, 0, 0, '186.00', '0.00', '', '127.0.0.1', 0, 1592918687);
@@ -6883,7 +6950,10 @@ INSERT INTO `mall_users_token` (`id`, `user_id`, `token`, `referer`, `type`, `br
 (119, 1, 'cb6ff63fb7991e2b4c7ad062627fdbd7345e7f8b', 0, 0, '', '', '127.0.0.1', 1597956167),
 (120, 1, '2d4888c422f18de53ef9d23bc26ceae390f0ceb1', 0, 0, '', '', '127.0.0.1', 1597966933),
 (121, 1, '4a08b94f6125ce7c6224656cf56fe5c0aa1fcd7f', 0, 0, '', '', '127.0.0.1', 1597970086),
-(122, 1, 'c314dfde280e7056268465550a83784a7ad87acd', 0, 0, '', '', '127.0.0.1', 1598037386);
+(122, 1, 'c314dfde280e7056268465550a83784a7ad87acd', 0, 0, '', '', '127.0.0.1', 1598037386),
+(123, 1, '07610e0472f72f912d49131764ff1583de5fac90', 0, 0, '', '', '127.0.0.1', 1598205881),
+(124, 1, 'af51d5e993527e5d1144eb8bcfc3ae23ff7caf83', 0, 0, '', '', '127.0.0.1', 1598207920),
+(125, 1, '2f428731f4f6054a4bca9689aad94b15fcc08e5b', 0, 0, '', '', '127.0.0.1', 1598211146);
 
 -- --------------------------------------------------------
 
@@ -7717,7 +7787,7 @@ ALTER TABLE `mall_promotion_order`
 -- 使用表AUTO_INCREMENT `mall_promotion_point`
 --
 ALTER TABLE `mall_promotion_point`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- 使用表AUTO_INCREMENT `mall_promotion_point_item`
@@ -7729,19 +7799,19 @@ ALTER TABLE `mall_promotion_point_item`
 -- 使用表AUTO_INCREMENT `mall_promotion_price`
 --
 ALTER TABLE `mall_promotion_price`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- 使用表AUTO_INCREMENT `mall_promotion_price_item`
 --
 ALTER TABLE `mall_promotion_price_item`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- 使用表AUTO_INCREMENT `mall_promotion_regiment`
 --
 ALTER TABLE `mall_promotion_regiment`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- 使用表AUTO_INCREMENT `mall_promotion_regiment_item`
@@ -7753,7 +7823,7 @@ ALTER TABLE `mall_promotion_regiment_item`
 -- 使用表AUTO_INCREMENT `mall_promotion_second`
 --
 ALTER TABLE `mall_promotion_second`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- 使用表AUTO_INCREMENT `mall_promotion_second_item`
@@ -7819,7 +7889,7 @@ ALTER TABLE `mall_system_users`
 -- 使用表AUTO_INCREMENT `mall_system_users_log`
 --
 ALTER TABLE `mall_system_users_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users`
@@ -7891,7 +7961,7 @@ ALTER TABLE `mall_users_tags`
 -- 使用表AUTO_INCREMENT `mall_users_token`
 --
 ALTER TABLE `mall_users_token`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users_withdraw_log`

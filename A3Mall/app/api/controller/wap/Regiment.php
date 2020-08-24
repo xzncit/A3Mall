@@ -16,25 +16,52 @@ class Regiment extends Auth {
 
     public function index(){
         $page = Request::param("page","1","intval");
+        $type = Request::param("type","0","intval");
+        $sort = Request::param("sort","1","intval");
+
+        switch($type){
+            case '2':
+                $order = 'r.sell_price';
+                $text = $sort == 1 ? "ASC" : "DESC";
+                break;
+            case '1':
+                $order = 'r.sum_count';
+                $text = 'DESC';
+                break;
+            case '0':
+            default :
+                $order = 'r.id';
+                $text = 'DESC';
+                break;
+        }
+
         $size = 10;
 
         $count = Db::name("promotion_regiment")
             ->alias('r')
             ->join("goods g","r.goods_id=g.id","LEFT")
+            ->where("r.end_time",">",time())
+            ->where('r.status',0)
             ->where('g.status',0)->count();
 
         $total = ceil($count/$size);
         if($total == $page -1){
-            return $this->returnAjax("empty",-1,[]);
+            return $this->returnAjax("empty",-1,[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>$total,
+                "size"=>$size
+            ]);
         }
 
         $result = Db::name("promotion_regiment")
             ->alias('r')
             ->field("r.id,g.title,g.photo,r.sell_price as price,g.sell_price,g.sale")
             ->join("goods g","r.goods_id=g.id","LEFT")
+            ->where('r.status',0)
             ->where('g.status',0)
             ->where("r.end_time",">",time())
-            ->order('r.id','desc')->limit((($page - 1) * $size),$size)->select()->toArray();
+            ->order($order,$text)->limit((($page - 1) * $size),$size)->select()->toArray();
 
         $data = array_map(function ($rs){
             $rs["photo"] = Tool::thumb($rs["photo"],"medium",true);
@@ -55,7 +82,9 @@ class Regiment extends Auth {
             ->alias("pg")
             ->field("g.*,pg.id as regiment_id,pg.sell_price as pg_sell_price,pg.store_nums as pg_store_nums,pg.sum_count as pg_sum_count,pg.start_time,pg.end_time")
             ->join("goods g","pg.goods_id=g.id","LEFT")
+            ->where('pg.status',0)
             ->where("g.status",0)->where("pg.id",$id)
+            ->where("pg.end_time",">",time())
             ->find();
 
         if(empty($goods)){

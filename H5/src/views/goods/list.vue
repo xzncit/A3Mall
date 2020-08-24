@@ -1,11 +1,13 @@
 <template>
     <div>
-        <van-nav-bar
-            title="商品列表"
-            left-arrow
-            :fixed="true"
-            :placeholder="true"
-            @click-left="prev"
+        <nav-bar
+                title="商品列表"
+                left-arrow
+                :fixed="true"
+                :z-index="9999"
+                :transparent="true"
+                background-color="#b91922"
+                @click-left="prev"
         />
 
         <div class="navbar">
@@ -18,12 +20,13 @@
             <div class="nav-item" :class="{current: filterIndex === 2}" @click="tabClick(2)">
                 <span>价格</span>
                 <div class="arrow-box">
-                    <span :class="{active: priceOrder === 1 && filterIndex === 2,'icon-arrow-up-active':priceOrder === 1 && filterIndex === 2}" class="icon icon-arrow-up"></span>
-                    <span :class="{active: priceOrder === 2 && filterIndex === 2,'icon-arrow-down-active':priceOrder === 2 && filterIndex === 2}" class="icon icon-arrow-down"></span>
+                    <span :class="{active: priceOrder === 1 && filterIndex === 2,'icon-arrow-up-active':priceOrder === 1 && filterIndex === 2}" class="icon iconfont icon-arrow-up">&#xe61c;</span>
+                    <span :class="{active: priceOrder === 2 && filterIndex === 2,'icon-arrow-down-active':priceOrder === 2 && filterIndex === 2}" class="icon iconfont icon-arrow-down">&#xe61c;</span>
                 </div>
             </div>
         </div>
-        <div style="width: 100%; height: 50px"></div>
+
+        <div style="height: 100px; background-color: #b91922"></div>
 
         <div class="pull-refresh-box">
             <van-empty v-if="isEmpty" :image="emptyImage" :description="emptyDescription" />
@@ -34,18 +37,18 @@
             >
 
                 <van-list
-                    v-model="loading"
-                    :finished="finished"
-                    finished-text="没有更多了"
-                    @load="loadGoods "
+                        v-model="loading"
+                        :finished="finished"
+                        finished-text="没有更多了"
+                        @load="loadGoods "
                 >
 
                     <div class="goods-list-box">
                         <div
-                            class="goods-list-item-box"
-                            v-for="(item,index) in list"
-                            :key="index"
-                            @click="$router.push({ path: '/goods/view/' + item.id })"
+                                class="goods-list-item-box"
+                                v-for="(item,index) in list"
+                                :key="index"
+                                @click="$router.push({ path: '/goods/view/' + item.id })"
                         >
                             <div class="goods-list-item-wrap">
                                 <span><img :src="item.photo"></span>
@@ -63,9 +66,8 @@
 </template>
 
 <script>
-    import { NavBar } from 'vant';
+    import NavBar from '../../components/nav-bar/nav-bar';
     import { PullRefresh,List } from 'vant';
-    import { DropdownMenu, DropdownItem } from 'vant';
     import { Empty } from 'vant';
     export default {
         name: 'GoodsList',
@@ -73,7 +75,7 @@
             [NavBar.name]: NavBar,
             [PullRefresh.name]: PullRefresh,
             [List.name]: List,
-            [Empty.name]: Empty,
+            [Empty.name]: Empty
         },
         data() {
             return {
@@ -174,12 +176,11 @@
     .navbar{
         position: fixed;
         left: 0;
-        top: 46px;
+        top: 49px;
         display: flex;
         width: 100%;
-        height: 40px;
-        background: #fff;
-        box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        height: 50px;
+        background: #b91922;
         z-index: 10;
         .nav-item{
             flex: 1;
@@ -188,20 +189,10 @@
             align-items: center;
             height: 100%;
             font-size: 14px;
-            color: #303133;
+            color: #fff;
             position: relative;
             &.current{
-                color: #fa436a;
-                &:after{
-                    content: '';
-                    position: absolute;
-                    left: 50%;
-                    bottom: 0;
-                    transform: translateX(-50%);
-                    width: 60px;
-                    height: 0;
-                    border-bottom: 2px solid #fa436a;
-                }
+                color: #fff000;
             }
             .arrow-box{
                 display: flex;
@@ -210,50 +201,36 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 30px;
-                    height: 10px;
-                    line-height: 10px;
-                    margin-left: 4px;
-                    font-size: 26px;
-                    color: #888;
-                    background-repeat: no-repeat;
-                    background-size: 94px 56px;
-                    background-position: center;
-                    background-size: 30%;
+                    width: 19px;
+                    height: 5px;
+                    line-height: 5px;
+                    margin-left: 0px;
+                    font-size: 15px;
+                    color: #fff;
+                    text-align: center;
                     &.active{
-                        color: #fa436a;
+                        color: #fff000;
                     }
                 }
                 .icon-arrow-up {
-                    background-image: url(../../assets/images/arrow.png);
-                }
 
-                .icon-arrow-up-active {
-                    background-image: url(../../assets/images/arrow-active.png);
                 }
-
                 .icon-arrow-down {
                     transform:rotate(-180deg);
-                    background-image: url(../../assets/images/arrow.png);
                 }
-
-                .icon-arrow-down-active {
-                    transform:rotate(-180deg);
-                    background-image: url(../../assets/images/arrow-active.png);
-                }
-
             }
         }
     }
+
     .pull-refresh-box{ margin-top: 10px; }
     .goods-list-box{ width: 100%;display: flex; flex-direction: row;flex-wrap: wrap; }
-    .goods-list-item-box{width: 50%; margin-bottom: 10px; }
+    .goods-list-item-box{ width: 50%; margin-bottom: 10px; }
     .goods-list-item-box:nth-child(2n+1) .goods-list-item-wrap { margin-left: 10px; margin-right: 5px; }
     .goods-list-item-box:nth-child(2n) .goods-list-item-wrap { margin-left: 5px; margin-right: 10px; }
-    .goods-list-item-wrap{ height: 260px; background: #fff; }
+    .goods-list-item-wrap{ height: 260px; background: #fff; overflow: hidden; border-radius: 8px; }
     .goods-list-item-wrap span { display: block; }
     .goods-list-item-wrap span:nth-child(1) { height: 185px; }
     .goods-list-item-wrap span:nth-child(1) img { padding: 10px 5%; width: 90%; height: 165px; }
-    .goods-list-item-wrap span:nth-child(2) { font-size: 14px; padding: 0 10px; display: -webkit-box;overflow: hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical; }
+    .goods-list-item-wrap span:nth-child(2) { height: 40px; font-size: 14px; padding: 0 10px; display: -webkit-box;overflow: hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical; }
     .goods-list-item-wrap span:nth-child(3){ font-size: 15px; padding: 5px; color: red; }
 </style>

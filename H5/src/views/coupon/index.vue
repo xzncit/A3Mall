@@ -1,10 +1,13 @@
 <template>
     <div>
-        <van-nav-bar
+        <nav-bar
             title="优惠劵"
             left-arrow
             :fixed="true"
+            :z-index="9999"
+            :transparent="true"
             :placeholder="true"
+            background-color="#b91922"
             @click-left="prev"
         />
 
@@ -42,7 +45,7 @@
 </template>
 
 <script>
-import { NavBar } from 'vant';
+import NavBar from '../../components/nav-bar/nav-bar';
 import { List,Empty,Toast } from 'vant';
 export default {
     name: 'CouponD',

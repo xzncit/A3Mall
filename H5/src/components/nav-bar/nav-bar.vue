@@ -33,6 +33,10 @@
                 type:Boolean,
                 default: false
             },
+            backgroundColor: {
+                type: String,
+                default: ""
+            },
             placeholder: {
                 type:Boolean,
                 default: false
@@ -58,6 +62,12 @@
         mounted() {
             if(this.zIndex > 0){
                 this.obj = { "z-index": this.zIndex };
+            }
+
+            if(this.backgroundColor != ''){
+                Object.assign(this.obj,{
+                    'background-color': this.backgroundColor
+                });
             }
         },
         methods: {

@@ -9,6 +9,7 @@
 namespace mall\basic;
 
 use mall\library\wechat\chat\WeChat;
+use mall\utils\CString;
 use think\facade\Db;
 use think\facade\Request;
 
@@ -40,6 +41,49 @@ class Users {
 
         self::set($row);
         return $row;
+    }
+
+    public static function getComments($id,$type=0,$size=5,$page=1){
+        $count = Db::name("users_comment")->alias("uc")
+            ->join("order o","uc.order_no=o.order_no","LEFT")
+            ->join("users u","uc.user_id=u.id","LEFT")
+            ->where("o.type",$type)->where("uc.goods_id",$id)
+            ->where("uc.status",1)->count();
+
+        $total = ceil($count / $size);
+        if($total == $page -1){
+            throw new \Exception("没有数据了哦！",-1);
+        }
+
+        $result = Db::name("users_comment")->alias("uc")
+            ->field("uc.contents,u.avatar,uc.comment_time,u.username,u.nickname,u.mobile")
+            ->join("order o","uc.order_no=o.order_no","LEFT")
+            ->join("users u","uc.user_id=u.id","LEFT")
+            ->where("o.type",$type)->where("uc.goods_id",$id)
+            ->where("uc.status",1)
+            ->order("uc.id","DESC")->paginate($size);
+
+        $rs = array_map(function ($data){
+            $array = [];
+            $username = !empty($data["nickname"]) ? $data["nickname"] : $data["username"];
+            $array['time'] = date("Y-m-d",$data['comment_time']);
+            $array['avatar'] = self::avatar($data['avatar']);
+            $array['content'] = $data['contents'];
+
+            if(!empty($username)){
+                $array['username'] = CString::msubstr($username,3,false) . "***";
+            }else{
+                $array['username'] = preg_replace('/(1[3-9]{1}[0-9])[0-9]{4}([0-9]{4})/i','$1****$2',$data['mobile']);
+            }
+
+            return $array;
+        },$result->items());
+
+        return [
+            "count"=>$count,
+            "total"=>$total,
+            "data"=>$rs
+        ];
     }
 
     public static function avatar($image="",$root=true){

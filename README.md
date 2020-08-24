@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.1.5-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.2.0-blue.svg" />
     </a>
 </p>
 <p align="center">    
@@ -66,10 +66,11 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
  <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=de316f1a1dbf61859529484891ee50369e3c2bc6fe37e15bb94f8bf731cc3482"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="A3Mall开发交流群" title="A3Mall开发交流群"></a>
 
 
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/1.png "1.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/2.jpg "2.jpg")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/3.png "3.png")
-![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/b/4.png "4.png")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/1.jpg "1.jpg")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/2.jpg "2.jpg")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/3.jpg "3.jpg")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/4.jpg "4.jpg")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/5.jpg "5.jpg")
 
 
  **bug反馈**
