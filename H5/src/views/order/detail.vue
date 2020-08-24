@@ -39,10 +39,10 @@
                 </div>
                 <div class="goods-box">
                     <div
-                        class="goods-item clear"
-                        v-for="(value,index) in order.item"
-                        :key="index"
-                        @click="$router.push('/goods/view/'+value.goods_id)"
+                            class="goods-item clear"
+                            v-for="(value,index) in order.item"
+                            :key="index"
+                            @click="$router.push('/goods/view/'+value.goods_id)"
                     >
 
                         <div class="goods-img">
@@ -101,10 +101,10 @@
         </div>
 
         <van-popup
-            v-model="popupShow"
-            closeable
-            position="bottom"
-            :style="{ height: '40%' }"
+                v-model="popupShow"
+                closeable
+                position="bottom"
+                :style="{ height: '40%' }"
         >
             <div class="popup-payment">
                 <div class="payment-box">
@@ -129,380 +129,382 @@
 </template>
 
 <script>
-import { NavBar } from 'vant';
-import { Step, Steps } from 'vant';
-import { Cell, CellGroup } from 'vant';
-import { Empty,Toast,Popup,Button } from 'vant';
-export default {
-    name: 'OrderDetail',
-    components: {
-        [NavBar.name]: NavBar,
-        [Step.name]: Step,
-        [Steps.name]: Steps,
-        [Cell.name]: Cell,
-        [CellGroup.name]: CellGroup,
-        [Popup.name]: Popup,
-        [Empty.name]: Empty,
-        [Button.name]: Button
-    },
-    data() {
-        return {
-            popupShow: false,
-            payment: "wechat",
-            isEmpty: false,
-            emptyImage: "search",
-            emptyDescription: "订单不存在！",
-            active: 0,
-            order:{
-                accept_name: "",
-                address: "",
-                create_time: "",
-                item: [],
-                mobile: "",
-                order_amount: "",
-                order_no: "",
-                pay_status: "",
-                pay_type: "",
-                payable_freight: '',
-                payable_amount: "",
-                promotions: "",
-                real_amount: "",
-                region: "",
-                type: "",
-                users_price:"0.00",
-                order_status: 1
-            }
-        };
-    },
-    created() {
-        this.onLoadOrder();
-    },
-    mounted() {
-
-    },
-    methods: {
-        onLoadOrder(){
-            let id = this.$route.params.id;
-            this.isEmpty = false;
-            this.$http.getOrderDetail({
-                id: id
-            }).then((res)=>{
-                if(res.status){
-                    this.active = res.data.active;
-                    this.order = res.data;
-                }else{
-                    Toast(res.info);
+    import { NavBar } from 'vant';
+    import { Step, Steps } from 'vant';
+    import { Cell, CellGroup } from 'vant';
+    import { Empty,Toast,Popup,Button } from 'vant';
+    export default {
+        name: 'OrderDetail',
+        components: {
+            [NavBar.name]: NavBar,
+            [Step.name]: Step,
+            [Steps.name]: Steps,
+            [Cell.name]: Cell,
+            [CellGroup.name]: CellGroup,
+            [Popup.name]: Popup,
+            [Empty.name]: Empty,
+            [Button.name]: Button
+        },
+        data() {
+            return {
+                popupShow: false,
+                payment: "wechat",
+                isEmpty: false,
+                emptyImage: "search",
+                emptyDescription: "订单不存在！",
+                active: 0,
+                order:{
+                    accept_name: "",
+                    address: "",
+                    create_time: "",
+                    item: [],
+                    mobile: "",
+                    order_amount: "",
+                    order_no: "",
+                    pay_status: "",
+                    pay_type: "",
+                    payable_freight: '',
+                    payable_amount: "",
+                    promotions: "",
+                    real_amount: "",
+                    region: "",
+                    type: "",
+                    users_price:"0.00",
+                    order_status: 1
                 }
-            }).catch((err)=>{
-                this.isEmpty = true;
-                this.emptyImage = "network";
-                this.emptyDescription = "网络出错，请检查网络是否连接";
-            });
+            };
         },
-        selectPayment(value){
-            this.payment = value;
+        created() {
+            this.onLoadOrder();
         },
-        prev(){
-            this.$tools.prev();
-        },
-        goPay(){
-            Toast.loading({
-                message: '加载中...',
-                forbidClick: true,
-                loadingType: 'spinner',
-                duration: 0
-            });
+        mounted() {
 
-            this.$http.getOrderDetailPayment({
-                order_id: this.$route.params.id
-            }).then(res=>{
-                Toast.clear();
-                if(res.status){
-                    this.resultOrderData(res.data);
-                }else{
-                    Toast(res.info);
-                }
-            }).catch(err=>{
-                Toast.clear();
-                Toast("网络出错，请检查网络是否连接");
-            });
         },
-        resultOrderData(data){
-            switch (data.pay+"") {
-                case "0":
-                    this.$router.replace('/order/detail/'+data.order_id);
-                    break;
-                case "1":
-                    this.$wx.config(data.result.config);
-                    var options = data.result.options;
-                    options.success = function(){
-                        Toast("支付成功");
-                        setTimeout(()=>{
-                            this.$router.replace('/order/detail/'+data.order_id);
-                        },1500);
+        methods: {
+            onLoadOrder(){
+                let id = this.$route.params.id;
+                this.isEmpty = false;
+                this.$http.getOrderDetail({
+                    id: id
+                }).then((res)=>{
+                    if(res.status){
+                        this.active = res.data.active;
+                        this.order = res.data;
+                    }else{
+                        Toast(res.info);
                     }
-                    this.$wx.chooseWXPay(options);
-                    break;
-                case "2":
-                    location.href = data.result.url+"&redirect_url="+location.origin+'/order/detail/'+data.order_id;
-                    break;
-                case "99":
-                    Toast(data.msg);
-                    break;
+                }).catch((err)=>{
+                    this.isEmpty = true;
+                    this.emptyImage = "network";
+                    this.emptyDescription = "网络出错，请检查网络是否连接";
+                });
+            },
+            selectPayment(value){
+                this.payment = value;
+            },
+            prev(){
+                this.$tools.prev();
+            },
+            goPay(){
+                Toast.loading({
+                    message: '加载中...',
+                    forbidClick: true,
+                    loadingType: 'spinner',
+                    duration: 0
+                });
 
+                this.$http.getOrderDetailPayment({
+                    order_id: this.$route.params.id,
+                    payment_id: this.payment,
+                    source: this.$tools.isWeiXin() ? 2 : 1
+                }).then(res=>{
+                    Toast.clear();
+                    if(res.status){
+                        this.resultOrderData(res.data);
+                    }else{
+                        Toast(res.info);
+                    }
+                }).catch(err=>{
+                    Toast.clear();
+                    Toast("网络出错，请检查网络是否连接");
+                });
+            },
+            resultOrderData(data){
+                this.popupShow = false;
+                switch (data.pay+"") {
+                    case "0":
+                        Toast("支付成功");
+                        this.order.order_status = 2;
+                        break;
+                    case "1":
+                        this.$wx.config(data.result.config);
+                        var options = data.result.options;
+                        options.success = function(){
+                            Toast("支付成功");
+                            this.order.order_status = 2;
+                        }
+                        this.$wx.chooseWXPay(options);
+                        break;
+                    case "2":
+                        location.href = data.result.url+"&redirect_url="+location.origin+'/order/detail/'+data.order_id;
+                        break;
+                    case "99":
+                        Toast(data.msg);
+                        break;
+
+                }
+            },
+            confirm(){
+                this.$router.push('/order/confirm_delivery/' + this.$route.params.id);
+            },
+            refund(){
+                this.$router.push('/order/refund/' + this.$route.params.id);
+            },
+            evaluate(){
+                this.$router.push('/order/evaluate/' + this.$route.params.id);
+            },
+            cancel(){
+                Toast.loading({
+                    message: '加载中...',
+                    forbidClick: true,
+                    loadingType: 'spinner',
+                    duration: 0
+                });
+
+                let order_id = this.$route.params.id;
+                this.$http.getOrderDetailCancel({
+                    order_id: order_id
+                }).then(res=>{
+                    Toast.clear();
+                    if(res.status){
+                        Toast(res.info);
+                        this.$router.replace('/order/list/1');
+                    }else{
+                        Toast(res.info);
+                    }
+                }).catch(err=>{
+                    Toast.clear();
+                    Toast("网络出错，请检查网络是否连接");
+                });
             }
         },
-        confirm(){
-            this.$router.push('/order/confirm_delivery/' + this.$route.params.id);
-        },
-        refund(){
-            this.$router.push('/order/refund/' + this.$route.params.id);
-        },
-        evaluate(){
-            this.$router.push('/order/evaluate/' + this.$route.params.id);
-        },
-        cancel(){
-            Toast.loading({
-                message: '加载中...',
-                forbidClick: true,
-                loadingType: 'spinner',
-                duration: 0
-            });
-
-            let order_id = this.$route.params.id;
-            this.$http.getOrderDetailCancel({
-                order_id: order_id
-            }).then(res=>{
-                Toast.clear();
-                if(res.status){
-                    Toast(res.info);
-                    this.$router.replace('/order/list/1');
-                }else{
-                    Toast(res.info);
-                }
-            }).catch(err=>{
-                Toast.clear();
-                Toast("网络出错，请检查网络是否连接");
-            });
-        }
-    },
-}
+    }
 </script>
 
 <style lang="scss" scoped>
-.payment-button{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-.popup-payment{
-    position: relative;
-    top: 40px;
-    .payment-box{
-        .payment-item{
-            padding: 10px 16px;
-            border-bottom: 1px solid #eee;
-            span:first-child{
-                font-size: 15px;
-                i{
-                    width: 20px;
-                    height: 20px;
-                    line-height:20px;
-                    text-align: center;
-                    border-radius:50%;
-                    padding: 2px;
-                }
-            }
-            span:nth-child(2){
-                font-size: 15px;
-                padding-left: 10px;
-                i{
-                    font-size: 12px;
-                    font-style: normal;
-                    color: #999;
-                    padding-left: 10px;
-                }
-            }
-            span:nth-child(3){
-                float: right;
-                display: none;
-                color: #999;
-            }
-            span.active{
-                display: block;
-            }
-            span.activeColor{
-                color: red;
-            }
-        }
-    }
-}
-.money{ color: #fc4141; }
-.top{
-    background-color: #fff;
-    position: relative;
-    &:before{
+    .payment-button{
         position: absolute;
-        right: 0;
         bottom: 0;
-        left: 0;
-        height: 2px;
-        background: -webkit-repeating-linear-gradient(135deg,#ff6c6c 0,#ff6c6c 20%,transparent 0,transparent 25%,#1989fa 0,#1989fa 45%,transparent 0,transparent 50%);
-        background: repeating-linear-gradient(-45deg,#ff6c6c 0,#ff6c6c 20%,transparent 0,transparent 25%,#1989fa 0,#1989fa 45%,transparent 0,transparent 50%);
-        background-size: 80px;
-        content: '';
-    }
-    .status{
-        width: 95%;
-        margin: 0 auto;
-    }
-    .address{
-        font-size: 14px;
-        width: 92%;
-        margin: 0 auto;
-        .info{
-            height: 30px;
-            line-height: 30px;
-            span:first-child{
-                padding-right: 10px;
-            }
-            span:last-child{
-
-            }
-        }
-        .address-info{
-            height: 30px;
-            line-height: 20px;
-        }
-    }
-}
-.goods{
-    background-color: #fff;
-    margin-top: 15px;
-    padding-bottom: 10px;
-    .title{
         width: 100%;
-        margin: 0 auto;
-        color: #666;
-        font-size: 14px;
-        height: 40px;
-        line-height: 40px;
-        border-bottom: 1px solid #eee;
-        span {
-            padding-left: 10px;
-        }
     }
-    .goods-box{
-        padding: 0 16px;
-        .goods-item {
-            padding-top: 10px;
-            .goods-img {
-                width: 77px;
-                height: 77px;
-                display: inline-block;
-                float: left;
-                img{
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-            .goods-info {
-                display: inline-block;
-                width: 72%;
-                font-size: 14px;
-                float: right;
-                .t {
-                    width: 100%;
-                    height: 45px;
-                    span:first-child{
-                        float: left;
-                        display: -webkit-box;overflow: hidden;-webkit-line-clamp: 2;
-                        -webkit-box-orient: vertical;
-                        width: 70%;
-                    }
-                    span:last-child{
-                        width: 30%;
-                        float: right;
-                        text-align: right;
+    .popup-payment{
+        position: relative;
+        top: 40px;
+        .payment-box{
+            .payment-item{
+                padding: 10px 16px;
+                border-bottom: 1px solid #eee;
+                span:first-child{
+                    font-size: 15px;
+                    i{
+                        width: 20px;
+                        height: 20px;
+                        line-height:20px;
+                        text-align: center;
+                        border-radius:50%;
+                        padding: 2px;
                     }
                 }
-                .b{
-                    width: 100%;
-                    height: 40px;
-                    font-size: 13px;
-                    span:first-child{
-                        float: left;
+                span:nth-child(2){
+                    font-size: 15px;
+                    padding-left: 10px;
+                    i{
+                        font-size: 12px;
+                        font-style: normal;
                         color: #999;
+                        padding-left: 10px;
                     }
-                    span:last-child{
-                        float: right;
-                        color: #666;
+                }
+                span:nth-child(3){
+                    float: right;
+                    display: none;
+                    color: #999;
+                }
+                span.active{
+                    display: block;
+                }
+                span.activeColor{
+                    color: red;
+                }
+            }
+        }
+    }
+    .money{ color: #fc4141; }
+    .top{
+        background-color: #fff;
+        position: relative;
+        &:before{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background: -webkit-repeating-linear-gradient(135deg,#ff6c6c 0,#ff6c6c 20%,transparent 0,transparent 25%,#1989fa 0,#1989fa 45%,transparent 0,transparent 50%);
+            background: repeating-linear-gradient(-45deg,#ff6c6c 0,#ff6c6c 20%,transparent 0,transparent 25%,#1989fa 0,#1989fa 45%,transparent 0,transparent 50%);
+            background-size: 80px;
+            content: '';
+        }
+        .status{
+            width: 95%;
+            margin: 0 auto;
+        }
+        .address{
+            font-size: 14px;
+            width: 92%;
+            margin: 0 auto;
+            .info{
+                height: 30px;
+                line-height: 30px;
+                span:first-child{
+                    padding-right: 10px;
+                }
+                span:last-child{
+
+                }
+            }
+            .address-info{
+                height: 30px;
+                line-height: 20px;
+            }
+        }
+    }
+    .goods{
+        background-color: #fff;
+        margin-top: 15px;
+        padding-bottom: 10px;
+        .title{
+            width: 100%;
+            margin: 0 auto;
+            color: #666;
+            font-size: 14px;
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #eee;
+            span {
+                padding-left: 10px;
+            }
+        }
+        .goods-box{
+            padding: 0 16px;
+            .goods-item {
+                padding-top: 10px;
+                .goods-img {
+                    width: 77px;
+                    height: 77px;
+                    display: inline-block;
+                    float: left;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .goods-info {
+                    display: inline-block;
+                    width: 72%;
+                    font-size: 14px;
+                    float: right;
+                    .t {
+                        width: 100%;
+                        height: 45px;
+                        span:first-child{
+                            float: left;
+                            display: -webkit-box;overflow: hidden;-webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            width: 70%;
+                        }
+                        span:last-child{
+                            width: 30%;
+                            float: right;
+                            text-align: right;
+                        }
+                    }
+                    .b{
+                        width: 100%;
+                        height: 40px;
+                        font-size: 13px;
+                        span:first-child{
+                            float: left;
+                            color: #999;
+                        }
+                        span:last-child{
+                            float: right;
+                            color: #666;
+                        }
                     }
                 }
             }
         }
     }
-}
-.order{
-    background-color: #fff;
-    margin-top: 15px;
-    padding-bottom: 10px;
-    .title{
+    .order{
+        background-color: #fff;
+        margin-top: 15px;
+        padding-bottom: 10px;
+        .title{
+            width: 100%;
+            margin: 0 auto;
+            color: #666;
+            font-size: 14px;
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #eee;
+            span {
+                padding-left: 10px;
+            }
+        }
+
+    }
+    .operation-placeholder{
         width: 100%;
-        margin: 0 auto;
-        color: #666;
-        font-size: 14px;
-        height: 40px;
-        line-height: 40px;
-        border-bottom: 1px solid #eee;
-        span {
-            padding-left: 10px;
+        height: 70px;
+        line-height: 70px;
+    }
+    .operation{
+        width: 100%;
+        height: 55px;
+        line-height: 55px;
+        text-align: right;
+        background-color: #fff;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        border-top: 1px solid #eee;
+        span{
+            font-size: 14px;
+            text-align: center;
+            border-radius: 15px;
+            background-color: #fff;
+            padding: 8px 15px;
+            margin-right: 10px;
+        }
+        span.cancel{
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        span.pay {
+            background-color: #e93323;
+            color: #fff;
+        }
+        .confirm{
+            color: #fff;
+            background-color: #01AAED;
+        }
+        .refund{
+            color: #fff;
+            background-color: #FF5722;
+        }
+        .evaluate{
+            color: #fff;
+            background-color: #009688;
         }
     }
-
-}
-.operation-placeholder{
-    width: 100%;
-    height: 70px;
-    line-height: 70px;
-}
-.operation{
-    width: 100%;
-    height: 55px;
-    line-height: 55px;
-    text-align: right;
-    background-color: #fff;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    border-top: 1px solid #eee;
-    span{
-        font-size: 14px;
-        text-align: center;
-        border-radius: 15px;
-        background-color: #fff;
-        padding: 8px 15px;
-        margin-right: 10px;
-    }
-    span.cancel{
-        color: #333;
-        border: 1px solid #ddd;
-    }
-    span.pay {
-        background-color: #e93323;
-        color: #fff;
-    }
-    .confirm{
-        color: #fff;
-        background-color: #01AAED;
-    }
-    .refund{
-        color: #fff;
-        background-color: #FF5722;
-    }
-    .evaluate{
-        color: #fff;
-        background-color: #009688;
-    }
-}
 </style>

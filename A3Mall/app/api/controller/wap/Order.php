@@ -13,6 +13,7 @@ use mall\basic\Bonus;
 use mall\basic\Distribution;
 use mall\basic\Payment;
 use mall\basic\Promotion;
+use mall\basic\Users;
 use mall\utils\Check;
 use mall\utils\Tool;
 use think\facade\Db;
@@ -617,13 +618,18 @@ class Order extends Auth {
 
     public function payment(){
         $order_id = Request::param("order_id","","intval");
-        $payment_id = Request::param("param","","trim,strip_tags");
+        $payment_id = Request::param("payment_id","","trim,strip_tags");
+        $source = Request::param("source","","intval");
+
+        if($payment_id == 'wechat'){
+            $payment_id = $source == 2 ? "wechat" : "wechat-h5";
+        }
 
         if(($payment = Db::name("payment")->where("code",$payment_id)->find()) == false){
             return $this->returnAjax("支付方式不存在！",0);
         }
 
-        Db::name("order")->where(["user_id"=>$this->users["id"],"id"=>$order_id])->update(["pay_type"=>$payment["id"]]);
+        Db::name("order")->where(["user_id"=>Users::get("id"),"id"=>$order_id])->update(["pay_type"=>$payment["id"]]);
 
         try{
             $result = Payment::handle($order_id);
