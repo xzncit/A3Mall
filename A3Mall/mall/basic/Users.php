@@ -68,7 +68,8 @@ class Users {
             $username = !empty($data["nickname"]) ? $data["nickname"] : $data["username"];
             $array['time'] = date("Y-m-d",$data['comment_time']);
             $array['avatar'] = self::avatar($data['avatar']);
-            $array['content'] = $data['contents'];
+            $array['content'] = strip_tags($data['contents']);
+            $array['reply_content'] = strip_tags($data['reply_content']);
 
             if(!empty($username)){
                 $array['username'] = CString::msubstr($username,3,false) . "***";

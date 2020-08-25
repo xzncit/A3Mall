@@ -8,73 +8,75 @@
                 :z-index="9999"
                 @click-left="prev"
         />
-        <div>
-            <van-pull-refresh v-model="isRefresh" @refresh="onRefresh">
-                <van-swipe class="swiper-box" :autoplay="3000" @change="onChange">
-                    <van-swipe-item v-for="(image, index) in images" :key="index">
-                        <img v-lazy="image" />
-                    </van-swipe-item>
-                    <template #indicator>
-                        <div class="custom-indicator">
-                            {{ current + 1 }} / {{ images.length }}
-                        </div>
-                    </template>
-                </van-swipe>
 
-                <div class="goods-price">
-                    <div class="price">
-                        <span>￥<i>{{ products.sell_price }}</i></span>
-                        <span>原价格<i>￥{{ products.market_price }}</i></span>
+        <van-pull-refresh v-model="isRefresh" @refresh="onRefresh">
+            <van-swipe class="swiper-box" :autoplay="3000" @change="onChange">
+                <van-swipe-item v-for="(image, index) in images" :key="index">
+                    <img v-lazy="image" />
+                </van-swipe-item>
+                <template #indicator>
+                    <div class="custom-indicator">
+                        {{ current + 1 }} / {{ images.length }}
                     </div>
+                </template>
+            </van-swipe>
+
+            <div class="goods-price">
+                <div class="price">
+                    <span>￥<i>{{ products.sell_price }}</i></span>
+                    <span>原价格<i>￥{{ products.market_price }}</i></span>
                 </div>
+            </div>
 
-                <div class="goods-info clear">
-                    <div class="title">
-                        {{ products.title }}
-                    </div>
-                    <div class="goods-info-box">
-                        <span>库存: {{ products.store_nums }}件</span>
-                        <span>销量: {{ products.sale }}件</span>
-                    </div>
+            <div class="goods-info clear">
+                <div class="title">
+                    {{ products.title }}
                 </div>
+                <div class="goods-info-box">
+                    <span>库存: {{ products.store_nums }}件</span>
+                    <span>销量: {{ products.sale }}件</span>
+                </div>
+            </div>
 
-                <div class="goods-comments clear">
-                    <div class="title">
-                        <span>商品评价</span>
-                        <span v-if="comments.length > 0" @click="$router.push(`/comments/goods/${$route.params.id}`)">更多 &gt;</span>
-                    </div>
-                    <div class="comments-empty" v-if="comments.length <= 0">该商品还没有评论哦！</div>
+            <div class="goods-comments clear">
+                <div class="title">
+                    <span>商品评价</span>
+                    <span v-if="comments.length > 0" @click="$router.push(`/comments/goods/${$route.params.id}`)">更多 &gt;</span>
+                </div>
+                <div class="comments-empty" v-if="comments.length <= 0">该商品还没有评论哦！</div>
+                <div
+                        class="goods-comments-list clear"
+                        v-if="comments.length > 0"
+                >
                     <div
-                            class="goods-comments-list clear"
-                            v-if="comments.length > 0"
+                            class="goods-comments-box clear"
+                            v-for="(item,index) in comments"
+                            :key="index"
                     >
-                        <div
-                                class="goods-comments-box clear"
-                                v-for="(item,index) in comments"
-                                :key="index"
-                        >
-                            <div class="t">
-                                <div class="u">
-                                    <span><img :src="item.avatar"></span>
-                                    <span>{{item.username}}</span>
-                                </div>
-                                <div class="time">{{item.time}}</div>
+                        <div class="t">
+                            <div class="u">
+                                <span><img :src="item.avatar"></span>
+                                <span>{{item.username}}</span>
                             </div>
-                            <div class="c">{{item.content}}</div>
+                            <div class="time">{{item.time}}</div>
+                        </div>
+                        <div class="c">{{item.content}}</div>
+                        <div class="d" v-if="item.reply_content">
+                            <div class="d-1">商家回复</div>
+                            <div class="d-2">{{item.reply_content}}</div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="goods-content clear">
-                    <div class="title">图文详情</div>
-                    <div class="clear" v-html="products.content">
-                        {{ products.content }}
-                    </div>
+            <div class="goods-content clear">
+                <div class="title">图文详情</div>
+                <div class="clear" v-html="products.content">
+                    {{ products.content }}
                 </div>
+            </div>
 
-            </van-pull-refresh>
-
-        </div>
+        </van-pull-refresh>
 
         <sku-action
                 v-model="isSkuStatus"
@@ -110,9 +112,6 @@
     export default {
         name: 'GoodsView',
         components: {
-            GoodsActionIcon,
-            GoodsActionButton,
-            GoodsAction,
             [PullRefresh.name]: PullRefresh,
             [NavBar.name]: NavBar,
             [Swipe.name]: Swipe,
@@ -326,6 +325,7 @@
     .goods-comments{
         margin-top: 10px;
         background-color: #fff;
+        height: auto;
         .title {
             height: 40px;
             line-height: 40px;
@@ -348,6 +348,8 @@
             .goods-comments-box{
                 border-bottom: 1px solid #e8e8e8;
                 min-height: 120px;
+                background-color: #fff;
+                padding-bottom: 20px;
                 .t {
                     padding: 0 15px;
                     height: 85px;
@@ -373,8 +375,20 @@
                     }
                 }
                 .c{
-                    padding: 0 15px 25px 15px;
+                    padding: 0 15px 5px 15px;
                     font-size: 15px; color: #333;
+                }
+                .d {
+                    background-color: #f7f7f7;
+                    margin: 0 15px;
+                    .d-1 {
+                        padding:5px 15px 0 15px;
+                        font-size: 15px;
+                    }
+                    .d-2 {
+                        padding: 10px 15px 10px 15px;
+                        font-size: 14px;
+                    }
                 }
             }
         }
