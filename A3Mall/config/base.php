@@ -1,6 +1,6 @@
 <?php
 return [
-    "app_version"=>"1.2.1",
+    "app_version"=>"1.2.3",
     "money_prefix"=>"￥",
     "is_thumb_image"=>true,
     "thumb_image_list"=>[

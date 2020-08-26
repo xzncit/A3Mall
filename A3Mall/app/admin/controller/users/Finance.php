@@ -57,6 +57,24 @@ class Finance extends Auth {
         return View::fetch();
     }
 
+    public function refund(){
+        if(Request::isAjax()){
+            $limit = Request::get("limit");
+            $condition = ["log.action"=>3];
+
+            $usersLog = new UsersLog();
+            $list = $usersLog->getList($condition,$limit);
+
+            if(empty($list['data'])){
+                return Response::returnArray("当前还没有数据哦！",1);
+            }
+
+            return Response::returnArray("ok",0,$list['data'],$list['count']);
+        }
+
+        return View::fetch();
+    }
+
     public function point(){
         if(Request::isAjax()){
             $limit = Request::get("limit");

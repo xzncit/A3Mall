@@ -337,12 +337,6 @@ class Order {
 
         Db::name("order")->where(["id"=>$refunds['order_id']])->update(['status' => $orderStatus]);
 
-        /**
-         * 进行用户的余额增加操作,积分，经验的减少操作,
-         * 1.检查订单由谁支付
-         * 2.当全部退款时候,减少订单中记录的积分和经验;且如果没有发货的商品直接退回订单中的运费，报价，税金等
-         * 3.当部分退款时候,查询商品表中积分和经验
-         */
         $order = Db::name("order")->where('id',$refunds['order_id'])->find();
         if ($orderStatus == 6) {
             //在订单商品没有发货情况下，返还运费，报价，税金
@@ -367,8 +361,9 @@ class Order {
                 "user_id"=>$order["user_id"],
                 "admin_id"=>Session::get("system_user_id"),
                 "action"=>3,
-                "operation"=>0,
+                "operation"=>1,
                 "amount"=>$amount,
+                "description"=>'退款订单号：' . $refunds['order_no'] . '中的商品,退款金额 -￥' . $amount,
                 "create_time"=>time()
             ]);
         }
@@ -420,6 +415,7 @@ class Order {
             'create_time' => time()
         ]);
 
+        self::updateOrderGroupStatus($order,3,1);
         return true;
     }
 
