@@ -49,6 +49,19 @@ class Cart extends A3Mall{
             $goods = $goodsModel
                 ->where("id",$value["goods_id"])
                 ->where("status",0)->find();
+
+            if(empty($goods)){
+                $this->where("id",$value["id"])->delete();
+                continue;
+            }
+
+            if($goodsItemModel->where([
+                    "goods_id"=>$value["goods_id"]
+                ])->count() && $value["product_id"] <= 0){
+                $this->where("id",$value["id"])->delete();
+                continue;
+            }
+
             $data[$key] = [
                 "id"=>$value["id"],
                 "title"=>$goods["title"],
@@ -59,7 +72,8 @@ class Cart extends A3Mall{
                 "goods_id"=>$value["goods_id"],
                 "product_id"=>$value["product_id"],
             ];
-            if(!empty($goods) && $value["product_id"] > 0){
+
+            if($value["product_id"] > 0){
                 $products = $goodsItemModel->where([
                     "goods_id"=>$value["goods_id"],
                     "spec_key"=>$value["spec_key"],
@@ -67,6 +81,7 @@ class Cart extends A3Mall{
 
                 if(empty($products)){
                     unset($data[$key]);
+                    $this->where("id",$value["id"])->delete();
                     continue;
                 }
 
@@ -86,6 +101,7 @@ class Cart extends A3Mall{
                 $data[$key]["price"] = $products["sell_price"];
                 $data[$key]["nums"] = $products["store_nums"];
                 $data[$key]["product_id"] = $products["id"];
+
             }
         }
 

@@ -218,6 +218,12 @@ export default {
                 id: goods_id,
                 sku_id: products_id,
                 num: value
+            }).then(res=>{
+                if(res.status){
+                    this.$store.commit("UPDATECART",res.data.count);
+                }else{
+                    Toast(res.info);
+                }
             });
         }
     },
