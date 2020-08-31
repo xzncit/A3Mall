@@ -48,7 +48,6 @@ class Users {
             ->join("users u","uc.user_id=u.id","LEFT")
             ->where("o.type",$type)
             ->where("uc.goods_id",$id)
-            ->where("u.id",self::get("id"))
             ->where("uc.status",1)->count();
 
         $total = ceil($count / $size);
@@ -62,7 +61,6 @@ class Users {
             ->join("users u","uc.user_id=u.id","LEFT")
             ->where("o.type",$type)
             ->where("uc.goods_id",$id)
-            ->where("u.id",self::get("id"))
             ->where("uc.status",1)
             ->order("uc.id","DESC")->paginate($size);
 
