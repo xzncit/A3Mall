@@ -597,16 +597,19 @@ class Order extends Auth {
         try {
             foreach($comment as $value){
                 Db::name("users_comment")->where('id',$value["id"])->update([
+                    "status"=>1,
                     "contents"=>$message,
                     "point"=>$rate,
                     "comment_time"=>time()
                 ]);
             }
+
             Db::name("order")->where([
                 "user_id"=>$this->users["id"],"id"=>$id
             ])->update([
                 "evaluate_status"=>1
             ]);
+
             Db::commit();
         }catch (\Exception $e){
             Db::rollback();

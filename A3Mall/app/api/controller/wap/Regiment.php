@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wap;
 
+use mall\basic\Users;
 use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
@@ -183,6 +184,12 @@ class Regiment extends Auth {
             "start_time"=>$goods["start_time"],
             "end_time"=>$goods["end_time"]
         ];
+
+        $data["comments"] = [];
+        try{
+            $comments = Users::getComments($goods["id"],2);
+            $data["comments"] = $comments["data"];
+        }catch (\Exception $e){}
 
         return $this->returnAjax("ok",1,$data);
     }

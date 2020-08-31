@@ -77,7 +77,7 @@
                             </div>
                             
                             <div class="layui-form-item">
-                                <script id="container" style="width:100%;height: 500px;" name="reply_content" type="text/plain">{$data.reply_content|default=""}</script>
+                                <script id="container" style="width:100%;height: 500px;" name="reply_content" type="text/plain">{$data.reply_content|raw|default=""}</script>
                             </div>
 
                     </div>

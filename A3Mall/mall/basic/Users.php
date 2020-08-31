@@ -8,7 +8,6 @@
 // +----------------------------------------------------------------------
 namespace mall\basic;
 
-use mall\library\wechat\chat\WeChat;
 use mall\utils\CString;
 use think\facade\Db;
 use think\facade\Request;
@@ -47,7 +46,9 @@ class Users {
         $count = Db::name("users_comment")->alias("uc")
             ->join("order o","uc.order_no=o.order_no","LEFT")
             ->join("users u","uc.user_id=u.id","LEFT")
-            ->where("o.type",$type)->where("uc.goods_id",$id)
+            ->where("o.type",$type)
+            ->where("uc.goods_id",$id)
+            ->where("u.id",self::get("id"))
             ->where("uc.status",1)->count();
 
         $total = ceil($count / $size);
@@ -56,10 +57,12 @@ class Users {
         }
 
         $result = Db::name("users_comment")->alias("uc")
-            ->field("uc.contents,u.avatar,uc.comment_time,u.username,u.nickname,u.mobile")
+            ->field("uc.contents,uc.reply_content,u.avatar,uc.comment_time,u.username,u.nickname,u.mobile")
             ->join("order o","uc.order_no=o.order_no","LEFT")
             ->join("users u","uc.user_id=u.id","LEFT")
-            ->where("o.type",$type)->where("uc.goods_id",$id)
+            ->where("o.type",$type)
+            ->where("uc.goods_id",$id)
+            ->where("u.id",self::get("id"))
             ->where("uc.status",1)
             ->order("uc.id","DESC")->paginate($size);
 
