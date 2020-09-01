@@ -64,6 +64,10 @@
             <div class="content-box">
                 <div class="title">我的服务</div>
                 <div class="list-box service-box">
+                    <div class="box" @click="go('/spread/index')">
+                        <span><img src="../../assets/images/ucenter/6.png"></span>
+                        <span>我的推广</span>
+                    </div>
                     <div class="box" @click="go('/ucenter/wallet')">
                         <span><img src="../../assets/images/ucenter/7.png"></span>
                         <span>我的钱包</span>
@@ -149,8 +153,8 @@
 <style lang="scss" scoped>
     .header{
         width: 100%;
-        height: 295px;
-        background-image: url(../../assets/images/ucenter-bg.png);
+        height: 275px;
+        background-image: url(../../assets/images/my.png);
         background-repeat: no-repeat;
         background-size: 100%;
         position: relative;
@@ -165,7 +169,7 @@
         }
         .info{
             position: absolute;
-            top: 65px;
+            top: 55px;
             left: 20px;
             span {
                 float: left;
@@ -177,7 +181,7 @@
         }
         .amount{
             position: absolute;
-            top: 155px;
+            top: 135px;
             width: 100%;
             div {
                 width: 50%; float: left;
@@ -188,7 +192,7 @@
         }
     }
     .content {
-        margin: -70px 20px 0 20px;
+        margin: -80px 20px 0 20px;
         position: relative;
         .content-box{
             width: 100%;
@@ -213,7 +217,7 @@
                 flex-direction: row;
                 .box{
                     width: 20%;
-                    padding: 20px 0;
+                    padding: 10px 0;
                     span {
                         display: block; text-align: center; font-size: 13px; color: #666;
                         &:first-child {
@@ -244,7 +248,7 @@
             .service-box{
                 .box{
                     width: 25%;
-                    padding: 20px 0;
+                    padding: 10px 0;
                     span { display: block; text-align: center; font-size: 13px; color: #666; }
                     img { width: 40px; height: 40px; display: inline-block; }
                 }
