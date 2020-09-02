@@ -13,7 +13,7 @@
             </div>
 
             <div class="login">
-                <van-form @submit="onSubmit">
+                <van-form>
                     <div class="the-form-box">
                         <div class="the-form-fields">
                             <van-field
@@ -46,7 +46,7 @@
                             />
                         </div>
                         <div class="btn">
-                            <van-button :loading="loading" loading-text="数据提交中" block color="#b91922" type="info" native-type="submit">
+                            <van-button :loading="loading" @click.stop.prevent="onSubmit" loading-text="数据提交中" block color="#b91922" type="info" native-type="button">
                                 注册
                             </van-button>
                         </div>
@@ -140,7 +140,7 @@ export default {
                 }
             },1000);
         },
-        onSubmit(values) {
+        onSubmit() {
             if(this.loading){
                 return ;
             }

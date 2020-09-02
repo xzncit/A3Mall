@@ -246,8 +246,8 @@ class Order extends Auth {
             $data["address"] = $address;
             $data["payment"] = $payment;
             $data["remarks"] = $remarks;
-            $data["user_id"] = $this->users["id"];
             $data["source"] = $source;
+
             $data['order_id'] = \mall\basic\Order::create($data);
             $result = Payment::handle($data['order_id']);
             if($type == 'cart'){

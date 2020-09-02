@@ -181,7 +181,7 @@ export default {
             });
         },
         prev(){
-            this.$tools.prev();
+            this.$router.replace('/ucenter/index');
         },
         go(path){
             if(path == this.$route.params.id){

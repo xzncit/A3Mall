@@ -7,7 +7,7 @@
         />
 
         <div class="login" :style="'height:'+clientHeight+'px'">
-            <van-form @submit="onSubmit">
+            <van-form>
                 <van-field
                     v-model="username"
                     type="tel"
@@ -34,7 +34,7 @@
                     placeholder="请填写密码"
                 />
                 <div style="margin: 16px;">
-                    <van-button :loading="loading" loading-text="数据提交中" round block color="#f35447" type="info" native-type="submit">
+                    <van-button :loading="loading" @click.stop.prevent="onSubmit" loading-text="数据提交中" round block color="#f35447" type="info" native-type="button">
                         提交
                     </van-button>
                 </div>
@@ -122,7 +122,7 @@
                     }
                 },1000);
             },
-            onSubmit(values) {
+            onSubmit() {
                 if(this.loading){
                     return ;
                 }

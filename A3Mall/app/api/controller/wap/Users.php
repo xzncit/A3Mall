@@ -95,15 +95,18 @@ class Users extends Base {
             return $this->returnAjax("请填写验证码！",0);
         }
 
-        $sms = Db::name("users_sms")->where("mobile",$username)->order("id","DESC")->find();
+        $sms = Db::name("users_sms")
+            ->where("mobile",$username)
+            ->where("code",$code)
+            ->order("id","DESC")->find();
         if(empty($sms)){
             return $this->returnAjax("您填写的验证码错误",0);
         }
 
         $setting = new Setting();
         $config = $setting->getConfigData("sms");
-        if(($sms["create_time"] + (60 * $config["duration_time"])) > time()){
-            return $this->returnAjax("您的验证码己发送，请注意查收");
+        if(($sms["create_time"] + (60 * $config["duration_time"])) < time()){
+            return $this->returnAjax("您的验证码己过期，请重新发送。",0);
         }
 
         if(Db::name("users")->where("mobile",$username)->count()){
@@ -164,15 +167,18 @@ class Users extends Base {
             return $this->returnAjax("请填写验证码！",0);
         }
 
-        $sms = Db::name("users_sms")->where("mobile",$username)->order("id","DESC")->find();
+        $sms = Db::name("users_sms")
+            ->where("mobile",$username)
+            ->where("code",$code)
+            ->order("id","DESC")->find();
         if(empty($sms)){
             return $this->returnAjax("您填写的验证码错误",0);
         }
 
         $setting = new Setting();
         $config = $setting->getConfigData("sms");
-        if(($sms["create_time"] + (60 * $config["duration_time"])) > time()){
-            return $this->returnAjax("您的验证码己发送，请注意查收");
+        if(($sms["create_time"] + (60 * $config["duration_time"])) < time()){
+            return $this->returnAjax("您的验证码己过期，请重新发送。",0);
         }
 
         if(($users = Db::name("users")->where("mobile",$username)->find()) == false){

@@ -21,7 +21,7 @@ class Order {
             Db::name("order")->insert([
                 "activity_id"=>isset($data["activity_id"]) ? $data["activity_id"] : 0,
                 "type"=>$data['type'],
-                "user_id"=>$data["user_id"],
+                "user_id"=>Users::get("id"),
                 "order_no"=>self::orderNo(),
                 "pay_type"=>$data['payment']["id"],
                 "distribution_id"=>0,

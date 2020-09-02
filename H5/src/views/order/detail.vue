@@ -203,7 +203,7 @@
                 this.payment = value;
             },
             prev(){
-                this.$tools.prev();
+                this.$router.replace('/order/list/1');
             },
             goPay(){
                 Toast.loading({
