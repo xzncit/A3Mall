@@ -76,6 +76,8 @@ class Index extends Auth {
                 ->order("e.id","DESC")->limit(5)->select()->toArray()
         );
 
+        $notice = Db::name("archives")->field('id,title')->where("status",0)->where('pid',71)->find();
+
         return $this->returnAjax("ok",1,[
             "banner"=>$slider,
             "nav"=>$nav,
@@ -83,7 +85,7 @@ class Index extends Auth {
             "img_2"=>$adItemTwo,
             "hot"=>$hot,
             "recommend"=>$recommend,
-            "notice"=>Db::name("archives")->field('id,title')->where('pid',71)->find()
+            "notice"=>isset($notice) ? $notice : []
         ]);
     }
 

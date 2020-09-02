@@ -134,7 +134,6 @@ class Users extends Base {
         Db::name("users_sms")->where("mobile",$username)->delete();
 
         $info = \mall\basic\Users::info($user_id);
-
         return $this->returnAjax("注册成功！",1,[
             "id"=>$user_id,
             "token"=>$token,

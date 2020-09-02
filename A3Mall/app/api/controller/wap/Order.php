@@ -259,10 +259,10 @@ class Order extends Auth {
             Bonus::updateStatus($bonus_id,$this->users["id"]);
             Promotion::updateStatus($data);
         }catch (\Exception $e){
-            return $this->returnAjax($e->getMessage(),$e->getCode() > 0 ? 1 : 0,$e->getCode());
+            return $this->returnAjax($e->getMessage(),$e->getCode() > 0 ? 1 : 0);
         }
 
-        $result["shop_count"] = Db::name("cart")->where("user_id",$data["user_id"])->count();
+        $result["shop_count"] = Db::name("cart")->where("user_id",Users::get("id"))->count();
         return $this->returnAjax("ok",1,$result);
     }
 
@@ -730,7 +730,7 @@ class Order extends Auth {
 
     public function info(){
         $id = Request::param("order_id","0","intval");
-        if(($row=Db::name("order")->where("id",$id)->find()) == false){
+        if(($row=Db::name("order")->where(["id"=>$id,"user_id"=>Users::get("id")])->find()) == false){
             return $this->returnAjax("订单不存在",0);
         }
 
@@ -740,7 +740,8 @@ class Order extends Auth {
             "create_time"=>date("Y-m-d H:i:s",$row["create_time"]),
             "order_amount"=>number_format($row["order_amount"],2),
             "order_status"=>\mall\basic\Order::getPaymentStatusText($row["pay_status"]),
-            "payment_type"=>Db::name("payment")->where("id",$row["pay_type"])->value("name")
+            "payment_type"=>Db::name("payment")->where("id",$row["pay_type"])->value("name"),
+            "users_price"=>Db::name("users")->where("id",Users::get("id"))->value("amount")
         ]);
     }
 }

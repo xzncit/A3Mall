@@ -21,7 +21,7 @@
                     </van-swipe>
                 </div>
 
-                <div class="notice-box">
+                <div class="notice-box" v-if="notice.title">
                     <van-notice-bar @click="noticeEvent" color="#b91922" background="transparent" left-icon="volume-o" :text="notice.title" />
                 </div>
             </div>
@@ -151,7 +151,7 @@
                 refreshing: false,
                 page: 1,
                 isEmpty: false,
-                notice: {id:"",title:""}
+                notice: {}
             };
         },
         created() {
@@ -179,7 +179,7 @@
                     this.recommend = res.data.recommend;
                     this.notice = res.data.notice;
                 }).catch(err=>{
-                    Toast("网络出错，请检查网络是否连接");
+                    Toast("网络出错，请检查网络是否连接22");
                 });
             },
             onLoad() {

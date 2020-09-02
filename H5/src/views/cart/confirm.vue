@@ -330,7 +330,9 @@ export default {
                     location.href = data.result.url+"&redirect_url="+location.origin+'/order/detail/'+data.order_id;
                     break;
                 case "99":
-                    Toast(data.msg);
+                    this.$storage.set("order_msg",data.msg);
+                    this.$storage.set("order_id",data.order_id);
+                    this.$router.replace('/cart/info');
                     break;
 
             }
