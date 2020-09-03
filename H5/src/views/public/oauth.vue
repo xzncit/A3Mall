@@ -29,11 +29,6 @@
                     state: this.$route.query.state
                 };
 
-                let spread_id = parseInt(this.$cookie.get("spread_id"));
-                if(spread_id > 0){
-                    params.spread_id = spread_id;
-                }
-
                 this.$http.sendOauth(params).then(result=>{
                     if(result.status == 2){
                         this.$store.commit("UPDATEUSERS",result.data);

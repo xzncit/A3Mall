@@ -8,6 +8,10 @@ import router from "../router";
 export function login(obj,from) {
     let users = Storage.get("users",true);
     if(tools.isWeiXin() && users == null){
+        if(tools.in_array(obj.name,["Oauth"])){
+            return false;
+        }
+
         Storage.set("VUE_REFERER",obj.path);
         oAuth();
         return true;
