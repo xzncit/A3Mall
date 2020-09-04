@@ -332,6 +332,7 @@ EOF;
             ['dir', '可写', 'check', 'runtime'],
             ['dir', '可写', 'check', 'public/static'],
             ['dir', '可写', 'check', 'public/uploads'],
+            ['dir', '可写', 'check', 'mall'],
         ];
 
         foreach ($items as &$val) {
@@ -373,8 +374,6 @@ EOF;
             ['pdo', '支持', 'check', '类'],
             ['pdo_mysql', '支持', 'check', '模块'],
             ['openssl', '支持', 'check', '模块'],
-            ['exif', '支持', 'check', '模块'],
-            ['fileinfo', '支持', 'check', '模块'],
             ['curl', '支持', 'check', '模块'],
             ['bcmath', '支持', 'check', '模块'],
             ['mbstring', '支持', 'check', '模块'],

@@ -9,6 +9,7 @@
 namespace app\admin\controller\system;
 
 use app\admin\controller\Auth;
+use mall\library\delivery\aliyun\Aliyun;
 use think\facade\Db;
 use think\facade\Request;
 use mall\response\Response;
@@ -99,6 +100,18 @@ class Setting extends Auth {
 
         return View::fetch("",[
             "data"=>$content
+        ]);
+    }
+
+    public function delivery(){
+        if(Request::isAjax()){
+            $post = Request::post();
+            Aliyun::setConfig($post);
+            return Response::returnArray("操作成功！");
+        }
+
+        return View::fetch("",[
+            "data"=>Aliyun::getConfig()
         ]);
     }
 }
