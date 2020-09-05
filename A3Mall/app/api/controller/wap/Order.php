@@ -14,6 +14,7 @@ use mall\basic\Distribution;
 use mall\basic\Payment;
 use mall\basic\Promotion;
 use mall\basic\Users;
+use mall\library\delivery\aliyun\Aliyun;
 use mall\utils\Check;
 use mall\utils\Tool;
 use think\facade\Db;
@@ -725,6 +726,53 @@ class Order extends Auth {
             "page"=>$page,
             "total"=>$total,
             "size"=>$size
+        ]);
+    }
+
+    public function express(){
+        $id = Request::post("id","0","intval");
+        if(($order = Db::name("order")
+                ->where(["user_id"=>Users::get("id"),"id"=>$id])
+                ->where("distribution_status","in","1,2")
+                ->find()) == false){
+            return $this->returnAjax("您要查找的订单不存在！",0);
+        }
+
+        $orderDelivery = Db::name("order_delivery")->where("order_id",$id)->find();
+        if(empty($orderDelivery)){
+            return $this->returnAjax("您要查找的订单不存在！",0);
+        }
+
+        $type = "";
+        if(Db::name("freight")->where("id",$orderDelivery["freight_id"])->value("type") == 'SF'){
+            $orderDelivery["distribution_code"] = $orderDelivery["distribution_code"] . ":" . substr($orderDelivery["mobile"],-4);
+            $type = "sfexpress"; // 顺丰
+        }
+
+        $order["region"] = Area::get_area([$order['province'],$order['city'],$order['area']],' ');
+
+        $express = ["expName"=>"", "number"=>"", "takeTime"=>"", "updateTime"=>""];
+        try{
+            $array = Aliyun::query($orderDelivery["distribution_code"],$type);
+            $express["expName"] = $array["result"]["expName"];
+            $express["number"] = $array["result"]["number"];
+            $express["takeTime"] = $array["result"]["takeTime"];
+            $express["updateTime"] = $array["result"]["updateTime"];
+            $express["list"] = $array["result"]["list"];
+        }catch(\Exception $ex){
+            $express["list"][] = [
+                "status"=>"商家正在通知快递公司",
+                "time"=>date("Y-m-d H:i:s",$order["send_time"])
+            ];
+        }
+
+        return $this->returnAjax("ok",1,[
+            "accept_name"=>$order["accept_name"],
+            "mobile"=>$order["mobile"],
+            "region"=>$order["region"],
+            "address"=>$order["address"],
+            "order_no"=>$order["order_no"],
+            "express"=>$express
         ]);
     }
 

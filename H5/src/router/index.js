@@ -153,6 +153,12 @@ const routes = [
         component:()=>import("../views/order/detail")
     },
     {
+        path:'/order/express/:id',
+        name: 'OrderExpress',
+        meta: { title: "", tabbar: false, auth: true },
+        component:()=>import("../views/order/express")
+    },
+    {
         path:'/order/evaluate/:id',
         name: 'OrderEvaluate',
         meta: { title: "", tabbar: false, auth: true },

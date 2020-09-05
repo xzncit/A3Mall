@@ -611,6 +611,16 @@ export function getOrderDetail(params) {
     })
 }
 
+export function getOrderExpress(params) {
+    return new Promise((resolve, reject) => {
+        request.post("/order/express",params).then((res)=>{
+            resolve(res)
+        }).catch((err)=>{
+            router.replace("/404");
+        });
+    })
+}
+
 export function getOrderDetailPayment(params) {
     return new Promise((resolve, reject) => {
         request.get("/order/payment",params).then(res=>{

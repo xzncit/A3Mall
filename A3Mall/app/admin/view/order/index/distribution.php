@@ -98,14 +98,14 @@
                                             <th style="text-align:right;">收货人姓名：</th>
                                             <td><input type="text" name="accept_name" value="{$data.accept_name}" required  lay-verify="required" placeholder="请输入收货人姓名" autocomplete="off" class="layui-input"></td>
                                             <th style="text-align:right;">电话：</th>
-                                            <td><input type="text" name="phone" value="{$data.phone}" required  lay-verify="required" placeholder="请输入电话" autocomplete="off" class="layui-input"></td>
+                                            <td><input type="text" name="phone" value="{$data.phone}" placeholder="请输入电话" autocomplete="off" class="layui-input"></td>
                                         </tr>
                                         
                                         <tr>
                                             <th style="text-align:right;">手机：</th>
                                             <td><input type="text" name="mobile" value="{$data.mobile}" required  lay-verify="required" placeholder="请输入手机" autocomplete="off" class="layui-input"></td>
                                             <th style="text-align:right;">邮政编码：</th>
-                                            <td><input type="text" name="zip" value="{$data.zip}" required  lay-verify="required" placeholder="请输入邮政编码" autocomplete="off" class="layui-input"></td>
+                                            <td><input type="text" name="zip" value="{$data.zip}" placeholder="请输入邮政编码" autocomplete="off" class="layui-input"></td>
                                         </tr>
                                         
                                         <tr>

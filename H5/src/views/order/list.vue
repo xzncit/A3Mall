@@ -69,8 +69,9 @@
                             <span class="cancel" v-if="item.active == 1" @click="cancel(item.order_id)">取消订单</span>
                             <span class="pay" v-if="item.active == 1" @click="$router.push('/order/detail/'+item.order_id)">立即付款</span>
 
-                            <span class="cancel" v-if="item.active == 2 || item.active==3 || item.active==4" @click="$router.push('/order/confirm_delivery/' + item.order_id)">确认收货</span>
-                            <span class="pay" v-if="item.active == 2 || item.active==3 || item.active==4" @click="$router.push('/order/refund/' + item.order_id)">申请退款</span>
+                            <span class="cancel" v-if="item.active == 2 || item.active==3 || item.active==4" @click="$router.push('/order/refund/' + item.order_id)">申请退款</span>
+                            <span class="cancel" v-if="item.active == 2 || item.active==3 || item.active==4" @click="$router.push('/order/express/' + item.order_id)">查看物流</span>
+                            <span class="pay" v-if="item.active == 2 || item.active==3 || item.active==4" @click="$router.push('/order/confirm_delivery/' + item.order_id)">确认收货</span>
 
                             <span class="pay" v-if="item.active==5" @click="$router.push('/order/evaluate/' + item.order_id)">待评价</span>
                         </div>

@@ -66,6 +66,7 @@ Route::group(function(){
     Route::get('order/confirm', 'api/wap.order/confirm');
     Route::post('order/create', 'api/wap.order/create');
     Route::post('order/detail', 'api/wap.order/detail');
+    Route::post('order/express', 'api/wap.order/express');
     Route::get('order/list', 'api/wap.order/get_list');
     Route::get('order/payment', 'api/wap.order/payment');
     Route::post('order/refund', 'api/wap.order/refund');

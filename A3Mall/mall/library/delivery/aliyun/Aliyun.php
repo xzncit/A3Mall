@@ -21,7 +21,7 @@ class Aliyun {
         0=>"正常"
     ];
 
-    public static function query($no=""){
+    public static function query($no="",$type=""){
         $config = self::getConfig();
         if(empty($config["AppKey"])){
             throw new \Exception("参数AppKey不能为空",0);
@@ -36,6 +36,9 @@ class Aliyun {
         $headers = [];
         array_push($headers, "Authorization:APPCODE " . $config["AppCode"]);
         $querys = "no=".$no;
+        if(!empty($type)){
+            $querys .= "&type=" . $type;
+        }
         $url = self::$host . "/kdi" . "?" . $querys;
 
         $result = self::get($url,$headers);
