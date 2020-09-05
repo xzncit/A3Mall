@@ -9,6 +9,7 @@
 namespace app\admin\controller\order;
 
 use app\admin\controller\Auth;
+use mall\basic\Area;
 use mall\utils\Date;
 use mall\basic\Order;
 use mall\response\Response;
@@ -118,7 +119,7 @@ class Index extends Auth {
             $row["users"]["status_text"] = "删除";
         }
 
-        $row["area_name"] =  implode(",",[$row["province"],$row["city"],$row["area"]]);
+        $row["area_name"] = Area::get_area([$row["province"],$row["city"],$row["area"]],",");
         $row["order_log"] = array_map(function($res){
             $res["create_time"] = Date::format($res["create_time"]);
             return $res;

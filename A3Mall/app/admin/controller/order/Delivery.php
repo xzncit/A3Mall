@@ -10,6 +10,7 @@ namespace app\admin\controller\order;
 
 use app\admin\controller\Auth;
 use app\common\model\order\Delivery as  OrderDelivery;
+use mall\basic\Area;
 use think\facade\Request;
 use think\facade\Db;
 use mall\utils\Date;
@@ -54,8 +55,8 @@ class Delivery extends Auth {
         if(empty($data)){
             $this->error("您要查找的内容不存在！");
         }
-        
-        $data["area_name"] = implode(",",[$data['province'], $data['city'], $data['area']]);
+
+        $data["area_name"] = Area::get_area([$data['province'], $data['city'], $data['area']],",");
         $data["order_create_time"] = Date::format($data['order_create_time']);
         $data["create_time"] = Date::format($data['create_time']);
         $data["goods"] = Db::name("order_goods")->where(["order_id" => $data["order_id"]])->order("id DESC")->select()->toArray();
