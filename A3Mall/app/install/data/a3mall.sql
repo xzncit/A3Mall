@@ -26,7 +26,7 @@ INSERT INTO `mall_archives` (`id`, `pid`, `title`, `hits`, `status`, `sort`, `ph
 (2, 70, '售后服务', 0, 0, 0, '', '', '<p>售后服务</p>', 1589957283, 0),
 (3, 70, '特色服务', 0, 0, 0, '', '', '<p>特色服务</p>', 1589957302, 0),
 (4, 72, '秋季养生正当时，顺季食补滋阴养肺', 18, 0, 0, '/uploads/images/20200602/74ecfaec958bbb60e5700938ef310631.png', '', '<p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">多预防才能少生病。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">俗话说：“一夏无病三分虚”，秋天一到，正是补身养神的时候，既能恢复调节身体各方面机能，储备营养度过冬季；又能通过滋补应对秋季燥热的气候特征，防范一些季节病症。在民间也素有“秋补”习俗，但秋补却也不能随便乱补。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">很多人一听说要秋补，就不管三七二十一，只挑贵的食品、药品吃，这种做法是极不科学的。秋补要根据自身身体情况，并遵循一定的道理和原则来进行。此外若无医嘱也切不可随意进行药补，正常食补就能很好应对秋季养生。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">——①——</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">营养谷物调理脾胃</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">因为夏季常吃过冷食品，我们的脾胃多少会有不适的情况，因此在秋季进补前宜先调理脾胃，给脾胃一个调整适应的时期，后续食补才不会增加脾胃负担。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">脾胃调理的方法很简单，首先是平日饮食避免吃过于辛辣刺激和油腻的食物，其次是补食一些富有营养又易于消化的食物，比如鱼肉、山药、新鲜蔬菜，以及红豆、苡仁等谷物。尤其是谷物类食品，平日炖汤和煮粥都可以添加一些，既增加营养又能调理脾胃。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">——②——</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">养生茶饮滋阴润燥</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">一年四季都有其独有特点，而秋天的特点就是气候干燥，我们的身体也容易因此变得燥热，故每天都需要补充大量水分。并且根据中医“春夏养阳，秋冬养阴”的原则，秋补还须要注意养阴生津润燥。为此，多喝一些秋季对应的养生茶饮，能很好地起到滋阴润燥的作用。</p><p class=\"_1KzSpgz7dV2fQi0DA7rBNO ekdgpaS7Doc3bGdSvcWwK\" style=\"margin-top:0px;margin-bottom:20px;padding:0px;color:rgb(153,153,153);line-height:22px;font-family:\'Microsoft YaHei\', tahoma, arial, \'Hiragino Sans GB\', sans-serif;font-size:14px;white-space:normal;background-color:rgb(255,255,255);\">菊花是秋天的“花中仙子”，菊花茶更是我们秋季润燥的常备饮品。不仅是润燥，常喝菊花茶还有提神醒脑、养肝明目、降压通脉的作用。</p><p><br /></p>', 1591047003, 0),
-(7, 71, 'A3Mall正式版1.2发布', 3, 0, 0, '', '', '<p>A3Mall正式版1.2发布</p>', 1597023849, 1598055564);
+(7, 71, 'A3Mall正式版1.3发布', 3, 0, 0, '', '', '<p>A3Mall正式版1.2发布</p>', 1597023849, 1599524208);
 
 -- --------------------------------------------------------
 
@@ -5058,19 +5058,17 @@ CREATE TABLE `mall_freight` (
 
 INSERT INTO `mall_freight` (`id`, `type`, `code`, `title`, `url`, `sort`, `status`, `create_time`) VALUES
 (2, 'STO', 'shentong', '申通快递', 'http://www.sto.cn', 0, 0, 1485851695),
-(3, 'HHTT', 'tiantian', '天天快递', 'http://www.ttkd.cn', 0, 0, 1485851695),
-(4, 'YTO', 'yuantong', '圆通速递', 'http://www.yto.net.cn', 0, 0, 1485851695),
-(5, 'SF', 'shunfeng', '顺丰速运', 'http://www.sf-express.com', 0, 0, 1485851695),
-(6, 'YD', 'yunda', '韵达快递', 'http://www.yundaex.com', 0, 0, 1485851695),
-(7, 'ZTO', 'zhongtong', '中通速递', 'http://www.zto.cn', 0, 0, 1485851695),
-(8, 'LB', 'longbanwuliu', '龙邦物流', 'http://www.lbex.com.cn', 0, 0, 1485851695),
+(3, 'TTKDEX', 'tiantian', '天天快递', 'http://www.ttkd.cn', 0, 0, 1485851695),
+(4, 'YTO', 'yuantong', '圆通快递', 'http://www.yto.net.cn', 0, 0, 1485851695),
+(5, 'SFEXPRESS', 'shunfeng', '顺丰速运', 'http://www.sf-express.com', 0, 0, 1485851695),
+(6, 'YUNDA', 'yunda', '韵达快递', 'http://www.yundaex.com', 0, 0, 1485851695),
+(7, 'ZTO', 'zhongtong', '中通快递', 'http://www.zto.cn', 0, 0, 1485851695),
+(8, 'LBEX', 'longbanwuliu', '龙邦物流', 'http://www.lbex.com.cn', 0, 0, 1485851695),
 (9, 'ZJS', 'zhaijisong', '宅急送', 'http://www.zjs.com.cn', 0, 0, 1485851695),
-(11, 'HTKY', 'huitongkuaidi', '汇通速递', 'http://www.htky365.com', 0, 0, 1485851695),
-(12, 'MHKD', 'minghangkuaidi', '民航快递', 'http://www.cae.com.cn', 0, 0, 1485851695),
-(13, 'ZTKY', 'zhongtiewuliu', '中铁快运', 'http://www.cre.cn', 0, 0, 1485851695),
-(14, 'FEDEX', 'fedexcn', 'FedEx联邦快递', 'http://www.fedex.com/cn', 0, 0, 1485851695),
-(16, 'DBL', 'debangwuliu', '德邦物流', 'http://www.deppon.com', 0, 0, 1485851695),
-(17, 'UAPEX', 'quanyikuaidi', '全一快递', 'http://www.apex100.com', 0, 0, 1543436289);
+(11, 'HTKY', 'huitongkuaidi', '汇通快递', 'http://www.htky365.com', 0, 0, 1485851695),
+(12, 'CAE', 'minghangkuaidi', '民航快递', 'http://www.cae.com.cn', 0, 0, 1485851695),
+(13, 'CRE', 'zhongtiewuliu', '中铁快运', 'http://www.cre.cn', 0, 0, 1485851695),
+(16, 'DEPPON', 'debangwuliu', '德邦物流', 'http://www.deppon.com', 0, 0, 1485851695);
 
 -- --------------------------------------------------------
 
@@ -5388,7 +5386,7 @@ INSERT INTO `mall_order` (`id`, `activity_id`, `user_id`, `type`, `order_no`, `p
 (30, 14, 1, 2, '2020083109213569557', 8, 0, 1, 0, 0, 0, 0, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '11.00', '11.00', 0, '35.00', '46.00', '46.00', 0, 0, NULL, 1, 0, 0, 0, 0, 0, 1598836895, 0),
 (31, 14, 1, 2, '2020083109213924751', 1, 0, 5, 1, 0, 1, 1, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '11.00', '11.00', 0, '35.00', '46.00', '46.00', 0, 0, '', 1, 0, 0, 0, 0, 1598836899, 1598836899, 1598836901),
 (32, 0, 1, 0, '2020090304482329242', 8, 0, 1, 0, 0, 0, 0, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5.00', '5.00', 0, '629.00', '634.00', '634.00', 0, 10, NULL, 1, 0, 0, 0, 0, 0, 1599079703, 0),
-(33, 0, 1, 0, '2020090304491471152', 1, 0, 2, 1, 0, 0, 0, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5.00', '5.00', 0, '629.00', '634.00', '634.00', 0, 10, '', 1, 0, 0, 0, 0, 1599079760, 1599079754, 0);
+(33, 0, 1, 0, '2020090304491471152', 1, 0, 2, 1, 1, 0, 0, '111221111', '', '13819717173', '', '', '19', '20', '22', 'aaaaa', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5.00', '5.00', 0, '629.00', '634.00', '634.00', 0, 10, '', 1, 0, 1599216358, 0, 0, 1599079760, 1599079754, 0);
 
 -- --------------------------------------------------------
 
@@ -5465,6 +5463,13 @@ CREATE TABLE `mall_order_delivery` (
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 转存表中的数据 `mall_order_delivery`
+--
+
+INSERT INTO `mall_order_delivery` (`id`, `order_id`, `user_id`, `admin_id`, `name`, `zip`, `phone`, `country`, `province`, `city`, `area`, `address`, `mobile`, `freight`, `distribution_code`, `distribution_id`, `note`, `is_delete`, `freight_id`, `create_time`) VALUES
+(1, 33, 1, 1, '111221111', '0', '0', 0, 19, 20, 22, 'aaaaa', '13819717173', '5.00', 'afdafd', 0, '', 0, 3, 1599216358);
+
 -- --------------------------------------------------------
 
 --
@@ -5527,7 +5532,7 @@ INSERT INTO `mall_order_goods` (`id`, `order_id`, `goods_id`, `product_id`, `spe
 (30, 30, 33, 0, NULL, '202006152026113271', '/uploads/images/20200615/202006152026117502.jpg', '35.00', 1, '892.00', '{\"title\":\"【女神礼物】卡姿兰口红金致胶原美芯唇膏滋润持久保湿不易脱色持妆口红学生妆显气色双芯设计平价01#东京樱粉（热卖色）\",\"spec\":\"\"}', '70.00', '35.00', '0.00', 0, 1),
 (31, 31, 33, 0, NULL, '202006152026113271', '/uploads/images/20200615/202006152026117502.jpg', '35.00', 1, '892.00', '{\"title\":\"【女神礼物】卡姿兰口红金致胶原美芯唇膏滋润持久保湿不易脱色持妆口红学生妆显气色双芯设计平价01#东京樱粉（热卖色）\",\"spec\":\"\"}', '70.00', '35.00', '0.00', 0, 1),
 (32, 32, 34, 0, NULL, '202006152028543975', '/uploads/images/20200615/76a22d30e54fc50bb890b3966fd67a12.jpg', '629.00', 1, '96.00', '{\"title\":\"柔幻星纱十色眼影盘防水眼影盒少女妆闪粉哑光\",\"spec\":\"\"}', '1258.00', '629.00', '0.00', 0, 1),
-(33, 33, 34, 0, NULL, '202006152028543975', '/uploads/images/20200615/76a22d30e54fc50bb890b3966fd67a12.jpg', '629.00', 1, '96.00', '{\"title\":\"柔幻星纱十色眼影盘防水眼影盒少女妆闪粉哑光\",\"spec\":\"\"}', '1258.00', '629.00', '0.00', 0, 1);
+(33, 33, 34, 0, NULL, '202006152028543975', '/uploads/images/20200615/76a22d30e54fc50bb890b3966fd67a12.jpg', '629.00', 1, '96.00', '{\"title\":\"柔幻星纱十色眼影盘防水眼影盒少女妆闪粉哑光\",\"spec\":\"\"}', '1258.00', '629.00', '0.00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -5544,6 +5549,13 @@ CREATE TABLE `mall_order_log` (
   `note` text NOT NULL,
   `create_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 转存表中的数据 `mall_order_log`
+--
+
+INSERT INTO `mall_order_log` (`id`, `order_id`, `username`, `action`, `result`, `note`, `create_time`) VALUES
+(1, 33, 'admin', '发货', '成功', '订单【2020090304491471152】由【管理员】admin发货', 1599216358);
 
 -- --------------------------------------------------------
 
@@ -6533,7 +6545,8 @@ INSERT INTO `mall_system_purview` (`id`, `pid`, `name`, `module`, `controller`, 
 (261, 260, '基础设置', 'admin', 'users.setting', 'base', '', 0),
 (262, 260, '注册协议', 'admin', 'users.setting', 'register', '', 0),
 (263, 211, '退款日志', 'admin', 'users.finance', 'refund', '', 0),
-(264, 121, '物流设置', 'admin', 'system.setting', 'delivery', '', 0);
+(264, 121, '物流设置', 'admin', 'system.setting', 'delivery', '', 0),
+(265, 40, '物流', 'admin', 'order.index', 'express', '', 0);
 
 -- --------------------------------------------------------
 
@@ -6561,7 +6574,7 @@ CREATE TABLE `mall_system_users` (
 --
 
 INSERT INTO `mall_system_users` (`id`, `role_id`, `avatar`, `username`, `password`, `salt`, `email`, `ip`, `status`, `lock`, `count`, `time`) VALUES
-(1, 1, '', 'admin', '7fef6171469e80d32c0559f88b377245', '', 'admin@qq.com', '127.0.0.1', 0, 1, 697, 1599191541),
+(1, 1, '', 'admin', '7fef6171469e80d32c0559f88b377245', '', 'admin@qq.com', '127.0.0.1', 0, 1, 700, 1599524193),
 (2, 3, '', 'demo', '', '', 'demo@qq.com', '127.0.0.1', 0, 0, 3, 1584624122);
 
 -- --------------------------------------------------------
@@ -6585,7 +6598,10 @@ CREATE TABLE `mall_system_users_log` (
 
 INSERT INTO `mall_system_users_log` (`id`, `user_id`, `type`, `intro`, `ip`, `time`) VALUES
 (1, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-04 10:48:04 登录地点：127.0.0.1', '127.0.0.1', 1599187684),
-(2, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-04 11:52:21 登录地点：127.0.0.1', '127.0.0.1', 1599191541);
+(2, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-04 11:52:21 登录地点：127.0.0.1', '127.0.0.1', 1599191541),
+(3, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-04 18:45:39 登录地点：127.0.0.1', '127.0.0.1', 1599216339),
+(4, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-05 10:28:18 登录地点：127.0.0.1', '127.0.0.1', 1599272898),
+(5, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-08 08:16:33 登录地点：127.0.0.1', '127.0.0.1', 1599524193);
 
 -- --------------------------------------------------------
 
@@ -6627,7 +6643,7 @@ CREATE TABLE `mall_users` (
 --
 
 INSERT INTO `mall_users` (`id`, `group_id`, `username`, `password`, `email`, `avatar`, `nickname`, `realname`, `mobile`, `birthday`, `sex`, `exp`, `point`, `status`, `tags`, `is_spread`, `spread_id`, `spread_time`, `pay_count`, `spread_count`, `amount`, `spread_amount`, `create_ip`, `last_ip`, `create_time`, `last_login`) VALUES
-(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'demo', 'demo', '18319517777', 1595779200, 1, 1092, 1520, 0, '', 1, 0, 1592917652, 0, 0, '55356.19', '10017.21', '', '127.0.0.1', 1584028900, 1599079692),
+(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'demo', 'demo', '18319517777', 1595779200, 1, 1092, 1520, 0, '', 1, 0, 1592917652, 0, 0, '55356.19', '10017.21', '', '127.0.0.1', 1584028900, 1599524174),
 (10, 1, 'test', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'test', '', '18319517778', 1590163200, 1, 0, 0, 0, '', 1, 1, 1592917588, 0, 0, '0.00', '123.62', '', '127.0.0.1', 0, 1592917588),
 (11, 1, 'usres', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'users', '', '18319517779', 1590163200, 1, 0, 40, 0, '', 1, 10, 1592917652, 0, 0, '4444.00', '90.20', '', '127.0.0.1', 0, 1592917652),
 (12, 2, 'blue', '7fef6171469e80d32c0559f88b377245', '', '', 'blue', '', '18319517776', 0, 1, 0, 20, 0, '2', 1, 11, 1592917652, 0, 0, '186.00', '0.00', '', '127.0.0.1', 0, 1592918687);
@@ -6905,7 +6921,11 @@ INSERT INTO `mall_users_token` (`id`, `user_id`, `token`, `referer`, `type`, `br
 (131, 1, '0311be367a13b174e1d75a2be1eff066bba25b14', 0, 0, '', '', '127.0.0.1', 1598836289),
 (132, 1, '8cf5693945a915e7b499ec724dfcfe3ddaf5a20e', 0, 0, '', '', '127.0.0.1', 1598920262),
 (133, 1, 'b81237d71a8566d827f49658dddc97b3ad4be5e3', 0, 0, '', '', '127.0.0.1', 1598998766),
-(134, 1, '0e0429b35e66018d6c15e97e4351a1195104edee', 0, 0, '', '', '127.0.0.1', 1599079692);
+(134, 1, '0e0429b35e66018d6c15e97e4351a1195104edee', 0, 0, '', '', '127.0.0.1', 1599079692),
+(135, 1, 'af2336ddaf71999cc29dc85caa7e1983d8bfcf9f', 0, 0, '', '', '127.0.0.1', 1599216320),
+(136, 1, '8ab1751ee9ba28d801cbac1c916983decb409cd2', 0, 0, '', '', '127.0.0.1', 1599267635),
+(137, 1, '132777b53c5b8224afefa012bde44cc2a39e5690', 0, 0, '', '', '127.0.0.1', 1599274105),
+(138, 1, 'a17b1411971ee5dd0f5dba41a4dcc83511f7bf9c', 0, 0, '', '', '127.0.0.1', 1599524174);
 
 -- --------------------------------------------------------
 
@@ -6927,8 +6947,8 @@ CREATE TABLE `mall_users_withdraw_log` (
   `mark` varchar(512) DEFAULT NULL,
   `msg` varchar(255) DEFAULT '',
   `status` tinyint(2) DEFAULT 0,
-  `create_time` int(10) DEFAULT NULL,
-  `update_time` int(10) DEFAULT NULL
+  `create_time` int(10) DEFAULT 0,
+  `update_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -6938,7 +6958,7 @@ CREATE TABLE `mall_users_withdraw_log` (
 INSERT INTO `mall_users_withdraw_log` (`id`, `user_id`, `withdraw_type`, `bank_name`, `bank_real_name`, `type`, `code`, `address`, `account`, `price`, `mark`, `msg`, `status`, `create_time`, `update_time`) VALUES
 (1, 1, 1, '中国工商银行', 'asd', 1, '6210812470004250007', '', '', '1000.00', NULL, '己转帐', 1, 1592929668, 1592929697),
 (2, 1, 1, '中国农业银行', 'afd', 1, '6210812470004250007', '', '', '500.00', NULL, '己转帐', 1, 1592929700, 1592929714),
-(3, 1, 1, '招商银行', 'asf', 1, '6210812470004250007', '', '', '222.00', NULL, '', 0, 1597956305, NULL);
+(3, 1, 1, '招商银行', 'asf', 1, '6210812470004250007', '', '', '222.00', NULL, '', 0, 1597956305, 0);
 
 -- --------------------------------------------------------
 
@@ -7217,11 +7237,7 @@ ALTER TABLE `mall_order`
 -- 表的索引 `mall_order_collection`
 --
 ALTER TABLE `mall_order_collection`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `if_del` (`is_delete`),
-  ADD KEY `payment_id` (`payment_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 表的索引 `mall_order_delivery`
@@ -7667,7 +7683,7 @@ ALTER TABLE `mall_order_collection`
 -- 使用表AUTO_INCREMENT `mall_order_delivery`
 --
 ALTER TABLE `mall_order_delivery`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `mall_order_goods`
@@ -7679,7 +7695,7 @@ ALTER TABLE `mall_order_goods`
 -- 使用表AUTO_INCREMENT `mall_order_log`
 --
 ALTER TABLE `mall_order_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `mall_order_refundment`
@@ -7829,7 +7845,7 @@ ALTER TABLE `mall_system_menu`
 -- 使用表AUTO_INCREMENT `mall_system_purview`
 --
 ALTER TABLE `mall_system_purview`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
 
 --
 -- 使用表AUTO_INCREMENT `mall_system_users`
@@ -7841,7 +7857,7 @@ ALTER TABLE `mall_system_users`
 -- 使用表AUTO_INCREMENT `mall_system_users_log`
 --
 ALTER TABLE `mall_system_users_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users`
@@ -7913,7 +7929,7 @@ ALTER TABLE `mall_users_tags`
 -- 使用表AUTO_INCREMENT `mall_users_token`
 --
 ALTER TABLE `mall_users_token`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users_withdraw_log`

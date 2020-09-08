@@ -10,6 +10,7 @@ namespace app\admin\controller\order;
 
 use app\admin\controller\Auth;
 use mall\basic\Area;
+use mall\library\delivery\aliyun\Aliyun;
 use mall\utils\Date;
 use mall\basic\Order;
 use mall\response\Response;
@@ -422,6 +423,44 @@ class Index extends Auth {
 
         return View::fetch("",[
             "order"=>$order
+        ]);
+    }
+
+    public function express(){
+        $id = Request::get("id","0","intval");
+        $order = Db::name("order")->where("id",$id)->where("distribution_status","in","1,2")->find();
+
+        $order['delivery'] = Db::name("order_delivery")->where("order_id",$id)->find();
+
+        $type = strtolower(Db::name("freight")->where("id",$order['delivery']["freight_id"])->value("type"));
+        if($type == 'sfexpress'){
+            $order['delivery']["distribution_code"] = $order['delivery']["distribution_code"] . ":" . substr($order['delivery']["mobile"],-4);
+        }
+
+        $order["region"] = Area::get_area([$order['province'],$order['city'],$order['area']],' ');
+
+        $express = ["expName"=>"", "number"=>"", "takeTime"=>"", "updateTime"=>""];
+        try{
+            $array = Aliyun::query($order['delivery']["distribution_code"],$type);
+            $express["expName"] = $array["result"]["expName"];
+            $express["number"] = $array["result"]["number"];
+            $express["takeTime"] = $array["result"]["takeTime"];
+            $express["updateTime"] = $array["result"]["updateTime"];
+            $express["list"] = $array["result"]["list"];
+        }catch(\Exception $ex){
+            $express["list"][] = [
+                "status"=>"商家正在通知快递公司",
+                "time"=>date("Y-m-d H:i:s",$order["send_time"])
+            ];
+        }
+
+        return View::fetch("",[
+            "accept_name"=>$order["accept_name"],
+            "mobile"=>$order["mobile"],
+            "region"=>$order["region"],
+            "address"=>$order["address"],
+            "order_no"=>$order["order_no"],
+            "express"=>$express
         ]);
     }
 

@@ -743,10 +743,9 @@ class Order extends Auth {
             return $this->returnAjax("您要查找的订单不存在！",0);
         }
 
-        $type = "";
-        if(Db::name("freight")->where("id",$orderDelivery["freight_id"])->value("type") == 'SF'){
+        $type = strtolower(Db::name("freight")->where("id",$orderDelivery["freight_id"])->value("type"));
+        if($type == 'sfexpress'){
             $orderDelivery["distribution_code"] = $orderDelivery["distribution_code"] . ":" . substr($orderDelivery["mobile"],-4);
-            $type = "sfexpress"; // 顺丰
         }
 
         $order["region"] = Area::get_area([$order['province'],$order['city'],$order['area']],' ');
