@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wap;
 
+use mall\basic\Users;
 use mall\utils\BC;
 use mall\utils\Tool;
 use think\facade\Db;
@@ -159,6 +160,12 @@ class Point extends Auth {
             "end_time"=>$goods["end_time"],
             "now_time"=>time()
         ];
+
+        $data["comments"] = [];
+        try{
+            $comments = Users::getComments($goods["id"],1);
+            $data["comments"] = $comments["data"];
+        }catch (\Exception $e){}
 
         return $this->returnAjax("ok",1,$data);
     }
