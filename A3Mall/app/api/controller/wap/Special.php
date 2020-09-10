@@ -168,7 +168,7 @@ class Special extends Auth {
         $goods["content"] = Tool::replaceContentImage(Tool::removeContentAttr($goods["content"]));
 
         $data["goods"] = [
-            "id"=>$goods["pg_id"],
+            "`id"=>$goods["pg_id"],
             "goods_id"=>$goods["id"],
             "title"=>$goods["title"],
             "photo"=>Tool::thumb($goods["photo"],'medium',true),
@@ -178,6 +178,12 @@ class Special extends Auth {
             "sale"=>$goods["sale"],
             "content"=>$goods["content"]
         ];
+
+        $data["comments"] = [];
+        try{
+            $comments = Users::getComments($goods["id"],4);
+            $data["comments"] = $comments["data"];
+        }catch (\Exception $e){}
 
         return $this->returnAjax("ok",1,$data);
     }
