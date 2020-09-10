@@ -1354,7 +1354,7 @@ function addHandle( attrs, handler ) {
 }
 
 /**
- * Checks document index of two siblings
+ * Checks document order of two siblings
  * @param {Element} a
  * @param {Element} b
  * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
@@ -1691,7 +1691,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	/* Sorting
 	---------------------------------------------------------------------- */
 
-	// Document index sorting
+	// Document order sorting
 	sortOrder = docElem.compareDocumentPosition ?
 	function( a, b ) {
 
@@ -1716,7 +1716,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 					return 1;
 				}
 
-				// Maintain original index
+				// Maintain original order
 				return sortInput ?
 					( indexOf.call( sortInput, a ) - indexOf.call( sortInput, b ) ) :
 					0;
@@ -1999,7 +1999,7 @@ Expr = Sizzle.selectors = {
 				// advance to the next closing parenthesis
 				(excess = unquoted.indexOf( ")", unquoted.length - excess ) - unquoted.length) ) {
 
-				// excess is a negative bonus
+				// excess is a negative index
 				match[0] = match[0].slice( 0, excess );
 				match[2] = unquoted.slice( 0, excess );
 			}
@@ -2094,7 +2094,7 @@ Expr = Sizzle.selectors = {
 
 						// non-xml :nth-child(...) stores cache data on `parent`
 						if ( forward && useCache ) {
-							// Seek `elem` from a previously-cached bonus
+							// Seek `elem` from a previously-cached index
 							outerCache = parent[ expando ] || (parent[ expando ] = {});
 							cache = outerCache[ type ] || [];
 							nodeIndex = cache[0] === dirruns && cache[1];
@@ -2113,7 +2113,7 @@ Expr = Sizzle.selectors = {
 								}
 							}
 
-						// Use previously-cached element bonus if available
+						// Use previously-cached element index if available
 						} else if ( useCache && (cache = (elem[ expando ] || (elem[ expando ] = {}))[ type ]) && cache[0] === dirruns ) {
 							diff = cache[1];
 
@@ -2124,7 +2124,7 @@ Expr = Sizzle.selectors = {
 								(diff = nodeIndex = 0) || start.pop()) ) {
 
 								if ( ( ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1 ) && ++diff ) {
-									// Cache the bonus of each encountered element
+									// Cache the index of each encountered element
 									if ( useCache ) {
 										(node[ expando ] || (node[ expando ] = {}))[ type ] = [ dirruns, diff ];
 									}
@@ -2777,7 +2777,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 						}
 					}
 
-					// Discard bonus placeholder values to get only actual matches
+					// Discard index placeholder values to get only actual matches
 					setMatched = condense( setMatched );
 				}
 
@@ -3620,7 +3620,7 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ){
 	thisCache = cache[ id ];
 
 	// jQuery data() is stored in a separate object inside the object's internal data
-	// cache in index to avoid key collisions between internal data and user-defined
+	// cache in order to avoid key collisions between internal data and user-defined
 	// data.
 	if ( !pvt ) {
 		if ( !thisCache.data ) {
@@ -5803,12 +5803,12 @@ jQuery.fn.extend({
 	// the matched set of elements
 	index: function( elem ) {
 
-		// No argument, return bonus in parent
+		// No argument, return index in parent
 		if ( !elem ) {
 			return ( this[0] && this[0].parentNode ) ? this.first().prevAll().length : -1;
 		}
 
-		// bonus in selector
+		// index in selector
 		if ( typeof elem === "string" ) {
 			return jQuery.inArray( this[0], jQuery( elem ) );
 		}
@@ -5901,7 +5901,7 @@ jQuery.each({
 				ret = jQuery.unique( ret );
 			}
 
-			// Reverse index for parents* and prev-derivatives
+			// Reverse order for parents* and prev-derivatives
 			if ( rparentsprev.test( name ) ) {
 				ret = ret.reverse();
 			}
@@ -7535,7 +7535,7 @@ function buildParams( prefix, obj, traditional, add ) {
 				add( prefix, v );
 
 			} else {
-				// Item is non-scalar (array or object), encode its numeric bonus.
+				// Item is non-scalar (array or object), encode its numeric index.
 				buildParams( prefix + "[" + ( typeof v === "object" ? i : "" ) + "]", v, traditional, add );
 			}
 		});
@@ -8006,7 +8006,7 @@ jQuery.extend({
 		// Extract dataTypes list
 		s.dataTypes = jQuery.trim( s.dataType || "*" ).toLowerCase().match( core_rnotwhite ) || [""];
 
-		// A cross-domain request is in index when we have a protocol:host:port mismatch
+		// A cross-domain request is in order when we have a protocol:host:port mismatch
 		if ( s.crossDomain == null ) {
 			parts = rurl.exec( s.url.toLowerCase() );
 			s.crossDomain = !!( parts &&
@@ -9017,7 +9017,7 @@ function propFilter( props, specialEasing ) {
 			delete props[ name ];
 
 			// not quite $.extend, this wont overwrite keys already present.
-			// also - reusing 'bonus' from above because we have the correct "name"
+			// also - reusing 'index' from above because we have the correct "name"
 			for ( index in value ) {
 				if ( !( index in props ) ) {
 					props[ index ] = value[ index ];

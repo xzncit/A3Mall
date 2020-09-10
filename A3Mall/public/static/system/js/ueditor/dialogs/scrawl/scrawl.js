@@ -256,7 +256,7 @@ var scrawl = function (options) {
 
                 if (img) {
                     if (!scaleCon) {
-                        picBoard.style.cssText = "position:relative;z-bonus:999;"+picBoard.style.cssText;
+                        picBoard.style.cssText = "position:relative;z-index:999;"+picBoard.style.cssText;
                         img.style.cssText = "position: absolute;top:" + (canvas.height - img.height) / 2 + "px;left:" + (canvas.width - img.width) / 2 + "px;";
                         var scale = new ScaleBoy();
                         picBoard.appendChild(scale.init());
@@ -268,7 +268,7 @@ var scrawl = function (options) {
                             picBoard.style.zIndex = "";
                         } else {
                             scaleCon.style.visibility = "visible";
-                            picBoard.style.cssText += "position:relative;z-bonus:999";
+                            picBoard.style.cssText += "position:relative;z-index:999";
                         }
                     }
                 }

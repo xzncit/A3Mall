@@ -948,7 +948,7 @@
             }
         });
     
-        Runtime.orders = 'html5,seckill';
+        Runtime.orders = 'html5,flash';
     
     
         /**
@@ -4680,7 +4680,7 @@
     // ApertureValue : 2.5260688216892597 [4845/1918]
     // BrightnessValue : -0.3126686601998395
     // MeteringMode : Pattern
-    // Flash : Flash did not fire, compulsory seckill mode
+    // Flash : Flash did not fire, compulsory flash mode
     // FocalLength : 4.28 [107/25]
     // SubjectArea : [4 values]
     // FlashpixVersion : 0100

@@ -948,7 +948,7 @@
             }
         });
     
-        Runtime.orders = 'html5,seckill';
+        Runtime.orders = 'html5,flash';
     
     
         /**
@@ -4006,7 +4006,7 @@
     // ApertureValue : 2.5260688216892597 [4845/1918]
     // BrightnessValue : -0.3126686601998395
     // MeteringMode : Pattern
-    // Flash : Flash did not fire, compulsory seckill mode
+    // Flash : Flash did not fire, compulsory flash mode
     // FocalLength : 4.28 [107/25]
     // SubjectArea : [4 values]
     // FlashpixVersion : 0100
@@ -5234,7 +5234,7 @@
                     //Encode ACs
                     var end0pos = 63; // was const... which is crazy
                     for (; (end0pos>0)&&(DU[end0pos]==0); end0pos--) {};
-                    //end0pos = first element in reverse index !=0
+                    //end0pos = first element in reverse order !=0
                     if ( end0pos == 0) {
                         writeBits(EOB);
                         return DC;

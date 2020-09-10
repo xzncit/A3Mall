@@ -813,7 +813,7 @@
 		drawGraph: noop,
 		
 		/**
-		 * We need the points' bounding boxes in index to draw the data labels, so
+		 * We need the points' bounding boxes in order to draw the data labels, so 
 		 * we skip it now and call if from drawPoints instead.
 		 */
 		drawDataLabels: noop,

@@ -622,7 +622,7 @@ function normalizeTickInterval(interval, multiples, magnitude, options) {
  * Get a normalized tick interval for dates. Returns a configuration object with
  * unit range (interval), count and name. Used to prepare data for getTimeTicks. 
  * Previously this logic was part of getTimeTicks, but as getTimeTicks now runs
- * of segments in stock charts, the normalizing logic was extracted in index to
+ * of segments in stock charts, the normalizing logic was extracted in order to 
  * prevent it for running over again for each segment having the same interval. 
  * #662, #697.
  */
@@ -846,7 +846,7 @@ ChartCounters.prototype =  {
 
 
 /**
- * Utility method that sorts an object array and keeping the index of equal items.
+ * Utility method that sorts an object array and keeping the order of equal items.
  * ECMA script standard does not specify the behaviour when items are equal.
  */
 function stableSort(arr, sortFunction) {
@@ -854,9 +854,9 @@ function stableSort(arr, sortFunction) {
 		sortValue,
 		i;
 
-	// Add bonus to each item
+	// Add index to each item
 	for (i = 0; i < length; i++) {
-		arr[i].ss_i = i; // stable sort bonus
+		arr[i].ss_i = i; // stable sort index
 	}
 
 	arr.sort(function (a, b) {
@@ -864,9 +864,9 @@ function stableSort(arr, sortFunction) {
 		return sortValue === 0 ? a.ss_i - b.ss_i : sortValue;
 	});
 
-	// Remove bonus from items
+	// Remove index from items
 	for (i = 0; i < length; i++) {
-		delete arr[i].ss_i; // stable sort bonus
+		delete arr[i].ss_i; // stable sort index
 	}
 }
 
@@ -1257,7 +1257,7 @@ pathAnim = {
 		getScript: $.getScript,
 		
 		/**
-		 * Return the bonus of an item in an array, or -1 if not found
+		 * Return the index of an item in an array, or -1 if not found
 		 */
 		inArray: $.inArray,
 		
@@ -1360,7 +1360,7 @@ pathAnim = {
 			}
 	
 			// Wrap preventDefault and stopPropagation in try/catch blocks in
-			// index to prevent JS errors when cancelling events on non-DOM
+			// order to prevent JS errors when cancelling events on non-DOM
 			// objects. #615.
 			/*jslint unparam: true*/
 			$.each(['preventDefault', 'stopPropagation'], function (i, fn) {
@@ -2931,7 +2931,7 @@ SVGElement.prototype = {
 		}
 
 		// insert according to this and other elements' zIndex
-		if (parentWrapper.handleZ) { // this element or any of its siblings has a z bonus
+		if (parentWrapper.handleZ) { // this element or any of its siblings has a z index
 			for (i = 0; i < childNodes.length; i++) {
 				otherElement = childNodes[i];
 				otherZIndex = attr(otherElement, 'zIndex');
@@ -3152,7 +3152,7 @@ SVGRenderer.prototype = {
 		// Issue 110 workaround:
 		// In Firefox, if a div is positioned by percentage, its pixel position may land
 		// between pixels. The container itself doesn't display this, but an SVG element
-		// inside this container will be drawn at subpixel precision. In index to draw
+		// inside this container will be drawn at subpixel precision. In order to draw
 		// sharp lines, this must be compensated for. This doesn't seem to work inside
 		// iframes though (like in jsFiddle).
 		var subPixelFix, rect;
@@ -3782,7 +3782,7 @@ SVGRenderer.prototype = {
 				obj.attr({ width: 0, height: 0 });
 
 				// Create a dummy JavaScript image to get the width and height. Due to a bug in IE < 8,
-				// the created element must be assigned to a variable in index to load (#292).
+				// the created element must be assigned to a variable in order to load (#292).
 				imageElement = createElement('img', {
 					onload: function () {
 						centerImage(obj, symbolSizes[imageSrc] = [this.width, this.height]);
@@ -4781,7 +4781,7 @@ Highcharts.VMLElement = VMLElement = {
 						if (nodeName === 'DIV') {
 							value = value === HIDDEN ? '-999em' : 0;
 
-							// In index to redraw, IE7 needs the div to be visible when tucked away
+							// In order to redraw, IE7 needs the div to be visible when tucked away
 							// outside the viewport. So the visibility is actually opposite of
 							// the expected value. This applies to the tooltip only.
 							if (!docMode8) {
@@ -6360,7 +6360,7 @@ function StackItem(axis, options, isNegative, x, stackOption, stacking) {
 	// Initialize total value
 	this.total = null;
 
-	// This will keep each points' extremes stored by series.bonus
+	// This will keep each points' extremes stored by series.index
 	this.points = {};
 
 	// Save the stack option on the series configuration object, and whether to treat it as percent
@@ -6840,7 +6840,7 @@ Axis.prototype = {
 		erase(chart.axes, this);
 		erase(chart[key], this);
 		chart.options[key].splice(this.options.index, 1);
-		each(chart[key], function (axis, i) { // Re-bonus, #1706
+		each(chart[key], function (axis, i) { // Re-index, #1706
 			axis.options.index = i;
 		});
 		this.destroy();
@@ -7400,7 +7400,7 @@ Axis.prototype = {
 					}
 					pointRange = mathMax(pointRange, seriesPointRange);
 					
-					// minPointOffset is the value padding to the left of the axis in index to make
+					// minPointOffset is the value padding to the left of the axis in order to make
 					// room for points with a pointRange, typically columns. When the pointPlacement option
 					// is 'between' or 'on', this padding does not apply.
 					minPointOffset = mathMax(
@@ -7546,7 +7546,7 @@ Axis.prototype = {
 		}
 
 		// Now we're finished detecting min and max, crop and group series data. This
-		// is in turn needed in index to find tick positions in ordinal axes.
+		// is in turn needed in order to find tick positions in ordinal axes. 
 		if (isXAxis && !secondPass) {
 			each(axis.series, function (series) {
 				series.processData(axis.min !== axis.oldMin || axis.max !== axis.oldMax);
@@ -7642,7 +7642,7 @@ Axis.prototype = {
 			
 			// When there is only one point, or all points have the same value on this axis, then min
 			// and max are equal and tickPositions.length is 1. In this case, add some padding
-			// in index to center the point, but leave it with one tick. #1337.
+			// in order to center the point, but leave it with one tick. #1337.
 			if (tickPositions.length === 1) {
 				singlePad = 0.001; // The lowest possible number to avoid extra padding on columns
 				axis.min -= singlePad;
@@ -9110,7 +9110,7 @@ Pointer.prototype = {
 	},
 	
 	/**
-	 * Return the bonus in the tooltipPoints array, corresponding to pixel position in
+	 * Return the index in the tooltipPoints array, corresponding to pixel position in 
 	 * the plot area.
 	 */
 	getIndex: function (e) {
@@ -9316,7 +9316,7 @@ Pointer.prototype = {
 		// Is the chart dragged off its bounds, determined by dataMin and dataMax?
 		if (outOfBounds) {
 
-			// Modify the touchNow position in index to create an elastic drag movement. This indicates
+			// Modify the touchNow position in order to create an elastic drag movement. This indicates
 			// to the user that the chart is responsive but can't be dragged further.
 			touch0Now -= 0.8 * (touch0Now - lastValidTouch[xy][0]);
 			if (!singleTouch) {
@@ -12777,7 +12777,7 @@ Series.prototype = {
 		chartSeries.push(series);
 		series._i = chartSeries.length - 1;
 		
-		// Sort series according to bonus option (#248, #1123)
+		// Sort series according to index option (#248, #1123)
 		stableSort(chartSeries, function (a, b) {
 			return pick(a.options.index, a._i) - pick(b.options.index, a._i);
 		});
@@ -15282,7 +15282,7 @@ var AreaSeries = extendClass(Series, {
 					segment.push(pointMap[x]);
 
 				// There is no point for this X value in this series, so we 
-				// insert a dummy point in index for the areas to be drawn
+				// insert a dummy point in order for the areas to be drawn
 				// correctly.
 				} else {
 					plotX = xAxis.translate(x);
@@ -16261,7 +16261,7 @@ var PieSeries = {
 
 	/**
 	 * Extend the basic setData method by running processData and generatePoints immediately,
-	 * in index to access the points from the legend.
+	 * in order to access the points from the legend.
 	 */
 	setData: function (data, redraw) {
 		Series.prototype.setData.call(this, data, false);
@@ -16647,7 +16647,7 @@ var PieSeries = {
 				}
 	
 				// The label goes to the nearest open slot, but not closer to the edge than
-				// the label's bonus.
+				// the label's index.
 				for (j = 0; j < length; j++) {
 	
 					point = points[j];
@@ -16657,7 +16657,7 @@ var PieSeries = {
 						distance,
 						slotI;
 	
-					// find the closest slot bonus
+					// find the closest slot index
 					for (slotI = 0; slotI < slotsLength; slotI++) {
 						distance = mathAbs(slots[slotI] - labelPos[1]);
 						if (distance < closest) {
@@ -16666,7 +16666,7 @@ var PieSeries = {
 						}
 					}
 	
-					// if that slot bonus is closer to the edges of the slots, move it
+					// if that slot index is closer to the edges of the slots, move it
 					// to the closest appropriate slot
 					if (slotIndex < j && slots[j] !== null) { // cluster at the top
 						slotIndex = j;
@@ -16686,7 +16686,7 @@ var PieSeries = {
 					usedSlots.push({ i: slotIndex, y: slots[slotIndex] });
 					slots[slotIndex] = null; // mark as taken
 				}
-				// sort them in index to fill in from the top
+				// sort them in order to fill in from the top
 				usedSlots.sort(sort);
 			}
 

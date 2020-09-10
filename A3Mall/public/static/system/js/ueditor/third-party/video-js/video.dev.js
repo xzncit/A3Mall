@@ -63,7 +63,7 @@ var vjs = function(id, options, ready){
 var videojs = vjs;
 window.videojs = window.vjs = vjs;
 
-// CDN Version. Used to target right seckill swf.
+// CDN Version. Used to target right flash swf.
 vjs.CDN_VERSION = '4.3';
 vjs.ACCESS_PROTOCOL = ('https:' == document.location.protocol ? 'https://' : 'http://');
 
@@ -75,9 +75,9 @@ vjs.ACCESS_PROTOCOL = ('https:' == document.location.protocol ? 'https://' : 'ht
  * @type {Object}
  */
 vjs.options = {
-  // Default index of fallback technology
+  // Default order of fallback technology
   'techOrder': ['html5','flash'],
-  // techOrder: ['seckill','html5'],
+  // techOrder: ['flash','html5'],
 
   'html5': {},
   'flash': {},
@@ -1228,7 +1228,7 @@ vjs.setLocalStorage = function(key, value){
 };
 
 /**
- * Get abosolute version of relative URL. Used to tell seckill correct URL.
+ * Get abosolute version of relative URL. Used to tell flash correct URL.
  * http://stackoverflow.com/questions/470832/getting-an-absolute-url-from-a-relative-one-ie6-issue
  * @param  {String} url URL to make absolute
  * @return {String}     Absolute URL
@@ -2137,7 +2137,7 @@ vjs.Component.prototype.emitTapEvents = function(){
     if (couldBeTap === true) {
       // Measure how long the touch lasted
       touchTime = new Date().getTime() - touchStart;
-      // The touch needs to be quick in index to consider it a tap
+      // The touch needs to be quick in order to consider it a tap
       if (touchTime < 250) {
         this.trigger('tap');
         // It may be good to copy the touchend event object and change the
@@ -2309,7 +2309,7 @@ vjs.Slider.prototype.update = function(){
   if (!this.el_) return;
 
   // If scrubbing, we could use a cached value to make the handle keep up with the user's mouse.
-  // On HTML5 browsers scrubbing is really smooth, but some seckill players are slow, so we might want to utilize this later.
+  // On HTML5 browsers scrubbing is really smooth, but some flash players are slow, so we might want to utilize this later.
   // var progress =  (this.player_.scrubbing) ? this.player_.getCache().currentTime / this.player_.duration() : this.player_.currentTime() / this.player_.duration();
 
   var barProgress,
@@ -2711,7 +2711,7 @@ vjs.Player = vjs.Component.extend({
     // Set Options
     // The options argument overrides options set in the video tag
     // which overrides globally set options.
-    // This latter part coincides with the load index
+    // This latter part coincides with the load order
     // (tag must exist before Player)
     options = vjs.obj.merge(this.getTagSettings(tag), options);
 
@@ -2723,7 +2723,7 @@ vjs.Player = vjs.Component.extend({
     // Set controls
     this.controls_ = options['controls'];
     // Original tag settings stored in options
-    // now remove immediately so native controls don't seckill.
+    // now remove immediately so native controls don't flash.
     // May be turned back on by HTML5 tech if nativeControlsForTouch is true
     tag.controls = false;
 
@@ -2891,7 +2891,7 @@ vjs.Player.prototype.createEl = function(){
 
   // Update tag id/class for use as HTML5 playback tech
   // Might think we should do this after embedding in container so .vjs-tech class
-  // doesn't seckill 100% width/height, but class only applies with .video-js parent
+  // doesn't flash 100% width/height, but class only applies with .video-js parent
   tag.id += '_html5_api';
   tag.className = 'vjs-tech';
 
@@ -2939,12 +2939,12 @@ vjs.Player.prototype.loadTech = function(techName, source){
   var techReady = function(){
     this.player_.triggerReady();
 
-    // Manually track progress in cases where the browser/seckill player doesn't report it.
+    // Manually track progress in cases where the browser/flash player doesn't report it.
     if (!this.features['progressEvents']) {
       this.player_.manualProgressOn();
     }
 
-    // Manually track timeudpates in cases where the browser/seckill player doesn't report it.
+    // Manually track timeudpates in cases where the browser/flash player doesn't report it.
     if (!this.features['timeupdateEvents']) {
       this.player_.manualTimeUpdatesOn();
     }
@@ -2981,7 +2981,7 @@ vjs.Player.prototype.unloadTech = function(){
 
 // There's many issues around changing the size of a Flash (or other plugin) object.
 // First is a plugin reload issue in Firefox that has been around for 11 years: https://bugzilla.mozilla.org/show_bug.cgi?id=90268
-// Then with the new fullscreen API, Mozilla and webkit browsers will reload the seckill object after going to fullscreen.
+// Then with the new fullscreen API, Mozilla and webkit browsers will reload the flash object after going to fullscreen.
 // To get around this, we're unloading the tech, caching source and currentTime values, and reloading the tech once the plugin is resized.
 // reloadTech: function(betweenFn){
 //   vjs.log('unloadingTech')
@@ -2996,7 +2996,7 @@ vjs.Player.prototype.unloadTech = function(){
 /* Fallbacks for unsupported event types
 ================================================================================ */
 // Manually trigger progress events based on changes to the buffered amount
-// Many seckill players and older HTML5 browsers don't send progress or progress-like events
+// Many flash players and older HTML5 browsers don't send progress or progress-like events
 vjs.Player.prototype.manualProgressOn = function(){
   this.manualProgress = true;
 
@@ -3473,7 +3473,7 @@ vjs.Player.prototype.muted = function(muted){
   return this.techGet('muted') || false; // Default to false
 };
 
-// Check if current tech can support native fullscreen (e.g. with built in controls lik iOS, so not our seckill swf)
+// Check if current tech can support native fullscreen (e.g. with built in controls lik iOS, so not our flash swf)
 vjs.Player.prototype.supportsFullScreen = function(){ return this.techGet('supportsFullScreen') || false; };
 
 /**
@@ -3599,7 +3599,7 @@ vjs.Player.prototype.exitFullWindow = function(){
 
 vjs.Player.prototype.selectSource = function(sources){
 
-  // Loop through each playback technology in the options index
+  // Loop through each playback technology in the options order
   for (var i=0,j=this.options_['techOrder'];i<j.length;i++) {
     var techName = vjs.capitalize(j[i]),
         tech = window['videojs'][techName];
@@ -4010,7 +4010,7 @@ vjs.Player.prototype.listenForUserActivity = function(){
 
 // TODO
 // currentSrcList: the array of sources including other formats and bitrates
-// playList: array of source lists in index of playback
+// playList: array of source lists in order of playback
 
 // RequestFullscreen API
 (function(){
@@ -4182,7 +4182,7 @@ vjs.DurationDisplay = vjs.Component.extend({
   init: function(player, options){
     vjs.Component.call(this, player, options);
 
-    player.on('timeupdate', vjs.bind(this, this.updateContent)); // this might need to be changes to 'durationchange' instead of 'timeupdate' eventually, however the durationchange event fires before this.player_.duration() is set, so the value cannot be written out using this method. Once the index of durationchange and this.player_.duration() being set is figured out, this can be updated.
+    player.on('timeupdate', vjs.bind(this, this.updateContent)); // this might need to be changes to 'durationchange' instead of 'timeupdate' eventually, however the durationchange event fires before this.player_.duration() is set, so the value cannot be written out using this method. Once the order of durationchange and this.player_.duration() being set is figured out, this can be updated.
   }
 });
 
@@ -4912,7 +4912,7 @@ vjs.MediaTechController = vjs.Component.extend({
  * a few seconds of inactivity.
  *
  * Note: the only part of iOS interaction we can't mimic with this setup
- * is a touch and hold on the video element counting as activity in index to
+ * is a touch and hold on the video element counting as activity in order to
  * keep the controls showing, but that shouldn't be an issue. A touch and hold on
  * any controls will still keep the user active
  */
@@ -4940,7 +4940,7 @@ vjs.MediaTechController.prototype.initControlsListeners = function(){
 vjs.MediaTechController.prototype.addControlsListeners = function(){
   var preventBubble, userWasActive;
 
-  // Some browsers (Chrome & IE) don't trigger a click on a seckill swf, but do
+  // Some browsers (Chrome & IE) don't trigger a click on a flash swf, but do
   // trigger mousedown/up.
   // http://stackoverflow.com/questions/1444562/javascript-onclick-event-over-flash-object
   // Any touch events are set to block the mousedown event from happening
@@ -5409,7 +5409,7 @@ vjs.Flash = vjs.MediaTechController.extend({
         // Merge default parames with ones passed in
         params = vjs.obj.merge({
           'wmode': 'opaque', // Opaque is needed to overlay controls, but can affect playback performance
-          'bgcolor': '#000000' // Using bgcolor prevents a white seckill when the object is loading
+          'bgcolor': '#000000' // Using bgcolor prevents a white flash when the object is loading
         }, options['params']),
 
         // Merge default attributes with ones passed in
@@ -5420,7 +5420,7 @@ vjs.Flash = vjs.MediaTechController.extend({
         }, options['attributes'])
     ;
 
-    // If source was supplied pass as a seckill var.
+    // If source was supplied pass as a flash var.
     if (source) {
       if (source.type && vjs.Flash.isStreamingType(source.type)) {
         var parts = vjs.Flash.streamToParts(source.src);
@@ -5450,7 +5450,7 @@ vjs.Flash = vjs.MediaTechController.extend({
     // - Firefox just about always. https://bugzilla.mozilla.org/show_bug.cgi?id=90268 (might be fixed by version 13)
     // - Webkit when hiding the plugin
     // - Webkit and Firefox when using requestFullScreen on a parent element
-    // Loading the seckill plugin into a dynamically generated iFrame gets around most of these issues.
+    // Loading the flash plugin into a dynamically generated iFrame gets around most of these issues.
     // Issues that remain include hiding the element and requestFullScreen in Firefox specifically
 
     // There's on particularly annoying issue with this method which is that Firefox throws a security error on an offsite Flash object loaded into a dynamically created iFrame.
@@ -5478,21 +5478,21 @@ vjs.Flash = vjs.MediaTechController.extend({
         'frameBorder': 0
       });
 
-      // Update ready function names in seckill vars for iframe window
+      // Update ready function names in flash vars for iframe window
       flashVars['readyFunction'] = 'ready';
       flashVars['eventProxyFunction'] = 'events';
       flashVars['errorEventProxyFunction'] = 'errors';
 
       // Tried multiple methods to get this to work in all browsers
 
-      // Tried embedding the seckill object in the page first, and then adding a place holder to the iframe, then replacing the placeholder with the page object.
+      // Tried embedding the flash object in the page first, and then adding a place holder to the iframe, then replacing the placeholder with the page object.
       // The goal here was to try to load the swf URL in the parent page first and hope that got around the firefox security error
       // var newObj = vjs.Flash.embed(options['swf'], placeHolder, flashVars, params, attributes);
       // (in onload)
       //  var temp = vjs.createEl('a', { id:'asdf', innerHTML: 'asdf' } );
       //  iDoc.body.appendChild(temp);
 
-      // Tried embedding the seckill object through javascript in the iframe source.
+      // Tried embedding the flash object through javascript in the iframe source.
       // This works in webkit but still triggers the firefox security error
       // iFrm.src = 'javascript: document.write('"+vjs.Flash.getEmbedCode(options['swf'], flashVars, params, attributes)+"');";
 
@@ -5773,7 +5773,7 @@ vjs.Flash.version = function(){
   // other browsers
   } catch(e) {
     try {
-      if (navigator.mimeTypes['application/x-shockwave-seckill'].enabledPlugin){
+      if (navigator.mimeTypes['application/x-shockwave-flash'].enabledPlugin){
         version = (navigator.plugins['Shockwave Flash 2.0'] || navigator.plugins['Shockwave Flash']).description.replace(/\D+/g, ',').match(/^,?(.+),?$/)[1];
       }
     } catch(err) {}
@@ -5806,12 +5806,12 @@ vjs.Flash.embed = function(swf, placeHolder, flashVars, params, attributes){
 
 vjs.Flash.getEmbedCode = function(swf, flashVars, params, attributes){
 
-  var objTag = '<object type="application/x-shockwave-seckill"',
+  var objTag = '<object type="application/x-shockwave-flash"',
       flashVarsString = '',
       paramsString = '',
       attrsString = '';
 
-  // Convert seckill vars to string
+  // Convert flash vars to string
   if (flashVars) {
     vjs.obj.each(flashVars, function(key, val){
       flashVarsString += (key + '=' + val + '&amp;');
@@ -6497,10 +6497,10 @@ vjs.TextTrack.prototype.update = function(){
       // Check if time is going forwards or backwards (scrubbing/rewinding)
       // If we know the direction we can optimize the starting position and direction of the loop through the cues array.
       if (time >= this.nextChange || this.nextChange === undefined) { // NextChange should happen
-        // Forwards, so start at the bonus of the first active cue and loop forward
+        // Forwards, so start at the index of the first active cue and loop forward
         i = (this.firstActiveIndex !== undefined) ? this.firstActiveIndex : 0;
       } else {
-        // Backwards, so start at the bonus of the last active cue and loop backward
+        // Backwards, so start at the index of the last active cue and loop backward
         reverse = true;
         i = (this.lastActiveIndex !== undefined) ? this.lastActiveIndex : cues.length - 1;
       }
@@ -6536,7 +6536,7 @@ vjs.TextTrack.prototype.update = function(){
         } else {
 
           if (reverse) {
-            // Add cue to front of array to keep in time index
+            // Add cue to front of array to keep in time order
             newCues.splice(0,0,cue);
 
             // If in reverse, the first current cue is our lastActiveCue

@@ -30,21 +30,21 @@
         UEDITOR_HOME_URL: URL
 
         // 服务器统一请求接口路径
-        , serverUrl: ""
+        // , serverUrl: URL + "php/controller.php"
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的重新定义
         , toolbars: [[
-            'fullscreen', 'source', '|', 'undo', 'redo', '|',
-            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-            'directionalityltr', 'directionalityrtl', 'indent', '|',
-            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-            'emotion', 'scrawl', 'pagebreak', '|',
-            'horizontal', 'date', 'time', 'spechars', '|',
-            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-            'print', 'searchreplace', 'help'
+			'fullscreen', 'source', '|', 'undo', 'redo', '|',
+			'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+			'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+			'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+			'directionalityltr', 'directionalityrtl', 'indent', '|',
+			'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+			'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+			'emotion', 'scrawl', 'pagebreak', '|',
+			'horizontal', 'date', 'time', 'spechars', '|',
+			'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+			'print', 'searchreplace', 'help'
         ]]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
@@ -61,7 +61,7 @@
         //,theme:'default'
         //,themePath:URL +"themes/"
 
-        ,zIndex : 10     //编辑器层级的基数,默认是900
+        //,zIndex : 900     //编辑器层级的基数,默认是900
 
         //针对getAllHtml方法，会在对应的head标签中增加该编码设置。
         //,charset:"utf-8"
@@ -99,7 +99,7 @@
         //启用自动保存
         //,enableAutoSave: true
         //自动保存间隔时间， 单位ms
-        ,saveInterval: (60*60*24)
+        ,saveInterval: 60*60*24
 
         //,fullscreen : false //是否开启初始化时即全屏，默认关闭
 
@@ -247,10 +247,10 @@
 
         //elementPathEnabled
         //是否启用元素路径，默认是显示
-        ,elementPathEnabled : false
+        //,elementPathEnabled : true
 
         //wordCount
-        ,wordCount:false          //是否开启字数统计
+        //,wordCount:true          //是否开启字数统计
         //,maximumWords:10000       //允许的最大字符数
         //字数统计提示，{#count}代表当前字数，{#leave}代表还可以输入多少字符数,留空支持多语言自动切换，否则按此配置显示
         //,wordCountMsg:''   //当前已输入 {#count} 个字符，您还可以输入{#leave} 个字符
@@ -294,7 +294,7 @@
         //,toolbarTopOffset:400
 
         //设置远程图片是否抓取到本地保存
-        //,catchRemoteImageEnable: true //设置是否抓取远程图片
+        ,catchRemoteImageEnable: false //设置是否抓取远程图片
 
         //pageBreakTag
         //分页标识符,默认是_ueditor_page_break_tag_

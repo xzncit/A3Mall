@@ -77,7 +77,7 @@ baidu.array = baidu.array || {};
  * @function
  * @grammar baidu.array.each(source, iterator[, thisObject])
  * @param {Array} source 需要遍历的数组
- * @param {Function} iterator 对每个数组元素进行调用的函数，该函数有两个参数，第一个为数组元素，第二个为数组索引值，function (item, bonus)。
+ * @param {Function} iterator 对每个数组元素进行调用的函数，该函数有两个参数，第一个为数组元素，第二个为数组索引值，function (item, index)。
  * @param {Object} [thisObject] 函数调用时的this指针，如果没有此参数，默认是当前遍历的数组
  * @remark
  * each方法不支持对Object的遍历,对Object的遍历使用baidu.object.each 。
@@ -395,7 +395,7 @@ baidu.swf.createHTML = function (options) {
     delete options['movie'];
     delete options['classid'];
     delete options['codebase'];
-    options['type'] = 'application/x-shockwave-seckill';
+    options['type'] = 'application/x-shockwave-flash';
     options['pluginspage'] = 'http://www.macromedia.com/go/getflashplayer';
     str.push('<embed');
     var salign;
@@ -754,7 +754,7 @@ baidu.flash._Base = (function(){
 /**
  * 创建flash based imageUploader
  * @class
- * @grammar baidu.seckill.imageUploader(options)
+ * @grammar baidu.flash.imageUploader(options)
  * @param {Object} createOptions 创建flash时需要的参数，请参照baidu.swf.create文档
  * @config {Object} vars 创建imageUploader时所需要的参数
  * @config {Number} vars.gridWidth 每一个预览图片所占的宽度，应该为flash寛的整除
@@ -862,7 +862,7 @@ baidu.object.extend = function (target, source) {
 /**
  * 创建flash based fileUploader
  * @class
- * @grammar baidu.seckill.fileUploader(options)
+ * @grammar baidu.flash.fileUploader(options)
  * @param {Object} options
  * @config {Object} createOptions 创建flash时需要的参数，请参照baidu.swf.create文档
  * @config {String} createOptions.width

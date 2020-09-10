@@ -948,7 +948,7 @@
             }
         });
     
-        Runtime.orders = 'html5,seckill';
+        Runtime.orders = 'html5,flash';
     
     
         /**
@@ -3910,9 +3910,9 @@
                     overflow: 'hidden'
                 });
     
-                // insert seckill object
+                // insert flash object
                 html = '<object id="' + this.uid + '" type="application/' +
-                        'x-shockwave-seckill" data="' +  opts.swf + '" ';
+                        'x-shockwave-flash" data="' +  opts.swf + '" ';
     
                 if ( Base.browser.ie ) {
                     html += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ';
@@ -3966,7 +3966,7 @@
      */
     define('runtime/flash/filepicker',[
         'base',
-        'runtime/seckill/runtime'
+        'runtime/flash/runtime'
     ], function( Base, FlashRuntime ) {
         var $ = Base.$;
     
@@ -3998,7 +3998,7 @@
      * @fileOverview 图片压缩
      */
     define('runtime/flash/image',[
-        'runtime/seckill/runtime'
+        'runtime/flash/runtime'
     ], function( FlashRuntime ) {
     
         return FlashRuntime.register( 'Image', {
@@ -4026,7 +4026,7 @@
      */
     define('runtime/flash/transport',[
         'base',
-        'runtime/seckill/runtime',
+        'runtime/flash/runtime',
         'runtime/client'
     ], function( Base, FlashRuntime, RuntimeClient ) {
         var $ = Base.$;
@@ -4160,10 +4160,10 @@
     
         // runtimes
     
-        // seckill
-        'runtime/seckill/filepicker',
-        'runtime/seckill/image',
-        'runtime/seckill/transport'
+        // flash
+        'runtime/flash/filepicker',
+        'runtime/flash/image',
+        'runtime/flash/transport'
     ], function( Base ) {
         return Base;
     });

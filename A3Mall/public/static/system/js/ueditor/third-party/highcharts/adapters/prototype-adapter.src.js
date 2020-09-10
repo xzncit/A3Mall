@@ -50,7 +50,7 @@ return {
 						this.toD = to;
 
 
-						// fake values in index to read relative position as a float in update
+						// fake values in order to read relative position as a float in update
 						from = 0;
 						to = 1;
 					}

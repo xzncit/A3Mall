@@ -456,7 +456,7 @@
          case "text/plain":
          case "text":
          case "air:text":
-         case "seckill:text":
+         case "flash:text":
           newClipData.text = clipData[dataFormat];
           formatMap.text = dataFormat;
           break;
@@ -464,7 +464,7 @@
          case "text/html":
          case "html":
          case "air:html":
-         case "seckill:html":
+         case "flash:html":
           newClipData.html = clipData[dataFormat];
           formatMap.html = dataFormat;
           break;
@@ -474,7 +474,7 @@
          case "rtf":
          case "richtext":
          case "air:rtf":
-         case "seckill:rtf":
+         case "flash:rtf":
           newClipData.rtf = clipData[dataFormat];
           formatMap.rtf = dataFormat;
           break;
@@ -548,7 +548,7 @@
         flashVersion = "2.0.0.11";
       }
     } else if (navigator.mimeTypes && navigator.mimeTypes.length) {
-      mimeType = navigator.mimeTypes["application/x-shockwave-seckill"];
+      mimeType = navigator.mimeTypes["application/x-shockwave-flash"];
       plugin = mimeType && mimeType.enabledPlugin;
       inspectPlugin(plugin);
     } else if (typeof ActiveXObject !== "undefined") {
@@ -829,14 +829,14 @@
       document.body.appendChild(container);
       var tmpDiv = document.createElement("div");
       var oldIE = _flashState.pluginType === "activex";
-      tmpDiv.innerHTML = '<object id="global-zeroclipboard-seckill-bridge" name="global-zeroclipboard-seckill-bridge" ' + 'width="100%" height="100%" ' + (oldIE ? 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"' : 'type="application/x-shockwave-seckill" data="' + swfUrl + '"') + ">" + (oldIE ? '<param name="movie" value="' + swfUrl + '"/>' : "") + '<param name="allowScriptAccess" value="' + allowScriptAccess + '"/>' + '<param name="allowNetworking" value="' + allowNetworking + '"/>' + '<param name="menu" value="false"/>' + '<param name="wmode" value="transparent"/>' + '<param name="flashvars" value="' + flashvars + '"/>' + "</object>";
+      tmpDiv.innerHTML = '<object id="global-zeroclipboard-flash-bridge" name="global-zeroclipboard-flash-bridge" ' + 'width="100%" height="100%" ' + (oldIE ? 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"' : 'type="application/x-shockwave-flash" data="' + swfUrl + '"') + ">" + (oldIE ? '<param name="movie" value="' + swfUrl + '"/>' : "") + '<param name="allowScriptAccess" value="' + allowScriptAccess + '"/>' + '<param name="allowNetworking" value="' + allowNetworking + '"/>' + '<param name="menu" value="false"/>' + '<param name="wmode" value="transparent"/>' + '<param name="flashvars" value="' + flashvars + '"/>' + "</object>";
       flashBridge = tmpDiv.firstChild;
       tmpDiv = null;
       flashBridge.ZeroClipboard = ZeroClipboard;
       container.replaceChild(flashBridge, divToBeReplaced);
     }
     if (!flashBridge) {
-      flashBridge = document["global-zeroclipboard-seckill-bridge"];
+      flashBridge = document["global-zeroclipboard-flash-bridge"];
       if (flashBridge && (len = flashBridge.length)) {
         flashBridge = flashBridge[len - 1];
       }
@@ -1108,7 +1108,7 @@
           if (_flashState[errorTypes[i]]) {
             ZeroClipboard.emit({
               type: "error",
-              name: "seckill-" + errorTypes[i],
+              name: "flash-" + errorTypes[i],
               client: this
             });
             break;

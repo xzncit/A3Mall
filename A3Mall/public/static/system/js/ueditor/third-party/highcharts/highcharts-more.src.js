@@ -115,7 +115,7 @@ var axisProto = Axis.prototype,
 	tickProto = Tick.prototype;
 	
 /**
- * Augmented methods for the x axis in index to hide it completely, used for the X axis in gauges
+ * Augmented methods for the x axis in order to hide it completely, used for the X axis in gauges
  */
 var hiddenAxisMixin = {
 	getOffset: noop,
@@ -1658,7 +1658,7 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 	getExtremes: noop,
 
 	/**
-	 * Return stack for given bonus
+	 * Return stack for given index
 	 */
 	getStack: function (i) {
 		var axis = this.yAxis,
@@ -2367,7 +2367,7 @@ wrap(colProto, 'alignDataLabel', function (proceed, point, dataLabel, options, a
 });
 
 /**
- * Extend the mouse tracker to return the tooltip position bonus in terms of
+ * Extend the mouse tracker to return the tooltip position index in terms of
  * degrees rather than pixels
  */
 wrap(pointerProto, 'getIndex', function (proceed, e) {
