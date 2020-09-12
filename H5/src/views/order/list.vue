@@ -1,12 +1,16 @@
 <template>
     <div>
-        <van-nav-bar
-            title="订单列表"
-            left-arrow
-            :fixed="true"
-            :placeholder="true"
-            @click-left="prev"
+        <nav-bar
+                title="订单列表"
+                left-arrow
+                :fixed="true"
+                :placeholder="true"
+                :z-index="9999"
+                :transparent="true"
+                background-color="#b91922"
+                @click-left="prev"
         />
+
         <div class="">
             <div class="menu">
                 <div class="menu-wrap">
@@ -24,11 +28,11 @@
         <div class="list-wrap">
             <van-empty v-if="isEmpty" :image="emptyImage" :description="emptyDescription" />
             <van-list
-                v-if="!isEmpty"
-                v-model="loading"
-                :finished="finished"
-                finished-text="没有更多了"
-                @load="onLoad"
+                    v-if="!isEmpty"
+                    v-model="loading"
+                    :finished="finished"
+                    finished-text="没有更多了"
+                    @load="onLoad"
             >
                 <div class="list-box">
 
@@ -85,278 +89,274 @@
 </template>
 
 <script>
-import { NavBar } from 'vant';
-import { List,Empty,Toast } from 'vant';
-export default {
-    name: 'OrderList',
-    components: {
-        [NavBar.name]: NavBar,
-        [List.name]: List,
-        [Empty.name]: Empty
-    },
-    data() {
-        return {
-            isEmpty: false,
-            emptyImage: "search",
-            emptyDescription: "您搜索的关键字暂无内容",
-            list: [],
-            loading: false,
-            finished: false,
-            clientHeight: window.outerHeight - 100,
-            page: 1
-        };
-    },
-    created() {
-    },
-    mounted() {
+    import { List,Empty,Toast } from 'vant';
+    import NavBar from '../../components/nav-bar/nav-bar';
+    export default {
+        name: 'OrderList',
+        components: {
+            [NavBar.name]: NavBar,
+            [List.name]: List,
+            [Empty.name]: Empty
+        },
+        data() {
+            return {
+                isEmpty: false,
+                emptyImage: "search",
+                emptyDescription: "您搜索的关键字暂无内容",
+                list: [],
+                loading: false,
+                finished: false,
+                clientHeight: window.outerHeight - 100,
+                page: 1
+            };
+        },
+        created() {
+        },
+        mounted() {
 
-    },
-    watch:{
-        "$route": function (to,form) {
-            this.list = [];
-            this.page = 1;
-            this.onLoad();
-        }
-    },
-    methods: {
-        onLoad() {
-            this.isEmpty = false;
-            let emptyImage = this.$request.domain() + 'static/images/order-empty.png';
-            this.$http.getOrderList({
-                type: this.$route.params.id,
-                page: this.page
-            }).then(result=>{
-                if(result.data.list == undefined && this.page == 1){
-                    this.isEmpty = true;
-                    this.emptyImage = emptyImage;
-                    this.emptyDescription = "暂无订单信息";
-                } else if(result.status == 1){
-                    this.list = this.list.concat(result.data.list);
-                    this.loading = false;
-                    this.page++;
-                }else if(result.status == -1){
-                    if(result.data == undefined && this.page == 1){
+        },
+        watch:{
+            "$route": function (to,form) {
+                this.list = [];
+                this.page = 1;
+                this.onLoad();
+            }
+        },
+        methods: {
+            onLoad() {
+                this.isEmpty = false;
+                let emptyImage = this.$request.domain() + 'static/images/order-empty.png';
+                this.$http.getOrderList({
+                    type: this.$route.params.id,
+                    page: this.page
+                }).then(result=>{
+                    if(result.data.list == undefined && this.page == 1){
                         this.isEmpty = true;
                         this.emptyImage = emptyImage;
                         this.emptyDescription = "暂无订单信息";
-                    }else{
+                    } else if(result.status == 1){
+                        this.list = this.list.concat(result.data.list);
                         this.loading = false;
-                        this.finished = true;
+                        this.page++;
+                    }else if(result.status == -1){
+                        if(result.data == undefined && this.page == 1){
+                            this.isEmpty = true;
+                            this.emptyImage = emptyImage;
+                            this.emptyDescription = "暂无订单信息";
+                        }else{
+                            this.loading = false;
+                            this.finished = true;
+                        }
                     }
-                }
-            }).catch((error)=>{
-                this.isEmpty = true;
-                this.emptyImage = "network";
-                this.emptyDescription = "网络出错，请检查网络是否连接";
-            });
-        },
-        cancel(order_id){
-            Toast.loading({
-                message: '加载中...',
-                forbidClick: true,
-                loadingType: 'spinner',
-                duration: 0
-            });
-            this.$http.getOrderListCancel({
-                order_id: order_id
-            }).then(res=>{
-                Toast.clear();
-                if(res.status){
-                    let index = this.list.findIndex((value)=>{
-                        return value.order_id == order_id;
-                    });
+                }).catch((error)=>{
+                    this.isEmpty = true;
+                    this.emptyImage = "network";
+                    this.emptyDescription = "网络出错，请检查网络是否连接";
+                });
+            },
+            cancel(order_id){
+                Toast.loading({
+                    message: '加载中...',
+                    forbidClick: true,
+                    loadingType: 'spinner',
+                    duration: 0
+                });
+                this.$http.getOrderListCancel({
+                    order_id: order_id
+                }).then(res=>{
+                    Toast.clear();
+                    if(res.status){
+                        let index = this.list.findIndex((value)=>{
+                            return value.order_id == order_id;
+                        });
 
-                    this.list.splice(index,1);
-                    if(this.list.length <= 0){
-                        this.isEmpty = true;
-                        this.emptyImage = this.$request.domain() + 'static/images/order-empty.png';
-                        this.emptyDescription = "暂无订单信息";
+                        this.list.splice(index,1);
+                        if(this.list.length <= 0){
+                            this.isEmpty = true;
+                            this.emptyImage = this.$request.domain() + 'static/images/order-empty.png';
+                            this.emptyDescription = "暂无订单信息";
+                        }
+                        Toast(res.info);
+                    }else{
+                        Toast(res.info);
                     }
-                    Toast(res.info);
-                }else{
-                    Toast(res.info);
+                }).catch(err=>{
+                    Toast.clear();
+                    Toast("网络出错，请检查网络是否连接");
+                });
+            },
+            prev(){
+                this.$router.replace('/ucenter/index');
+            },
+            go(path){
+                if(path == this.$route.params.id){
+                    return ;
                 }
-            }).catch(err=>{
-                Toast.clear();
-                Toast("网络出错，请检查网络是否连接");
-            });
-        },
-        prev(){
-            this.$router.replace('/ucenter/index');
-        },
-        go(path){
-            if(path == this.$route.params.id){
-                return ;
+
+                this.$router.replace({
+                    name: "OrderList",
+                    params:{
+                        id: path
+                    }
+                });
             }
-
-            this.$router.replace({
-                name: "OrderList",
-                params:{
-                    id: path
-                }
-            });
-        }
-    },
-}
+        },
+    }
 </script>
 
 <style lang="scss" scoped>
-.placeholder-box{
-    width: 100%;
-    height: 50px;
-}
-.addBorder{
-    border-top: 1px solid #eee;
-}
-.menu{
-    background-color: #fff;
-    height: 50px;
-    line-height: 50px;
-    position: fixed;
-    width: 100%;
-    .menu-wrap{
-        display: flex;
-        flex-wrap: nowrap;
-        flex-direction: row;
-        span {
-            flex: 1;
-            text-align: center;
-            position: relative;
-        }
-        .active:before {
-            content: " ";
-            position: absolute;
-            bottom: 0px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #e93323;
-        }
+    .placeholder-box{
+        width: 100%;
+        height: 50px;
     }
-}
-.list-wrap{
-    margin-top: 10px;
-}
-.list-box{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    .list-item-box {
-        width: 95%;
-        margin: 10px 2.5%;
-        background-color: #fff;
-        border-radius: 6px;
-        .top{
-            height: 45px;
-            line-height: 45px;
-            font-size: 15px;
-            border-bottom: 1px solid #eee;
-            .order-type{
-                font-size: 14px;
-                margin-right: 5px;
-                color: #666;
-            }
-            span:first-child{
-                float: left;
-                padding-left: 10px;
-            }
-            span:last-child{
-                font-size: 14px;
-                float: right;
-                padding-right: 10px;
-            }
-        }
-        .goods-box{
-            padding: 0 10px;
-            .goods-item {
-                padding-top: 10px;
-                .goods-img {
-                    width: 77px;
-                    height: 77px;
-                    display: inline-block;
-                    float: left;
-                    img{
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-                .goods-info {
-                    display: inline-block;
-                    width: 72%;
-                    font-size: 14px;
-                    float: right;
-                    .t {
-                        width: 100%;
-                        height: 45px;
-                        span:first-child{
-                            float: left;
-                            display: -webkit-box;overflow: hidden;-webkit-line-clamp: 2;
-                            -webkit-box-orient: vertical;
-                            width: 70%;
-                        }
-                        span:last-child{
-                            width: 30%;
-                            float: right;
-                            text-align: right;
-                        }
-                    }
-                    .b{
-                        width: 100%;
-                        height: 40px;
-                        font-size: 13px;
-                        span:first-child{
-                            float: left;
-                            color: #999;
-                        }
-                        span:last-child{
-                            float: right;
-                            color: #666;
-                        }
-                    }
-                }
-            }
-        }
-        .order{
-            width: 100%;
-            height: 45px;
-            line-height: 45px;
-            border-bottom: 1px solid #eee;
-            .total {
-                text-align: right;
-                font-size: 14px;
-                padding-right: 10px;
-                span{
-                    color: red;
-                    i{
-                        font-style: normal;
-                        font-size: 16px;
-                    }
-                }
-            }
-        }
-        .botttom{
-            width: 100%;
-            height: 55px;
-            line-height: 55px;
-            text-align: right;
-            span{
-                font-size: 14px;
+    .addBorder{
+        border-top: 1px solid #eee;
+    }
+    .menu{
+        background-color: #b91922;
+        height: 50px;
+        line-height: 50px;
+        position: fixed;
+        width: 100%;
+        top: 48px;
+        .menu-wrap{
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            span {
+                flex: 1;
                 text-align: center;
-                border-radius: 15px;
-                background-color: #fff;
-                padding: 8px 15px;
-                margin-right: 10px;
-            }
-            span.cancel{
-                color: #333;
-                border: 1px solid #ddd;
-            }
-            span.pay {
-                background-color: #e93323;
+                position: relative;
                 color: #fff;
             }
+            .active {
+                color: #fff000;
+            }
         }
     }
-}
+    .list-wrap{
+        margin-top: 10px;
+    }
+    .list-box{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        .list-item-box {
+            width: 95%;
+            margin: 10px 2.5%;
+            background-color: #fff;
+            border-radius: 6px;
+            .top{
+                height: 45px;
+                line-height: 45px;
+                font-size: 15px;
+                border-bottom: 1px solid #eee;
+                .order-type{
+                    font-size: 14px;
+                    margin-right: 5px;
+                    color: #666;
+                }
+                span:first-child{
+                    float: left;
+                    padding-left: 10px;
+                }
+                span:last-child{
+                    font-size: 14px;
+                    float: right;
+                    padding-right: 10px;
+                }
+            }
+            .goods-box{
+                padding: 0 10px;
+                .goods-item {
+                    padding-top: 10px;
+                    .goods-img {
+                        width: 77px;
+                        height: 77px;
+                        display: inline-block;
+                        float: left;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .goods-info {
+                        display: inline-block;
+                        width: 72%;
+                        font-size: 14px;
+                        float: right;
+                        .t {
+                            width: 100%;
+                            height: 45px;
+                            span:first-child{
+                                float: left;
+                                display: -webkit-box;overflow: hidden;-webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                width: 70%;
+                            }
+                            span:last-child{
+                                width: 30%;
+                                float: right;
+                                text-align: right;
+                            }
+                        }
+                        .b{
+                            width: 100%;
+                            height: 40px;
+                            font-size: 13px;
+                            span:first-child{
+                                float: left;
+                                color: #999;
+                            }
+                            span:last-child{
+                                float: right;
+                                color: #666;
+                            }
+                        }
+                    }
+                }
+            }
+            .order{
+                width: 100%;
+                height: 45px;
+                line-height: 45px;
+                border-bottom: 1px solid #eee;
+                .total {
+                    text-align: right;
+                    font-size: 14px;
+                    padding-right: 10px;
+                    span{
+                        color: red;
+                        i{
+                            font-style: normal;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+            .botttom{
+                width: 100%;
+                height: 55px;
+                line-height: 55px;
+                text-align: right;
+                span{
+                    font-size: 14px;
+                    text-align: center;
+                    border-radius: 15px;
+                    background-color: #fff;
+                    padding: 8px 15px;
+                    margin-right: 10px;
+                }
+                span.cancel{
+                    color: #333;
+                    border: 1px solid #ddd;
+                }
+                span.pay {
+                    background-color: #e93323;
+                    color: #fff;
+                }
+            }
+        }
+    }
 
 </style>
