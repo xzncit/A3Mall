@@ -537,7 +537,7 @@ class Ucenter extends Auth {
         $source = Request::post("source","","intval");
         $price = Request::post("price/f","0");
 
-        $payment = $source = 2 ? "wechat" : "wechat-h5";
+        $payment = $source == 2 ? "wechat" : "wechat-h5";
 
         try{
             $rs = Payment::rechang($payment,$price);

@@ -154,28 +154,28 @@ class Payment {
         return $result;
     }
 
-    public static function rechang($payment,$price=0){
+    public static function rechang($payment_code,$price=0){
         if(empty($price) || $price <= 0){
             throw new \Exception("请输入您要充值的金额！",0);
         }
 
-        if(($payment = Db::name("payment")->where("code",$payment)->find()) == false){
+        if(($payment = Db::name("payment")->where("code",$payment_code)->find()) == false){
             throw new \Exception("您选择的支付方式不存在！",0);
         }
 
         $orderNo = "P".Order::orderNo();
         $result = [];
         $users = Db::name("users")->where("id",Users::get("id"))->find();
-        Db::name("users_recharge")->insert([
+        Db::name("users_rechange")->insert([
             "user_id"=>Users::get("id"),
             "pay_type"=>$payment["id"],
             "order_no"=>$orderNo,
             "order_amount"=>$price,
-            "payment_name"=>$payment[""],
+            "payment_name"=>$payment["name"],
             "status"=>0,
             "create_time"=>time()
         ]);
-        $order_id = Db::name("users_recharge")->getLastInsID();
+        $order_id = Db::name("users_rechange")->getLastInsID();
         switch($payment["code"]){
             case "wechat":
                 $wecatUsers = Db::name("wechat_users")->where("user_id",$users["id"])->find();
@@ -209,7 +209,7 @@ class Payment {
                         ];
 
                     }catch(\Exception $e){
-                        Db::name("users_recharge")->where("id",$order_id)->where("user_id",Users::get("id"))->update(["status"=>2]);
+                        Db::name("users_rechange")->where("id",$order_id)->where("user_id",Users::get("id"))->update(["status"=>2]);
                         $result = [
                             "pay"=>99,
                             "order_id"=>$order_id,
@@ -246,7 +246,7 @@ class Payment {
                         ]
                     ];
                 }catch(\Exception $e){
-                    Db::name("users_recharge")->where("id",$order_id)->where("user_id",Users::get("id"))->update(["status"=>2]);
+                    Db::name("users_rechange")->where("id",$order_id)->where("user_id",Users::get("id"))->update(["status"=>2]);
                     $result = [
                         "pay"=>99,
                         "order_id"=>$order_id,

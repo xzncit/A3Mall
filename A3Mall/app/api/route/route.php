@@ -82,7 +82,7 @@ Route::group(function(){
     Route::get('bonus/receive', 'api/wap.bonus/receive');
     Route::get('ucenter/wallet/fund', 'api/wap.ucenter/fund');
     Route::get('ucenter/wallet/cashlist', 'api/wap.ucenter/cashlist');
-    Route::get('ucenter/rechange', 'api/wap.ucenter/rechange');
+    Route::post('ucenter/rechange', 'api/wap.ucenter/rechange');
     Route::get('ucenter/settlement', 'api/wap.ucenter/settlement');
     Route::post('ucenter/settlement_save', 'api/wap.ucenter/settlement_save');
     Route::post('ucenter/avatar', 'api/wap.ucenter/avatar');
