@@ -14,7 +14,7 @@ export default {
         // create http service
         let config = {
             baseURL: this.domain() + "api", // url前缀
-            timeout: 3000 // 请求超时时间
+            timeout: 6000 // 请求超时时间
         };
 
         let arr = Object.getOwnPropertyNames(options);
