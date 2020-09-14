@@ -130,12 +130,12 @@ class Promotion {
                     "group_id"=>Users::get("group_id")
                 ])->value("price"));
 
-                foreach($order["item"] as $key=>$val){
-                    $order["item"][$key]['sell_price'] = $price;
-                    $order["item"][$key]['real_price'] = $price;
-                }
-
                 if($price > 0){
+                    foreach($order["item"] as $key=>$val){
+                        $order["item"][$key]['sell_price'] = $price;
+                        $order["item"][$key]['real_price'] = $price;
+                    }
+
                     $data["promotions"] = $order["promotions"] > 0 ? $order["promotions"]+$price : $price;
                     $order["real_amount"] = $price;
                     $order["payable_amount"] = BC::add($order['real_freight'],$price);

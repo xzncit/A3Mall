@@ -46,7 +46,13 @@ class Aliyun {
         list($header, $body) = explode("\r\n\r\n", $result["data"], 2);
         if ($result["code"] == 200) {
             $array = json_decode($body,true);
-            return $array;
+            return [
+                "expName"=>$array["result"]["expName"],
+                "number"=>$array["result"]["number"],
+                "takeTime"=>$array["result"]["takeTime"],
+                "updateTime"=>$array["result"]["updateTime"],
+                "list"=>$array["result"]["list"],
+            ];
         } else {
             if ($result["code"] == 400 && strpos($header, "Invalid Param Location") !== false) {
                 throw new \Exception("参数错误",$result["code"]);

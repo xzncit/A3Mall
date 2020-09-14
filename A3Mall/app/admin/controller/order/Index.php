@@ -441,12 +441,7 @@ class Index extends Auth {
 
         $express = ["expName"=>"", "number"=>"", "takeTime"=>"", "updateTime"=>""];
         try{
-            $array = Aliyun::query($order['delivery']["distribution_code"],$type);
-            $express["expName"] = $array["result"]["expName"];
-            $express["number"] = $array["result"]["number"];
-            $express["takeTime"] = $array["result"]["takeTime"];
-            $express["updateTime"] = $array["result"]["updateTime"];
-            $express["list"] = $array["result"]["list"];
+            $express = Aliyun::query($order['delivery']["distribution_code"],$type);
         }catch(\Exception $ex){
             $express["list"][] = [
                 "status"=>"商家正在通知快递公司",

@@ -107,7 +107,7 @@
                                 <thead>
                                 <tr>
                                     <th style="text-align:center;">会员等级</th>
-                                    <th style="text-align:center;">优惠价格（如果注册会员需要优惠10元，则填写10）</th>
+                                    <th style="text-align:center;">优惠价格</th>
                                     <th style="text-align:center;">默认价格</th>
                                     <th style="text-align:center;">会员折扣</th>
                                 </tr>
