@@ -35,12 +35,17 @@ class Bonus extends Auth {
                 "name"=>$value["name"],
                 "amount"=>number_format($value["amount"]),
                 "price"=>$value["order_amount"],
-                "end_time"=>date('Y-m-d',$value->getData("end_time")),
-                "is_receive"=>Db::name("users_bonus")
+                "end_time"=>date('Y-m-d',$value->getData("end_time"))
+            ];
+
+            if($value["giveout"] != 0 && ($value["used"] >= $value["giveout"])){
+                $data[$key]['is_receive'] = 2;
+            }else{
+                $data[$key]['is_receive'] = Db::name("users_bonus")
                     ->where("bonus_id",$value["id"])
                     ->where("user_id",Users::get("id"))
-                    ->count()
-            ];
+                    ->count();
+            }
         }
 
         return $this->returnAjax("ok",1,[
@@ -54,14 +59,18 @@ class Bonus extends Auth {
     public function receive(){
         $id = Request::param("id","0","intval");
         if(($row=Db::name("promotion_bonus")
-            ->where("id",$id)
-            ->where('status=0 && end_time > ' . time())->find()) == false){
-            return $this->returnAjax("优惠劵己过期",0);
+                ->where("id",$id)
+                ->where('status=0 && end_time > ' . time())->find()) == false){
+            return $this->returnAjax("优惠劵己过期",0,2);
+        }
+
+        if($row["giveout"] != 0 && ($row["used"] >= $row["giveout"])){
+            return $this->returnAjax("优惠劵己领完",0,1);
         }
 
         if(Db::name("users_bonus")
             ->where(["user_id"=>Users::get("id"),"bonus_id"=>$id])->count()){
-            return $this->returnAjax("该优惠劵您己领取过了");
+            return $this->returnAjax("该优惠劵您己领取过了",0,1);
         }
 
         $bonus = new UsersBonus();
@@ -72,6 +81,7 @@ class Bonus extends Auth {
             "create_time"=>time()
         ]);
 
-        return $this->returnAjax("领取成功",1);
+        Db::name("promotion_bonus")->where("id",$id)->inc("used")->update();
+        return $this->returnAjax("领取成功",1,1);
     }
 }
