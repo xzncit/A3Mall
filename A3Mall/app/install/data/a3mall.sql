@@ -3,6 +3,7 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+
 CREATE TABLE `mall_archives` (
   `id` int(11) NOT NULL,
   `pid` int(11) NOT NULL DEFAULT 0,
@@ -4955,7 +4956,7 @@ INSERT INTO `mall_data_item` (`id`, `pid`, `name`, `url`, `photo`, `sort`, `targ
 (8, 2, '团购', '/regiment', '/uploads/images/20200731/636d371a39780977199956f0b69e23c2.png', 2, 0, 0),
 (9, 2, '秒杀', '/second', '/uploads/images/20200731/c540af6059c1f3bedc107095ee197149.png', 3, 0, 0),
 (10, 2, '会员特价', '/special', '/uploads/images/20200731/45fb419b81c130eb17e1a7b278f4334d.png', 4, 0, 0),
-(11, 2, '积分兑换', '/point', '/uploads/images/20200731/f568f114336ec3e93220b4871eba7bdd.png', 5, 0, 0),
+(11, 2, '积分商城', '/point', '/uploads/images/20200731/f568f114336ec3e93220b4871eba7bdd.png', 5, 0, 0),
 (12, 2, '我的收藏', '/ucenter/collect', '/uploads/images/20200731/2d94a8c35c0f93a11d282d7a63982f32.png', 6, 0, 0),
 (13, 2, '平台资讯', '/news', '/uploads/images/20200731/8b8fb2a9cedac7192d5cff85b77446ae.png', 7, 0, 0),
 (15, 3, '位置一', '', '/uploads/images/20200615/0ca6d1d694a036cc35a6af841e7b9c04.jpg', 0, 0, 0),
@@ -5031,7 +5032,7 @@ CREATE TABLE `mall_distribution` (
 --
 
 INSERT INTO `mall_distribution` (`id`, `type`, `title`, `area_group`, `first_price_group`, `second_price_group`, `first_weight`, `second_weight`, `first_price`, `second_price`, `status`, `is_lock`, `sort`) VALUES
-(1, 0, '快递', '[\"\"]', '[\"\"]', '[\"\"]', 500, 500, '5.00', '6.00', 0, 1, 0),
+(1, 0, '快递', '[\"\"]', '[\"\"]', '[\"\"]', 2000, 1500, '5.00', '6.00', 0, 1, 0),
 (2, 0, '物流', '[\"\"]', '[\"\"]', '[\"\"]', 10000, 20000, '15.00', '30.00', 0, 1, 1),
 (3, 0, '免运费', '[\"\"]', '[\"\"]', '[\"\"]', 500, 500, '0.00', '0.00', 0, 1, 99);
 
@@ -6574,8 +6575,7 @@ CREATE TABLE `mall_system_users` (
 --
 
 INSERT INTO `mall_system_users` (`id`, `role_id`, `avatar`, `username`, `password`, `salt`, `email`, `ip`, `status`, `lock`, `count`, `time`) VALUES
-(1, 1, '', 'admin', '7fef6171469e80d32c0559f88b377245', '', 'admin@qq.com', '127.0.0.1', 0, 1, 700, 1599524193),
-(2, 3, '', 'demo', '', '', 'demo@qq.com', '127.0.0.1', 0, 0, 3, 1584624122);
+(1, 1, '', 'admin', '7fef6171469e80d32c0559f88b377245', '', 'admin@qq.com', '127.0.0.1', 0, 1, 706, 1600267024);
 
 -- --------------------------------------------------------
 
@@ -6601,7 +6601,13 @@ INSERT INTO `mall_system_users_log` (`id`, `user_id`, `type`, `intro`, `ip`, `ti
 (2, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-04 11:52:21 登录地点：127.0.0.1', '127.0.0.1', 1599191541),
 (3, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-04 18:45:39 登录地点：127.0.0.1', '127.0.0.1', 1599216339),
 (4, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-05 10:28:18 登录地点：127.0.0.1', '127.0.0.1', 1599272898),
-(5, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-08 08:16:33 登录地点：127.0.0.1', '127.0.0.1', 1599524193);
+(5, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-08 08:16:33 登录地点：127.0.0.1', '127.0.0.1', 1599524193),
+(6, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-10 16:51:46 登录地点：127.0.0.1', '127.0.0.1', 1599727906),
+(7, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-12 13:26:35 登录地点：127.0.0.1', '127.0.0.1', 1599888395),
+(8, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-14 16:01:28 登录地点：127.0.0.1', '127.0.0.1', 1600070488),
+(9, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-14 18:55:42 登录地点：127.0.0.1', '127.0.0.1', 1600080942),
+(10, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-16 22:11:15 登录地点：127.0.0.1', '127.0.0.1', 1600265475),
+(11, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2020-09-16 22:37:04 登录地点：127.0.0.1', '127.0.0.1', 1600267024);
 
 -- --------------------------------------------------------
 
@@ -6643,7 +6649,7 @@ CREATE TABLE `mall_users` (
 --
 
 INSERT INTO `mall_users` (`id`, `group_id`, `username`, `password`, `email`, `avatar`, `nickname`, `realname`, `mobile`, `birthday`, `sex`, `exp`, `point`, `status`, `tags`, `is_spread`, `spread_id`, `spread_time`, `pay_count`, `spread_count`, `amount`, `spread_amount`, `create_ip`, `last_ip`, `create_time`, `last_login`) VALUES
-(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'demo', 'demo', '18319517777', 1595779200, 1, 1092, 1520, 0, '', 1, 0, 1592917652, 0, 0, '55356.19', '10017.21', '', '127.0.0.1', 1584028900, 1599524174),
+(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'demo', 'demo', '18319517777', 1595779200, 1, 1092, 1520, 0, '', 1, 0, 1592917652, 0, 0, '55356.19', '10017.21', '', '127.0.0.1', 1584028900, 1600235162),
 (10, 1, 'test', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'test', '', '18319517778', 1590163200, 1, 0, 0, 0, '', 1, 1, 1592917588, 0, 0, '0.00', '123.62', '', '127.0.0.1', 0, 1592917588),
 (11, 1, 'usres', '7fef6171469e80d32c0559f88b377245', 'demo@qq.com', '', 'users', '', '18319517779', 1590163200, 1, 0, 40, 0, '', 1, 10, 1592917652, 0, 0, '4444.00', '90.20', '', '127.0.0.1', 0, 1592917652),
 (12, 2, 'blue', '7fef6171469e80d32c0559f88b377245', '', '', 'blue', '', '18319517776', 0, 1, 0, 20, 0, '2', 1, 11, 1592917652, 0, 0, '186.00', '0.00', '', '127.0.0.1', 0, 1592918687);
@@ -6833,6 +6839,14 @@ CREATE TABLE `mall_users_rechange` (
   `pay_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 转存表中的数据 `mall_users_rechange`
+--
+
+INSERT INTO `mall_users_rechange` (`id`, `user_id`, `pay_type`, `order_no`, `order_amount`, `payment_name`, `status`, `transaction_id`, `create_time`, `pay_time`) VALUES
+(1, 1, 8, 'P2020091212034679795', '1111.00', '微信网页支付', 2, '', 1599883426, 0),
+(2, 1, 8, 'P2020091212501468618', '11111.00', '微信网页支付', 2, '', 1599886214, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -6925,7 +6939,16 @@ INSERT INTO `mall_users_token` (`id`, `user_id`, `token`, `referer`, `type`, `br
 (135, 1, 'af2336ddaf71999cc29dc85caa7e1983d8bfcf9f', 0, 0, '', '', '127.0.0.1', 1599216320),
 (136, 1, '8ab1751ee9ba28d801cbac1c916983decb409cd2', 0, 0, '', '', '127.0.0.1', 1599267635),
 (137, 1, '132777b53c5b8224afefa012bde44cc2a39e5690', 0, 0, '', '', '127.0.0.1', 1599274105),
-(138, 1, 'a17b1411971ee5dd0f5dba41a4dcc83511f7bf9c', 0, 0, '', '', '127.0.0.1', 1599524174);
+(138, 1, 'a17b1411971ee5dd0f5dba41a4dcc83511f7bf9c', 0, 0, '', '', '127.0.0.1', 1599524174),
+(139, 1, 'a890fcaed13fe82420ce31cc60849ca294927f47', 0, 0, '', '', '127.0.0.1', 1599610832),
+(140, 1, '5d0b2d793725d9c28b5dd74329bba7095aa679d3', 0, 0, '', '', '127.0.0.1', 1599694693),
+(141, 1, '57408b0bad0607a6d67791e253d39ddfe302b1b8', 0, 0, '', '', '127.0.0.1', 1599874200),
+(142, 1, '57f0518c177534c5e8359f7d8d60eb939b23a027', 0, 0, '', '', '127.0.0.1', 1599874859),
+(143, 1, 'b5d0af113559b43d15c4a68d95f04630823c52cd', 0, 0, '', '', '127.0.0.1', 1599883346),
+(144, 1, '71d4f6ece2e7ca93ba54d772af185e384c9d0ce6', 0, 0, '', '', '127.0.0.1', 1600063434),
+(145, 1, '883e0d7c1f3fc777b3a64ec8740941360aaea415', 0, 0, '', '', '127.0.0.1', 1600087469),
+(146, 1, '2973bf500d2a6b8e224d276f6714ec69cbbcbfce', 0, 0, '', '', '127.0.0.1', 1600088100),
+(147, 1, '6cea09be43ce597631f5c76e979b67ae1d3a1c9c', 0, 0, '', '', '127.0.0.1', 1600235162);
 
 -- --------------------------------------------------------
 
@@ -7581,7 +7604,7 @@ ALTER TABLE `mall_area`
 -- 使用表AUTO_INCREMENT `mall_attachments`
 --
 ALTER TABLE `mall_attachments`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1393;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1394;
 
 --
 -- 使用表AUTO_INCREMENT `mall_cart`
@@ -7857,7 +7880,7 @@ ALTER TABLE `mall_system_users`
 -- 使用表AUTO_INCREMENT `mall_system_users_log`
 --
 ALTER TABLE `mall_system_users_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users`
@@ -7911,7 +7934,7 @@ ALTER TABLE `mall_users_log`
 -- 使用表AUTO_INCREMENT `mall_users_rechange`
 --
 ALTER TABLE `mall_users_rechange`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users_sms`
@@ -7929,7 +7952,7 @@ ALTER TABLE `mall_users_tags`
 -- 使用表AUTO_INCREMENT `mall_users_token`
 --
 ALTER TABLE `mall_users_token`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- 使用表AUTO_INCREMENT `mall_users_withdraw_log`

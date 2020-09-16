@@ -37,6 +37,7 @@
                                         <option value="0" {if isset($data.type) && $data.type == 0}selected{/if}>用户触发</option>
                                         <option value="1" {if isset($data.type) && $data.type == 1}selected{/if}>积分兑换</option>
                                         <option value="2" {if isset($data.type) && $data.type == 2}selected{/if}>订单赠送</option>
+                                        <option value="3" {if isset($data.type) && $data.type == 3}selected{/if}>系统触发</option>
                                     </select>
                                 </div>
                             </div>

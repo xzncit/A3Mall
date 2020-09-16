@@ -146,7 +146,6 @@ class Order extends Base {
             if($bonus_id > 0 && Db::name("users_bonus")->where("user_id",Users::get("id"))->where("id",$bonus_id)->count()){
                 Bonus::apply($data,$bonus_id);
             }
-
         }catch (\Exception $e){
             return $this->returnAjax($e->getMessage(),$e->getCode() > 0 ? 1 : 0,$e->getCode());
         }

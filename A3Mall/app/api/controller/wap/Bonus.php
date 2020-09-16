@@ -21,7 +21,7 @@ class Bonus extends Base {
         $size = 10;
 
         try{
-            $condition = 'status=0 && end_time > ' . time();
+            $condition = 'type=0 and status=0 and end_time > ' . time();
             $bonus = new PromotionBonus();
             $list = $bonus->getList($condition,$size,$page);
         }catch(\Exception $ex){
@@ -60,7 +60,7 @@ class Bonus extends Base {
         $id = Request::param("id","0","intval");
         if(($row=Db::name("promotion_bonus")
                 ->where("id",$id)
-                ->where('status=0 && end_time > ' . time())->find()) == false){
+                ->where('type=0 and status=0 and end_time > ' . time())->find()) == false){
             return $this->returnAjax("优惠劵己过期",0,2);
         }
 
