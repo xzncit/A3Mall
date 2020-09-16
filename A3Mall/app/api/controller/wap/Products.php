@@ -12,7 +12,7 @@ use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
 
-class Products extends Auth {
+class Products extends Base {
 
     public function hot(){
         $page = Request::param("page","1","intval");

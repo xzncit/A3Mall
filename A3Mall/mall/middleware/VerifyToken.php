@@ -9,6 +9,7 @@
 namespace mall\middleware;
 
 use Closure;
+use mall\basic\Users;
 use think\Request;
 use think\Response;
 use mall\basic\Token;
@@ -22,7 +23,8 @@ class VerifyToken {
      */
     public function handle(Request $request, Closure $next){
         try{
-            Token::check();
+            $user_id = Token::check();
+            Users::info($user_id);
         }catch(\Exception $ex){
             return json(["info"=>$ex->getMessage(),"status"=>"-1001"]);
         }

@@ -48,7 +48,7 @@ class Token {
             ]);
         }
 
-        return true;
+        return $row["user_id"];
     }
 
     public static function refresh(){}

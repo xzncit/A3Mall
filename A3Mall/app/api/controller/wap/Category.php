@@ -11,7 +11,7 @@ namespace app\api\controller\wap;
 use mall\utils\Tool;
 use think\facade\Db;
 
-class Category extends Auth {
+class Category extends Base {
 
     public function index(){
         $category = Db::name("category")

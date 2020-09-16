@@ -20,7 +20,7 @@ use think\facade\Request;
 use mall\basic\Users;
 use think\Image;
 
-class Ucenter extends Auth {
+class Ucenter extends Base {
 
     public function favorite(){
         $page = Request::param("page","1","intval");

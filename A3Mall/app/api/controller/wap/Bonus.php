@@ -14,7 +14,7 @@ use app\common\model\promotion\Bonus as PromotionBonus;
 use app\common\model\users\Bonus as UsersBonus;
 use mall\basic\Users;
 
-class Bonus extends Auth {
+class Bonus extends Base {
 
     public function index(){
         $page = Request::param("page","1","intval");

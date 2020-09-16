@@ -13,7 +13,7 @@ use think\facade\Request;
 use mall\utils\Tool;
 use mall\basic\Users;
 
-class Goods extends Auth {
+class Goods extends Base {
 
     public function index(){
         $page = Request::param("page","1","intval");
@@ -78,9 +78,9 @@ class Goods extends Auth {
 
         $data = [];
         $data["collect"] = false;
-        if(!empty($this->users)){
+        if(!Users::isEmpty("id")){
             $data["collect"] = Db::name("users_favorite")->where([
-                "user_id"=>$this->users["id"],
+                "user_id"=>Users::get("id"),
                 "goods_id"=>$id
             ])->count() ? true : false;
         }
@@ -118,8 +118,8 @@ class Goods extends Auth {
         $goods_attr = array_values($goods_attr);
         foreach($goods_attr as $key=>$val){
             $goods_attr[$key]['list'] = array_values($val["list"]);
-
         }
+
         $data["attr"] = $goods_attr;
 
         $item = Db::name("goods_item")->where("goods_id",$id)->select()->toArray();
@@ -160,7 +160,7 @@ class Goods extends Auth {
 
     public function favorite(){
         $id = Request::param("id","","intval");
-        if(empty($this->users)){
+        if(Users::isEmpty("id")){
             return $this->returnAjax("您还没有登录，请先登录",0);
         }
 
@@ -169,7 +169,7 @@ class Goods extends Auth {
         }
 
         $condition = [
-            "user_id"=>$this->users["id"],
+            "user_id"=>Users::get("id"),
             "goods_id"=>$id
         ];
 
@@ -179,7 +179,7 @@ class Goods extends Auth {
         }
 
         Db::name("users_favorite")->insert([
-            "user_id"=>$this->users["id"],
+            "user_id"=>Users::get("id"),
             "goods_id"=>$id,
             "create_time"=>time()
         ]);

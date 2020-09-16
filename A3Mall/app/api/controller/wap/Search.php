@@ -12,7 +12,7 @@ use think\facade\Db;
 use think\facade\Request;
 use mall\utils\Tool;
 
-class Search extends Auth {
+class Search extends Base {
 
     public function index(){
         $data = Db::name("search_keywords")->where(["is_top"=>0])->select()->toArray();

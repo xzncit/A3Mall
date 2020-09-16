@@ -13,7 +13,7 @@ use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
 
-class Special extends Auth {
+class Special extends Base {
 
     public function index(){
         $page = Request::param("page","1","intval");

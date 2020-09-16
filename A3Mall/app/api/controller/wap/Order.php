@@ -21,7 +21,7 @@ use think\facade\Db;
 use think\facade\Request;
 use mall\basic\Shopping;
 
-class Order extends Auth {
+class Order extends Base {
 
     public function confirm(){
         $id = Request::param("id","","trim,strip_tags");
@@ -45,7 +45,7 @@ class Order extends Auth {
         $cart = [];
         if($type == "cart"){
             $rs = Db::name("cart")
-                ->where("user_id",$this->users["id"])
+                ->where("user_id",Users::get("id"))
                 ->where("id","in", implode(",",$array))
                 ->select()->toArray();
 
@@ -87,7 +87,7 @@ class Order extends Auth {
             ->alias("u")
             ->field("b.*,u.id as users_bonus_id")
             ->join("promotion_bonus b","u.bonus_id=b.id","LEFT")
-            ->where("u.user_id",$this->users["id"])
+            ->where("u.user_id",Users::get("id"))
             ->where("u.status",0)
             ->where("b.end_time > " . time())
             ->select()->toArray();
@@ -117,7 +117,7 @@ class Order extends Auth {
         $data["bonus"] = $coupon;
 
         $address = Db::name("users_address")
-            ->where("user_id",$this->users["id"])
+            ->where("user_id",Users::get("id"))
             ->select()->toArray();
 
         $addressData = ["default"=>[],"list"=>[]];
@@ -143,7 +143,7 @@ class Order extends Auth {
 
         try {
             Distribution::get($data,$addressData["default"]);
-            if($bonus_id > 0 && Db::name("users_bonus")->where("user_id",$this->users["id"])->where("id",$bonus_id)->count()){
+            if($bonus_id > 0 && Db::name("users_bonus")->where("user_id",Users::get("id"))->where("id",$bonus_id)->count()){
                 Bonus::apply($data,$bonus_id);
             }
 
@@ -151,7 +151,7 @@ class Order extends Auth {
             return $this->returnAjax($e->getMessage(),$e->getCode() > 0 ? 1 : 0,$e->getCode());
         }
 
-        $data["users_price"] = $this->users["amount"];
+        $data["users_price"] = Users::get("amount");
         return $this->returnAjax("ok",1,$data);
     }
 
@@ -188,7 +188,7 @@ class Order extends Auth {
         $cart = [];
         if($type == "cart"){
             $rs = Db::name("cart")
-                ->where("user_id",$this->users["id"])
+                ->where("user_id",Users::get("id"))
                 ->where("id","in", implode(",",$array))
                 ->select()->toArray();
 
@@ -225,7 +225,7 @@ class Order extends Auth {
             return $this->returnAjax("您选择的地址不存在，请重新选择",0);
         }
 
-        if($bonus_id > 0 && ($bonus = Db::name("users_bonus")->where("user_id",$this->users["id"])->where("id",$bonus_id)->find()) == false){
+        if($bonus_id > 0 && ($bonus = Db::name("users_bonus")->where("user_id",Users::get("id"))->where("id",$bonus_id)->find()) == false){
             return $this->returnAjax("您选择的优惠劵不存在！",0);
         }
 
@@ -240,7 +240,7 @@ class Order extends Auth {
         try {
             $data = Shopping::get($cart);
             Distribution::get($data,$address);
-            if($bonus_id > 0 && Db::name("users_bonus")->where("user_id",$this->users["id"])->where("id",$bonus_id)->count()){
+            if($bonus_id > 0 && Db::name("users_bonus")->where("user_id",Users::get("id"))->where("id",$bonus_id)->count()){
                 Bonus::apply($data,$bonus_id);
             }
 
@@ -257,7 +257,7 @@ class Order extends Auth {
                 },$cart));
             }
 
-            Bonus::updateStatus($bonus_id,$this->users["id"]);
+            Bonus::updateStatus($bonus_id,Users::get("id"));
             Promotion::updateStatus($data);
         }catch (\Exception $e){
             return $this->returnAjax($e->getMessage(),$e->getCode() > 0 ? 1 : 0);
@@ -272,7 +272,7 @@ class Order extends Auth {
         $page = Request::param("page","1","intval");
         $size = 10;
 
-        $condition = 'user_id=' . $this->users["id"] . ' and ';
+        $condition = 'user_id=' . Users::get("id") . ' and ';
         switch($type){
             case 1: // 待付款
                 $condition .= 'status=1 and pay_status=0';
@@ -348,7 +348,7 @@ class Order extends Auth {
     public function detail(){
         $id = Request::post("id","0","intval");
         if(($order = Db::name("order")->where([
-            "user_id"=>$this->users["id"],"id"=>$id
+            "user_id"=>Users::get("id"),"id"=>$id
         ])->find()) == false){
             return $this->returnAjax("您要查找的订单不存在！",0);
         }
@@ -395,14 +395,14 @@ class Order extends Auth {
             "payable_amount"=>Tool::moneyPrefix($order["payable_amount"]),
             "item"=>$order["item"],
             "active"=>$order["active"],
-            "users_price"=>$this->users["amount"]
+            "users_price"=>Users::get("amount")
         ]);
     }
 
     public function refund(){
         $id = Request::post("id","0","intval");
         if(($order = Db::name("order")->where([
-                "user_id"=>$this->users["id"],"id"=>$id
+                "user_id"=>Users::get("id"),"id"=>$id
             ])->find()) == false){
             return $this->returnAjax("您要查找的订单不存在！",0);
         }
@@ -454,7 +454,7 @@ class Order extends Auth {
         }
 
         if(($order = Db::name("order")->where([
-                "user_id"=>$this->users["id"],"id"=>$id
+                "user_id"=>Users::get("id"),"id"=>$id
             ])->find()) == false){
             return $this->returnAjax("您要查找的订单不存在！",0);
         }
@@ -471,7 +471,7 @@ class Order extends Auth {
     public function delivery(){
         $id = Request::post("id","0","intval");
         if(($order = Db::name("order")->where([
-                "user_id"=>$this->users["id"],"id"=>$id
+                "user_id"=>Users::get("id"),"id"=>$id
             ])->find()) == false){
             return $this->returnAjax("您要查找的订单不存在！",0);
         }
@@ -510,7 +510,7 @@ class Order extends Auth {
     public function confirm_delivery(){
         $id = Request::post("id","0","intval");
         if(($order = Db::name("order")->where([
-                "user_id"=>$this->users["id"],"id"=>$id
+                "user_id"=>Users::get("id"),"id"=>$id
             ])->find()) == false){
             return $this->returnAjax("您要查找的订单不存在！",0);
         }
@@ -536,7 +536,7 @@ class Order extends Auth {
     public function evaluate(){
         $id = Request::post("id","0","intval");
         if(($order = Db::name("order")->where([
-                "user_id"=>$this->users["id"],"id"=>$id
+                "user_id"=>Users::get("id"),"id"=>$id
             ])->find()) == false){
             return $this->returnAjax("您要查找的订单不存在！",0);
         }
@@ -579,7 +579,7 @@ class Order extends Auth {
         $message = Request::post("message","","trim,strip_tags");
         $rate = Request::post("rate","5","intval");
         if(($order = Db::name("order")->where([
-                "user_id"=>$this->users["id"],"id"=>$id
+                "user_id"=>Users::get("id"),"id"=>$id
             ])->find()) == false){
             return $this->returnAjax("您要查找的订单不存在！",0);
         }
@@ -589,7 +589,7 @@ class Order extends Auth {
         }
 
         $comment = Db::name("users_comment")->where([
-            "user_id"=>$this->users['id'],
+            "user_id"=>Users::get("id"),
             "order_no"=>$order["order_no"],
             "status"=>0
         ])->select()->toArray();
@@ -606,7 +606,7 @@ class Order extends Auth {
             }
 
             Db::name("order")->where([
-                "user_id"=>$this->users["id"],"id"=>$id
+                "user_id"=>Users::get("id"),"id"=>$id
             ])->update([
                 "evaluate_status"=>1
             ]);
@@ -646,7 +646,7 @@ class Order extends Auth {
 
     public function cancel(){
         $id = Request::get("order_id","","intval");
-        $condition = ["user_id"=>$this->users["id"],"id"=>$id];
+        $condition = ["user_id"=>Users::get("id"),"id"=>$id];
         if(($order=Db::name("order")->where($condition)->find()) == false){
             return $this->returnAjax("您要操作的订单不存在！",0);
         }
@@ -657,7 +657,7 @@ class Order extends Auth {
             ]);
             Db::name("order_log")->insert([
                 'order_id' => $id,
-                'username' => $this->users["username"],
+                'username' => Users::get("username"),
                 'action' => "取消订单",
                 'result' => '成功',
                 'note' => "订单【{$order["order_no"]}】客户取消订单",
@@ -681,7 +681,7 @@ class Order extends Auth {
         $count = Db::name("order_refundment")
             ->alias("r")
             ->join("order o","r.order_id=o.id","LEFT")
-            ->where(["r.user_id"=>$this->users["id"]])->count();
+            ->where(["r.user_id"=>Users::get("id")])->count();
 
         $total = ceil($count / $size);
         if($total == $page -1){
@@ -692,7 +692,7 @@ class Order extends Auth {
             ->alias("r")
             ->field("o.*,r.amount,r.pay_status as r_pay_status,r.create_time as r_create_time")
             ->join("order o","r.order_id=o.id","LEFT")
-            ->where(["r.user_id"=>$this->users["id"]])->limit((($page - 1) * $size),$size)
+            ->where(["r.user_id"=>Users::get("id")])->limit((($page - 1) * $size),$size)
             ->select()->toArray();
 
         $data = [];

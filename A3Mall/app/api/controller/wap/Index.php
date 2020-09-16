@@ -13,7 +13,7 @@ use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
 
-class Index extends Auth {
+class Index extends Base {
 
     public function index(){
         $banner = Db::name("data")->where("sign","banner")->find();

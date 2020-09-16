@@ -12,7 +12,7 @@ use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
 
-class News extends Auth {
+class News extends Base {
 
     public function index(){
         $page = Request::param("page","1","intval");

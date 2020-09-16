@@ -14,7 +14,7 @@ use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
 
-class Second extends Auth {
+class Second extends Base {
 
     public function index(){
         $page = Request::param("page","1","intval");

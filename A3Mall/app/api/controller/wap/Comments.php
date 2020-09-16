@@ -13,7 +13,7 @@ use mall\basic\Users;
 use think\facade\Request;
 use mall\basic\Order;
 
-class Comments extends Auth{
+class Comments extends Base {
 
     public function index(){
         $page = Request::param("page","1","intval");

@@ -14,7 +14,7 @@ use app\common\model\base\Cart as ShopCart;
 use mall\basic\Users;
 use mall\basic\Shopping;
 
-class Cart extends Auth {
+class Cart extends Base {
 
     public function index(){
         $page = Request::param("page","1","intval");

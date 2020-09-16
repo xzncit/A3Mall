@@ -16,8 +16,12 @@ class Users {
 
     private static $data = [];
 
+    public static function isEmpty($field){
+        return empty(self::$data[$field]);
+    }
+
     public static function get($field=null){
-        return !is_null($field) && isset(self::$data[$field]) ? self::$data[$field] : self::$data;
+        return !is_null($field) && isset(self::$data[$field]) ? self::$data[$field] : null;
     }
 
     public static function set($data){
