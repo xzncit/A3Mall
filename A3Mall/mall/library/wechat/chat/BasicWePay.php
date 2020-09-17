@@ -110,8 +110,8 @@ class BasicWePay extends CommonWeChat {
     protected function callPost($url,$data, $isCert = false, $signType = 'HMAC-SHA256', $needSignType = true){
         $option = [];
         if ($isCert) {
-            $option['ssl_cer'] = Tool::getRootPath() . $this->config["ssl_cer"];
-            $option['ssl_key'] = Tool::getRootPath() . $this->config["ssl_key"];
+            $option['ssl_cer'] = Tool::getRootPath() . trim($this->config["cert_url"],"/");
+            $option['ssl_key'] = Tool::getRootPath() . trim($this->config["key_url"],"/");
             if (empty($option['ssl_cer']) || !file_exists($option['ssl_cer'])) {
                 throw new \Exception("Missing Config -- ssl_cer", '0');
             }
