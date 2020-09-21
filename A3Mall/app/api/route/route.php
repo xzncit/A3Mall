@@ -29,7 +29,6 @@ Route::group(function(){
     Route::post('register', 'api/wap.users/register');
     Route::post('forget', 'api/wap.users/forget');
     Route::get('goods/view', 'api/wap.goods/view');
-    Route::get('goods/favorite', 'api/wap.goods/favorite');
     Route::get('news', 'api/wap.news/index');
     Route::get('news/view', 'api/wap.news/view');
     Route::get('point', 'api/wap.point/index');
@@ -43,6 +42,7 @@ Route::group(function(){
 })->middleware(AllowOrigin::class);
 
 Route::group(function(){
+    Route::get('goods/favorite', 'api/wap.goods/favorite');
     Route::get('cart', 'api/wap.cart/index');
     Route::post('cart/add', 'api/wap.cart/add');
     Route::post('cart/change', 'api/wap.cart/change');
