@@ -34,8 +34,8 @@
                         </div>
                     </div>
                     <div class="r">
-                        <div class="title">花漾润色橘色哑光腮红持久遮瑕 保湿胭脂日常淡妆</div>
-                        <div class="price">￥895.00</div>
+                        <div class="title">{{ item.title }}</div>
+                        <div class="price">￥{{ item.price }}</div>
                     </div>
                 </div>
             </van-checkbox-group>

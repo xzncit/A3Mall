@@ -38,11 +38,11 @@ Route::group(function(){
     Route::get('second', 'api/wap.second/index');
     Route::get('second/view', 'api/wap.second/view');
     Route::get('special', 'api/wap.special/index');
-    Route::get('special/view', 'api/wap.special/view');
 })->middleware(AllowOrigin::class);
 
 Route::group(function(){
     Route::get('goods/favorite', 'api/wap.goods/favorite');
+    Route::get('special/view', 'api/wap.special/view');
     Route::get('cart', 'api/wap.cart/index');
     Route::post('cart/add', 'api/wap.cart/add');
     Route::post('cart/change', 'api/wap.cart/change');
