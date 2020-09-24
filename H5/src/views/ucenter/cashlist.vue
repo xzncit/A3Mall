@@ -38,7 +38,7 @@
                                 <span><i class="icon iconfont">&#xe610;</i>申请状态</span>
                                 <span :class="{'c-1': item.status==0,'c-2': item.status==1,'c-3': item.status==2}">{{item.text}}</span>
                             </div>
-                            <div v-if="item.description">{{item.description}}</div>
+                            <div class="description clear" v-if="item.description">{{item.description}}</div>
                         </div>
                     </div>
                 </div>
@@ -177,7 +177,12 @@
                     .c-2 { color: green; }
 
                     &:nth-child(3) {
+                        width: 90%;
                         padding: 10px 16px;
+                        height: auto !important;
+                        height: 30px;
+                        min-height: 30px;
+                        font-size: 13px;
                     }
                 }
             }

@@ -457,7 +457,7 @@ class Ucenter extends Base {
 
         $count = Db::name("users_log")
             ->where("user_id",Users::get("id"))
-            ->where("action","0")
+            ->where("action","in",[0,3,4])
             ->count();
 
         $total = ceil($count/$size);
@@ -472,11 +472,13 @@ class Ucenter extends Base {
 
         $data = Db::name("users_log")
             ->where("user_id",Users::get("id"))
-            ->where("action","0")
+            ->where("action","in",[0,3,4])
             ->order('id','DESC')->select()->toArray();
 
         $list = [];
         foreach($data as $key=>$value){
+            $list[$key]["action"] = $value["action"] == 0 ? "金额" : ( $value["action"] == 3 ? "退款" : "佣金" );
+            $list[$key]["operation"] = $value["operation"] == 0 ? "+" : "-";
             $list[$key]["description"] = $value["description"];
             $list[$key]["amount"] = $value["amount"];
             $list[$key]['time'] = date("Y-m-d H:i:s",$value["create_time"]);

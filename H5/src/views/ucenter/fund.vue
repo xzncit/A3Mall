@@ -8,7 +8,7 @@
                 @click-left="prev"
         />
 
-        <div class="list-wrap">
+        <div class="list-wrap clear">
             <van-empty v-if="isEmpty" :image="emptyImage" :description="emptyDescription" />
             <van-list
                     v-if="!isEmpty"
@@ -20,14 +20,20 @@
 
                 <div class="list-box clear">
                     <div class="list-item clear" v-for="(item, index) in list" :key="index">
-                        <div class="item-box clear">
-                            <div class="ll clear">
-                                <span>{{item.description}}</span>
+                        <div class="t">
+                            <span>{{item.action}}</span>
+                            <span></span>
+                        </div>
+                        <div class="box clear">
+                            <div>
+                                <span><i class="icon iconfont">&#xe619;</i>申请时间</span>
                                 <span>{{item.time}}</span>
                             </div>
-                            <div class="rr">
-                                -{{item.amount}}
+                            <div>
+                                <span><i class="icon iconfont">&#xe610;</i>操作状态</span>
+                                <span>{{item.operation}}￥{{item.amount}}</span>
                             </div>
+                            <div class="description clear" v-if="item.description">{{item.description}}</div>
                         </div>
                     </div>
                 </div>
@@ -58,9 +64,6 @@
                 emptyImage: "search",
                 emptyDescription: "暂无内容",
             };
-        },
-        created() {
-
         },
         methods: {
             changeData(index){
@@ -112,51 +115,56 @@
         width: 100%;
         margin-top: 10px;
         .list-item{
-            width: 92%;
+            width: 100%;
             height: auto !important;
-            height: 80px;
-            min-height: 80px;
-            border-radius: 5px;
+            height: 110px;
+            min-height: 110px;
             background-color: #fff;
-            margin:  0 auto;
-            margin-bottom: 10px;
             font-size: 13px;
-            .item-box{
-                height: auto !important;
-                height: 80px;
-                min-height: 80px;
-                position: relative;
-                .ll {
-                    float: left;
-                    width: 55%;
-                    span{
-                        display: block;
-                        padding-left: 5%;
-                        float: left;
-                    }
-                    span:first-child{
-                        font-size: 13px;
-                        color: #333;
-                        margin-top: 15px;
-                    }
-                    span:last-child{
-                        font-size: 12px;
-                        color: #999;
-                        margin-top: 5px;
-                    }
+            margin-bottom: 10px;
+            .t {
+                height: 40px;
+                line-height: 40px;
+                border-bottom: 1px solid #ebebeb;
+                span { font-size: 16px; color: #333; }
+                span:first-child {
+                    padding-left: 16px; float: left;
                 }
-                .rr {
-                    float: right;
-                    width: 35%;
-                    height: 80px;
-                    line-height: 80px;
-                    text-align: right;
-                    padding-right: 5%;
-                    color:#fc4141;
-                    font-size: 16px;
+                span:last-child {
+                    padding-right: 16px; float: right;
                 }
             }
-        }
+            .box {
+                height: auto !important;
+                height: 68px;
+                min-height: 68px;
+                width: 100%;
+                div {
+                    width: 100%;
+                    height: 16px;
+                    float: left;
+                    font-size: 14px; color: #888;
+                    padding-top: 10px;
+                    span {
+                        i { padding-right: 5px; position: relative; top: 1px; }
+                    }
+                    span:first-child { padding-left: 16px; float: left; }
+                    span:last-child { padding-right: 16px; float: right; }
+                    .c-1 { color: #888; }
+                    .c-3 { color: #b91922; }
+                    .c-2 { color: green; }
 
+                    &:nth-child(3) {
+                        width: 90%;
+                        padding: 10px 16px;
+                        height: auto !important;
+                        height: 30px;
+                        min-height: 30px;
+                        font-size: 13px;
+                    }
+                }
+
+            }
+        }
     }
 </style>
