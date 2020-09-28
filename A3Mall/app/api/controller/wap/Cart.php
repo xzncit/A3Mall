@@ -75,6 +75,6 @@ class Cart extends Base {
             return $this->returnAjax($ex->getMessage(),0);
         }
 
-        return $this->returnAjax("ok",1);
+        return $this->returnAjax("ok",1,Db::name("cart")->where("user_id",Users::get("id"))->count());
     }
 }

@@ -174,6 +174,9 @@ class Shopping {
             $id = array_map("intval",explode(",",$id));
         }
 
-        return Db::name("cart")->where("id","in",$id)->delete();
+        return Db::name("cart")
+            ->where("id","in",$id)
+            ->where("user_id",Users::get("id"))
+            ->delete();
     }
 }
