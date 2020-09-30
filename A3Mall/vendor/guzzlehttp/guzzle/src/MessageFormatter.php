@@ -32,8 +32,10 @@ use Psr\Http\Message\ResponseInterface;
  * - {res_headers}:    Response headers
  * - {req_body}:       Request body
  * - {res_body}:       Response body
+ *
+ * @final
  */
-class MessageFormatter
+class MessageFormatter implements MessageFormatterInterface
 {
     /**
      * Apache Common Log Format.
@@ -106,10 +108,22 @@ class MessageFormatter
                             : 'NULL';
                         break;
                     case 'req_body':
-                        $result = $request->getBody();
+                        $result = $request->getBody()->__toString();
                         break;
                     case 'res_body':
-                        $result = $response ? $response->getBody() : 'NULL';
+                        if (!$response instanceof ResponseInterface) {
+                            $result = 'NULL';
+                            break;
+                        }
+
+                        $body = $response->getBody();
+
+                        if (!$body->isSeekable()) {
+                            $result = 'RESPONSE_NOT_LOGGEABLE';
+                            break;
+                        }
+
+                        $result = $response->getBody()->__toString();
                         break;
                     case 'ts':
                     case 'date_iso_8601':

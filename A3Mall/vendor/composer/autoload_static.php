@@ -8,7 +8,6 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
 {
     public static $files = array (
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
-        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
@@ -69,12 +68,9 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
             'Psr\\Cache\\' => 10,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
-        'O' => 
-        array (
-            'Opis\\Closure\\' => 13,
-        ),
         'L' => 
         array (
+            'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\Cached\\' => 24,
             'League\\Flysystem\\' => 17,
         ),
@@ -192,9 +188,9 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
-        'Opis\\Closure\\' => 
+        'League\\MimeTypeDetection\\' => 
         array (
-            0 => __DIR__ . '/..' . '/opis/closure/src',
+            0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
         ),
         'League\\Flysystem\\Cached\\' => 
         array (

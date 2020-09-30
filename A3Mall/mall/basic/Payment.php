@@ -134,7 +134,7 @@ class Payment {
                     ]);
 
                     $result = [
-                        "pay"=>1,
+                        "pay"=>2,
                         "order_id"=>$order["id"],
                         "msg"=>"ok",
                         "result"=>[
@@ -238,7 +238,7 @@ class Payment {
                     ]);
 
                     $result = [
-                        "pay"=>1,
+                        "pay"=>2,
                         "order_id"=>$order_id,
                         "msg"=>"ok",
                         "result"=>[

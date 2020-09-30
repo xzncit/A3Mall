@@ -14,6 +14,8 @@ use Psr\Http\Message\UriInterface;
  *
  * Apply this middleware like other middleware using
  * {@see \GuzzleHttp\Middleware::redirect()}.
+ *
+ * @final
  */
 class RedirectMiddleware
 {
@@ -90,8 +92,7 @@ class RedirectMiddleware
         $nextRequest = $this->modifyRequest($request, $options, $response);
 
         if (isset($options['allow_redirects']['on_redirect'])) {
-            \call_user_func(
-                $options['allow_redirects']['on_redirect'],
+            ($options['allow_redirects']['on_redirect'])(
                 $request,
                 $response,
                 $nextRequest->getUri()
@@ -169,7 +170,10 @@ class RedirectMiddleware
         if ($statusCode == 303 ||
             ($statusCode <= 302 && !$options['allow_redirects']['strict'])
         ) {
-            $modify['method'] = 'GET';
+            $safeMethods = ['GET', 'HEAD', 'OPTIONS'];
+            $requestMethod = $request->getMethod();
+
+            $modify['method'] = in_array($requestMethod, $safeMethods) ? $requestMethod : 'GET';
             $modify['body'] = '';
         }
 

@@ -13,6 +13,8 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * Handler that returns responses or throw exceptions from a queue.
+ *
+ * @final
  */
 class MockHandler implements \Countable
 {
@@ -86,7 +88,7 @@ class MockHandler implements \Countable
         }
 
         if (isset($options['delay']) && \is_numeric($options['delay'])) {
-            \usleep($options['delay'] * 1000);
+            \usleep((int) $options['delay'] * 1000);
         }
 
         $this->lastRequest = $request;
@@ -106,7 +108,7 @@ class MockHandler implements \Countable
         }
 
         if (\is_callable($response)) {
-            $response = \call_user_func($response, $request, $options);
+            $response = $response($request, $options);
         }
 
         $response = $response instanceof \Throwable
@@ -117,7 +119,7 @@ class MockHandler implements \Countable
             function (?ResponseInterface $value) use ($request, $options) {
                 $this->invokeStats($request, $options, $value);
                 if ($this->onFulfilled) {
-                    \call_user_func($this->onFulfilled, $value);
+                    ($this->onFulfilled)($value);
                 }
 
                 if ($value !== null && isset($options['sink'])) {
@@ -138,7 +140,7 @@ class MockHandler implements \Countable
             function ($reason) use ($request, $options) {
                 $this->invokeStats($request, $options, null, $reason);
                 if ($this->onRejected) {
-                    \call_user_func($this->onRejected, $reason);
+                    ($this->onRejected)($reason);
                 }
                 return \GuzzleHttp\Promise\rejection_for($reason);
             }
@@ -207,7 +209,7 @@ class MockHandler implements \Countable
         if (isset($options['on_stats'])) {
             $transferTime = $options['transfer_time'] ?? 0;
             $stats = new TransferStats($request, $response, $transferTime, $reason);
-            \call_user_func($options['on_stats'], $stats);
+            ($options['on_stats'])($stats);
         }
     }
 }

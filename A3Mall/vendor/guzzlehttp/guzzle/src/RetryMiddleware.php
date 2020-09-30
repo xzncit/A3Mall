@@ -9,6 +9,8 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Middleware that retries requests based on the boolean result of
  * invoking the provided "decider" function.
+ *
+ * @final
  */
 class RetryMiddleware
 {
@@ -77,8 +79,7 @@ class RetryMiddleware
     private function onFulfilled(RequestInterface $request, array $options): callable
     {
         return function ($value) use ($request, $options) {
-            if (!\call_user_func(
-                $this->decider,
+            if (!($this->decider)(
                 $options['retries'],
                 $request,
                 $value,
@@ -96,8 +97,7 @@ class RetryMiddleware
     private function onRejected(RequestInterface $req, array $options): callable
     {
         return function ($reason) use ($req, $options) {
-            if (!\call_user_func(
-                $this->decider,
+            if (!($this->decider)(
                 $options['retries'],
                 $req,
                 null,
@@ -111,7 +111,7 @@ class RetryMiddleware
 
     private function doRetry(RequestInterface $request, array $options, ResponseInterface $response = null): PromiseInterface
     {
-        $options['delay'] = \call_user_func($this->delay, ++$options['retries'], $response);
+        $options['delay'] = ($this->delay)(++$options['retries'], $response);
 
         return $this($request, $options);
     }
