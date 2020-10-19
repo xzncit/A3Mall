@@ -179,7 +179,7 @@
                     this.recommend = res.data.recommend;
                     this.notice = res.data.notice;
                 }).catch(err=>{
-                    Toast("网络出错，请检查网络是否连接22");
+                    Toast("网络出错，请检查网络是否连接");
                 });
             },
             onLoad() {
@@ -314,7 +314,7 @@
 .host-box .host-title span:first-child { font-size: 16px; float: left; font-weight: bold; }
 .host-box .host-title span:last-child { position: relative; font-size: 13px; float: right; padding-right: 15px; }
 .host-box .host-title span:last-child:after { position: absolute; right: 0; top: -1px; content: '>'; }
-.host-middle { padding-bottom: 10px; width: 92%; margin: 0 auto; background: #fff; border-radius: 5px; display: flex; justify-content: center; flex-wrap: nowrap; flex-direction: row; }
+.host-middle { overflow: hidden; padding-bottom: 10px; width: 92%; margin: 0 auto; background: #fff; border-radius: 5px; display: flex; justify-content: center; flex-wrap: nowrap; flex-direction: row; }
 .host-middle-box { width: 31%; padding: 0 1%; padding-top: 10px; text-align: center; }
 .host-middle-box span { display: block; width: 100%; font-size: 14px; }
 .host-middle-box span:nth-child(1) img { width: 110px; height: 110px; border-radius: 5px; }

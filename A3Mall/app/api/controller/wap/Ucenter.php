@@ -370,8 +370,10 @@ class Ucenter extends Base {
             return $this->returnAjax("请选择市",0);
         }else if(empty($post["county"])){
             return $this->returnAjax("请选择区",0);
-        }else if(empty($post["areaCode"])){
+        }else if(empty($post["areaCode"]) && $post["client_type"] == 0){
             return $this->returnAjax("请选择所在地区",0);
+        }else if(!in_array($post["client_type"],[0,1,2])){ // 0:app 1:mini 2: h5
+            return $this->returnAjax("参数错误",0);
         }
 
         $province = Db::name("area")
@@ -401,8 +403,9 @@ class Ucenter extends Base {
             if($is_default){
                 Db::name("users_address")->where(["user_id"=>Users::get("id")])->update(["is_default"=>0]);
             }
+
             if(empty($post["id"])){
-                Db::name("users_address")->insert([
+                $data = [
                     "user_id"=>Users::get("id"),
                     "accept_name"=>$post["name"],
                     "mobile"=>$post["tel"],
@@ -411,32 +414,44 @@ class Ucenter extends Base {
                     "area"=>$county["id"],
                     "address"=>$post["addressDetail"],
                     "is_default" => $is_default,
-                    "extends_info"=>json_encode(["areaCode"=>$post["areaCode"]],JSON_UNESCAPED_UNICODE),
+                    // "extends_info"=>json_encode(["areaCode"=>$post["areaCode"]],JSON_UNESCAPED_UNICODE),
                     "create_time"=>time()
-                ]);
+                ];
+
+                if(isset($post["client_type"]) && $post["client_type"] == 0){
+                    $data["extends_info"] = json_encode(["areaCode"=>$post["areaCode"]],JSON_UNESCAPED_UNICODE);
+                }
+
+                Db::name("users_address")->insert($data);
                 $lastInsID = Db::name("users_address")->getLastInsID();
             }else{
+                $data = [
+                    "accept_name"=>$post["name"],
+                    "mobile"=>$post["tel"],
+                    "province"=>$province["id"],
+                    "city"=>$city["id"],
+                    "area"=>$county["id"],
+                    "address"=>$post["addressDetail"],
+                    "is_default" => $is_default,
+                    // "extends_info"=>json_encode(["areaCode"=>$post["areaCode"]],JSON_UNESCAPED_UNICODE),
+                    "create_time"=>time()
+                ];
+
+                if(isset($post["client_type"]) && $post["client_type"] == 0){
+                    $data["extends_info"] = json_encode(["areaCode"=>$post["areaCode"]],JSON_UNESCAPED_UNICODE);
+                }
+
                 Db::name("users_address")
                     ->where("id",intval($post["id"]))
                     ->where("user_id",Users::get("id"))
-                    ->update([
-                        "accept_name"=>$post["name"],
-                        "mobile"=>$post["tel"],
-                        "province"=>$province["id"],
-                        "city"=>$city["id"],
-                        "area"=>$county["id"],
-                        "address"=>$post["addressDetail"],
-                        "is_default" => $is_default,
-                        "extends_info"=>json_encode(["areaCode"=>$post["areaCode"]],JSON_UNESCAPED_UNICODE),
-                        "create_time"=>time()
-                    ]);
+                    ->update($data);
                 $lastInsID = $post["id"];
             }
 
             DB::commit();
         }catch (\Exception $e){
             DB::rollback();
-            return $this->returnAjax("操作失败，请稍后在试",0);
+            return $this->returnAjax("操作失败，请稍后在试".$e->getMessage(),0);
         }
 
         return $this->returnAjax("操作成功",1,$lastInsID);

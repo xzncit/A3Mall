@@ -324,6 +324,7 @@ router.beforeEach(function(to,from,next){
     if(login(to,from)){
         return ;
     }
+
     document.title = to.meta.title || process.env.WEB_NAME || "A3Mall B2C商城";
     store.commit("UPDATETABBAR",to.meta.tabbar);
     next();

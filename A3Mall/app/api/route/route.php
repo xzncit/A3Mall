@@ -12,6 +12,7 @@ Route::group(function() {
 
 Route::group(function(){
     Route::any('oauth', 'api/wechat.OAuth/index');
+    Route::any("auth", "api/wechat.OAuth/auth");
     Route::any('config', 'api/wechat.index/config');
     Route::get('index', 'api/wap.index/index');
     Route::get('custom', 'api/wap.index/custom');

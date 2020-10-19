@@ -112,7 +112,7 @@ class Check {
      * @return false|int
      */
     public static function chsDash($string) {
-        return preg_match('/^[\x{4e00}-\x{9fa5}a-zA-Z0-9\_\-]+$/u', $string);
+        return preg_match('/^[\x{4e00}-\x{9fa5}a-zA-Z0-9\_\-\s]+$/u', $string);
     }
 
     /**

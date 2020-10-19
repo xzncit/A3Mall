@@ -288,7 +288,7 @@
     min-height: 50%;
     max-height: 80%;
     font-size: 14px;
-    z-index: 9999;
+    z-index: 999;
     overflow: hidden;
     transition:all .3s cubic-bezier(.65,.7,.7,.9);
     transform:translate3d(0,100%,0);

@@ -50,6 +50,7 @@ class Index extends Base {
 
         $hot = array_map(function ($res){
                 return [
+                    "id"=> $res["id"],
                     "url"=>'/goods/view/'.$res["id"],
                     "name"=>$res["title"],
                     "image"=>Tool::thumb($res["photo"],"",true),
@@ -64,6 +65,7 @@ class Index extends Base {
 
         $recommend = array_map(function ($res){
             return [
+                "id"=> $res["id"],
                 "url"=>'/goods/view/'.$res["id"],
                 "name"=>$res["title"],
                 "image"=>Tool::thumb($res["photo"],"",true),
@@ -98,7 +100,12 @@ class Index extends Base {
 
         $total = ceil($count/$size);
         if($total == $page -1){
-            return $this->returnAjax("empty",-1,[]);
+            return $this->returnAjax("empty",-1,[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>$total,
+                "size"=>$size
+            ]);
         }
 
         $result = Db::name("goods")

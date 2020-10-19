@@ -32,6 +32,7 @@ export function login(obj,from) {
     }else if(users != null && users.token){
         if(tools.in_array(obj.name,["Login","Register","Forget","Oauth"])){
             router.push('/');
+            return true;
         }
     }
 

@@ -65,7 +65,7 @@
                 $.post('{:createUrl("base")}', data.field, function (result) {
                     layer.close(index);
                     if(result.code){
-                        layer.msg(result.info, {
+                        layer.msg(result.msg, {
                             time: 0
                             ,btn: ['继续编辑']
                             ,yes: function(index){

@@ -37,7 +37,7 @@
                                                 <a class="upload-image"><img src="{$item.path}"></a>
                                                 <div class="uploadfiy-button">
                                                     <a href="javascript:;" class="n6-insert">插入</a>
-                                                    <a href="javascript:;" class="n6-thumb{if $data.photo == $item.path} active{/if}">封面</a>
+                                                    <a href="javascript:;" class="n6-thumb{if isset($data.photo) && $data.photo == $item.path} active{/if}">封面</a>
                                                     <a href="javascript:;" class="n6-delete">删除</a>
                                                 </div>
                                             </div>

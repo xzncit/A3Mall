@@ -7,13 +7,14 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.3.2-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.4.0-blue.svg" />
     </a>
 </p>
 <p align="center">    
     <b>如果本系统对您有所帮助，您可以点右上角 "Star" 支持一下 谢谢！</b>
 </p>
 
+<h3 style="text-align: center;">2020-10-22 发布原生小程序1.0beta版本</h3>
 
 ## 项目介绍
    A3Mall商城系统是基于ThinkPhp6.0+Vue开发的一套移动电商系统，

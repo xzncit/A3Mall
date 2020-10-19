@@ -24,7 +24,7 @@
     padding-bottom: constant(safe-area-inset-bottom);
     padding-bottom: env(safe-area-inset-bottom);
     background-color: #fff;
-    z-index: 100000;
+    z-index: 1000;
     overflow: hidden;
 }
 </style>

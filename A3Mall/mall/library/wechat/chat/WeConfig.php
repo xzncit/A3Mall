@@ -13,7 +13,7 @@ use think\facade\Db;
 class WeConfig {
 
     public static function get($name=""){
-        $setting = Db::name("setting")->where("name","in","wechat,wepay")->select()->toArray();
+        $setting = Db::name("setting")->where("name","in","wechat,wepay,wemini")->select()->toArray();
         $list = [];
         foreach($setting as $key=>$value){
             $list[$value["name"]] = json_decode($value["value"],true);

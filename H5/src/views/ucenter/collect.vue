@@ -141,6 +141,7 @@
 <style lang="scss" scoped>
     .collect-list{
         .item-box {
+            width: 90%;
             float: left;
             padding: 0 16px;
             margin-top: 20px;
