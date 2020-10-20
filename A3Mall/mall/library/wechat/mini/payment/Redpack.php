@@ -8,9 +8,9 @@
 // +----------------------------------------------------------------------
 namespace mall\library\wechat\mini\payment;
 
-use mall\library\wechat\mini\BasicWeMini;
+use mall\library\wechat\mini\BasicWeMiniPay;
 
-class Redpack extends BasicWeMini{
+class Redpack extends BasicWeMiniPay{
 
     /**
      * 发放普通红包

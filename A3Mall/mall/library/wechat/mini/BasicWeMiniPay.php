@@ -9,11 +9,11 @@
 namespace mall\library\wechat\mini;
 
 use mall\library\wechat\chat\CommonWeChat;
-use mall\library\wechat\mini\lib\Utils;
+use mall\library\wechat\chat\lib\Utils;
 use mall\utils\Tool;
 use mall\library\wechat\chat\WeConfig;
 
-class BasicWePay extends CommonWeChat {
+class BasicWeMiniPay extends CommonWeChat {
 
     /**
      * 当前请求数据

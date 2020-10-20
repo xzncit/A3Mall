@@ -457,6 +457,14 @@ class Ucenter extends Base {
         return $this->returnAjax("操作成功",1,$lastInsID);
     }
 
+    public function set_default_address(){
+        $id = Request::param("id","0","intval");
+        Db::name("users_address")->where("user_id",Users::get("id"))->update(["is_default"=>0]);
+        Db::name("users_address")->where("id",$id)
+            ->where("user_id",Users::get("id"))->update(["is_default"=> 1]);
+        return $this->returnAjax("ok",1);
+    }
+
     public function help(){
         return $this->returnAjax("ok",1, array_map(function($res){
             $res["content"] = Tool::replaceContentImage(Tool::removeContentAttr($res["content"]));

@@ -8,10 +8,10 @@
 // +----------------------------------------------------------------------
 namespace mall\library\wechat\mini\payment;
 
-use mall\library\wechat\chat\BasicWeMini;
+use mall\library\wechat\mini\BasicWeMiniPay;
 use think\facade\Cache;
 
-class TransfersBank extends BasicWeMini{
+class TransfersBank extends BasicWeMiniPay{
 
     /**
      * 企业付款到银行卡

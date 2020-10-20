@@ -8,10 +8,10 @@
 // +----------------------------------------------------------------------
 namespace mall\library\wechat\mini\payment;
 
-use mall\library\wechat\mini\BasicWeMini;
-use mall\library\wechat\mini\lib\Prpcrypt;
+use mall\library\wechat\mini\BasicWeMiniPay;
+use mall\library\wechat\chat\lib\Prpcrypt;
 
-class Refund extends BasicWeMini {
+class Refund extends BasicWeMiniPay {
 
     /**
      * 创建退款订单

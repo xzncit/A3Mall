@@ -65,6 +65,10 @@ class Payment{
         return Order::instance()->appParams($prepay_id);
     }
 
+    public function createParamsWxApp($prepay_id){
+        return Order::instance()->createParamsWxApp($prepay_id);
+    }
+
     /**
      * 获取支付规则二维码
      * @param string $product_id 商户定义的商品id 或者订单号

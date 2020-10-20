@@ -181,7 +181,20 @@ class Order extends Base {
         }
 
         if($payment_id == 'wechat'){
-            $payment_id = $source == 2 ? "wechat" : "wechat-h5";
+            switch($source){
+                case 1:
+                    $payment_id = "wechat-h5";
+                    break;
+                case 2:
+                    $payment_id = "wechat";
+                    break;
+                case 3:
+                    $payment_id = "wechat-mini";
+                    break;
+                case 4:
+                    $payment_id = "wechat-app";
+                    break;
+            }
         }
 
         $cart = [];

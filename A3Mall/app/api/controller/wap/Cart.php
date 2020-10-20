@@ -25,7 +25,12 @@ class Cart extends Base {
             $shopCart = new ShopCart();
             $list = $shopCart->getList($condition,$size,$page);
         }catch (\Exception $ex){
-            return $this->returnAjax($ex->getMessage(),$ex->getCode());
+            return $this->returnAjax($ex->getMessage(),$ex->getCode(),[
+                "list"=>[],
+                "page"=>$page,
+                "total"=>0,
+                "size"=>$size
+            ]);
         }
 
         return $this->returnAjax("ok",1, [

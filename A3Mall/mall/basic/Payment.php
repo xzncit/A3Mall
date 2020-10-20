@@ -9,8 +9,10 @@
 namespace mall\basic;
 
 use mall\library\wechat\chat\WeChat;
+use mall\utils\CString;
 use think\facade\Db;
 use think\facade\Request;
+use mall\library\wechat\mini\WeMini;
 
 class Payment {
 
@@ -33,10 +35,16 @@ class Payment {
 
         $result = [];
         $users = Db::name("users")->where("id",$order["user_id"])->find();
+        $goods_array = Db::name("order_goods")->where("order_id",$order_id)->order("id","asc")->value("goods_array");
+        $goods_title = "";
+        if(!empty($goods_array)){
+            $goods_array = json_decode($goods_array,true);
+            $goods_title = "-" . CString::msubstr($goods_array["title"],30,false);
+        }
         switch($payment["code"]){
             case "balance":
                 if($order["order_amount"] > $users["amount"]){
-                    throw new \Exception("您的余额不足，请充值。",0);
+                    throw new \Exception("您的余额不足，请充值。",-99);
                 }
 
                 Db::startTrans();
@@ -139,6 +147,35 @@ class Payment {
                         "msg"=>"ok",
                         "result"=>[
                             "url"=>$rs["mweb_url"]
+                        ]
+                    ];
+                }catch(\Exception $e){
+                    $result = [
+                        "pay"=>99,
+                        "order_id"=>$order["id"],
+                        "msg"=>$e->getMessage()
+                    ];
+                }
+                break;
+            case "wechat-mini":
+                try{
+                    $web_name = Setting::get("web_name");
+                    $rs = WeMini::Payment()->createOrder([
+                        'body'             => $web_name . $goods_title,
+                        'total_fee'        => $order["order_amount"] * 100,
+                        'trade_type'       => 'JSAPI',
+                        'notify_url'       => createUrl('api/wechat/notify', [], false, true),
+                        'out_trade_no'     => $order["order_no"],
+                        'spbill_create_ip' => Request::ip(),
+                    ]);
+
+                    $params = WeMini::Payment()->createParamsWxApp($rs["prepay_id"]);
+                    $result = [
+                        "pay"=>1,
+                        "order_id"=>$order["id"],
+                        "msg"=>"ok",
+                        "result"=>[
+                            "params"=>$params
                         ]
                     ];
                 }catch(\Exception $e){

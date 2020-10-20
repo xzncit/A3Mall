@@ -8,10 +8,10 @@
 // +----------------------------------------------------------------------
 namespace mall\library\wechat\mini\payment;
 
-use mall\library\wechat\mini\BasicWeMini;
-use mall\library\wechat\mini\lib\Utils;
+use mall\library\wechat\mini\BasicWeMiniPay;
+use mall\library\wechat\chat\lib\Utils;
 
-class Order extends BasicWeMini {
+class Order extends BasicWeMiniPay {
 
     /**
      * 统一下单
@@ -103,6 +103,22 @@ class Order extends BasicWeMini {
             'noncestr'  => Utils::createRandString(),
         ];
         $data['sign'] = $this->getPaySign($data, 'MD5');
+        return $data;
+    }
+
+    /**
+     * 获取微信小程序支付参数
+     * @param string $prepayId 统一下单预支付码
+     * @return array
+     */
+    public function createParamsWxApp($prepayId){
+        $data = [
+            "timeStamp" => (string)time(),
+            "nonceStr"  => Utils::createRandString(),
+            "package"   => "prepay_id=". $prepayId,
+            "signType"  => "MD5"
+        ];
+        $data['paySign'] = $this->getPaySign($data, 'MD5');
         return $data;
     }
 

@@ -8,9 +8,9 @@
 // +----------------------------------------------------------------------
 namespace mall\library\wechat\mini\payment;
 
-use mall\library\wechat\mini\BasicWeMini;
+use mall\library\wechat\mini\BasicWeMiniPay;
 
-class Transfers extends BasicWeMini{
+class Transfers extends BasicWeMiniPay{
 
     /**
      * 企业付款到零钱

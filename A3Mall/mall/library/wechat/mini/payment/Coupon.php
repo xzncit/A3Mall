@@ -8,9 +8,9 @@
 // +----------------------------------------------------------------------
 namespace mall\library\wechat\mini\payment;
 
-use mall\library\wechat\mini\BasicWeMini;
+use mall\library\wechat\mini\BasicWeMiniPay;
 
-class Coupon extends BasicWeMini{
+class Coupon extends BasicWeMiniPay{
 
     /**
      * 发放代金券

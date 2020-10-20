@@ -60,7 +60,7 @@ Route::group(function(){
     Route::get('ucenter/address', 'api/wap.ucenter/address');
     Route::get('ucenter/address/list', 'api/wap.ucenter/address_list');
     Route::post('ucenter/address/save', 'api/wap.ucenter/address_editor');
-    Route::get('ucenter/address/delete', 'api/wap.ucenter/address_delete');
+    Route::post('ucenter/address/set_address', 'api/wap.ucenter/set_default_address');
     Route::get('ucenter/address/delete', 'api/wap.ucenter/address_delete');
     Route::get('ucenter/help', 'api/wap.ucenter/help');
     Route::get('order/create', 'api/wap.order/create');
