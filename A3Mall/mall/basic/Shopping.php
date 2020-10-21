@@ -103,6 +103,10 @@ class Shopping {
     public static function add($id,$sku_id,$num=1){
         $num = $num ?: 1;
 
+        if($num <= 0){
+            $num = 1;
+        }
+
         $goods = Db::name("goods")->where("id",$id)->find();
         if(empty($goods) || $goods["status"] != 0){
             throw new \Exception("该商品己下架！",0);
