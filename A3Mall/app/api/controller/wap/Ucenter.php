@@ -562,7 +562,22 @@ class Ucenter extends Base {
         $source = Request::post("source","","intval");
         $price = Request::post("price/f","0");
 
-        $payment = $source == 2 ? "wechat" : "wechat-h5";
+        if($payment == 'wechat'){
+            switch($source){
+                case 1:
+                    $payment = "wechat-h5";
+                    break;
+                case 2:
+                    $payment = "wechat";
+                    break;
+                case 3:
+                    $payment = "wechat-mini";
+                    break;
+                case 4:
+                    $payment = "wechat-app";
+                    break;
+            }
+        }
 
         try{
             $rs = Payment::rechang($payment,$price);

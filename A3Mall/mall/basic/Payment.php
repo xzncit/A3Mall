@@ -291,6 +291,35 @@ class Payment {
                     ];
                 }
                 break;
+            case "wechat-mini":
+                try{
+                    $web_name = Setting::get("web_name");
+                    $rs = WeMini::Payment()->createOrder([
+                        'body'             => $web_name,
+                        'total_fee'        => $price * 100,
+                        'trade_type'       => 'JSAPI',
+                        'notify_url'       => createUrl('api/wechat/notify', [], false, true),
+                        'out_trade_no'     => $orderNo,
+                        'spbill_create_ip' => Request::ip(),
+                    ]);
+
+                    $params = WeMini::Payment()->createParamsWxApp($rs["prepay_id"]);
+                    $result = [
+                        "pay"=>1,
+                        "order_id"=>$order_id,
+                        "msg"=>"ok",
+                        "result"=>[
+                            "params"=>$params
+                        ]
+                    ];
+                }catch(\Exception $e){
+                    $result = [
+                        "pay"=>99,
+                        "order_id"=>$order_id,
+                        "msg"=>$e->getMessage()
+                    ];
+                }
+                break;
         }
 
         return $result;

@@ -14,7 +14,12 @@
     <b>如果本系统对您有所帮助，您可以点右上角 "Star" 支持一下 谢谢！</b>
 </p>
 
-<h3 style="text-align: center;">2020-10-22 发布原生小程序1.0beta版本</h3>
+
+## 导航栏目
+ [官网地址](http://www.a3-mall.com)
+ | [微信小程序下载](https://gitee.com/xzncit/A3Mall-miniprogram)
+ | [帮助文档](http://doc.a3-mall.com)
+
 
 ## 项目介绍
    A3Mall商城系统是基于ThinkPhp6.0+Vue开发的一套移动电商系统，
