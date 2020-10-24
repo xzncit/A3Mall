@@ -140,6 +140,7 @@ class Order extends Base {
         }
 
         $data["address"] = $addressData;
+        $addressData["default"] = empty($addressData["default"]) ? (isset($addressData["list"][0]) ? $addressData["list"][0] : []) : $addressData["default"];
 
         try {
             Distribution::get($data,$addressData["default"]);

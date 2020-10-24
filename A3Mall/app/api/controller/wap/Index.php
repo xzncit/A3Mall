@@ -9,6 +9,7 @@
 namespace app\api\controller\wap;
 
 use app\common\model\custom\Pages;
+use mall\basic\Setting;
 use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;

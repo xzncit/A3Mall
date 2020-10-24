@@ -93,7 +93,7 @@ class Payment {
                     ];
                 }else{
                     try{
-                        $web_name = Setting::get("web_name");
+                        $web_name = Setting::get("web_name",true);
                         $rs = WeChat::Payment()->createOrder([
                             'body'             => $web_name,
                             'openid'           => $wecatUsers["openid"],
@@ -124,7 +124,7 @@ class Payment {
                 break;
             case "wechat-h5":
                 try{
-                    $web_name = Setting::get("web_name");
+                    $web_name = Setting::get("web_name",true);
                     $rs = WeChat::Payment()->createOrder([
                         'body'             => $web_name,
                         'total_fee'        => $order["order_amount"] * 100,
@@ -132,13 +132,13 @@ class Payment {
                         'notify_url'       => createUrl('api/wechat/notify', [], false, true),
                         'out_trade_no'     => $order["order_no"],
                         'spbill_create_ip' => Request::ip(),
-                        'scene_info'       => json_encode([
+                        'scene_info'       => str_replace("\\","",json_encode([
                             "h5_info"=>[
                                 "type"=>"Wap",
                                 "wap_url"=>Request::domain(),
                                 "wap_name"=>$web_name
                             ]
-                        ],JSON_UNESCAPED_UNICODE)
+                        ],JSON_UNESCAPED_UNICODE))
                     ]);
 
                     $result = [
@@ -159,7 +159,7 @@ class Payment {
                 break;
             case "wechat-mini":
                 try{
-                    $web_name = Setting::get("web_name");
+                    $web_name = Setting::get("web_name",true);
                     $rs = WeMini::Payment()->createOrder([
                         'body'             => $web_name . $goods_title,
                         'total_fee'        => $order["order_amount"] * 100,
@@ -223,7 +223,7 @@ class Payment {
                     ];
                 }else{
                     try{
-                        $web_name = Setting::get("web_name");
+                        $web_name = Setting::get("web_name",true);
                         $rs = WeChat::Payment()->createOrder([
                             'body'             => $web_name,
                             'openid'           => $wecatUsers["openid"],
@@ -257,7 +257,7 @@ class Payment {
                 break;
             case "wechat-h5":
                 try{
-                    $web_name = Setting::get("web_name");
+                    $web_name = Setting::get("web_name",true);
                     $rs = WeChat::Payment()->createOrder([
                         'body'             => $web_name,
                         'total_fee'        => $price * 100,
@@ -293,7 +293,7 @@ class Payment {
                 break;
             case "wechat-mini":
                 try{
-                    $web_name = Setting::get("web_name");
+                    $web_name = Setting::get("web_name",true);
                     $rs = WeMini::Payment()->createOrder([
                         'body'             => $web_name,
                         'total_fee'        => $price * 100,

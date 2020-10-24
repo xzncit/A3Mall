@@ -1,14 +1,14 @@
 <template>
     <div class="wrap">
         <nav-bar
-                title="编辑地址"
-                left-arrow
-                :fixed="true"
-                :z-index="9999"
-                :transparent="true"
-                :placeholder="true"
-                background-color="#b91922"
-                @click-left="prev"
+            title="编辑地址"
+            left-arrow
+            :fixed="true"
+            :z-index="9999"
+            :transparent="true"
+            :placeholder="true"
+            background-color="#b91922"
+            @click-left="prev"
         />
 
         <div class="theForm clear">
@@ -51,19 +51,14 @@
                 <button @click="onSave">提 交</button>
             </div>
         </div>
-        <van-popup v-model="show" closeable position="bottom" :style="{ height: '400px' }">
-            <div class="area-distpicker-wrap">
-                <v-distpicker type="mobile" @selected="onSelected"></v-distpicker>
-            </div>
-        </van-popup>
+        <vue-city-picker ref="picker" @select="onPickerChange"></vue-city-picker>
     </div>
 </template>
 
 <script>
     import NavBar from '../../components/nav-bar/nav-bar';
     import { Toast } from 'vant';
-    import VDistpicker from '../../components/v-distpicker/Distpicker'
-    import AreaData from "../../utils/AreaData";
+    import vuePicker from "../../components/vue-city-picker/vue-city-picker";
     import { Switch,Popup } from 'vant';
     export default {
         name: 'AddressEditor',
@@ -71,12 +66,10 @@
             [NavBar.name]: NavBar,
             [Switch.name]: Switch,
             [Popup.name]: Popup,
-            VDistpicker
+            [vuePicker.name]: vuePicker
         },
         data() {
             return {
-                show:false,
-                districts: AreaData,
                 id: 0,
                 name: "",
                 tel: "",
@@ -114,15 +107,20 @@
             prev() {
                 this.$tools.prev();
             },
+            onPickerChange(){
+                this.province = arguments[2][0];
+                this.county = arguments[2][2];
+                this.city = arguments[2][1];
+                this.area_name = arguments[2].join(",");
+            },
             onSelected(data) {
                 this.province = data.province.value;
                 this.county = data.area.value;
                 this.city = data.city.value;
                 this.area_name = data.province.value + ',' + data.city.value + ',' + data.area.value;
-                this.show = false;
             },
             handleTap(){
-                this.show = !this.show;
+                this.$refs['picker'].show();
             },
             onSave() {
                 this.$http.editorAddress({

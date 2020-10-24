@@ -123,6 +123,7 @@ class BasicWePay extends CommonWeChat {
         $params = array_merge($this->params,$data);
         $needSignType && ($params['sign_type'] = strtoupper($signType));
         $params['sign'] = $this->getPaySign($params, $signType);
+
         $result = $this->xml2arr($this->post($url, $this->arr2xml($params), $option));
         if ($result['return_code'] !== 'SUCCESS') {
             throw new \Exception($result['return_msg'], '0');

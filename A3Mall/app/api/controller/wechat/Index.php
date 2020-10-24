@@ -8,10 +8,12 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wechat;
 
+use mall\basic\Order;
 use mall\basic\Sms;
 use mall\library\wechat\chat\WeChat;
 use mall\library\wechat\chat\WeChatMessage;
 use mall\library\wechat\chat\WeChatPush;
+use mall\utils\Tool;
 use think\facade\Db;
 
 class Index {
@@ -35,19 +37,58 @@ class Index {
     public function notify(){
         try{
             $data = WeChat::Payment()->getNotify();
-            $order = Db::name("order")->where("order_no",$data["out_trade_no"])->find();
-            if(!empty($order)){
-                Db::name("order")->where('id',$order["id"])->update([
-                    "pay_time"=>time(),
-                    "trade_no"=>$data["transaction_id"]
-                ]);
+            $prefix = substr($data["out_trade_no"],0,1);
+            if($prefix == "P"){
+                if(($rs = Db::name("users_rechange")->where("order_no",$data["out_trade_no"])->find()) != false){
+                    Db::startTrans();
+                    try{
+                        Db::name("users_rechange")->where("order_no",$data["out_trade_no"])->update([
+                            "status"=>1,
+                            "transaction_id"=>$data["transaction_id"],
+                            "pay_time"=>time()
+                        ]);
 
-                Sms::send(
-                    ["mobile"=>$order["mobile"],"order_no"=>$order["order_no"]],
-                    "payment_success"
-                );
+                        Db::name("users")
+                            ->where("id",$rs["user_id"])
+                            ->inc("amount",$rs["order_amount"])
+                            ->update();
+
+                        Db::name("users_log")->insert([
+                            "order_no"=>$data["out_trade_no"],
+                            "user_id"=>$rs["user_id"],
+                            "action"=>0,
+                            "operation"=>0,
+                            "amount"=>$rs["order_amount"],
+                            "description"=>"充值成功，订单号：" . $data["out_trade_no"],
+                            "create_time"=>time()
+                        ]);
+
+                        Db::commit();
+                    }catch (\Exception $ex){
+                        Db::rollback();
+                    }
+                }
+            }else{
+                $order = Db::name("order")->where("order_no",$data["out_trade_no"])->find();
+                if(!empty($order)){
+                    Order::payment($data["out_trade_no"]);
+                    Db::name("order_log")->insert([
+                        'order_id' => $order["id"],
+                        'username' => "system",
+                        'action' => '付款',
+                        'result' => '成功',
+                        'note' => '订单【' . $order["order_no"] . '】付款' . $order["order_amount"] . '元',
+                        'create_time' => time()
+                    ]);
+
+                    Sms::send(
+                        ["mobile"=>$order["mobile"],"order_no"=>$order["order_no"]],
+                        "payment_success"
+                    );
+                }
             }
         }catch (\Exception $e){}
+
         return WeChat::Payment()->getNotifySuccessReply();
     }
 

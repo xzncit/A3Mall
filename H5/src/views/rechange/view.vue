@@ -107,10 +107,11 @@
                     case "1":
                         this.$wx.config(data.result.config);
                         var options = data.result.options;
+                        var that = this;
                         options.success = function(){
                             Toast("支付成功");
                             setTimeout(()=>{
-                                this.$router.replace('/ucenter/bill/fund');
+                                that.$router.replace('/ucenter/bill/fund');
                             },1500);
                         }
                         this.$wx.chooseWXPay(options);

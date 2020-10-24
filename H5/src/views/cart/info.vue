@@ -152,9 +152,10 @@
                     case "1":
                         this.$wx.config(data.result.config);
                         var options = data.result.options;
+                        var that = this;
                         options.success = function(){
                             Toast("支付成功");
-                            this.$router.replace('/order/detail/'+data.order_id);
+                            that.$router.replace('/order/detail/'+data.order_id);
                         }
                         this.$wx.chooseWXPay(options);
                         break;

@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.4.0-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.4.1-blue.svg" />
     </a>
 </p>
 <p align="center">    
@@ -44,6 +44,7 @@
 
 前端页面
 cd H5  进入前端目录
+npm install
 修改.env.production配置文件
 npm run serve 调试前端页面
 npm run build 打包前端页面，复制dist目录内容到public目录替换 index.html static/wap 

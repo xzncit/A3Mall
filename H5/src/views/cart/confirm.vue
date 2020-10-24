@@ -116,7 +116,8 @@
         <div class="operation">
             <span class="amount">
                 <i>合计：</i>
-                <i>￥{{orderData.order_amount}}</i>
+                <i v-if="orderData.order_amount">￥{{orderData.order_amount}}</i>
+                <i v-else>￥{{orderData.payable_amount}}</i>
             </span>
             <span class="pay" @click="onOrderSubmit">提交订单</span>
         </div>
@@ -318,10 +319,11 @@ export default {
                 case "1":
                     this.$wx.config(data.result.config);
                     var options = data.result.options;
+                    var that = this;
                     options.success = function(){
                         Toast("支付成功");
                         setTimeout(()=>{
-                            this.$router.replace('/order/detail/'+data.order_id);
+                            that.$router.replace('/order/detail/'+data.order_id);
                         },1500);
                     }
                     this.$wx.chooseWXPay(options);
