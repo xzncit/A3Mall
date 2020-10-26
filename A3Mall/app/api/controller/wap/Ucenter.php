@@ -95,7 +95,7 @@ class Ucenter extends Base {
             ->alias("u")
             ->field("b.*")
             ->join("promotion_bonus b","u.bonus_id=b.id","LEFT")
-            ->where($condition)
+            ->where($condition)->where("user_id",Users::get("id"))
             ->count();
 
         $total = ceil($count / $size);
@@ -112,7 +112,7 @@ class Ucenter extends Base {
             ->alias("u")
             ->field("b.*")
             ->join("promotion_bonus b","u.bonus_id=b.id","LEFT")
-            ->where($condition)
+            ->where($condition)->where("user_id",Users::get("id"))
             ->order("u.id","DESC")
             ->limit((($page - 1) * $size),$size)
             ->select()->toArray();
