@@ -17,37 +17,38 @@ class Bonus {
      * 优惠劵
      */
     public static function apply(&$data,$bonus_id=0){
-        if(empty($data["bonus"]['y'])){
+        $bonus = Db::name("users_bonus")
+            ->alias("u")
+            ->field("b.*,u.id as users_bonus_id")
+            ->join("promotion_bonus b","u.bonus_id=b.id","LEFT")
+            ->where("u.user_id",Users::get("id"))
+            ->where("u.status",0)
+            ->where("u.id",$bonus_id)
+            ->where("b.end_time > " . time())->find();
+
+        if(empty($bonus)){
             return $data;
         }
 
-        foreach($data["bonus"]['y'] as $key=>$item){
-            if($item["id"] == $bonus_id){
-                $index = $key;
-                break;
-            }
-        }
-
-        if(empty($data["bonus"]['y'][$index])){
-            return $data;
-        }
-
-        $bonus = $data["bonus"]['y'][$index];
-        $price = $bonus["price"];
+        $price = $bonus["amount"];
 
         if($price <= 0){
             return $data;
         }
 
-        $data["promotions"] = $data["promotions"] > 0 ? $data["promotions"]+$price : $price;
+        if($bonus["order_amount"] > $data["real_amount"]){
+            return $data;
+        }
+
+        $data["promotions"] = $data["promotions"] > 0 ? $data["promotions"] + $price : $price;
         $data["order_amount"] = $data["order_amount"] > $price ? BC::sub($data["order_amount"],$price) : 0.00;
         return $data;
     }
 
-    public static function updateStatus($bonus_id,$user_id){
+    public static function updateStatus($bonus_id,$order_id){
         $condition = [
             "id"=>$bonus_id,
-            "user_id"=>$user_id
+            "user_id"=>Users::get("id")
         ];
 
         if(!Db::name("users_bonus")->where($condition)->count()){
@@ -55,7 +56,8 @@ class Bonus {
         }
 
         return Db::name("users_bonus")->where($condition)->update([
-            "status"=>1
+            "status"=>1,
+            "order_id"=>$order_id
         ]);
     }
 }

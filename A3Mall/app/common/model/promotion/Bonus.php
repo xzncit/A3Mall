@@ -55,6 +55,6 @@ class Bonus extends A3Mall{
     }
 
     public function getEndTimeAttr($value){
-        return date("Y-m-d H:i:s");
+        return date("Y-m-d H:i:s",$value);
     }
 }

@@ -68,7 +68,7 @@ class Ucenter extends Base {
         $id = array_map("intval",explode(",",$id));
 
         if(!Db::name("users_favorite")->where("user_id",Users::get("id"))->where("id","in",$id)->count()){
-            return $this->returnAjax("删除失败，请检查是否连接",0);
+            return $this->returnAjax("删除失败，请稍后在试",0);
         }
 
         Db::name("users_favorite")->where("user_id",Users::get("id"))->where("id","in",$id)->delete();
@@ -95,7 +95,7 @@ class Ucenter extends Base {
             ->alias("u")
             ->field("b.*")
             ->join("promotion_bonus b","u.bonus_id=b.id","LEFT")
-            ->where($condition)->where("user_id",Users::get("id"))
+            ->where($condition)->where("u.user_id",Users::get("id"))
             ->count();
 
         $total = ceil($count / $size);
@@ -112,7 +112,7 @@ class Ucenter extends Base {
             ->alias("u")
             ->field("b.*")
             ->join("promotion_bonus b","u.bonus_id=b.id","LEFT")
-            ->where($condition)->where("user_id",Users::get("id"))
+            ->where($condition)->where("u.user_id",Users::get("id"))
             ->order("u.id","DESC")
             ->limit((($page - 1) * $size),$size)
             ->select()->toArray();

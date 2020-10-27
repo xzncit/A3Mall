@@ -90,28 +90,22 @@ class Order extends Base {
             ->where("u.user_id",Users::get("id"))
             ->where("u.status",0)
             ->where("b.end_time > " . time())
+            ->where('order_amount <= 0 OR ' . $data["real_amount"] . ' >= order_amount')
             ->select()->toArray();
 
-        $coupon = ['y'=>[], 'n'=>[]];
+        $coupon = [];
         foreach($bonus as $key=>$value){
-            $arr = [
-                "available"=>$value["users_bonus_id"],
+            $coupon[$key] = [
                 "id"=>$value["users_bonus_id"],
                 "name"=>$value["name"],
-                "condition"=>$value["order_amount"] <= 0 ? "无门槛" : "满".$value["order_amount"].'可使用',
-                "startAt"=>$value["start_time"],
-                "endAt"=>$value["end_time"],
-                "value"=>$value["amount"] * 100,
-                "price"=>$value["amount"],
+                "condition"=>$value["order_amount"] <= 0 ? "无门槛" : "满".$value["order_amount"].'可用',
+                "startAt"=>date("Y-m-d",$value["start_time"]),
+                "endAt"=>date("Y-m-d",$value["end_time"]),
+                "price"=>(int)$value["amount"],
                 "valueDesc"=>number_format($value["amount"]),
                 "unitDesc"=>"元",
                 "reason"=>""
             ];
-            if($value["order_amount"] <= 0 || $value["order_amount"] >= $data["real_amount"]){
-                $coupon["y"][] = $arr;
-            }else{
-                $coupon["n"][] = $arr;
-            }
         }
 
         $data["bonus"] = $coupon;
@@ -144,7 +138,7 @@ class Order extends Base {
 
         try {
             Distribution::get($data,$addressData["default"]);
-            if($bonus_id > 0 && Db::name("users_bonus")->where("user_id",Users::get("id"))->where("id",$bonus_id)->count()){
+            if($bonus_id > 0){
                 Bonus::apply($data,$bonus_id);
             }
         }catch (\Exception $e){
@@ -253,7 +247,7 @@ class Order extends Base {
         try {
             $data = Shopping::get($cart);
             Distribution::get($data,$address);
-            if($bonus_id > 0 && Db::name("users_bonus")->where("user_id",Users::get("id"))->where("id",$bonus_id)->count()){
+            if($bonus_id > 0){
                 Bonus::apply($data,$bonus_id);
             }
 
@@ -263,6 +257,7 @@ class Order extends Base {
             $data["source"] = $source;
 
             $data['order_id'] = \mall\basic\Order::create($data);
+            Bonus::updateStatus($bonus_id,$data['order_id']);
             $result = Payment::handle($data['order_id']);
             if($type == 'cart'){
                 Shopping::delete(array_map(function ($res){
@@ -270,7 +265,6 @@ class Order extends Base {
                 },$cart));
             }
 
-            Bonus::updateStatus($bonus_id,Users::get("id"));
             Promotion::updateStatus($data);
         }catch (\Exception $e){
             return $this->returnAjax($e->getMessage(),$e->getCode() > 0 ? 1 : 0);
