@@ -27,6 +27,7 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
     public static $prefixLengthsPsr4 = array (
         't' => 
         array (
+            'think\\worker\\' => 13,
             'think\\view\\driver\\' => 18,
             'think\\trace\\' => 12,
             'think\\captcha\\' => 14,
@@ -48,6 +49,10 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
         'a' => 
         array (
             'app\\' => 4,
+        ),
+        'W' => 
+        array (
+            'Workerman\\' => 10,
         ),
         'S' => 
         array (
@@ -83,6 +88,7 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+            'GatewayWorker\\' => 14,
         ),
         'E' => 
         array (
@@ -96,6 +102,10 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
     );
 
     public static $prefixDirsPsr4 = array (
+        'think\\worker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-worker/src',
+        ),
         'think\\view\\driver\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-view/src',
@@ -135,6 +145,10 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
         'app\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
+        ),
+        'Workerman\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/workerman/workerman',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -216,6 +230,10 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'GatewayWorker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/workerman/gateway-worker/src',
+        ),
         'Endroid\\QrCode\\' => 
         array (
             0 => __DIR__ . '/..' . '/endroid/qr-code/src',
@@ -241,6 +259,7 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
