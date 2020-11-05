@@ -9,30 +9,25 @@
 
 namespace app\common\model\users;
 
+use app\common\model\base\A3Mall;
+
 class Rechange extends A3Mall {
 
     protected $name = "users_rechange";
 
-    protected $type = [
-        "id"=>"integer",
-        "user_id"=>"integer",
-        "pay_type"=>"integer",
-        "order_amount"=>"float",
-        "status"=>"integer",
-        "create_time"=>"integer",
-        "pay_time"=>"integer"
-    ];
-
-    public function setTransactionIdAttr($value){
-        return strip_tags(trim($value));
+    public function users(){
+        return $this->hasOne(Users::class,"id","user_id")
+            ->bind(['username'])->joinType("LEFT");
     }
 
-    public function setOrderNoAttr($value){
-        return strip_tags(trim($value));
-    }
+    public function getList($condition,$size=10,$page=1){
+        $count = $this->withJoin(["users"])->where($condition)->count();
+        $data = $this->withJoin(["users"])->where($condition)->order('rechange.id','DESC')->paginate($size);
 
-    public function setPaymentNameAttr($value){
-        return strip_tags(trim($value));
+        return [
+            "count"=>$count,
+            "data"=>$data->items()
+        ];
     }
 
 }

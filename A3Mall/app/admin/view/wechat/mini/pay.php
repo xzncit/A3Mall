@@ -64,7 +64,7 @@
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">MCH_KEY</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="mch_key" value="{$data.mch_key|default=''}" placeholder="请输入商户KEY" autocomplete="off" class="layui-input">
+                                            <input type="text" name="mch_key" value="{$data.mch_key|default=''}" placeholder="请输入商户密钥" autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
 
