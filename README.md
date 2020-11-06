@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.4.1-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.5-blue.svg" />
     </a>
 </p>
 <p align="center">    
@@ -42,12 +42,18 @@
 访问：http://域名.com/install
 按照提示安装
 
-前端页面
+H5
 cd H5  进入前端目录
 npm install
 修改.env.production配置文件
 npm run serve 调试前端页面
 npm run build 打包前端页面，复制dist目录内容到public目录替换 index.html static/wap 
+
+小程序
+下载好小程序源码，解压
+下载安装微信开发者工具
+导入微信小程序运行
+修改小程序根目录下 config.js 配置文件
 ```
 
 ## Linux Shell命令
