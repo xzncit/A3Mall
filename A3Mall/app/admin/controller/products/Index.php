@@ -286,18 +286,18 @@ class Index extends Auth {
 
         $data = Request::post();
         if(empty($data["start_time"])){
-            return Response::returnArray("请填写拼团开始时间",0);
+            return Response::returnArray("请填写开始时间",0);
         }
 
         if(empty($data["end_time"])){
-            return Response::returnArray("请填写拼团结束时间",0);
+            return Response::returnArray("请填写结束时间",0);
         }
 
         $data["start_time"] = strtotime($data["start_time"]);
         $data["end_time"] = strtotime($data["end_time"]);
 
         if($data["start_time"] > $data["end_time"]){
-            return Response::returnArray("拼团开始时间不能大于结束时间",0);
+            return Response::returnArray("开始时间不能大于结束时间",0);
         }
 
         if(!Db::name("goods")->where("id",$data["goods_id"])->count()){
@@ -305,7 +305,7 @@ class Index extends Auth {
         }
 
         if(Db::name("goods_item")->where('goods_id',$data["goods_id"])->count() && empty($data["product_id"])){
-            return Response::returnArray("请选择要参加拼团活动的货品",0);
+            return Response::returnArray("请选择要参加活动的货品",0);
         }
 
         if(($group=Db::name("promotion_regiment")->where(["goods_id"=>$data["goods_id"]])->find()) != false){
@@ -393,18 +393,18 @@ class Index extends Auth {
 
         $data = Request::post();
         if(empty($data["start_time"])){
-            return Response::returnArray("请填写拼团开始时间",0);
+            return Response::returnArray("请填写开始时间",0);
         }
 
         if(empty($data["end_time"])){
-            return Response::returnArray("请填写拼团结束时间",0);
+            return Response::returnArray("请填写结束时间",0);
         }
 
         $data["start_time"] = strtotime($data["start_time"]);
         $data["end_time"] = strtotime($data["end_time"]);
 
         if($data["start_time"] > $data["end_time"]){
-            return Response::returnArray("拼团开始时间不能大于结束时间",0);
+            return Response::returnArray("开始时间不能大于结束时间",0);
         }
 
         if(!Db::name("goods")->where("id",$data["goods_id"])->count()){
@@ -412,7 +412,7 @@ class Index extends Auth {
         }
 
         if(Db::name("goods_item")->where('goods_id',$data["goods_id"])->count() && empty($data["product_id"])){
-            return Response::returnArray("请选择要参加拼团活动的货品",0);
+            return Response::returnArray("请选择要参加活动的货品",0);
         }
 
         if(($group=Db::name("promotion_second")->where(["goods_id"=>$data["goods_id"]])->find()) != false){
@@ -500,18 +500,18 @@ class Index extends Auth {
 
         $data = Request::post();
         if(empty($data["start_time"])){
-            return Response::returnArray("请填写拼团开始时间",0);
+            return Response::returnArray("请填写开始时间",0);
         }
 
         if(empty($data["end_time"])){
-            return Response::returnArray("请填写拼团结束时间",0);
+            return Response::returnArray("请填写结束时间",0);
         }
 
         $data["start_time"] = strtotime($data["start_time"]);
         $data["end_time"] = strtotime($data["end_time"]);
 
         if($data["start_time"] > $data["end_time"]){
-            return Response::returnArray("拼团开始时间不能大于结束时间",0);
+            return Response::returnArray("开始时间不能大于结束时间",0);
         }
 
         if(!Db::name("goods")->where("id",$data["goods_id"])->count()){
@@ -519,7 +519,7 @@ class Index extends Auth {
         }
 
         if(Db::name("goods_item")->where('goods_id',$data["goods_id"])->count() && empty($data["product_id"])){
-            return Response::returnArray("请选择要参加拼团活动的货品",0);
+            return Response::returnArray("请选择要参加活动的货品",0);
         }
 
         if(($group=Db::name("promotion_point")->where(["goods_id"=>$data["goods_id"]])->find()) != false){
