@@ -78,9 +78,10 @@ class Goods extends Base {
 
         $data = [];
         $data["collect"] = false;
-        if(!Users::isEmpty("id")){
+        $usersToken = Db::name("users_token")->where("token",Request::param("token","","trim,strip_tags"))->find();
+        if(!empty($usersToken)){
             $data["collect"] = Db::name("users_favorite")->where([
-                "user_id"=>Users::get("id"),
+                "user_id"=>$usersToken["user_id"],
                 "goods_id"=>$id
             ])->count() ? true : false;
         }
