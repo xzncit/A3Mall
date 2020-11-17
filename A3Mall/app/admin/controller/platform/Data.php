@@ -100,7 +100,7 @@ class Data extends Auth {
         if(!empty($in)){
             $r = $dataItemModel::where("pid",$data['id'])->where("id","not in",$in)->select()->toArray();
             foreach($r as $val){
-                $dataItemModel->delete($val['id']);
+                $dataItemModel->where("id",$val['id'])->delete();
                 Attachments::clear(['path'=>$val['photo']]);
             }
         }
