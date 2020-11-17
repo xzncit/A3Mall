@@ -144,8 +144,10 @@
         },
         methods: {
             onLoad(){
+                let users = Storage.get("users",true);
                 this.$http.getGoodsDetail({
-                    id: this.$route.params.id
+                    id: this.$route.params.id,
+                    token: users && users.token ? users.token : ""
                 }).then((result)=>{
                     this.collect = result.data.collect ? true : false;
                     this.products = result.data.goods;
