@@ -175,8 +175,11 @@
                 },1500);
             },
             onBuyClicked(){
-                if(this.isActivityStatus == false){
+                if(this.isActivityStatus == 0){
                     Toast("活动己结束！");
+                    return false;
+                }else if(this.isActivityStatus == 2){
+                    Toast("活动未开始！");
                     return false;
                 }
 
