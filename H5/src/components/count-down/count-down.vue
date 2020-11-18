@@ -2,7 +2,7 @@
     <div class="aaa-count-down" :class="theme">
         <div :class="'wrap-'+theme" v-if="isShow">
             <span class="before" v-if="before">{{before}}</span>
-            <span class="day">
+            <span class="day" v-if="time.day > 0">
                 <i>{{time.day}}</i>
                 <i>{{dayText}}</i>
             </span>
@@ -98,15 +98,19 @@
                 start: 0,
                 end: 0,
                 total: 0,
+                nextTotal: 0,
                 tips: "",
                 isShow: false,
                 timer: null
             };
         },
         watch: {
-            endTime: function(newValue, oldValue) {
-                this.run();
-            },
+            endTime: {
+                handler(newValue) {
+                    this.run();
+                },
+                immediate: true
+            }
         },
         methods: {
             run(){
@@ -119,18 +123,24 @@
                 this.end = this.endTime;
                 this.total = this.end - this.now;
 
-                this.updateStatus(false);
                 this.message(false,"");
                 if(this.total <= 0){
+                    this.updateStatus(0);
                     this.message(false,this.finishText);
                     return ;
                 }else if(this.nowTime < this.startTime){
                     this.before = this.startText;
+                    this.total = this.startTime - this.nowTime;
+                    this.nextTotal = this.end - this.now - this.total;
+                    this.type = 1;
+                    this.updateStatus(2);
                 }else if(this.nowTime > this.startTime && this.endTime > this.nowTime){
                     this.before = this.endText;
-                    this.updateStatus(true);
+                    this.type = 2;
+                    this.updateStatus(1);
                 }
 
+                this.runTime();
                 this.timer = setInterval(()=>{
                     this.runTime();
                 },1000);
@@ -138,15 +148,26 @@
             runTime(){
                 if(this.total <= 0){
                     this.timer && clearInterval(this.timer);
-                    this.message(false,this.finishText);
-                    this.updateStatus(false);
+                    if(this.type == 1){
+                        this.total = this.nextTotal;
+                        this.type = 2;
+                        this.updateStatus(1);
+                        this.before = this.endText;
+                        this.runTime();
+                        this.timer = setInterval(()=>{
+                            this.runTime();
+                        },1000);
+                    }else{
+                        this.message(false,this.finishText);
+                        this.updateStatus(0);
+                    }
                     return ;
                 }
 
                 let dateTime = this.total;
                 for(let i in this.fillZero){
                     let data = this.fillZero[i];
-                    let flag = dateTime > data.count ? true : false;
+                    let flag = dateTime >= data.count ? true : false;
                     if(!flag){
                         this.time[i] = data.def;
                     }
