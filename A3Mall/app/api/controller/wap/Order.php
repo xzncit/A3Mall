@@ -423,7 +423,12 @@ class Order extends Base {
         ])->select()->toArray();
 
         $refundment = Db::name("order_refundment")->where("order_id",$id)->find();
-        $array = explode(",",$refundment["order_goods_id"]);
+        if(!empty($refundment["order_goods_id"])){
+            $array = explode(",",$refundment["order_goods_id"]);
+        }else{
+            $array = [];
+        }
+
         foreach($order_goods as $key=>$value){
             $goods_array = json_decode($value["goods_array"],true);
             $order["item"][$key] = [
