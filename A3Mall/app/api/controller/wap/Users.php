@@ -230,6 +230,10 @@ class Users extends Base {
             return $this->returnAjax("您填写的手机号码不存在！",0);
         }
 
+        if($type == "register" && Db::name("users")->where("mobile",$username)->count() > 0){
+            return $this->returnAjax("您填写的手机号码己被使用！",0);
+        }
+
         $setting = new Setting();
         $config = $setting->getConfigData("sms");
         $sms = Db::name("users_sms")->where("mobile",$username)->order("id","DESC")->find();
