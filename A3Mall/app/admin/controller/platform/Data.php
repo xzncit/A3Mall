@@ -88,7 +88,7 @@ class Data extends Auth {
                 $in[] = $value;
                 $objItem->save($arr);
             }else{
-                $dataItemModel->save($arr);
+                $dataItemModel->create($arr);
                 $in[] = $dataItemModel->id;
             }
 
