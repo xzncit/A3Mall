@@ -92,8 +92,8 @@
     </div>
 </section>
 
-<script type="text/javascript" src="__WEB_PUBLIC_PATH__/static/system/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" src="__WEB_PUBLIC_PATH__/static/system/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="{__SYSTEM_PATH__}/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="{__SYSTEM_PATH__}/js/ueditor/ueditor.all.min.js"></script>
 <script type="text/javascript">
     $(function () {
         var ue = UE.getEditor('container');
