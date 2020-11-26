@@ -59,10 +59,13 @@ class Consult extends Auth {
 
             if(($obj=$usersConsult::find($data["id"])) != false){
                 $obj->save($data);
+                $data["user_id"] = $obj["id"];
+                $data["goods_id"] = $obj["id"];
             }
 
             $data["pid"] = $data["id"];
-            $usersConsult->save($data);
+            unset($data["id"]);
+            $usersConsult::create($data);
             return Response::returnArray("操作成功");
         }
 

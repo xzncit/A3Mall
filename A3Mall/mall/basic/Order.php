@@ -358,6 +358,7 @@ class Order {
         if($refunds["type"] == 0){
             Db::name("users")->where(["id"=>$order["user_id"]])->inc("amount",$amount)->update();
             Db::name("users_log")->insert([
+                "order_no"=>$order["order_no"],
                 "user_id"=>$order["user_id"],
                 "admin_id"=>Session::get("system_user_id"),
                 "action"=>3,
@@ -381,6 +382,7 @@ class Order {
 
             $log = '退款订单号：' . $refunds['order_no'] . '中的商品,减掉经验 -' . $orderRow['exp'];
             Db::name("users_log")->insert([
+                "order_no"=>$order["order_no"],
                 "user_id"=>$refunds["user_id"],
                 "admin_id"=>$admin_id ? $admin_id : "-1",
                 "action"=>2,
@@ -395,6 +397,7 @@ class Order {
             $log = '退款订单号：' . $refunds['order_no'] . '中的商品,减掉积分 -' . $orderRow['point'];
             Db::name("users")->where(["id"=>$order["user_id"]])->dec("point",$orderRow['point'])->update();
             Db::name("users_log")->insert([
+                "order_no"=>$order["order_no"],
                 "user_id"=>$refunds["user_id"],
                 "admin_id"=>$admin_id ? $admin_id : "-1",
                 "action"=>1,

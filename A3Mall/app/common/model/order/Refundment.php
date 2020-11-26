@@ -81,7 +81,7 @@ class Refundment extends A3Mall{
     }
 
     public function getOrderUrlAttr($value,$data){
-        return createUrl("order.index/detail",["id"=>$data["id"]]);
+        return createUrl("order.index/detail",["id"=>$data["order_id"]]);
     }
 
     public function getRefundmentTextAttr($value,$data){

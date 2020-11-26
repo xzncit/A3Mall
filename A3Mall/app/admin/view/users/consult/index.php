@@ -83,7 +83,7 @@ layui.use(['table','form'], function () {
                                 return "<span style='color:green;'>己回复</span>";
                         }
                   }}
-                , {field: 'create_time', title: '创建时间',width:160,align:'center'}
+                , {field: 'create_time', title: '创建时间',width:180,align:'center'}
                 , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 130}
             ]]
         , page: true
