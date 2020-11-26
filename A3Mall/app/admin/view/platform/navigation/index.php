@@ -44,7 +44,7 @@ layui.use(['table','form'], function () {
                   {type: 'checkbox'}
                 , {field: 'id', title: 'ID', width: 80, unresize: true, sort: true,align:"center"}
                 , {field: 'name', title: '名称'}
-                , {field: 'data_url', title: '地址',align:'center'}
+                , {field: 'url', title: '地址',align:'center'}
                 , {field: 'sort', title: '排序',width:160,align:'center',edit:true,}
                 , {field: 'status', title: '状态', width: 110,templet: '#checkboxTpl'}
                 , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 120}
