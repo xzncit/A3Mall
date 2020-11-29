@@ -116,6 +116,9 @@ class Order {
                     "product_id" => $val["product_id"],
                     "goods_nums"=>$val["goods_nums"]
                 ], "-");
+                Db::name("goods")->where('id',$val["goods_id"])->update([
+                    "sale"=>Db::raw("sale+1")
+                ]);
             }
         }
 

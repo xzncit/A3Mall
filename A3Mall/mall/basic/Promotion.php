@@ -184,7 +184,7 @@ class Promotion {
 
     public static function checkOrderType($id,$product_id,$num,$type){
         $data = [
-            "goods_id"=>$id,
+            "goods_id"=>is_array($id) && !empty($id[0]) ? $id[0] : $id,
             "product_id"=>$product_id,
             "nums"=>$num,
             "spec_key"=>"",
