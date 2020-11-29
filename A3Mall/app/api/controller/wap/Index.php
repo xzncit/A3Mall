@@ -99,7 +99,7 @@ class Index extends Base {
         $count = Db::name("goods")
             ->where('status',0)->count();
 
-        $total = ceil($count/$size);
+        $total = ceil($count / $size);
         if($total == $page -1){
             return $this->returnAjax("empty",-1,[
                 "list"=>[],
@@ -117,7 +117,7 @@ class Index extends Base {
         $data = array_map(function ($rs){
             $rs["photo"] = Tool::thumb($rs["photo"],"medium",true);
             return $rs;
-        },$result);
+        }, $result);
 
         return $this->returnAjax("ok",1, [
             "list"=>$data,
