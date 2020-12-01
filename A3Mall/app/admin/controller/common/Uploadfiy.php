@@ -62,7 +62,7 @@ class Uploadfiy extends Auth {
             $uploadFile = Filesystem::disk("certificate")->putFile( '', $file);
             $name = basename($uploadFile);
             $lastId = Attachments::save($name,$dir . trim($uploadFile,"/"),$file->extension(),$file->getSize());
-
+            Attachments::handle($lastId,1);
             return Response::returnArray("ok",0,["src"=>$dir . trim($uploadFile,"/"),"id"=>$lastId]);
         } catch (ValidateException $e) {
             return Response::returnArray($e->getMessage(),1);
