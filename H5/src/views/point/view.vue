@@ -27,6 +27,14 @@
                             <span><i class="icon iconfont">&#xe65e;</i><i>{{ products.sell_price }}</i><i>积分</i></span>
                             <span>原价格<i>￥{{ products.market_price }}</i></span>
                         </div>
+                        <div class="count-down-box">
+                            <count-down
+                                    :now-time="products.now_time"
+                                    :start-time="products.start_time"
+                                    :end-time="products.end_time"
+                                    :status.sync="isActivityStatus"
+                            ></count-down>
+                        </div>
                     </div>
 
                     <div class="goods-info clear">
@@ -109,6 +117,7 @@
     import Vue from 'vue';
     import { PullRefresh, Swipe, SwipeItem } from 'vant';
     import { Lazyload,Toast } from 'vant';
+    import CountDown from '../../components/count-down/count-down'
     import SkuAction from '../../components/sku-action/sku-action';
     import NavBar from '../../components/nav-bar/nav-bar';
     import GoodsAction from "../../components/goods-action/goods-action";
@@ -126,6 +135,7 @@
             [GoodsAction.name]: GoodsAction,
             [GoodsActionIcon.name]: GoodsActionIcon,
             [GoodsActionButton.name]: GoodsActionButton,
+            [CountDown.name]: CountDown,
             [SkuAction.name]: SkuAction
         },
         data() {
@@ -141,6 +151,7 @@
                 cartCount: 0,
                 current: 0,
                 isRefresh: false,
+                isActivityStatus:false,
                 clientHeight: window.outerHeight - 50
             };
         },
@@ -177,6 +188,14 @@
                 this.$router.push("/goods/view/"+this.products.goods_id);
             },
             onBuyClicked(){
+                if(this.isActivityStatus == 0){
+                    Toast("活动己结束！");
+                    return false;
+                }else if(this.isActivityStatus == 2){
+                    Toast("活动未开始！");
+                    return false;
+                }
+
                 if(this.isSkuStatus == false){
                     this.isSkuStatus = true;
                     return ;
@@ -269,6 +288,41 @@
                 }
             }
         }
+    }
+}
+.count-down-box {
+    float: right;
+    height: 70px;
+    /deep/.simple{
+        .wrap-simple{
+            color: #fff;
+            height: 70px;
+            font-size: 13px;
+            padding-right: 16px;
+            padding-top: 10px;
+            .before {
+                color: #ffed51;
+                display: block;
+            }
+            .day,.hour,.minute,.second{
+                i {
+                    display: inline-block;
+                }
+                i:first-child{
+                    background-color: #ffc241;
+                    color: #000;
+                    border-radius: 3px;
+                    min-width: 20px;
+                    height: 18px;
+                    text-align: center;
+                }
+                i:last-child{
+                    color: #ffc241;
+                    padding: 0 2px;
+                }
+            }
+        }
+        .tips-simple{ color: #ffc241; padding-right: 16px; height: 70px; line-height: 70px }
     }
 }
 .goods-info{

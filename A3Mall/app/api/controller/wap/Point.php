@@ -156,9 +156,9 @@ class Point extends Base {
             "store_nums"=>$goods["pg_store_nums"],
             "sale"=>$goods["pg_sum_count"],
             "content"=>$goods["content"],
+            "now_time"=>time(),
             "start_time"=>$goods["start_time"],
-            "end_time"=>$goods["end_time"],
-            "now_time"=>time()
+            "end_time"=>$goods["end_time"]
         ];
 
         $data["comments"] = [];

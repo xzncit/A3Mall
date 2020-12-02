@@ -51,7 +51,7 @@ class OAuth extends Base {
         if(isset($user["unionid"])){
             $condition["unionid"] = $user["unionid"];
         }else{
-            $condition["openid"] = $token['openid'];
+            $condition["openid"] = $user['openid'];
         }
 
         if(($row=Db::name("wechat_users")->where($condition)->find()) != false){
@@ -75,7 +75,7 @@ class OAuth extends Base {
 
                 $row["user_id"] = Db::name("users")->getLastInsID();
                 Db::name("wechat_users")->where([
-                    'openid' => $token['openid']
+                    'openid' => $user['openid']
                 ])->update(["user_id"=>$row["user_id"]]);
             }
 
