@@ -251,6 +251,10 @@ class Order extends Base {
                 Bonus::apply($data,$bonus_id);
             }
 
+            if($data["real_point"] > Users::get("point")){
+                throw new \Exception("您的积分不足，不能兑换商品",0);
+            }
+
             $data["address"] = $address;
             $data["payment"] = $payment;
             $data["remarks"] = $remarks;
