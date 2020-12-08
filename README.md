@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.5.3-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.5.4-blue.svg" />
     </a>
 </p>
 <p align="center">    
@@ -19,6 +19,7 @@
  [官网地址](http://www.a3-mall.com)
  | [微信小程序下载](https://gitee.com/xzncit/A3Mall-miniprogram)
  | [帮助文档](http://doc.a3-mall.com)
+ | [安装文档](http://doc.a3-mall.com/help/)
 
 
 ## 项目介绍
