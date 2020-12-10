@@ -40,7 +40,7 @@ class WeChatMessage extends BasicWeChat {
     /**
      * 事件消息处理
      */
-    protected function event(){
+     public function event(){
         switch (strtolower($this->receive['event'])) {
             case 'subscribe': // 用户关注
                 $this->updateFansinfo(true);
