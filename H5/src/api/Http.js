@@ -702,7 +702,7 @@ export function sendOrderRefund(params) {
 }
 
 export function getOrderService(params) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { 
         request.get("/order/service",params).then(res=>{
             resolve(res)
         }).catch(err=>{

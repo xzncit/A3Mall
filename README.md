@@ -40,6 +40,7 @@
 ```html
 下载好程序文件，解压上传到web根目录
 需要绑定域名访问到public目录，确保其它目录不在WEB目录下面
+Linux下需要给程序根目录下的runtime目录权限
 访问：http://域名.com/install
 按照提示安装
 

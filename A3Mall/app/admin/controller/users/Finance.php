@@ -183,7 +183,7 @@ class Finance extends Auth {
             $data = Request::post();
 
             $u = Db::name("users")->where(["id"=>$row["user_id"]])->find();
-            if($u["amount"] <= $row["price"]){
+            if($u["amount"] < $row["price"]){
                 return Response::returnArray("操作失败，余额不足！",0);
             }
 
