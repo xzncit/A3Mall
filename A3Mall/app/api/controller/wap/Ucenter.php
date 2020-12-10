@@ -622,6 +622,10 @@ class Ucenter extends Base {
             return $this->returnAjax("提现金额不能小于" . $setting["amount"],0);
         }
 
+        if(Users::get("amount") < $data["price"]){
+            return $this->returnAjax("提现失败，您的余额不足",0);
+        }
+
         Db::name("users_withdraw_log")->insert([
             "user_id"=>Users::get("id"),
             "withdraw_type"=>1,
