@@ -17,10 +17,11 @@
 
 
 ## 导航栏目
+## 导航栏目
  [官网地址](http://www.a3-mall.com)
- | [下载微信小程序](https://gitee.com/xzncit/A3Mall-miniprogram)
- | [下载服务端](https://gitee.com/xzncit/A3Mall)
+ | [微信小程序下载](https://gitee.com/xzncit/A3Mall-miniprogram)
  | [帮助文档](http://doc.a3-mall.com)
+ | [安装文档](http://doc.a3-mall.com/miniprogram/)
 
 
 
