@@ -26,7 +26,7 @@ class WeChatPush extends BasicWeChat {
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $this->postXml = file_get_contents("php://input");
-            $this->encryptType = $_REQUEST["encrypt_type"];
+            $this->encryptType = isset($_REQUEST["encrypt_type"]) ? $_REQUEST["encrypt_type"] : '';
             if($this->encryptType == 'aes'){
                 if(empty($this->config["enaes_key"])){
                     throw new \Exception("公众号 EnAesKey 为空",0);

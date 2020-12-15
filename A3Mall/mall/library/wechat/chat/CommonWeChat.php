@@ -163,7 +163,7 @@ class CommonWeChat {
     /**
      * 解析XML内容到数组
      */
-    protected function xml2arr($xml){
+    public function xml2arr($xml){
         $entity = libxml_disable_entity_loader(true);
         $data = (array)simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
         libxml_disable_entity_loader($entity);

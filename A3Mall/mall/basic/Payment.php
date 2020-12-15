@@ -198,17 +198,20 @@ class Payment {
                 break;
             case "wechat-mini":
                 try{
+                    $mini = Db::name("wechat_users")->where("user_id",Users::get("id"))->find();
                     $web_name = Setting::get("web_name",true);
-                    $rs = WeMini::Payment()->createOrder([
+                    $obj = new Order();
+                    $rs = $obj->create([
                         'body'             => $web_name . $goods_title,
                         'total_fee'        => $order["order_amount"] * 100,
                         'trade_type'       => 'JSAPI',
                         'notify_url'       => createUrl('api/wechat/notify', [], false, true),
                         'out_trade_no'     => $order["order_no"],
                         'spbill_create_ip' => Request::ip(),
+                        'openid'           => $mini["mp_openid"]
                     ]);
 
-                    $params = WeMini::Payment()->createParamsWxApp($rs["prepay_id"]);
+                    $params = $obj->createParamsWxApp($rs["prepay_id"]);
                     $result = [
                         "pay"=>1,
                         "order_id"=>$order["id"],
@@ -332,17 +335,20 @@ class Payment {
                 break;
             case "wechat-mini":
                 try{
+                    $mini = Db::name("wechat_users")->where("user_id",Users::get("id"))->find();
                     $web_name = Setting::get("web_name",true);
-                    $rs = WeMini::Payment()->createOrder([
+                    $obj = new Order();
+                    $rs = $obj->create([
                         'body'             => $web_name,
                         'total_fee'        => $price * 100,
                         'trade_type'       => 'JSAPI',
                         'notify_url'       => createUrl('api/wechat/notify', [], false, true),
                         'out_trade_no'     => $orderNo,
                         'spbill_create_ip' => Request::ip(),
+                        'openid'                 => $mini['mp_openid']
                     ]);
 
-                    $params = WeMini::Payment()->createParamsWxApp($rs["prepay_id"]);
+                    $params = $obj->createParamsWxApp($rs["prepay_id"]);
                     $result = [
                         "pay"=>1,
                         "order_id"=>$order_id,

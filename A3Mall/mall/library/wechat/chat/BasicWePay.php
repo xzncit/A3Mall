@@ -32,8 +32,8 @@ class BasicWePay extends CommonWeChat {
         }
 
         $this->params = [
-            'appid'     => $this->config["appid"],
-            'mch_id'    => $this->config["mch_id"],
+            'appid'     => trim($this->config["appid"]),
+            'mch_id'    => trim($this->config["mch_id"]),
             'nonce_str' => Utils::createRandString()
         ];
     }
@@ -115,6 +115,7 @@ class BasicWePay extends CommonWeChat {
             if (empty($option['ssl_cer']) || !file_exists($option['ssl_cer'])) {
                 throw new \Exception("Missing Config -- ssl_cer", '0');
             }
+
             if (empty($option['ssl_key']) || !file_exists($option['ssl_key'])) {
                 throw new \Exception("Missing Config -- ssl_key", '0');
             }
@@ -123,7 +124,6 @@ class BasicWePay extends CommonWeChat {
         $params = array_merge($this->params,$data);
         $needSignType && ($params['sign_type'] = strtoupper($signType));
         $params['sign'] = $this->getPaySign($params, $signType);
-
         $result = $this->xml2arr($this->post($url, $this->arr2xml($params), $option));
         if ($result['return_code'] !== 'SUCCESS') {
             throw new \Exception($result['return_msg'], '0');

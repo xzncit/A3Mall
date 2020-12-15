@@ -14,7 +14,7 @@ use mall\library\wechat\mini\payment\Bill;
 use mall\library\wechat\mini\payment\Transfers;
 use mall\library\wechat\mini\payment\TransfersBank;
 
-class Payment{
+class Payment {
 
     /**
      * 统一下单
