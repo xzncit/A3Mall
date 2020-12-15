@@ -40,7 +40,7 @@ class WeChatMessage extends BasicWeChat {
     /**
      * 事件消息处理
      */
-     public function event(){
+    public function event(){
         switch (strtolower($this->receive['event'])) {
             case 'subscribe': // 用户关注
                 $this->updateFansinfo(true);
@@ -74,7 +74,7 @@ class WeChatMessage extends BasicWeChat {
      * @param boolean $isLast 重复回复消息处理
      */
     private function keys($rule, $isLast = false){
-        list($table, $field, $value) = explode('#', $rule . '##');
+        list($table, $field, $value) = explode('#', $rule);
         $data = Db::name($table)->where([$field => $value])->find();
         if (empty($data['type']) || (array_key_exists('status', $data) && $data['status'] == 1)) {
             return $isLast ? false : $this->keys('wechat_keys#keys#defaults', true);
@@ -92,7 +92,7 @@ class WeChatMessage extends BasicWeChat {
                 list($news, $articles) = [$this->news($data['news_id']), []];
                 if (empty($news['articles'])) return false;
                 foreach ($news['articles'] as $vo) array_push($articles, [
-                    'url'   => createUrl("@api/wechat.news/view", [], false, true) . "?id={$vo['id']}",
+                    'url'   => createUrl("api/wechat.news/view", [], false, true) . "?id={$vo['id']}",
                     'title' => $vo['title'], 'picurl' => Tool::thumb($vo['local_url'],"",true), 'description' => $vo['digest'],
                 ]);
                 return $this->sendMessage('news', ['articles' => $articles]);

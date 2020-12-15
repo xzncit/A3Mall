@@ -110,14 +110,22 @@ class Order extends BasicWeMiniPay {
      * 获取微信小程序支付参数
      * @param string $prepayId 统一下单预支付码
      * @return array
+     * MD5(
+     * appId=wxd678efh567hg6787&
+     * nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&
+     * package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&
+     * timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111
+     * )
      */
     public function createParamsWxApp($prepayId){
         $data = [
-            "timeStamp" => (string)time(),
+            "appId"     => $this->config["appid"],
             "nonceStr"  => Utils::createRandString(),
             "package"   => "prepay_id=". $prepayId,
-            "signType"  => "MD5"
+            "signType"  => "MD5",
+            "timeStamp" => (string)time(),
         ];
+
         $data['paySign'] = $this->getPaySign($data, 'MD5');
         return $data;
     }

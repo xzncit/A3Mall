@@ -33,8 +33,8 @@ class BasicWeMiniPay extends CommonWeChat {
         }
 
         $this->params = [
-            'appid'     => $this->config["appid"],
-            'mch_id'    => $this->config["mch_id"],
+            'appid'     => trim($this->config["appid"]),
+            'mch_id'    => trim($this->config["mch_id"]),
             'nonce_str' => Utils::createRandString()
         ];
     }
