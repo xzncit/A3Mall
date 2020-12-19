@@ -70,8 +70,8 @@ class Payment{
      * @param string $product_id 商户定义的商品id 或者订单号
      * @return string
      */
-    public function createParamsForRuleQrc($product_id){
-        return Order::instance()->qrcParams($product_id);
+    public function createParamsForRuleQrc($options){
+        return Order::instance()->qrcParams($options);
     }
 
     /**

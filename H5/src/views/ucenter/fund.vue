@@ -65,6 +65,15 @@
                 emptyDescription: "暂无内容",
             };
         },
+        mounted() {
+            if (window.history && window.history.pushState) {
+                history.pushState(null, null, document.URL);
+                window.addEventListener('popstate', this.prev, false);
+            }
+        },
+        destroyed() {
+            window.removeEventListener('popstate', this.prev, false);
+        },
         methods: {
             changeData(index){
                 this.page = 1;
@@ -74,7 +83,12 @@
                 this.onLoad();
             },
             prev() {
-                this.$tools.prev();
+                let pay_type = this.$storage.get("pay_type");
+                if(pay_type != null && pay_type == 2){
+                    this.$router.replace({path: '/ucenter/wallet'});
+                }else{
+                    this.$tools.prev();
+                }
             },
             onLoad() {
                 this.isEmpty = false;

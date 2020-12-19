@@ -117,6 +117,7 @@
                         this.$wx.chooseWXPay(options);
                         break;
                     case "2":
+                        this.$storage.set("pay_type","2");
                         location.href = data.result.url+"&redirect_url="+location.origin+'/ucenter/bill/fund';
                         break;
                     case "99":

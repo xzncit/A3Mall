@@ -76,16 +76,9 @@ class Order extends BasicWePay {
      * @param string $productId 商户定义的商品id或者订单号
      * @return string
      */
-    public function qrcParams($productId){
-        $data = [
-            'appid'      => $this->config["appid"],
-            'mch_id'     => $this->config["mch_id"],
-            'time_stamp' => (string)time(),
-            'nonce_str'  => Tools::createNoncestr(),
-            'product_id' => (string)$productId,
-        ];
-        $data['sign'] = $this->getPaySign($data, 'MD5');
-        return "weixin://wxpay/bizpayurl?" . http_build_query($data);
+    public function qrcParams($options){
+        $url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
+        return $this->callPost($url, $options, false, 'MD5');
     }
 
     /**

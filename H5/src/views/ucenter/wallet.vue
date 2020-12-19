@@ -100,7 +100,13 @@
         },
         methods: {
             prev() {
-                this.$tools.prev();
+                let pay_type = this.$storage.get("pay_type");
+                this.$storage.delete("pay_type");
+                if(pay_type != null && pay_type == 2){
+                    this.$router.replace({path: '/ucenter/index'});
+                }else{
+                    this.$tools.prev();
+                }
             }
         }
     }
