@@ -15,6 +15,7 @@ use mall\library\wechat\chat\WeChat;
 use mall\library\wechat\chat\WeChatMessage;
 use mall\library\wechat\chat\WeChatPush;
 use mall\library\wechat\mini\BasicWeMini;
+use mall\library\wechat\mini\BasicWeMiniPay;
 use think\facade\Db;
 
 class Index {
@@ -57,7 +58,7 @@ class Index {
             }
 
             // 己充值成功的订单直接返回通知微信成功
-            if($rechange["status"] == 2){
+            if($rechange["status"] == 1){
                 return $this->returnXML(true);
             }
 
@@ -80,14 +81,14 @@ class Index {
                         $pay = new BasicWePay();
                         break;
                     case "wechat-mini":
-                        $pay = new BasicWeMini();
+                        $pay = new BasicWeMiniPay();
                         break;
                     case "wechat-app": // 待实现
                     default:
                         throw new \Exception("您选择的支付方式不存在",0);
                 }
 
-                if ($pay->getPaySign($data) !== $data['sign']) {
+                if($pay->getPaySign($data) !== $data['sign']) {
                     throw new \Exception("验证签名错误",0);
                 }
 
@@ -115,6 +116,11 @@ class Index {
                 Db::commit();
             }catch(\Exception $ex){
                 Db::rollback();
+                Db::name("users_rechange")->where("order_no",$data["out_trade_no"])->update([
+                    "status"=>2,
+                    "transaction_id"=>$data["transaction_id"],
+                    "pay_time"=>time()
+                ]);
                 return $this->returnXML(false);
             }
 
@@ -151,7 +157,7 @@ class Index {
                     $pay = new BasicWePay();
                     break;
                 case "wechat-mini":
-                    $pay = new BasicWeMini();
+                    $pay = new BasicWeMiniPay();
                     break;
                 case "wechat-app": // 待实现
                 default:

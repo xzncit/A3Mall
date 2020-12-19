@@ -118,7 +118,7 @@ class Reply extends Auth {
         if(Request::isAjax()){
             $data = Request::post();
             if(Db::name("wechat_keys")->where(["keys"=>"subscribe"])->count()){
-                Db::name("wechat_keys")->strict(false)->where(["keys"=>"defaults"])->update($data);
+                Db::name("wechat_keys")->strict(false)->where(["keys"=>"subscribe"])->update($data);
             }else{
                 $data["keys"] = "subscribe";
                 $data["create_time"] = time();
