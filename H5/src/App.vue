@@ -1,7 +1,6 @@
 <template>
   <div id="app" v-cloak>
     <router-view></router-view>
-
     <div v-if="isTabbar" style="width: 100%; height: 50px;"></div>
     <van-tabbar v-if="isTabbar" class="gtabbar-box" route v-model="active" active-color="#b71c1c" inactive-color="#333">
       <van-tabbar-item icon="wap-home-o" to="/" replace>
