@@ -9,7 +9,6 @@
         />
         <div class="header">
             <div class="title">我的钱包</div>
-            <div class="rechange" @click="$router.push('/rechange/view')">充值 &gt;</div>
             <div class="info">
                 <div>总资产(元)</div>
                 <div>{{amount}}</div>
@@ -18,21 +17,6 @@
                     <span>|</span>
                     <span>累计消费(元)：{{consume_amount||"0.00"}}</span>
                 </div>
-            </div>
-        </div>
-
-        <div class="log">
-            <div @click="$router.push('/ucenter/bill/cashlist')">
-                <span><img src="../../assets/images/wallet/1.png"></span>
-                <span>申请提现</span>
-            </div>
-            <div @click="$router.push('/ucenter/bill/fund')">
-                <span><img src="../../assets/images/wallet/2.png"></span>
-                <span>资金明细</span>
-            </div>
-            <div @click="$router.push('/ucenter/point')">
-                <span><img src="../../assets/images/wallet/3.png"></span>
-                <span>积分中心</span>
             </div>
         </div>
 

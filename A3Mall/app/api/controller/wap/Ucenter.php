@@ -557,37 +557,6 @@ class Ucenter extends Base {
         ]);
     }
 
-    public function rechange(){
-        $payment = Request::post("payment","","trim,strip_tags");
-        $source = Request::post("source","","intval");
-        $price = Request::post("price/f","0");
-
-        if($payment == 'wechat'){
-            switch($source){
-                case 1:
-                    $payment = "wechat-h5";
-                    break;
-                case 2:
-                    $payment = "wechat";
-                    break;
-                case 3:
-                    $payment = "wechat-mini";
-                    break;
-                case 4:
-                    $payment = "wechat-app";
-                    break;
-            }
-        }
-
-        try{
-            $rs = Payment::rechang($payment,$price);
-        }catch (\Exception $ex){
-            return $this->returnAjax($ex->getMessage(),$ex->getCode());
-        }
-
-        return $this->returnAjax('ok',1,$rs);
-    }
-
     public function settlement(){
         $setting = Db::name("setting")->where(["name"=>"users"])->value("value");
         $setting = json_decode($setting,true);
