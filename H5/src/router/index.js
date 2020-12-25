@@ -188,11 +188,6 @@ const routes = [
         component:()=>import("../views/ucenter/wallet")
     },
     {
-        path:'/rechange/view',
-        meta: { title: "", tabbar: false, auth: true },
-        component:()=>import("../views/rechange/view")
-    },
-    {
         path:'/ucenter/withdraw',
         meta: { title: "", tabbar: false, auth: true },
         component:()=>import("../views/ucenter/withdraw")
