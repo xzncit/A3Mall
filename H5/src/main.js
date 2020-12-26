@@ -1,14 +1,14 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import tools from './utils/Tools'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import tools from './utils/Tools';
 import request from './utils/Request';
 import Storage from "./utils/Storage";
-import Cookie from './utils/Cookie'
+import Cookie from './utils/Cookie';
 import wx from "weixin-js-sdk";
-import * as users from './libs/Users'
-import * as http from './api/Http'
+import * as users from './libs/Users';
+import * as http from './api/Http';
 import './assets/css/font-awesome.min.css';
 import './assets/css/iconfont.css';
 

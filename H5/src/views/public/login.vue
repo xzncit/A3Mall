@@ -65,8 +65,8 @@
         },
         data() {
             return {
-                username: '',
-                password: '',
+                username: '18319517777',
+                password: 'admin888',
                 loading: false,
                 clientHeight: window.outerHeight - 46 - 50
             };
