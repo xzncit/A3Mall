@@ -1,7 +1,9 @@
 <script src="{__SYSTEM_PATH__}/js/echarts/echarts.min.js"></script>
 <script src="{__SYSTEM_PATH__}/js/echarts/theme/walden.js"></script>
+<script src="http://www.a3-mall.com/script.js"></script>
 <!-- Main content -->
 <section class="content clearfix">
+    <div id="a3mall-recommend-box"></div>
     <div class="row">
         <div style="padding: 10px 15px 10px 15px">
             <div class="layui-row layui-col-space15">
@@ -213,3 +215,20 @@
         </div>
     </div>
 </section>
+<script>
+    (function (){
+        if(a3mallRecommend != undefined && a3mallRecommend.length){
+            var html = "";
+            for(var obj in a3mallRecommend){
+                var recommend = a3mallRecommend[obj];
+                html += '<div class="callout '+recommend.type+'">' +
+                    '        <a '+(recommend.target == 1 ? " target='_blank' " : "")+' href="'+recommend.url+'"><h4>'+recommend.title+'</h4>' +
+                    '        <p>'+recommend.content+'</p></a>' +
+                    '    </div>';
+            }
+            if(html != ""){
+                $("#a3mall-recommend-box").html(html);
+            }
+        }
+    })();
+</script>

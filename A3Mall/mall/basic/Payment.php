@@ -34,23 +34,6 @@ class Payment {
         }
 
         try{
-            // 检查是否为积分订单
-            if($order["type"] == 1){
-                Db::name("users")->where("id",Users::get("id"))->update([
-                    "point"=>Db::raw("point-".$order["real_point"])
-                ]);
-
-                Db::name("users_log")->insert([
-                    "user_id"=>Users::get("id"),
-                    "order_no"=>$order["order_no"],
-                    "action"=>1,
-                    "operation"=>1,
-                    "point"=>$order["real_point"],
-                    "description"=>"成功购买了订单号：{$order["order_no"]}中的商品,积分减少{$order["real_point"]}",
-                    "create_time"=>time()
-                ]);
-            }
-
             // 如果订单金额小于等于0 支付成功
             if($order["order_amount"] <= 0){
                 Db::name("order_log")->insert([

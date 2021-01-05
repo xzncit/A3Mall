@@ -195,7 +195,7 @@
                 this.$tools.prev();
             }
 
-            if(this.$tools.in_array(type,["buy","point","second","regiment","special"])){
+            if(this.$tools.in_array(type,["buy","second","regiment","special"])){
                 params.sku_id = this.$route.query.sku_id;
                 params.num = this.$route.query.num;
             }
