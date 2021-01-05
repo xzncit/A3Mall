@@ -28,8 +28,6 @@ class Promotion {
 
     public static function run($data){
         switch($data["type"]){
-            case "1":
-                return self::point($data);
             case "2":
             case "3":
             case "4":
@@ -39,29 +37,6 @@ class Promotion {
             default:
                 return self::discount($data);
         }
-    }
-
-    private static function point($order){
-        if(($point = Db::name("promotion_point")
-                ->where("unix_timestamp(now()) between start_time AND end_time")
-                ->where(["id"=>$order["activity_id"],"status"=>0])->find()) == false){
-            throw new \Exception("您要兑换的商品己过期",0);
-        }
-
-        $num = 0;
-        foreach($order["item"] as $val){
-            $num += $val["goods_nums"];
-        }
-
-        if($num > $point["store_nums"]){
-            throw new \Exception("商品库存不足",0);
-        }
-
-        $order["real_point"] = $point["point"] * $num;
-        $order["payable_amount"] = $order["real_freight"];
-        $order["point"] = 0;
-        $order["exp"] = 0;
-        return $order;
     }
 
     private static function activity($order){
@@ -204,17 +179,6 @@ class Promotion {
                 $data["activity_id"] = $second["id"];
                 $data["goods_id"] = $second["goods_id"];
                 break;
-            case "point":
-                if(($point = Db::name("promotion_point")
-                        ->where("store_nums",">","0")
-                        ->where("end_time",">",time())
-                        ->where(["id"=>$id,"status"=>0])->find()) == false){
-                    throw new \Exception("您选择的积分商品己下架",0);
-                }
-
-                $data["activity_id"] = $point["id"];
-                $data["goods_id"] = $point["goods_id"];
-                break;
             case "regiment":
                 if(($regiment = Db::name("promotion_regiment")
                         ->where("store_nums",">","0")
@@ -254,16 +218,6 @@ class Promotion {
         }
 
         switch($order["type"]){
-            case 1: // 积分
-                if(!Db::name("promotion_point")->where(["id"=>$order["activity_id"]])->count()){
-                    return true;
-                }
-
-                $goods = current($order["item"]);
-                Db::name("promotion_point")
-                    ->where(["id"=>$order["activity_id"]])
-                    ->inc("sum_count",$goods["goods_nums"])->update();
-                break;
             case 2: // 团购
                 if(!Db::name("promotion_regiment")->where(["id"=>$order["activity_id"]])->count()){
                     return true;

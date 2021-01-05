@@ -237,7 +237,7 @@ export function getNewsDetail(params) {
 
 export function getPointList(params) {
     return new Promise((resolve, reject) => {
-        request.get("/point",params).then((result)=>{
+        request.get("/point/list",params).then((result)=>{
             resolve(result)
         }).catch((error)=>{
             reject(error)
@@ -245,12 +245,12 @@ export function getPointList(params) {
     });
 }
 
-export function getPointDetail(params) {
+export function receivePointCoupon(params) {
     return new Promise((resolve, reject) => {
-        request.get("/point/view",params).then((result)=>{
+        request.get("/point/receive",params).then((result)=>{
             resolve(result);
         }).catch(error=>{
-            router.replace("/404");
+            reject(error);
         });
     });
 }

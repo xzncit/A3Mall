@@ -74,11 +74,6 @@ const routes = [
         component:()=>import("../views/point/index")
     },
     {
-        path:'/point/view/:id',
-        meta: { title: "", tabbar: false, auth: false },
-        component:()=>import("../views/point/view")
-    },
-    {
         path:'/regiment',
         meta: { title: "", tabbar: false, auth: false },
         component:()=>import("../views/regiment/index")

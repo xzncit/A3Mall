@@ -38,7 +38,7 @@ class Order extends Base {
 
         if(count($array) <= 0){
             return $this->returnAjax("请选择需要购买的商品",0);
-        }else if(empty($type) || !in_array($type,["buy","cart","point","second","special","regiment"])){
+        }else if(empty($type) || !in_array($type,["buy","cart","second","special","regiment"])){
             return $this->returnAjax("非法操作",0);
         }
 
@@ -167,7 +167,7 @@ class Order extends Base {
 
         if(count($array) <= 0){
             return $this->returnAjax("请选择需要购买的商品",0);
-        }else if(empty($type) || !in_array($type,["buy","cart","point","second","special","regiment"])){
+        }else if(empty($type) || !in_array($type,["buy","cart","second","special","regiment"])){
             return $this->returnAjax("非法操作",0);
         }
 
@@ -185,9 +185,6 @@ class Order extends Base {
                     break;
                 case 3:
                     $payment_id = "wechat-mini";
-                    break;
-                case 4:
-                    $payment_id = "wechat-app";
                     break;
             }
         }
@@ -249,10 +246,6 @@ class Order extends Base {
             Distribution::get($data,$address);
             if($bonus_id > 0){
                 Bonus::apply($data,$bonus_id);
-            }
-
-            if(isset($data["real_point"]) && $data["real_point"] > Users::get("point")){
-                throw new \Exception("您的积分不足，不能兑换商品",0);
             }
 
             $data["address"] = $address;

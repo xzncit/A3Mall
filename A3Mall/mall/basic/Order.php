@@ -421,7 +421,6 @@ class Order {
             'create_time' => time()
         ]);
 
-        self::updateOrderGroupStatus($order,3,1);
         return true;
     }
 

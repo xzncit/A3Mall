@@ -108,7 +108,7 @@
                 </li>
                 {/volist}
                 <li class="header">联系方式</li>
-                <li><a target="_blank" href="http://www.a3-mall.com/home/authorized/1.html"><i class="fa fa-circle-o text-yellow"></i> <span>获取授权</span></a></li>
+                <li><a href="http://www.a3-mall.com" target="_blank"><i class="fa fa-circle-o text-yellow"></i> <span>官方网站</span></a></li>
                 <li><a href="http://wpa.qq.com/msgrd?v=3&uin=158373108&site=qq&menu=yes"><i class="fa fa-circle-o text-red"></i> <span>QQ：158373108</span></a></li>
                 <li><a href="javascript:;"><i class="fa fa-circle-o text-aqua"></i> <span>手机：18026740326</span></a></li>
             </ul>

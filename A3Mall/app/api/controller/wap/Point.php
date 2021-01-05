@@ -8,9 +8,8 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wap;
 
+use app\common\model\users\Bonus as UsersBonus;
 use mall\basic\Users;
-use mall\utils\BC;
-use mall\utils\Tool;
 use think\facade\Db;
 use think\facade\Request;
 
@@ -20,31 +19,36 @@ class Point extends Base {
         $page = Request::param("page","1","intval");
         $size = 10;
 
-
-        $count = Db::name("promotion_point")
-            ->alias('p')
-            ->join("goods g","p.goods_id=g.id","LEFT")
-            ->where("p.end_time",">",time())
-            ->where('g.status',0)->count();
-
+        $count = Db::name("promotion_bonus")->where("type",1)
+            ->where("status",0)
+            ->where(time() . "> start_time and end_time > " . time())->count();
 
         $total = ceil($count/$size);
         if($total == $page -1){
             return $this->returnAjax("empty",-1,[]);
         }
 
-        $result = Db::name("promotion_point")
-            ->alias('p')
-            ->field("p.id,g.title,g.photo,p.point as price,g.sale")
-            ->join("goods g","p.goods_id=g.id","LEFT")
-            ->where('g.status',0)
-            ->where("p.end_time",">",time())
-            ->order('g.id','desc')->limit((($page - 1) * $size),$size)->select()->toArray();
+        $coupon = Db::name("promotion_bonus")->where("type",1)
+            ->where("status",0)->where(time() . "> start_time and end_time > " . time())
+            ->limit((($page - 1) * $size),$size)
+            ->select()->toArray();
 
-        $data = array_map(function ($rs){
-            $rs["photo"] = Tool::thumb($rs["photo"],"medium",true);
-            return $rs;
-        },$result);
+        $data = [];
+        foreach($coupon as $k=>$v){
+            $data[$k] = [
+                "id"=>$v["id"],
+                "name"=>$v["name"],
+                "point"=>$v["point"],
+                "start_time"=>date("Y-m-d",$v["start_time"]),
+                "end_time"=>date("Y-m-d",$v["end_time"]),
+                "active"=>Db::name("users_bonus")->where([
+                    "user_id"=>Users::get("id"),
+                    "bonus_id"=>$v['id'],
+                    "type"=>$v["type"],
+                    "status"=>0
+                ])->count()
+            ];
+        }
 
         return $this->returnAjax("ok",1, [
             "list"=>$data,
@@ -54,119 +58,56 @@ class Point extends Base {
         ]);
     }
 
-    public function view(){
+    public function receive(){
         $id = Request::param("id","0","intval");
-        $goods = Db::name("promotion_point")
-            ->alias("pg")
-            ->field("g.*,pg.id as point_id,pg.point,pg.store_nums as pg_store_nums,pg.sum_count as pg_sum_count,pg.start_time,pg.end_time")
-            ->join("goods g","pg.goods_id=g.id","LEFT")
-            ->where("g.status",0)->where("pg.id",$id)
-            ->where("pg.end_time",">",time())
-            ->find();
-
-        if(empty($goods)){
-            return $this->returnAjax("积分商品不存在",0);
+        if(($row=Db::name("promotion_bonus")
+                ->where("id",$id)
+                ->where('type=1 and status=0 and end_time > ' . time())->find()) == false){
+            return $this->returnAjax("优惠劵己过期",0,2);
         }
 
-        $data = [];
-
-        $data["photo"] = array_map(function ($result){
-            return Tool::thumb($result["photo"],"",true);
-        }, Db::name("attachments")->field("path as photo")->where([
-            "pid"=>$goods["id"],
-            "module"=>"goods",
-            "method"=>"photo"
-        ])->select()->toArray());
-
-        $promotionGroupItem = Db::name("promotion_point_item")
-            ->where("pid",$id)->select()->toArray();
-
-        $spec_key = [];
-        foreach($promotionGroupItem as $v){
-            $spec_key[] = $v["spec_key"];
+        if($row["giveout"] != 0 && ($row["used"] >= $row["giveout"])){
+            return $this->returnAjax("优惠劵己领完",0,1);
         }
 
-        $goods_item = Db::name("goods_item")
-            ->where("spec_key",'in',$spec_key)
-            ->where("goods_id",$goods['id'])->select()->toArray();
-
-        $goods_attribute = [];
-        $___attr = [];
-        foreach($goods_item as $val){
-            $spec = explode(",",$val["spec_key"]);
-            foreach($spec as $v){
-                $spec_Key = explode(":",$v);
-                if(!in_array($spec_Key[0].'_'.$spec_Key[1],$___attr)){
-                    $___attr[] = $spec_Key[0].'_'.$spec_Key[1];
-                    $goods_attribute[] = Db::name("goods_attribute")->where([
-                        "goods_id"=>$goods["id"],
-                        "attr_id"=>$spec_Key[0],
-                        "attr_data_id"=>$spec_Key[1],
-                    ])->find();
-                }
-            }
+        if(Db::name("users_bonus")
+            ->where(["user_id"=>Users::get("id"),"bonus_id"=>$id,"status"=>0])->count()){
+            return $this->returnAjax("该优惠劵您己领取过了",0,1);
         }
 
-        $goods_attr = [];
-        foreach ($goods_attribute as $key=>$val){
-            if(!in_array($val["attr_id"],array_keys($goods_attr))){
-                $goods_attr[$val["attr_id"]] = [
-                    "id"=>$val["attr_id"],
-                    "name"=>$val["name"],
-                    "list"=>[]
-                ];
-            }
-
-            $goods_attr[$val["attr_id"]]["list"][$val["attr_data_id"]] = [
-                "id"=>$val["attr_data_id"],
-                "pid"=>$val["attr_id"],
-                "value"=>$val["value"]
-            ];
+        $users = Db::name("users")->where(["id"=>Users::get("id")])->find();
+        if($row["point"] > $users["point"]){
+            return $this->returnAjax("兑换失败，您的积分不足",0);
         }
 
-        $goods_attr = array_values($goods_attr);
-        foreach($goods_attr as $key=>$val){
-            $goods_attr[$key]['list'] = array_values($val["list"]);
-        }
-
-        $data["attr"] = $goods_attr;
-
-        $item = [];
-        foreach($goods_item as $key=>$val){
-            $sku_id = str_replace([",",":"],["_","_"], $val["spec_key"]);
-            $item[$sku_id]["key"] = $val["spec_key"];
-            $item[$sku_id]["sell_price"] = $goods["point"];
-            $item[$sku_id]["goods_weight"] = $val["goods_weight"];
-            $item[$sku_id]["store_nums"] = $val["store_nums"];
-            $item[$sku_id]["goods_no"] = $val["goods_number"];
-            $item[$sku_id]["product_id"] = $val["id"];
-        }
-
-        $data['item'] = $item;
-
-        $goods["content"] = Tool::replaceContentImage(Tool::removeContentAttr($goods["content"]));
-
-        $data["goods"] = [
-            "id"=>$goods["point_id"],
-            "goods_id"=>$goods["id"],
-            "title"=>$goods["title"],
-            "photo"=>Tool::thumb($goods["photo"],'medium',true),
-            "sell_price"=>$goods["point"],
-            "market_price"=>$goods["sell_price"],
-            "store_nums"=>$goods["pg_store_nums"],
-            "sale"=>$goods["pg_sum_count"],
-            "content"=>$goods["content"],
-            "now_time"=>time(),
-            "start_time"=>$goods["start_time"],
-            "end_time"=>$goods["end_time"]
-        ];
-
-        $data["comments"] = [];
         try{
-            $comments = Users::getComments($goods["id"],1);
-            $data["comments"] = $comments["data"];
-        }catch (\Exception $e){}
+            Db::name("users")->where(["id"=>Users::get("id")])->update([
+                "point"=>Db::raw("point-".$row["point"])
+            ]);
 
-        return $this->returnAjax("ok",1,$data);
+            Db::name("users_log")->insert([
+                "user_id"=>Users::get("id"),
+                "action"=>1,
+                "operation"=>1,
+                "point"=>$row["point"],
+                "description"=>"兑换" . $row["name"],
+                "create_time"=>time()
+            ]);
+
+            $bonus = new UsersBonus();
+            $bonus->save([
+                "user_id"=>Users::get("id"),
+                "type"=>$row["type"],
+                "bonus_id"=>$id,
+                "create_time"=>time()
+            ]);
+
+            Db::name("promotion_bonus")->where("id",$id)->inc("used")->update();
+        }catch (\Exception $ex){
+            return $this->returnAjax("兑换失败，请稍后在试",0);
+        }
+
+        return $this->returnAjax("领取成功",1,Db::name("users")->where('id', Users::get("id"))->value("point"));
     }
+
 }

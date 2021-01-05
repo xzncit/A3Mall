@@ -32,8 +32,6 @@ Route::group(function(){
     Route::get('goods/view', 'api/wap.goods/view');
     Route::get('news', 'api/wap.news/index');
     Route::get('news/view', 'api/wap.news/view');
-    Route::get('point', 'api/wap.point/index');
-    Route::get('point/view', 'api/wap.point/view');
     Route::get('regiment', 'api/wap.regiment/index');
     Route::get('regiment/view', 'api/wap.regiment/view');
     Route::get('second', 'api/wap.second/index');
@@ -42,6 +40,8 @@ Route::group(function(){
 })->middleware(AllowOrigin::class);
 
 Route::group(function(){
+    Route::get('point/list', 'api/wap.point/index');
+    Route::get('point/receive', 'api/wap.point/receive');
     Route::get('goods/favorite', 'api/wap.goods/favorite');
     Route::get('special/view', 'api/wap.special/view');
     Route::get('cart', 'api/wap.cart/index');
