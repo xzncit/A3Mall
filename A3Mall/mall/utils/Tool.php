@@ -34,8 +34,12 @@ class Tool {
     public static function replaceContentImage($content){
         $matches = [];
         preg_match_all('/<img([ ]+)src="([^\"]+)"/i', $content, $matches);
+        $array = [];
         foreach($matches[2] as $val){
-            $content = str_replace($val, trim(Request::domain(),'/') . '/' . trim($val,"/") . '" style="max-width: 100%; display: block;', $content);
+            if(!in_array($val,$array)){
+                $array[] = $val;
+                $content = str_replace($val, trim(Request::domain(),'/') . '/' . trim($val,"/") . '" style="max-width: 100%; display: block; margin:0 auto;', $content);
+            }
         }
 
         return $content;
