@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace mall\library\wechat\chat;
 
+use mall\library\wechat\chat\WeChat;
 use mall\utils\Tool;
 use think\facade\Db;
 
@@ -50,6 +51,7 @@ class WeChatMessage extends BasicWeChat {
                         return $this->keys("wechat_keys#keys#{$key}", false, true);
                     }
                 }
+
                 return $this->keys('wechat_keys#keys#subscribe', true);
             case 'unsubscribe': // 取消关注事件
                 return $this->updateFansinfo(false);
@@ -138,9 +140,9 @@ class WeChatMessage extends BasicWeChat {
      * 同步粉丝状态
      */
     private function updateFansinfo($subscribe = true){
-        if ($subscribe) {
-            try {
-                $user = Wechat::User()->getUserInfo($this->openid);
+        try {
+            if ($subscribe) {
+                $user = WeChat::User()->getUserInfo($this->openid);
                 if (!empty($user['subscribe_time'])) {
                     $user['subscribe_create_time'] = $user['subscribe_time'];
                 }
@@ -150,18 +152,25 @@ class WeChatMessage extends BasicWeChat {
                 }
 
                 unset($user['privilege'], $user['groupid']);
-                return Db::name("wechat_users")->insert(array_merge($user,[
+                $data = array_merge($user,[
                     'subscribe' => '1', 'appid' => $this->appid
-                ]));
-            } catch (\Exception $e) {
+                ]);
 
-                return false;
+                $condition = ['openid' => $this->openid, 'appid' => $this->appid];
+                if(Db::name("wechat_users")->where($condition)->count()){
+                    return Db::name("wechat_users")->where($condition)->update($data);
+                }else{
+                    return Db::name("wechat_users")->insert($data);
+                }
+            } else {
+                return Db::name("wechat_users")->where([
+                    'openid' => $this->openid,
+                    'appid' => $this->appid
+                ])->update(['subscribe' => '0']);
             }
-        } else {
-            return Db::name("wechat_users")->where([
-                'openid' => $this->openid,
-                'appid' => $this->appid
-            ])->update(['subscribe' => '0']);
+        }catch (\Exception $e){
+            // throw new \Exception($e->getMessage(),0);
+            return false;
         }
     }
 
