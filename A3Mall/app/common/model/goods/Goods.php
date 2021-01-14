@@ -72,9 +72,9 @@ class Goods extends A3Mall{
         return strip_tags(trim($value));
     }
 
-    public function setContentAttr($value){
-        return Tool::editor($value);
-    }
+//    public function setContentAttr($value){
+//        return Tool::editor($value);
+//    }
 
     public function getPhotoAttr($value){
         return Tool::thumb($value,"small");

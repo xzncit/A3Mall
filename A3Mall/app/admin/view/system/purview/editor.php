@@ -17,62 +17,62 @@
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
 
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">权限名称</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="title" value="{$data.title|default=''}" lay-reqtext="请填写权限名称" lay-verify="required" placeholder="请输入权限名称" autocomplete="off" class="layui-input">
-                                </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" value="{$data.title|default=''}" lay-reqtext="请填写权限名称" lay-verify="required" placeholder="请输入权限名称" autocomplete="off" class="layui-input">
                             </div>
-                        
-                            <div class="layui-form-item">
-                                    
-                                    <table class="layui-table">
-                                        <colgroup>
-                                            <col width="50">
-                                            <col width="150">
-                                            <col>
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th><input type="checkbox" lay-filter="purview-all" name="all" value="1" title="" lay-skin="primary"></th>
-                                                <th>权限类型</th>
-                                                <th>权限列表</th>
-                                            </tr> 
-                                        </thead>
-                                        <tbody>
-                                            {if !empty($group)}
-                                            {volist name="group" id="item"}
-                                            <tr>
-                                                <td>
-                                                <input type="checkbox" lay-filter="purview-list"  title="" lay-skin="primary">
-                                                </td>
-                                                <td style="text-align:right">{$item.name}：</td>
-                                                <td>
-                                                {if !empty($item.children)}
-                                                {volist name="item['children']" id="value"}
-                                                    <p><span style="position: relative;top: 4px;">{$value.name}：</span>
-                                                    {volist name="value['children']" id="v"}
-                                                    <input type="checkbox" {if !empty($data['purview'][$v["controller"]][$v["method"]])}checked{/if} name="purview[{$v.controller}][{$v.method}]" value="{$v.id}" title="{$v.name}" lay-skin="primary">
-                                                    {/volist}
-                                                    <p>
-                                                {/volist}
-                                                {/if}
-                                                </td>
-                                            </tr>
+                        </div>
+
+                        <div class="layui-form-item">
+
+                            <table class="layui-table">
+                                <colgroup>
+                                    <col width="50">
+                                    <col width="150">
+                                    <col>
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th><input type="checkbox" lay-filter="purview-all" name="all" value="1" title="" lay-skin="primary"></th>
+                                    <th>权限类型</th>
+                                    <th>权限列表</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {if !empty($group)}
+                                {volist name="group" id="item"}
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" lay-filter="purview-list"  title="" lay-skin="primary">
+                                    </td>
+                                    <td style="text-align:right">{$item.name}：</td>
+                                    <td>
+                                        {if !empty($item.children)}
+                                        {volist name="item['children']" id="value"}
+                                        <p><span style="position: relative;top: 4px;">{$value.name}：</span>
+                                            {volist name="value['children']" id="v"}
+                                            <input type="checkbox" lay-filter="purview-list-value" {if !empty($data['purview'][$v["controller"]][$v["method"]])}checked{/if} name="purview[{$v.controller}][{$v.method}]" value="{$v.id}" title="{$v.name}" lay-skin="primary">
+                                            {/volist}
+                                        <p>
                                             {/volist}
                                             {/if}
-                                        </tbody>
-                                    </table>
-                                    
-                            </div>
+                                    </td>
+                                </tr>
+                                {/volist}
+                                {/if}
+                                </tbody>
+                            </table>
 
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">状态</label>
-                                <div class="layui-input-block">
-                                    <input type="radio" name="status" title="开启" value="0" {if empty($data.status) || $data.status==0}checked="checked"{/if}>
-                                    <input type="radio" name="status" title="关闭" value="1" {if isset($data.status) && $data.status==1}checked="checked"{/if}>
-                                </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="status" title="开启" value="0" {if empty($data.status) || $data.status==0}checked="checked"{/if}>
+                                <input type="radio" name="status" title="关闭" value="1" {if isset($data.status) && $data.status==1}checked="checked"{/if}>
                             </div>
+                        </div>
 
                     </div>
                 </div>
@@ -94,25 +94,40 @@
         layui.use(["form", "element",'layer','laydate'], function () {
             var form = layui.form;
             var layer = layui.layer;
-            
+
+            $('[name="purview[platform.index][index]"]').prop("checked",true);
+            form.render("checkbox");
             form.on('checkbox(purview-all)',function (data){
                 if(data.elem.checked){
                     $(data.elem).parent().parent().parent().parent().find("input").prop("checked",true);
                 }else{
                     $(data.elem).parent().parent().parent().parent().find("input").prop("checked",false);
+                    $('[name="purview[platform.index][index]"]').prop("checked",true);
                 }
                 form.render();
             });
-            
+
             form.on('checkbox(purview-list)', function(data){
                 if(data.elem.checked){
                     $(data.elem).parent().parent().find("input").prop("checked",true);
                 }else{
-                     $(data.elem).parent().parent().find("input").prop("checked",false);
+                    $(data.elem).parent().parent().find("input").prop("checked",false);
+                    $('[name="purview[platform.index][index]"]').prop("checked",true);
                 }
                 form.render();
             });
-           
+
+            form.on('checkbox(purview-list-value)',function (data){
+                if($(data.elem).attr("name") == "purview[platform.index][index]"){
+                    if(data.elem.checked){
+                        $('[name="purview[platform.index][index]"]').prop("checked",true);
+                    }else{
+                        $('[name="purview[platform.index][index]"]').prop("checked",true);
+                    }
+                    form.render();
+                }
+            });
+
             form.on('submit(layui-submit-filter)', function (data) {
                 var index = layer.load(1, { shade: [0.2,'#fff'] });
                 $.post('{:createUrl("editor")}', data.field, function (result) {
