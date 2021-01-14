@@ -77,7 +77,7 @@ class Index extends Auth {
             "order_amount"=>implode(',',$amount),
             "order_count"=>implode(',',$count),
             "e"=>empty($order["order_amount"]) ? "0.00" : number_format($order["order_amount"],2),
-            "f"=>empty($order["order_amount"]) ? "0.00" : number_format($order["order_amount"]/$users_goods_count["count"],2),
+            "f"=>empty($order["order_amount"]) ? "0.00" : number_format($order["order_amount"] > 0 ? $order["order_amount"]/$users_goods_count["count"] : 0,2),
             "g"=>$order_hot
         ]);
     }
