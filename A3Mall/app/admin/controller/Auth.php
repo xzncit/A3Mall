@@ -29,7 +29,7 @@ class Auth extends Base {
                     $this->error($e->getMessage());
                     break;
                 case -1000:
-                     $this->redirect(createUrl('login/index'));
+                    $this->redirect(createUrl('login/index'));
                     break;
             }
         }
@@ -46,7 +46,7 @@ class Auth extends Base {
             ->where('status=0 AND ((controller="'.$controller.'" AND method="'.$action.'") OR (controller="'.$controller.'" AND FIND_IN_SET("'.$action.'",active)))')
             ->find();
 
-        while(!empty($data) && $data["pid"] != 0){
+        while (!empty($data) && $data["pid"] != 0){
             $data = Db::name("system_menu")
                 ->where(["status"=>0,"id"=>$data["pid"]])
                 ->find();
@@ -88,7 +88,43 @@ class Auth extends Base {
             }
         }
 
-        return ["top"=>$result,"menu"=>$menu];
+        return ["top"=>$this->filterMenu($result),"menu"=>$this->filterMenu($menu)];
+    }
+
+    private function filterMenu($data){
+        $user = Db::name("system_users")->where("id",Session::get("system_user_id"))->find();
+        $manage = Db::name("system_manage")->where("id",$user["role_id"])->find();
+        if($manage["purview"] == '-1'){
+            return $data;
+        }
+
+        $purview = json_decode($manage["purview"],true);
+        $array = [];
+        $keys = array_keys($purview);
+        foreach($data as $key=>$value){
+            // 如果children为空，顶部菜单
+            if(empty($value["children"])){
+                $method = isset($purview[$value["controller"]]) ? array_flip($purview[$value["controller"]]) : [];
+                if(in_array($value["controller"],$keys) && in_array($value["method"],$method)){
+                    $array[$key] = $value;
+                }
+            }else{ // 左侧菜单
+                $menu = [];
+                foreach($value["children"] as $k=>$v){
+                    $method = isset($purview[$v["controller"]]) ? array_flip($purview[$v["controller"]]) : [];
+                    if(in_array($v["controller"],$keys) && in_array($v["method"],$method)){
+                        $menu[$k] = $v;
+                    }
+                }
+
+                if(!empty($menu)){
+                    $array[$key] = $value;
+                    $array[$key]["children"] = $menu;
+                }
+            }
+        }
+
+        return $array;
     }
 
     private function checkAccess(){
