@@ -328,6 +328,7 @@ EOF;
 
     private function check_dirfile(){
         $items = [
+            ['file', '可写', 'check', '.env'],
             ['dir', '可写', 'check', 'app'],
             ['dir', '可写', 'check', 'runtime'],
             ['dir', '可写', 'check', 'public/static'],
