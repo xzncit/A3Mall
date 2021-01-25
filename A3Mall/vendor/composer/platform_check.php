@@ -14,6 +14,7 @@ extension_loaded('curl') || $missingExtensions[] = 'curl';
 extension_loaded('fileinfo') || $missingExtensions[] = 'fileinfo';
 extension_loaded('filter') || $missingExtensions[] = 'filter';
 extension_loaded('gd') || $missingExtensions[] = 'gd';
+extension_loaded('hash') || $missingExtensions[] = 'hash';
 extension_loaded('json') || $missingExtensions[] = 'json';
 extension_loaded('libxml') || $missingExtensions[] = 'libxml';
 extension_loaded('mbstring') || $missingExtensions[] = 'mbstring';
