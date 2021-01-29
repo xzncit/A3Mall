@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'fe116d407ef4f78d0c3fc1bef1945ca0a6d4a1d2',
+    'reference' => '4ea89638be924299b67e85d70bfa1d9a4dc41445',
     'name' => 'topthink/think',
   ),
   'versions' => 
@@ -121,7 +121,7 @@
     ),
     'liliuwei/thinkphp-jump' => 
     array (
-      'pretty_version' => '1.5',
+      'pretty_version' => 'v1.5',
       'version' => '1.5.0.0',
       'aliases' => 
       array (
@@ -270,12 +270,12 @@
     ),
     'topthink/framework' => 
     array (
-      'pretty_version' => 'v6.0.6',
-      'version' => '6.0.6.0',
+      'pretty_version' => 'v6.0.7',
+      'version' => '6.0.7.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'dd265d9e962da2c033a45190b839d5538770a760',
+      'reference' => 'db8fe22520a9660dd5e4c87e304034ac49e39270',
     ),
     'topthink/think' => 
     array (
@@ -284,7 +284,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'fe116d407ef4f78d0c3fc1bef1945ca0a6d4a1d2',
+      'reference' => '4ea89638be924299b67e85d70bfa1d9a4dc41445',
     ),
     'topthink/think-captcha' => 
     array (
