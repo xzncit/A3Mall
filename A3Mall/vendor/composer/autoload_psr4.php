@@ -10,7 +10,7 @@ return array(
     'think\\trace\\' => array($vendorDir . '/topthink/think-trace/src'),
     'think\\captcha\\' => array($vendorDir . '/topthink/think-captcha/src'),
     'think\\app\\' => array($vendorDir . '/topthink/think-multi-app/src'),
-    'think\\' => array($vendorDir . '/topthink/think-helper/src', $vendorDir . '/topthink/think-image/src', $vendorDir . '/topthink/think-template/src', $vendorDir . '/topthink/think-orm/src', $vendorDir . '/topthink/framework/src/think'),
+    'think\\' => array($vendorDir . '/topthink/think-template/src', $vendorDir . '/topthink/think-helper/src', $vendorDir . '/topthink/think-orm/src', $vendorDir . '/topthink/framework/src/think', $vendorDir . '/topthink/think-image/src'),
     'mall\\' => array($baseDir . '/mall'),
     'liliuwei\\think\\' => array($vendorDir . '/liliuwei/thinkphp-jump/src'),
     'clagiordano\\weblibs\\configmanager\\' => array($vendorDir . '/clagiordano/weblibs-configmanager/src'),

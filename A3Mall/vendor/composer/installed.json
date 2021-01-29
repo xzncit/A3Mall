@@ -56,6 +56,10 @@
                 "ArrayAccess",
                 "dotnotation"
             ],
+            "support": {
+                "issues": "https://github.com/adbario/php-dot-notation/issues",
+                "source": "https://github.com/adbario/php-dot-notation/tree/2.x"
+            },
             "install-path": "../adbario/php-dot-notation"
         },
         {
@@ -146,6 +150,10 @@
                 "sdk",
                 "tool"
             ],
+            "support": {
+                "issues": "https://github.com/aliyun/openapi-sdk-php-client/issues",
+                "source": "https://github.com/aliyun/openapi-sdk-php-client"
+            },
             "install-path": "../alibabacloud/client"
         },
         {
@@ -203,6 +211,10 @@
                 "tool",
                 "weblibs"
             ],
+            "support": {
+                "issues": "https://github.com/clagiordano/weblibs-configmanager/issues",
+                "source": "https://github.com/clagiordano/weblibs-configmanager/tree/v1.1.0"
+            },
             "install-path": "../clagiordano/weblibs-configmanager"
         },
         {
@@ -268,6 +280,10 @@
                 "utility",
                 "utils"
             ],
+            "support": {
+                "issues": "https://github.com/danielstjules/Stringy/issues",
+                "source": "https://github.com/danielstjules/Stringy"
+            },
             "install-path": "../danielstjules/stringy"
         },
         {
@@ -337,6 +353,10 @@
                 "qrcode",
                 "symfony"
             ],
+            "support": {
+                "issues": "https://github.com/endroid/qr-code/issues",
+                "source": "https://github.com/endroid/qr-code/tree/1.9.3"
+            },
             "install-path": "../endroid/qr-code"
         },
         {
@@ -396,6 +416,10 @@
             "keywords": [
                 "html"
             ],
+            "support": {
+                "issues": "https://github.com/ezyang/htmlpurifier/issues",
+                "source": "https://github.com/ezyang/htmlpurifier/tree/master"
+            },
             "install-path": "../ezyang/htmlpurifier"
         },
         {
@@ -749,6 +773,10 @@
                 "sftp",
                 "storage"
             ],
+            "support": {
+                "issues": "https://github.com/thephpleague/flysystem/issues",
+                "source": "https://github.com/thephpleague/flysystem/tree/1.x"
+            },
             "funding": [
                 {
                     "url": "https://offset.earth/frankdejonge",
@@ -811,6 +839,10 @@
                 }
             ],
             "description": "An adapter decorator to enable meta-data caching.",
+            "support": {
+                "issues": "https://github.com/thephpleague/flysystem-cached-adapter/issues",
+                "source": "https://github.com/thephpleague/flysystem-cached-adapter/tree/master"
+            },
             "install-path": "../league/flysystem-cached-adapter"
         },
         {
@@ -880,7 +912,7 @@
         },
         {
             "name": "liliuwei/thinkphp-jump",
-            "version": "1.5",
+            "version": "v1.5",
             "version_normalized": "1.5.0.0",
             "source": {
                 "type": "git",
@@ -938,6 +970,10 @@
                 "think-jump",
                 "thinkphp"
             ],
+            "support": {
+                "issues": "https://github.com/liliuwei/thinkphp-jump/issues",
+                "source": "https://github.com/liliuwei/thinkphp-jump/tree/v1.5"
+            },
             "install-path": "../liliuwei/thinkphp-jump"
         },
         {
@@ -1004,6 +1040,10 @@
                 "json",
                 "jsonpath"
             ],
+            "support": {
+                "issues": "https://github.com/jmespath/jmespath.php/issues",
+                "source": "https://github.com/jmespath/jmespath.php/tree/2.6.0"
+            },
             "install-path": "../mtdowling/jmespath.php"
         },
         {
@@ -1144,6 +1184,9 @@
                 "psr",
                 "psr-6"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/cache/tree/master"
+            },
             "install-path": "../psr/cache"
         },
         {
@@ -1202,6 +1245,10 @@
                 "container-interop",
                 "psr"
             ],
+            "support": {
+                "issues": "https://github.com/php-fig/container/issues",
+                "source": "https://github.com/php-fig/container/tree/master"
+            },
             "install-path": "../psr/container"
         },
         {
@@ -1260,6 +1307,9 @@
                 "psr",
                 "psr-18"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-client/tree/master"
+            },
             "install-path": "../psr/http-client"
         },
         {
@@ -1319,6 +1369,9 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/master"
+            },
             "install-path": "../psr/http-message"
         },
         {
@@ -1375,6 +1428,9 @@
                 "psr",
                 "psr-3"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/log/tree/1.1.3"
+            },
             "install-path": "../psr/log"
         },
         {
@@ -1432,6 +1488,9 @@
                 "psr-16",
                 "simple-cache"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/simple-cache/tree/master"
+            },
             "install-path": "../psr/simple-cache"
         },
         {
@@ -1481,6 +1540,10 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
+            "support": {
+                "issues": "https://github.com/ralouphie/getallheaders/issues",
+                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
+            },
             "install-path": "../ralouphie/getallheaders"
         },
         {
@@ -1924,17 +1987,17 @@
         },
         {
             "name": "topthink/framework",
-            "version": "v6.0.6",
-            "version_normalized": "6.0.6.0",
+            "version": "v6.0.7",
+            "version_normalized": "6.0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/framework.git",
-                "reference": "dd265d9e962da2c033a45190b839d5538770a760"
+                "reference": "db8fe22520a9660dd5e4c87e304034ac49e39270"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/top-think/framework/zipball/dd265d9e962da2c033a45190b839d5538770a760",
-                "reference": "dd265d9e962da2c033a45190b839d5538770a760",
+                "url": "https://api.github.com/repos/top-think/framework/zipball/db8fe22520a9660dd5e4c87e304034ac49e39270",
+                "reference": "db8fe22520a9660dd5e4c87e304034ac49e39270",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1960,7 +2023,7 @@
                 "mockery/mockery": "^1.2",
                 "phpunit/phpunit": "^7.0"
             },
-            "time": "2021-01-10T15:35:54+00:00",
+            "time": "2021-01-25T14:48:29+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1992,7 +2055,7 @@
             ],
             "support": {
                 "issues": "https://github.com/top-think/framework/issues",
-                "source": "https://github.com/top-think/framework/tree/v6.0.6"
+                "source": "https://github.com/top-think/framework/tree/v6.0.7"
             },
             "install-path": "../topthink/framework"
         },
@@ -2052,6 +2115,10 @@
                 }
             ],
             "description": "captcha package for thinkphp",
+            "support": {
+                "issues": "https://github.com/top-think/think-captcha/issues",
+                "source": "https://github.com/top-think/think-captcha/tree/v3.0.3"
+            },
             "install-path": "../topthink/think-captcha"
         },
         {
@@ -2100,6 +2167,10 @@
                 }
             ],
             "description": "The ThinkPHP6 Helper Package",
+            "support": {
+                "issues": "https://github.com/top-think/think-helper/issues",
+                "source": "https://github.com/top-think/think-helper/tree/3.0"
+            },
             "install-path": "../topthink/think-helper"
         },
         {
@@ -2149,6 +2220,10 @@
                 }
             ],
             "description": "The ThinkPHP5 Image Package",
+            "support": {
+                "issues": "https://github.com/top-think/think-image/issues",
+                "source": "https://github.com/top-think/think-image/tree/master"
+            },
             "install-path": "../topthink/think-image"
         },
         {
@@ -2202,6 +2277,10 @@
                 }
             ],
             "description": "thinkphp6 multi app support",
+            "support": {
+                "issues": "https://github.com/top-think/think-multi-app/issues",
+                "source": "https://github.com/top-think/think-multi-app/tree/master"
+            },
             "install-path": "../topthink/think-multi-app"
         },
         {
@@ -2366,6 +2445,10 @@
                 }
             ],
             "description": "thinkphp debug trace",
+            "support": {
+                "issues": "https://github.com/top-think/think-trace/issues",
+                "source": "https://github.com/top-think/think-trace/tree/v1.4"
+            },
             "install-path": "../topthink/think-trace"
         },
         {
@@ -2412,6 +2495,10 @@
                 }
             ],
             "description": "thinkphp template driver",
+            "support": {
+                "issues": "https://github.com/top-think/think-view/issues",
+                "source": "https://github.com/top-think/think-view/tree/v1.0.14"
+            },
             "install-path": "../topthink/think-view"
         }
     ],

@@ -4,20 +4,20 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
+class ComposerStaticInite21ec2f327ebdf2fdd4ca4c15111c460
 {
     public static $files = array (
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
-        'd767e4fc2dc52fe66584ab8c6684783e' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/helpers.php',
-        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
+        'd767e4fc2dc52fe66584ab8c6684783e' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/helpers.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '66453932bc1be9fb2f910a27947d11b6' => __DIR__ . '/..' . '/alibabacloud/client/src/Functions.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
@@ -114,11 +114,11 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
         ),
         'think\\' => 
         array (
-            0 => __DIR__ . '/..' . '/topthink/think-helper/src',
-            1 => __DIR__ . '/..' . '/topthink/think-image/src',
-            2 => __DIR__ . '/..' . '/topthink/think-template/src',
-            3 => __DIR__ . '/..' . '/topthink/think-orm/src',
-            4 => __DIR__ . '/..' . '/topthink/framework/src/think',
+            0 => __DIR__ . '/..' . '/topthink/think-template/src',
+            1 => __DIR__ . '/..' . '/topthink/think-helper/src',
+            2 => __DIR__ . '/..' . '/topthink/think-orm/src',
+            3 => __DIR__ . '/..' . '/topthink/framework/src/think',
+            4 => __DIR__ . '/..' . '/topthink/think-image/src',
         ),
         'mall\\' => 
         array (
@@ -251,10 +251,10 @@ class ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitb9a14310b6a415bf2c8057cbd3ccdd81::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite21ec2f327ebdf2fdd4ca4c15111c460::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite21ec2f327ebdf2fdd4ca4c15111c460::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInite21ec2f327ebdf2fdd4ca4c15111c460::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInite21ec2f327ebdf2fdd4ca4c15111c460::$classMap;
 
         }, null, ClassLoader::class);
     }
