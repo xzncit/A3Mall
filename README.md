@@ -17,6 +17,7 @@
 
 ## 导航栏目
  [官网地址](http://www.a3-mall.com)
+ | [APP商城下载](https://gitee.com/xzncit/A3Mall-APP)
  | [微信小程序下载](https://gitee.com/xzncit/A3Mall-miniprogram)
  | [帮助文档](http://doc.a3-mall.com)
  | [安装文档](http://doc.a3-mall.com/help/)
@@ -32,7 +33,7 @@
     MySQL >= 5.6
     PDO PHP Extension
     MBstring PHP Extension
-   
+    FileInfo PHP Extension
    
 ## 安装A3Mall
 
