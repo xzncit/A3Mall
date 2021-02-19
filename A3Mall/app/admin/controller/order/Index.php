@@ -28,7 +28,7 @@ class Index extends Auth {
 
             $condition = [];
             if(isset($key["pay_type"]) && $key["pay_type"] != '-1'){
-                $condition["order.pay_type"] = $key["pay_type"];
+                $condition["order.pay_status"] = $key["pay_type"];
             }
 
             if(isset($key["status"]) && $key["status"] != '-1'){
