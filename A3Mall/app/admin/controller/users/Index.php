@@ -26,7 +26,7 @@ class Index extends Auth {
 
             $condition = [];
             if(isset($key["cat_id"]) && $key["cat_id"] != '-1'){
-                $condition["users.group_id"] = $key["cat_id"];
+                $condition[] = ["users.group_id","=",$key["cat_id"]];
             }
 
             if(!empty($key["title"])){
