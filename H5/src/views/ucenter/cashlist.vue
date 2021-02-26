@@ -60,7 +60,7 @@
         },
         data() {
             return {
-                amount: '',
+                amount:'',
                 list: [],
                 loading: false,
                 finished: false,
