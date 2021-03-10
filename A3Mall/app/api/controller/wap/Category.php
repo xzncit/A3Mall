@@ -8,36 +8,36 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wap;
 
+use mall\utils\Data;
 use mall\utils\Tool;
+use think\facade\Cache;
 use think\facade\Db;
 
 class Category extends Base {
 
     public function index(){
-        $category = Db::name("category")
-            ->where('pid',0)->where('module','goods')
+        $category = Data::familyProcess(Db::name("category")
+            ->where('module','goods')
             ->where("is_menu",0)
-            ->select()->toArray();
+            ->select()->toArray());
 
         $data = [];
-        foreach ($category as $key=>$value){
-            $child = Db::name("category")
-                ->where('pid',$value["id"])->where('module','goods')
-                ->where("is_menu",0)
-                ->select()->toArray();
+        foreach($category as $key=>$value){
+            $data[$value['id']]["title"] = $value["title"];
+            foreach($value["children"] as $val){
+                $data[$value['id']]["children"][] = [
+                    "id"=>$val["id"],
+                    "name"=>$val["title"],
+                    "thumb_img"=>Tool::thumb($val["photo"],"medium",true)
+                ];
 
-            foreach($child as $k=>$v){
-                $data[$v['id']]["title"] = $v["title"];
-                $children = Db::name("category")
-                    ->field("id,title as name,photo as thumb_img")
-                    ->where('pid',$v["id"])
-                    ->where('module','goods')
-                    ->where("is_menu",0)
-                    ->select()->toArray();
-                $data[$v['id']]["children"] = array_map(function ($rs){
-                    $rs["thumb_img"] = Tool::thumb($rs["thumb_img"],"medium",true);
-                    return $rs;
-                },$children);
+                foreach($val["children"] as $v){
+                    $data[$value['id']]["children"][] = [
+                        "id"=>$v["id"],
+                        "name"=>$v["title"],
+                        "thumb_img"=>Tool::thumb($v["photo"],"medium",true)
+                    ];
+                }
             }
         }
 
