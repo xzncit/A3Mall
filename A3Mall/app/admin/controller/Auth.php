@@ -154,8 +154,7 @@ class Auth extends Base {
             return true;
         }
 
-        $common = explode(".",$controller);
-        if(in_array($common[0],["ajax","uploadfiy"])){
+        if(in_array($controller,["common.ajax","common.uploadfiy"])){
             return true;
         }
 
