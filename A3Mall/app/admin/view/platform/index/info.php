@@ -62,10 +62,6 @@
                             <td>网站域名：<?php echo $_SERVER['SERVER_NAME']; ?></td>
                             <td>运行PHP版本：{$Think.PHP_VERSION}</td>
                         </tr>
-                        <tr>
-                            <td>magic_quotes_gpc：<?php echo (1 === get_magic_quotes_gpc()) ? 'YES' : 'OFF'; ?></td>
-                            <td>register_globals：<?php echo get_cfg_var("register_globals") == "1" ? "YES" : "OFF"; ?></td>
-                        </tr>
 
                         <tr>
                             <td>执行时间限制：<?php echo ini_get('max_execution_time'); ?>秒</td>
