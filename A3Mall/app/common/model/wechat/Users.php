@@ -31,7 +31,7 @@ class Users extends A3Mall {
         $data = $this->where($condition)->order('id','DESC')->paginate($size);
 
         $list = array_map(function ($res){
-            $res['subscribe_time'] = $res->subscribe_time;
+            $res['subscribe_time'] = date("Y-m-d H:i:s",$res->subscribe_time);
             $res['photo'] = $res['headimgurl'];
 
             $tags = UsersTags::column('name', 'id');
@@ -66,10 +66,6 @@ class Users extends A3Mall {
         }
 
         return true;
-    }
-
-    public function getSubscribeTimeAttr($value){
-        return date("Y-m-d H:i:s",$value);
     }
 
     public function setAppidAttr($value){
