@@ -225,7 +225,7 @@ class Order extends Base {
             array_push($cart,$promotion);
         }
 
-        if(($address = Db::name("users_address")->where("id",$address_id)->find()) == false){
+        if(($address = Db::name("users_address")->where(["id"=>$address_id,"user_id"=>Users::get("id")])->find()) == false){
             return $this->returnAjax("您选择的地址不存在，请重新选择",0);
         }
 
