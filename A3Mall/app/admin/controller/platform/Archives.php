@@ -66,20 +66,15 @@ class Archives extends Auth {
         $article = new Article();
         $data = Request::post();
         $data['attachment_id'] = empty($data['attachment_id']) ? [] : $data['attachment_id'];
-        if(($obj = $article::find($data["id"])) != false){
-            try{
-                $obj->save($data);
-            }catch (\Exception $e){
-                return Response::returnArray($e->getMessage(),0);
+        try{
+            if($article->where("id",$data["id"])->count()){
+                $article->where("id",$data["id"])->save($data);
+            }else{
+                unset($data["id"]);
+                $data["id"] = $article->create($data)->id;
             }
-        }else{
-            try{
-                $article->save($data);
-            }catch (\Exception $e){
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-
-            $data['id'] = $article->id;
+        }catch (\Exception $e){
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         Attachments::handle($data["attachment_id"],$data['id']);
