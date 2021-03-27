@@ -50,22 +50,18 @@ class Category extends Auth {
         $data = Request::post();
         $categoryModel = new \app\common\model\base\Category();
         $data["module"] = "article";
-        if(($obj=$categoryModel::find($data["id"])) != false){
-            if(!$categoryModel->check_tree($categoryModel->where(["module"=>"article"])->select()->toArray(),$data)){
-                return Response::returnArray("{$data['title']} 是 ID {$data['pid']} 的父栏目,不能修改！", 0);
-            }
+        try{
+            if($categoryModel->where("id",$data["id"])->count()){
+                if(!$categoryModel->check_tree($categoryModel->where(["module"=>"article"])->select()->toArray(),$data)){
+                    return Response::returnArray("{$data['title']} 是 ID {$data['pid']} 的父栏目,不能修改！", 0);
+                }
 
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+                $categoryModel->where("id",$data["id"])->save($data);
+            }else{
+                $categoryModel->create($data);
             }
-        }else{
-            try{
-                $categoryModel->save($data);
-            }catch (\Exception $e){
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        }catch (\Exception $e){
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
