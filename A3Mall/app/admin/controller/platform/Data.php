@@ -54,20 +54,15 @@ class Data extends Auth {
         $data = Request::post();
         $dataModel = new \app\common\model\base\Data();
         $dataItemModel = new DataItem();
-        if(($obj = $dataModel::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($dataModel->where("id",$data["id"])->count()){
+                $dataModel->where("id",$data["id"])->save($data);
+            }else{
+                unset($data["id"]);
+                $data["id"] = $dataModel->create($data)->id;
             }
-        }else{
-            try{
-                $dataModel->save($data);
-            }catch (\Exception $e){
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-
-            $data['id'] = $dataModel->id;
+        }catch (\Exception $e){
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         $marketing = $data['marketing'];
