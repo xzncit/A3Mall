@@ -46,18 +46,14 @@ class Keywords extends Auth {
 
         $data = Request::post();
         $keywordsModel = new SearchKeywords();
-        if(($obj=$keywordsModel::find($data['id'])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($keywordsModel->where("id",$data["id"])->count()){
+                $keywordsModel->where("id",$data["id"])->save($data);
+            }else{
+                $keywordsModel->create($data);
             }
-        }else{
-            try {
-                $keywordsModel->save($data);
-            }catch (\Exception $ex){
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        }catch(\Exception $ex){
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
