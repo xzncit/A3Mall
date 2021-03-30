@@ -144,7 +144,7 @@ class WeChatPush extends BasicWeChat {
     private function checkSignature($str = ''){
         $nonce = $this->request["nonce"];
         $timestamp = $this->request["timestamp"];
-        $msg_signature = $this->request['msg_signature'];
+        $msg_signature = isset($this->request['msg_signature']) ? $this->request['msg_signature'] : '';
         $signature = empty($msg_signature) ? $this->request["signature"] : $msg_signature;
         $tmpArr = [$this->config["token"], $timestamp, $nonce, $str];
         sort($tmpArr, SORT_STRING);
