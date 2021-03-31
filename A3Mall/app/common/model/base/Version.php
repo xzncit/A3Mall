@@ -22,9 +22,14 @@ class Version extends A3Mall{
         $count = $this->where($condition)->count();
         $data = $this->where($condition)->paginate($size);
 
+        $result = array_map(function ($res){
+            $res["create_time"] = date("Y-m-d H:i:s",$res["create_time"]);
+            return $res;
+        },$data->items());
+
         return [
             "count"=>$count,
-            "data"=>$data->items()
+            "data"=>$result
         ];
     }
 
