@@ -45,19 +45,14 @@ class Version extends Auth {
         $data = Request::post();
 
         $versionModel = new \app\common\model\base\Version();
-        if(($obj=$versionModel::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            }catch(\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($versionModel->where("id",$data["id"])->count()){
+                $versionModel->where("id",$data["id"])->save($data);
+            }else{
+                $versionModel->create($data);
             }
-        }else{
-            try {
-                $versionModel->save($data);
-            }catch(\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-
+        }catch(\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");

@@ -58,24 +58,19 @@ class Page extends Auth {
         $data["module"] = "page";
         $data["content"] = Tool::editor($data["content"]);
         $data['attachment_id'] = empty($data['attachment_id']) ? [] : $data['attachment_id'];
-        if(($obj=$categoryModel::find($data["id"])) != false){
-            if (!$categoryModel->check_tree($categoryModel->where(["module"=>"page"])->select()->toArray(), $data)) {
-                return Response::returnArray("{$data['title']} 是 ID {$data['pid']} 的父栏目,不能修改！", 0);
-            }
+        try{
+            if($categoryModel->where("id",$data["id"])->count()){
+                if (!$categoryModel->check_tree($categoryModel->where(["module"=>"page"])->select()->toArray(), $data)) {
+                    return Response::returnArray("{$data['title']} 是 ID {$data['pid']} 的父栏目,不能修改！", 0);
+                }
 
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+                $categoryModel->where("id",$data["id"])->save($data);
+            }else{
+                unset($data["id"]);
+                $data["id"] = $categoryModel->create($data)->id;
             }
-        }else{
-            try{
-                $categoryModel->save($data);
-            }catch (\Exception $e){
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-
-            $data['id'] = $categoryModel->id;
+        }catch (\Exception $e){
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         Attachments::handle($data["attachment_id"],$data['id']);
