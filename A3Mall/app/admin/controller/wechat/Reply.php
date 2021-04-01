@@ -51,14 +51,18 @@ class Reply extends Auth {
             $data = Request::post();
 
             $wechatKeys = new Keys();
-            if($wechatKeys::where(["keys"=>$data["keys"]])->count()){
-                return Response::returnArray("关键字己存在！",0);
-            }
-
             try{
                 if(($obj=$wechatKeys::where(["id"=>$data["id"]])->find()) !=false){
+                    $k = $wechatKeys::where(["keys"=>$data["keys"]])->find();
+                    if($k["id"] != $obj["id"]){
+                        return Response::returnArray("关键字己存在！",0);
+                    }
+
                     $obj->where(["id"=>$data["id"]])->save($data);
                 }else{
+                    if($wechatKeys::where(["keys"=>$data["keys"]])->count()){
+                        return Response::returnArray("关键字己存在！",0);
+                    }
                     $wechatKeys->save($data);
                 }
             }catch (\Exception $ex){
