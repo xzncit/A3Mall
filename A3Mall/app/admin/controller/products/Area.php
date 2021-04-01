@@ -51,19 +51,14 @@ class Area extends Auth {
 
         $data = Request::post();
         $area = new \app\common\model\base\Area();
-        if(($obj=$area::find($data["id"])) != false){
-            try {
-                unset($data['pid']);
-                $obj->update($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($area->where("id",$data["id"])->count()){
+                $area->where("id",$data["id"])->save($data);
+            }else{
+                $area->create($data);
             }
-        }else{
-            try {
-                $area->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
