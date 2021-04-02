@@ -54,7 +54,7 @@ class Fans extends Auth {
 
     public function sync_black(){
         try {
-            Fans::syncBlack();
+            \mall\library\wechat\chat\classes\Fans::syncBlack();
         }catch (\Exception $e){
             return Response::returnArray($e->getMessage(),0);
         }
@@ -64,7 +64,7 @@ class Fans extends Auth {
 
     public function sync_tags(){
         try {
-            Fans::syncTags();
+            \mall\library\wechat\chat\classes\Fans::syncTags();
         }catch (\Exception $e){
             return Response::returnArray($e->getMessage(),0);
         }
