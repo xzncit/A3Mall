@@ -58,16 +58,16 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">菜单</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="is_menu" title="开启" value="0" {if isset($data.is_menu) && $data.is_menu==0}checked="checked"{/if}>
-                                    <input type="radio" name="is_menu" title="关闭" value="1" {if empty($data.is_menu) || $data.is_menu==1}checked="checked"{/if}>
+                                    <input type="radio" name="is_menu" title="开启" value="0" {if empty($data.is_menu) || $data.is_menu==0}checked="checked"{/if}>
+                                    <input type="radio" name="is_menu" title="关闭" value="1" {if isset($data.is_menu) && $data.is_menu==1}checked="checked"{/if}>
                                 </div>
                             </div>
 
                             <div class="layui-form-item">
                                 <label class="layui-form-label">置顶</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="is_hot" title="开启" value="0" {if isset($data.is_hot) && $data.is_hot==0}checked="checked"{/if}>
-                                    <input type="radio" name="is_hot" title="关闭" value="1" {if empty($data.is_hot) || $data.is_hot==1}checked="checked"{/if}>
+                                    <input type="radio" name="is_hot" title="开启" value="0" {if empty($data.is_hot) || $data.is_hot==0}checked="checked"{/if}>
+                                    <input type="radio" name="is_hot" title="关闭" value="1" {if isset($data.is_hot) && $data.is_hot==1}checked="checked"{/if}>
                                 </div>
                             </div>
 
