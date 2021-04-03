@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '4ea89638be924299b67e85d70bfa1d9a4dc41445',
+    'reference' => 'c3ddabcc3196a7fd65ef369dc929ff449edffad9',
     'name' => 'topthink/think',
   ),
   'versions' => 
@@ -141,6 +141,15 @@ private static $installed = array (
       ),
       'reference' => '481d41b922095f08230609919be5d19354c50540',
     ),
+    'monolog/monolog' => 
+    array (
+      'pretty_version' => '2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1cb1cde8e8dd0f70cc0fe51354a59acad9302084',
+    ),
     'mtdowling/jmespath.php' => 
     array (
       'pretty_version' => '2.6.0',
@@ -159,6 +168,15 @@ private static $installed = array (
       ),
       'reference' => 'e38888a75c070304ca5514197d4847a59a5c853f',
     ),
+    'pimple/pimple' => 
+    array (
+      'pretty_version' => 'v3.3.1',
+      'version' => '3.3.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '21e45061c3429b1e06233475cc0e1f6fc774d5b0',
+    ),
     'psr/cache' => 
     array (
       'pretty_version' => '1.0.1',
@@ -167,6 +185,13 @@ private static $installed = array (
       array (
       ),
       'reference' => 'd11b50ad223250cf17b86e38383413f5a6764bf8',
+    ),
+    'psr/cache-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '1.0|2.0',
+      ),
     ),
     'psr/container' => 
     array (
@@ -218,6 +243,13 @@ private static $installed = array (
       ),
       'reference' => '0f73288fd15629204f9d42b7055f72dacbe811fc',
     ),
+    'psr/log-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '1.0.0',
+      ),
+    ),
     'psr/simple-cache' => 
     array (
       'pretty_version' => '1.0.1',
@@ -227,6 +259,13 @@ private static $installed = array (
       ),
       'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
     ),
+    'psr/simple-cache-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '1.0',
+      ),
+    ),
     'ralouphie/getallheaders' => 
     array (
       'pretty_version' => '3.0.3',
@@ -235,6 +274,49 @@ private static $installed = array (
       array (
       ),
       'reference' => '120b605dfeb996808c31b6477290a714d356e822',
+    ),
+    'symfony/cache' => 
+    array (
+      'pretty_version' => 'v4.4.21',
+      'version' => '4.4.21.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b7ff54be3f3eb1ce09643692f0c309b1b27bc992',
+    ),
+    'symfony/cache-contracts' => 
+    array (
+      'pretty_version' => 'v2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8034ca0b61d4dd967f3698aaa1da2507b631d0cb',
+    ),
+    'symfony/cache-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '1.0|2.0',
+      ),
+    ),
+    'symfony/deprecation-contracts' => 
+    array (
+      'pretty_version' => 'v2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5fa56b4074d1ae755beb55617ddafe6f5d78f665',
+    ),
+    'symfony/http-foundation' => 
+    array (
+      'pretty_version' => 'v5.2.4',
+      'version' => '5.2.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '54499baea7f7418bce7b5ec92770fd0799e8e9bf',
     ),
     'symfony/options-resolver' => 
     array (
@@ -272,6 +354,15 @@ private static $installed = array (
       ),
       'reference' => 'dc3063ba22c2a1fd2f45ed856374d79114998f91',
     ),
+    'symfony/service-contracts' => 
+    array (
+      'pretty_version' => 'v2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd15da7ba4957ffb8f1747218be9e1a121fd298a1',
+    ),
     'symfony/var-dumper' => 
     array (
       'pretty_version' => 'v4.4.18',
@@ -280,6 +371,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '4f31364bbc8177f2a6dbc125ac3851634ebe2a03',
+    ),
+    'symfony/var-exporter' => 
+    array (
+      'pretty_version' => 'v5.2.4',
+      'version' => '5.2.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5aed4875ab514c8cb9b6ff4772baa25fa4c10307',
     ),
     'topthink/framework' => 
     array (
@@ -297,7 +397,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '4ea89638be924299b67e85d70bfa1d9a4dc41445',
+      'reference' => 'c3ddabcc3196a7fd65ef369dc929ff449edffad9',
     ),
     'topthink/think-captcha' => 
     array (
@@ -370,6 +470,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'edce0ae2c9551ab65f9e94a222604b0dead3576d',
+    ),
+    'xzncit/wechat' => 
+    array (
+      'pretty_version' => '0.3.5',
+      'version' => '0.3.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f55962c127a8a9066d060fc7fac2c98c133f77db',
     ),
   ),
 );
