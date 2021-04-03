@@ -29,7 +29,7 @@
    
    
 ## 软件架构
-    PHP >= 7.2.0
+    PHP >= 7.3.0
     MySQL >= 5.6
     PDO PHP Extension
     MBstring PHP Extension

@@ -20,7 +20,7 @@
         }        
     ],
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=7.3.0",
         "topthink/framework": "^6.0.0",
         "topthink/think-orm": "^2.0",
         "topthink/think-view": "^1.0",
@@ -31,7 +31,8 @@
         "endroid/qr-code": "1.9.3",
         "alibabacloud/client": "^1.5",
         "phpmailer/phpmailer": "~6.1",
-        "liliuwei/thinkphp-jump": "^1.5"
+        "liliuwei/thinkphp-jump": "^1.5",
+        "xzncit/wechat": "^0.3.5"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",
