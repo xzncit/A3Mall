@@ -52,19 +52,15 @@ class Attribute extends Auth {
 
         $data = Request::post();
         $productsAttribute = new ProductsAttribute();
-        if(($obj=$productsAttribute::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($productsAttribute->where("id",$data["id"])->count()){
+                $productsAttribute->where("id",$data["id"])->save($data);
+            }else{
+                unset($data["id"]);
+                $data["id"] = $productsAttribute->create($data)->id;
             }
-        }else{
-            try {
-                $productsAttribute->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-            $data["id"] = $productsAttribute->id;
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         $i = 0;
@@ -79,12 +75,11 @@ class Attribute extends Auth {
                 ];
 
                 $id = intval($data["attr"]["id"][$key]);
-                if(($obj=$productsAttributeData::find($id)) == false){
-                    $productsAttributeData->insert($attr);
-                    $arr[] = $productsAttributeData->id;
-                }else{
+                if($productsAttributeData->where("id",$id)->count()){
                     $arr[] = $id;
-                    $obj->save($attr);
+                    $productsAttributeData->where("id",$id)->save($attr);
+                }else{
+                    $arr[] = $productsAttributeData->create($attr)->id;
                 }
                 $i++;
             }
