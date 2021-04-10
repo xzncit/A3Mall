@@ -51,20 +51,15 @@ class Brand extends Auth {
         $data = Request::post();
         $productsBrand = new ProductsBrand();
         $data['attachment_id'] = empty($data['attachment_id']) ? [] : $data['attachment_id'];
-        if(($obj=$productsBrand::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($productsBrand->where("id",$data["id"])->count()){
+                $productsBrand->where("id",$data["id"])->save($data);
+            }else{
+                unset($data["id"]);
+                $data["id"] = $productsBrand->create($data)->id;
             }
-        }else{
-            try {
-                $productsBrand->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-
-            $data['id'] = $productsBrand->id;
+        }catch (\Exception $ex){
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         Attachments::handle($data["attachment_id"],$data['id']);
