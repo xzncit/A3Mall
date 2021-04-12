@@ -64,18 +64,14 @@ class Deliver extends Auth {
             $deliver->where("1=1")->update(["is_default" => 0]);
         }
 
-        if(($obj=$deliver::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($deliver->where("id",$data["id"])->count()){
+                $deliver->where("id",$data["id"])->save($data);
+            }else{
+                $deliver->create($data);
             }
-        }else{
-            try {
-                $deliver->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        }catch (\Exception $ex){
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
