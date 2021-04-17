@@ -97,18 +97,14 @@ class Distribution extends Auth {
             $data["second_price_group"] = json_encode($data['second_price_group']);
         }
 
-        if(($obj=$distribution::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($distribution->where("id",$data["id"])->count()){
+                $distribution->where("id",$data["id"])->save($data);
+            }else{
+                $distribution->create($data);
             }
-        }else{
-            try {
-                $distribution->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
