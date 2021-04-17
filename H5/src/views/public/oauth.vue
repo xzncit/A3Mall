@@ -23,7 +23,6 @@
         },
         created() {
             if(this.$tools.isWeiXin()){
-
                 let params = {
                     code: this.$route.query.code,
                     state: this.$route.query.state

@@ -27,7 +27,6 @@ export function login(obj,from) {
         //     router.push('/public/login');
         // }
         router.push('/public/login');
-
         return true;
     }else if(users != null && users.token){
         if(tools.in_array(obj.name,["Login","Register","Forget","Oauth"])){
