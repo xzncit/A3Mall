@@ -44,18 +44,14 @@ class Freight extends Auth {
 
         $data = Request::post();
         $freight = new \app\common\model\base\Freight();
-        if(($obj=$freight::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($freight->where("id",$data["id"])->count()){
+                $freight->where("id",$data["id"])->save($data);
+            }else{
+                $freight->create($data);
             }
-        }else{
-            try {
-                $freight->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
