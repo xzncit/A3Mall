@@ -105,23 +105,18 @@ class Index extends Auth {
         $post['goods_weight'] = $data['product_weight'];
         $post['store_nums'] = $data['product_store_nums'];
         $goods = new \app\common\model\goods\Goods();
-        if(($obj=$goods::find($data["id"])) != false){
-            try {
-                $obj->save($post);
+        try{
+            if($goods->where("id",$data["id"])->count()){
+                $goods->where("id",$data["id"])->save($post);
                 $data['goods_number'] = $goods->where("id",$data['id'])->value("goods_number");
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-        }else{
-            try {
+            }else{
+                unset($post["id"]);
                 $post['upper_time'] = time();
                 $post['goods_number'] = \mall\basic\Goods::goods_number();
-                $goods->save($post);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+                $data["id"] = $goods->create($post)->id;
             }
-
-            $data["id"] = $goods->id;
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         $i = 0;
