@@ -51,20 +51,15 @@ class Model extends Auth {
 
         $data = Request::post();
         $productsModel = new ProductsModel();
-        if(($obj=$productsModel::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($productsModel->where("id",$data["id"])->count()){
+                $productsModel->where("id",$data["id"])->save($data);
+            }else{
+                unset($data["id"]);
+                $data["id"] = $productsModel->create($data)->id;
             }
-        }else{
-            try {
-                $productsModel->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-
-            $data["id"] = $productsModel->id;
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         $i = 0;
@@ -81,12 +76,11 @@ class Model extends Auth {
                 ];
 
                 $id = intval($data["attr"]["id"][$key]);
-                if(($model = $productsModelData::find($id)) == false){
-                    $productsModelData->insert($attr);
-                    $arr[] = $productsModelData->id;
+                if($productsModelData->where("id",$id)->count()){
+                    $arr[] = $productsModelData->create($attr)->id;
                 }else{
                     $arr[] = $id;
-                    $model->save($attr);
+                    $productsModelData->where("id",$id)->save($attr);
                 }
                 $i++;
             }
