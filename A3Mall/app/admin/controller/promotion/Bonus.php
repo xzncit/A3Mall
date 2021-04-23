@@ -67,18 +67,14 @@ class Bonus extends Auth {
         }
 
         $bonus = new BonusModel();
-        if(($obj=$bonus->where("id",$data["id"])->find()) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($bonus->where("id",$data["id"])->count()){
+                $bonus->where("id",$data["id"])->save($data);
+            }else{
+                $bonus->create($data);
             }
-        }else{
-            try {
-                $bonus->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
