@@ -68,18 +68,14 @@ class Index extends Auth {
         }
 
         $order = new Order();
-        if(($obj=$order->where('id',$data["id"])->find()) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($order->where('id',$data["id"])->count()){
+                $order->where('id',$data["id"])->save($data);
+            }else{
+                $order->create($data);
             }
-        }else{
-            try {
-                $order->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
