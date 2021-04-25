@@ -61,18 +61,14 @@ class Purview extends Auth {
 
         $data = Request::post();
         $systemManage = new Manage();
-        if(($obj = $systemManage::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($systemManage->where("id",$data["id"])->count()){
+                $systemManage->where("id",$data["id"])->save($data);
+            }else{
+                $systemManage->create($data);
             }
-        }else{
-            try {
-                $systemManage->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
