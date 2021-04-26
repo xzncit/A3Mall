@@ -66,18 +66,14 @@ class Sms extends Auth {
 
         $data = Request::post();
         $smsTemplate = new SmsTemplate();
-        if(($obj=$smsTemplate::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($smsTemplate->where("id",$data["id"])->count()){
+                $smsTemplate->where("id",$data["id"])->save($data);
+            }else{
+                $smsTemplate->create($data);
             }
-        }else{
-            try {
-                $smsTemplate->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
