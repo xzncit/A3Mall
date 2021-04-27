@@ -47,38 +47,33 @@ class Users extends Auth {
 
         $data = Request::post();
         $systemUsers = new SystemUsers();
-        if(($obj=$systemUsers::find($data["id"])) != false){
-            if(!empty($data["password"]) || !empty($data["confirm_password"])){
-                if($data["password"] != $data["confirm_password"]){
+        try{
+            if($systemUsers->where("id",$data["id"])->count()){
+                if(!empty($data["password"]) || !empty($data["confirm_password"])){
+                    if($data["password"] != $data["confirm_password"]){
+                        return Response::returnArray("您输入的两次密码不致。",0);
+                    }
+                    $data["password"] = md5($data["password"]);
+                }else{
+                    unset($data["password"],$data["confirm_password"]);
+                }
+
+                $systemUsers->where("id",$data["id"])->save($data);
+            }else{
+                if(empty($data["password"])){
+                    return Response::returnArray("请填写密码",0);
+                }else if(empty($data["confirm_password"])){
+                    return Response::returnArray("请填写确认密码",0);
+                }else if($data["password"] != $data["confirm_password"]){
                     return Response::returnArray("您输入的两次密码不致。",0);
                 }
+
                 $data["password"] = md5($data["password"]);
-            }else{
-                unset($data["password"],$data["confirm_password"]);
+                $data["time"] = time();
+                $systemUsers->create($data);
             }
-
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-        }else{
-            if(empty($data["password"])){
-                return Response::returnArray("请填写密码",0);
-            }else if(empty($data["confirm_password"])){
-                return Response::returnArray("请填写确认密码",0);
-            }else if($data["password"] != $data["confirm_password"]){
-                return Response::returnArray("您输入的两次密码不致。",0);
-            }
-
-            $data["password"] = md5($data["password"]);
-            $data["time"] = time();
-
-            try{
-                $systemUsers->save($data);
-            }catch (\Exception $e){
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        }catch (\Exception $e){
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
