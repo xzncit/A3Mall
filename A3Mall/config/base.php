@@ -1,6 +1,6 @@
 <?php
 return [
-    "app_version"=>"1.5.8",
+    "app_version"=>"1.5.9",
     "app_type"=>"pc", // pc|page|wap
     "money_prefix"=>"￥",
     "is_thumb_image"=>true,

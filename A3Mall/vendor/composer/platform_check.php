@@ -19,6 +19,7 @@ extension_loaded('json') || $missingExtensions[] = 'json';
 extension_loaded('libxml') || $missingExtensions[] = 'libxml';
 extension_loaded('mbstring') || $missingExtensions[] = 'mbstring';
 extension_loaded('openssl') || $missingExtensions[] = 'openssl';
+extension_loaded('pdo') || $missingExtensions[] = 'pdo';
 extension_loaded('simplexml') || $missingExtensions[] = 'simplexml';
 extension_loaded('xmlwriter') || $missingExtensions[] = 'xmlwriter';
 
