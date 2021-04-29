@@ -45,18 +45,14 @@ class Group extends Auth {
 
         $data = Request::post();
         $usersGroup = new UsersGroup();
-        if(($obj=$usersGroup::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($usersGroup->where("id",$data["id"])->count()){
+                $usersGroup->where("id",$data["id"])->save($data);
+            }else{
+                $usersGroup->create($data);
             }
-        }else{
-            try {
-                $usersGroup->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
