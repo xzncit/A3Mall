@@ -73,37 +73,33 @@ class Index extends Auth {
 
         $data = Request::post();
         $users = new Users();
-        if(($obj=$users::find($data["id"])) != false){
-            if(!empty($data["password"]) || !empty($data["confirm_password"])){
-                if($data["password"] != $data["confirm_password"]){
+        try{
+            if($users->where("id",$data["id"])->count()){
+                if(!empty($data["password"]) || !empty($data["confirm_password"])){
+                    if($data["password"] != $data["confirm_password"]){
+                        return Response::returnArray("您输入的两次密码不致。",0);
+                    }
+
+                    $data["password"] = md5($data["password"]);
+                }else{
+                    unset($data['password'],$data['confirm_password']);
+                }
+
+                $users->where("id",$data["id"])->save($data);
+            }else{
+                if(empty($data["password"])){
+                    return Response::returnArray("请填写密码",0);
+                }else if(empty($data["confirm_password"])){
+                    return Response::returnArray("请填写确认密码",0);
+                }else if($data["password"] != $data["confirm_password"]){
                     return Response::returnArray("您输入的两次密码不致。",0);
                 }
 
                 $data["password"] = md5($data["password"]);
-            }else{
-                unset($data['password'],$data['confirm_password']);
+                $users->create($data);
             }
-
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-        }else{
-            if(empty($data["password"])){
-                return Response::returnArray("请填写密码",0);
-            }else if(empty($data["confirm_password"])){
-                return Response::returnArray("请填写确认密码",0);
-            }else if($data["password"] != $data["confirm_password"]){
-                return Response::returnArray("您输入的两次密码不致。",0);
-            }
-
-            $data["password"] = md5($data["password"]);
-            try {
-                $users->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
