@@ -53,19 +53,14 @@ class Tags extends Auth {
 
         $usersTags = new UsersTags();
         $data = Request::post();
-        if(($obj = $usersTags::find($data["id"])) != false){
-            try{
-                $obj->save($data);
-            }catch (\Exception $e){
-                return Response::returnArray($e->getMessage(),0);
+        try{
+            if($usersTags->where("id",$data["id"])->count()){
+                $usersTags->where("id",$data["id"])->save($data);
+            }else{
+                $usersTags->create($data);
             }
-        }else{
-            try{
-                $usersTags->save($data);
-            }catch (\Exception $e){
-                return Response::returnArray("操作失败，请重试。",0);
-            }
-
+        }catch (\Exception $e){
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
