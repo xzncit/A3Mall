@@ -52,18 +52,14 @@ class Subscribe extends Auth {
         $data["content"] = !empty($data["attr"]) ? json_encode($data["attr"],JSON_UNESCAPED_UNICODE) : "";
 
         $subscribeMessageModel = new SubscribeMessageModel();
-        if(($obj=$subscribeMessageModel::find($data["id"])) != false){
-            try {
-                $obj->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
+        try{
+            if($subscribeMessageModel->where("id",$data["id"])->count()){
+                $subscribeMessageModel->where("id",$data["id"])->save($data);
+            }else{
+                $subscribeMessageModel->create($data);
             }
-        }else{
-            try {
-                $subscribeMessageModel->save($data);
-            } catch (\Exception $ex) {
-                return Response::returnArray("操作失败，请重试。",0);
-            }
+        } catch (\Exception $ex) {
+            return Response::returnArray("操作失败，请重试。",0);
         }
 
         return Response::returnArray("操作成功！");
