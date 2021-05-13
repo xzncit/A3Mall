@@ -88,10 +88,11 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/4.jpg "4.jpg")
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/5.jpg "5.jpg")
 
-# 用户须知
+### 用户须知
 
 - 允许个人学习、毕设、公益、教学案例；
-- 支持个人商业使用，但必须保留A3Mall版权信息；
+- 支持个人商业用途，仅限自运营，但必须保留A3Mall版权信息；
+- 不允许对程序代码以任何形式任何目的的再发行或出售，否则将追究侵权者法律责任;
 - 如果需要商业使用推荐购买商业版；
 
  **bug反馈**
