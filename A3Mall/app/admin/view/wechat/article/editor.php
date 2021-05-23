@@ -180,283 +180,283 @@
 <script type="text/javascript" src="{__SYSTEM_PATH__}/js/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="{__SYSTEM_PATH__}/js/ueditor/ueditor.all.min.js"></script>
 <script type="text/javascript">
-$(function (){
-    var ue = UE.getEditor('container');
-    layui.use(["form", "element","layer","upload","laytpl"], function() {
-        var form = layui.form;
-        var layer = layui.layer;
-        var upload = layui.upload;
-        var laytpl = layui.laytpl;
+    UE.getEditor('container').addListener("ready", function (){
+        var ue = UE.getEditor('container');
+        layui.use(["form", "element","layer","upload","laytpl"], function() {
+            var form = layui.form;
+            var layer = layui.layer;
+            var upload = layui.upload;
+            var laytpl = layui.laytpl;
 
-        var data = JSON.parse('{$data.article|raw|default="[]"}');
-        var pid = '{$data.id|default="0"}';
+            var data = JSON.parse('{$data.article|raw|default="[]"}');
+            var pid = '{$data.id|default="0"}';
 
-        var activeIndex = 0;
-        var renderHtml = function (){
-            laytpl(document.getElementById("left").innerHTML).render(data, function (html) {
-                $("#left-wrap").html(html);
-                $(document).find(".article-item").eq(activeIndex).addClass("active");
-                $(document).find('[name="title"]').val(data[activeIndex].title);
-                $(document).find('[name="author"]').val(data[activeIndex].author);
-                $(document).find('.article-item').eq(activeIndex).css("background-image",data[activeIndex].photo);
-                UE.getEditor('container').setContent(data[activeIndex].content,false);
-                $(document).find('[name="digest"]').val(data[activeIndex].digest);
-                $(document).find('[name="content_source_url"]').val(data[activeIndex].content_source_url);
-            });
-        };
+            var activeIndex = 0;
+            var renderHtml = function (){
+                laytpl(document.getElementById("left").innerHTML).render(data, function (html) {
+                    $("#left-wrap").html(html);
+                    $(document).find(".article-item").eq(activeIndex).addClass("active");
+                    $(document).find('[name="title"]').val(data[activeIndex].title);
+                    $(document).find('[name="author"]').val(data[activeIndex].author);
+                    $(document).find('.article-item').eq(activeIndex).css("background-image",data[activeIndex].photo);
+                    UE.getEditor('container').setContent(data[activeIndex].content,false);
+                    $(document).find('[name="digest"]').val(data[activeIndex].digest);
+                    $(document).find('[name="content_source_url"]').val(data[activeIndex].content_source_url);
+                });
+            };
 
-        var renderImage = function (){
-            var image = data[activeIndex];
-            laytpl(document.getElementById("images-list-box").innerHTML).render(image, function (html) {
-                $(".layui-upload-list").html(html);
-            });
-        };
+            var renderImage = function (){
+                var image = data[activeIndex];
+                laytpl(document.getElementById("images-list-box").innerHTML).render(image, function (html) {
+                    $(".layui-upload-list").html(html);
+                });
+            };
 
-        $(document).find('[name="title"]').on("input",function (){
-            data[activeIndex].title = $(this).val();
-            renderHtml();
-        });
-
-        $(document).find('[name="author"]').on("input",function (){
-            data[activeIndex].author = $(this).val();
-            renderHtml();
-        });
-
-        $(document).find('[name="content"]').on("input",function (){
-            data[activeIndex].content = $(this).val();
-            renderHtml();
-        });
-
-        UE.getEditor('container').addListener('blur',function(editor){
-            data[activeIndex].content = UE.getEditor('container').getContent();
-            renderHtml();
-        });
-
-        $(document).find('[name="digest"]').on("input",function (){
-            data[activeIndex].digest = $(this).val();
-            renderHtml();
-        });
-
-        $(document).find('[name="content_source_url"]').on("input",function (){
-            data[activeIndex].content_source_url = $(this).val();
-            renderHtml();
-        });
-
-        var i = 0;
-        $(document).on("click",".article-add",function (){
-            data.push({
-                "id": "0",
-                "title":"新建图文-"+(i+1),
-                "show_cover_pic":1,
-                "author": "管理员",
-                "local_url": "/static/images/default.jpg",
-                "images":[],
-                "content": "请填写内容",
-                "digest": "",
-                "content_source_url": ""
+            $(document).find('[name="title"]').on("input",function (){
+                data[activeIndex].title = $(this).val();
+                renderHtml();
             });
 
-            i++;
-            renderHtml();
-            renderImage();
-        });
+            $(document).find('[name="author"]').on("input",function (){
+                data[activeIndex].author = $(this).val();
+                renderHtml();
+            });
 
-        {if !empty($data)}
+            $(document).find('[name="content"]').on("input",function (){
+                data[activeIndex].content = $(this).val();
+                renderHtml();
+            });
+
+            UE.getEditor('container').addListener('blur',function(editor){
+                data[activeIndex].content = UE.getEditor('container').getContent();
+                renderHtml();
+            });
+
+            $(document).find('[name="digest"]').on("input",function (){
+                data[activeIndex].digest = $(this).val();
+                renderHtml();
+            });
+
+            $(document).find('[name="content_source_url"]').on("input",function (){
+                data[activeIndex].content_source_url = $(this).val();
+                renderHtml();
+            });
+
+            var i = 0;
+            $(document).on("click",".article-add",function (){
+                data.push({
+                    "id": "0",
+                    "title":"新建图文-"+(i+1),
+                    "show_cover_pic":1,
+                    "author": "管理员",
+                    "local_url": "/static/images/default.jpg",
+                    "images":[],
+                    "content": "请填写内容",
+                    "digest": "",
+                    "content_source_url": ""
+                });
+
+                i++;
+                renderHtml();
+                renderImage();
+            });
+
+            {if !empty($data)}
             renderHtml();
-        {else}
+            {else}
             $(".article-add").trigger("click");
-        {/if}
+            {/if}
 
 
-        $(document).on("click",".article-item",function () {
-            var index = $(this).index(".article-item");
-            activeIndex = index;
-            renderHtml();
-            renderImage();
-        });
+                $(document).on("click",".article-item",function () {
+                    var index = $(this).index(".article-item");
+                    activeIndex = index;
+                    renderHtml();
+                    renderImage();
+                });
 
-        $(document).on("click",".article-item-top",function (e){
-            var index = $(this).index(".article-item-top");
-            if($(e.target).is(".up")){
-                if(index!=0){
-                    data[index] = data.splice(index-1, 1, data[index])[0];
-                }else{
-                    data.push(data.shift());
-                }
-            }else if($(e.target).is(".down")){
-                if(index!=data.length-1){
-                    data[index] = data.splice(index+1, 1, data[index])[0];
-                }else{
-                    data.unshift(data.splice(index,1)[0]);
-                }
-            }else if($(e.target).is(".dd")){
-                if($(".article-item-top").length <= 1){
+                $(document).on("click",".article-item-top",function (e){
+                    var index = $(this).index(".article-item-top");
+                    if($(e.target).is(".up")){
+                        if(index!=0){
+                            data[index] = data.splice(index-1, 1, data[index])[0];
+                        }else{
+                            data.push(data.shift());
+                        }
+                    }else if($(e.target).is(".down")){
+                        if(index!=data.length-1){
+                            data[index] = data.splice(index+1, 1, data[index])[0];
+                        }else{
+                            data.unshift(data.splice(index,1)[0]);
+                        }
+                    }else if($(e.target).is(".dd")){
+                        if($(".article-item-top").length <= 1){
+                            return false;
+                        }
+                        data.splice(index,1);
+                    }else{
+                        return false;
+                    }
+                    var arr = [];
+                    for(var i in data){
+                        if(data[i]){
+                            arr.push(data[i]);
+                        }
+                    }
+                    data = arr;
+                    activeIndex = 0;
+                    renderHtml();
+                });
+
+                //多图片上传
+                upload.render({
+                    elem: '#uploadfiy-btn'
+                    ,url: '{:createUrl("common.uploadfiy/image")}'
+                    ,multiple: true
+                    ,exts: 'jpg|png|gif|bmp|jpeg'
+                    ,data: {
+                        module: function (){
+                            return "wechat";
+                        },
+                        method: function (){
+                            return "article";
+                        }
+                    }
+                    ,done: function(res){
+                        if(!res.code){
+                            data[activeIndex].images.push({
+                                "id":res.data.id,
+                                "path":res.data.src
+                            });
+                            renderImage();
+                        }else{
+                            layer.msg(res.msg,{ icon : 2 });
+                        }
+                    }
+                });
+
+                $(document).on("click",".n6-insert",function (){
+                    var pt = $(this).parent().parent();
+                    UE.getEditor('container').setContent('<p><img src="'+pt.find("img").attr("src")+'"></p>', true);
                     return false;
-                }
-                data.splice(index,1);
-            }else{
-                return false;
-            }
-            var arr = [];
-            for(var i in data){
-                if(data[i]){
-                    arr.push(data[i]);
-                }
-            }
-            data = arr;
-            activeIndex = 0;
-            renderHtml();
-        });
+                });
 
-        //多图片上传
-        upload.render({
-            elem: '#uploadfiy-btn'
-            ,url: '{:createUrl("common.uploadfiy/image")}'
-            ,multiple: true
-            ,exts: 'jpg|png|gif|bmp|jpeg'
-            ,data: {
-                module: function (){
-                    return "wechat";
-                },
-                method: function (){
-                    return "article";
-                }
-            }
-            ,done: function(res){
-                if(!res.code){
-                    data[activeIndex].images.push({
-                        "id":res.data.id,
-                        "path":res.data.src
-                    });
-                    renderImage();
-                }else{
-                    layer.msg(res.msg,{ icon : 2 });
-                }
-            }
-        });
+                $(document).on("click",".n6-thumb",function (){
+                    if($(this).is(".active")){
+                        $(this).removeClass("active");
+                        return false;
+                    }
 
-        $(document).on("click",".n6-insert",function (){
-            var pt = $(this).parent().parent();
-            UE.getEditor('container').setContent('<p><img src="'+pt.find("img").attr("src")+'"></p>', true);
-            return false;
-        });
+                    $(".n6-thumb").removeClass("active");
+                    $(this).addClass("active");
+                    var pt = $(this).parent().parent();
+                    data[activeIndex].local_url = pt.find("img").attr("src");
+                    renderHtml();
+                    return false;
+                });
 
-        $(document).on("click",".n6-thumb",function (){
-            if($(this).is(".active")){
-                $(this).removeClass("active");
-                return false;
-            }
-
-            $(".n6-thumb").removeClass("active");
-            $(this).addClass("active");
-            var pt = $(this).parent().parent();
-            data[activeIndex].local_url = pt.find("img").attr("src");
-            renderHtml();
-            return false;
-        });
-
-        $(document).on("click",".n6-delete",function (){
-            var index = $(this).index(".n6-delete");
-            var pt = $(this).parent().parent();
-            $.post('{:createUrl("common.uploadfiy/delete")}',{
-                path : pt.find("img").attr("src")
-            },function (result){
-                if(result.code){
-                    data[activeIndex].images.splice(index,1);
-                    renderImage();
-                    pt.remove();
-                }else{
-                    layer.msg(result.msg,{ icon : 2 });
-                }
-            },"json");
-            return false;
-        });
-
-        form.on('submit(layui-submit-filter)', function (r) {
-            var index = layer.load(1, { shade: [0.2,'#fff'] });
-            $.post('{:createUrl("editor")}', { pid:pid,post:data }, function (result) {
-                layer.close(index);
-                if(result.code){
-                    layer.msg(result.msg, {
-                        time: 0
-                        ,btn: ['继续发布', '返回列表']
-                        ,yes: function(index){
-                            window.location.href = '{:createUrl("editor")}';
+                $(document).on("click",".n6-delete",function (){
+                    var index = $(this).index(".n6-delete");
+                    var pt = $(this).parent().parent();
+                    $.post('{:createUrl("common.uploadfiy/delete")}',{
+                        path : pt.find("img").attr("src")
+                    },function (result){
+                        if(result.code){
+                            data[activeIndex].images.splice(index,1);
+                            renderImage();
+                            pt.remove();
+                        }else{
+                            layer.msg(result.msg,{ icon : 2 });
                         }
-                        ,btn2: function (index, layero){
-                            window.location.href = '{:createUrl("index")}';
+                    },"json");
+                    return false;
+                });
+
+                form.on('submit(layui-submit-filter)', function (r) {
+                    var index = layer.load(1, { shade: [0.2,'#fff'] });
+                    $.post('{:createUrl("editor")}', { pid:pid,post:data }, function (result) {
+                        layer.close(index);
+                        if(result.code){
+                            layer.msg(result.msg, {
+                                time: 0
+                                ,btn: ['继续发布', '返回列表']
+                                ,yes: function(index){
+                                    window.location.href = '{:createUrl("editor")}';
+                                }
+                                ,btn2: function (index, layero){
+                                    window.location.href = '{:createUrl("index")}';
+                                }
+                            });
+                        }else{
+                            layer.msg(result.msg,{ icon :2 });
                         }
-                    });
-                }else{
-                    layer.msg(result.msg,{ icon :2 });
-                }
-            }, "json");
-            return false;
-        });
+                    }, "json");
+                    return false;
+                });
+            });
     });
-});
 </script>
 <style type="text/css">
-.article-left {
-    width: 100%;
-    background: #fff;
-}
-.article-right{
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-    display: inline-block;
-    background: #fff;
-}
-.article-left .article-item {
-    height: 150px;
-    cursor: pointer;
-    max-width: 270px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid #ccc;
-    background-size: cover;
-    background-position: center center;
-}
-.article-left .article-item.active {
-    border: 1px solid #44b549 !important;
-}
-.article-left .article-item a {
-    color: #fff;
-    width: 30px;
-    height: 30px;
-    float: right;
-    font-size: 12px;
-    margin-top: -1px;
-    line-height: 34px;
-    text-align: center;
-    margin-right: -1px;
-    background-color: rgba(0, 0, 0, .5);
-}
-.article-left .article-title {
-    bottom: 0;
-    color: #fff;
-    width: 272px;
-    display: block;
-    padding: 0 5px;
-    max-height: 6em;
-    overflow: hidden;
-    margin-left: -1px;
-    position: absolute;
-    text-overflow: ellipsis;
-    background: rgba(0, 0, 0, .7);
-}
-.article-item .article-item-top { display: none; }
-.article-item:hover .article-item-top {
-    display: block;
-}
-.article-left .article-add {
-    color: #999;
-    display: block;
-    font-size: 22px;
-    text-align: center;
-    cursor: pointer;
-}
+    .article-left {
+        width: 100%;
+        background: #fff;
+    }
+    .article-right{
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        display: inline-block;
+        background: #fff;
+    }
+    .article-left .article-item {
+        height: 150px;
+        cursor: pointer;
+        max-width: 270px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #ccc;
+        background-size: cover;
+        background-position: center center;
+    }
+    .article-left .article-item.active {
+        border: 1px solid #44b549 !important;
+    }
+    .article-left .article-item a {
+        color: #fff;
+        width: 30px;
+        height: 30px;
+        float: right;
+        font-size: 12px;
+        margin-top: -1px;
+        line-height: 34px;
+        text-align: center;
+        margin-right: -1px;
+        background-color: rgba(0, 0, 0, .5);
+    }
+    .article-left .article-title {
+        bottom: 0;
+        color: #fff;
+        width: 272px;
+        display: block;
+        padding: 0 5px;
+        max-height: 6em;
+        overflow: hidden;
+        margin-left: -1px;
+        position: absolute;
+        text-overflow: ellipsis;
+        background: rgba(0, 0, 0, .7);
+    }
+    .article-item .article-item-top { display: none; }
+    .article-item:hover .article-item-top {
+        display: block;
+    }
+    .article-left .article-add {
+        color: #999;
+        display: block;
+        font-size: 22px;
+        text-align: center;
+        cursor: pointer;
+    }
 </style>
 
 
