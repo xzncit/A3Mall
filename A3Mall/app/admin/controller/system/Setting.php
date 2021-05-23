@@ -114,4 +114,23 @@ class Setting extends Auth {
             "data"=>Aliyun::getConfig()
         ]);
     }
+
+    public function address(){
+        if(Request::isAjax()){
+            $post = Request::post();
+            $data = json_encode($post,JSON_UNESCAPED_UNICODE);
+            $setting = new SettingConfig();
+            $setting->where("name","address")->save(["value"=>$data]);
+            return Response::returnArray("操作成功！");
+        }
+
+        $content = Db::name("setting")->where("name","address")->value("value");
+        if(!empty($content)){
+            $content = json_decode($content,true);
+        }
+
+        return View::fetch("",[
+            "data"=>$content
+        ]);
+    }
 }

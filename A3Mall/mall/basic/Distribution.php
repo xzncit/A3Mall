@@ -56,13 +56,13 @@ class Distribution {
             $area_groupid = json_decode($delivery["area_group"], true);
             foreach ($area_groupid as $key => $val) {
                 $arr = explode(",", $val);
-                foreach ($province as $area_id) {
+                //foreach ($province as $area_id) {
                     if (in_array($province, $arr)) {
                         $index = $key;
                         $flag = true;
                         break;
                     }
-                }
+                //}
 
                 if ($flag) {
                     break;
