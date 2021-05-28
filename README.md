@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.5.9-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.6.0-blue.svg" />
     </a>
 </p>
 <p align="center">    
@@ -23,7 +23,7 @@
 
 
 ## 项目介绍
-   A3Mall商城系统是基于ThinkPhp6.0+Vue开发的一套移动电商系统，
+   A3Mall商城系统是基于ThinkPHP6.0+Vue开发的一套移动电商系统，
    支持微信公众号商城、H5商城、小程序商城，支持多种营销活动，优惠劵、订单活动、团购、秒杀、会员特价、积分商品等功能。前后端全部开源。
    
    
@@ -50,12 +50,6 @@ npm install
 修改.env.production配置文件
 npm run serve 调试前端页面
 npm run build 打包前端页面，复制dist目录内容到public目录替换 index.html static/wap 
-
-小程序
-下载好小程序源码，解压
-下载安装微信开发者工具
-导入微信小程序运行
-修改小程序根目录下 config.js 配置文件
 ```
 
 ## Linux Shell命令
