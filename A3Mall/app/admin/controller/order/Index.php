@@ -292,7 +292,7 @@ class Index extends Auth {
                         'create_time' => time(),
                         'amount' => $amount,
                         'order_goods_id' => implode(",", $order_goods_id)
-                    ]);
+                    ],true);
                 }else{
                     Db::name("order_refundment")->where("order_id",$order["id"])->update(['admin_id' => $admin_id,'dispose_idea' => $desc]);
                 }

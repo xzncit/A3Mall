@@ -18,8 +18,8 @@
 ## 导航栏目
  [官网地址](http://www.a3-mall.com)
  | [APP商城下载](https://gitee.com/xzncit/A3Mall-APP)
- | [帮助文档](http://doc.a3-mall.com)
- | [安装文档](http://doc.a3-mall.com/help/)
+ | [后端安装](http://www.a3-mall.com/forum/view/3.html)
+ | [前端安装](http://doc.a3-mall.com/help/)
 
 
 ## 项目介绍
