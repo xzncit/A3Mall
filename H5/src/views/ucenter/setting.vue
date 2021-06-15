@@ -110,7 +110,7 @@ export default {
             username: "",
             sex:"男",
             showPicker:false,
-            columns: ['男', '女', '未知'],
+            columns: ['男', '女', '保密'],
             birthday:'',
             showBirthdayPicker: false,
             minDate: new Date(1950, 0, 1),
@@ -122,9 +122,15 @@ export default {
         this.$http.getUserInfo().then((res)=>{
             if(res.status){
                 this.username  = res.data.nickname;
-                this.sex  = res.data.sex;
                 this.birthday  = res.data.birthday;
                 this.avatar = res.data.avatar;
+                if(res.data.sex == 1){
+                  this.sex  = "男";
+                }else if(res.data.sex == 2){
+                  this.sex  = "女";
+                }else{
+                  this.sex  = "保密";
+                }
             }
         });
     },
