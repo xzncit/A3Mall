@@ -58,6 +58,10 @@ class Users extends Auth {
                     unset($data["password"],$data["confirm_password"]);
                 }
 
+                if($systemUsers->where("username",$data["username"])->where("id","<>",$data["id"])->count()){
+                    return Response::returnArray("该用户名己存在，请更换用户名。",0);
+                }
+
                 $systemUsers->where("id",$data["id"])->save($data);
             }else{
                 if(empty($data["password"])){
@@ -66,6 +70,10 @@ class Users extends Auth {
                     return Response::returnArray("请填写确认密码",0);
                 }else if($data["password"] != $data["confirm_password"]){
                     return Response::returnArray("您输入的两次密码不致。",0);
+                }
+
+                if($systemUsers->where("username",$data["username"])->count()){
+                    return Response::returnArray("该用户名己存在，请更换用户名。",0);
                 }
 
                 $data["password"] = md5($data["password"]);
