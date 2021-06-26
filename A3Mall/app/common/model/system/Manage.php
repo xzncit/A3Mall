@@ -36,10 +36,6 @@ class Manage extends A3Mall{
         return strip_tags(trim($value));
     }
 
-    public function setPurviewAttr($value){
-        return json_encode($value,JSON_UNESCAPED_UNICODE);
-    }
-
     public function getPurviewAttr($value){
         if($value == '-1'){
             return $value;
