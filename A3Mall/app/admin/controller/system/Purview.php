@@ -61,6 +61,7 @@ class Purview extends Auth {
 
         $data = Request::post();
         $systemManage = new Manage();
+        $data["purview"] = isset($data["purview"]) && is_array($data["purview"]) ? json_encode($data["purview"],JSON_UNESCAPED_UNICODE) : $data["purview"];
         try{
             if($systemManage->where("id",$data["id"])->count()){
                 $systemManage->where("id",$data["id"])->save($data);
