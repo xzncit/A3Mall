@@ -48,7 +48,7 @@ class Special extends Auth {
                 $spec = "";
                 if($item["product_id"]){
                     $product = Db::name("goods_item")->where(["id"=>$item["product_id"]])->find();
-                    $arr = explode(",",$product["spec_key"]);
+                    $arr = !empty($product["spec_key"]) ? explode(",",$product["spec_key"]) : [];
                     $temp = [];
                     foreach($arr as $value){
                         $param = explode(":",$value);
