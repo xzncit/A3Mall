@@ -44,7 +44,7 @@
 ```
 
 ### 页面展示
-![输入图片说明](https://gitee.com/a3mall/A3Mall/blob/master/readme/images/1.png "1.jpg")
+![输入图片说明](https://gitee.com/a3mall/A3Mall/raw/master/readme/images/1.png "1.png")
 
 ### 后端演示
 后台地址：https://demo.a3-mall.net/admin
