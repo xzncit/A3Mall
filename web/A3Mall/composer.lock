@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b1b5d759b45dfa2be4bac9f270e9a66",
+    "content-hash": "832c7802978da22eeaa5640680e12e6d",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -155,196 +155,6 @@
                 "source": "https://github.com/aliyun/openapi-sdk-php-client"
             },
             "time": "2020-08-03T06:19:07+00:00"
-        },
-        {
-            "name": "alibabacloud/tea",
-            "version": "3.1.20",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/aliyun/tea-php.git",
-                "reference": "03926337225a8c039d1512fd7a920b2dcfb3ff42"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/tea-php/zipball/03926337225a8c039d1512fd7a920b2dcfb3ff42",
-                "reference": "03926337225a8c039d1512fd7a920b2dcfb3ff42",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "adbario/php-dot-notation": "^2.2",
-                "ext-curl": "*",
-                "ext-json": "*",
-                "ext-libxml": "*",
-                "ext-mbstring": "*",
-                "ext-openssl": "*",
-                "ext-simplexml": "*",
-                "ext-xmlwriter": "*",
-                "guzzlehttp/guzzle": "^6.3|^7.0",
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "*",
-                "symfony/dotenv": "^3.4",
-                "symfony/var-dumper": "^3.4"
-            },
-            "suggest": {
-                "ext-sockets": "To use client-side monitoring"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "AlibabaCloud\\Tea\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Alibaba Cloud SDK",
-                    "email": "sdk-team@alibabacloud.com",
-                    "homepage": "http://www.alibabacloud.com"
-                }
-            ],
-            "description": "Client of Tea for PHP",
-            "homepage": "https://www.alibabacloud.com/",
-            "keywords": [
-                "alibabacloud",
-                "client",
-                "cloud",
-                "tea"
-            ],
-            "support": {
-                "issues": "https://github.com/aliyun/tea-php/issues",
-                "source": "https://github.com/aliyun/tea-php"
-            },
-            "time": "2020-12-02T07:17:07+00:00"
-        },
-        {
-            "name": "alibabacloud/tea-fileform",
-            "version": "0.3.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/alibabacloud-sdk-php/tea-fileform.git",
-                "reference": "4bf0c75a045c8115aa8cb1a394bd08d8bb833181"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/alibabacloud-sdk-php/tea-fileform/zipball/4bf0c75a045c8115aa8cb1a394bd08d8bb833181",
-                "reference": "4bf0c75a045c8115aa8cb1a394bd08d8bb833181",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "alibabacloud/tea": "^3.0",
-                "php": ">5.5"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35|^5.4.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "AlibabaCloud\\Tea\\FileForm\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Alibaba Cloud SDK",
-                    "email": "sdk-team@alibabacloud.com"
-                }
-            ],
-            "description": "Alibaba Cloud Tea File Library for PHP",
-            "support": {
-                "issues": "https://github.com/alibabacloud-sdk-php/tea-fileform/issues",
-                "source": "https://github.com/alibabacloud-sdk-php/tea-fileform/tree/0.3.4"
-            },
-            "time": "2020-12-01T07:24:35+00:00"
-        },
-        {
-            "name": "alipaysdk/easysdk",
-            "version": "2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/alipay/alipay-easysdk.git",
-                "reference": "7a1cfa83c7e140bded957498ea072c77611e6480"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/alipay/alipay-easysdk/zipball/7a1cfa83c7e140bded957498ea072c77611e6480",
-                "reference": "7a1cfa83c7e140bded957498ea072c77611e6480",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "adbario/php-dot-notation": "^2.2",
-                "alibabacloud/tea": "^3.1",
-                "alibabacloud/tea-fileform": "^0.3.2",
-                "danielstjules/stringy": "^3.1",
-                "ext-ctype": "*",
-                "ext-curl": "*",
-                "ext-dom": "*",
-                "ext-fileinfo": "*",
-                "ext-json": "*",
-                "ext-libxml": "*",
-                "ext-mbstring": "*",
-                "ext-openssl": "*",
-                "ext-simplexml": "*",
-                "ext-xmlwriter": "*",
-                "guzzlehttp/guzzle": ">=6.3",
-                "mtdowling/jmespath.php": "^2.4",
-                "php": ">=7.0",
-                "pimple/pimple": "^3.0",
-                "psr/log": "^1.1",
-                "songshenzong/support": "^2.0",
-                "xin/container": "^2.0.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Alipay\\EasySDK\\": "php/src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "junying.wjy",
-                    "email": "junying.wjy@antfin.com"
-                }
-            ],
-            "description": "支付宝官方 Alipay Easy SDK",
-            "support": {
-                "issues": "https://github.com/alipay/alipay-easysdk/issues",
-                "source": "https://github.com/alipay/alipay-easysdk/tree/v2.2.0"
-            },
-            "time": "2021-01-19T07:30:32+00:00"
         },
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -1581,23 +1391,17 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.2.0",
+            "version": "v6.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "e38888a75c070304ca5514197d4847a59a5c853f"
+                "reference": "a5b5c43e50b7fba655f793ad27303cd74c57363c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/e38888a75c070304ca5514197d4847a59a5c853f",
-                "reference": "e38888a75c070304ca5514197d4847a59a5c853f",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/a5b5c43e50b7fba655f793ad27303cd74c57363c",
+                "reference": "a5b5c43e50b7fba655f793ad27303cd74c57363c",
+                "shasum": ""
             },
             "require": {
                 "ext-ctype": "*",
@@ -1614,7 +1418,7 @@
                 "yoast/phpunit-polyfills": "^0.2.0"
             },
             "suggest": {
-                "ext-mbstring": "Needed to send email in multibyte encoding charset",
+                "ext-mbstring": "Needed to send email in multibyte encoding charset or decode encoded addresses",
                 "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
                 "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
                 "psr/log": "For optional PSR-3 debug logging",
@@ -1651,7 +1455,7 @@
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "support": {
                 "issues": "https://github.com/PHPMailer/PHPMailer/issues",
-                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.2.0"
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.5.0"
             },
             "funding": [
                 {
@@ -1659,7 +1463,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-25T15:24:57+00:00"
+            "time": "2021-06-16T14:33:43+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
@@ -1767,65 +1571,6 @@
                 "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.16.0"
             },
             "time": "2020-12-31T18:03:49+00:00"
-        },
-        {
-            "name": "pimple/pimple",
-            "version": "v3.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "21e45061c3429b1e06233475cc0e1f6fc774d5b0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/21e45061c3429b1e06233475cc0e1f6fc774d5b0",
-                "reference": "21e45061c3429b1e06233475cc0e1f6fc774d5b0",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=7.2.5",
-                "psr/container": "^1.0"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "^5.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.3.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Pimple": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Pimple, a simple Dependency Injection Container",
-            "homepage": "https://pimple.symfony.com",
-            "keywords": [
-                "container",
-                "dependency injection"
-            ],
-            "support": {
-                "source": "https://github.com/silexphp/Pimple/tree/v3.3.1"
-            },
-            "time": "2020-11-24T20:35:42+00:00"
         },
         {
             "name": "psr/cache",
@@ -2281,81 +2026,6 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
-        },
-        {
-            "name": "songshenzong/support",
-            "version": "2.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/songshenzong/support.git",
-                "reference": "34973c04ffcf226e503f1c3a69d30ac49f7621f6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/songshenzong/support/zipball/34973c04ffcf226e503f1c3a69d30ac49f7621f6",
-                "reference": "34973c04ffcf226e503f1c3a69d30ac49f7621f6",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "danielstjules/stringy": "^3.1",
-                "ext-json": "*",
-                "ext-simplexml": "*",
-                "ext-xml": "*",
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "laravel/framework": "^5.8",
-                "phpunit/phpunit": "^4.8.35|^5.4.3"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Songshenzong\\Support\\StringsServiceProvider"
-                    ],
-                    "aliases": {
-                        "Strings": "Songshenzong\\Support\\StringsFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Songshenzong\\Support\\": "src/"
-                },
-                "files": [
-                    "src/StringsHelpers.php",
-                    "src/BashEchoHelpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Songshenzong",
-                    "email": "i@songshenzong.com"
-                }
-            ],
-            "description": "The Songshenzong Support package.",
-            "homepage": "http://songshenzong.com",
-            "keywords": [
-                "laravel",
-                "support",
-                "tools",
-                "web"
-            ],
-            "support": {
-                "issues": "https://github.com/songshenzong/support/issues",
-                "source": "https://github.com/songshenzong/support"
-            },
-            "time": "2019-08-29T01:59:12+00:00"
         },
         {
             "name": "symfony/options-resolver",
@@ -3110,80 +2780,6 @@
                 "wiki": "http://doc.workerman.net/"
             },
             "time": "2020-08-24T03:49:23+00:00"
-        },
-        {
-            "name": "xin/container",
-            "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://gitee.com/liuxiaojinla/php-container",
-                "reference": "97bb67f87dd851545938a1f2fe0ffbd379e3ff81"
-            },
-            "require": {
-                "ext-ctype": "*",
-                "ext-iconv": "*",
-                "ext-json": "*",
-                "ext-libxml": "*",
-                "ext-mbstring": "*",
-                "ext-openssl": "*",
-                "ext-simplexml": "*",
-                "psr/container": "^1.0",
-                "xin/helper": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "xin\\container\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "晋",
-                    "email": "657306123@qq.com"
-                }
-            ],
-            "description": "严格基于PSR11规范实现基础的容器和依赖注入",
-            "time": "2019-10-21T03:51:25+00:00"
-        },
-        {
-            "name": "xin/helper",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://gitee.com/liuxiaojinla/php-helper",
-                "reference": "02a58132dae2aea2d1c0b8e66f55125969224747"
-            },
-            "require": {
-                "ext-ctype": "*",
-                "ext-iconv": "*",
-                "ext-json": "*",
-                "ext-libxml": "*",
-                "ext-mbstring": "*",
-                "ext-openssl": "*",
-                "ext-simplexml": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "xin\\helper\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "晋",
-                    "email": "1540175452@qq.com"
-                }
-            ],
-            "description": "PHP项目日常开发必备基础库，数组工具类、字符串工具类、数字工具类、函数工具类、服务器工具类、加密工具类",
-            "time": "2019-06-22T08:28:23+00:00"
         }
     ],
     "packages-dev": [
@@ -3520,5 +3116,5 @@
         "php": ">=7.1.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
