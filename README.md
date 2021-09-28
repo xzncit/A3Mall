@@ -4,11 +4,11 @@
     <b>如果对您有所帮助，您可以点右上角 "Star" 收藏一下 ，获取第一时间更新，谢谢！</b>
 </p>
 
-
 ## 导航栏目
  [官网地址](http://www.a3-mall.com)
- | [文档中心](http://doc-uniapp.a3-mall.com)
- | [视频教程](http://doc-uniapp.a3-mall.com/video)
+ | [文档中心](http://doc.a3-mall.com/uniapp-b2c/)
+ | [视频教程](http://doc.a3-mall.com/uniapp-b2c/video)
+
 
 ## 项目介绍
    A3Mall 后端基于 ThinkPHP6 + Bootstrap 开发的开源商城系统，前端采用uniapp开发，支持微信公众号商城、H5商城、小程序商城、APP商城、PC商城，前后端源码100%开源，支持免费商用。
