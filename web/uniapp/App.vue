@@ -2,6 +2,15 @@
 	export default {
 		onLaunch: function(options) {
 			this.autoLogin();
+			// #ifdef H5
+			uni.getSystemInfo({
+				success(e) {
+					if (e.windowWidth > 420 && !/iOS|Android/i.test(e.system)) {
+						window.location.pathname = '/wap/static/html/home.html';
+					}
+				}
+			})
+			// #endif
 		},
 		onShow: function() {
 			let users = this.$storage.getJson("users");
