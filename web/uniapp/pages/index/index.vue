@@ -226,9 +226,11 @@
 						this.isLoading = false;
 						this.isError = true;
 					}
+					this.mescroll.endDownScroll();
 				}).catch(err=>{
 					 this.isLoading = false;
 					 this.isError = true;
+					 this.mescroll.endErr();
 				});
 			},
 			downCallback(){
