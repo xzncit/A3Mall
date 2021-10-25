@@ -8,11 +8,25 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-18.04 ]
+        php: [ '5.4', '5.5', '5.6', '7.1', '7.2', '7.3', '7.4' ]
+    name: PHP ${{ matrix.php }}@${{ matrix.operating-system }}
 
     steps:
     - uses: actions/checkout@v2
+    - uses: shivammathur/setup-php@master
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: xdebug
+
+    - name: check php version
+      run: php --version
+
+    - name: check composer version
+      run: composer --version
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -20,8 +34,10 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
     - name: Run test suite
       run: ./vendor/bin/phpunit
+
+    - name: Upload coverage results to Coveralls
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+      run: ./vendor/bin/coveralls --coverage_clover=build/logs/clover.xml -v

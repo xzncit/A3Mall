@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.5.31 - 2021-05-13
+
+- Deprecate `\GuzzleHttp\Psr7\parse_query` method
+
+## 1.5.30 - 2021-03-22
+- Fixed incompatibility in PHP 5.6 version.
+
 ## 1.5.29 - 2020-08-03
 - Fixed RPC Signature.
 

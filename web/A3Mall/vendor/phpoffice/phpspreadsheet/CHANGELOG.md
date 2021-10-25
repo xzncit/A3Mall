@@ -5,19 +5,81 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com)
 and this project adheres to [Semantic Versioning](https://semver.org).
 
-## Unreleased - TBD
+## 1.18.0 - 2021-05-31
 
 ### Added
-
-- Nothing.
+- Enhancements to CSV Reader, allowing options to be set when using `IOFactory::load()` with a callback to set delimiter, enclosure, charset etc. [PR #2103](https://github.com/PHPOffice/PhpSpreadsheet/pull/2103) - See [documentation](https://github.com/PHPOffice/PhpSpreadsheet/blob/master/docs/topics/reading-and-writing-to-file.md#csv-comma-separated-values) for details.
+- Implemented basic AutoFiltering for Ods Reader and Writer [PR #2053](https://github.com/PHPOffice/PhpSpreadsheet/pull/2053)
+- Implemented basic AutoFiltering for Gnumeric Reader [PR #2055](https://github.com/PHPOffice/PhpSpreadsheet/pull/2055)
+- Improved support for Row and Column ranges in formulae [Issue #1755](https://github.com/PHPOffice/PhpSpreadsheet/issues/1755) [PR #2028](https://github.com/PHPOffice/PhpSpreadsheet/pull/2028)
+- Implemented URLENCODE() Web Function
+- Implemented the CHITEST(), CHISQ.DIST() and CHISQ.INV() and equivalent Statistical functions, for both left- and right-tailed distributions.
+- Support for ActiveSheet and SelectedCells in the ODS Reader and Writer. [PR #1908](https://github.com/PHPOffice/PhpSpreadsheet/pull/1908)
+- Support for notContainsText Conditional Style in xlsx [Issue #984](https://github.com/PHPOffice/PhpSpreadsheet/issues/984)
 
 ### Changed
 
-- Nothing.
+- Use of `nb` rather than `no` as the locale code for Norsk Bokmål.
 
 ### Deprecated
 
-- Nothing.
+- All Excel Function implementations in `Calculation\Database`, `Calculation\DateTime`, `Calculation\Engineering`, `Calculation\Financial`, `Calculation\Logical`, `Calculation\LookupRef`, `Calculation\MathTrig`, `Calculation\Statistical`, `Calculation\TextData` and `Calculation\Web` have been moved to dedicated classes for individual functions or groups of related functions. See the docblocks against all the deprecated methods for details of the new methods to call instead. At some point, these old classes will be deleted.
+
+### Removed
+
+- Use of `nb` rather than `no` as the locale language code for Norsk Bokmål.
+
+### Fixed
+- Fixed error in COUPNCD() calculation for end of month [Issue #2116](https://github.com/PHPOffice/PhpSpreadsheet/issues/2116) - [PR #2119](https://github.com/PHPOffice/PhpSpreadsheet/pull/2119)
+- Resolve default values when a null argument is passed for HLOOKUP(), VLOOKUP() and ADDRESS() functions [Issue #2120](https://github.com/PHPOffice/PhpSpreadsheet/issues/2120) - [PR #2121](https://github.com/PHPOffice/PhpSpreadsheet/pull/2121)
+- Fixed incorrect R1C1 to A1 subtraction formula conversion (`R[-2]C-R[2]C`) [Issue #2076](https://github.com/PHPOffice/PhpSpreadsheet/pull/2076) [PR #2086](https://github.com/PHPOffice/PhpSpreadsheet/pull/2086)
+- Correctly handle absolute A1 references when converting to R1C1 format [PR #2060](https://github.com/PHPOffice/PhpSpreadsheet/pull/2060)
+- Correct default fill style for conditional without a pattern defined [Issue #2035](https://github.com/PHPOffice/PhpSpreadsheet/issues/2035) [PR #2050](https://github.com/PHPOffice/PhpSpreadsheet/pull/2050)
+- Fixed issue where array key check for existince before accessing arrays in Xlsx.php. [PR #1970](https://github.com/PHPOffice/PhpSpreadsheet/pull/1970)
+- Fixed issue with quoted strings in number format mask rendered with toFormattedString() [Issue 1972#](https://github.com/PHPOffice/PhpSpreadsheet/issues/1972) [PR #1978](https://github.com/PHPOffice/PhpSpreadsheet/pull/1978)
+- Fixed issue with percentage formats in number format mask rendered with toFormattedString() [Issue 1929#](https://github.com/PHPOffice/PhpSpreadsheet/issues/1929) [PR #1928](https://github.com/PHPOffice/PhpSpreadsheet/pull/1928)
+- Fixed issue with _ spacing character in number format mask corrupting output from toFormattedString() [Issue 1924#](https://github.com/PHPOffice/PhpSpreadsheet/issues/1924) [PR #1927](https://github.com/PHPOffice/PhpSpreadsheet/pull/1927)
+- Fix for [Issue #1887](https://github.com/PHPOffice/PhpSpreadsheet/issues/1887) - Lose Track of Selected Cells After Save
+- Fixed issue with Xlsx@listWorksheetInfo not returning any data
+- Fixed invalid arguments triggering mb_substr() error in LEFT(), MID() and RIGHT() text functions. [Issue #640](https://github.com/PHPOffice/PhpSpreadsheet/issues/640)
+- Fix for [Issue #1916](https://github.com/PHPOffice/PhpSpreadsheet/issues/1916) - Invalid signature check for XML files
+- Fix change in `Font::setSize()` behavior for PHP8. [PR #2100](https://github.com/PHPOffice/PhpSpreadsheet/pull/2100)
+
+## 1.17.1 - 2021-03-01
+
+### Added
+
+- Implementation of the Excel `AVERAGEIFS()` functions as part of a restructuring of Database functions and Conditional Statistical functions.
+- Support for date values and percentages in query parameters for Database functions, and the IF expressions in functions like COUNTIF() and AVERAGEIF(). [#1875](https://github.com/PHPOffice/PhpSpreadsheet/pull/1875)
+- Support for booleans, and for wildcard text search in query parameters for Database functions, and the IF expressions in functions like COUNTIF() and AVERAGEIF(). [#1876](https://github.com/PHPOffice/PhpSpreadsheet/pull/1876)
+- Implemented DataBar for conditional formatting in Xlsx, providing read/write and creation of (type, value, direction, fills, border, axis position, color settings) as DataBar options in Excel. [#1754](https://github.com/PHPOffice/PhpSpreadsheet/pull/1754)
+- Alignment for ODS Writer [#1796](https://github.com/PHPOffice/PhpSpreadsheet/issues/1796)
+- Basic implementation of the PERMUTATIONA() Statistical Function
+
+### Changed
+
+- Formula functions that previously called PHP functions directly are now processed through the Excel Functions classes; resolving issues with PHP8 stricter typing. [#1789](https://github.com/PHPOffice/PhpSpreadsheet/issues/1789)
+
+  The following MathTrig functions are affected:
+  `ABS()`, `ACOS()`, `ACOSH()`, `ASIN()`, `ASINH()`, `ATAN()`, `ATANH()`,
+  `COS()`, `COSH()`, `DEGREES()` (rad2deg), `EXP()`, `LN()` (log), `LOG10()`,
+  `RADIANS()` (deg2rad), `SIN()`, `SINH()`, `SQRT()`, `TAN()`, `TANH()`.
+  
+  One TextData function is also affected: `REPT()` (str_repeat).
+- `formatAsDate` correctly matches language metadata, reverting c55272e
+- Formulae that previously crashed on sub function call returning excel error value now return said value.
+  The following functions are affected `CUMPRINC()`, `CUMIPMT()`, `AMORLINC()`,
+  `AMORDEGRC()`.
+- Adapt some function error return value to match excel's error.
+  The following functions are affected `PPMT()`, `IPMT()`.
+
+### Deprecated
+
+- Calling many of the Excel formula functions directly rather than through the Calculation Engine.
+
+  The logic for these Functions is now being moved out of the categorised `Database`, `DateTime`, `Engineering`, `Financial`, `Logical`, `LookupRef`, `MathTrig`, `Statistical`, `TextData` and `Web` classes into small, dedicated classes for individual functions or related groups of functions.
+
+  This makes the logic in these classes easier to maintain; and will reduce the memory footprint required to execute formulae when calling these functions.
 
 ### Removed
 
@@ -25,7 +87,18 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ### Fixed
 
-- Nothing.
+- Avoid Duplicate Titles When Reading Multiple HTML Files.[Issue #1823](https://github.com/PHPOffice/PhpSpreadsheet/issues/1823) [PR #1829](https://github.com/PHPOffice/PhpSpreadsheet/pull/1829)
+- Fixed issue with Worksheet's `getCell()` method when trying to get a cell by defined name. [#1858](https://github.com/PHPOffice/PhpSpreadsheet/issues/1858)
+- Fix possible endless loop in NumberFormat Masks [#1792](https://github.com/PHPOffice/PhpSpreadsheet/issues/1792)
+- Fix problem resulting from  literal dot inside quotes in number format masks. [PR #1830](https://github.com/PHPOffice/PhpSpreadsheet/pull/1830)
+- Resolve Google Sheets Xlsx charts issue. Google Sheets uses oneCellAnchor positioning and does not include *Cache values in the exported Xlsx. [PR #1761](https://github.com/PHPOffice/PhpSpreadsheet/pull/1761)
+- Fix for Xlsx Chart axis titles mapping to correct X or Y axis label when only one is present. [PR #1760](https://github.com/PHPOffice/PhpSpreadsheet/pull/1760)
+- Fix For Null Exception on ODS Read of Page Settings. [#1772](https://github.com/PHPOffice/PhpSpreadsheet/issues/1772)
+- Fix Xlsx reader overriding manually set number format with builtin number format. [PR #1805](https://github.com/PHPOffice/PhpSpreadsheet/pull/1805)
+- Fix Xlsx reader cell alignment. [PR #1710](https://github.com/PHPOffice/PhpSpreadsheet/pull/1710)
+- Fix for not yet implemented data-types in Open Document writer [Issue #1674](https://github.com/PHPOffice/PhpSpreadsheet/issues/1674)
+- Fix XLSX reader when having a corrupt numeric cell data type [PR #1664](https://github.com/phpoffice/phpspreadsheet/pull/1664)
+- Fix on `CUMPRINC()`, `CUMIPMT()`, `AMORLINC()`, `AMORDEGRC()` usage. When those functions called one of `YEARFRAC()`, `PPMT()`, `IPMT()` and they would get back an error value (represented as a string), trying to use numeral operands (`+`, `/`, `-`, `*`) on said return value and a number (`float or `int`) would fail.
 
 ## 1.16.0 - 2020-12-31
 
@@ -39,7 +112,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ### Deprecated
 
-- Nothing.
+- All Excel Function implementations in `Calculation\Database`, `Calculation\DateTime`, `Calculation\Engineering`, `Calculation\Financial`, `Calculation\Logical`, `Calculation\LookupRef`, `Calculation\MathTrig`, `Calculation\Statistical`, `Calculation\TextData` and `Calculation\Web` have been moved to dedicated classes for individual functions or groups of related functions. See the docblocks against all the deprecated methods for details of the new methods to call instead. At some point, these old classes will be deleted.
 
 ### Removed
 
@@ -47,6 +120,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ### Fixed
 
+- Fixed issue with absolute path in worksheets' Target. [PR #1769](https://github.com/PHPOffice/PhpSpreadsheet/pull/1769)
 - Fix for Xls Reader when SST has a bad length [#1592](https://github.com/PHPOffice/PhpSpreadsheet/issues/1592)
 - Resolve Xlsx loader issue whe hyperlinks don't have a destination
 - Resolve issues when printer settings resources IDs clash with drawing IDs

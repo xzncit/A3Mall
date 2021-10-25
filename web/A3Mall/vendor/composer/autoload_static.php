@@ -7,20 +7,20 @@ namespace Composer\Autoload;
 class ComposerStaticInitf447d4ad96505a7e0e30d9fe3b5c470f
 {
     public static $files = array (
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '35fab96057f1bf5e7aba31a8a6d5fdde' => __DIR__ . '/..' . '/topthink/think-orm/stubs/load_stubs.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        'd767e4fc2dc52fe66584ab8c6684783e' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/helpers.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        'd767e4fc2dc52fe66584ab8c6684783e' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/helpers.php',
         '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
-        '0d0b82117c23db94c492fee02b2ed01f' => __DIR__ . '/..' . '/songshenzong/support/src/StringsHelpers.php',
-        'd96a90b43bcdea846705672ffd4e9294' => __DIR__ . '/..' . '/songshenzong/support/src/BashEchoHelpers.php',
         '3af723442581d6c310bf44543f9f5c60' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/adjoint.php',
         'd803221834c8b57fec95debb5406a797' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/antidiagonal.php',
         '4714cafbd3be4c72c274a25eae9396bb' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/cofactors.php',
@@ -79,17 +79,12 @@ class ComposerStaticInitf447d4ad96505a7e0e30d9fe3b5c470f
         '883af48563631547925fa4c3b48ead07' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/multiply.php',
         'f190e3308e6ca23234a2875edc985c03' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/divideby.php',
         'ac9e33ce6841aa5bf5d16d465a2f03a7' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/divideinto.php',
-        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
-        '66453932bc1be9fb2f910a27947d11b6' => __DIR__ . '/..' . '/alibabacloud/client/src/Functions.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
+        '66453932bc1be9fb2f910a27947d11b6' => __DIR__ . '/..' . '/alibabacloud/client/src/Functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'x' => 
-        array (
-            'xin\\helper\\' => 11,
-            'xin\\container\\' => 14,
-        ),
         't' => 
         array (
             'think\\worker\\' => 13,
@@ -128,10 +123,11 @@ class ComposerStaticInitf447d4ad96505a7e0e30d9fe3b5c470f
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Stringy\\' => 8,
-            'Songshenzong\\Support\\' => 21,
         ),
         'P' => 
         array (
@@ -180,23 +176,12 @@ class ComposerStaticInitf447d4ad96505a7e0e30d9fe3b5c470f
         ),
         'A' => 
         array (
-            'Alipay\\EasySDK\\' => 15,
-            'AlibabaCloud\\Tea\\FileForm\\' => 26,
-            'AlibabaCloud\\Tea\\' => 17,
             'AlibabaCloud\\Client\\' => 20,
             'Adbar\\' => 6,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'xin\\helper\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/xin/helper/src',
-        ),
-        'xin\\container\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/xin/container/src',
-        ),
         'think\\worker\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-worker/src',
@@ -219,11 +204,11 @@ class ComposerStaticInitf447d4ad96505a7e0e30d9fe3b5c470f
         ),
         'think\\' => 
         array (
-            0 => __DIR__ . '/..' . '/topthink/think-template/src',
-            1 => __DIR__ . '/..' . '/topthink/think-helper/src',
-            2 => __DIR__ . '/..' . '/topthink/think-orm/src',
-            3 => __DIR__ . '/..' . '/topthink/framework/src/think',
-            4 => __DIR__ . '/..' . '/topthink/think-image/src',
+            0 => __DIR__ . '/..' . '/topthink/think-image/src',
+            1 => __DIR__ . '/..' . '/topthink/think-template/src',
+            2 => __DIR__ . '/..' . '/topthink/think-helper/src',
+            3 => __DIR__ . '/..' . '/topthink/think-orm/src',
+            4 => __DIR__ . '/..' . '/topthink/framework/src/think',
         ),
         'mall\\' => 
         array (
@@ -261,6 +246,14 @@ class ComposerStaticInitf447d4ad96505a7e0e30d9fe3b5c470f
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
+        'Symfony\\Component\\Yaml\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
         'Symfony\\Component\\VarDumper\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
@@ -273,10 +266,6 @@ class ComposerStaticInitf447d4ad96505a7e0e30d9fe3b5c470f
         array (
             0 => __DIR__ . '/..' . '/danielstjules/stringy/src',
         ),
-        'Songshenzong\\Support\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/songshenzong/support/src',
-        ),
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
@@ -287,8 +276,8 @@ class ComposerStaticInitf447d4ad96505a7e0e30d9fe3b5c470f
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -362,18 +351,6 @@ class ComposerStaticInitf447d4ad96505a7e0e30d9fe3b5c470f
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
         ),
-        'Alipay\\EasySDK\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src',
-        ),
-        'AlibabaCloud\\Tea\\FileForm\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/alibabacloud/tea-fileform/src',
-        ),
-        'AlibabaCloud\\Tea\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/alibabacloud/tea/src',
-        ),
         'AlibabaCloud\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/alibabacloud/client/src',
@@ -385,13 +362,6 @@ class ComposerStaticInitf447d4ad96505a7e0e30d9fe3b5c470f
     );
 
     public static $prefixesPsr0 = array (
-        'P' => 
-        array (
-            'Pimple' => 
-            array (
-                0 => __DIR__ . '/..' . '/pimple/pimple/src',
-            ),
-        ),
         'H' => 
         array (
             'HTMLPurifier' => 

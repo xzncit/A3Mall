@@ -4,8 +4,8 @@
 
 $issues = array();
 
-if (!(PHP_VERSION_ID >= 70205)) {
-    $issues[] = 'Your Composer dependencies require a PHP version ">= 7.2.5". You are running ' . PHP_VERSION  .  '.';
+if (!(PHP_VERSION_ID >= 70300)) {
+    $issues[] = 'Your Composer dependencies require a PHP version ">= 7.3.0". You are running ' . PHP_VERSION  .  '.';
 }
 
 $missingExtensions = array();
@@ -21,6 +21,7 @@ extension_loaded('json') || $missingExtensions[] = 'json';
 extension_loaded('libxml') || $missingExtensions[] = 'libxml';
 extension_loaded('mbstring') || $missingExtensions[] = 'mbstring';
 extension_loaded('openssl') || $missingExtensions[] = 'openssl';
+extension_loaded('pdo') || $missingExtensions[] = 'pdo';
 extension_loaded('simplexml') || $missingExtensions[] = 'simplexml';
 extension_loaded('xml') || $missingExtensions[] = 'xml';
 extension_loaded('xmlreader') || $missingExtensions[] = 'xmlreader';

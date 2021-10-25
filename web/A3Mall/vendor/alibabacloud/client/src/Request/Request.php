@@ -317,9 +317,15 @@ abstract class Request implements ArrayAccess
         $this->resolveParameter();
 
         if (isset($this->options['form_params'])) {
-            $this->options['form_params'] = \GuzzleHttp\Psr7\parse_query(
-                Encode::create($this->options['form_params'])->toString()
-            );
+            if (function_exists('\GuzzleHttp\Psr7\parse_query')) {
+                $this->options['form_params'] = \GuzzleHttp\Psr7\parse_query(
+                    Encode::create($this->options['form_params'])->toString()
+                );
+            } else {
+                $this->options['form_params'] = \GuzzleHttp\Psr7\Query::parse(
+                    Encode::create($this->options['form_params'])->toString()
+                );
+            }
         }
 
         $this->mergeOptionsIntoClient();

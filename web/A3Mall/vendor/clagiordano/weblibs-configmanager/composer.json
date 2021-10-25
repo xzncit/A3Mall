@@ -17,11 +17,14 @@
         }
     },
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "symfony/yaml": "^2.8",
+        "ext-json": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
-        "clagiordano/phpunit-result-printer": "^1"
+        "clagiordano/phpunit-result-printer": "^1",
+        "php-coveralls/php-coveralls": "^1.1"
     },
     "autoload-dev": {
         "psr-4": {
@@ -30,7 +33,19 @@
         }
     },
     "scripts": {
-        "test": "./vendor/bin/phpunit --no-coverage",
-        "coverage": "./vendor/bin/phpunit"
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "./vendor/bin/phpunit --no-coverage"
+        ],
+        "coverage": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -dzend_extension=xdebug.so ./vendor/bin/phpunit"
+        ],
+        "debug": "php -dxdebug.remote_autostart=On -dzend_extension=xdebug.so ./vendor/bin/phpunit"
+    },
+    "config": {
+        "platform": {
+            "php": "5.4"
+        }
     }
 }
