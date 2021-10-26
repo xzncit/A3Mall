@@ -85,7 +85,7 @@ class Index extends Auth {
         return View::fetch("info",[
             "version"=>$version[0]['version'],
             "think_ver"=>App::VERSION,
-            "ip"=>(isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : "0.0.0.0") . ':' . $_SERVER['SERVER_PORT']
+            "ip"=>gethostbyname(Request::host())
         ]);
     }
 
