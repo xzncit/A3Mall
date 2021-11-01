@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '6d34e008a770f45d029e36784c493871e8df63fa',
+    'reference' => 'b1422762839f543ef1d6e452f8f499ca5b97dd99',
     'name' => 'topthink/think',
   ),
   'versions' => 
@@ -114,6 +114,15 @@ private static $installed = array (
       ),
       'reference' => '089edd38f5b8abba6cb01567c2a8aaa47cec4c72',
     ),
+    'lcobucci/jwt' => 
+    array (
+      'pretty_version' => '3.4.5',
+      'version' => '3.4.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '511629a54465e89a31d3d7e4cf0935feab8b14c1',
+    ),
     'league/flysystem' => 
     array (
       'pretty_version' => '1.1.5',
@@ -161,21 +170,21 @@ private static $installed = array (
     ),
     'markbaker/complex' => 
     array (
-      'pretty_version' => '2.0.3',
-      'version' => '2.0.3.0',
+      'pretty_version' => '3.0.1',
+      'version' => '3.0.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6f724d7e04606fd8adaa4e3bb381c3e9db09c946',
+      'reference' => 'ab8bc271e404909db09ff2d5ffa1e538085c0f22',
     ),
     'markbaker/matrix' => 
     array (
-      'pretty_version' => '2.1.3',
-      'version' => '2.1.3.0',
+      'pretty_version' => '3.0.0',
+      'version' => '3.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '174395a901b5ba0925f1d790fa91bab531074b61',
+      'reference' => 'c66aefcafb4f6c269510e9ac46b82619a904c576',
     ),
     'monolog/monolog' => 
     array (
@@ -215,12 +224,12 @@ private static $installed = array (
     ),
     'phpoffice/phpspreadsheet' => 
     array (
-      'pretty_version' => '1.18.0',
-      'version' => '1.18.0.0',
+      'pretty_version' => '1.19.0',
+      'version' => '1.19.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '418cd304e8e6b417ea79c3b29126a25dc4b1170c',
+      'reference' => 'a9ab55bfae02eecffb3df669a2e19ba0e2f04bbf',
     ),
     'pimple/pimple' => 
     array (
@@ -347,12 +356,12 @@ private static $installed = array (
     ),
     'symfony/cache' => 
     array (
-      'pretty_version' => 'v4.4.31',
-      'version' => '4.4.31.0',
+      'pretty_version' => 'v4.4.33',
+      'version' => '4.4.33.0',
       'aliases' => 
       array (
       ),
-      'reference' => '4d9074f2777dfde2b78c5c60affa66c5e7518117',
+      'reference' => '7342bf4f6f433cc1ee7fc6ec0a627951da5d92f5',
     ),
     'symfony/cache-contracts' => 
     array (
@@ -381,12 +390,12 @@ private static $installed = array (
     ),
     'symfony/http-foundation' => 
     array (
-      'pretty_version' => 'v5.3.7',
-      'version' => '5.3.7.0',
+      'pretty_version' => 'v5.3.10',
+      'version' => '5.3.10.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e36c8e5502b4f3f0190c675f1c1f1248a64f04e5',
+      'reference' => '9f34f02e8a5fdc7a56bafe011cea1ce97300e54c',
     ),
     'symfony/options-resolver' => 
     array (
@@ -453,12 +462,12 @@ private static $installed = array (
     ),
     'symfony/var-dumper' => 
     array (
-      'pretty_version' => 'v4.4.31',
-      'version' => '4.4.31.0',
+      'pretty_version' => 'v4.4.33',
+      'version' => '4.4.33.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1f12cc0c2e880a5f39575c19af81438464717839',
+      'reference' => '50286e2b7189bfb4f419c0731e86632cddf7c5ee',
     ),
     'symfony/var-exporter' => 
     array (
@@ -494,7 +503,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '6d34e008a770f45d029e36784c493871e8df63fa',
+      'reference' => 'b1422762839f543ef1d6e452f8f499ca5b97dd99',
     ),
     'topthink/think-captcha' => 
     array (

@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wap;
 
+use mall\library\tools\jwt\Token;
 use think\facade\Db;
 use think\facade\Request;
 use mall\utils\Tool;
@@ -79,14 +80,18 @@ class Goods extends Base {
         $data = [];
         $data["collect"] = false;
 
-        $token = Request::param("token","trim,strip_tags","");
-        $usersToken = Db::name("users_token")->where("token",$token)->find();
-        if(!empty($usersToken)){
-            $data["collect"] = Db::name("users_favorite")->where([
-                "user_id"=>$usersToken["user_id"],
-                "goods_id"=>$id
-            ])->count() ? true : false;
-        }
+        try{
+            $token = Token::check();
+            $result  = Token::parse($token,"id");
+            if(is_array($result)){
+                if($row=Db::name("users")->where("id",$result["value"])->find()){
+                    $data["collect"] = Db::name("users_favorite")->where([
+                        "user_id"=>$row["id"],
+                        "goods_id"=>$id
+                    ])->count() ? true : false;
+                }
+            }
+        }catch(\Exception $ex){}
 
         $data["photo"] = array_map(function ($result){
             return Tool::thumb($result["photo"],"",true);

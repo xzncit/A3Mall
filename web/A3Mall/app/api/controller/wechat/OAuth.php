@@ -8,14 +8,12 @@
 // +----------------------------------------------------------------------
 namespace app\api\controller\wechat;
 
-use mall\library\oauth\qq\QQ;
+use mall\library\tools\jwt\Token;
 use mall\library\wechat\chat\WeChat;
 use mall\library\wechat\chat\WeConfig;
-use mall\library\wechat\mini\WeMini;
 use think\facade\Config;
 use think\facade\Db;
 use think\facade\Request;
-use mall\basic\Token;
 use mall\basic\Users;
 
 class OAuth extends Base {
@@ -84,7 +82,7 @@ class OAuth extends Base {
                 }
 
                 $info = Users::info($row["user_id"]);
-                $token = Token::set($info["id"]);
+                $token = Token::get("id",$info["id"]);
 
                 return $this->returnAjax("登录成功！",2,[
                     "id"=>$info["id"],
@@ -136,7 +134,7 @@ class OAuth extends Base {
                     'user_id'=>$user_id
                 ]));
 
-                $token = Token::set($user_id);
+                $token = Token::get("id",$user_id);
                 $info = Users::info($user_id);
                 return $this->returnAjax("注册成功！",2,[
                     "id"=>$info["id"],
@@ -161,11 +159,16 @@ class OAuth extends Base {
 
     public function login(){
         try{
-            $user_id = Token::check();
-            $info = Users::info($user_id);
+            $token = Token::check();
+            $result  = Token::parse($token,"id");
+            if(!is_array($result)){
+                throw new \Exception("您还未登录，请先登录",401);
+            }
+
+            $info = Users::info($result["value"]);
             return $this->returnAjax("登录成功！",1000,[
                 "id"=>$info["id"],
-                "token"=>Request::header("Auth-Token"),
+                "token"=>$token,
                 "username"=>$info["username"],
                 "nickname"=>$info["nickname"],
                 "group_name"=>$info["group_name"],

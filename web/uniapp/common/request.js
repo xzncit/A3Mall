@@ -20,7 +20,7 @@ export default {
 		
 		let users = storage.getJson("users");
 		if(users != null){
-			options.header = { "Auth-Token" : users.token };
+			options.header = { "Auth-Token" : 'Bearer ' + users.token };
 		}
 		
 		this.console(options);

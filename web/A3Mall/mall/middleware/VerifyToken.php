@@ -10,9 +10,9 @@ namespace mall\middleware;
 
 use Closure;
 use mall\basic\Users;
+use mall\library\tools\jwt\Token;
 use think\Request;
 use think\Response;
-use mall\basic\Token;
 
 class VerifyToken {
 
@@ -23,8 +23,13 @@ class VerifyToken {
      */
     public function handle(Request $request, Closure $next){
         try{
-            $user_id = Token::check();
-            Users::info($user_id);
+            $token = Token::check();
+            $result  = Token::parse($token,"id");
+            if(!is_array($result)){
+                throw new \Exception("您还未登录，请先登录",401);
+            }
+
+            Users::info($result["value"]);
         }catch(\Exception $ex){
             return json(["info"=>$ex->getMessage(),"status"=>"-1001"]);
         }

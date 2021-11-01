@@ -10,10 +10,10 @@ namespace app\api\controller\wap;
 
 use app\common\model\system\Setting;
 use mall\basic\Sms;
+use mall\library\tools\jwt\Token;
 use think\facade\Db;
 use think\facade\Request;
 use mall\utils\Check;
-use mall\basic\Token;
 
 class Users extends Base {
 
@@ -56,7 +56,7 @@ class Users extends Base {
         ];
 
         Db::name("users")->where("id",$users["id"])->update($data);
-        $token = Token::set($users["id"]);
+        $token = Token::get("id",$users["id"]);
         $info = \mall\basic\Users::info($users["id"]);
 
         return $this->returnAjax("ok",1,[
@@ -131,7 +131,7 @@ class Users extends Base {
         try {
             Db::name("users")->insert($data);
             $user_id = Db::name("users")->getLastInsID();
-            $token = Token::set($user_id);
+            $token = Token::get("id",$user_id);
         }catch (\Exception $ex){
             return $this->returnAjax("请求出错，请稍后在试",0);
         }
@@ -196,7 +196,7 @@ class Users extends Base {
         ]);
 
         $user_id = $users["id"];
-        $token = Token::set($users["id"]);
+        $token = Token::get("id",$users["id"]);
         Db::name("users_sms")->where("mobile",$username)->delete();
         $info = \mall\basic\Users::info($user_id);
 
