@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66b63d52edbe59bed5bd6eba5d9d9eb0",
+    "content-hash": "88bbdaab5c68b63e978f41141946b96d",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -1914,16 +1914,16 @@
         },
         {
             "name": "psr/container",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf"
+                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/8622567409010282b7aeebe4bb841fe98b58dcaf",
-                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/513e0666f7216c7459170d56df27dfcefe1689ea",
+                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1933,7 +1933,7 @@
                 ]
             },
             "require": {
-                "php": ">=7.2.0"
+                "php": ">=7.4.0"
             },
             "type": "library",
             "autoload": {
@@ -1962,9 +1962,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/1.1.1"
+                "source": "https://github.com/php-fig/container/tree/1.1.2"
             },
-            "time": "2021-03-05T17:36:06+00:00"
+            "time": "2021-11-05T16:50:12+00:00"
         },
         {
             "name": "psr/http-client",
@@ -3889,16 +3889,16 @@
         },
         {
             "name": "xzncit/developer-tools",
-            "version": "0.2.8",
+            "version": "0.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xzncit/developer-tools.git",
-                "reference": "8c99c8400f61f0c0ba522e341d21b9fb74ffcec5"
+                "reference": "de8e2ceccc4ca70bc180a994efae463495d6e00f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xzncit/developer-tools/zipball/8c99c8400f61f0c0ba522e341d21b9fb74ffcec5",
-                "reference": "8c99c8400f61f0c0ba522e341d21b9fb74ffcec5",
+                "url": "https://api.github.com/repos/xzncit/developer-tools/zipball/de8e2ceccc4ca70bc180a994efae463495d6e00f",
+                "reference": "de8e2ceccc4ca70bc180a994efae463495d6e00f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3951,9 +3951,9 @@
             ],
             "support": {
                 "issues": "https://github.com/xzncit/developer-tools/issues",
-                "source": "https://github.com/xzncit/developer-tools/tree/0.2.8"
+                "source": "https://github.com/xzncit/developer-tools/tree/0.2.9"
             },
-            "time": "2021-10-19T08:09:47+00:00"
+            "time": "2021-11-03T02:18:05+00:00"
         }
     ],
     "packages-dev": [

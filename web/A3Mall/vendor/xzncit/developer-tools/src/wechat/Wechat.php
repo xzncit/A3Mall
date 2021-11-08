@@ -39,6 +39,7 @@ use xzncit\core\exception\ConfigNotFoundException;
  * @property \xzncit\wechat\Store\StoreMiniprogram\StoreMiniprogram             $store_mini
  * @property \xzncit\wechat\Intelligent\Intelligent                             $intelligent
  * @property \xzncit\wechat\MarketCode\MarketCode                               $market_code
+ * @property \xzncit\wechat\Template\Template                                   $template
  */
 class Wechat extends Service {
 
@@ -69,6 +70,7 @@ class Wechat extends Service {
         "store_mini"             =>      Store\StoreMiniprogram\ProviderService::class,
         "intelligent"            =>      Intelligent\ProviderService::class,
         "market_code"            =>      MarketCode\ProviderService::class,
+        "template"               =>      Template\ProviderService::class
     ];
 
     /**

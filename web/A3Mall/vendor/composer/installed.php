@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b1422762839f543ef1d6e452f8f499ca5b97dd99',
+    'reference' => '6491bc380e9f47a1a3f53fa943f2598852e84146',
     'name' => 'topthink/think',
   ),
   'versions' => 
@@ -245,12 +245,12 @@
     ),
     'psr/container' => 
     array (
-      'pretty_version' => '1.1.1',
-      'version' => '1.1.1.0',
+      'pretty_version' => '1.1.2',
+      'version' => '1.1.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8622567409010282b7aeebe4bb841fe98b58dcaf',
+      'reference' => '513e0666f7216c7459170d56df27dfcefe1689ea',
     ),
     'psr/http-client' => 
     array (
@@ -490,7 +490,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b1422762839f543ef1d6e452f8f499ca5b97dd99',
+      'reference' => '6491bc380e9f47a1a3f53fa943f2598852e84146',
     ),
     'topthink/think-captcha' => 
     array (
@@ -593,12 +593,12 @@
     ),
     'xzncit/developer-tools' => 
     array (
-      'pretty_version' => '0.2.8',
-      'version' => '0.2.8.0',
+      'pretty_version' => '0.2.9',
+      'version' => '0.2.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8c99c8400f61f0c0ba522e341d21b9fb74ffcec5',
+      'reference' => 'de8e2ceccc4ca70bc180a994efae463495d6e00f',
     ),
   ),
 );
