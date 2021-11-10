@@ -104,12 +104,11 @@ class Login extends Base {
     }
 
     public function logout() {
-        if (!Session::has("system_user_id")) {
-            return redirect(createUrl('login/index'));
-        } else {
+        if (Session::has("system_user_id")) {
             Session::delete("system_user_id");
             Session::delete("users");
-            return redirect(createUrl('login/index'));
         }
+            
+        return redirect(createUrl('login/index'));
     }
 }
