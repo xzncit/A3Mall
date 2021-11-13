@@ -31,15 +31,15 @@ class Index extends Auth {
 
             $condition = [];
             if(isset($key["cat_id"]) && $key["cat_id"] != '-1'){
-                $condition["goods.cat_id"] = $key["cat_id"];
+                $condition[] = ["goods.cat_id","=",$key["cat_id"]];
             }
 
             if(isset($key["status"]) && $key["status"] != '-1'){
-                $condition["goods.status"] = $key["status"];
+                $condition[] = ["goods.status","=",$key["status"]];
             }
 
             if(isset($key["brand_id"]) && $key["brand_id"] != '-1'){
-                $condition["goods.brand_id"] = $key["brand_id"];
+                $condition[] = ["goods.brand_id","=",$key["brand_id"]];
             }
 
             if(!empty($key["title"])){
