@@ -104,6 +104,7 @@
                 , {field: 'create_time', title: '时间', width: 180, align: "center"}
                 , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 130}
             ]]
+            , id: 'list-table'
             , page: true
             , height: 'full-200'
             // ,limit:30
