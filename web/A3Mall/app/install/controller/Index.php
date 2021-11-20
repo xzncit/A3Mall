@@ -215,6 +215,11 @@ DEBUG = false
 
 [LANG]
 default_lang = zh-cn
+
+[JWT]
+ENCRYPTION = {$this->getRandString(45)}
+SIGN = {$this->getRandString(11)}
+
 EOF;
 
                 if (!file_put_contents(Tool::getRootPath() . '.env', $string)) {
@@ -418,4 +423,18 @@ EOF;
 
         return '';
     }
+
+    private function getRandString($len=10){
+        $string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $length = strlen($string)-1;
+
+        $s = '';
+        for ($i=0;$i<$len;$i++) {
+            $num=mt_rand(0,$length);
+            $s .= $string[$num];
+        }
+
+        return $s;
+    }
+
 }
