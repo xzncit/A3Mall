@@ -113,7 +113,7 @@
                 {/if}
                 <li class="header">联系方式</li>
                 <li><a href="http://www.a3-mall.com" target="_blank"><i class="fa fa-circle-o text-yellow"></i> <span>官方网站</span></a></li>
-                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=551040106&site=qq&menu=yes"><i class="fa fa-circle-o text-red"></i> <span>QQ：551040106</span></a></li>
+                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=3439167048&site=qq&menu=yes"><i class="fa fa-circle-o text-red"></i> <span>QQ：3439167048</span></a></li>
                 <li><a href="https://qm.qq.com/cgi-bin/qm/qr?k=lBxucAil6e6WTlwX0tNvQwpOtfLP2ptd&jump_from=webapi"><i class="fa fa-circle-o text-red"></i> <span>Q群：892150829</span></a></li>
                 <li><a href="javascript:;"><i class="fa fa-circle-o text-aqua"></i> <span>手机：18026740326</span></a></li>
             </ul>
