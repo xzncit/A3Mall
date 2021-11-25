@@ -7,7 +7,7 @@
         </ul>
     </div>
 
-    <form id="install_form" action="{:createUrl('complete')}" method="post">
+    <form id="install_form" action="{:str_replace('/install/','/',createUrl('index/complete'))}" method="post">
         <div class="server">
             <table width="100%">
                 <tr>
@@ -98,9 +98,8 @@
         </div>
 
         <div id="response_tips" style="display: none; text-align: center; margin-bottom: 10px;"></div>
-
         <div class="bottom tac">
-            <a href="{:createUrl('config')}" class="btn">上一步</a>
+            <a href="{:str_replace('/install/','/',createUrl('index/config'))}" class="btn">上一步</a>
             <button type="button" id="submit" class="btn install_btn">创建数据</button>
         </div>
     </form>
@@ -114,7 +113,7 @@
 
         $.ajax({
             type: 'post',
-            url: "{:createUrl('config')}",
+            url: "{:str_replace('/install/','/',createUrl('index/config'))}",
             data: data,
             dataType: 'json',
             beforeSend: function () {

@@ -24,7 +24,7 @@ A3Mall拥有全部知识产权，包括商标和著作权。本软件只供许�
     </div>
 
     <div class="bottom tac">
-        <a href="{:createUrl('check')}" class="btn">接受</a>
+        <a href="{:str_replace('/install/','/',createUrl('index/check'))}" class="btn">接受</a>
     </div>
 </div>
 

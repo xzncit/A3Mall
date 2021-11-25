@@ -60,7 +60,7 @@
     <div class="bottom tac">
         <a href="javascript:;" onclick="location.reload()" class="btn">重新检测</a>
         {eq name="isNext" value="true"}
-        <a href="{:createUrl('config')}" class="btn">下一步</a>
+        <a href="{:str_replace('/install/','/',createUrl('index/config'))}" class="btn">下一步</a>
         {/eq}
     </div>
 </section>

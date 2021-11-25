@@ -103,7 +103,7 @@ class Index extends BaseController {
             }
 
             // 准备工作完成
-            return json(["status"=>1,"msg"=>"ok","url"=>createUrl("install")]);
+            return json(["status"=>1,"msg"=>"ok","url"=>str_replace('/install/','/',createUrl('index/install'))]);
         }
 
         if (Session::get('step') != 2) {
@@ -125,7 +125,7 @@ class Index extends BaseController {
                 $result['data']['type'] = 'database';
                 $result['data']['status'] = 1;
                 $result['msg'] = '开始安装数据库表';
-                $result['url'] = createUrl('install');
+                $result['url'] = str_replace('/install/','/',createUrl('index/install'));
                 return json($result);
             }
 
@@ -163,7 +163,7 @@ class Index extends BaseController {
                     $result['data']['type'] = 'config';
                     $result['data']['status'] = 1;
                     $result['msg'] = '开始安装配置文件';
-                    $result['url'] = createUrl('install');
+                    $result['url'] = str_replace('/install/','/',createUrl('index/install'));
                     return json($result);
                 }
 
@@ -189,13 +189,15 @@ class Index extends BaseController {
                 // 返回下一步
                 $result['data']['status'] = 1;
                 $result['msg'] = $msg;
-                $result['url'] = createUrl('install',['idx'=>$idx+1]);
+                $result['url'] = str_replace('/install/','/',createUrl('index/install',['idx'=>$idx+1]));
                 return json($result);
             }
 
             // 安装配置文件
             if ('config' == $type) {
                 // 创建数据库配置文件
+                $domain = trim(Request::domain(),"/") . "/";
+                $websocketUrl = str_replace(["http://","https://"],"",trim(Request::domain(),"/"));
                 $string = <<<EOF
 APP_DEBUG = false
 
@@ -216,9 +218,17 @@ DEBUG = false
 [LANG]
 default_lang = zh-cn
 
+[WEB]
+app_web_url = {$domain}
+
+[WEBSOCKET]
+websocket_protocol = ws://
+websocket_url = {$websocketUrl}
+websocket_port = 2348
+
 [JWT]
-ENCRYPTION = {$this->getRandString(45)}
-SIGN = {$this->getRandString(11)}
+ENCRYPTION = {$this->getRandString(35)}
+SIGN = {$this->getRandString(10)}
 
 EOF;
 
@@ -265,7 +275,7 @@ EOF;
 
                 $result['data']['status'] = 0;
                 $result['msg'] = '安装完成！';
-                $result['url'] = createUrl('complete');
+                $result['url'] = str_replace('/install/','/',createUrl('index/complete'));
                 return json($result);
             }
 
@@ -436,5 +446,4 @@ EOF;
 
         return $s;
     }
-
 }

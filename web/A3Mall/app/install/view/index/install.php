@@ -28,7 +28,7 @@
     function reloads(next, type) {
         $.ajax({
             type: "post",
-            url: next || "{:createUrl('install')}",
+            url: next || "{:str_replace('/install/','/',createUrl('index/install'))}",
             data: {type: type},
             dataType: "json",
             success: function (res) {
@@ -53,7 +53,7 @@
                 }
             },
             error: function (err) {
-                insert_log('网络请求错误或内部服务器错误：' + err.responseText, true);
+                insert_log('网络请求错误或内部服务器错误：', true);
                 console.info('error：' + err.responseText);
             }
         });
