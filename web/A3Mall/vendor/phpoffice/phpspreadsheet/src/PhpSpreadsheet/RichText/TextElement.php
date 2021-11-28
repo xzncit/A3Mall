@@ -14,12 +14,12 @@ class TextElement implements ITextElement
     /**
      * Create a new TextElement instance.
      *
-     * @param string $text Text
+     * @param string $pText Text
      */
-    public function __construct($text = '')
+    public function __construct($pText = '')
     {
         // Initialise variables
-        $this->text = $text;
+        $this->text = $pText;
     }
 
     /**
@@ -35,7 +35,7 @@ class TextElement implements ITextElement
     /**
      * Set text.
      *
-     * @param string $text Text
+     * @param $text string Text
      *
      * @return $this
      */

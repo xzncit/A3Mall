@@ -63,7 +63,7 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
      */
     public function setOutput($output)
     {
-        $prev = $this->outputStream ?? $this->lineDumper;
+        $prev = null !== $this->outputStream ? $this->outputStream : $this->lineDumper;
 
         if (\is_callable($output)) {
             $this->outputStream = null;

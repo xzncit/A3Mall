@@ -23,9 +23,6 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\BaseDrawing;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 use PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing;
-use PhpOffice\PhpSpreadsheet\Writer\Xls\Parser;
-use PhpOffice\PhpSpreadsheet\Writer\Xls\Workbook;
-use PhpOffice\PhpSpreadsheet\Writer\Xls\Worksheet;
 
 class Xls extends BaseWriter
 {
@@ -67,7 +64,7 @@ class Xls extends BaseWriter
     /**
      * Formula parser.
      *
-     * @var Parser
+     * @var \PhpOffice\PhpSpreadsheet\Writer\Xls\Parser
      */
     private $parser;
 
@@ -81,24 +78,24 @@ class Xls extends BaseWriter
     /**
      * Basic OLE object summary information.
      *
-     * @var string
+     * @var array
      */
     private $summaryInformation;
 
     /**
      * Extended OLE object document summary information.
      *
-     * @var string
+     * @var array
      */
     private $documentSummaryInformation;
 
     /**
-     * @var Workbook
+     * @var \PhpOffice\PhpSpreadsheet\Writer\Xls\Workbook
      */
     private $writerWorkbook;
 
     /**
-     * @var Worksheet[]
+     * @var \PhpOffice\PhpSpreadsheet\Writer\Xls\Worksheet[]
      */
     private $writerWorksheets;
 
@@ -117,12 +114,10 @@ class Xls extends BaseWriter
     /**
      * Save Spreadsheet to file.
      *
-     * @param resource|string $filename
+     * @param resource|string $pFilename
      */
-    public function save($filename, int $flags = 0): void
+    public function save($pFilename): void
     {
-        $this->processFlags($flags);
-
         // garbage collect
         $this->spreadsheet->garbageCollect();
 
@@ -221,10 +216,9 @@ class Xls extends BaseWriter
             $arrRootData[] = $OLE_DocumentSummaryInformation;
         }
 
-        $time = $this->spreadsheet->getProperties()->getModified();
-        $root = new Root($time, $time, $arrRootData);
+        $root = new Root(time(), time(), $arrRootData);
         // save the OLE file
-        $this->openFileHandle($filename);
+        $this->openFileHandle($pFilename);
         $root->save($this->fileHandle);
         $this->maybeCloseFileHandle();
 
@@ -394,7 +388,7 @@ class Xls extends BaseWriter
         }
     }
 
-    private function processMemoryDrawing(BstoreContainer &$bstoreContainer, MemoryDrawing $drawing, string $renderingFunctionx): void
+    private function processMemoryDrawing(BstoreContainer &$bstoreContainer, BaseDrawing $drawing, string $renderingFunctionx): void
     {
         switch ($renderingFunctionx) {
             case MemoryDrawing::RENDERING_JPEG:
@@ -424,9 +418,8 @@ class Xls extends BaseWriter
         $bstoreContainer->addBSE($BSE);
     }
 
-    private function processDrawing(BstoreContainer &$bstoreContainer, Drawing $drawing): void
+    private function processDrawing(BstoreContainer &$bstoreContainer, BaseDrawing $drawing): void
     {
-        $blipType = null;
         $blipData = '';
         $filename = $drawing->getPath();
 
@@ -730,7 +723,6 @@ class Xls extends BaseWriter
             } elseif ($dataProp['type']['data'] == 0x1E) { // null-terminated string prepended by dword string length
                 // Null-terminated string
                 $dataProp['data']['data'] .= chr(0);
-                // @phpstan-ignore-next-line
                 ++$dataProp['data']['length'];
                 // Complete the string with null string for being a %4
                 $dataProp['data']['length'] = $dataProp['data']['length'] + ((4 - $dataProp['data']['length'] % 4) == 4 ? 0 : (4 - $dataProp['data']['length'] % 4));
@@ -748,7 +740,6 @@ class Xls extends BaseWriter
             } else {
                 $dataSection_Content .= $dataProp['data']['data'];
 
-                // @phpstan-ignore-next-line
                 $dataSection_Content_Offset += 4 + $dataProp['data']['length'];
             }
         }
@@ -768,10 +759,7 @@ class Xls extends BaseWriter
         return $data;
     }
 
-    /**
-     * @param float|int $dataProp
-     */
-    private function writeSummaryPropOle($dataProp, int &$dataSection_NumProps, array &$dataSection, int $sumdata, int $typdata): void
+    private function writeSummaryPropOle(int $dataProp, int &$dataSection_NumProps, array &$dataSection, int $sumdata, int $typdata): void
     {
         if ($dataProp) {
             $dataSection[] = [

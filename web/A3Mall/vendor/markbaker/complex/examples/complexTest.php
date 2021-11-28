@@ -2,7 +2,7 @@
 
 use Complex\Complex as Complex;
 
-include(__DIR__ . '/../vendor/autoload.php');
+include('../classes/Bootstrap.php');
 
 echo 'Create', PHP_EOL;
 

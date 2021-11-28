@@ -22,11 +22,11 @@ class Mpdf extends Pdf
     /**
      * Save Spreadsheet to file.
      *
-     * @param string $filename Name of the file to save as
+     * @param string $pFilename Name of the file to save as
      */
-    public function save($filename, int $flags = 0): void
+    public function save($pFilename): void
     {
-        $fileHandle = parent::prepareForSave($filename);
+        $fileHandle = parent::prepareForSave($pFilename);
 
         //  Default PDF paper size
         $paperSize = 'LETTER'; //    Letter    (8.5 in. by 11 in.)
@@ -64,7 +64,7 @@ class Mpdf extends Pdf
         $config = ['tempDir' => $this->tempDir . '/mpdf'];
         $pdf = $this->createExternalWriterInstance($config);
         $ortmp = $orientation;
-        $pdf->_setPageSize($paperSize, $ortmp);
+        $pdf->_setPageSize(strtoupper($paperSize), $ortmp);
         $pdf->DefOrientation = $orientation;
         $pdf->AddPageByArray([
             'orientation' => $orientation,

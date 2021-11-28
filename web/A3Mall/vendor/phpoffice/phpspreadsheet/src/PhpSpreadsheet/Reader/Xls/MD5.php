@@ -5,25 +5,12 @@ namespace PhpOffice\PhpSpreadsheet\Reader\Xls;
 class MD5
 {
     // Context
-
-    /**
-     * @var int
-     */
     private $a;
 
-    /**
-     * @var int
-     */
     private $b;
 
-    /**
-     * @var int
-     */
     private $c;
 
-    /**
-     * @var int
-     */
     private $d;
 
     /**
@@ -69,7 +56,7 @@ class MD5
      *
      * @param string $data Data to add
      */
-    public function add(string $data): void
+    public function add($data): void
     {
         $words = array_values(unpack('V16', $data));
 
@@ -161,34 +148,34 @@ class MD5
         $this->d = ($this->d + $D) & 0xffffffff;
     }
 
-    private static function f(int $X, int $Y, int $Z)
+    private static function f($X, $Y, $Z)
     {
         return ($X & $Y) | ((~$X) & $Z); // X AND Y OR NOT X AND Z
     }
 
-    private static function g(int $X, int $Y, int $Z)
+    private static function g($X, $Y, $Z)
     {
         return ($X & $Z) | ($Y & (~$Z)); // X AND Z OR Y AND NOT Z
     }
 
-    private static function h(int $X, int $Y, int $Z)
+    private static function h($X, $Y, $Z)
     {
         return $X ^ $Y ^ $Z; // X XOR Y XOR Z
     }
 
-    private static function i(int $X, int $Y, int $Z)
+    private static function i($X, $Y, $Z)
     {
         return $Y ^ ($X | (~$Z)); // Y XOR (X OR NOT Z)
     }
 
-    private static function step($func, int &$A, int $B, int $C, int $D, int $M, int $s, int $t): void
+    private static function step($func, &$A, $B, $C, $D, $M, $s, $t): void
     {
         $A = ($A + call_user_func($func, $B, $C, $D) + $M + $t) & 0xffffffff;
         $A = self::rotate($A, $s);
         $A = ($B + $A) & 0xffffffff;
     }
 
-    private static function rotate(int $decimal, int $bits)
+    private static function rotate($decimal, $bits)
     {
         $binary = str_pad(decbin($decimal), 32, '0', STR_PAD_LEFT);
 

@@ -5,25 +5,6 @@ namespace Matrix;
 class Functions
 {
     /**
-     * Validates an array of matrix, converting an array to a matrix if required.
-     *
-     * @param Matrix|array $matrix Matrix or an array to treat as a matrix.
-     * @return Matrix The new matrix
-     * @throws Exception If argument isn't a valid matrix or array.
-     */
-    private static function validateMatrix($matrix)
-    {
-        if (is_array($matrix)) {
-            $matrix = new Matrix($matrix);
-        }
-        if (!$matrix instanceof Matrix) {
-            throw new Exception('Must be Matrix or array');
-        }
-
-        return $matrix;
-    }
-
-    /**
      * Calculate the adjoint of the matrix
      *
      * @param Matrix $matrix The matrix whose adjoint we wish to calculate
@@ -44,14 +25,12 @@ class Functions
      * The adjugate has sometimes been called the "adjoint", but today the "adjoint" of a matrix normally refers
      *     to its corresponding adjoint operator, which is its conjugate transpose.
      *
-     * @param Matrix|array $matrix The matrix whose adjoint we wish to calculate
+     * @param Matrix $matrix The matrix whose adjoint we wish to calculate
      * @return Matrix
      * @throws Exception
      **/
-    public static function adjoint($matrix)
+    public static function adjoint(Matrix $matrix)
     {
-        $matrix = self::validateMatrix($matrix);
-
         if (!$matrix->isSquare()) {
             throw new Exception('Adjoint can only be calculated for a square matrix');
         }
@@ -88,15 +67,13 @@ class Functions
     /**
      * Return the cofactors of this matrix
      *
-     * @param Matrix|array $matrix The matrix whose cofactors we wish to calculate
+     * @param Matrix $matrix The matrix whose cofactors we wish to calculate
      * @return Matrix
      *
      * @throws Exception
      */
-    public static function cofactors($matrix)
+    public static function cofactors(Matrix $matrix)
     {
-        $matrix = self::validateMatrix($matrix);
-
         if (!$matrix->isSquare()) {
             throw new Exception('Cofactors can only be calculated for a square matrix');
         }
@@ -164,14 +141,12 @@ class Functions
     /**
      * Return the determinant of this matrix
      *
-     * @param Matrix|array $matrix The matrix whose determinant we wish to calculate
+     * @param Matrix $matrix The matrix whose determinant we wish to calculate
      * @return float
      * @throws Exception
      **/
-    public static function determinant($matrix)
+    public static function determinant(Matrix $matrix)
     {
-        $matrix = self::validateMatrix($matrix);
-
         if (!$matrix->isSquare()) {
             throw new Exception('Determinant can only be calculated for a square matrix');
         }
@@ -182,14 +157,12 @@ class Functions
     /**
      * Return the diagonal of this matrix
      *
-     * @param Matrix|array $matrix The matrix whose diagonal we wish to calculate
+     * @param Matrix $matrix The matrix whose diagonal we wish to calculate
      * @return Matrix
      * @throws Exception
      **/
-    public static function diagonal($matrix)
+    public static function diagonal(Matrix $matrix)
     {
-        $matrix = self::validateMatrix($matrix);
-
         if (!$matrix->isSquare()) {
             throw new Exception('Diagonal can only be extracted from a square matrix');
         }
@@ -208,14 +181,12 @@ class Functions
     /**
      * Return the antidiagonal of this matrix
      *
-     * @param Matrix|array $matrix The matrix whose antidiagonal we wish to calculate
+     * @param Matrix $matrix The matrix whose antidiagonal we wish to calculate
      * @return Matrix
      * @throws Exception
      **/
-    public static function antidiagonal($matrix)
+    public static function antidiagonal(Matrix $matrix)
     {
-        $matrix = self::validateMatrix($matrix);
-
         if (!$matrix->isSquare()) {
             throw new Exception('Anti-Diagonal can only be extracted from a square matrix');
         }
@@ -236,14 +207,12 @@ class Functions
      * The identity matrix, or sometimes ambiguously called a unit matrix, of size n is the n × n square matrix
      *   with ones on the main diagonal and zeros elsewhere
      *
-     * @param Matrix|array $matrix The matrix whose identity we wish to calculate
+     * @param Matrix $matrix The matrix whose identity we wish to calculate
      * @return Matrix
      * @throws Exception
      **/
-    public static function identity($matrix)
+    public static function identity(Matrix $matrix)
     {
-        $matrix = self::validateMatrix($matrix);
-
         if (!$matrix->isSquare()) {
             throw new Exception('Identity can only be created for a square matrix');
         }
@@ -256,21 +225,19 @@ class Functions
     /**
      * Return the inverse of this matrix
      *
-     * @param Matrix|array $matrix The matrix whose inverse we wish to calculate
+     * @param Matrix $matrix The matrix whose inverse we wish to calculate
      * @return Matrix
      * @throws Exception
      **/
-    public static function inverse($matrix, string $type = 'inverse')
+    public static function inverse(Matrix $matrix)
     {
-        $matrix = self::validateMatrix($matrix);
-
         if (!$matrix->isSquare()) {
-            throw new Exception(ucfirst($type) . ' can only be calculated for a square matrix');
+            throw new Exception('Inverse can only be calculated for a square matrix');
         }
 
         $determinant = self::getDeterminant($matrix);
         if ($determinant == 0.0) {
-            throw new Div0Exception(ucfirst($type) . ' can only be calculated for a matrix with a non-zero determinant');
+            throw new Exception('Inverse can only be calculated for a matrix with a non-zero determinant');
         }
 
         if ($matrix->rows == 1) {
@@ -314,14 +281,12 @@ class Functions
      *     calculating matrix cofactors, which in turn are useful for computing both the determinant and inverse of
      *     square matrices.
      *
-     * @param Matrix|array $matrix The matrix whose minors we wish to calculate
+     * @param Matrix $matrix The matrix whose minors we wish to calculate
      * @return Matrix
      * @throws Exception
      **/
-    public static function minors($matrix)
+    public static function minors(Matrix $matrix)
     {
-        $matrix = self::validateMatrix($matrix);
-
         if (!$matrix->isSquare()) {
             throw new Exception('Minors can only be calculated for a square matrix');
         }
@@ -334,14 +299,12 @@ class Functions
      * The trace is defined as the sum of the elements on the main diagonal (the diagonal from the upper left to the lower right)
      *     of the matrix
      *
-     * @param Matrix|array $matrix The matrix whose trace we wish to calculate
+     * @param Matrix $matrix The matrix whose trace we wish to calculate
      * @return float
      * @throws Exception
      **/
-    public static function trace($matrix)
+    public static function trace(Matrix $matrix)
     {
-        $matrix = self::validateMatrix($matrix);
-
         if (!$matrix->isSquare()) {
             throw new Exception('Trace can only be extracted from a square matrix');
         }
@@ -358,13 +321,11 @@ class Functions
     /**
      * Return the transpose of this matrix
      *
-     * @param Matrix|\a $matrix The matrix whose transpose we wish to calculate
+     * @param Matrix $matrix The matrix whose transpose we wish to calculate
      * @return Matrix
      **/
-    public static function transpose($matrix)
+    public static function transpose(Matrix $matrix)
     {
-        $matrix = self::validateMatrix($matrix);
-
         $array = array_values(array_merge([null], $matrix->toArray()));
         $grid = call_user_func_array(
             'array_map',

@@ -34,9 +34,10 @@
         "liliuwei/thinkphp-jump": "^1.5",
         "topthink/think-worker": "^3.0",
         "phpoffice/phpspreadsheet": "^1.15",
+        "alipaysdk/easysdk":"^2.0",
         "aliyuncs/oss-sdk-php": "^2.4.1",
-        "xzncit/developer-tools": "^0.2.9",
-        "lcobucci/jwt": "3.4.5"
+        "lcobucci/jwt": "3.4.5",
+        "xzncit/developer-tools": "^0.3.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",

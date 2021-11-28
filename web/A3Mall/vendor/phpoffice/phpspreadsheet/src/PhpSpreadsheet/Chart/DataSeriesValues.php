@@ -55,7 +55,7 @@ class DataSeriesValues
     /**
      * Data Values.
      *
-     * @var mixed[]
+     * @var array of mixed
      */
     private $dataValues = [];
 
@@ -313,7 +313,7 @@ class DataSeriesValues
     /**
      * Get Series Data Values.
      *
-     * @return mixed[]
+     * @return array of mixed
      */
     public function getDataValues()
     {

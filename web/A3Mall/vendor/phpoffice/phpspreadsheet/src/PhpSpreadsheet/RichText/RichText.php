@@ -42,13 +42,13 @@ class RichText implements IComparable
     /**
      * Add text.
      *
-     * @param ITextElement $text Rich text element
+     * @param ITextElement $pText Rich text element
      *
      * @return $this
      */
-    public function addText(ITextElement $text)
+    public function addText(ITextElement $pText)
     {
-        $this->richTextElements[] = $text;
+        $this->richTextElements[] = $pText;
 
         return $this;
     }
@@ -56,13 +56,13 @@ class RichText implements IComparable
     /**
      * Create text.
      *
-     * @param string $text Text
+     * @param string $pText Text
      *
      * @return TextElement
      */
-    public function createText($text)
+    public function createText($pText)
     {
-        $objText = new TextElement($text);
+        $objText = new TextElement($pText);
         $this->addText($objText);
 
         return $objText;
@@ -71,13 +71,13 @@ class RichText implements IComparable
     /**
      * Create text run.
      *
-     * @param string $text Text
+     * @param string $pText Text
      *
      * @return Run
      */
-    public function createTextRun($text)
+    public function createTextRun($pText)
     {
-        $objText = new Run($text);
+        $objText = new Run($pText);
         $this->addText($objText);
 
         return $objText;

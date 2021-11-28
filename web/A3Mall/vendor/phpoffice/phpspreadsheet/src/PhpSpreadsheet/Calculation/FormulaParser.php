@@ -90,8 +90,10 @@ class FormulaParser
      * Get Token.
      *
      * @param int $pId Token id
+     *
+     * @return string
      */
-    public function getToken(int $pId = 0): FormulaToken
+    public function getToken($pId = 0)
     {
         if (isset($this->tokens[$pId])) {
             return $this->tokens[$pId];

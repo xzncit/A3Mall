@@ -14,12 +14,12 @@ class StringTable extends WriterPart
     /**
      * Create worksheet stringtable.
      *
-     * @param Worksheet $worksheet Worksheet
-     * @param string[] $existingTable Existing table to eventually merge with
+     * @param Worksheet $pSheet Worksheet
+     * @param string[] $pExistingTable Existing table to eventually merge with
      *
      * @return string[] String table for worksheet
      */
-    public function createStringTable(Worksheet $worksheet, $existingTable = null)
+    public function createStringTable(Worksheet $pSheet, $pExistingTable = null)
     {
         // Create string lookup table
         $aStringTable = [];
@@ -27,23 +27,23 @@ class StringTable extends WriterPart
         $aFlippedStringTable = null; // For faster lookup
 
         // Is an existing table given?
-        if (($existingTable !== null) && is_array($existingTable)) {
-            $aStringTable = $existingTable;
+        if (($pExistingTable !== null) && is_array($pExistingTable)) {
+            $aStringTable = $pExistingTable;
         }
 
         // Fill index array
         $aFlippedStringTable = $this->flipStringTable($aStringTable);
 
         // Loop through cells
-        foreach ($worksheet->getCoordinates() as $coordinate) {
-            $cell = $worksheet->getCell($coordinate);
+        foreach ($pSheet->getCoordinates() as $coordinate) {
+            $cell = $pSheet->getCell($coordinate);
             $cellValue = $cell->getValue();
             if (
                 !is_object($cellValue) &&
                 ($cellValue !== null) &&
                 $cellValue !== '' &&
-                ($cell->getDataType() == DataType::TYPE_STRING || $cell->getDataType() == DataType::TYPE_STRING2 || $cell->getDataType() == DataType::TYPE_NULL) &&
-                !isset($aFlippedStringTable[$cellValue])
+                !isset($aFlippedStringTable[$cellValue]) &&
+                ($cell->getDataType() == DataType::TYPE_STRING || $cell->getDataType() == DataType::TYPE_STRING2 || $cell->getDataType() == DataType::TYPE_NULL)
             ) {
                 $aStringTable[] = $cellValue;
                 $aFlippedStringTable[$cellValue] = true;

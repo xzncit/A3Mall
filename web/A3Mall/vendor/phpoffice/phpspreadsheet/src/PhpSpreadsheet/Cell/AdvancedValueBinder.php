@@ -20,10 +20,8 @@ class AdvancedValueBinder extends DefaultValueBinder implements IValueBinder
      */
     public function bindValue(Cell $cell, $value = null)
     {
-        if ($value === null) {
-            return parent::bindValue($cell, $value);
-        } elseif (is_string($value)) {
-            // sanitize UTF-8 strings
+        // sanitize UTF-8 strings
+        if (is_string($value)) {
             $value = StringHelper::sanitizeUTF8($value);
         }
 
@@ -43,16 +41,50 @@ class AdvancedValueBinder extends DefaultValueBinder implements IValueBinder
                 return true;
             }
 
-            // Check for fractions
+            // Check for number in scientific format
+            if (preg_match('/^' . Calculation::CALCULATION_REGEXP_NUMBER . '$/', $value)) {
+                $cell->setValueExplicit((float) $value, DataType::TYPE_NUMERIC);
+
+                return true;
+            }
+
+            // Check for fraction
             if (preg_match('/^([+-]?)\s*(\d+)\s?\/\s*(\d+)$/', $value, $matches)) {
-                return $this->setProperFraction($matches, $cell);
+                // Convert value to number
+                $value = $matches[2] / $matches[3];
+                if ($matches[1] == '-') {
+                    $value = 0 - $value;
+                }
+                $cell->setValueExplicit((float) $value, DataType::TYPE_NUMERIC);
+                // Set style
+                $cell->getWorksheet()->getStyle($cell->getCoordinate())
+                    ->getNumberFormat()->setFormatCode('??/??');
+
+                return true;
             } elseif (preg_match('/^([+-]?)(\d*) +(\d*)\s?\/\s*(\d*)$/', $value, $matches)) {
-                return $this->setImproperFraction($matches, $cell);
+                // Convert value to number
+                $value = $matches[2] + ($matches[3] / $matches[4]);
+                if ($matches[1] == '-') {
+                    $value = 0 - $value;
+                }
+                $cell->setValueExplicit((float) $value, DataType::TYPE_NUMERIC);
+                // Set style
+                $cell->getWorksheet()->getStyle($cell->getCoordinate())
+                    ->getNumberFormat()->setFormatCode('# ??/??');
+
+                return true;
             }
 
             // Check for percentage
             if (preg_match('/^\-?\d*\.?\d*\s?\%$/', $value)) {
-                return $this->setPercentage($value, $cell);
+                // Convert value to number
+                $value = (float) str_replace('%', '', $value) / 100;
+                $cell->setValueExplicit($value, DataType::TYPE_NUMERIC);
+                // Set style
+                $cell->getWorksheet()->getStyle($cell->getCoordinate())
+                    ->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_PERCENTAGE_00);
+
+                return true;
             }
 
             // Check for currency
@@ -83,12 +115,29 @@ class AdvancedValueBinder extends DefaultValueBinder implements IValueBinder
 
             // Check for time without seconds e.g. '9:45', '09:45'
             if (preg_match('/^(\d|[0-1]\d|2[0-3]):[0-5]\d$/', $value)) {
-                return $this->setTimeHoursMinutes($value, $cell);
+                // Convert value to number
+                [$h, $m] = explode(':', $value);
+                $days = $h / 24 + $m / 1440;
+                $cell->setValueExplicit($days, DataType::TYPE_NUMERIC);
+                // Set style
+                $cell->getWorksheet()->getStyle($cell->getCoordinate())
+                    ->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_DATE_TIME3);
+
+                return true;
             }
 
             // Check for time with seconds '9:45:59', '09:45:59'
             if (preg_match('/^(\d|[0-1]\d|2[0-3]):[0-5]\d:[0-5]\d$/', $value)) {
-                return $this->setTimeHoursMinutesSeconds($value, $cell);
+                // Convert value to number
+                [$h, $m, $s] = explode(':', $value);
+                $days = $h / 24 + $m / 1440 + $s / 86400;
+                // Convert value to number
+                $cell->setValueExplicit($days, DataType::TYPE_NUMERIC);
+                // Set style
+                $cell->getWorksheet()->getStyle($cell->getCoordinate())
+                    ->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_DATE_TIME4);
+
+                return true;
             }
 
             // Check for datetime, e.g. '2008-12-31', '2008-12-31 15:59', '2008-12-31 15:59:10'
@@ -109,6 +158,7 @@ class AdvancedValueBinder extends DefaultValueBinder implements IValueBinder
 
             // Check for newline character "\n"
             if (strpos($value, "\n") !== false) {
+                $value = StringHelper::sanitizeUTF8($value);
                 $cell->setValueExplicit($value, DataType::TYPE_STRING);
                 // Set style
                 $cell->getWorksheet()->getStyle($cell->getCoordinate())
@@ -120,86 +170,5 @@ class AdvancedValueBinder extends DefaultValueBinder implements IValueBinder
 
         // Not bound yet? Use parent...
         return parent::bindValue($cell, $value);
-    }
-
-    protected function setImproperFraction(array $matches, Cell $cell): bool
-    {
-        // Convert value to number
-        $value = $matches[2] + ($matches[3] / $matches[4]);
-        if ($matches[1] === '-') {
-            $value = 0 - $value;
-        }
-        $cell->setValueExplicit((float) $value, DataType::TYPE_NUMERIC);
-
-        // Build the number format mask based on the size of the matched values
-        $dividend = str_repeat('?', strlen($matches[3]));
-        $divisor = str_repeat('?', strlen($matches[4]));
-        $fractionMask = "# {$dividend}/{$divisor}";
-        // Set style
-        $cell->getWorksheet()->getStyle($cell->getCoordinate())
-            ->getNumberFormat()->setFormatCode($fractionMask);
-
-        return true;
-    }
-
-    protected function setProperFraction(array $matches, Cell $cell): bool
-    {
-        // Convert value to number
-        $value = $matches[2] / $matches[3];
-        if ($matches[1] === '-') {
-            $value = 0 - $value;
-        }
-        $cell->setValueExplicit((float) $value, DataType::TYPE_NUMERIC);
-
-        // Build the number format mask based on the size of the matched values
-        $dividend = str_repeat('?', strlen($matches[2]));
-        $divisor = str_repeat('?', strlen($matches[3]));
-        $fractionMask = "{$dividend}/{$divisor}";
-        // Set style
-        $cell->getWorksheet()->getStyle($cell->getCoordinate())
-            ->getNumberFormat()->setFormatCode($fractionMask);
-
-        return true;
-    }
-
-    protected function setPercentage(string $value, Cell $cell): bool
-    {
-        // Convert value to number
-        $value = ((float) str_replace('%', '', $value)) / 100;
-        $cell->setValueExplicit($value, DataType::TYPE_NUMERIC);
-
-        // Set style
-        $cell->getWorksheet()->getStyle($cell->getCoordinate())
-            ->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_PERCENTAGE_00);
-
-        return true;
-    }
-
-    protected function setTimeHoursMinutes(string $value, Cell $cell): bool
-    {
-        // Convert value to number
-        [$hours, $minutes] = explode(':', $value);
-        $days = ($hours / 24) + ($minutes / 1440);
-        $cell->setValueExplicit($days, DataType::TYPE_NUMERIC);
-
-        // Set style
-        $cell->getWorksheet()->getStyle($cell->getCoordinate())
-            ->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_DATE_TIME3);
-
-        return true;
-    }
-
-    protected function setTimeHoursMinutesSeconds(string $value, Cell $cell): bool
-    {
-        // Convert value to number
-        [$hours, $minutes, $seconds] = explode(':', $value);
-        $days = ($hours / 24) + ($minutes / 1440) + ($seconds / 86400);
-        $cell->setValueExplicit($days, DataType::TYPE_NUMERIC);
-
-        // Set style
-        $cell->getWorksheet()->getStyle($cell->getCoordinate())
-            ->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_DATE_TIME4);
-
-        return true;
     }
 }

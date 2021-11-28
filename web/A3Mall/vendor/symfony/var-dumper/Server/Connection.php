@@ -31,7 +31,7 @@ class Connection
      */
     public function __construct(string $host, array $contextProviders = [])
     {
-        if (!str_contains($host, '://')) {
+        if (false === strpos($host, '://')) {
             $host = 'tcp://'.$host;
         }
 
@@ -78,7 +78,7 @@ class Connection
         return false;
     }
 
-    private static function nullErrorHandler(int $t, string $m)
+    private static function nullErrorHandler($t, $m)
     {
         // no-op
     }

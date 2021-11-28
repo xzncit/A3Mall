@@ -62,10 +62,6 @@ class PageSettings
             foreach ($xmlX->WorksheetOptions->PageSetup as $pageSetupData) {
                 foreach ($pageSetupData as $pageSetupKey => $pageSetupValue) {
                     $pageSetupAttributes = $pageSetupValue->attributes($namespaces['x']);
-                    if (!$pageSetupAttributes) {
-                        continue;
-                    }
-
                     switch ($pageSetupKey) {
                         case 'Layout':
                             $this->setLayout($printDefaults, $pageSetupAttributes);
@@ -119,7 +115,7 @@ class PageSettings
 
     private function setLayout(stdClass $printDefaults, SimpleXMLElement $pageSetupAttributes): void
     {
-        $printDefaults->orientation = (string) strtolower($pageSetupAttributes->Orientation ?? '') ?: PageSetup::ORIENTATION_PORTRAIT;
+        $printDefaults->orientation = (string) strtolower($pageSetupAttributes->Orientation) ?: PageSetup::ORIENTATION_PORTRAIT;
         $printDefaults->horizontalCentered = (bool) $pageSetupAttributes->CenterHorizontal ?: false;
         $printDefaults->verticalCentered = (bool) $pageSetupAttributes->CenterVertical ?: false;
     }

@@ -5,8 +5,6 @@ namespace League\Flysystem;
 use League\Flysystem\Util\MimeType;
 use LogicException;
 
-use function strcmp;
-
 class Util
 {
     /**
@@ -104,7 +102,8 @@ class Util
     public static function normalizeRelativePath($path)
     {
         $path = str_replace('\\', '/', $path);
-        $path =  static::removeFunkyWhiteSpace($path);
+        $path = static::removeFunkyWhiteSpace($path);
+
         $parts = [];
 
         foreach (explode('/', $path) as $part) {
@@ -128,13 +127,11 @@ class Util
             }
         }
 
-        $path = implode('/', $parts);
-
-        return $path;
+        return implode('/', $parts);
     }
 
     /**
-     * Rejects unprintable characters and invalid unicode characters.
+     * Removes unprintable characters and invalid unicode characters.
      *
      * @param string $path
      *
@@ -142,8 +139,10 @@ class Util
      */
     protected static function removeFunkyWhiteSpace($path)
     {
-        if (preg_match('#\p{C}+#u', $path)) {
-            throw CorruptedPathDetected::forPath($path);
+        // We do this check in a loop, since removing invalid unicode characters
+        // can lead to new characters being created.
+        while (preg_match('#\p{C}+|^\./#u', $path)) {
+            $path = preg_replace('#\p{C}+|^\./#u', '', $path);
         }
 
         return $path;
@@ -206,7 +205,7 @@ class Util
         $listedDirectories = [];
 
         foreach ($listing as $object) {
-            [$directories, $listedDirectories] = static::emulateObjectDirectories($object, $directories, $listedDirectories);
+            list($directories, $listedDirectories) = static::emulateObjectDirectories($object, $directories, $listedDirectories);
         }
 
         $directories = array_diff(array_unique($directories), array_unique($listedDirectories));

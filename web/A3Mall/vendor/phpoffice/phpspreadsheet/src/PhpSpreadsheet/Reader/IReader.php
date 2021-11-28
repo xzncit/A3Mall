@@ -4,8 +4,6 @@ namespace PhpOffice\PhpSpreadsheet\Reader;
 
 interface IReader
 {
-    public const LOAD_WITH_CHARTS = 1;
-
     /**
      * IReader constructor.
      */
@@ -13,8 +11,12 @@ interface IReader
 
     /**
      * Can the current IReader read the file?
+     *
+     * @param string $pFilename
+     *
+     * @return bool
      */
-    public function canRead(string $filename): bool;
+    public function canRead($pFilename);
 
     /**
      * Read data only?
@@ -123,7 +125,9 @@ interface IReader
     /**
      * Loads PhpSpreadsheet from file.
      *
+     * @param string $pFilename
+     *
      * @return \PhpOffice\PhpSpreadsheet\Spreadsheet
      */
-    public function load(string $filename, int $flags = 0);
+    public function load($pFilename);
 }

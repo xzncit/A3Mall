@@ -42,7 +42,6 @@ class PolynomialBestFit extends BestFit
     {
         $retVal = $this->getIntersect();
         $slope = $this->getSlope();
-        // @phpstan-ignore-next-line
         foreach ($slope as $key => $value) {
             if ($value != 0.0) {
                 $retVal += $value * $xValue ** ($key + 1);
@@ -77,7 +76,6 @@ class PolynomialBestFit extends BestFit
         $intersect = $this->getIntersect($dp);
 
         $equation = 'Y = ' . $intersect;
-        // @phpstan-ignore-next-line
         foreach ($slope as $key => $value) {
             if ($value != 0.0) {
                 $equation .= ' + ' . $value . ' * X';
@@ -95,7 +93,7 @@ class PolynomialBestFit extends BestFit
      *
      * @param int $dp Number of places of decimal precision to display
      *
-     * @return float
+     * @return string
      */
     public function getSlope($dp = 0)
     {
@@ -105,7 +103,6 @@ class PolynomialBestFit extends BestFit
                 $coefficients[] = round($coefficient, $dp);
             }
 
-            // @phpstan-ignore-next-line
             return $coefficients;
         }
 
@@ -181,8 +178,9 @@ class PolynomialBestFit extends BestFit
      * @param int $order Order of Polynomial for this regression
      * @param float[] $yValues The set of Y-values for this regression
      * @param float[] $xValues The set of X-values for this regression
+     * @param bool $const
      */
-    public function __construct($order, $yValues, $xValues = [])
+    public function __construct($order, $yValues, $xValues = [], $const = true)
     {
         parent::__construct($yValues, $xValues);
 

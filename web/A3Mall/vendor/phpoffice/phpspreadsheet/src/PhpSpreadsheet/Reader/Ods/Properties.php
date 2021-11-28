@@ -26,7 +26,7 @@ class Properties
                 $this->setCoreProperties($docProps, $officePropertiesDC);
             }
 
-            $officePropertyMeta = [];
+            $officePropertyMeta = (object) [];
             if (isset($namespacesMeta['dc'])) {
                 $officePropertyMeta = $officePropertyData->children($namespacesMeta['meta']);
             }
@@ -55,7 +55,9 @@ class Properties
 
                     break;
                 case 'date':
-                    $docProps->setModified($propertyValue);
+                    $creationDate = strtotime($propertyValue);
+                    $docProps->setCreated($creationDate);
+                    $docProps->setModified($creationDate);
 
                     break;
                 case 'description':
@@ -84,7 +86,8 @@ class Properties
 
                 break;
             case 'creation-date':
-                $docProps->setCreated($propertyValue);
+                $creationDate = strtotime($propertyValue);
+                $docProps->setCreated($creationDate);
 
                 break;
             case 'user-defined':

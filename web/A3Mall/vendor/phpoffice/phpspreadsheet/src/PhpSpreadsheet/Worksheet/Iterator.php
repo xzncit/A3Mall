@@ -30,6 +30,14 @@ class Iterator implements \Iterator
     }
 
     /**
+     * Destructor.
+     */
+    public function __destruct()
+    {
+        $this->subject = null;
+    }
+
+    /**
      * Rewind iterator.
      */
     public function rewind(): void
@@ -39,16 +47,20 @@ class Iterator implements \Iterator
 
     /**
      * Current Worksheet.
+     *
+     * @return Worksheet
      */
-    public function current(): Worksheet
+    public function current()
     {
         return $this->subject->getSheet($this->position);
     }
 
     /**
      * Current key.
+     *
+     * @return int
      */
-    public function key(): int
+    public function key()
     {
         return $this->position;
     }
@@ -63,8 +75,10 @@ class Iterator implements \Iterator
 
     /**
      * Are there more Worksheet instances available?
+     *
+     * @return bool
      */
-    public function valid(): bool
+    public function valid()
     {
         return $this->position < $this->subject->getSheetCount() && $this->position >= 0;
     }

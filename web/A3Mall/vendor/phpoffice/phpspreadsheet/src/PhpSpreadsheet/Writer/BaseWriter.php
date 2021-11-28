@@ -6,7 +6,7 @@ abstract class BaseWriter implements IWriter
 {
     /**
      * Write charts that are defined in the workbook?
-     * Identifies whether the Writer should write definitions for any charts that exist in the PhpSpreadsheet object.
+     * Identifies whether the Writer should write definitions for any charts that exist in the PhpSpreadsheet object;.
      *
      * @var bool
      */
@@ -50,9 +50,9 @@ abstract class BaseWriter implements IWriter
         return $this->includeCharts;
     }
 
-    public function setIncludeCharts($includeCharts)
+    public function setIncludeCharts($pValue)
     {
-        $this->includeCharts = (bool) $includeCharts;
+        $this->includeCharts = (bool) $pValue;
 
         return $this;
     }
@@ -62,9 +62,9 @@ abstract class BaseWriter implements IWriter
         return $this->preCalculateFormulas;
     }
 
-    public function setPreCalculateFormulas($precalculateFormulas)
+    public function setPreCalculateFormulas($pValue)
     {
-        $this->preCalculateFormulas = (bool) $precalculateFormulas;
+        $this->preCalculateFormulas = (bool) $pValue;
 
         return $this;
     }
@@ -74,15 +74,15 @@ abstract class BaseWriter implements IWriter
         return $this->useDiskCaching;
     }
 
-    public function setUseDiskCaching($useDiskCache, $cacheDirectory = null)
+    public function setUseDiskCaching($pValue, $pDirectory = null)
     {
-        $this->useDiskCaching = $useDiskCache;
+        $this->useDiskCaching = $pValue;
 
-        if ($cacheDirectory !== null) {
-            if (is_dir($cacheDirectory)) {
-                $this->diskCachingDirectory = $cacheDirectory;
+        if ($pDirectory !== null) {
+            if (is_dir($pDirectory)) {
+                $this->diskCachingDirectory = $pDirectory;
             } else {
-                throw new Exception("Directory does not exist: $cacheDirectory");
+                throw new Exception("Directory does not exist: $pDirectory");
             }
         }
 
@@ -92,13 +92,6 @@ abstract class BaseWriter implements IWriter
     public function getDiskCachingDirectory()
     {
         return $this->diskCachingDirectory;
-    }
-
-    protected function processFlags(int $flags): void
-    {
-        if (((bool) ($flags & self::SAVE_WITH_CHARTS)) === true) {
-            $this->setIncludeCharts(true);
-        }
     }
 
     /**
@@ -115,12 +108,7 @@ abstract class BaseWriter implements IWriter
             return;
         }
 
-        $mode = 'wb+';
-        $scheme = parse_url($filename, PHP_URL_SCHEME);
-        if ($scheme === 's3') {
-            $mode = 'w';
-        }
-        $fileHandle = $filename ? fopen($filename, $mode) : false;
+        $fileHandle = $filename ? fopen($filename, 'wb+') : false;
         if ($fileHandle === false) {
             throw new Exception('Could not open file "' . $filename . '" for writing.');
         }

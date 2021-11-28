@@ -21,16 +21,16 @@ class Theme
     /**
      * Colour Map.
      *
-     * @var string[]
+     * @var array of string
      */
     private $colourMap;
 
     /**
      * Create a new Theme.
      *
-     * @param string $themeName
-     * @param string $colourSchemeName
-     * @param string[] $colourMap
+     * @param mixed $themeName
+     * @param mixed $colourSchemeName
+     * @param mixed $colourMap
      */
     public function __construct($themeName, $colourSchemeName, $colourMap)
     {
@@ -63,9 +63,9 @@ class Theme
     /**
      * Get colour Map Value by Position.
      *
-     * @param int $index
+     * @param mixed $index
      *
-     * @return null|string
+     * @return string
      */
     public function getColourByIndex($index)
     {

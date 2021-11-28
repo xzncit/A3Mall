@@ -45,41 +45,41 @@ class DataType
     /**
      * Check a string that it satisfies Excel requirements.
      *
-     * @param null|RichText|string $textValue Value to sanitize to an Excel string
+     * @param null|RichText|string $pValue Value to sanitize to an Excel string
      *
      * @return null|RichText|string Sanitized value
      */
-    public static function checkString($textValue)
+    public static function checkString($pValue)
     {
-        if ($textValue instanceof RichText) {
+        if ($pValue instanceof RichText) {
             // TODO: Sanitize Rich-Text string (max. character count is 32,767)
-            return $textValue;
+            return $pValue;
         }
 
         // string must never be longer than 32,767 characters, truncate if necessary
-        $textValue = StringHelper::substring($textValue, 0, 32767);
+        $pValue = StringHelper::substring($pValue, 0, 32767);
 
         // we require that newline is represented as "\n" in core, not as "\r\n" or "\r"
-        $textValue = str_replace(["\r\n", "\r"], "\n", $textValue);
+        $pValue = str_replace(["\r\n", "\r"], "\n", $pValue);
 
-        return $textValue;
+        return $pValue;
     }
 
     /**
      * Check a value that it is a valid error code.
      *
-     * @param mixed $value Value to sanitize to an Excel error code
+     * @param mixed $pValue Value to sanitize to an Excel error code
      *
      * @return string Sanitized value
      */
-    public static function checkErrorCode($value)
+    public static function checkErrorCode($pValue)
     {
-        $value = (string) $value;
+        $pValue = (string) $pValue;
 
-        if (!isset(self::$errorCodes[$value])) {
-            $value = '#NULL!';
+        if (!isset(self::$errorCodes[$pValue])) {
+            $pValue = '#NULL!';
         }
 
-        return $value;
+        return $pValue;
     }
 }

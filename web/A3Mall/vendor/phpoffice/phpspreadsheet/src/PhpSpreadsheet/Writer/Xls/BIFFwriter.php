@@ -49,7 +49,7 @@ class BIFFwriter
     /**
      * The string containing the data of the BIFF stream.
      *
-     * @var null|string
+     * @var string
      */
     public $_data;
 

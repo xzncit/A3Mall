@@ -11,6 +11,8 @@
 
 namespace Symfony\Contracts\Service\Attribute;
 
+use Attribute;
+
 /**
  * A required dependency.
  *
@@ -19,7 +21,7 @@ namespace Symfony\Contracts\Service\Attribute;
  *
  * @author Alexander M. Turek <me@derrabus.de>
  */
-#[\Attribute(\Attribute::TARGET_METHOD | \Attribute::TARGET_PROPERTY)]
+#[Attribute(Attribute::TARGET_METHOD | Attribute::TARGET_PROPERTY)]
 final class Required
 {
 }

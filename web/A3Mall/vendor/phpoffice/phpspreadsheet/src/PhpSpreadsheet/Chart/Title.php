@@ -2,16 +2,14 @@
 
 namespace PhpOffice\PhpSpreadsheet\Chart;
 
-use PhpOffice\PhpSpreadsheet\RichText\RichText;
-
 class Title
 {
     /**
      * Title Caption.
      *
-     * @var array|RichText|string
+     * @var string
      */
-    private $caption = '';
+    private $caption;
 
     /**
      * Title Layout.
@@ -23,9 +21,9 @@ class Title
     /**
      * Create a new Title.
      *
-     * @param array|RichText|string $caption
+     * @param null|mixed $caption
      */
-    public function __construct($caption = '', ?Layout $layout = null)
+    public function __construct($caption = null, ?Layout $layout = null)
     {
         $this->caption = $caption;
         $this->layout = $layout;
@@ -34,40 +32,17 @@ class Title
     /**
      * Get caption.
      *
-     * @return array|RichText|string
+     * @return string
      */
     public function getCaption()
     {
         return $this->caption;
     }
 
-    public function getCaptionText(): string
-    {
-        $caption = $this->caption;
-        if (is_string($caption)) {
-            return $caption;
-        }
-        if ($caption instanceof RichText) {
-            return $caption->getPlainText();
-        }
-        $retVal = '';
-        foreach ($caption as $textx) {
-            /** @var RichText|string */
-            $text = $textx;
-            if ($text instanceof RichText) {
-                $retVal .= $text->getPlainText();
-            } else {
-                $retVal .= $text;
-            }
-        }
-
-        return $retVal;
-    }
-
     /**
      * Set caption.
      *
-     * @param array|RichText|string $caption
+     * @param string $caption
      *
      * @return $this
      */

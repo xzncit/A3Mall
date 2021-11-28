@@ -21,7 +21,6 @@ namespace PhpOffice\PhpSpreadsheet\Shared;
 // +----------------------------------------------------------------------+
 //
 
-use PhpOffice\PhpSpreadsheet\Exception;
 use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
 use PhpOffice\PhpSpreadsheet\Shared\OLE\ChainedBlockStream;
 use PhpOffice\PhpSpreadsheet\Shared\OLE\PPS\Root;
@@ -110,15 +109,15 @@ class OLE
      *
      * @acces public
      *
-     * @param string $filename
+     * @param string $file
      *
      * @return bool true on success, PEAR_Error on failure
      */
-    public function read($filename)
+    public function read($file)
     {
-        $fh = fopen($filename, 'rb');
+        $fh = fopen($file, 'rb');
         if (!$fh) {
-            throw new ReaderException("Can't open file $filename");
+            throw new ReaderException("Can't open file $file");
         }
         $this->_file_handle = $fh;
 
@@ -228,8 +227,7 @@ class OLE
         // in OLE_ChainedBlockStream::stream_open().
         // Object is removed from self::$instances in OLE_Stream::close().
         $GLOBALS['_OLE_INSTANCES'][] = $this;
-        $keys = array_keys($GLOBALS['_OLE_INSTANCES']);
-        $instanceId = end($keys);
+        $instanceId = end(array_keys($GLOBALS['_OLE_INSTANCES']));
 
         $path = 'ole-chainedblockstream://oleInstanceId=' . $instanceId;
         if ($blockIdOrPps instanceof OLE\PPS) {
@@ -245,13 +243,13 @@ class OLE
     /**
      * Reads a signed char.
      *
-     * @param resource $fileHandle file handle
+     * @param resource $fh file handle
      *
      * @return int
      */
-    private static function readInt1($fileHandle)
+    private static function readInt1($fh)
     {
-        [, $tmp] = unpack('c', fread($fileHandle, 1));
+        [, $tmp] = unpack('c', fread($fh, 1));
 
         return $tmp;
     }
@@ -259,13 +257,13 @@ class OLE
     /**
      * Reads an unsigned short (2 octets).
      *
-     * @param resource $fileHandle file handle
+     * @param resource $fh file handle
      *
      * @return int
      */
-    private static function readInt2($fileHandle)
+    private static function readInt2($fh)
     {
-        [, $tmp] = unpack('v', fread($fileHandle, 2));
+        [, $tmp] = unpack('v', fread($fh, 2));
 
         return $tmp;
     }
@@ -273,13 +271,13 @@ class OLE
     /**
      * Reads an unsigned long (4 octets).
      *
-     * @param resource $fileHandle file handle
+     * @param resource $fh file handle
      *
      * @return int
      */
-    private static function readInt4($fileHandle)
+    private static function readInt4($fh)
     {
-        [, $tmp] = unpack('V', fread($fileHandle, 4));
+        [, $tmp] = unpack('V', fread($fh, 4));
 
         return $tmp;
     }
@@ -318,7 +316,7 @@ class OLE
 
                     break;
                 default:
-                    throw new Exception('Unsupported PPS type');
+                    break;
             }
             fseek($fh, 1, SEEK_CUR);
             $pps->Type = $type;
@@ -491,33 +489,42 @@ class OLE
      * Utility function
      * Returns a string for the OLE container with the date given.
      *
-     * @param float|int $date A timestamp
+     * @param int $date A timestamp
      *
      * @return string The string for the OLE container
      */
     public static function localDateToOLE($date)
     {
-        if (!$date) {
+        if (!isset($date)) {
             return "\x00\x00\x00\x00\x00\x00\x00\x00";
         }
-        $dateTime = Date::dateTimeFromTimestamp("$date");
+
+        // factor used for separating numbers into 4 bytes parts
+        $factor = 2 ** 32;
 
         // days from 1-1-1601 until the beggining of UNIX era
         $days = 134774;
         // calculate seconds
-        $big_date = $days * 24 * 3600 + (float) $dateTime->format('U');
+        $big_date = $days * 24 * 3600 + mktime((int) date('H', $date), (int) date('i', $date), (int) date('s', $date), (int) date('m', $date), (int) date('d', $date), (int) date('Y', $date));
         // multiply just to make MS happy
         $big_date *= 10000000;
+
+        $high_part = floor($big_date / $factor);
+        // lower 4 bytes
+        $low_part = floor((($big_date / $factor) - $high_part) * $factor);
 
         // Make HEX string
         $res = '';
 
-        $factor = 2 ** 56;
-        while ($factor >= 1) {
-            $hex = (int) floor($big_date / $factor);
-            $res = pack('c', $hex) . $res;
-            $big_date = fmod($big_date, $factor);
-            $factor /= 256;
+        for ($i = 0; $i < 4; ++$i) {
+            $hex = $low_part % 0x100;
+            $res .= pack('c', $hex);
+            $low_part /= 0x100;
+        }
+        for ($i = 0; $i < 4; ++$i) {
+            $hex = $high_part % 0x100;
+            $res .= pack('c', $hex);
+            $high_part /= 0x100;
         }
 
         return $res;
@@ -528,7 +535,7 @@ class OLE
      *
      * @param string $oleTimestamp A binary string with the encoded date
      *
-     * @return float|int The Unix timestamp corresponding to the string
+     * @return int The Unix timestamp corresponding to the string
      */
     public static function OLE2LocalDate($oleTimestamp)
     {
@@ -551,6 +558,9 @@ class OLE
         // translate to seconds since 1970:
         $unixTimestamp = floor(65536.0 * 65536.0 * $timestampHigh + $timestampLow - $days * 24 * 3600 + 0.5);
 
-        return IntOrFloat::evaluate($unixTimestamp);
+        $iTimestamp = (int) $unixTimestamp;
+
+        // Overflow conditions can't happen on 64-bit system
+        return ($iTimestamp == $unixTimestamp) ? $iTimestamp : ($unixTimestamp >= 0.0 ? PHP_INT_MAX : PHP_INT_MIN);
     }
 }

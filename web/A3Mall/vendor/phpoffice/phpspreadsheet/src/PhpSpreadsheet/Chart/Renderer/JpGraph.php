@@ -301,8 +301,6 @@ class JpGraph implements IRenderer
         $seriesPlots = [];
         if ($grouping == 'percentStacked') {
             $sumValues = $this->percentageSumCalculation($groupID, $seriesCount);
-        } else {
-            $sumValues = [];
         }
 
         //    Loop through each data series in turn
@@ -378,8 +376,6 @@ class JpGraph implements IRenderer
         $seriesPlots = [];
         if ($grouping == 'percentStacked') {
             $sumValues = $this->percentageSumCalculation($groupID, $seriesCount);
-        } else {
-            $sumValues = [];
         }
 
         //    Loop through each data series in turn

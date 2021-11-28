@@ -31,9 +31,7 @@ class Chart
             } elseif ($format == 'integer') {
                 return (int) $attributes[$name];
             } elseif ($format == 'boolean') {
-                $value = (string) $attributes[$name];
-
-                return $value === 'true' || $value === '1';
+                return (bool) ($attributes[$name] === '0' || $attributes[$name] !== 'true') ? false : true;
             }
 
             return (float) $attributes[$name];
@@ -63,7 +61,7 @@ class Chart
 
         $XaxisLabel = $YaxisLabel = $legend = $title = null;
         $dispBlanksAs = $plotVisOnly = null;
-        $plotArea = null;
+
         foreach ($chartElementsC as $chartElementKey => $chartElement) {
             switch ($chartElementKey) {
                 case 'chart':
@@ -92,22 +90,8 @@ class Chart
 
                                             break;
                                         case 'valAx':
-                                            if (isset($chartDetail->title, $chartDetail->axPos)) {
-                                                $axisLabel = self::chartTitle($chartDetail->title->children($namespacesChartMeta['c']), $namespacesChartMeta);
-                                                $axPos = self::getAttribute($chartDetail->axPos, 'val', 'string');
-
-                                                switch ($axPos) {
-                                                    case 't':
-                                                    case 'b':
-                                                        $XaxisLabel = $axisLabel;
-
-                                                        break;
-                                                    case 'r':
-                                                    case 'l':
-                                                        $YaxisLabel = $axisLabel;
-
-                                                        break;
-                                                }
+                                            if (isset($chartDetail->title)) {
+                                                $YaxisLabel = self::chartTitle($chartDetail->title->children($namespacesChartMeta['c']), $namespacesChartMeta);
                                             }
 
                                             break;
@@ -344,51 +328,26 @@ class Chart
     {
         if (isset($seriesDetail->strRef)) {
             $seriesSource = (string) $seriesDetail->strRef->f;
-            $seriesValues = new DataSeriesValues(DataSeriesValues::DATASERIES_TYPE_STRING, $seriesSource, null, null, null, $marker);
+            $seriesData = self::chartDataSeriesValues($seriesDetail->strRef->strCache->children($namespacesChartMeta['c']), 's');
 
-            if (isset($seriesDetail->strRef->strCache)) {
-                $seriesData = self::chartDataSeriesValues($seriesDetail->strRef->strCache->children($namespacesChartMeta['c']), 's');
-                $seriesValues
-                    ->setFormatCode($seriesData['formatCode'])
-                    ->setDataValues($seriesData['dataValues']);
-            }
-
-            return $seriesValues;
+            return new DataSeriesValues(DataSeriesValues::DATASERIES_TYPE_STRING, $seriesSource, $seriesData['formatCode'], $seriesData['pointCount'], $seriesData['dataValues'], $marker);
         } elseif (isset($seriesDetail->numRef)) {
             $seriesSource = (string) $seriesDetail->numRef->f;
-            $seriesValues = new DataSeriesValues(DataSeriesValues::DATASERIES_TYPE_NUMBER, $seriesSource, null, null, null, $marker);
-            if (isset($seriesDetail->numRef->numCache)) {
-                $seriesData = self::chartDataSeriesValues($seriesDetail->numRef->numCache->children($namespacesChartMeta['c']));
-                $seriesValues
-                    ->setFormatCode($seriesData['formatCode'])
-                    ->setDataValues($seriesData['dataValues']);
-            }
+            $seriesData = self::chartDataSeriesValues($seriesDetail->numRef->numCache->children($namespacesChartMeta['c']));
 
-            return $seriesValues;
+            return new DataSeriesValues(DataSeriesValues::DATASERIES_TYPE_NUMBER, $seriesSource, $seriesData['formatCode'], $seriesData['pointCount'], $seriesData['dataValues'], $marker);
         } elseif (isset($seriesDetail->multiLvlStrRef)) {
             $seriesSource = (string) $seriesDetail->multiLvlStrRef->f;
-            $seriesValues = new DataSeriesValues(DataSeriesValues::DATASERIES_TYPE_STRING, $seriesSource, null, null, null, $marker);
+            $seriesData = self::chartDataSeriesValuesMultiLevel($seriesDetail->multiLvlStrRef->multiLvlStrCache->children($namespacesChartMeta['c']), 's');
+            $seriesData['pointCount'] = count($seriesData['dataValues']);
 
-            if (isset($seriesDetail->multiLvlStrRef->multiLvlStrCache)) {
-                $seriesData = self::chartDataSeriesValuesMultiLevel($seriesDetail->multiLvlStrRef->multiLvlStrCache->children($namespacesChartMeta['c']), 's');
-                $seriesValues
-                    ->setFormatCode($seriesData['formatCode'])
-                    ->setDataValues($seriesData['dataValues']);
-            }
-
-            return $seriesValues;
+            return new DataSeriesValues(DataSeriesValues::DATASERIES_TYPE_STRING, $seriesSource, $seriesData['formatCode'], $seriesData['pointCount'], $seriesData['dataValues'], $marker);
         } elseif (isset($seriesDetail->multiLvlNumRef)) {
             $seriesSource = (string) $seriesDetail->multiLvlNumRef->f;
-            $seriesValues = new DataSeriesValues(DataSeriesValues::DATASERIES_TYPE_STRING, $seriesSource, null, null, null, $marker);
+            $seriesData = self::chartDataSeriesValuesMultiLevel($seriesDetail->multiLvlNumRef->multiLvlNumCache->children($namespacesChartMeta['c']), 's');
+            $seriesData['pointCount'] = count($seriesData['dataValues']);
 
-            if (isset($seriesDetail->multiLvlNumRef->multiLvlNumCache)) {
-                $seriesData = self::chartDataSeriesValuesMultiLevel($seriesDetail->multiLvlNumRef->multiLvlNumCache->children($namespacesChartMeta['c']), 's');
-                $seriesValues
-                    ->setFormatCode($seriesData['formatCode'])
-                    ->setDataValues($seriesData['dataValues']);
-            }
-
-            return $seriesValues;
+            return new DataSeriesValues(DataSeriesValues::DATASERIES_TYPE_STRING, $seriesSource, $seriesData['formatCode'], $seriesData['pointCount'], $seriesData['dataValues'], $marker);
         }
 
         return null;
@@ -484,7 +443,7 @@ class Chart
                 }
 
                 $fontSize = (self::getAttribute($titleDetailElement->rPr, 'sz', 'integer'));
-                if (is_int($fontSize)) {
+                if ($fontSize !== null) {
                     $objText->getFont()->setSize(floor($fontSize / 100));
                 }
 
@@ -541,7 +500,7 @@ class Chart
     {
         $plotAttributes = [];
         if (isset($chartDetail->dLbls)) {
-            if (isset($chartDetail->dLbls->showLegendKey)) {
+            if (isset($chartDetail->dLbls->howLegendKey)) {
                 $plotAttributes['showLegendKey'] = self::getAttribute($chartDetail->dLbls->showLegendKey, 'val', 'string');
             }
             if (isset($chartDetail->dLbls->showVal)) {

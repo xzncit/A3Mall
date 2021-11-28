@@ -13,7 +13,7 @@ class Axis extends Properties
     /**
      * Axis Number.
      *
-     * @var mixed[]
+     * @var array of mixed
      */
     private $axisNumber = [
         'format' => self::FORMAT_CODE_GENERAL,
@@ -23,7 +23,7 @@ class Axis extends Properties
     /**
      * Axis Options.
      *
-     * @var mixed[]
+     * @var array of mixed
      */
     private $axisOptions = [
         'minimum' => null,
@@ -41,7 +41,7 @@ class Axis extends Properties
     /**
      * Fill Properties.
      *
-     * @var mixed[]
+     * @var array of mixed
      */
     private $fillProperties = [
         'type' => self::EXCEL_COLOR_TYPE_ARGB,
@@ -52,7 +52,7 @@ class Axis extends Properties
     /**
      * Line Properties.
      *
-     * @var mixed[]
+     * @var array of mixed
      */
     private $lineProperties = [
         'type' => self::EXCEL_COLOR_TYPE_ARGB,
@@ -63,7 +63,7 @@ class Axis extends Properties
     /**
      * Line Style Properties.
      *
-     * @var mixed[]
+     * @var array of mixed
      */
     private $lineStyleProperties = [
         'width' => '9525',
@@ -86,7 +86,7 @@ class Axis extends Properties
     /**
      * Shadow Properties.
      *
-     * @var mixed[]
+     * @var array of mixed
      */
     private $shadowProperties = [
         'presets' => self::SHADOW_PRESETS_NOSHADOW,
@@ -111,7 +111,7 @@ class Axis extends Properties
     /**
      * Glow Properties.
      *
-     * @var mixed[]
+     * @var array of mixed
      */
     private $glowProperties = [
         'size' => null,
@@ -125,7 +125,7 @@ class Axis extends Properties
     /**
      * Soft Edge Properties.
      *
-     * @var mixed[]
+     * @var array of mixed
      */
     private $softEdges = [
         'size' => null,
@@ -135,8 +135,10 @@ class Axis extends Properties
      * Get Series Data Type.
      *
      * @param mixed $format_code
+     *
+     * @return string
      */
-    public function setAxisNumberProperties($format_code): void
+    public function setAxisNumberProperties($format_code)
     {
         $this->axisNumber['format'] = (string) $format_code;
         $this->axisNumber['source_linked'] = 0;
@@ -165,30 +167,30 @@ class Axis extends Properties
     /**
      * Set Axis Options Properties.
      *
-     * @param string $axisLabels
-     * @param string $horizontalCrossesValue
-     * @param string $horizontalCrosses
-     * @param string $axisOrientation
-     * @param string $majorTmt
-     * @param string $minorTmt
+     * @param string $axis_labels
+     * @param string $horizontal_crosses_value
+     * @param string $horizontal_crosses
+     * @param string $axis_orientation
+     * @param string $major_tmt
+     * @param string $minor_tmt
      * @param string $minimum
      * @param string $maximum
-     * @param string $majorUnit
-     * @param string $minorUnit
+     * @param string $major_unit
+     * @param string $minor_unit
      */
-    public function setAxisOptionsProperties($axisLabels, $horizontalCrossesValue = null, $horizontalCrosses = null, $axisOrientation = null, $majorTmt = null, $minorTmt = null, $minimum = null, $maximum = null, $majorUnit = null, $minorUnit = null): void
+    public function setAxisOptionsProperties($axis_labels, $horizontal_crosses_value = null, $horizontal_crosses = null, $axis_orientation = null, $major_tmt = null, $minor_tmt = null, $minimum = null, $maximum = null, $major_unit = null, $minor_unit = null): void
     {
-        $this->axisOptions['axis_labels'] = (string) $axisLabels;
-        ($horizontalCrossesValue !== null) ? $this->axisOptions['horizontal_crosses_value'] = (string) $horizontalCrossesValue : null;
-        ($horizontalCrosses !== null) ? $this->axisOptions['horizontal_crosses'] = (string) $horizontalCrosses : null;
-        ($axisOrientation !== null) ? $this->axisOptions['orientation'] = (string) $axisOrientation : null;
-        ($majorTmt !== null) ? $this->axisOptions['major_tick_mark'] = (string) $majorTmt : null;
-        ($minorTmt !== null) ? $this->axisOptions['minor_tick_mark'] = (string) $minorTmt : null;
-        ($minorTmt !== null) ? $this->axisOptions['minor_tick_mark'] = (string) $minorTmt : null;
+        $this->axisOptions['axis_labels'] = (string) $axis_labels;
+        ($horizontal_crosses_value !== null) ? $this->axisOptions['horizontal_crosses_value'] = (string) $horizontal_crosses_value : null;
+        ($horizontal_crosses !== null) ? $this->axisOptions['horizontal_crosses'] = (string) $horizontal_crosses : null;
+        ($axis_orientation !== null) ? $this->axisOptions['orientation'] = (string) $axis_orientation : null;
+        ($major_tmt !== null) ? $this->axisOptions['major_tick_mark'] = (string) $major_tmt : null;
+        ($minor_tmt !== null) ? $this->axisOptions['minor_tick_mark'] = (string) $minor_tmt : null;
+        ($minor_tmt !== null) ? $this->axisOptions['minor_tick_mark'] = (string) $minor_tmt : null;
         ($minimum !== null) ? $this->axisOptions['minimum'] = (string) $minimum : null;
         ($maximum !== null) ? $this->axisOptions['maximum'] = (string) $maximum : null;
-        ($majorUnit !== null) ? $this->axisOptions['major_unit'] = (string) $majorUnit : null;
-        ($minorUnit !== null) ? $this->axisOptions['minor_unit'] = (string) $minorUnit : null;
+        ($major_unit !== null) ? $this->axisOptions['major_unit'] = (string) $major_unit : null;
+        ($minor_unit !== null) ? $this->axisOptions['minor_unit'] = (string) $minor_unit : null;
     }
 
     /**
@@ -218,11 +220,11 @@ class Axis extends Properties
      *
      * @param string $color
      * @param int $alpha
-     * @param string $AlphaType
+     * @param string $type
      */
-    public function setFillParameters($color, $alpha = 0, $AlphaType = self::EXCEL_COLOR_TYPE_ARGB): void
+    public function setFillParameters($color, $alpha = 0, $type = self::EXCEL_COLOR_TYPE_ARGB): void
     {
-        $this->fillProperties = $this->setColorProperties($color, $alpha, $AlphaType);
+        $this->fillProperties = $this->setColorProperties($color, $alpha, $type);
     }
 
     /**
@@ -230,11 +232,11 @@ class Axis extends Properties
      *
      * @param string $color
      * @param int $alpha
-     * @param string $alphaType
+     * @param string $type
      */
-    public function setLineParameters($color, $alpha = 0, $alphaType = self::EXCEL_COLOR_TYPE_ARGB): void
+    public function setLineParameters($color, $alpha = 0, $type = self::EXCEL_COLOR_TYPE_ARGB): void
     {
-        $this->lineProperties = $this->setColorProperties($color, $alpha, $alphaType);
+        $this->lineProperties = $this->setColorProperties($color, $alpha, $type);
     }
 
     /**
@@ -264,27 +266,27 @@ class Axis extends Properties
     /**
      * Set Line Style Properties.
      *
-     * @param float $lineWidth
-     * @param string $compoundType
-     * @param string $dashType
-     * @param string $capType
-     * @param string $joinType
-     * @param string $headArrowType
-     * @param string $headArrowSize
-     * @param string $endArrowType
-     * @param string $endArrowSize
+     * @param float $line_width
+     * @param string $compound_type
+     * @param string $dash_type
+     * @param string $cap_type
+     * @param string $join_type
+     * @param string $head_arrow_type
+     * @param string $head_arrow_size
+     * @param string $end_arrow_type
+     * @param string $end_arrow_size
      */
-    public function setLineStyleProperties($lineWidth = null, $compoundType = null, $dashType = null, $capType = null, $joinType = null, $headArrowType = null, $headArrowSize = null, $endArrowType = null, $endArrowSize = null): void
+    public function setLineStyleProperties($line_width = null, $compound_type = null, $dash_type = null, $cap_type = null, $join_type = null, $head_arrow_type = null, $head_arrow_size = null, $end_arrow_type = null, $end_arrow_size = null): void
     {
-        ($lineWidth !== null) ? $this->lineStyleProperties['width'] = $this->getExcelPointsWidth((float) $lineWidth) : null;
-        ($compoundType !== null) ? $this->lineStyleProperties['compound'] = (string) $compoundType : null;
-        ($dashType !== null) ? $this->lineStyleProperties['dash'] = (string) $dashType : null;
-        ($capType !== null) ? $this->lineStyleProperties['cap'] = (string) $capType : null;
-        ($joinType !== null) ? $this->lineStyleProperties['join'] = (string) $joinType : null;
-        ($headArrowType !== null) ? $this->lineStyleProperties['arrow']['head']['type'] = (string) $headArrowType : null;
-        ($headArrowSize !== null) ? $this->lineStyleProperties['arrow']['head']['size'] = (string) $headArrowSize : null;
-        ($endArrowType !== null) ? $this->lineStyleProperties['arrow']['end']['type'] = (string) $endArrowType : null;
-        ($endArrowSize !== null) ? $this->lineStyleProperties['arrow']['end']['size'] = (string) $endArrowSize : null;
+        ($line_width !== null) ? $this->lineStyleProperties['width'] = $this->getExcelPointsWidth((float) $line_width) : null;
+        ($compound_type !== null) ? $this->lineStyleProperties['compound'] = (string) $compound_type : null;
+        ($dash_type !== null) ? $this->lineStyleProperties['dash'] = (string) $dash_type : null;
+        ($cap_type !== null) ? $this->lineStyleProperties['cap'] = (string) $cap_type : null;
+        ($join_type !== null) ? $this->lineStyleProperties['join'] = (string) $join_type : null;
+        ($head_arrow_type !== null) ? $this->lineStyleProperties['arrow']['head']['type'] = (string) $head_arrow_type : null;
+        ($head_arrow_size !== null) ? $this->lineStyleProperties['arrow']['head']['size'] = (string) $head_arrow_size : null;
+        ($end_arrow_type !== null) ? $this->lineStyleProperties['arrow']['end']['type'] = (string) $end_arrow_type : null;
+        ($end_arrow_size !== null) ? $this->lineStyleProperties['arrow']['end']['size'] = (string) $end_arrow_size : null;
     }
 
     /**
@@ -326,38 +328,38 @@ class Axis extends Properties
     /**
      * Set Shadow Properties.
      *
-     * @param int $shadowPresets
-     * @param string $colorValue
-     * @param string $colorType
-     * @param string $colorAlpha
-     * @param float $blur
-     * @param int $angle
-     * @param float $distance
+     * @param int $sh_presets
+     * @param string $sh_color_value
+     * @param string $sh_color_type
+     * @param string $sh_color_alpha
+     * @param float $sh_blur
+     * @param int $sh_angle
+     * @param float $sh_distance
      */
-    public function setShadowProperties($shadowPresets, $colorValue = null, $colorType = null, $colorAlpha = null, $blur = null, $angle = null, $distance = null): void
+    public function setShadowProperties($sh_presets, $sh_color_value = null, $sh_color_type = null, $sh_color_alpha = null, $sh_blur = null, $sh_angle = null, $sh_distance = null): void
     {
-        $this->setShadowPresetsProperties((int) $shadowPresets)
+        $this->setShadowPresetsProperties((int) $sh_presets)
             ->setShadowColor(
-                $colorValue ?? $this->shadowProperties['color']['value'],
-                $colorAlpha ?? (int) $this->shadowProperties['color']['alpha'],
-                $colorType ?? $this->shadowProperties['color']['type']
+                $sh_color_value === null ? $this->shadowProperties['color']['value'] : $sh_color_value,
+                $sh_color_alpha === null ? (int) $this->shadowProperties['color']['alpha'] : $sh_color_alpha,
+                $sh_color_type === null ? $this->shadowProperties['color']['type'] : $sh_color_type
             )
-            ->setShadowBlur($blur)
-            ->setShadowAngle($angle)
-            ->setShadowDistance($distance);
+            ->setShadowBlur($sh_blur)
+            ->setShadowAngle($sh_angle)
+            ->setShadowDistance($sh_distance);
     }
 
     /**
      * Set Shadow Color.
      *
-     * @param int $presets
+     * @param int $shadow_presets
      *
      * @return $this
      */
-    private function setShadowPresetsProperties($presets)
+    private function setShadowPresetsProperties($shadow_presets)
     {
-        $this->shadowProperties['presets'] = $presets;
-        $this->setShadowPropertiesMapValues($this->getShadowPresetsMap($presets));
+        $this->shadowProperties['presets'] = $shadow_presets;
+        $this->setShadowProperiesMapValues($this->getShadowPresetsMap($shadow_presets));
 
         return $this;
     }
@@ -365,21 +367,21 @@ class Axis extends Properties
     /**
      * Set Shadow Properties from Mapped Values.
      *
-     * @param mixed $reference
+     * @param mixed &$reference
      *
      * @return $this
      */
-    private function setShadowPropertiesMapValues(array $propertiesMap, &$reference = null)
+    private function setShadowProperiesMapValues(array $properties_map, &$reference = null)
     {
         $base_reference = $reference;
-        foreach ($propertiesMap as $property_key => $property_val) {
+        foreach ($properties_map as $property_key => $property_val) {
             if (is_array($property_val)) {
                 if ($reference === null) {
                     $reference = &$this->shadowProperties[$property_key];
                 } else {
                     $reference = &$reference[$property_key];
                 }
-                $this->setShadowPropertiesMapValues($property_val, $reference);
+                $this->setShadowProperiesMapValues($property_val, $reference);
             } else {
                 if ($base_reference === null) {
                     $this->shadowProperties[$property_key] = $property_val;
@@ -397,13 +399,13 @@ class Axis extends Properties
      *
      * @param string $color
      * @param int $alpha
-     * @param string $alphaType
+     * @param string $type
      *
      * @return $this
      */
-    private function setShadowColor($color, $alpha, $alphaType)
+    private function setShadowColor($color, $alpha, $type)
     {
-        $this->shadowProperties['color'] = $this->setColorProperties($color, $alpha, $alphaType);
+        $this->shadowProperties['color'] = $this->setColorProperties($color, $alpha, $type);
 
         return $this;
     }
@@ -472,17 +474,17 @@ class Axis extends Properties
      * Set Glow Properties.
      *
      * @param float $size
-     * @param string $colorValue
-     * @param int $colorAlpha
-     * @param string $colorType
+     * @param string $color_value
+     * @param int $color_alpha
+     * @param string $color_type
      */
-    public function setGlowProperties($size, $colorValue = null, $colorAlpha = null, $colorType = null): void
+    public function setGlowProperties($size, $color_value = null, $color_alpha = null, $color_type = null): void
     {
         $this->setGlowSize($size)
             ->setGlowColor(
-                $colorValue ?? $this->glowProperties['color']['value'],
-                $colorAlpha ?? (int) $this->glowProperties['color']['alpha'],
-                $colorType ?? $this->glowProperties['color']['type']
+                $color_value === null ? $this->glowProperties['color']['value'] : $color_value,
+                $color_alpha === null ? (int) $this->glowProperties['color']['alpha'] : $color_alpha,
+                $color_type === null ? $this->glowProperties['color']['type'] : $color_type
             );
     }
 
@@ -519,13 +521,13 @@ class Axis extends Properties
      *
      * @param string $color
      * @param int $alpha
-     * @param string $colorType
+     * @param string $type
      *
      * @return $this
      */
-    private function setGlowColor($color, $alpha, $colorType)
+    private function setGlowColor($color, $alpha, $type)
     {
-        $this->glowProperties['color'] = $this->setColorProperties($color, $alpha, $colorType);
+        $this->glowProperties['color'] = $this->setColorProperties($color, $alpha, $type);
 
         return $this;
     }

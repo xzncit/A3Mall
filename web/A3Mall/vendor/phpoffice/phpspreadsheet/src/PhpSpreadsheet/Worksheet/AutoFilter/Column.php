@@ -49,7 +49,7 @@ class Column
     /**
      * Autofilter.
      *
-     * @var null|AutoFilter
+     * @var AutoFilter
      */
     private $parent;
 
@@ -77,14 +77,14 @@ class Column
     /**
      * Autofilter Column Rules.
      *
-     * @var Column\Rule[]
+     * @var array of Column\Rule
      */
     private $ruleset = [];
 
     /**
      * Autofilter Column Dynamic Attributes.
      *
-     * @var mixed[]
+     * @var array of mixed
      */
     private $attributes = [];
 
@@ -133,7 +133,7 @@ class Column
     /**
      * Get this Column's AutoFilter Parent.
      *
-     * @return null|AutoFilter
+     * @return AutoFilter
      */
     public function getParent()
     {
@@ -215,11 +215,11 @@ class Column
     /**
      * Set AutoFilter Attributes.
      *
-     * @param mixed[] $attributes
+     * @param string[] $attributes
      *
      * @return $this
      */
-    public function setAttributes($attributes)
+    public function setAttributes(array $attributes)
     {
         $this->attributes = $attributes;
 
@@ -244,7 +244,7 @@ class Column
     /**
      * Get AutoFilter Column Attributes.
      *
-     * @return int[]|string[]
+     * @return string[]
      */
     public function getAttributes()
     {
@@ -256,7 +256,7 @@ class Column
      *
      * @param string $pName Attribute Name
      *
-     * @return null|int|string
+     * @return string
      */
     public function getAttribute($pName)
     {
@@ -265,11 +265,6 @@ class Column
         }
 
         return null;
-    }
-
-    public function ruleCount(): int
-    {
-        return count($this->ruleset);
     }
 
     /**
@@ -375,6 +370,8 @@ class Column
                     $cloned->setParent($this); // attach the new cloned Rule to this new cloned Autofilter Cloned object
                     $this->ruleset[$k] = $cloned;
                 }
+            } elseif (is_object($value)) {
+                $this->$key = clone $value;
             } else {
                 $this->$key = $value;
             }

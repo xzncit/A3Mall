@@ -238,7 +238,7 @@ class PageSetup
     /**
      * Print area.
      *
-     * @var null|string
+     * @var string
      */
     private $printArea;
 

@@ -30,6 +30,4 @@ abstract class WriterPart
     {
         $this->parentWriter = $writer;
     }
-
-    abstract public function write(): string;
 }

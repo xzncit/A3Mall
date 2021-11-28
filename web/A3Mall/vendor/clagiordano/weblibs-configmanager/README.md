@@ -1,25 +1,12 @@
-﻿[![PHP Composer](https://github.com/clagiordano/weblibs-configmanager/actions/workflows/php.yml/badge.svg)](https://github.com/clagiordano/weblibs-configmanager/actions/workflows/php.yml) 
-[![Coverage Status](https://coveralls.io/repos/github/clagiordano/weblibs-configmanager/badge.svg?branch=master)](https://coveralls.io/github/clagiordano/weblibs-configmanager?branch=master)
-[![SymfonyInsight](https://insight.symfony.com/projects/54c4e80c-ff15-4235-8bec-a4c71bbe3ba5/mini.svg)](https://insight.symfony.com/projects/54c4e80c-ff15-4235-8bec-a4c71bbe3ba5)
+﻿![BuildStatus](https://travis-ci.org/clagiordano/weblibs-configmanager.svg?branch=master) ![License](https://img.shields.io/github/license/clagiordano/weblibs-configmanager.svg)
 
 # weblibs-configmanager
 weblibs-configmanager is a tool library for easily read and access to php config array file and direct read/write configuration file / object.
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/54c4e80c-ff15-4235-8bec-a4c71bbe3ba5/big.png)](https://insight.sensiolabs.com/projects/54c4e80c-ff15-4235-8bec-a4c71bbe3ba5)
+
 ## Why use weblibs-configmanager ?
 The purpose of this project is to propose a simple and lightweight library to manage php hierarchical configuration files.
-
-## Supported formats
-
-This package supports config files in the following format:
-
-Format | Component | Since version |  Description
-:---: | :---: | :---: | ---
-Array | `ConfigManager` | `v0.1.0` |  Deprecated, legacy name for the php array reader, only for compatibility support
-Array | `ArrayConfigManager` | `v1.2.0` | A file that returns a php array, the original supported format
-Yaml | `YamlConfigManager` | `v1.3.0` | A file containing a valid YAML file
-JSON | `JsonConfigManager` | `v1.4.0` | A file containing a valid JSON file
-
-All the supported format are parsed and internally handled in the same way granting the same functionalities.
 
 ## Installation
 The recommended way to install weblibs-configmanager is through [Composer](https://getcomposer.org).
@@ -27,10 +14,10 @@ The recommended way to install weblibs-configmanager is through [Composer](https
 composer require clagiordano/weblibs-configmanager
 ```
 
-## Usage examples (Array format)
+## Usage examples
 
 ### Write a sample config file like this
-```php
+```
 <?php
 
 return array (

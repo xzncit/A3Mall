@@ -294,15 +294,15 @@ class StringHelper
      * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
      * element or in the shared string <t> element.
      *
-     * @param string $textValue Value to unescape
+     * @param string $value Value to unescape
      *
      * @return string
      */
-    public static function controlCharacterOOXML2PHP($textValue)
+    public static function controlCharacterOOXML2PHP($value)
     {
         self::buildCharacterSets();
 
-        return str_replace(array_keys(self::$controlCharacters), array_values(self::$controlCharacters), $textValue);
+        return str_replace(array_keys(self::$controlCharacters), array_values(self::$controlCharacters), $value);
     }
 
     /**
@@ -316,64 +316,64 @@ class StringHelper
      * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
      * element or in the shared string <t> element.
      *
-     * @param string $textValue Value to escape
+     * @param string $value Value to escape
      *
      * @return string
      */
-    public static function controlCharacterPHP2OOXML($textValue)
+    public static function controlCharacterPHP2OOXML($value)
     {
         self::buildCharacterSets();
 
-        return str_replace(array_values(self::$controlCharacters), array_keys(self::$controlCharacters), $textValue);
+        return str_replace(array_values(self::$controlCharacters), array_keys(self::$controlCharacters), $value);
     }
 
     /**
      * Try to sanitize UTF8, stripping invalid byte sequences. Not perfect. Does not surrogate characters.
      *
-     * @param string $textValue
+     * @param string $value
      *
      * @return string
      */
-    public static function sanitizeUTF8($textValue)
+    public static function sanitizeUTF8($value)
     {
         if (self::getIsIconvEnabled()) {
-            $textValue = @iconv('UTF-8', 'UTF-8', $textValue);
+            $value = @iconv('UTF-8', 'UTF-8', $value);
 
-            return $textValue;
+            return $value;
         }
 
-        $textValue = mb_convert_encoding($textValue, 'UTF-8', 'UTF-8');
+        $value = mb_convert_encoding($value, 'UTF-8', 'UTF-8');
 
-        return $textValue;
+        return $value;
     }
 
     /**
      * Check if a string contains UTF8 data.
      *
-     * @param string $textValue
+     * @param string $value
      *
      * @return bool
      */
-    public static function isUTF8($textValue)
+    public static function isUTF8($value)
     {
-        return $textValue === '' || preg_match('/^./su', $textValue) === 1;
+        return $value === '' || preg_match('/^./su', $value) === 1;
     }
 
     /**
      * Formats a numeric value as a string for output in various output writers forcing
      * point as decimal separator in case locale is other than English.
      *
-     * @param mixed $numericValue
+     * @param mixed $value
      *
      * @return string
      */
-    public static function formatNumber($numericValue)
+    public static function formatNumber($value)
     {
-        if (is_float($numericValue)) {
-            return str_replace(',', '.', $numericValue);
+        if (is_float($value)) {
+            return str_replace(',', '.', $value);
         }
 
-        return (string) $numericValue;
+        return (string) $value;
     }
 
     /**
@@ -383,25 +383,25 @@ class StringHelper
      * although this will give wrong results for non-ASCII strings
      * see OpenOffice.org's Documentation of the Microsoft Excel File Format, sect. 2.5.3.
      *
-     * @param string $textValue UTF-8 encoded string
+     * @param string $value UTF-8 encoded string
      * @param mixed[] $arrcRuns Details of rich text runs in $value
      *
      * @return string
      */
-    public static function UTF8toBIFF8UnicodeShort($textValue, $arrcRuns = [])
+    public static function UTF8toBIFF8UnicodeShort($value, $arrcRuns = [])
     {
         // character count
-        $ln = self::countCharacters($textValue, 'UTF-8');
+        $ln = self::countCharacters($value, 'UTF-8');
         // option flags
         if (empty($arrcRuns)) {
             $data = pack('CC', $ln, 0x0001);
             // characters
-            $data .= self::convertEncoding($textValue, 'UTF-16LE', 'UTF-8');
+            $data .= self::convertEncoding($value, 'UTF-16LE', 'UTF-8');
         } else {
             $data = pack('vC', $ln, 0x09);
             $data .= pack('v', count($arrcRuns));
             // characters
-            $data .= self::convertEncoding($textValue, 'UTF-16LE', 'UTF-8');
+            $data .= self::convertEncoding($value, 'UTF-16LE', 'UTF-8');
             foreach ($arrcRuns as $cRun) {
                 $data .= pack('v', $cRun['strlen']);
                 $data .= pack('v', $cRun['fontidx']);
@@ -418,17 +418,17 @@ class StringHelper
      * although this will give wrong results for non-ASCII strings
      * see OpenOffice.org's Documentation of the Microsoft Excel File Format, sect. 2.5.3.
      *
-     * @param string $textValue UTF-8 encoded string
+     * @param string $value UTF-8 encoded string
      *
      * @return string
      */
-    public static function UTF8toBIFF8UnicodeLong($textValue)
+    public static function UTF8toBIFF8UnicodeLong($value)
     {
         // character count
-        $ln = self::countCharacters($textValue, 'UTF-8');
+        $ln = self::countCharacters($value, 'UTF-8');
 
         // characters
-        $chars = self::convertEncoding($textValue, 'UTF-16LE', 'UTF-8');
+        $chars = self::convertEncoding($value, 'UTF-16LE', 'UTF-8');
 
         return pack('vC', $ln, 0x0001) . $chars;
     }
@@ -436,91 +436,91 @@ class StringHelper
     /**
      * Convert string from one encoding to another.
      *
-     * @param string $textValue
+     * @param string $value
      * @param string $to Encoding to convert to, e.g. 'UTF-8'
      * @param string $from Encoding to convert from, e.g. 'UTF-16LE'
      *
      * @return string
      */
-    public static function convertEncoding($textValue, $to, $from)
+    public static function convertEncoding($value, $to, $from)
     {
         if (self::getIsIconvEnabled()) {
-            $result = iconv($from, $to . self::$iconvOptions, $textValue);
+            $result = iconv($from, $to . self::$iconvOptions, $value);
             if (false !== $result) {
                 return $result;
             }
         }
 
-        return mb_convert_encoding($textValue, $to, $from);
+        return mb_convert_encoding($value, $to, $from);
     }
 
     /**
      * Get character count.
      *
-     * @param string $textValue
-     * @param string $encoding Encoding
+     * @param string $value
+     * @param string $enc Encoding
      *
      * @return int Character count
      */
-    public static function countCharacters($textValue, $encoding = 'UTF-8')
+    public static function countCharacters($value, $enc = 'UTF-8')
     {
-        return mb_strlen($textValue ?? '', $encoding);
+        return mb_strlen($value, $enc);
     }
 
     /**
      * Get a substring of a UTF-8 encoded string.
      *
-     * @param string $textValue UTF-8 encoded string
-     * @param int $offset Start offset
-     * @param int $length Maximum number of characters in substring
+     * @param string $pValue UTF-8 encoded string
+     * @param int $pStart Start offset
+     * @param int $pLength Maximum number of characters in substring
      *
      * @return string
      */
-    public static function substring($textValue, $offset, $length = 0)
+    public static function substring($pValue, $pStart, $pLength = 0)
     {
-        return mb_substr($textValue, $offset, $length, 'UTF-8');
+        return mb_substr($pValue, $pStart, $pLength, 'UTF-8');
     }
 
     /**
      * Convert a UTF-8 encoded string to upper case.
      *
-     * @param string $textValue UTF-8 encoded string
+     * @param string $pValue UTF-8 encoded string
      *
      * @return string
      */
-    public static function strToUpper($textValue)
+    public static function strToUpper($pValue)
     {
-        return mb_convert_case($textValue, MB_CASE_UPPER, 'UTF-8');
+        return mb_convert_case($pValue, MB_CASE_UPPER, 'UTF-8');
     }
 
     /**
      * Convert a UTF-8 encoded string to lower case.
      *
-     * @param string $textValue UTF-8 encoded string
+     * @param string $pValue UTF-8 encoded string
      *
      * @return string
      */
-    public static function strToLower($textValue)
+    public static function strToLower($pValue)
     {
-        return mb_convert_case($textValue ?? '', MB_CASE_LOWER, 'UTF-8');
+        return mb_convert_case($pValue, MB_CASE_LOWER, 'UTF-8');
     }
 
     /**
      * Convert a UTF-8 encoded string to title/proper case
      * (uppercase every first character in each word, lower case all other characters).
      *
-     * @param string $textValue UTF-8 encoded string
+     * @param string $pValue UTF-8 encoded string
      *
      * @return string
      */
-    public static function strToTitle($textValue)
+    public static function strToTitle($pValue)
     {
-        return mb_convert_case($textValue, MB_CASE_TITLE, 'UTF-8');
+        return mb_convert_case($pValue, MB_CASE_TITLE, 'UTF-8');
     }
 
-    public static function mbIsUpper($character)
+    public static function mbIsUpper($char)
     {
-        return mb_strtolower($character, 'UTF-8') != $character;
+        return mb_strtolower($char, 'UTF-8') != $char;
     }
 
     public static function mbStrSplit($string)
@@ -534,13 +534,13 @@ class StringHelper
      * Reverse the case of a string, so that all uppercase characters become lowercase
      * and all lowercase characters become uppercase.
      *
-     * @param string $textValue UTF-8 encoded string
+     * @param string $pValue UTF-8 encoded string
      *
      * @return string
      */
-    public static function strCaseReverse($textValue)
+    public static function strCaseReverse($pValue)
     {
-        $characters = self::mbStrSplit($textValue);
+        $characters = self::mbStrSplit($pValue);
         foreach ($characters as &$character) {
             if (self::mbIsUpper($character)) {
                 $character = mb_strtolower($character, 'UTF-8');
@@ -556,7 +556,7 @@ class StringHelper
      * Identify whether a string contains a fractional numeric value,
      * and convert it to a numeric if it is.
      *
-     * @param string $operand string value to test
+     * @param string &$operand string value to test
      *
      * @return bool
      */
@@ -601,11 +601,11 @@ class StringHelper
      * Set the decimal separator. Only used by NumberFormat::toFormattedString()
      * to format output by \PhpOffice\PhpSpreadsheet\Writer\Html and \PhpOffice\PhpSpreadsheet\Writer\Pdf.
      *
-     * @param string $separator Character for decimal separator
+     * @param string $pValue Character for decimal separator
      */
-    public static function setDecimalSeparator($separator): void
+    public static function setDecimalSeparator($pValue): void
     {
-        self::$decimalSeparator = $separator;
+        self::$decimalSeparator = $pValue;
     }
 
     /**
@@ -634,11 +634,11 @@ class StringHelper
      * Set the thousands separator. Only used by NumberFormat::toFormattedString()
      * to format output by \PhpOffice\PhpSpreadsheet\Writer\Html and \PhpOffice\PhpSpreadsheet\Writer\Pdf.
      *
-     * @param string $separator Character for thousands separator
+     * @param string $pValue Character for thousands separator
      */
-    public static function setThousandsSeparator($separator): void
+    public static function setThousandsSeparator($pValue): void
     {
-        self::$thousandsSeparator = $separator;
+        self::$thousandsSeparator = $pValue;
     }
 
     /**
@@ -672,51 +672,51 @@ class StringHelper
      * Set the currency code. Only used by NumberFormat::toFormattedString()
      *        to format output by \PhpOffice\PhpSpreadsheet\Writer\Html and \PhpOffice\PhpSpreadsheet\Writer\Pdf.
      *
-     * @param string $currencyCode Character for currency code
+     * @param string $pValue Character for currency code
      */
-    public static function setCurrencyCode($currencyCode): void
+    public static function setCurrencyCode($pValue): void
     {
-        self::$currencyCode = $currencyCode;
+        self::$currencyCode = $pValue;
     }
 
     /**
      * Convert SYLK encoded string to UTF-8.
      *
-     * @param string $textValue
+     * @param string $pValue
      *
      * @return string UTF-8 encoded string
      */
-    public static function SYLKtoUTF8($textValue)
+    public static function SYLKtoUTF8($pValue)
     {
         self::buildCharacterSets();
 
         // If there is no escape character in the string there is nothing to do
-        if (strpos($textValue, '') === false) {
-            return $textValue;
+        if (strpos($pValue, '') === false) {
+            return $pValue;
         }
 
         foreach (self::$SYLKCharacters as $k => $v) {
-            $textValue = str_replace($k, $v, $textValue);
+            $pValue = str_replace($k, $v, $pValue);
         }
 
-        return $textValue;
+        return $pValue;
     }
 
     /**
      * Retrieve any leading numeric part of a string, or return the full string if no leading numeric
      * (handles basic integer or float, but not exponent or non decimal).
      *
-     * @param string $textValue
+     * @param string $value
      *
      * @return mixed string or only the leading numeric part of the string
      */
-    public static function testStringAsNumeric($textValue)
+    public static function testStringAsNumeric($value)
     {
-        if (is_numeric($textValue)) {
-            return $textValue;
+        if (is_numeric($value)) {
+            return $value;
         }
-        $v = (float) $textValue;
+        $v = (float) $value;
 
-        return (is_numeric(substr($textValue, 0, strlen($v)))) ? $v : $textValue;
+        return (is_numeric(substr($value, 0, strlen($v)))) ? $v : $value;
     }
 }

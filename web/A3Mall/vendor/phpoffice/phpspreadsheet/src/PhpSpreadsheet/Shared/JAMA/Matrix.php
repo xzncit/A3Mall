@@ -147,7 +147,7 @@ class Matrix
      * @param int $i Row position
      * @param int $j Column position
      *
-     * @return float|int
+     * @return mixed Element (int/float/double)
      */
     public function get($i = null, $j = null)
     {
@@ -323,9 +323,11 @@ class Matrix
      *
      * @param int $i Row position
      * @param int $j Column position
-     * @param float|int $c value
+     * @param mixed $c Int/float/double value
+     *
+     * @return mixed Element (int/float/double)
      */
-    public function set($i = null, $j = null, $c = null): void
+    public function set($i = null, $j = null, $c = null)
     {
         // Optimized set version just has this
         $this->A[$i][$j] = $c;
@@ -452,6 +454,17 @@ class Matrix
         }
 
         return $s;
+    }
+
+    /**
+     * uminus.
+     *
+     *    Unary minus matrix -A
+     *
+     * @return Matrix Unary minus matrix
+     */
+    public function uminus()
+    {
     }
 
     /**
@@ -1151,7 +1164,7 @@ class Matrix
      *
      * @return Matrix ... Solution if A is square, least squares solution otherwise
      */
-    public function solve(self $B)
+    public function solve($B)
     {
         if ($this->m == $this->n) {
             $LU = new LUDecomposition($this);

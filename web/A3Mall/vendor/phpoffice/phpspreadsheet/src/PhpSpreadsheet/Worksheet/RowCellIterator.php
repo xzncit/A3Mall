@@ -2,7 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Worksheet;
 
-use PhpOffice\PhpSpreadsheet\Cell\Cell;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
 
@@ -60,7 +59,7 @@ class RowCellIterator extends CellIterator
      *
      * @return $this
      */
-    public function resetStart(string $startColumn = 'A')
+    public function resetStart($startColumn = 'A')
     {
         $this->startColumnIndex = Coordinate::columnIndexFromString($startColumn);
         $this->adjustForExistingOnlyRange();
@@ -78,7 +77,7 @@ class RowCellIterator extends CellIterator
      */
     public function resetEnd($endColumn = null)
     {
-        $endColumn = $endColumn ?: $this->worksheet->getHighestColumn();
+        $endColumn = $endColumn ? $endColumn : $this->worksheet->getHighestColumn();
         $this->endColumnIndex = Coordinate::columnIndexFromString($endColumn);
         $this->adjustForExistingOnlyRange();
 
@@ -92,7 +91,7 @@ class RowCellIterator extends CellIterator
      *
      * @return $this
      */
-    public function seek(string $column = 'A')
+    public function seek($column = 'A')
     {
         $columnx = $column;
         $column = Coordinate::columnIndexFromString($column);
@@ -117,16 +116,20 @@ class RowCellIterator extends CellIterator
 
     /**
      * Return the current cell in this worksheet row.
+     *
+     * @return \PhpOffice\PhpSpreadsheet\Cell\Cell
      */
-    public function current(): ?Cell
+    public function current()
     {
         return $this->worksheet->getCellByColumnAndRow($this->currentColumnIndex, $this->rowIndex);
     }
 
     /**
      * Return the current iterator key.
+     *
+     * @return string
      */
-    public function key(): string
+    public function key()
     {
         return Coordinate::stringFromColumnIndex($this->currentColumnIndex);
     }
@@ -153,16 +156,20 @@ class RowCellIterator extends CellIterator
 
     /**
      * Indicate if more columns exist in the worksheet range of columns that we're iterating.
+     *
+     * @return bool
      */
-    public function valid(): bool
+    public function valid()
     {
         return $this->currentColumnIndex <= $this->endColumnIndex && $this->currentColumnIndex >= $this->startColumnIndex;
     }
 
     /**
      * Return the current iterator position.
+     *
+     * @return int
      */
-    public function getCurrentColumnIndex(): int
+    public function getCurrentColumnIndex()
     {
         return $this->currentColumnIndex;
     }

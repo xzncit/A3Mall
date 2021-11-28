@@ -149,13 +149,13 @@ class Layout
     /**
      * Set Layout Target.
      *
-     * @param string $target
+     * @param string $value
      *
      * @return $this
      */
-    public function setLayoutTarget($target)
+    public function setLayoutTarget($value)
     {
-        $this->layoutTarget = $target;
+        $this->layoutTarget = $value;
 
         return $this;
     }
@@ -173,13 +173,13 @@ class Layout
     /**
      * Set X-Mode.
      *
-     * @param string $mode
+     * @param string $value
      *
      * @return $this
      */
-    public function setXMode($mode)
+    public function setXMode($value)
     {
-        $this->xMode = (string) $mode;
+        $this->xMode = (string) $value;
 
         return $this;
     }
@@ -197,13 +197,13 @@ class Layout
     /**
      * Set Y-Mode.
      *
-     * @param string $mode
+     * @param string $value
      *
      * @return $this
      */
-    public function setYMode($mode)
+    public function setYMode($value)
     {
-        $this->yMode = (string) $mode;
+        $this->yMode = (string) $value;
 
         return $this;
     }
@@ -221,13 +221,13 @@ class Layout
     /**
      * Set X-Position.
      *
-     * @param float $position
+     * @param float $value
      *
      * @return $this
      */
-    public function setXPosition($position)
+    public function setXPosition($value)
     {
-        $this->xPos = (float) $position;
+        $this->xPos = (float) $value;
 
         return $this;
     }
@@ -245,13 +245,13 @@ class Layout
     /**
      * Set Y-Position.
      *
-     * @param float $position
+     * @param float $value
      *
      * @return $this
      */
-    public function setYPosition($position)
+    public function setYPosition($value)
     {
-        $this->yPos = (float) $position;
+        $this->yPos = (float) $value;
 
         return $this;
     }
@@ -269,13 +269,13 @@ class Layout
     /**
      * Set Width.
      *
-     * @param float $width
+     * @param float $value
      *
      * @return $this
      */
-    public function setWidth($width)
+    public function setWidth($value)
     {
-        $this->width = $width;
+        $this->width = $value;
 
         return $this;
     }
@@ -293,13 +293,13 @@ class Layout
     /**
      * Set Height.
      *
-     * @param float $height
+     * @param float $value
      *
      * @return $this
      */
-    public function setHeight($height)
+    public function setHeight($value)
     {
-        $this->height = $height;
+        $this->height = $value;
 
         return $this;
     }
@@ -318,13 +318,13 @@ class Layout
      * Set show legend key
      * Specifies that legend keys should be shown in data labels.
      *
-     * @param bool $showLegendKey Show legend key
+     * @param bool $value Show legend key
      *
      * @return $this
      */
-    public function setShowLegendKey($showLegendKey)
+    public function setShowLegendKey($value)
     {
-        $this->showLegendKey = $showLegendKey;
+        $this->showLegendKey = $value;
 
         return $this;
     }
@@ -343,13 +343,13 @@ class Layout
      * Set show val
      * Specifies that the value should be shown in data labels.
      *
-     * @param bool $showDataLabelValues Show val
+     * @param bool $value Show val
      *
      * @return $this
      */
-    public function setShowVal($showDataLabelValues)
+    public function setShowVal($value)
     {
-        $this->showVal = $showDataLabelValues;
+        $this->showVal = $value;
 
         return $this;
     }
@@ -368,13 +368,13 @@ class Layout
      * Set show cat name
      * Specifies that the category name should be shown in data labels.
      *
-     * @param bool $showCategoryName Show cat name
+     * @param bool $value Show cat name
      *
      * @return $this
      */
-    public function setShowCatName($showCategoryName)
+    public function setShowCatName($value)
     {
-        $this->showCatName = $showCategoryName;
+        $this->showCatName = $value;
 
         return $this;
     }
@@ -393,13 +393,13 @@ class Layout
      * Set show ser name
      * Specifies that the series name should be shown in data labels.
      *
-     * @param bool $showSeriesName Show series name
+     * @param bool $value Show series name
      *
      * @return $this
      */
-    public function setShowSerName($showSeriesName)
+    public function setShowSerName($value)
     {
-        $this->showSerName = $showSeriesName;
+        $this->showSerName = $value;
 
         return $this;
     }
@@ -418,13 +418,13 @@ class Layout
      * Set show percentage
      * Specifies that the percentage should be shown in data labels.
      *
-     * @param bool $showPercentage Show percentage
+     * @param bool $value Show percentage
      *
      * @return $this
      */
-    public function setShowPercent($showPercentage)
+    public function setShowPercent($value)
     {
-        $this->showPercent = $showPercentage;
+        $this->showPercent = $value;
 
         return $this;
     }
@@ -443,13 +443,13 @@ class Layout
      * Set show bubble size
      * Specifies that the bubble size should be shown in data labels.
      *
-     * @param bool $showBubbleSize Show bubble size
+     * @param bool $value Show bubble size
      *
      * @return $this
      */
-    public function setShowBubbleSize($showBubbleSize)
+    public function setShowBubbleSize($value)
     {
-        $this->showBubbleSize = $showBubbleSize;
+        $this->showBubbleSize = $value;
 
         return $this;
     }
@@ -468,13 +468,13 @@ class Layout
      * Set show leader lines
      * Specifies that leader lines should be shown in data labels.
      *
-     * @param bool $showLeaderLines Show leader lines
+     * @param bool $value Show leader lines
      *
      * @return $this
      */
-    public function setShowLeaderLines($showLeaderLines)
+    public function setShowLeaderLines($value)
     {
-        $this->showLeaderLines = $showLeaderLines;
+        $this->showLeaderLines = $value;
 
         return $this;
     }

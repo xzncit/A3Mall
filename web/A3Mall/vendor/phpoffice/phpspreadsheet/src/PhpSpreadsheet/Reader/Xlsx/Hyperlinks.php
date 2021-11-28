@@ -3,7 +3,6 @@
 namespace PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
-use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use SimpleXMLElement;
 
@@ -20,30 +19,26 @@ class Hyperlinks
 
     public function readHyperlinks(SimpleXMLElement $relsWorksheet): void
     {
-        foreach ($relsWorksheet->children(Namespaces::RELATIONSHIPS)->Relationship as $elementx) {
-            $element = Xlsx::getAttributes($elementx);
-            if ($element->Type == Namespaces::HYPERLINK) {
-                $this->hyperlinks[(string) $element->Id] = (string) $element->Target;
+        foreach ($relsWorksheet->Relationship as $element) {
+            if ($element['Type'] == 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink') {
+                $this->hyperlinks[(string) $element['Id']] = (string) $element['Target'];
             }
         }
     }
 
     public function setHyperlinks(SimpleXMLElement $worksheetXml): void
     {
-        foreach ($worksheetXml->children(Namespaces::MAIN)->hyperlink as $hyperlink) {
-            if ($hyperlink !== null) {
-                $this->setHyperlink($hyperlink, $this->worksheet);
-            }
+        foreach ($worksheetXml->hyperlink as $hyperlink) {
+            $this->setHyperlink($hyperlink, $this->worksheet);
         }
     }
 
     private function setHyperlink(SimpleXMLElement $hyperlink, Worksheet $worksheet): void
     {
         // Link url
-        $linkRel = Xlsx::getAttributes($hyperlink, Namespaces::SCHEMA_OFFICE_DOCUMENT);
+        $linkRel = $hyperlink->attributes('http://schemas.openxmlformats.org/officeDocument/2006/relationships');
 
-        $attributes = Xlsx::getAttributes($hyperlink);
-        foreach (Coordinate::extractAllCellReferencesInRange($attributes->ref) as $cellReference) {
+        foreach (Coordinate::extractAllCellReferencesInRange($hyperlink['ref']) as $cellReference) {
             $cell = $worksheet->getCell($cellReference);
             if (isset($linkRel['id'])) {
                 $hyperlinkUrl = $this->hyperlinks[(string) $linkRel['id']] ?? null;

@@ -30,7 +30,7 @@ class DumpServer
 
     public function __construct(string $host, LoggerInterface $logger = null)
     {
-        if (!str_contains($host, '://')) {
+        if (false === strpos($host, '://')) {
             $host = 'tcp://'.$host;
         }
 

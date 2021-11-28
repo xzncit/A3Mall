@@ -131,10 +131,18 @@ class Legend
      * Set allow overlay of other elements?
      *
      * @param bool $overlay
+     *
+     * @return bool
      */
-    public function setOverlay($overlay): void
+    public function setOverlay($overlay)
     {
+        if (!is_bool($overlay)) {
+            return false;
+        }
+
         $this->overlay = $overlay;
+
+        return true;
     }
 
     /**

@@ -36,14 +36,15 @@ class Row
      */
     public function __destruct()
     {
-        // @phpstan-ignore-next-line
         $this->worksheet = null;
     }
 
     /**
      * Get row index.
+     *
+     * @return int
      */
-    public function getRowIndex(): int
+    public function getRowIndex()
     {
         return $this->rowIndex;
     }
@@ -63,8 +64,10 @@ class Row
 
     /**
      * Returns bound worksheet.
+     *
+     * @return Worksheet
      */
-    public function getWorksheet(): Worksheet
+    public function getWorksheet()
     {
         return $this->worksheet;
     }

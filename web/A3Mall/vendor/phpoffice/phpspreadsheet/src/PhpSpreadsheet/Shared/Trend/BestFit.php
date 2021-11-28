@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared\Trend;
 
-abstract class BestFit
+class BestFit
 {
     /**
      * Indicator flag for a calculation error.
@@ -96,18 +96,24 @@ abstract class BestFit
      *
      * @param float $xValue X-Value
      *
-     * @return float Y-Value
+     * @return bool Y-Value
      */
-    abstract public function getValueOfYForX($xValue);
+    public function getValueOfYForX($xValue)
+    {
+        return false;
+    }
 
     /**
      * Return the X-Value for a specified value of Y.
      *
      * @param float $yValue Y-Value
      *
-     * @return float X-Value
+     * @return bool X-Value
      */
-    abstract public function getValueOfXForY($yValue);
+    public function getValueOfXForY($yValue)
+    {
+        return false;
+    }
 
     /**
      * Return the original set of X-Values.
@@ -124,9 +130,12 @@ abstract class BestFit
      *
      * @param int $dp Number of places of decimal precision to display
      *
-     * @return string
+     * @return bool
      */
-    abstract public function getEquation($dp = 0);
+    public function getEquation($dp = 0)
+    {
+        return false;
+    }
 
     /**
      * Return the Slope of the line.
@@ -339,13 +348,13 @@ abstract class BestFit
             $bestFitY = $this->yBestFitValues[$xKey] = $this->getValueOfYForX($xValue);
 
             $SSres += ($this->yValues[$xKey] - $bestFitY) * ($this->yValues[$xKey] - $bestFitY);
-            if ($const === true) {
+            if ($const) {
                 $SStot += ($this->yValues[$xKey] - $meanY) * ($this->yValues[$xKey] - $meanY);
             } else {
                 $SStot += $this->yValues[$xKey] * $this->yValues[$xKey];
             }
             $SScov += ($this->xValues[$xKey] - $meanX) * ($this->yValues[$xKey] - $meanY);
-            if ($const === true) {
+            if ($const) {
                 $SSsex += ($this->xValues[$xKey] - $meanX) * ($this->xValues[$xKey] - $meanX);
             } else {
                 $SSsex += $this->xValues[$xKey] * $this->xValues[$xKey];
@@ -353,7 +362,7 @@ abstract class BestFit
         }
 
         $this->SSResiduals = $SSres;
-        $this->DFResiduals = $this->valueCount - 1 - ($const === true ? 1 : 0);
+        $this->DFResiduals = $this->valueCount - 1 - $const;
 
         if ($this->DFResiduals == 0.0) {
             $this->stdevOfResiduals = 0.0;
@@ -386,39 +395,27 @@ abstract class BestFit
         }
     }
 
-    private function sumSquares(array $values)
-    {
-        return array_sum(
-            array_map(
-                function ($value) {
-                    return $value ** 2;
-                },
-                $values
-            )
-        );
-    }
-
     /**
      * @param float[] $yValues
      * @param float[] $xValues
+     * @param bool $const
      */
-    protected function leastSquareFit(array $yValues, array $xValues, bool $const): void
+    protected function leastSquareFit(array $yValues, array $xValues, $const): void
     {
         // calculate sums
-        $sumValuesX = array_sum($xValues);
-        $sumValuesY = array_sum($yValues);
-        $meanValueX = $sumValuesX / $this->valueCount;
-        $meanValueY = $sumValuesY / $this->valueCount;
-        $sumSquaresX = $this->sumSquares($xValues);
-        $sumSquaresY = $this->sumSquares($yValues);
-        $mBase = $mDivisor = 0.0;
-        $xy_sum = 0.0;
+        $x_sum = array_sum($xValues);
+        $y_sum = array_sum($yValues);
+        $meanX = $x_sum / $this->valueCount;
+        $meanY = $y_sum / $this->valueCount;
+        $mBase = $mDivisor = $xx_sum = $xy_sum = $yy_sum = 0.0;
         for ($i = 0; $i < $this->valueCount; ++$i) {
             $xy_sum += $xValues[$i] * $yValues[$i];
+            $xx_sum += $xValues[$i] * $xValues[$i];
+            $yy_sum += $yValues[$i] * $yValues[$i];
 
-            if ($const === true) {
-                $mBase += ($xValues[$i] - $meanValueX) * ($yValues[$i] - $meanValueY);
-                $mDivisor += ($xValues[$i] - $meanValueX) * ($xValues[$i] - $meanValueX);
+            if ($const) {
+                $mBase += ($xValues[$i] - $meanX) * ($yValues[$i] - $meanY);
+                $mDivisor += ($xValues[$i] - $meanX) * ($xValues[$i] - $meanX);
             } else {
                 $mBase += $xValues[$i] * $yValues[$i];
                 $mDivisor += $xValues[$i] * $xValues[$i];
@@ -429,9 +426,13 @@ abstract class BestFit
         $this->slope = $mBase / $mDivisor;
 
         // calculate intersect
-        $this->intersect = ($const === true) ? $meanValueY - ($this->slope * $meanValueX) : 0.0;
+        if ($const) {
+            $this->intersect = $meanY - ($this->slope * $meanX);
+        } else {
+            $this->intersect = 0;
+        }
 
-        $this->calculateGoodnessOfFit($sumValuesX, $sumValuesY, $sumSquaresX, $sumSquaresY, $xy_sum, $meanValueX, $meanValueY, $const);
+        $this->calculateGoodnessOfFit($x_sum, $y_sum, $xx_sum, $yy_sum, $xy_sum, $meanX, $meanY, $const);
     }
 
     /**
@@ -439,22 +440,23 @@ abstract class BestFit
      *
      * @param float[] $yValues The set of Y-values for this regression
      * @param float[] $xValues The set of X-values for this regression
+     * @param bool $const
      */
-    public function __construct($yValues, $xValues = [])
+    public function __construct($yValues, $xValues = [], $const = true)
     {
         //    Calculate number of points
-        $yValueCount = count($yValues);
-        $xValueCount = count($xValues);
+        $nY = count($yValues);
+        $nX = count($xValues);
 
         //    Define X Values if necessary
-        if ($xValueCount === 0) {
-            $xValues = range(1, $yValueCount);
-        } elseif ($yValueCount !== $xValueCount) {
+        if ($nX == 0) {
+            $xValues = range(1, $nY);
+        } elseif ($nY != $nX) {
             //    Ensure both arrays of points are the same size
             $this->error = true;
         }
 
-        $this->valueCount = $yValueCount;
+        $this->valueCount = $nY;
         $this->xValues = $xValues;
         $this->yValues = $yValues;
     }

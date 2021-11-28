@@ -80,20 +80,20 @@ class Protection extends Supervisor
      * );
      * </code>
      *
-     * @param array $styleArray Array containing style information
+     * @param array $pStyles Array containing style information
      *
      * @return $this
      */
-    public function applyFromArray(array $styleArray)
+    public function applyFromArray(array $pStyles)
     {
         if ($this->isSupervisor) {
-            $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($this->getStyleArray($styleArray));
+            $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($this->getStyleArray($pStyles));
         } else {
-            if (isset($styleArray['locked'])) {
-                $this->setLocked($styleArray['locked']);
+            if (isset($pStyles['locked'])) {
+                $this->setLocked($pStyles['locked']);
             }
-            if (isset($styleArray['hidden'])) {
-                $this->setHidden($styleArray['hidden']);
+            if (isset($pStyles['hidden'])) {
+                $this->setHidden($pStyles['hidden']);
             }
         }
 
@@ -117,17 +117,17 @@ class Protection extends Supervisor
     /**
      * Set locked.
      *
-     * @param string $lockType see self::PROTECTION_*
+     * @param string $pValue see self::PROTECTION_*
      *
      * @return $this
      */
-    public function setLocked($lockType)
+    public function setLocked($pValue)
     {
         if ($this->isSupervisor) {
-            $styleArray = $this->getStyleArray(['locked' => $lockType]);
+            $styleArray = $this->getStyleArray(['locked' => $pValue]);
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
-            $this->locked = $lockType;
+            $this->locked = $pValue;
         }
 
         return $this;
@@ -150,17 +150,17 @@ class Protection extends Supervisor
     /**
      * Set hidden.
      *
-     * @param string $hiddenType see self::PROTECTION_*
+     * @param string $pValue see self::PROTECTION_*
      *
      * @return $this
      */
-    public function setHidden($hiddenType)
+    public function setHidden($pValue)
     {
         if ($this->isSupervisor) {
-            $styleArray = $this->getStyleArray(['hidden' => $hiddenType]);
+            $styleArray = $this->getStyleArray(['hidden' => $pValue]);
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
-            $this->hidden = $hiddenType;
+            $this->hidden = $pValue;
         }
 
         return $this;

@@ -443,12 +443,7 @@ class BelongsToMany extends Relation
         if (empty($this->baseQuery)) {
             $tableName = $this->query->getTable();
             $table     = $this->pivot->db()->getTable();
-
-            if ($this->withoutField) {
-                $this->query->withoutField($this->withoutField);
-            }
-
-            $fields = $this->getQueryFields($tableName);
+            $fields    = $this->getQueryFields($tableName);
 
             if ($this->withLimit) {
                 $this->query->limit($this->withLimit);

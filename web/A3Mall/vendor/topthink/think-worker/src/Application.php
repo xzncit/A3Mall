@@ -76,7 +76,7 @@ class Application extends App
      * 是否运行在命令行下
      * @return bool
      */
-    public function runningInConsole(): bool
+    public function runningInConsole()
     {
         return false;
     }

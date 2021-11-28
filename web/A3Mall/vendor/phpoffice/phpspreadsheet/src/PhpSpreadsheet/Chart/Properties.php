@@ -135,16 +135,16 @@ abstract class Properties
         return (string) 100 - $alpha . '000';
     }
 
-    protected function setColorProperties($color, $alpha, $colorType)
+    protected function setColorProperties($color, $alpha, $type)
     {
         return [
-            'type' => (string) $colorType,
+            'type' => (string) $type,
             'value' => (string) $color,
             'alpha' => (string) $this->getTrueAlpha($alpha),
         ];
     }
 
-    protected function getLineStyleArrowSize($arraySelector, $arrayKaySelector)
+    protected function getLineStyleArrowSize($array_selector, $array_kay_selector)
     {
         $sizes = [
             1 => ['w' => 'sm', 'len' => 'sm'],
@@ -158,10 +158,10 @@ abstract class Properties
             9 => ['w' => 'lg', 'len' => 'lg'],
         ];
 
-        return $sizes[$arraySelector][$arrayKaySelector];
+        return $sizes[$array_selector][$array_kay_selector];
     }
 
-    protected function getShadowPresetsMap($presetsOption)
+    protected function getShadowPresetsMap($shadow_presets_option)
     {
         $presets_options = [
             //OUTER
@@ -350,7 +350,7 @@ abstract class Properties
             ],
         ];
 
-        return $presets_options[$presetsOption];
+        return $presets_options[$shadow_presets_option];
     }
 
     protected function getArrayElementsValue($properties, $elements)

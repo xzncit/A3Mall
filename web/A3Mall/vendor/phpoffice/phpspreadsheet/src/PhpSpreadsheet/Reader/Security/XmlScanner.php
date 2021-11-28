@@ -18,11 +18,6 @@ class XmlScanner
 
     private static $libxmlDisableEntityLoaderValue;
 
-    /**
-     * @var bool
-     */
-    private static $shutdownRegistered = false;
-
     public function __construct($pattern = '<!DOCTYPE')
     {
         $this->pattern = $pattern;
@@ -30,10 +25,7 @@ class XmlScanner
         $this->disableEntityLoaderCheck();
 
         // A fatal error will bypass the destructor, so we register a shutdown here
-        if (!self::$shutdownRegistered) {
-            self::$shutdownRegistered = true;
-            register_shutdown_function([__CLASS__, 'shutdown']);
-        }
+        register_shutdown_function([__CLASS__, 'shutdown']);
     }
 
     public static function getInstance(Reader\IReader $reader)

@@ -20,20 +20,20 @@ class XMLWriter extends \XMLWriter
     /**
      * Create a new XMLWriter instance.
      *
-     * @param int $temporaryStorage Temporary storage location
-     * @param string $temporaryStorageFolder Temporary storage folder
+     * @param int $pTemporaryStorage Temporary storage location
+     * @param string $pTemporaryStorageFolder Temporary storage folder
      */
-    public function __construct($temporaryStorage = self::STORAGE_MEMORY, $temporaryStorageFolder = null)
+    public function __construct($pTemporaryStorage = self::STORAGE_MEMORY, $pTemporaryStorageFolder = null)
     {
         // Open temporary storage
-        if ($temporaryStorage == self::STORAGE_MEMORY) {
+        if ($pTemporaryStorage == self::STORAGE_MEMORY) {
             $this->openMemory();
         } else {
             // Create temporary filename
-            if ($temporaryStorageFolder === null) {
-                $temporaryStorageFolder = File::sysGetTempDir();
+            if ($pTemporaryStorageFolder === null) {
+                $pTemporaryStorageFolder = File::sysGetTempDir();
             }
-            $this->tempFileName = @tempnam($temporaryStorageFolder, 'xml');
+            $this->tempFileName = @tempnam($pTemporaryStorageFolder, 'xml');
 
             // Open storage
             if ($this->openUri($this->tempFileName) === false) {
@@ -77,16 +77,16 @@ class XMLWriter extends \XMLWriter
     /**
      * Wrapper method for writeRaw.
      *
-     * @param null|string|string[] $rawTextData
+     * @param string|string[] $text
      *
      * @return bool
      */
-    public function writeRawData($rawTextData)
+    public function writeRawData($text)
     {
-        if (is_array($rawTextData)) {
-            $rawTextData = implode("\n", $rawTextData);
+        if (is_array($text)) {
+            $text = implode("\n", $text);
         }
 
-        return $this->writeRaw(htmlspecialchars($rawTextData ?? ''));
+        return $this->writeRaw(htmlspecialchars($text));
     }
 }

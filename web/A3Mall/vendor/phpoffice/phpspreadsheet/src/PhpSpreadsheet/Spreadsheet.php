@@ -55,7 +55,7 @@ class Spreadsheet
     /**
      * Calculation Engine.
      *
-     * @var null|Calculation
+     * @var Calculation
      */
     private $calculationEngine;
 
@@ -69,7 +69,7 @@ class Spreadsheet
     /**
      * Named ranges.
      *
-     * @var DefinedName[]
+     * @var NamedRange[]
      */
     private $definedNames = [];
 
@@ -104,21 +104,21 @@ class Spreadsheet
     /**
      * macrosCode : all macros code as binary data (the vbaProject.bin file, this include form, code,  etc.), null if no macro.
      *
-     * @var null|string
+     * @var string
      */
     private $macrosCode;
 
     /**
      * macrosCertificate : if macros are signed, contains binary data vbaProjectSignature.bin file, null if not signed.
      *
-     * @var null|string
+     * @var string
      */
     private $macrosCertificate;
 
     /**
      * ribbonXMLData : null if workbook is'nt Excel 2007 or not contain a customized UI.
      *
-     * @var null|array{target: string, data: string}
+     * @var null|string
      */
     private $ribbonXMLData;
 
@@ -298,9 +298,11 @@ class Spreadsheet
     /**
      * retrieve ribbon XML Data.
      *
+     * return string|null|array
+     *
      * @param string $what
      *
-     * @return null|array|string
+     * @return string
      */
     public function getRibbonXMLData($what = 'all') //we need some constants here...
     {
@@ -371,9 +373,7 @@ class Spreadsheet
      */
     private function getExtensionOnly($path)
     {
-        $extension = pathinfo($path, PATHINFO_EXTENSION);
-
-        return is_array($extension) ? '' : $extension;
+        return pathinfo($path, PATHINFO_EXTENSION);
     }
 
     /**
@@ -439,27 +439,27 @@ class Spreadsheet
     /**
      * Check if a sheet with a specified code name already exists.
      *
-     * @param string $codeName Name of the worksheet to check
+     * @param string $pSheetCodeName Name of the worksheet to check
      *
      * @return bool
      */
-    public function sheetCodeNameExists($codeName)
+    public function sheetCodeNameExists($pSheetCodeName)
     {
-        return $this->getSheetByCodeName($codeName) !== null;
+        return $this->getSheetByCodeName($pSheetCodeName) !== null;
     }
 
     /**
      * Get sheet by code name. Warning : sheet don't have always a code name !
      *
-     * @param string $codeName Sheet name
+     * @param string $pName Sheet name
      *
-     * @return null|Worksheet
+     * @return Worksheet
      */
-    public function getSheetByCodeName($codeName)
+    public function getSheetByCodeName($pName)
     {
         $worksheetCount = count($this->workSheetCollection);
         for ($i = 0; $i < $worksheetCount; ++$i) {
-            if ($this->workSheetCollection[$i]->getCodeName() == $codeName) {
+            if ($this->workSheetCollection[$i]->getCodeName() == $pName) {
                 return $this->workSheetCollection[$i];
             }
         }
@@ -503,10 +503,8 @@ class Spreadsheet
      */
     public function __destruct()
     {
-        $this->disconnectWorksheets();
         $this->calculationEngine = null;
-        $this->cellXfCollection = [];
-        $this->cellStyleXfCollection = [];
+        $this->disconnectWorksheets();
     }
 
     /**
@@ -515,17 +513,19 @@ class Spreadsheet
      */
     public function disconnectWorksheets(): void
     {
-        foreach ($this->workSheetCollection as $worksheet) {
+        $worksheet = null;
+        foreach ($this->workSheetCollection as $k => &$worksheet) {
             $worksheet->disconnectCells();
-            unset($worksheet);
+            $this->workSheetCollection[$k] = null;
         }
+        unset($worksheet);
         $this->workSheetCollection = [];
     }
 
     /**
      * Return the calculation engine for this worksheet.
      *
-     * @return null|Calculation
+     * @return Calculation
      */
     public function getCalculationEngine()
     {
@@ -545,9 +545,9 @@ class Spreadsheet
     /**
      * Set properties.
      */
-    public function setProperties(Document\Properties $documentProperties): void
+    public function setProperties(Document\Properties $pValue): void
     {
-        $this->properties = $documentProperties;
+        $this->properties = $pValue;
     }
 
     /**
@@ -563,9 +563,9 @@ class Spreadsheet
     /**
      * Set security.
      */
-    public function setSecurity(Document\Security $documentSecurity): void
+    public function setSecurity(Document\Security $pValue): void
     {
-        $this->security = $documentSecurity;
+        $this->security = $pValue;
     }
 
     /**
@@ -596,76 +596,75 @@ class Spreadsheet
     /**
      * Check if a sheet with a specified name already exists.
      *
-     * @param string $worksheetName Name of the worksheet to check
+     * @param string $pSheetName Name of the worksheet to check
      *
      * @return bool
      */
-    public function sheetNameExists($worksheetName)
+    public function sheetNameExists($pSheetName)
     {
-        return $this->getSheetByName($worksheetName) !== null;
+        return $this->getSheetByName($pSheetName) !== null;
     }
 
     /**
      * Add sheet.
      *
-     * @param Worksheet $worksheet The worskeet to add
-     * @param null|int $sheetIndex Index where sheet should go (0,1,..., or null for last)
+     * @param null|int $iSheetIndex Index where sheet should go (0,1,..., or null for last)
      *
      * @return Worksheet
      */
-    public function addSheet(Worksheet $worksheet, $sheetIndex = null)
+    public function addSheet(Worksheet $pSheet, $iSheetIndex = null)
     {
-        if ($this->sheetNameExists($worksheet->getTitle())) {
+        if ($this->sheetNameExists($pSheet->getTitle())) {
             throw new Exception(
-                "Workbook already contains a worksheet named '{$worksheet->getTitle()}'. Rename this worksheet first."
+                "Workbook already contains a worksheet named '{$pSheet->getTitle()}'. Rename this worksheet first."
             );
         }
 
-        if ($sheetIndex === null) {
+        if ($iSheetIndex === null) {
             if ($this->activeSheetIndex < 0) {
                 $this->activeSheetIndex = 0;
             }
-            $this->workSheetCollection[] = $worksheet;
+            $this->workSheetCollection[] = $pSheet;
         } else {
             // Insert the sheet at the requested index
             array_splice(
                 $this->workSheetCollection,
-                $sheetIndex,
+                $iSheetIndex,
                 0,
-                [$worksheet]
+                [$pSheet]
             );
 
             // Adjust active sheet index if necessary
-            if ($this->activeSheetIndex >= $sheetIndex) {
+            if ($this->activeSheetIndex >= $iSheetIndex) {
                 ++$this->activeSheetIndex;
             }
         }
 
-        if ($worksheet->getParent() === null) {
-            $worksheet->rebindParent($this);
+        if ($pSheet->getParent() === null) {
+            $pSheet->rebindParent($this);
         }
 
-        return $worksheet;
+        return $pSheet;
     }
 
     /**
      * Remove sheet by index.
      *
-     * @param int $sheetIndex Index position of the worksheet to remove
+     * @param int $pIndex Active sheet index
      */
-    public function removeSheetByIndex($sheetIndex): void
+    public function removeSheetByIndex($pIndex): void
     {
         $numSheets = count($this->workSheetCollection);
-        if ($sheetIndex > $numSheets - 1) {
+        if ($pIndex > $numSheets - 1) {
             throw new Exception(
-                "You tried to remove a sheet by the out of bounds index: {$sheetIndex}. The actual number of sheets is {$numSheets}."
+                "You tried to remove a sheet by the out of bounds index: {$pIndex}. The actual number of sheets is {$numSheets}."
             );
         }
-        array_splice($this->workSheetCollection, $sheetIndex, 1);
+        array_splice($this->workSheetCollection, $pIndex, 1);
 
         // Adjust active sheet index if necessary
         if (
-            ($this->activeSheetIndex >= $sheetIndex) &&
+            ($this->activeSheetIndex >= $pIndex) &&
             ($this->activeSheetIndex > 0 || $numSheets <= 1)
         ) {
             --$this->activeSheetIndex;
@@ -675,21 +674,21 @@ class Spreadsheet
     /**
      * Get sheet by index.
      *
-     * @param int $sheetIndex Sheet index
+     * @param int $pIndex Sheet index
      *
      * @return Worksheet
      */
-    public function getSheet($sheetIndex)
+    public function getSheet($pIndex)
     {
-        if (!isset($this->workSheetCollection[$sheetIndex])) {
+        if (!isset($this->workSheetCollection[$pIndex])) {
             $numSheets = $this->getSheetCount();
 
             throw new Exception(
-                "Your requested sheet index: {$sheetIndex} is out of bounds. The actual number of sheets is {$numSheets}."
+                "Your requested sheet index: {$pIndex} is out of bounds. The actual number of sheets is {$numSheets}."
             );
         }
 
-        return $this->workSheetCollection[$sheetIndex];
+        return $this->workSheetCollection[$pIndex];
     }
 
     /**
@@ -705,15 +704,15 @@ class Spreadsheet
     /**
      * Get sheet by name.
      *
-     * @param string $worksheetName Sheet name
+     * @param string $pName Sheet name
      *
      * @return null|Worksheet
      */
-    public function getSheetByName($worksheetName)
+    public function getSheetByName($pName)
     {
         $worksheetCount = count($this->workSheetCollection);
         for ($i = 0; $i < $worksheetCount; ++$i) {
-            if ($this->workSheetCollection[$i]->getTitle() === trim($worksheetName, "'")) {
+            if ($this->workSheetCollection[$i]->getTitle() === trim($pName, "'")) {
                 return $this->workSheetCollection[$i];
             }
         }
@@ -726,10 +725,10 @@ class Spreadsheet
      *
      * @return int index
      */
-    public function getIndex(Worksheet $worksheet)
+    public function getIndex(Worksheet $pSheet)
     {
         foreach ($this->workSheetCollection as $key => $value) {
-            if ($value->getHashCode() === $worksheet->getHashCode()) {
+            if ($value->getHashCode() === $pSheet->getHashCode()) {
                 return $key;
             }
         }
@@ -740,27 +739,27 @@ class Spreadsheet
     /**
      * Set index for sheet by sheet name.
      *
-     * @param string $worksheetName Sheet name to modify index for
-     * @param int $newIndexPosition New index for the sheet
+     * @param string $sheetName Sheet name to modify index for
+     * @param int $newIndex New index for the sheet
      *
      * @return int New sheet index
      */
-    public function setIndexByName($worksheetName, $newIndexPosition)
+    public function setIndexByName($sheetName, $newIndex)
     {
-        $oldIndex = $this->getIndex($this->getSheetByName($worksheetName));
-        $worksheet = array_splice(
+        $oldIndex = $this->getIndex($this->getSheetByName($sheetName));
+        $pSheet = array_splice(
             $this->workSheetCollection,
             $oldIndex,
             1
         );
         array_splice(
             $this->workSheetCollection,
-            $newIndexPosition,
+            $newIndex,
             0,
-            $worksheet
+            $pSheet
         );
 
-        return $newIndexPosition;
+        return $newIndex;
     }
 
     /**
@@ -786,20 +785,20 @@ class Spreadsheet
     /**
      * Set active sheet index.
      *
-     * @param int $worksheetIndex Active sheet index
+     * @param int $pIndex Active sheet index
      *
      * @return Worksheet
      */
-    public function setActiveSheetIndex($worksheetIndex)
+    public function setActiveSheetIndex($pIndex)
     {
         $numSheets = count($this->workSheetCollection);
 
-        if ($worksheetIndex > $numSheets - 1) {
+        if ($pIndex > $numSheets - 1) {
             throw new Exception(
-                "You tried to set a sheet active by the out of bounds index: {$worksheetIndex}. The actual number of sheets is {$numSheets}."
+                "You tried to set a sheet active by the out of bounds index: {$pIndex}. The actual number of sheets is {$numSheets}."
             );
         }
-        $this->activeSheetIndex = $worksheetIndex;
+        $this->activeSheetIndex = $pIndex;
 
         return $this->getActiveSheet();
     }
@@ -807,19 +806,19 @@ class Spreadsheet
     /**
      * Set active sheet index by name.
      *
-     * @param string $worksheetName Sheet title
+     * @param string $pValue Sheet title
      *
      * @return Worksheet
      */
-    public function setActiveSheetIndexByName($worksheetName)
+    public function setActiveSheetIndexByName($pValue)
     {
-        if (($worksheet = $this->getSheetByName($worksheetName)) instanceof Worksheet) {
+        if (($worksheet = $this->getSheetByName($pValue)) instanceof Worksheet) {
             $this->setActiveSheetIndex($this->getIndex($worksheet));
 
             return $worksheet;
         }
 
-        throw new Exception('Workbook does not contain sheet:' . $worksheetName);
+        throw new Exception('Workbook does not contain sheet:' . $pValue);
     }
 
     /**
@@ -841,41 +840,41 @@ class Spreadsheet
     /**
      * Add external sheet.
      *
-     * @param Worksheet $worksheet External sheet to add
-     * @param null|int $sheetIndex Index where sheet should go (0,1,..., or null for last)
+     * @param Worksheet $pSheet External sheet to add
+     * @param null|int $iSheetIndex Index where sheet should go (0,1,..., or null for last)
      *
      * @return Worksheet
      */
-    public function addExternalSheet(Worksheet $worksheet, $sheetIndex = null)
+    public function addExternalSheet(Worksheet $pSheet, $iSheetIndex = null)
     {
-        if ($this->sheetNameExists($worksheet->getTitle())) {
-            throw new Exception("Workbook already contains a worksheet named '{$worksheet->getTitle()}'. Rename the external sheet first.");
+        if ($this->sheetNameExists($pSheet->getTitle())) {
+            throw new Exception("Workbook already contains a worksheet named '{$pSheet->getTitle()}'. Rename the external sheet first.");
         }
 
         // count how many cellXfs there are in this workbook currently, we will need this below
         $countCellXfs = count($this->cellXfCollection);
 
         // copy all the shared cellXfs from the external workbook and append them to the current
-        foreach ($worksheet->getParent()->getCellXfCollection() as $cellXf) {
+        foreach ($pSheet->getParent()->getCellXfCollection() as $cellXf) {
             $this->addCellXf(clone $cellXf);
         }
 
         // move sheet to this workbook
-        $worksheet->rebindParent($this);
+        $pSheet->rebindParent($this);
 
         // update the cellXfs
-        foreach ($worksheet->getCoordinates(false) as $coordinate) {
-            $cell = $worksheet->getCell($coordinate);
+        foreach ($pSheet->getCoordinates(false) as $coordinate) {
+            $cell = $pSheet->getCell($coordinate);
             $cell->setXfIndex($cell->getXfIndex() + $countCellXfs);
         }
 
-        return $this->addSheet($worksheet, $sheetIndex);
+        return $this->addSheet($pSheet, $iSheetIndex);
     }
 
     /**
      * Get an array of all Named Ranges.
      *
-     * @return DefinedName[]
+     * @return NamedRange[]
      */
     public function getNamedRanges(): array
     {
@@ -890,7 +889,7 @@ class Spreadsheet
     /**
      * Get an array of all Named Formulae.
      *
-     * @return DefinedName[]
+     * @return NamedFormula[]
      */
     public function getNamedFormulae(): array
     {
@@ -949,9 +948,9 @@ class Spreadsheet
     /**
      * Get named range.
      *
-     * @param null|Worksheet $worksheet Scope. Use null for global scope
+     * @param null|Worksheet $pSheet Scope. Use null for global scope
      */
-    public function getNamedRange(string $namedRange, ?Worksheet $worksheet = null): ?NamedRange
+    public function getNamedRange(string $namedRange, ?Worksheet $pSheet = null): ?NamedRange
     {
         $returnValue = null;
 
@@ -960,7 +959,7 @@ class Spreadsheet
             // first look for global named range
             $returnValue = $this->getGlobalDefinedNameByType($namedRange, self::DEFINED_NAME_IS_RANGE);
             // then look for local named range (has priority over global named range if both names exist)
-            $returnValue = $this->getLocalDefinedNameByType($namedRange, self::DEFINED_NAME_IS_RANGE, $worksheet) ?: $returnValue;
+            $returnValue = $this->getLocalDefinedNameByType($namedRange, self::DEFINED_NAME_IS_RANGE, $pSheet) ?: $returnValue;
         }
 
         return $returnValue instanceof NamedRange ? $returnValue : null;
@@ -969,9 +968,9 @@ class Spreadsheet
     /**
      * Get named formula.
      *
-     * @param null|Worksheet $worksheet Scope. Use null for global scope
+     * @param null|Worksheet $pSheet Scope. Use null for global scope
      */
-    public function getNamedFormula(string $namedFormula, ?Worksheet $worksheet = null): ?NamedFormula
+    public function getNamedFormula(string $namedFormula, ?Worksheet $pSheet = null): ?NamedFormula
     {
         $returnValue = null;
 
@@ -980,7 +979,7 @@ class Spreadsheet
             // first look for global named formula
             $returnValue = $this->getGlobalDefinedNameByType($namedFormula, self::DEFINED_NAME_IS_FORMULA);
             // then look for local named formula (has priority over global named formula if both names exist)
-            $returnValue = $this->getLocalDefinedNameByType($namedFormula, self::DEFINED_NAME_IS_FORMULA, $worksheet) ?: $returnValue;
+            $returnValue = $this->getLocalDefinedNameByType($namedFormula, self::DEFINED_NAME_IS_FORMULA, $pSheet) ?: $returnValue;
         }
 
         return $returnValue instanceof NamedFormula ? $returnValue : null;
@@ -995,13 +994,13 @@ class Spreadsheet
         return null;
     }
 
-    private function getLocalDefinedNameByType(string $name, bool $type, ?Worksheet $worksheet = null): ?DefinedName
+    private function getLocalDefinedNameByType(string $name, bool $type, ?Worksheet $pSheet = null): ?DefinedName
     {
         if (
-            ($worksheet !== null) && isset($this->definedNames[$worksheet->getTitle() . '!' . $name])
-            && $this->definedNames[$worksheet->getTitle() . '!' . $name]->isFormula() === $type
+            ($pSheet !== null) && isset($this->definedNames[$pSheet->getTitle() . '!' . $name])
+            && $this->definedNames[$pSheet->getTitle() . '!' . $name]->isFormula() === $type
         ) {
-            return $this->definedNames[$worksheet->getTitle() . '!' . $name];
+            return $this->definedNames[$pSheet->getTitle() . '!' . $name];
         }
 
         return null;
@@ -1010,9 +1009,9 @@ class Spreadsheet
     /**
      * Get named range.
      *
-     * @param null|Worksheet $worksheet Scope. Use null for global scope
+     * @param null|Worksheet $pSheet Scope. Use null for global scope
      */
-    public function getDefinedName(string $definedName, ?Worksheet $worksheet = null): ?DefinedName
+    public function getDefinedName(string $definedName, ?Worksheet $pSheet = null): ?DefinedName
     {
         $returnValue = null;
 
@@ -1024,8 +1023,8 @@ class Spreadsheet
             }
 
             // then look for local defined name (has priority over global defined name if both names exist)
-            if (($worksheet !== null) && isset($this->definedNames[$worksheet->getTitle() . '!' . $definedName])) {
-                $returnValue = $this->definedNames[$worksheet->getTitle() . '!' . $definedName];
+            if (($pSheet !== null) && isset($this->definedNames[$pSheet->getTitle() . '!' . $definedName])) {
+                $returnValue = $this->definedNames[$pSheet->getTitle() . '!' . $definedName];
             }
         }
 
@@ -1035,53 +1034,53 @@ class Spreadsheet
     /**
      * Remove named range.
      *
-     * @param null|Worksheet $worksheet scope: use null for global scope
+     * @param null|Worksheet $pSheet scope: use null for global scope
      *
      * @return $this
      */
-    public function removeNamedRange(string $namedRange, ?Worksheet $worksheet = null): self
+    public function removeNamedRange(string $namedRange, ?Worksheet $pSheet = null): self
     {
-        if ($this->getNamedRange($namedRange, $worksheet) === null) {
+        if ($this->getNamedRange($namedRange, $pSheet) === null) {
             return $this;
         }
 
-        return $this->removeDefinedName($namedRange, $worksheet);
+        return $this->removeDefinedName($namedRange, $pSheet);
     }
 
     /**
      * Remove named formula.
      *
-     * @param null|Worksheet $worksheet scope: use null for global scope
+     * @param null|Worksheet $pSheet scope: use null for global scope
      *
      * @return $this
      */
-    public function removeNamedFormula(string $namedFormula, ?Worksheet $worksheet = null): self
+    public function removeNamedFormula(string $namedFormula, ?Worksheet $pSheet = null): self
     {
-        if ($this->getNamedFormula($namedFormula, $worksheet) === null) {
+        if ($this->getNamedFormula($namedFormula, $pSheet) === null) {
             return $this;
         }
 
-        return $this->removeDefinedName($namedFormula, $worksheet);
+        return $this->removeDefinedName($namedFormula, $pSheet);
     }
 
     /**
      * Remove defined name.
      *
-     * @param null|Worksheet $worksheet scope: use null for global scope
+     * @param null|Worksheet $pSheet scope: use null for global scope
      *
      * @return $this
      */
-    public function removeDefinedName(string $definedName, ?Worksheet $worksheet = null): self
+    public function removeDefinedName(string $definedName, ?Worksheet $pSheet = null): self
     {
         $definedName = StringHelper::strToUpper($definedName);
 
-        if ($worksheet === null) {
+        if ($pSheet === null) {
             if (isset($this->definedNames[$definedName])) {
                 unset($this->definedNames[$definedName]);
             }
         } else {
-            if (isset($this->definedNames[$worksheet->getTitle() . '!' . $definedName])) {
-                unset($this->definedNames[$worksheet->getTitle() . '!' . $definedName]);
+            if (isset($this->definedNames[$pSheet->getTitle() . '!' . $definedName])) {
+                unset($this->definedNames[$pSheet->getTitle() . '!' . $definedName]);
             } elseif (isset($this->definedNames[$definedName])) {
                 unset($this->definedNames[$definedName]);
             }
@@ -1123,7 +1122,6 @@ class Spreadsheet
      */
     public function __clone()
     {
-        // @phpstan-ignore-next-line
         foreach ($this as $key => $val) {
             if (is_object($val) || (is_array($val))) {
                 $this->{$key} = unserialize(serialize($val));
@@ -1144,26 +1142,26 @@ class Spreadsheet
     /**
      * Get cellXf by index.
      *
-     * @param int $cellStyleIndex
+     * @param int $pIndex
      *
      * @return Style
      */
-    public function getCellXfByIndex($cellStyleIndex)
+    public function getCellXfByIndex($pIndex)
     {
-        return $this->cellXfCollection[$cellStyleIndex];
+        return $this->cellXfCollection[$pIndex];
     }
 
     /**
      * Get cellXf by hash code.
      *
-     * @param string $hashcode
+     * @param string $pValue
      *
      * @return false|Style
      */
-    public function getCellXfByHashCode($hashcode)
+    public function getCellXfByHashCode($pValue)
     {
         foreach ($this->cellXfCollection as $cellXf) {
-            if ($cellXf->getHashCode() === $hashcode) {
+            if ($cellXf->getHashCode() === $pValue) {
                 return $cellXf;
             }
         }
@@ -1174,13 +1172,13 @@ class Spreadsheet
     /**
      * Check if style exists in style collection.
      *
-     * @param Style $cellStyleIndex
+     * @param Style $pCellStyle
      *
      * @return bool
      */
-    public function cellXfExists($cellStyleIndex)
+    public function cellXfExists($pCellStyle)
     {
-        return in_array($cellStyleIndex, $this->cellXfCollection, true);
+        return in_array($pCellStyle, $this->cellXfCollection, true);
     }
 
     /**
@@ -1209,26 +1207,26 @@ class Spreadsheet
     /**
      * Remove cellXf by index. It is ensured that all cells get their xf index updated.
      *
-     * @param int $cellStyleIndex Index to cellXf
+     * @param int $pIndex Index to cellXf
      */
-    public function removeCellXfByIndex($cellStyleIndex): void
+    public function removeCellXfByIndex($pIndex): void
     {
-        if ($cellStyleIndex > count($this->cellXfCollection) - 1) {
+        if ($pIndex > count($this->cellXfCollection) - 1) {
             throw new Exception('CellXf index is out of bounds.');
         }
 
         // first remove the cellXf
-        array_splice($this->cellXfCollection, $cellStyleIndex, 1);
+        array_splice($this->cellXfCollection, $pIndex, 1);
 
         // then update cellXf indexes for cells
         foreach ($this->workSheetCollection as $worksheet) {
             foreach ($worksheet->getCoordinates(false) as $coordinate) {
                 $cell = $worksheet->getCell($coordinate);
                 $xfIndex = $cell->getXfIndex();
-                if ($xfIndex > $cellStyleIndex) {
+                if ($xfIndex > $pIndex) {
                     // decrease xf index by 1
                     $cell->setXfIndex($xfIndex - 1);
-                } elseif ($xfIndex == $cellStyleIndex) {
+                } elseif ($xfIndex == $pIndex) {
                     // set to default xf index 0
                     $cell->setXfIndex(0);
                 }
@@ -1259,26 +1257,26 @@ class Spreadsheet
     /**
      * Get cellStyleXf by index.
      *
-     * @param int $cellStyleIndex Index to cellXf
+     * @param int $pIndex Index to cellXf
      *
      * @return Style
      */
-    public function getCellStyleXfByIndex($cellStyleIndex)
+    public function getCellStyleXfByIndex($pIndex)
     {
-        return $this->cellStyleXfCollection[$cellStyleIndex];
+        return $this->cellStyleXfCollection[$pIndex];
     }
 
     /**
      * Get cellStyleXf by hash code.
      *
-     * @param string $hashcode
+     * @param string $pValue
      *
      * @return false|Style
      */
-    public function getCellStyleXfByHashCode($hashcode)
+    public function getCellStyleXfByHashCode($pValue)
     {
         foreach ($this->cellStyleXfCollection as $cellStyleXf) {
-            if ($cellStyleXf->getHashCode() === $hashcode) {
+            if ($cellStyleXf->getHashCode() === $pValue) {
                 return $cellStyleXf;
             }
         }
@@ -1289,23 +1287,23 @@ class Spreadsheet
     /**
      * Add a cellStyleXf to the workbook.
      */
-    public function addCellStyleXf(Style $style): void
+    public function addCellStyleXf(Style $pStyle): void
     {
-        $this->cellStyleXfCollection[] = $style;
-        $style->setIndex(count($this->cellStyleXfCollection) - 1);
+        $this->cellStyleXfCollection[] = $pStyle;
+        $pStyle->setIndex(count($this->cellStyleXfCollection) - 1);
     }
 
     /**
      * Remove cellStyleXf by index.
      *
-     * @param int $cellStyleIndex Index to cellXf
+     * @param int $pIndex Index to cellXf
      */
-    public function removeCellStyleXfByIndex($cellStyleIndex): void
+    public function removeCellStyleXfByIndex($pIndex): void
     {
-        if ($cellStyleIndex > count($this->cellStyleXfCollection) - 1) {
+        if ($pIndex > count($this->cellStyleXfCollection) - 1) {
             throw new Exception('CellStyleXf index is out of bounds.');
         }
-        array_splice($this->cellStyleXfCollection, $cellStyleIndex, 1);
+        array_splice($this->cellStyleXfCollection, $pIndex, 1);
     }
 
     /**
@@ -1343,7 +1341,6 @@ class Spreadsheet
         // remove cellXfs without references and create mapping so we can update xfIndex
         // for all cells and columns
         $countNeededCellXfs = 0;
-        $map = [];
         foreach ($this->cellXfCollection as $index => $cellXf) {
             if ($countReferencesCellXf[$index] > 0 || $index == 0) { // we must never remove the first cellXf
                 ++$countNeededCellXfs;

@@ -201,22 +201,22 @@ class Workbook extends WriterPart
      * Write sheet.
      *
      * @param XMLWriter $objWriter XML Writer
-     * @param string $worksheetName Sheet name
-     * @param int $worksheetId Sheet id
-     * @param int $relId Relationship ID
+     * @param string $pSheetname Sheet name
+     * @param int $pSheetId Sheet id
+     * @param int $pRelId Relationship ID
      * @param string $sheetState Sheet state (visible, hidden, veryHidden)
      */
-    private function writeSheet(XMLWriter $objWriter, $worksheetName, $worksheetId = 1, $relId = 1, $sheetState = 'visible'): void
+    private function writeSheet(XMLWriter $objWriter, $pSheetname, $pSheetId = 1, $pRelId = 1, $sheetState = 'visible'): void
     {
-        if ($worksheetName != '') {
+        if ($pSheetname != '') {
             // Write sheet
             $objWriter->startElement('sheet');
-            $objWriter->writeAttribute('name', $worksheetName);
-            $objWriter->writeAttribute('sheetId', $worksheetId);
+            $objWriter->writeAttribute('name', $pSheetname);
+            $objWriter->writeAttribute('sheetId', $pSheetId);
             if ($sheetState !== 'visible' && $sheetState != '') {
                 $objWriter->writeAttribute('state', $sheetState);
             }
-            $objWriter->writeAttribute('r:id', 'rId' . $relId);
+            $objWriter->writeAttribute('r:id', 'rId' . $pRelId);
             $objWriter->endElement();
         } else {
             throw new WriterException('Invalid parameters passed.');
