@@ -36,7 +36,7 @@
         "phpoffice/phpspreadsheet": "^1.15",
         "alipaysdk/easysdk":"^2.0",
         "aliyuncs/oss-sdk-php": "^2.4.1",
-        "lcobucci/jwt": "3.4.5",
+        "lcobucci/jwt": "3.4.6",
         "xzncit/developer-tools": "^0.3.0"
     },
     "require-dev": {
