@@ -1,6 +1,6 @@
 <template>
     <view>
-		<navbar :scroll="scrollNum" :iSimmersive="true" title="商品详情"></navbar>
+		<navbar :scroll="scrollNum" :iSimmersive="false" :placeholder="true" title="商品详情"></navbar>
         <view v-if="!isEmpty" class="main clear">
             <view class="title">{{data.title}}</view>
             <view class="info">

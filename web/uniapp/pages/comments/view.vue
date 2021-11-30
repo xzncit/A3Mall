@@ -63,7 +63,7 @@
 						if(page.num == 1) this.comments = [];
 						this.comments = this.comments.concat(result.data.list);
 					}else if(result.status == -1){
-						this.mescroll.endErr();
+						this.mescroll.removeEmpty();
 					}
 				}).catch(error=>{
 					this.mescroll.endErr();
