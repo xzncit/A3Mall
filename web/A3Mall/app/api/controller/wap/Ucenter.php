@@ -508,6 +508,7 @@ class Ucenter extends Base {
         $data = Db::name("users_log")
             ->where("user_id",Users::get("id"))
             ->where("action","in",[0,3,4])
+            ->limit((($page - 1) * $size),$size)
             ->order('id','DESC')->select()->toArray();
 
         $list = [];
