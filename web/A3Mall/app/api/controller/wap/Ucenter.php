@@ -550,6 +550,7 @@ class Ucenter extends Base {
         $data = Db::name("users_withdraw_log")
             ->where("user_id",Users::get("id"))
             ->where("withdraw_type","1")
+            ->limit((($page - 1) * $size),$size)
             ->order('id DESC')->select()->toArray();
 
         $list = [];
