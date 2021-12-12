@@ -164,9 +164,9 @@ class CommonWeChat {
      * 解析XML内容到数组
      */
     public function xml2arr($xml){
-        $entity = libxml_disable_entity_loader(true);
+        if (PHP_VERSION_ID < 80000) $entity = libxml_disable_entity_loader(true);
         $data = (array)simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
-        libxml_disable_entity_loader($entity);
+        if (PHP_VERSION_ID < 80000) libxml_disable_entity_loader($entity);
         return json_decode(json_encode($data), true);
     }
 
