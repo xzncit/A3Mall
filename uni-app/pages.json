@@ -1,0 +1,293 @@
+{
+	"pages": [ // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "A3Mall 商城"
+			}
+		},
+		{
+			"path": "pages/search/index",
+			"style": {
+				"navigationBarTitleText": "搜索内容"
+			}
+		},
+		{
+			"path": "pages/search/list",
+			"style": {
+				"navigationBarTitleText": "搜索结果"
+			}
+		},
+		{
+			"path": "pages/category/index",
+			"style": {
+				"navigationBarTitleText": "商品分类"
+			}
+		},
+		{
+			"path": "pages/public/login",
+			"style" : {
+				"navigationBarTitleText": "会员登录"
+			}
+		},
+		{
+			"path": "pages/public/register",
+			"style" : {
+				"navigationBarTitleText": "会员注册"
+			}
+		},
+		{
+			"path": "pages/public/forget",
+			"style" : {
+				"navigationBarTitleText": "找回密码"
+			}
+		},
+		{
+			"path": "pages/public/404",
+			"style" : {
+				"navigationBarTitleText": "页面404"
+			}
+		},
+		{
+			"path": "pages/coupon/index",
+			"style": {
+				"navigationBarTitleText": "优惠劵"
+			}
+		},
+		{
+			"path": "pages/comments/view",
+			"style": {
+				"navigationBarTitleText": "商品评论"
+			}
+		},
+		{
+			"path": "pages/goods/index",
+			"style": {
+				"navigationBarTitleText": "商品列表"
+			}
+		},
+		{
+			"path": "pages/goods/list",
+			"style": {
+				"navigationBarTitleText": "商品列表"
+			}
+		},
+		{
+			"path": "pages/goods/view",
+			"style" : {
+				"navigationBarTitleText": "商品详情"
+			}
+		},
+		{
+			"path": "pages/cart/index",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
+			"path": "pages/cart/confirm",
+			"style": {
+				"navigationBarTitleText": "订单确认"
+			}
+		},
+		{
+			"path": "pages/cart/msg",
+			"style": {
+				"navigationBarTitleText": "提示页"
+			}
+		},
+		{
+			"path": "pages/cart/info",
+			"style": {
+				"navigationBarTitleText": "订单信息页"
+			}
+		},
+		{
+			"path": "pages/order/list",
+			"style": {
+				"navigationBarTitleText": "订单列表"
+			}
+		},
+		{
+			"path": "pages/order/detail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/order/express",
+			"style": {
+				"navigationBarTitleText": "物流信息"
+			}
+		},
+		{
+			"path": "pages/order/confirm_delivery",
+			"style": {
+				"navigationBarTitleText": "确认订单"
+			}
+		},
+		{
+			"path": "pages/order/refund",
+			"style": {
+				"navigationBarTitleText": "订单退款"
+			}
+		},
+		{
+			"path": "pages/order/evaluate",
+			"style": {
+				"navigationBarTitleText": "订单评价"
+			}
+		},
+		{
+			"path": "pages/order/service",
+			"style": {
+				"navigationBarTitleText": "售后服务"
+			}
+		},
+		{
+			"path": "pages/bill/cashlist",
+			"style": {
+				"navigationBarTitleText": "提现记录"
+			}
+		},
+		{
+			"path": "pages/bill/withdraw",
+			"style": {
+				"navigationBarTitleText": "申请提现"
+			}
+		},
+		{
+			"path": "pages/bill/fund",
+			"style": {
+				"navigationBarTitleText": "资金明细"
+			}
+		},
+		{
+			"path": "pages/ucenter/index",
+			"style": {
+				"navigationBarTitleText": "会员中心"
+			}
+		},
+		{
+			"path": "pages/ucenter/wallet",
+			"style" : {
+				"navigationBarTitleText": "我的钱包"
+			}
+		},
+		{
+			"path": "pages/ucenter/collect",
+			"style": {
+				"navigationBarTitleText": "我的收藏"
+			}
+		},
+		{
+			"path": "pages/ucenter/address",
+			"style": {
+				"navigationBarTitleText": "我的地址"
+			}
+		},
+		{
+			"path": "pages/ucenter/address_editor",
+			"style": {
+				"navigationBarTitleText": "编辑地址"
+			}
+		},
+		{
+			"path": "pages/ucenter/coupon",
+			"style": {
+				"navigationBarTitleText": "优惠劵"
+			}
+		},
+		{
+			"path": "pages/ucenter/point",
+			"style": {
+				"navigationBarTitleText": "积分"
+			}
+		},
+		{
+			"path": "pages/ucenter/setting",
+			"style": {
+				"navigationBarTitleText": "会员设置"
+			}
+		},
+		{
+			"path": "pages/ucenter/help",
+			"style": {
+				"navigationBarTitleText": "帮助中心"
+			}
+		},
+		{
+			"path": "pages/news/index",
+			"style": {
+				"navigationBarTitleText": "新闻列表"
+			}
+		},
+		{
+			"path": "pages/news/list",
+			"style": {
+				"navigationBarTitleText": "新闻列表"
+			}
+		},
+		{
+			"path": "pages/news/view",
+			"style": {
+				"navigationBarTitleText": "新闻详情"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "A3Mall",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle":"custom",
+		"app-plus": {
+			"bounce" : "none"
+		},
+		"mp-alipay": {
+		   "transparentTitle": "always",
+		   "titlePenetrate": "YES"
+		}
+	},
+	"easycom": {
+		"autoscan": true, 
+		"custom": {
+			"lb-picker": "@/components/lb-picker/index.vue"
+		}
+	},
+	"tabBar": {
+		"color": "#333",
+		"selectedColor": "#1b43c4",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tabbar/menu-1.png",
+				"selectedIconPath": "static/tabbar/menu-active-1.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/category/index",
+				"iconPath": "static/tabbar/menu-2.png",
+				"selectedIconPath": "static/tabbar/menu-active-2.png",
+				"text": "分类"
+			},
+			{
+				"pagePath": "pages/cart/index",
+				"iconPath": "static/tabbar/menu-3.png",
+				"selectedIconPath": "static/tabbar/menu-active-3.png",
+				"text": "购物车"
+			},
+			{
+				"pagePath": "pages/ucenter/index",
+				"iconPath": "static/tabbar/menu-4.png",
+				"selectedIconPath": "static/tabbar/menu-active-4.png",
+				"text": "我的"
+			}
+		]
+	},
+	"condition" : { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": []
+	}
+}

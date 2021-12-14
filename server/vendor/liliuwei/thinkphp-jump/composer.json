@@ -1,0 +1,30 @@
+{
+    "name": "liliuwei/thinkphp-jump",
+    "description": "适用于thinkphp6.0的跳转扩展",
+    "keywords": ["thinkphp", "think-jump", "success","error","result","redirect"],
+    "license": "Apache-2.0",
+    "type": "think-extend",
+    "authors": [
+        {
+            "name": "liliuwei",
+            "email": "974829947@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "topthink/framework": "^6.0",
+        "topthink/think-view": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "liliuwei\\think\\": "src/"
+        }
+    },
+    "extra": {
+        "think": {
+            "config": {
+                "jump": "src/config/jump.php"
+            }
+        }
+    }
+}

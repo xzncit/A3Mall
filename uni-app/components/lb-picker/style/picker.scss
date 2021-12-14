@@ -1,0 +1,168 @@
+.lb-picker {
+	position: relative;
+}
+
+.lb-picker-mask {
+	background-color: rgba(0, 0, 0, 0.0);
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+}
+
+.lb-picker-mask-animation {
+	transition-property: background-color;
+	transition-duration: 0.3s;
+}
+
+.lb-picker-container {
+	position: relative;
+}
+
+.lb-picker-container-fixed {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	transform: translateY(100%);
+	/* #ifndef APP-PLUS */
+	overflow: hidden;
+	/* #endif */
+}
+
+.lb-picker-container-animation {
+	transition-property: transform;
+	transition-duration: 0.3s;
+}
+
+.lb-picker-container-show {
+	transform: translateY(0);
+}
+
+.lb-picker-header {
+	position: relative;
+	height: 45px;
+	background-color: #fff;
+	/* #ifdef APP-NVUE */
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #e5e5e5;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #e5e5e5;
+	/* #endif */
+	/* #ifndef APP-NVUE */
+	box-sizing: border-box;
+	display: flex;
+	/* #endif */
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+}
+
+/* #ifndef APP-PLUS */
+.lb-picker-header::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: 1px;
+	clear: both;
+	border-bottom: 1px solid #e5e5e5;
+	color: #e5e5e5;
+	transform-origin: 0 100%;
+	transform: scaleY(0.5);
+}
+
+.lb-picker-header::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 1px;
+	clear: both;
+	border-bottom: 1px solid #e5e5e5;
+	color: #e5e5e5;
+	transform-origin: 0 100%;
+	transform: scaleY(0.5);
+}
+
+/* #endif */
+
+.lb-picker-action {
+	padding-left: 14px;
+	padding-right: 14px;
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.lb-picker-action-item {
+	text-align: center;
+	height: 45px;
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	align-items: center;
+}
+
+.lb-picker-action-cancel-text {
+	font-size: 16px;
+	color: #999;
+}
+
+.lb-picker-action-confirm-text {
+	font-size: 16px;
+	color: #007aff;
+}
+
+.lb-picker-content {
+	position: relative;
+	background-color: #fff;
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	justify-content: center;
+	flex-direction: column;
+}
+
+.lb-picker-loading,
+.lb-picker-empty {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	justify-content: center;
+	align-items: center;
+}
+
+.lb-picker-empty-text {
+	color: #999;
+	font-size: 16px;
+}
+
+.lb-picker-loading-img {
+	width: 25px;
+	height: 25px;
+	/* #ifndef APP-NVUE */
+	animation: rotating 2s linear infinite;
+	/* #endif */
+}
+
+/* #ifndef APP-NVUE */
+@keyframes rotating {
+	0% {
+		transform: rotate(0deg)
+	}
+
+	to {
+		transform: rotate(1turn)
+	}
+}
+
+/* #endif */
