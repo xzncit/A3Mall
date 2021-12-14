@@ -1,4 +1,4 @@
-<h1 align="center">A3Mall商城系统</h1> 
+<h1 align="center">A3Mall V2开源商城系统</h1> 
 
 <p align="center">    
     <b>如果对您有所帮助，您可以点右上角 "Star" 收藏一下 ，获取第一时间更新，谢谢！</b>
@@ -14,17 +14,24 @@
    A3Mall 后端基于 ThinkPHP6 + Bootstrap 开发的开源商城系统，前端采用uniapp开发，支持微信公众号商城、H5商城、小程序商城、APP商城、PC商城，前后端源码100%开源，支持免费商用。
 
 
-## QQ交流群
-A3Mall开源商城官方群: 892150829  <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=lBxucAil6e6WTlwX0tNvQwpOtfLP2ptd&jump_from=webapi"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="A3Mall官方交流1群" title="A3Mall官方交流1群"></a>
+## 功能特性：
+    遵守MVC设计模式，并且具有明确的model和service层
+    基于命名空间和PSR-4规范，加入PHP7新特性
+    内置WeChat微信开发框架，二次开发更方便
+    Composer一键引入三方扩展
+    代码注释清晰，方便二次开发功能
+    接口认证采用JWT方式认证
+    支持在线一键安装，方便快捷
+    统一附件管理
+    前后端所有代码开源
 
-
-## 软件架构
-    PHP >= 7.3.0
+## 软件架构：
+    PHP 7.2.5>=、7.3、7.4、8.0
     MySQL >= 5.6
-    PDO PHP Extension
-    MBstring PHP Extension
-    FileInfo PHP Extension
-   
+    Thinkphp 6.0.7
+    uniapp
+
+
 ## 安装A3Mall
 
 ```html
@@ -46,6 +53,9 @@ A3Mall开源商城官方群: 892150829  <a target="_blank" href="https://qm.qq.c
 3. 使用真机安装测试
 
 ```
+
+## QQ交流群
+A3Mall开源商城官方群: 892150829  <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=lBxucAil6e6WTlwX0tNvQwpOtfLP2ptd&jump_from=webapi"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="A3Mall官方交流1群" title="A3Mall官方交流1群"></a>
 
 ### 页面展示
 ![输入图片说明](https://gitee.com/a3mall/A3Mall/raw/master/readme/images/1.png "1.png")
