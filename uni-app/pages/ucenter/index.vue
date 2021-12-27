@@ -100,6 +100,7 @@
             </view>
         </view>
 		
+        <view class="copyright-logo"><image src="/static/images/logo.png"></image></view>
 		<authorize v-model="isAuthShow"></authorize>
     </view>
 </template>
@@ -282,6 +283,11 @@
                     view { display: block; text-align: center; font-size: 26rpx; color: #666; }
                 }
             }
+        }
+    }
+    .copyright-logo { 
+        image {
+            width: 150rpx; height: 50rpx; margin: 54rpx auto; display: block;
         }
     }
 </style>
