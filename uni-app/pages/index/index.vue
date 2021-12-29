@@ -137,7 +137,7 @@
 				
 			</view>
 		</mescroll-body>
-		
+		<copyright></copyright>
 		<loading v-if="isLoading"></loading>
 		<empty-box type="service" v-if="isError && isLoading == false" @onEvents="onJump"></empty-box>
 	</view>
