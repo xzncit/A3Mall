@@ -147,7 +147,7 @@ class Index extends Auth {
      */
     public function delete(){
         try {
-            OrderService::detail(Request::get("id",""));
+            OrderService::delete(Request::get("id",""));
             return Response::returnArray("删除成功");
         } catch (\Exception $ex) {
             return Response::returnArray("操作失败，请稍候在试。",0);
