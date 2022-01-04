@@ -61,7 +61,6 @@
             <script type="text/html" id="list-toolbar">
                 <div class="layui-btn-container">
                     <button lay-event="refresh" type="button" class="layui-btn layui-btn-sm layui-bg-red"><i class="layui-icon">&#xe9aa;</i> 刷新</button>
-                    <button lay-event="sync-fans" type="button" class="layui-btn layui-btn-sm layui-bg-light-blue"><i class="layui-icon">&#xe61f;</i> 同步粉丝</button>
                     <button lay-event="sync-tags" type="button" class="layui-btn layui-btn-sm layui-bg-light-blue"><i class="layui-icon">&#xe61f;</i> 同步标签</button>
                     <button lay-event="sync-black" type="button" class="layui-btn layui-btn-sm layui-bg-light-blue"><i class="layui-icon">&#xe61f;</i> 同步黑名单</button>
                     <button lay-event="add-black" type="button" class="layui-btn layui-btn-sm layui-bg-orange"><i class="layui-icon">&#xe624;</i> 加入黑名单</button>
