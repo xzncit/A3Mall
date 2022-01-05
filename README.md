@@ -61,7 +61,7 @@ A3Mall开源商城官方群: 892150829  <a target="_blank" href="https://qm.qq.c
 ![输入图片说明](https://gitee.com/a3mall/A3Mall/raw/master/readme/images/1.png "1.png")
 
 ### 产品终端
-![输入图片说明](https://gitee.com/a3mall/A3Mall/raw/master/readme/images/2.jpg "2.jpg")
+![输入图片说明](https://gitee.com/a3mall/A3Mall/raw/master/readme/images/2.png "2.png")
 
 ### 后端演示
 后台地址：https://demo.a3-mall.net/admin

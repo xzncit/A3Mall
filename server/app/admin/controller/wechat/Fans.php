@@ -33,20 +33,6 @@ class Fans extends Auth {
     }
 
     /**
-     * 同步粉丝
-     * @return \think\response\Json
-     */
-    public function sync_fans(){
-        try {
-            FansService::syncFans();
-        }catch (\Exception $e){
-            return Response::returnArray($e->getMessage(),0);
-        }
-
-        return Response::returnArray("同步成功！");
-    }
-
-    /**
      * 同步黑名单
      * @return \think\response\Json
      */
