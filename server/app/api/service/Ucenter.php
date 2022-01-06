@@ -243,7 +243,7 @@ class Ucenter extends Service {
             throw new \Exception("您填写的日期不合法",0);
         }
 
-        UsersLogModel::where("id",Users::get("id"))->update([ "nickname"=>$post["username"], "sex"=>$post["sex"], "birthday"=>strtotime($post["birthday"]) ]);
+        UsersModel::where("id",Users::get("id"))->update([ "nickname"=>$post["username"], "sex"=>$post["sex"], "birthday"=>strtotime($post["birthday"]) ]);
         return true;
     }
 
