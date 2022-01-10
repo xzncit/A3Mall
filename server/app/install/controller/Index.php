@@ -29,7 +29,7 @@ class Index extends BaseController {
     }
 
     public function index(){
-        Session::set("step",1);
+        //Session::set("step",1);
         return View::fetch();
     }
 
