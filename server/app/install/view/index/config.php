@@ -90,7 +90,7 @@
                     <td class="tar">演示数据</td>
                     <td>
                         <label class="radio"><input type="radio" name="is_demo" value="1" checked><span>是</span></label>
-                        <label class="radio"><input type="radio" name="is_demo" value="0" disabled><span>否</span></label>
+                        <label class="radio"><input type="radio" name="is_demo" value="0"><span>否</span></label>
                     </td>
                     <td></td>
                 </tr>

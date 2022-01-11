@@ -15,11 +15,6 @@ CREATE TABLE `mall_archives` (
   `update_time` int(10) NOT NULL DEFAULT 0 COMMENT '修改时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `mall_archives` (`id`, `pid`, `title`, `hits`, `status`, `sort`, `photo`, `intro`, `content`, `create_time`, `update_time`) VALUES
-(1, 59, 'A3Mall企业版v1.0发布啦！', 5, 0, 0, '', '', '<p>A3Mall企业版v1.0发布啦！</p>', 1624974382, 1624974382),
-(2, 60, '如何支付', 0, 0, 0, '', '', '<p>如何支付</p>', 1624985454, 1624985454),
-(3, 60, '退换货政策', 0, 0, 0, '', '', '<p>退换货政策</p>', 1624985469, 1624985469);
-
 CREATE TABLE `mall_area` (
   `id` int(11) NOT NULL,
   `pid` int(11) DEFAULT 0 COMMENT '父id',
@@ -3804,183 +3799,6 @@ CREATE TABLE `mall_attachments` (
   `time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `mall_attachments` (`id`, `cat_id`, `pid`, `type`, `module`, `method`, `title`, `name`, `path`, `oss_url`, `suffix`, `size`, `sort`, `options`, `time`) VALUES
-(1, 0, 2, 0, 'goods', 'category', '', 'bc6a18bbb4c2caeba6941a61b9e36d27.jpg', '/uploads/images/20210620/bc6a18bbb4c2caeba6941a61b9e36d27.jpg', '', 'jpg', '133630', 0, NULL, 1624156205),
-(2, 0, 3, 0, 'goods', 'category', '', 'bd6dd6ece8fce1f63b012c797ce65b5a.jpg', '/uploads/images/20210620/bd6dd6ece8fce1f63b012c797ce65b5a.jpg', '', 'jpg', '17039', 0, NULL, 1624156360),
-(3, 0, 2, 0, 'goods', 'category', '', 'ab473d73baf5a03cb71557c10c81d641.jpg', '/uploads/images/20210620/ab473d73baf5a03cb71557c10c81d641.jpg', '', 'jpg', '29698', 0, NULL, 1624156427),
-(4, 0, 4, 0, 'goods', 'category', '', '1c088ab8f7bd787610c6aa3480c4eeef.jpg', '/uploads/images/20210620/1c088ab8f7bd787610c6aa3480c4eeef.jpg', '', 'jpg', '33849', 0, NULL, 1624157009),
-(5, 0, 5, 0, 'goods', 'category', '', 'fbfbaa88c13c83debd6c0082bd4691b4.jpg', '/uploads/images/20210620/fbfbaa88c13c83debd6c0082bd4691b4.jpg', '', 'jpg', '39437', 0, NULL, 1624157180),
-(6, 0, 7, 0, 'goods', 'category', '', '55a35d91d53f9e749ce844a13ed64f45.jpg', '/uploads/images/20210620/55a35d91d53f9e749ce844a13ed64f45.jpg', '', 'jpg', '87235', 0, NULL, 1624157346),
-(7, 0, 8, 0, 'goods', 'category', '', '5dc770b9f7cb1e406a9a735792d7ceb8.jpg', '/uploads/images/20210620/5dc770b9f7cb1e406a9a735792d7ceb8.jpg', '', 'jpg', '34433', 0, NULL, 1624157511),
-(8, 0, 9, 0, 'goods', 'category', '', '4deb6d34b203afd26e30f23728cfaa0f.jpg', '/uploads/images/20210620/4deb6d34b203afd26e30f23728cfaa0f.jpg', '', 'jpg', '85661', 0, NULL, 1624157705),
-(9, 0, 10, 0, 'goods', 'category', '', '38a0065078b668836f485805ddcba4ce.jpg', '/uploads/images/20210620/38a0065078b668836f485805ddcba4ce.jpg', '', 'jpg', '33965', 0, NULL, 1624157836),
-(10, 0, 12, 0, 'goods', 'category', '', 'cfe01e3817aa27cd1a71f72b08d92d56.jpg', '/uploads/images/20210620/cfe01e3817aa27cd1a71f72b08d92d56.jpg', '', 'jpg', '58433', 0, NULL, 1624157943),
-(11, 0, 13, 0, 'goods', 'category', '', '7fa61b0a93487e53d73fc9d737816267.jpg', '/uploads/images/20210620/7fa61b0a93487e53d73fc9d737816267.jpg', '', 'jpg', '25011', 0, NULL, 1624171102),
-(20, 0, 1, 0, 'goods', 'photo', '', '38df08051f4045a3f5f4cea31dc77e0a.jpg', '/uploads/images/20210620/38df08051f4045a3f5f4cea31dc77e0a.jpg', '', 'jpg', '253694', 0, NULL, 1624172682),
-(21, 0, 1, 0, 'goods', 'photo', '', '9e31b4b103881f8cc8774fab368015f1.jpg', '/uploads/images/20210620/9e31b4b103881f8cc8774fab368015f1.jpg', '', 'jpg', '291561', 0, NULL, 1624172686),
-(22, 0, 1, 0, 'goods', 'photo', '', '6a2792be8a7f66a88b515523e62fcd06.jpg', '/uploads/images/20210620/6a2792be8a7f66a88b515523e62fcd06.jpg', '', 'jpg', '38508', 0, NULL, 1624172690),
-(23, 0, 1, 0, 'goods', 'image', '', '6569318e3a45982e03be54f18fae5e2d.jpg', '/uploads/images/20210620/6569318e3a45982e03be54f18fae5e2d.jpg', '', 'jpg', '282990', 0, NULL, 1624172700),
-(24, 0, 14, 0, 'goods', 'category', '', 'badcaad291399325618b457eeb5892f9.jpg', '/uploads/images/20210620/badcaad291399325618b457eeb5892f9.jpg', '', 'jpg', '39222', 0, NULL, 1624172923),
-(25, 0, 2, 0, 'goods', 'photo', '', '79ba441fa3d86860cb96e715e971f3bb.jpg', '/uploads/images/20210620/79ba441fa3d86860cb96e715e971f3bb.jpg', '', 'jpg', '163845', 0, NULL, 1624173111),
-(26, 0, 2, 0, 'goods', 'image', '', 'b072ada5f82db058f393a2abdb804d98.jpg', '/uploads/images/20210620/b072ada5f82db058f393a2abdb804d98.jpg', '', 'jpg', '435942', 0, NULL, 1624173135),
-(27, 0, 3, 0, 'goods', 'photo', '', 'd0e8d7628fb72b94022e1aad195ca6ec.jpg', '/uploads/images/20210620/d0e8d7628fb72b94022e1aad195ca6ec.jpg', '', 'jpg', '142431', 0, NULL, 1624173600),
-(28, 0, 3, 0, 'goods', 'image', '', '22c0bdbb97bbe113caec2d7c14fe4762.jpg', '/uploads/images/20210620/22c0bdbb97bbe113caec2d7c14fe4762.jpg', '', 'jpg', '550088', 0, NULL, 1624173617),
-(29, 0, 15, 0, 'goods', 'category', '', 'c0b6ef3a6e5edf59f27dab0bbfb3c97a.jpg', '/uploads/images/20210620/c0b6ef3a6e5edf59f27dab0bbfb3c97a.jpg', '', 'jpg', '57278', 0, NULL, 1624173838),
-(30, 0, 4, 0, 'goods', 'photo', '', 'dd98030081e82739063f4cf1d767ac5a.jpg', '/uploads/images/20210620/dd98030081e82739063f4cf1d767ac5a.jpg', '', 'jpg', '221633', 0, NULL, 1624174011),
-(31, 0, 4, 0, 'goods', 'photo', '', '57169675efcd0a3307320370a6d0a4a7.jpg', '/uploads/images/20210620/57169675efcd0a3307320370a6d0a4a7.jpg', '', 'jpg', '74321', 0, NULL, 1624174031),
-(32, 0, 4, 0, 'goods', 'photo', '', 'e0084ae32a71d329f9adca333ba81d9d.jpg', '/uploads/images/20210620/e0084ae32a71d329f9adca333ba81d9d.jpg', '', 'jpg', '54339', 0, NULL, 1624174035),
-(33, 0, 4, 0, 'goods', 'image', '', 'cbb143cd52d8a6aaee10a1fb643c5740.jpg', '/uploads/images/20210620/cbb143cd52d8a6aaee10a1fb643c5740.jpg', '', 'jpg', '260025', 0, NULL, 1624174067),
-(34, 0, 5, 0, 'goods', 'photo', '', 'e4a00e263b4860a9d8a3d4847eba60f5.jpg', '/uploads/images/20210620/e4a00e263b4860a9d8a3d4847eba60f5.jpg', '', 'jpg', '44053', 0, NULL, 1624174215),
-(36, 0, 5, 0, 'goods', 'image', '', 'e1bd7fb3825fda587732cd425acae49c.jpg', '/uploads/images/20210620/e1bd7fb3825fda587732cd425acae49c.jpg', '', 'jpg', '475667', 0, NULL, 1624174285),
-(37, 0, 16, 0, 'goods', 'category', '', 'cbe1dc41b912f1f886f1e5a7e4721e3d.jpg', '/uploads/images/20210620/cbe1dc41b912f1f886f1e5a7e4721e3d.jpg', '', 'jpg', '89197', 0, NULL, 1624174472),
-(38, 0, 6, 0, 'goods', 'photo', '', '62c22c9b45ee3fcc84b1b7dcda490b17.jpg', '/uploads/images/20210620/62c22c9b45ee3fcc84b1b7dcda490b17.jpg', '', 'jpg', '466425', 0, NULL, 1624174584),
-(39, 0, 6, 0, 'goods', 'image', '', 'f89a94acad037bc2c08143f897a8bae6.jpg', '/uploads/images/20210620/f89a94acad037bc2c08143f897a8bae6.jpg', '', 'jpg', '856162', 0, NULL, 1624174610),
-(40, 0, 4, 0, 'marketing', '', '', '233f62d5706a1cc7fda7ac00cb2cc4c6.jpg', '/uploads/images/20210620/233f62d5706a1cc7fda7ac00cb2cc4c6.jpg', '', 'jpg', '23687', 0, NULL, 1624174794),
-(41, 0, 1, 0, 'shop', 'decorate', '', 'c036a1725a4c3990d2736189809ecc7d.jpg', '/uploads/images/20210620/c036a1725a4c3990d2736189809ecc7d.jpg', '', 'jpg', '23687', 0, NULL, 1624174942),
-(42, 0, 1, 0, 'shop', 'decorate', '', '39595d0887b6e95d884ce354f6e4b43d.jpg', '/uploads/images/20210620/39595d0887b6e95d884ce354f6e4b43d.jpg', '', 'jpg', '13402', 0, NULL, 1624174995),
-(43, 0, 1, 0, 'shop', 'decorate', '', '3b3c5f5344fb931d12f3676860a7f612.jpg', '/uploads/images/20210620/3b3c5f5344fb931d12f3676860a7f612.jpg', '', 'jpg', '5974', 0, NULL, 1624175038),
-(44, 0, 1, 0, 'shop', 'decorate', '', '06a8dae3d765b0f51afe2171fd9e15cb.jpg', '/uploads/images/20210620/06a8dae3d765b0f51afe2171fd9e15cb.jpg', '', 'jpg', '9567', 0, NULL, 1624175068),
-(45, 0, 1, 0, 'shop', 'decorate', '', 'aa1a63838483224cd500b312280a37fc.jpg', '/uploads/images/20210620/aa1a63838483224cd500b312280a37fc.jpg', '', 'jpg', '23644', 0, NULL, 1624175326),
-(46, 0, 7, 0, 'goods', 'photo', '', '5a9f561d486000295bbd4a2c7d05aa66.png', '/uploads/images/20210620/5a9f561d486000295bbd4a2c7d05aa66.png', '', 'png', '188962', 0, NULL, 1624175824),
-(47, 0, 7, 0, 'goods', 'image', '', '93a52ddbac7966bf440062082651b1e6.jpg', '/uploads/images/20210620/93a52ddbac7966bf440062082651b1e6.jpg', '', 'jpg', '331958', 0, NULL, 1624175841),
-(48, 0, 8, 0, 'goods', 'photo', '', '5e54988c5ecd9b0633f6582ccc6c7ca1.jpg', '/uploads/images/20210620/5e54988c5ecd9b0633f6582ccc6c7ca1.jpg', '', 'jpg', '84569', 0, NULL, 1624176220),
-(49, 0, 8, 0, 'goods', 'image', '', '9b8940e8e44172a5a3f09ce61b33d2d6.jpg', '/uploads/images/20210620/9b8940e8e44172a5a3f09ce61b33d2d6.jpg', '', 'jpg', '437481', 0, NULL, 1624176235),
-(50, 0, 9, 0, 'goods', 'photo', '', 'aa2a37d5dc927634a9fe4f06465e91fe.jpg', '/uploads/images/20210620/aa2a37d5dc927634a9fe4f06465e91fe.jpg', '', 'jpg', '44382', 0, NULL, 1624176360),
-(51, 0, 9, 0, 'goods', 'photo', '', '6501bdd2bc07452311590f557a2957be.jpg', '/uploads/images/20210620/6501bdd2bc07452311590f557a2957be.jpg', '', 'jpg', '282303', 0, NULL, 1624176386),
-(52, 0, 9, 0, 'goods', 'image', '', '40ae56ce482921d2d6e9ebafd63b830e.jpg', '/uploads/images/20210620/40ae56ce482921d2d6e9ebafd63b830e.jpg', '', 'jpg', '128314', 0, NULL, 1624176401),
-(53, 0, 10, 0, 'goods', 'photo', '', '87499eb9cbea7b846f09dbd5a05fe88e.jpg', '/uploads/images/20210620/87499eb9cbea7b846f09dbd5a05fe88e.jpg', '', 'jpg', '103401', 0, NULL, 1624176516),
-(54, 0, 10, 0, 'goods', 'image', '', 'e0ec5133a34d429eb6c23cd853875ed0.jpg', '/uploads/images/20210620/e0ec5133a34d429eb6c23cd853875ed0.jpg', '', 'jpg', '927829', 0, NULL, 1624176537),
-(55, 0, 11, 0, 'goods', 'photo', '', '6fa4b7f9bc3c496e92739163c488e8a6.jpg', '/uploads/images/20210620/6fa4b7f9bc3c496e92739163c488e8a6.jpg', '', 'jpg', '76662', 0, NULL, 1624176850),
-(56, 0, 11, 0, 'goods', 'image', '', 'f3177bbbe19cc75280f0e02e4d8ca7e3.jpg', '/uploads/images/20210620/f3177bbbe19cc75280f0e02e4d8ca7e3.jpg', '', 'jpg', '245423', 0, NULL, 1624176869),
-(57, 0, 12, 0, 'goods', 'photo', '', '845ca8585e859ce67acd00fc0069dbb6.png', '/uploads/images/20210620/845ca8585e859ce67acd00fc0069dbb6.png', '', 'png', '227452', 0, NULL, 1624176962),
-(58, 0, 12, 0, 'goods', 'image', '', '42996edc9b1a9753c70d65dedb0ce37e.jpg', '/uploads/images/20210620/42996edc9b1a9753c70d65dedb0ce37e.jpg', '', 'jpg', '213803', 0, NULL, 1624176980),
-(59, 0, 13, 0, 'goods', 'photo', '', '29aeed5db3e4dd320f18bc4116c25943.jpg', '/uploads/images/20210620/29aeed5db3e4dd320f18bc4116c25943.jpg', '', 'jpg', '254330', 0, NULL, 1624177092),
-(60, 0, 13, 0, 'goods', 'image', '', '84589e6c22c3d272300094a43c58c1c4.jpg', '/uploads/images/20210620/84589e6c22c3d272300094a43c58c1c4.jpg', '', 'jpg', '343466', 0, NULL, 1624177106),
-(61, 0, 14, 0, 'goods', 'photo', '', 'e8a752868d9ba48b01614bc35036e6a0.jpg', '/uploads/images/20210620/e8a752868d9ba48b01614bc35036e6a0.jpg', '', 'jpg', '70807', 0, NULL, 1624177183),
-(62, 0, 14, 0, 'goods', 'image', '', '273de724a6ed5c113159497c4efbcead.jpg', '/uploads/images/20210620/273de724a6ed5c113159497c4efbcead.jpg', '', 'jpg', '485299', 0, NULL, 1624177203),
-(63, 0, 15, 0, 'goods', 'photo', '', '7ad3ec9371ee7c55d7f17638541a4d49.jpg', '/uploads/images/20210620/7ad3ec9371ee7c55d7f17638541a4d49.jpg', '', 'jpg', '38758', 0, NULL, 1624177383),
-(64, 0, 15, 0, 'goods', 'image', '', 'd1f49d7b78eab7f34f0fc4ce5f6ee7ad.jpg', '/uploads/images/20210620/d1f49d7b78eab7f34f0fc4ce5f6ee7ad.jpg', '', 'jpg', '356503', 0, NULL, 1624177399),
-(65, 0, 1, 0, 'shop', 'decorate', '', 'f45841b06cd4572fd92d7a97ea8e01eb.png', '/uploads/images/20210621/f45841b06cd4572fd92d7a97ea8e01eb.png', '', 'png', '4640', 0, NULL, 1624239733),
-(66, 0, 1, 0, 'shop', 'decorate', '', '7f0ef60468472dcf5b9362205ae152ea.png', '/uploads/images/20210621/7f0ef60468472dcf5b9362205ae152ea.png', '', 'png', '5401', 0, NULL, 1624239858),
-(67, 0, 1, 0, 'shop', 'decorate', '', '8392092cca58d49dab5ffe6b4385559d.png', '/uploads/images/20210621/8392092cca58d49dab5ffe6b4385559d.png', '', 'png', '4179', 0, NULL, 1624239863),
-(68, 0, 1, 0, 'shop', 'decorate', '', '2a054c5008896ac84507c585078f75df.png', '/uploads/images/20210621/2a054c5008896ac84507c585078f75df.png', '', 'png', '5623', 0, NULL, 1624239866),
-(69, 0, 1, 0, 'shop', 'decorate', '', '9c330f85494080e18eb7a3ee443ee9db.png', '/uploads/images/20210621/9c330f85494080e18eb7a3ee443ee9db.png', '', 'png', '5895', 0, NULL, 1624239870),
-(70, 0, 1, 0, 'shop', 'decorate', '', '9276c0cf66d1511313e756553017a8f6.png', '/uploads/images/20210621/9276c0cf66d1511313e756553017a8f6.png', '', 'png', '4584', 0, NULL, 1624239872),
-(71, 0, 1, 0, 'shop', 'decorate', '', '64d7b06ce969b84ab7e90afee09d7273.png', '/uploads/images/20210621/64d7b06ce969b84ab7e90afee09d7273.png', '', 'png', '4869', 0, NULL, 1624239875),
-(72, 0, 1, 0, 'shop', 'decorate', '', 'c4b620aa9df643fa09ed378c5e816b8a.png', '/uploads/images/20210621/c4b620aa9df643fa09ed378c5e816b8a.png', '', 'png', '4412', 0, NULL, 1624239880),
-(73, 0, 1, 0, 'shop', 'decorate', '', 'fa2f082dbeef079179a18cf6ea885b5a.png', '/uploads/images/20210621/fa2f082dbeef079179a18cf6ea885b5a.png', '', 'png', '226106', 0, NULL, 1624242026),
-(74, 0, 1, 0, 'shop', 'decorate', '', '7423b99985f3d37ed20b710aac7e87cd.png', '/uploads/images/20210621/7423b99985f3d37ed20b710aac7e87cd.png', '', 'png', '233468', 0, NULL, 1624242031),
-(75, 0, 1, 0, 'shop', 'decorate', '', 'a51d3f2ce13aa38a2024b963d3c620b3.png', '/uploads/images/20210621/a51d3f2ce13aa38a2024b963d3c620b3.png', '', 'png', '1112', 0, NULL, 1624242459),
-(76, 0, 1, 0, 'shop', 'decorate', '', 'b4b5575b58c610fc2af4537ffa62283a.png', '/uploads/images/20210621/b4b5575b58c610fc2af4537ffa62283a.png', '', 'png', '1107', 0, NULL, 1624277426),
-(77, 0, 3, 0, 'marketing', '', '', '0ecd70bd0356bef76f9ca357a6a4f420.png', '/uploads/images/20210628/0ecd70bd0356bef76f9ca357a6a4f420.png', '', 'png', '69691', 0, NULL, 1624850567),
-(78, 0, 3, 0, 'marketing', '', '', '484281dec32fb72c524a966a078da82a.png', '/uploads/images/20210628/484281dec32fb72c524a966a078da82a.png', '', 'png', '70216', 0, NULL, 1624850570),
-(79, 0, 3, 0, 'marketing', '', '', '8308eeb6d77b226b90bb3c13f3fda495.png', '/uploads/images/20210628/8308eeb6d77b226b90bb3c13f3fda495.png', '', 'png', '69883', 0, NULL, 1624850573),
-(80, 0, 1, 0, 'marketing', '', '', '93f1b375bfac116d07608d806bd88092.png', '/uploads/images/20210628/93f1b375bfac116d07608d806bd88092.png', '', 'png', '689393', 0, NULL, 1624850818),
-(81, 0, 4, 0, 'marketing', '', '', 'b2588b5f48d5f974758de3eccc35b436.png', '/uploads/images/20210629/b2588b5f48d5f974758de3eccc35b436.png', '', 'png', '94478', 0, NULL, 1624927353),
-(82, 0, 4, 0, 'marketing', '', '', '87cb7b1c8375038a7edb7b56b9bd7348.png', '/uploads/images/20210629/87cb7b1c8375038a7edb7b56b9bd7348.png', '', 'png', '86169', 0, NULL, 1624927359),
-(83, 0, 4, 0, 'marketing', '', '', 'eb027fa9a6592952a3173d7d435746b9.png', '/uploads/images/20210629/eb027fa9a6592952a3173d7d435746b9.png', '', 'png', '102448', 0, NULL, 1624927363),
-(84, 0, 1, 0, 'marketing', '', '', '367438ffd4b3204030dfc5e12411ed98.png', '/uploads/images/20210629/367438ffd4b3204030dfc5e12411ed98.png', '', 'png', '483686', 0, NULL, 1624927618),
-(85, 0, 999, 0, 'system', 'base', '', '53d96fb806405481384f473e54d08aa7.png', '/uploads/images/20210629/53d96fb806405481384f473e54d08aa7.png', '', 'png', '2990', 0, NULL, 1624927685),
-(86, 0, 999, 0, 'system', 'base', '', '17153cb3e3f841b672b9edbe0af37702.png', '/uploads/images/20210629/17153cb3e3f841b672b9edbe0af37702.png', '', 'png', '3495', 0, NULL, 1624927780),
-(87, 0, 39, 0, 'goods', 'category', '', 'fe1935f48863c4e8046c618acc50ec78.jpg', '/uploads/images/20210629/fe1935f48863c4e8046c618acc50ec78.jpg', '', 'jpg', '32912', 0, NULL, 1624932663),
-(88, 0, 16, 0, 'goods', 'photo', '', 'bd98e35dc761aaf9093cf1acee93db6a.jpg', '/uploads/images/20210629/bd98e35dc761aaf9093cf1acee93db6a.jpg', '', 'jpg', '151242', 0, NULL, 1624932839),
-(89, 0, 16, 0, 'goods', 'photo', '', '18ff080b99228a04362dfd5b6a68f824.jpg', '/uploads/images/20210629/18ff080b99228a04362dfd5b6a68f824.jpg', '', 'jpg', '216879', 0, NULL, 1624932843),
-(90, 0, 16, 0, 'goods', 'image', '', '12f3f93b0bc82d24d60e638c7170d237.jpg', '/uploads/images/20210629/12f3f93b0bc82d24d60e638c7170d237.jpg', '', 'jpg', '559457', 0, NULL, 1624932867),
-(91, 0, 17, 0, 'goods', 'photo', '', '2c0a5eea458466c8ecdf254d08f79d7c.jpg', '/uploads/images/20210629/2c0a5eea458466c8ecdf254d08f79d7c.jpg', '', 'jpg', '181496', 0, NULL, 1624933078),
-(92, 0, 17, 0, 'goods', 'image', '', '497701b19a6625fb62994757b9d85689.png', '/uploads/images/20210629/497701b19a6625fb62994757b9d85689.png', '', 'png', '927411', 0, NULL, 1624933084),
-(93, 0, 18, 0, 'goods', 'photo', '', 'fff8007f3ed4d9d356c2e4bc2eddb949.jpg', '/uploads/images/20210629/fff8007f3ed4d9d356c2e4bc2eddb949.jpg', '', 'jpg', '18075', 0, NULL, 1624933221),
-(94, 0, 18, 0, 'goods', 'image', '', '90cb1827b1c9d563f894a3ad84bde1b0.jpg', '/uploads/images/20210629/90cb1827b1c9d563f894a3ad84bde1b0.jpg', '', 'jpg', '73635', 0, NULL, 1624933226),
-(95, 0, 19, 0, 'goods', 'photo', '', 'da986e0513db8d7c38daf94cd76db3b7.jpg', '/uploads/images/20210629/da986e0513db8d7c38daf94cd76db3b7.jpg', '', 'jpg', '101187', 0, NULL, 1624933361),
-(96, 0, 19, 0, 'goods', 'image', '', '8dba3bacf1bce921181dba8250edfe93.jpg', '/uploads/images/20210629/8dba3bacf1bce921181dba8250edfe93.jpg', '', 'jpg', '307026', 0, NULL, 1624933367),
-(97, 0, 20, 0, 'goods', 'photo', '', '6a5d41a2e66555f020dd08618242242e.jpg', '/uploads/images/20210629/6a5d41a2e66555f020dd08618242242e.jpg', '', 'jpg', '47910', 0, NULL, 1624933623),
-(98, 0, 20, 0, 'goods', 'image', '', '903f091ec1ead74232851d8169a20b62.jpg', '/uploads/images/20210629/903f091ec1ead74232851d8169a20b62.jpg', '', 'jpg', '276031', 0, NULL, 1624933629),
-(99, 0, 21, 0, 'goods', 'photo', '', 'b6b30888e0bf75f95ed825abc2b382a2.jpg', '/uploads/images/20210629/b6b30888e0bf75f95ed825abc2b382a2.jpg', '', 'jpg', '11836', 0, NULL, 1624933847),
-(100, 0, 21, 0, 'goods', 'image', '', '715b212cb9ef014f75bb3a5727be9222.jpg', '/uploads/images/20210629/715b212cb9ef014f75bb3a5727be9222.jpg', '', 'jpg', '457988', 0, NULL, 1624933879),
-(101, 0, 22, 0, 'goods', 'photo', '', 'f4a10dfe755dddb7c9049c4fe296b105.jpg', '/uploads/images/20210629/f4a10dfe755dddb7c9049c4fe296b105.jpg', '', 'jpg', '31354', 0, NULL, 1624934395),
-(102, 0, 22, 0, 'goods', 'image', '', '92826c6438d685527da6853754a14343.jpg', '/uploads/images/20210629/92826c6438d685527da6853754a14343.jpg', '', 'jpg', '660977', 0, NULL, 1624934400),
-(103, 0, 23, 0, 'goods', 'photo', '', '6c5a2c54169f6623d6f15937f506d7fc.jpg', '/uploads/images/20210629/6c5a2c54169f6623d6f15937f506d7fc.jpg', '', 'jpg', '18521', 0, NULL, 1624934624),
-(104, 0, 23, 0, 'goods', 'image', '', '207640cacadcc8789d2d4a66ccf54f2d.jpg', '/uploads/images/20210629/207640cacadcc8789d2d4a66ccf54f2d.jpg', '', 'jpg', '260417', 0, NULL, 1624934630),
-(105, 0, 24, 0, 'goods', 'photo', '', '8f2f8f19cb29693bc6187a24df7a3fb2.jpg', '/uploads/images/20210629/8f2f8f19cb29693bc6187a24df7a3fb2.jpg', '', 'jpg', '106904', 0, NULL, 1624935196),
-(106, 0, 24, 0, 'goods', 'image', '', '82119ed84676ecd0d191beac877d3af9.jpg', '/uploads/images/20210629/82119ed84676ecd0d191beac877d3af9.jpg', '', 'jpg', '408659', 0, NULL, 1624935215),
-(107, 0, 25, 0, 'goods', 'photo', '', 'c4351e4d8d0ee22c6297f6bb69a022a7.jpg', '/uploads/images/20210629/c4351e4d8d0ee22c6297f6bb69a022a7.jpg', '', 'jpg', '35362', 0, NULL, 1624935351),
-(108, 0, 25, 0, 'goods', 'image', '', '46acb89040bbd6a9b5cf2856effea612.jpg', '/uploads/images/20210629/46acb89040bbd6a9b5cf2856effea612.jpg', '', 'jpg', '1333394', 0, NULL, 1624935359),
-(109, 0, 26, 0, 'goods', 'photo', '', 'fa5999001af8114d7103752e3256743f.jpg', '/uploads/images/20210629/fa5999001af8114d7103752e3256743f.jpg', '', 'jpg', '21654', 0, NULL, 1624935786),
-(110, 0, 26, 0, 'goods', 'image', '', '2b8d3df354f77cc3c556a29661864f8f.jpg', '/uploads/images/20210629/2b8d3df354f77cc3c556a29661864f8f.jpg', '', 'jpg', '117940', 0, NULL, 1624935792),
-(111, 0, 27, 0, 'goods', 'photo', '', '8282e88b1a1636783180391fcd5aa80b.jpg', '/uploads/images/20210629/8282e88b1a1636783180391fcd5aa80b.jpg', '', 'jpg', '103541', 0, NULL, 1624935897),
-(112, 0, 27, 0, 'goods', 'image', '', '1fd2ae927c19bb8ee656d4364eab5537.jpg', '/uploads/images/20210629/1fd2ae927c19bb8ee656d4364eab5537.jpg', '', 'jpg', '394201', 0, NULL, 1624935916),
-(113, 0, 28, 0, 'goods', 'photo', '', 'c358df55c899b282423216bc4d573766.jpg', '/uploads/images/20210629/c358df55c899b282423216bc4d573766.jpg', '', 'jpg', '131067', 0, NULL, 1624936050),
-(114, 0, 28, 0, 'goods', 'image', '', '76a9b769c241a4f4c0457b969d22d4bc.jpg', '/uploads/images/20210629/76a9b769c241a4f4c0457b969d22d4bc.jpg', '', 'jpg', '187742', 0, NULL, 1624936063),
-(115, 0, 29, 0, 'goods', 'photo', '', 'ecb81e80c456f0fbdbbf66eb16f5356c.jpg', '/uploads/images/20210629/ecb81e80c456f0fbdbbf66eb16f5356c.jpg', '', 'jpg', '107339', 0, NULL, 1624936194),
-(116, 0, 29, 0, 'goods', 'image', '', '3f73732f5486794add6f94fc170fc0fd.jpg', '/uploads/images/20210629/3f73732f5486794add6f94fc170fc0fd.jpg', '', 'jpg', '376456', 0, NULL, 1624936204),
-(119, 0, 31, 0, 'goods', 'photo', '', '455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '', 'jpg', '92087', 0, NULL, 1624936402),
-(120, 0, 31, 0, 'goods', 'image', '', '2951ace17e97f3e36829030b4907c7fa.jpg', '/uploads/images/20210629/2951ace17e97f3e36829030b4907c7fa.jpg', '', 'jpg', '806195', 0, NULL, 1624936415),
-(121, 0, 3, 0, 'shop', 'decorate', '', 'c20c3583824ae6cf65708e19fa9622df.jpg', '/uploads/images/20210629/c20c3583824ae6cf65708e19fa9622df.jpg', '', 'jpg', '34257', 0, NULL, 1624936936),
-(122, 0, 3, 0, 'shop', 'decorate', '', '9cc9d629da0ed19d525cb09419fb4317.jpg', '/uploads/images/20210629/9cc9d629da0ed19d525cb09419fb4317.jpg', '', 'jpg', '33726', 0, NULL, 1624936940),
-(123, 0, 3, 0, 'shop', 'decorate', '', '6ca3e3f72ffc53b4202ba1b6e16c947d.png', '/uploads/images/20210629/6ca3e3f72ffc53b4202ba1b6e16c947d.png', '', 'png', '4651', 0, NULL, 1624937200),
-(124, 0, 3, 0, 'shop', 'decorate', '', '9d28e5e8f58e6a0bde48da995b9ac3b3.png', '/uploads/images/20210629/9d28e5e8f58e6a0bde48da995b9ac3b3.png', '', 'png', '5405', 0, NULL, 1624937205),
-(125, 0, 3, 0, 'shop', 'decorate', '', 'b97565734538d52c8ed29221fcbaab85.png', '/uploads/images/20210629/b97565734538d52c8ed29221fcbaab85.png', '', 'png', '4161', 0, NULL, 1624937208),
-(126, 0, 3, 0, 'shop', 'decorate', '', '78738a8bc9376739b23e3399170214c3.png', '/uploads/images/20210629/78738a8bc9376739b23e3399170214c3.png', '', 'png', '5672', 0, NULL, 1624937211),
-(127, 0, 3, 0, 'shop', 'decorate', '', 'a3fed9f07fb7702bff5a6f38bf4df3db.png', '/uploads/images/20210629/a3fed9f07fb7702bff5a6f38bf4df3db.png', '', 'png', '5885', 0, NULL, 1624937216),
-(128, 0, 3, 0, 'shop', 'decorate', '', '16d1a8b2dc8868ed4cc81903d435d6e0.png', '/uploads/images/20210629/16d1a8b2dc8868ed4cc81903d435d6e0.png', '', 'png', '4595', 0, NULL, 1624937219),
-(129, 0, 3, 0, 'shop', 'decorate', '', '53f90a0ed66cade5ed5d199168d2f804.png', '/uploads/images/20210629/53f90a0ed66cade5ed5d199168d2f804.png', '', 'png', '4877', 0, NULL, 1624937222),
-(130, 0, 3, 0, 'shop', 'decorate', '', 'e10c3ff076e73a53c59eee357d922c04.png', '/uploads/images/20210629/e10c3ff076e73a53c59eee357d922c04.png', '', 'png', '4408', 0, NULL, 1624937225),
-(131, 0, 3, 0, 'shop', 'decorate', '', '3e7dee845e3e536694733c211b63c8d7.png', '/uploads/images/20210629/3e7dee845e3e536694733c211b63c8d7.png', '', 'png', '101843', 0, NULL, 1624937257),
-(132, 0, 3, 0, 'shop', 'decorate', '', 'dae403959e85f09778057198e8377e4b.png', '/uploads/images/20210629/dae403959e85f09778057198e8377e4b.png', '', 'png', '63487', 0, NULL, 1624937418),
-(133, 0, 3, 0, 'shop', 'decorate', '', '8660b7dc52e240c86dcf55f6ec6f0203.png', '/uploads/images/20210629/8660b7dc52e240c86dcf55f6ec6f0203.png', '', 'png', '39017', 0, NULL, 1624937423),
-(134, 0, 3, 0, 'shop', 'decorate', '', '93e365d97d6b7c48cc19a3d87cc545b3.png', '/uploads/images/20210629/93e365d97d6b7c48cc19a3d87cc545b3.png', '', 'png', '11627', 0, NULL, 1624937428),
-(135, 0, 3, 0, 'shop', 'decorate', '', '11183b9d92bd5b654de38dbba2c3345d.png', '/uploads/images/20210629/11183b9d92bd5b654de38dbba2c3345d.png', '', 'png', '25062', 0, NULL, 1624937431),
-(136, 0, 5, 0, 'shop', 'decorate', '', '04bdc66bdc402a371efa8186a8a36e52.jpg', '/uploads/images/20210629/04bdc66bdc402a371efa8186a8a36e52.jpg', '', 'jpg', '34257', 0, NULL, 1624937452),
-(137, 0, 5, 0, 'shop', 'decorate', '', '4d3d9e2819d652f80d47f4dd9f6c1c49.jpg', '/uploads/images/20210629/4d3d9e2819d652f80d47f4dd9f6c1c49.jpg', '', 'jpg', '33726', 0, NULL, 1624937455),
-(138, 0, 5, 0, 'shop', 'decorate', '', '872811236c7e0d7ad2e505cb616461b8.png', '/uploads/images/20210629/872811236c7e0d7ad2e505cb616461b8.png', '', 'png', '4651', 0, NULL, 1624937463),
-(139, 0, 5, 0, 'shop', 'decorate', '', 'aba1cd3a8a3efdb6695c29db5de57817.png', '/uploads/images/20210629/aba1cd3a8a3efdb6695c29db5de57817.png', '', 'png', '5405', 0, NULL, 1624937466),
-(140, 0, 5, 0, 'shop', 'decorate', '', '840bd03b7d2084b6db46304eb100532a.png', '/uploads/images/20210629/840bd03b7d2084b6db46304eb100532a.png', '', 'png', '4161', 0, NULL, 1624937469),
-(141, 0, 5, 0, 'shop', 'decorate', '', '2a897c804d0ee851ed440db30ed13ae0.png', '/uploads/images/20210629/2a897c804d0ee851ed440db30ed13ae0.png', '', 'png', '5672', 0, NULL, 1624937472),
-(142, 0, 5, 0, 'shop', 'decorate', '', '8812b4bddf2f04e1d51a49241484cb7d.png', '/uploads/images/20210629/8812b4bddf2f04e1d51a49241484cb7d.png', '', 'png', '5885', 0, NULL, 1624937476),
-(143, 0, 5, 0, 'shop', 'decorate', '', '0fbc29c933d513c8ac0eb849dfe364e2.png', '/uploads/images/20210629/0fbc29c933d513c8ac0eb849dfe364e2.png', '', 'png', '4595', 0, NULL, 1624937479),
-(144, 0, 5, 0, 'shop', 'decorate', '', '51a53efb14dfebb0bd1f3a993fa54b59.png', '/uploads/images/20210629/51a53efb14dfebb0bd1f3a993fa54b59.png', '', 'png', '4877', 0, NULL, 1624937482),
-(145, 0, 5, 0, 'shop', 'decorate', '', 'f9d73efba8a3ae6766d812eeeffce2dc.png', '/uploads/images/20210629/f9d73efba8a3ae6766d812eeeffce2dc.png', '', 'png', '4408', 0, NULL, 1624937485),
-(146, 0, 5, 0, 'shop', 'decorate', '', '4e5a035ea8eda87a02a4c43d072e45e8.png', '/uploads/images/20210629/4e5a035ea8eda87a02a4c43d072e45e8.png', '', 'png', '101843', 0, NULL, 1624937520),
-(147, 0, 5, 0, 'shop', 'decorate', '', 'e7fb6bf07c5c28e9696bb820dbf0a286.png', '/uploads/images/20210629/e7fb6bf07c5c28e9696bb820dbf0a286.png', '', 'png', '63487', 0, NULL, 1624937542),
-(148, 0, 5, 0, 'shop', 'decorate', '', 'f35745f921d002d69e84ac4f2a0fb752.png', '/uploads/images/20210629/f35745f921d002d69e84ac4f2a0fb752.png', '', 'png', '39017', 0, NULL, 1624937547),
-(149, 0, 5, 0, 'shop', 'decorate', '', 'cc63d4e2175f52c8405e604308b70281.png', '/uploads/images/20210629/cc63d4e2175f52c8405e604308b70281.png', '', 'png', '11627', 0, NULL, 1624937551),
-(150, 0, 5, 0, 'shop', 'decorate', '', 'a1dd20dbe04338f520b8de342d16abc1.png', '/uploads/images/20210629/a1dd20dbe04338f520b8de342d16abc1.png', '', 'png', '25062', 0, NULL, 1624937554),
-(151, 0, 1, 0, 'marketing', '', '', 'fdf091206c89aeecf7963c01f7c06cd5.jpg', '/uploads/images/20210629/fdf091206c89aeecf7963c01f7c06cd5.jpg', '', 'jpg', '62579', 0, NULL, 1624957793),
-(155, 0, 30, 0, 'share', '', '', '17d8a9df063226d14541887ee2d6d0a8.jpg', '/uploads/images/20210702/17d8a9df063226d14541887ee2d6d0a8.jpg', '', 'jpg', '58643', 0, NULL, 1625180674),
-(156, 0, 30, 0, 'share', '', '', 'c639a97f228ba383dd01fa3e9983bd14.jpg', '/uploads/images/20210702/c639a97f228ba383dd01fa3e9983bd14.jpg', '', 'jpg', '54327', 0, NULL, 1625180677),
-(157, 0, 30, 0, 'share', '', '', '28726dfadec86bd20792675253f58f4c.png', '/uploads/images/20210702/28726dfadec86bd20792675253f58f4c.png', '', 'png', '134307', 0, NULL, 1625180680),
-(185, 0, 34, 0, 'luckdraw', '', '', '3fa4015765248e68101f90a6e80c94e6.png', '/uploads/images/20210705/3fa4015765248e68101f90a6e80c94e6.png', '', 'png', '2307', 0, NULL, 1625419130),
-(187, 0, 34, 0, 'luckdraw', '', '', 'c08c04e0b912d6d35fbdedb172f30b71.png', '/uploads/images/20210705/c08c04e0b912d6d35fbdedb172f30b71.png', '', 'png', '2307', 0, NULL, 1625419139),
-(189, 0, 34, 0, 'luckdraw', '', '', 'fbe14f1dfb5bfd0b4ca8e7c8fa150f18.png', '/uploads/images/20210705/fbe14f1dfb5bfd0b4ca8e7c8fa150f18.png', '', 'png', '2307', 0, NULL, 1625419144),
-(191, 0, 34, 0, 'luckdraw', '', '', 'ee9c1f7bb55f7cf6dcdf3bcded43c774.png', '/uploads/images/20210705/ee9c1f7bb55f7cf6dcdf3bcded43c774.png', '', 'png', '2307', 0, NULL, 1625419149),
-(193, 0, 34, 0, 'luckdraw', '', '', '458fab1af868de74fe6d9a1b69b8957d.png', '/uploads/images/20210705/458fab1af868de74fe6d9a1b69b8957d.png', '', 'png', '2353', 0, NULL, 1625452336),
-(194, 0, 34, 0, 'luckdraw', '', '', 'c36c6a55d48b2b1cfa3a527d4c47bba4.png', '/uploads/images/20210705/c36c6a55d48b2b1cfa3a527d4c47bba4.png', '', 'png', '2353', 0, NULL, 1625452343),
-(195, 0, 34, 0, 'luckdraw', '', '', 'bba4fc120a2f4613df7b82e5e7e10111.png', '/uploads/images/20210705/bba4fc120a2f4613df7b82e5e7e10111.png', '', 'png', '2353', 0, NULL, 1625452357),
-(196, 0, 34, 0, 'luckdraw', '', '', '6e0e6e0325ebeef5f1c0dbd75417e9f4.png', '/uploads/images/20210705/6e0e6e0325ebeef5f1c0dbd75417e9f4.png', '', 'png', '2353', 0, NULL, 1625452367),
-(197, 0, 1, 0, 'shop', 'decorate', '', '416e88984f1a300404352029f90e5c9a.png', '/uploads/images/20210705/416e88984f1a300404352029f90e5c9a.png', '', 'png', '6675', 0, NULL, 1625452460),
-(198, 0, 3, 0, 'shop', 'decorate', '', '166fa1c5ed6682a0a529a894665aa674.png', '/uploads/images/20210705/166fa1c5ed6682a0a529a894665aa674.png', '', 'png', '6675', 0, NULL, 1625452477),
-(199, 0, 5, 0, 'shop', 'decorate', '', '2a62d728ec9e089991366c0e3e1af4fc.png', '/uploads/images/20210705/2a62d728ec9e089991366c0e3e1af4fc.png', '', 'png', '6675', 0, NULL, 1625452498),
-(200, 0, 5, 0, 'shop', 'decorate', '', '3bd1aaa8969dea6c1c3e6e4771f9e1de.png', '/uploads/images/20210705/3bd1aaa8969dea6c1c3e6e4771f9e1de.png', '', 'png', '5771', 0, NULL, 1625454964),
-(201, 0, 3, 0, 'shop', 'decorate', '', '4eecb93f02447ea307dc5c129b2267ee.png', '/uploads/images/20210705/4eecb93f02447ea307dc5c129b2267ee.png', '', 'png', '5771', 0, NULL, 1625454992),
-(202, 0, 1, 0, 'shop', 'decorate', '', '89a285935317c100599da2c3cc611d61.png', '/uploads/images/20210705/89a285935317c100599da2c3cc611d61.png', '', 'png', '5771', 0, NULL, 1625455009),
-(203, 0, 30, 0, 'goods', 'photo', '', '824d423420ec2da587b9eb2a086bb89c.jpg', '/uploads/images/20210725/824d423420ec2da587b9eb2a086bb89c.jpg', '', 'jpg', '50086', 0, NULL, 1627222409),
-(204, 0, 30, 0, 'goods', 'image', '', 'd76f767736d756cd2997d809e510fe00.jpg', '/uploads/images/20210725/d76f767736d756cd2997d809e510fe00.jpg', '', 'jpg', '50086', 0, NULL, 1627222416),
-(205, 0, 32, 0, 'file', '', '', '32c26f1ba00b35a372781604935994d1.rar', '/uploads/file/20211027/32c26f1ba00b35a372781604935994d1.rarfile/20211027/32c26f1ba00b35a372781604935994d1.rar', '', 'rar', '2688973', 0, NULL, 1635297022),
-(206, 0, 32, 0, 'file', '', '', 'ef9aadd0c45909cb71cc705289ac7855.rar', '/uploads/file/20211027/ef9aadd0c45909cb71cc705289ac7855.rarfile/20211027/ef9aadd0c45909cb71cc705289ac7855.rar', '', 'rar', '2688973', 0, NULL, 1635316732),
-(217, 0, 0, 0, 'wechat', '', 'apiclient_cert.pem', '14c2c6a8759d5f7aef30ea4d39a329cd.pem', '/runtime/certificate/20211121/14c2c6a8759d5f7aef30ea4d39a329cd.pem', '', 'pem', '1440', 0, NULL, 1637462518),
-(219, 0, 0, 0, '', '', '图片.jpg', '0d3f5be465c402f922c14706c36420f5.jpg', '/uploads/images/20211201/0d3f5be465c402f922c14706c36420f5.jpg', '', 'jpg', '26844', 0, NULL, 1638340548),
-(220, 0, 0, 0, 'chat', '', '图片.jpg', '50a20d099e938e82d9d45e8f375f338f.jpg', '/uploads/images/20211201/50a20d099e938e82d9d45e8f375f338f.jpg', '', 'jpg', '26844', 0, NULL, 1638340622),
-(221, 0, 24, 0, 'online', 'image', '', '2ae710c4410cd7b402dec43759e50c0e.png', '/uploads/images/20211201/2ae710c4410cd7b402dec43759e50c0e.png', '', 'png', '58659', 0, NULL, 1638340768),
-(223, 0, 1, 0, 'shop', 'decorate', 'login_form_img.png', 'a93645b9090755117c13884e222bb5c4.png', '/uploads/images/20211202/a93645b9090755117c13884e222bb5c4.png', '', 'png', '58659', 0, NULL, 1638440953),
-(224, 0, 0, 0, 'wechat', '', 'apiclient_key.pem', '3ea48e84daba7847b3ad415064fc19fd.pem', '/runtime/certificate/20211205/3ea48e84daba7847b3ad415064fc19fd.pem', '', 'pem', '1704', 0, NULL, 1638711440),
-(225, 0, 0, 0, 'wechat', '', 'apiclient_cert.pem', '92d8287e0d95eb3aa7ad493ad8da3291.pem', '/runtime/certificate/20211205/92d8287e0d95eb3aa7ad493ad8da3291.pem', '', 'pem', '1440', 0, NULL, 1638711444),
-(226, 0, 0, 0, 'wechat', '', 'apiclient_key.pem', '85dbcc614af23870ccb2bf3713665dcd.pem', '/runtime/certificate/20211205/85dbcc614af23870ccb2bf3713665dcd.pem', '', 'pem', '1704', 0, NULL, 1638711467),
-(227, 0, 0, 0, 'wechat', '', 'apiclient_cert.pem', 'baf78fb683c86f2bb5e42b0e7dc11c1c.pem', '/runtime/certificate/20211205/baf78fb683c86f2bb5e42b0e7dc11c1c.pem', '', 'pem', '1440', 0, NULL, 1638711470),
-(228, 0, 0, 0, 'marketing', '', '1.jpg', '054f5edb94ab5e13d64b2ed0a1342955.jpg', '/uploads/images/20211212/054f5edb94ab5e13d64b2ed0a1342955.jpg', '', 'jpg', '23644', 0, NULL, 1639306750),
-(259, 0, 0, 0, 'marketing', '', '2.jpg', '1120fab396092868d98957f4fa110a1a.jpg', '/uploads/images/20211212/1120fab396092868d98957f4fa110a1a.jpg', '', 'jpg', '14090', 0, NULL, 1639308589),
-(260, 0, 0, 0, 'marketing', '', '3.jpg', '59f372b277bb9c3a8dec4f261819b556.jpg', '/uploads/images/20211212/59f372b277bb9c3a8dec4f261819b556.jpg', '', 'jpg', '10006', 0, NULL, 1639308616),
-(261, 0, 0, 0, 'marketing', '', '4.jpg', 'abac10ea20edf5f74ebb55dccd19c1f2.jpg', '/uploads/images/20211212/abac10ea20edf5f74ebb55dccd19c1f2.jpg', '', 'jpg', '6507', 0, NULL, 1639308621),
-(262, 0, 0, 0, 'marketing', '', '5.jpg', '18c02189a78b0fb307d722a3c0abcdd4.jpg', '/uploads/images/20211212/18c02189a78b0fb307d722a3c0abcdd4.jpg', '', 'jpg', '7323', 0, NULL, 1639308624);
-
 CREATE TABLE `mall_attachment_category` (
   `id` int(11) NOT NULL,
   `type` varchar(32) NOT NULL DEFAULT '' COMMENT '分类类型',
@@ -3988,21 +3806,6 @@ CREATE TABLE `mall_attachment_category` (
   `name` varchar(50) NOT NULL DEFAULT '' COMMENT '分类名称',
   `catalog` varchar(50) DEFAULT '' COMMENT '目录'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='附件分类表';
-
-INSERT INTO `mall_attachment_category` (`id`, `type`, `pid`, `name`, `catalog`) VALUES
-(1, 'image', 0, '家电', ''),
-(2, 'image', 0, '厨房卫浴', ''),
-(3, 'image', 0, '家居家具', ''),
-(4, 'image', 0, '酒类', ''),
-(5, 'image', 0, '厨具', ''),
-(6, 'image', 0, '空调', ''),
-(7, 'image', 0, '酒类', ''),
-(8, 'image', 0, '电视', ''),
-(9, 'image', 0, '电视', ''),
-(10, 'image', 0, '杯具', ''),
-(11, 'image', 0, '酒类', ''),
-(12, 'image', 0, '洗衣机', ''),
-(13, 'image', 0, '家居家具', '');
 
 CREATE TABLE `mall_card` (
   `id` bigint(20) NOT NULL,
@@ -4013,9 +3816,6 @@ CREATE TABLE `mall_card` (
   `end_time` int(10) DEFAULT 0 COMMENT '结束时间',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='卡券表';
-
-INSERT INTO `mall_card` (`id`, `goods_id`, `name`, `status`, `start_time`, `end_time`, `create_time`) VALUES
-(1, '31', '桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能 ', 0, 0, 0, 1635132112);
 
 CREATE TABLE `mall_card_order` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -4042,9 +3842,6 @@ CREATE TABLE `mall_card_order` (
   `completion_time` int(10) DEFAULT 0 COMMENT '订单完成时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='卡劵订单表';
 
-INSERT INTO `mall_card_order` (`id`, `user_id`, `order_no`, `freight_id`, `distribution_code`, `status`, `distribution_status`, `accept_name`, `mobile`, `country`, `province`, `city`, `area`, `address`, `remarks`, `payable_amount`, `order_amount`, `goods_info`, `source`, `send_time`, `create_time`, `completion_time`) VALUES
-(1, 0, '2021111815060985799', 0, '', 1, 0, '林子', '18026740326', '0', '1', '2', '3', '源城区 东城三号', NULL, '399.00', '399.00', '{\"id\":31,\"goods_type\":0,\"cat_id\":16,\"attr_id\":1,\"brand_id\":0,\"model_id\":0,\"delivery_id\":1,\"card_id\":0,\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"goods_number\":\"202106291113391136\",\"goods_weight\":\"190.00\",\"sell_price\":\"399.00\",\"market_price\":\"1299.00\",\"cost_price\":\"125.00\",\"store_nums\":560,\"photo\":\"\\/uploads\\/images\\/20210629\\/455e551e15c75f6ff5cdd9278c6e2ab3.jpg\",\"briefly\":\"\",\"content\":\"<p><br\\/><\\/p><p><img src=\\\"\\/uploads\\/images\\/20210629\\/2951ace17e97f3e36829030b4907c7fa.jpg\\\" alt=\\\"2951ace17e97f3e36829030b4907c7fa.jpg\\\"\\/><\\/p>\",\"goods_content\":null,\"down_url\":\"\",\"point\":0,\"status\":0,\"visit\":0,\"favorite\":0,\"sort\":0,\"exp\":0,\"sale\":3,\"grade\":0,\"upper_time\":0,\"down_time\":0,\"create_time\":1624936419,\"update_time\":1624936419,\"products\":7,\"attr\":\"颜色分类:香槟色\",\"card\":{\"id\":100,\"tempate_id\":1,\"user_id\":0,\"order_id\":\"1\",\"code\":\"100617622d7ed5f9\",\"pwd\":\"E422BFC3C47F\",\"status\":2,\"start_time\":0,\"end_time\":0,\"create_time\":1635132119}}', 1, 0, 1637219169, 0);
-
 CREATE TABLE `mall_card_template` (
   `id` bigint(20) NOT NULL COMMENT '编号',
   `tempate_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '模版编号',
@@ -4057,108 +3854,6 @@ CREATE TABLE `mall_card_template` (
   `end_time` int(10) NOT NULL DEFAULT 0 COMMENT '结束时间',
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='卡券模板表';
-
-INSERT INTO `mall_card_template` (`id`, `tempate_id`, `user_id`, `order_id`, `code`, `pwd`, `status`, `start_time`, `end_time`, `create_time`) VALUES
-(1, 1, 0, 0, '1617622d7ed537', '5A615J7CA1EC', 1, 0, 0, 1635132119),
-(2, 1, 0, 0, '2617622d7ed546', '494A464E356D', 1, 0, 0, 1635132119),
-(3, 1, 0, 0, '3617622d7ed549', 'DB9B9563414C', 1, 0, 0, 1635132119),
-(4, 1, 0, 0, '4617622d7ed54b', 'AAC8234E2424', 1, 0, 0, 1635132119),
-(5, 1, 0, 0, '5617622d7ed54d', '8CC2A26L8524', 1, 0, 0, 1635132119),
-(6, 1, 0, 0, '6617622d7ed54f', '65DA76F7C149', 1, 0, 0, 1635132119),
-(7, 1, 0, 0, '7617622d7ed551', 'BB47128C3A1D', 1, 0, 0, 1635132119),
-(8, 1, 0, 0, '8617622d7ed553', 'C58A7CD5E327', 1, 0, 0, 1635132119),
-(9, 1, 0, 0, '9617622d7ed555', '27DCN7159371', 1, 0, 0, 1635132119),
-(10, 1, 0, 0, '10617622d7ed557', '15FEC3A1A2F5', 1, 0, 0, 1635132119),
-(11, 1, 0, 0, '11617622d7ed558', 'A488C668B2F6', 1, 0, 0, 1635132119),
-(12, 1, 0, 0, '12617622d7ed55a', 'E94D979E644E', 1, 0, 0, 1635132119),
-(13, 1, 0, 0, '13617622d7ed55c', 'B72BEEEE958E', 1, 0, 0, 1635132119),
-(14, 1, 0, 0, '14617622d7ed55e', '5AJJ71696F51', 1, 0, 0, 1635132119),
-(15, 1, 0, 0, '15617622d7ed560', '448F98B61C73', 1, 0, 0, 1635132119),
-(16, 1, 0, 0, '16617622d7ed562', '2AE2E5498HB4', 1, 0, 0, 1635132119),
-(17, 1, 0, 0, '17617622d7ed564', '1817177E4566', 1, 0, 0, 1635132119),
-(18, 1, 0, 0, '18617622d7ed565', '535D37DCC9D5', 1, 0, 0, 1635132119),
-(19, 1, 0, 0, '19617622d7ed567', '78471DB64I4C', 1, 0, 0, 1635132119),
-(20, 1, 0, 0, '20617622d7ed569', '1B4CC213794D', 1, 0, 0, 1635132119),
-(21, 1, 0, 0, '21617622d7ed56b', 'E4856DEBAAFA', 1, 0, 0, 1635132119),
-(22, 1, 0, 0, '22617622d7ed56c', 'B5583ACEBE92', 1, 0, 0, 1635132119),
-(23, 1, 0, 0, '23617622d7ed56e', '824BB1B3D27F', 1, 0, 0, 1635132119),
-(24, 1, 0, 0, '24617622d7ed570', '9ACF5D2B459A', 1, 0, 0, 1635132119),
-(25, 1, 0, 0, '25617622d7ed572', '2C1CD8B255C7', 1, 0, 0, 1635132119),
-(26, 1, 0, 0, '26617622d7ed574', '21CFCC1A9AE6', 1, 0, 0, 1635132119),
-(27, 1, 0, 0, '27617622d7ed576', 'EB4A4E4BEE13', 1, 0, 0, 1635132119),
-(28, 1, 0, 0, '28617622d7ed578', 'F84418ECE3FE', 1, 0, 0, 1635132119),
-(29, 1, 0, 0, '29617622d7ed57a', '7D7D7B48J336', 1, 0, 0, 1635132119),
-(30, 1, 0, 0, '30617622d7ed57b', '517C9C3476CN', 1, 0, 0, 1635132119),
-(31, 1, 0, 0, '31617622d7ed57d', '655EBBE7BA1E', 1, 0, 0, 1635132119),
-(32, 1, 0, 0, '32617622d7ed57f', '9AEED6A65336', 1, 0, 0, 1635132119),
-(33, 1, 0, 0, '33617622d7ed581', '63FC2A59D79J', 1, 0, 0, 1635132119),
-(34, 1, 0, 0, '34617622d7ed583', '887D3F9A62BF', 1, 0, 0, 1635132119),
-(35, 1, 0, 0, '35617622d7ed585', '95G13A941G55', 1, 0, 0, 1635132119),
-(36, 1, 0, 0, '36617622d7ed587', '989C6A5FED32', 1, 0, 0, 1635132119),
-(37, 1, 0, 0, '37617622d7ed589', 'FA156D2F3AB3', 1, 0, 0, 1635132119),
-(38, 1, 0, 0, '38617622d7ed58b', '1N7BE7BFC732', 1, 0, 0, 1635132119),
-(39, 1, 0, 0, '39617622d7ed58c', 'F9348693D7FA', 1, 0, 0, 1635132119),
-(40, 1, 0, 0, '40617622d7ed58e', '661A5A36BE4A', 1, 0, 0, 1635132119),
-(41, 1, 0, 0, '41617622d7ed590', 'FH18A557F6BC', 1, 0, 0, 1635132119),
-(42, 1, 0, 0, '42617622d7ed592', '3JC5J28DFB43', 1, 0, 0, 1635132119),
-(43, 1, 0, 0, '43617622d7ed593', '1F8GB399E232', 1, 0, 0, 1635132119),
-(44, 1, 0, 0, '44617622d7ed595', '53E9983D8A3D', 1, 0, 0, 1635132119),
-(45, 1, 0, 0, '45617622d7ed597', 'FD3229EAB22D', 1, 0, 0, 1635132119),
-(46, 1, 0, 0, '46617622d7ed599', '6B89AD8DCCFF', 1, 0, 0, 1635132119),
-(47, 1, 0, 0, '47617622d7ed59a', 'CAD48BF777D2', 1, 0, 0, 1635132119),
-(48, 1, 0, 0, '48617622d7ed59c', '77E21CCCE26E', 1, 0, 0, 1635132119),
-(49, 1, 0, 0, '49617622d7ed59e', 'B3E5D8LFEC9F', 1, 0, 0, 1635132119),
-(50, 1, 0, 0, '50617622d7ed59f', '9E5L98FEA572', 1, 0, 0, 1635132119),
-(51, 1, 0, 0, '51617622d7ed5a1', 'FC65AF9E793D', 1, 0, 0, 1635132119),
-(52, 1, 0, 0, '52617622d7ed5a3', '9N72N3C35F2A', 1, 0, 0, 1635132119),
-(53, 1, 0, 0, '53617622d7ed5a5', 'B22FG63F5893', 1, 0, 0, 1635132119),
-(54, 1, 0, 0, '54617622d7ed5a7', '8F24FF82A421', 1, 0, 0, 1635132119),
-(55, 1, 0, 0, '55617622d7ed5a9', 'E7461CEA8724', 1, 0, 0, 1635132119),
-(56, 1, 0, 0, '56617622d7ed5ab', 'L55FFFLDDC1E', 1, 0, 0, 1635132119),
-(57, 1, 0, 0, '57617622d7ed5ac', '8F45CAFA3B6A', 1, 0, 0, 1635132119),
-(58, 1, 0, 0, '58617622d7ed5ae', 'FFBFJBEC2BD2', 1, 0, 0, 1635132119),
-(59, 1, 0, 0, '59617622d7ed5b0', 'CCA44FC7F6C8', 1, 0, 0, 1635132119),
-(60, 1, 0, 0, '60617622d7ed5b2', '4984F93C676C', 1, 0, 0, 1635132119),
-(61, 1, 0, 0, '61617622d7ed5b3', '36FF47426E63', 1, 0, 0, 1635132119),
-(62, 1, 0, 0, '62617622d7ed5b5', 'E51FA6BD8D16', 1, 0, 0, 1635132119),
-(63, 1, 0, 0, '63617622d7ed5b7', 'N73637B4399B', 1, 0, 0, 1635132119),
-(64, 1, 0, 0, '64617622d7ed5b9', '6E9AG1FBEBCD', 1, 0, 0, 1635132119),
-(65, 1, 0, 0, '65617622d7ed5bb', 'ABDC339EB3C9', 1, 0, 0, 1635132119),
-(66, 1, 0, 0, '66617622d7ed5bd', '26D25984826D', 1, 0, 0, 1635132119),
-(67, 1, 0, 0, '67617622d7ed5bf', '2CE133BA69F8', 1, 0, 0, 1635132119),
-(68, 1, 0, 0, '68617622d7ed5c1', 'F3B29315ACC3', 1, 0, 0, 1635132119),
-(69, 1, 0, 0, '69617622d7ed5c2', '51E4A3897BC5', 1, 0, 0, 1635132119),
-(70, 1, 0, 0, '70617622d7ed5c4', '6C4EC7567845', 1, 0, 0, 1635132119),
-(71, 1, 0, 0, '71617622d7ed5c6', 'F6782E49B35F', 1, 0, 0, 1635132119),
-(72, 1, 0, 0, '72617622d7ed5c8', '44D7A3E152C4', 1, 0, 0, 1635132119),
-(73, 1, 0, 0, '73617622d7ed5c9', '3713D68A8355', 1, 0, 0, 1635132119),
-(74, 1, 0, 0, '74617622d7ed5cb', '1159D473B697', 1, 0, 0, 1635132119),
-(75, 1, 0, 0, '75617622d7ed5cd', 'CB42A7B3C359', 1, 0, 0, 1635132119),
-(76, 1, 0, 0, '76617622d7ed5ce', 'CDD7FFEF9CFD', 1, 0, 0, 1635132119),
-(77, 1, 0, 0, '77617622d7ed5d0', '5C769D2AEC47', 1, 0, 0, 1635132119),
-(78, 1, 0, 0, '78617622d7ed5d2', '973F282DBM8M', 1, 0, 0, 1635132119),
-(79, 1, 0, 0, '79617622d7ed5d4', '24DC21DI3152', 1, 0, 0, 1635132119),
-(80, 1, 0, 0, '80617622d7ed5d5', '248CFEF861C1', 1, 0, 0, 1635132119),
-(81, 1, 0, 0, '81617622d7ed5d7', 'C48E85C26ADA', 1, 0, 0, 1635132119),
-(82, 1, 0, 0, '82617622d7ed5d9', '264AA482AAFA', 1, 0, 0, 1635132119),
-(83, 1, 0, 0, '83617622d7ed5db', '44N433B9C79F', 1, 0, 0, 1635132119),
-(84, 1, 0, 0, '84617622d7ed5dc', '29F2F5F94758', 1, 0, 0, 1635132119),
-(85, 1, 0, 0, '85617622d7ed5df', '42CB45727838', 1, 0, 0, 1635132119),
-(86, 1, 0, 0, '86617622d7ed5e0', 'BF815284A2AD', 1, 0, 0, 1635132119),
-(87, 1, 0, 0, '87617622d7ed5e2', '6D886EDE61CA', 1, 0, 0, 1635132119),
-(88, 1, 0, 0, '88617622d7ed5e4', '5DEI6ID83F55', 1, 0, 0, 1635132119),
-(89, 1, 0, 0, '89617622d7ed5e6', '6C3MA73MD32C', 1, 0, 0, 1635132119),
-(90, 1, 0, 0, '90617622d7ed5e7', '59AED6522176', 1, 0, 0, 1635132119),
-(91, 1, 0, 0, '91617622d7ed5e9', 'C25C943CL4FF', 1, 0, 0, 1635132119),
-(92, 1, 0, 0, '92617622d7ed5eb', '59D1EE371DC9', 1, 0, 0, 1635132119),
-(93, 1, 0, 0, '93617622d7ed5ed', 'B65E1C6CB455', 1, 0, 0, 1635132119),
-(94, 1, 0, 0, '94617622d7ed5ee', '87JDA65EBA35', 1, 0, 0, 1635132119),
-(95, 1, 0, 0, '95617622d7ed5f0', '1598C75B3D9C', 1, 0, 0, 1635132119),
-(96, 1, 0, 0, '96617622d7ed5f2', 'A3CFFMC6D7C1', 1, 0, 0, 1635132119),
-(97, 1, 0, 0, '97617622d7ed5f3', '85C788BEE5C5', 1, 0, 0, 1635132119),
-(98, 1, 0, 0, '98617622d7ed5f5', 'AFE9BDAD9CB6', 1, 0, 0, 1635132119),
-(99, 1, 0, 0, '99617622d7ed5f7', 'FDBE9N44FN6F', 1, 0, 0, 1635132119),
-(100, 1, 0, 1, '100617622d7ed5f9', 'E422BFC3C47F', 2, 0, 0, 1635132119);
 
 CREATE TABLE `mall_cart` (
   `id` bigint(20) NOT NULL,
@@ -4175,9 +3870,6 @@ CREATE TABLE `mall_cart` (
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间',
   `update_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='购物车';
-
-INSERT INTO `mall_cart` (`id`, `session_id`, `user_id`, `goods_id`, `product_id`, `spec_key`, `sell_price`, `cost_price`, `market_price`, `goods_weight`, `goods_nums`, `create_time`, `update_time`) VALUES
-(4, '', 4, 28, 0, '', '78.00', '42.00', '198.00', '250.00', 1, 1638523913, 0);
 
 CREATE TABLE `mall_category` (
   `id` int(11) NOT NULL,
@@ -4197,86 +3889,6 @@ CREATE TABLE `mall_category` (
   `update_time` int(10) NOT NULL DEFAULT 0 COMMENT '修改时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `mall_category` (`id`, `pid`, `title`, `photo`, `content`, `module`, `status`, `sort`, `hits`, `is_menu`, `is_hot`, `is_recommend`, `is_lock`, `create_time`, `update_time`) VALUES
-(1, 0, '厨房小电器', '', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624155953, 1624155953),
-(2, 1, '电热水壶', '/uploads/images/20210620/ab473d73baf5a03cb71557c10c81d641.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624156003, 1624156003),
-(3, 1, '电饭煲', '/uploads/images/20210620/bd6dd6ece8fce1f63b012c797ce65b5a.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624156362, 1624156362),
-(4, 1, '净水器', '/uploads/images/20210620/1c088ab8f7bd787610c6aa3480c4eeef.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624157011, 1624157011),
-(5, 1, '料理机', '/uploads/images/20210620/fbfbaa88c13c83debd6c0082bd4691b4.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624157181, 1624157181),
-(6, 0, '大家电', '', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624157204, 1624157204),
-(7, 6, '空调', '/uploads/images/20210620/55a35d91d53f9e749ce844a13ed64f45.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624157348, 1624157348),
-(8, 6, '洗衣机', '/uploads/images/20210620/5dc770b9f7cb1e406a9a735792d7ceb8.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624157513, 1624157513),
-(9, 6, '电视机', '/uploads/images/20210620/4deb6d34b203afd26e30f23728cfaa0f.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624157707, 1624157707),
-(10, 6, '烘干机', '/uploads/images/20210620/38a0065078b668836f485805ddcba4ce.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624157837, 1624157837),
-(11, 0, '生活电器', '', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624157859, 1624157859),
-(12, 11, '电扇', '/uploads/images/20210620/cfe01e3817aa27cd1a71f72b08d92d56.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624157944, 1624157944),
-(13, 11, '空气净化器', '/uploads/images/20210620/7fa61b0a93487e53d73fc9d737816267.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624171104, 1624171104),
-(14, 11, '烫衣熨斗', '/uploads/images/20210620/badcaad291399325618b457eeb5892f9.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624172924, 1624172924),
-(15, 1, '揉面机', '/uploads/images/20210620/c0b6ef3a6e5edf59f27dab0bbfb3c97a.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 1, 0, 1624173840, 1624173840),
-(16, 11, '取暖器', '/uploads/images/20210620/cbe1dc41b912f1f886f1e5a7e4721e3d.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 0, 0, 1624174474, 1624174474),
-(17, 2, '304不锈钢', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929158, 1624929158),
-(18, 2, '外塑内钢', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929237, 1624929237),
-(19, 2, '400系列不锈钢', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929253, 1624929253),
-(20, 2, '双层不锈钢', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929261, 1624929261),
-(21, 2, '单层玻璃', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929269, 1624929269),
-(22, 2, '铝合金', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929277, 1624929277),
-(23, 2, '316不锈钢', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929285, 1624929285),
-(24, 2, '双层玻璃', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929293, 1624929293),
-(25, 2, '不锈钢', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929300, 1624929300),
-(26, 2, '不沾涂层', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929346, 1624929346),
-(27, 2, '铜', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929353, 1624929353),
-(28, 2, '搪瓷', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929360, 1624929360),
-(29, 2, '单层不锈钢', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929369, 1624929369),
-(30, 2, '铝', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929376, 1624929376),
-(31, 2, '铸铁', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929384, 1624929384),
-(32, 2, '玻璃', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929392, 1624929392),
-(33, 0, '个护电器', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929475, 1624929475),
-(34, 0, '厨房大电', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929486, 1624929486),
-(35, 0, '视听影音', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929514, 1624929514),
-(36, 0, '手机', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929625, 1624929625),
-(37, 0, '手机配件', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929637, 1624929637),
-(38, 0, '商务办公', '', NULL, 'goods', 0, 0, 0, 1, 1, 0, 0, 1624929648, 1624929648),
-(39, 1, '电炖锅', '/uploads/images/20210629/fe1935f48863c4e8046c618acc50ec78.jpg', NULL, 'goods', 0, 0, 0, 0, 0, 1, 0, 1624932665, 1624932665),
-(40, 2, '耐热高温玻璃', '', NULL, 'goods', 0, 0, 0, 1, 0, 1, 0, 1624934726, 1624934726),
-(41, 0, '购物指南', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972862, 1624972862),
-(42, 41, '用户协议', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972869, 1624972869),
-(43, 41, '交易条款', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972875, 1624972875),
-(44, 41, '购物流程', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972883, 1624972883),
-(45, 41, '促销咨询', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972891, 1624972891),
-(46, 41, '商品咨询', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972897, 1624972897),
-(47, 0, '配送方式', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972905, 1624972905),
-(48, 47, '发货与签收', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972913, 1624972913),
-(49, 47, '配送运费收取说明', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972920, 1624972920),
-(50, 47, '配送服务查询', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972928, 1624972928),
-(51, 47, '配送时效', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972937, 1624972937),
-(52, 47, '配送异常', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972943, 1624972943),
-(53, 0, '账户及会员', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972950, 1624972950),
-(54, 53, '账户安全', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972958, 1624972958),
-(55, 53, '账户信息', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972965, 1624972965),
-(56, 53, '账户资产', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972974, 1624972974),
-(57, 53, '会员介绍', '', NULL, 'article', 0, 0, 0, 0, 0, 0, 0, 1624972982, 1624972982),
-(58, 0, '生活资讯', '', NULL, 'article', 0, 0, 0, 0, 0, 1, 0, 1624972990, 1624972990),
-(59, 0, '平台公告', '', NULL, 'article', 0, 0, 0, 0, 0, 1, 0, 1624972997, 1624972997),
-(60, 0, '帮助中心', '', NULL, 'article', 0, 0, 0, 0, 0, 1, 0, 1624973004, 1624973004),
-(61, 0, '联系我们', '', '<p>联系我们</p>', 'page', 0, 0, 0, 0, 0, 1, 0, 1624973021, 1624973021),
-(62, 0, '新手入门', '', '<p>新手入门</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624973029, 1624973029),
-(63, 62, '购物流程', '', '<p>购物流程</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624973038, 1624973038),
-(64, 62, '会员制度', '', '<p>会员制度</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624973046, 1624973046),
-(65, 62, '订单查询', '', '<p>订单查询</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624973055, 1624973055),
-(66, 62, '服务协议及隐私说明', '', '<p>服务协议及隐私说明</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624973064, 1624973064),
-(67, 62, '网站地图', '', '<p>网站地图</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624973074, 1624973074),
-(68, 0, '支付方式', '', '<p>支付方式</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624973083, 1624973083),
-(69, 68, '网上支付', '', '<p>网上支付</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624973093, 1624973093),
-(70, 68, '优惠券使用方式', '', '<p>优惠券使用方式</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624974055, 1624974055),
-(71, 68, '如何支付', '', '<p>如何支付</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624974064, 1624974064),
-(72, 0, '配送服务', '', '<p>配送服务</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624974193, 1624974193),
-(73, 72, '配送进度查询', '', '<p>配送进度查询</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624974205, 1624974205),
-(74, 72, '商品验货与签收', '', '<p>商品验货与签收</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624974215, 1624974215),
-(75, 0, '售后保障', '', '<p>售后保障</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624974223, 1624974223),
-(76, 75, '退换货政策', '', '<p>退换货政策</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624974233, 1624974233),
-(77, 75, '发票制度', '', '<p>发票制度</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624974243, 1624974243),
-(78, 75, '帮助中心', '', '<p>帮助中心</p>', 'page', 0, 0, 0, 0, 0, 0, 0, 1624974252, 1624974252);
-
 CREATE TABLE `mall_chat_friends` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `group_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '分组id',
@@ -4288,12 +3900,6 @@ CREATE TABLE `mall_chat_friends` (
   `delete_time` int(10) NOT NULL DEFAULT 0 COMMENT '删除时间',
   `last_online_time` int(10) NOT NULL DEFAULT 0 COMMENT '上次在线时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='联系人表';
-
-INSERT INTO `mall_chat_friends` (`id`, `group_id`, `service_id`, `user_id`, `online`, `is_del`, `create_time`, `delete_time`, `last_online_time`) VALUES
-(1, 0, 2, 2, 1, 0, 1625170355, 0, 1625170355),
-(2, 0, 1, 2, 1, 0, 1625170485, 0, 1625170485),
-(3, 0, 2, 1, 0, 0, 1625170575, 0, 1625170575),
-(4, 0, 1, 1, 0, 0, 1625171622, 0, 1625171622);
 
 CREATE TABLE `mall_chat_group` (
   `id` smallint(5) NOT NULL,
@@ -4314,31 +3920,6 @@ CREATE TABLE `mall_chat_message` (
   `content` longtext DEFAULT NULL COMMENT '消息内容',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='消息表';
-
-INSERT INTO `mall_chat_message` (`id`, `type`, `send_type`, `service_id`, `user_id`, `is_read`, `goods_id`, `sku_id`, `order_id`, `content`, `create_time`) VALUES
-(1, 'text', 1, 2, 2, 1, 0, 0, 0, '1', 1625170357),
-(2, 'text', 1, 2, 2, 1, 0, 0, 0, '2', 1625170365),
-(3, 'text', 1, 1, 2, 1, 0, 0, 0, '1', 1625170570),
-(4, 'text', 1, 1, 2, 1, 0, 0, 0, '3', 1625170582),
-(5, 'text', 1, 1, 2, 1, 0, 0, 0, 'a', 1625171567),
-(6, 'text', 1, 2, 2, 1, 0, 0, 0, '2', 1625171571),
-(7, 'text', 1, 2, 2, 1, 0, 0, 0, '3', 1625171575),
-(8, 'text', 1, 1, 2, 1, 0, 0, 0, '1', 1625171593),
-(9, 'text', 1, 1, 1, 1, 0, 0, 0, '1', 1625171624),
-(10, 'text', 1, 2, 1, 1, 0, 0, 0, '2', 1625171627),
-(11, 'text', 1, 1, 2, 1, 0, 0, 0, '1', 1625171655),
-(12, 'text', 1, 2, 2, 1, 0, 0, 0, 'sadf', 1625171661),
-(13, 'text', 1, 1, 2, 1, 0, 0, 0, 'dfa', 1625171664),
-(14, 'text', 0, 1, 2, 1, 0, 0, 0, 'a', 1625171668),
-(15, 'text', 1, 2, 1, 1, 0, 0, 0, 'sadf', 1625171671),
-(16, 'text', 0, 1, 2, 1, 0, 0, 0, '😨', 1625171758),
-(17, 'text', 0, 1, 2, 0, 0, 0, 0, '12121212', 1631670716),
-(18, 'text', 0, 1, 1, 1, 0, 0, 0, '11111111', 1631670731),
-(19, 'text', 0, 1, 1, 1, 0, 0, 0, '22222', 1631670911),
-(20, 'text', 1, 1, 1, 1, 0, 0, 0, '22a', 1637313638),
-(21, 'text', 1, 1, 1, 1, 0, 0, 0, 'qqq', 1637313648),
-(22, 'image', 1, 1, 1, 1, 0, 0, 0, '/uploads/images/20211119/86afcb0c6a5d72999c03c096308f1930.jpg', 1637316792),
-(23, 'image', 1, 1, 1, 1, 0, 0, 0, '/uploads/images/20211201/50a20d099e938e82d9d45e8f375f338f.jpg', 1638340622);
 
 CREATE TABLE `mall_chat_phrase` (
   `id` bigint(20) NOT NULL,
@@ -4371,10 +3952,6 @@ CREATE TABLE `mall_chat_service` (
   `config` longtext DEFAULT NULL COMMENT '客服个人设置'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商家客服表';
 
-INSERT INTO `mall_chat_service` (`id`, `username`, `password`, `nickname`, `avatar`, `online`, `is_del`, `status`, `create_time`, `delete_time`, `last_online_time`, `config`) VALUES
-(1, 'demo', '7fef6171469e80d32c0559f88b377245', 'demo', '/uploads/images/20210620/173c8e2a1dd82c5b090294768e1962b7.png', 1, 0, 0, 1624065262, 0, 1638799084, NULL),
-(2, 'pink', '7fef6171469e80d32c0559f88b377245', '飞机水里游', '', 1, 0, 0, 1625170097, 0, 1625171612, NULL);
-
 CREATE TABLE `mall_chat_service_log` (
   `id` bigint(20) NOT NULL,
   `service_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '客服id',
@@ -4382,14 +3959,6 @@ CREATE TABLE `mall_chat_service_log` (
   `ip` varchar(30) NOT NULL DEFAULT '' COMMENT 'ip地址',
   `time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `mall_chat_service_log` (`id`, `service_id`, `intro`, `ip`, `time`) VALUES
-(1, 0, '状态：用户 [ demo ] 登录成功 时间：2021-09-15 09:51:14 登录地点：127.0.0.1', '127.0.0.1', 1631670674),
-(2, 0, '状态：用户 [ demo ] 登录成功 时间：2021-11-19 16:24:10 登录地点：127.0.0.1', '127.0.0.1', 1637310250),
-(3, 0, '状态：用户 [ demo ] 登录成功 时间：2021-12-01 14:35:21 登录地点：127.0.0.1', '127.0.0.1', 1638340521),
-(4, 0, '状态：用户 [ demo ] 登录成功 时间：2021-12-06 20:24:45 登录地点：127.0.0.1', '127.0.0.1', 1638793485),
-(5, 0, '状态：用户 [ demo ] 密码不正确 时间：2021-12-06 21:16:56', '127.0.0.1', 1638796616),
-(6, 0, '状态：用户 [ demo ] 登录成功 时间：2021-12-06 21:17:03 登录地点：127.0.0.1', '127.0.0.1', 1638796623);
 
 CREATE TABLE `mall_chat_session` (
   `id` bigint(20) NOT NULL,
@@ -4399,16 +3968,6 @@ CREATE TABLE `mall_chat_session` (
   `client_id` varchar(255) NOT NULL DEFAULT '',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会话表';
-
-INSERT INTO `mall_chat_session` (`id`, `type`, `user_id`, `session_id`, `client_id`, `create_time`) VALUES
-(1, 0, 1, '8c4876019c19b1c2089c8a867acd01547b02cf98', '', 1624847435),
-(2, 0, 1, 'fff13b041026f43bc18da514683d3765433dd831', '', 1625168441),
-(3, 0, 2, '9d592b4360b42c9d3aac58c8746b73047776fc96', '', 1625170119),
-(4, 0, 1, '362ed8bcae6de1e63a3d999503f93986a9ce68ec', '', 1631670674),
-(5, 0, 1, 'cf770d050d7aa038177966e1fbb5a963d03603f3', '', 1637310249),
-(6, 0, 1, '158b77f7e8fa7b29f58cbbbe234fd0d0ad2217f3', '', 1638340521),
-(7, 0, 1, 'a62dfd2d302be98e5f21216ccbb995842146c28c', '', 1638793484),
-(8, 0, 1, 'd236b5325822cb07a83eb157c61f010e6701db07', '', 1638796622);
 
 CREATE TABLE `mall_data` (
   `id` int(11) NOT NULL,
@@ -4479,9 +4038,6 @@ CREATE TABLE `mall_deliver` (
   `note` text DEFAULT NULL COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='发货点信息';
 
-INSERT INTO `mall_deliver` (`id`, `title`, `username`, `company`, `country`, `province`, `city`, `area`, `zip`, `address`, `mobile`, `phone`, `is_default`, `note`) VALUES
-(1, '深圳发货点', '森森', 'A3Mall', NULL, 1964, 1988, 1989, '518000', '源城区6号', '18026740326', '', 1, NULL);
-
 CREATE TABLE `mall_distribution` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '费用类型 0统一设置 1指定地区费用',
@@ -4498,11 +4054,6 @@ CREATE TABLE `mall_distribution` (
   `sort` smallint(6) NOT NULL DEFAULT 99 COMMENT '排序'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='配送方式表';
 
-INSERT INTO `mall_distribution` (`id`, `type`, `title`, `area_group`, `first_price_group`, `second_price_group`, `first_weight`, `second_weight`, `first_price`, `second_price`, `status`, `is_lock`, `sort`) VALUES
-(1, 1, '快递', '[\"1,2,19,20,3325,3326,3339,3378,3386,3416,3454,3458,3461,3491,3504,3518,3532,3551,3578,3592,3613,3632,3666,3683,3697,3704,3711,3716,3717,3722,3728,3738,3739,3745,3747\",\"220,221,232,244,250,264,271,278,290,304,319,337\"]', '[\"1\",\"3\"]', '[\"2\",\"4\"]', 1000, 500, '5.00', '6.00', 0, 1, 0),
-(2, 0, '物流', '[\"\"]', '[\"\"]', '[\"\"]', 10000, 20000, '15.00', '30.00', 0, 1, 1),
-(3, 0, '免运费', '[\"\"]', '[\"\"]', '[\"\"]', 500, 500, '0.00', '0.00', 0, 1, 99);
-
 CREATE TABLE `mall_freight` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `type` varchar(255) NOT NULL COMMENT '货运类型',
@@ -4514,20 +4065,6 @@ CREATE TABLE `mall_freight` (
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1删除 0未删除',
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='货运公司';
-
-INSERT INTO `mall_freight` (`id`, `type`, `express_kdniao_no`, `code`, `title`, `url`, `sort`, `status`, `create_time`) VALUES
-(2, 'STO', '', 'shentong', '申通快递', 'http://www.sto.cn', 0, 0, 1485851695),
-(3, 'TTKDEX', '', 'tiantian', '天天快递', 'http://www.ttkd.cn', 0, 0, 1485851695),
-(4, 'YTO', '', 'yuantong', '圆通快递', 'http://www.yto.net.cn', 0, 0, 1485851695),
-(5, 'SFEXPRESS', '', 'shunfeng', '顺丰速运', 'http://www.sf-express.com', 0, 0, 1485851695),
-(6, 'YUNDA', '', 'yunda', '韵达快递', 'http://www.yundaex.com', 0, 0, 1485851695),
-(7, 'ZTO', '', 'zhongtong', '中通快递', 'http://www.zto.cn', 0, 0, 1485851695),
-(8, 'LBEX', '', 'longbanwuliu', '龙邦物流', 'http://www.lbex.com.cn', 0, 0, 1485851695),
-(9, 'ZJS', '', 'zhaijisong', '宅急送', 'http://www.zjs.com.cn', 0, 0, 1485851695),
-(11, 'HTKY', '', 'huitongkuaidi', '汇通快递', 'http://www.htky365.com', 0, 0, 1485851695),
-(12, 'CAE', '', 'minghangkuaidi', '民航快递', 'http://www.cae.com.cn', 0, 0, 1485851695),
-(13, 'CRE', '', 'zhongtiewuliu', '中铁快运', 'http://www.cre.cn', 0, 0, 1485851695),
-(16, 'DEPPON', '', 'debangwuliu', '德邦物流', 'http://www.deppon.com', 0, 0, 1485851695);
 
 CREATE TABLE `mall_goods` (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '商品ID',
@@ -4564,39 +4101,6 @@ CREATE TABLE `mall_goods` (
   `update_time` int(10) NOT NULL DEFAULT 0 COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品信息表';
 
-INSERT INTO `mall_goods` (`id`, `goods_type`, `cat_id`, `attr_id`, `brand_id`, `model_id`, `delivery_id`, `card_id`, `title`, `goods_number`, `goods_weight`, `sell_price`, `market_price`, `cost_price`, `store_nums`, `photo`, `briefly`, `content`, `goods_content`, `down_url`, `point`, `status`, `visit`, `favorite`, `sort`, `exp`, `sale`, `grade`, `upper_time`, `down_time`, `create_time`, `update_time`) VALUES
-(1, 0, 13, 0, 0, 0, 1, 0, '小米有品负离子空气净化器家用除甲醛去二手烟味卧室内小型清新机', '202106201443246392', '3000.00', '515.00', '626.00', '128.00', 948, '/uploads/images/20210620/6a2792be8a7f66a88b515523e62fcd06.jpg', '', '<p><br/></p><p><img src=\"/uploads/images/20210620/6569318e3a45982e03be54f18fae5e2d.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1624171404, 1624171404),
-(2, 0, 1, 1, 1, 0, 1, 0, '卓力电熨斗家用蒸汽手持小型挂烫机平挂烫衣服机熨烫机TS3000', 'dfa', '1500.00', '3299.00', '4999.00', '1900.00', 235, '/uploads/images/20210620/79ba441fa3d86860cb96e715e971f3bb.jpg', '精致熨烫 细致呵护面料', '<p><br/></p><p><img src=\"/uploads/images/20210620/b072ada5f82db058f393a2abdb804d98.jpg\"/></p>', NULL, '', 85, 0, 0, 0, 1, 50, 0, 0, 0, 0, 1624171556, 1624171556),
-(3, 0, 9, 0, 0, 0, 1, 0, 'Hisense/海信 75E3F-PRO 75英寸4K智慧全面屏电视机智能网络高清', '202106201520250113', '5000.00', '6199.00', '6499.00', '2599.00', 127, '/uploads/images/20210620/d0e8d7628fb72b94022e1aad195ca6ec.jpg', 'AI声控 2+32GB MEMC运动补偿', '<p><br/></p><p><img src=\"/uploads/images/20210620/22c0bdbb97bbe113caec2d7c14fe4762.jpg\" alt=\"22c0bdbb97bbe113caec2d7c14fe4762.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1624173625, 1624173625),
-(4, 0, 15, 0, 0, 0, 1, 0, '阿诗顿厨师机A6家用7升商用小型和面机静音自动多功能鲜奶揉面机', '202106201527535537', '6500.00', '3280.00', '3880.00', '1580.00', 297, '/uploads/images/20210620/dd98030081e82739063f4cf1d767ac5a.jpg', '直流静音马达，12分钟出膜，家商两用', '<p><br/></p><p><img src=\"/uploads/images/20210620/cbb143cd52d8a6aaee10a1fb643c5740.jpg\" alt=\"cbb143cd52d8a6aaee10a1fb643c5740.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624174073, 1624174073),
-(5, 0, 10, 0, 0, 0, 1, 0, '扬子烘干机干衣机家用小型圆形衣服衣物速干衣柜折叠烘衣风干机器', '202106201531313965', '1500.00', '179.00', '369.00', '150.00', 98, '/uploads/images/20210620/e4a00e263b4860a9d8a3d4847eba60f5.jpg', '高温杀菌，拆装简便', '<p><br/></p><p><img src=\"/uploads/images/20210620/e1bd7fb3825fda587732cd425acae49c.jpg\" alt=\"e1bd7fb3825fda587732cd425acae49c.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624174291, 1624174291),
-(6, 0, 16, 0, 0, 0, 1, 0, '鸟笼烤火炉桌下烤脚烤火器小太阳取暖器家用小型节能电暖器电烤炉', 'a30-1', '45000.00', '109.90', '109.90', '50.00', 954, '/uploads/images/20210620/62c22c9b45ee3fcc84b1b7dcda490b17.jpg', '360度防倾倒，安全防漏电速热', '<p><br/></p><p><img src=\"/uploads/images/20210620/f89a94acad037bc2c08143f897a8bae6.jpg\" alt=\"f89a94acad037bc2c08143f897a8bae6.jpg\"/></p>', NULL, '', 50, 0, 0, 0, 0, 110, 0, 0, 0, 0, 1624174614, 1624174614),
-(7, 0, 2, 0, 0, 0, 1, 0, '浅杉绿电水壶304不锈钢自动断电电热水壶', '202106201557259595', '1900.00', '798.00', '798.00', '420.00', 523, '/uploads/images/20210620/5a9f561d486000295bbd4a2c7d05aa66.png', '', '<p><br/></p><p><img src=\"/uploads/images/20210620/93a52ddbac7966bf440062082651b1e6.jpg\" alt=\"93a52ddbac7966bf440062082651b1e6.jpg\"/></p>', NULL, '', 42, 0, 0, 0, 0, 78, 0, 0, 0, 0, 1624175846, 1624175846),
-(8, 0, 5, 0, 0, 0, 1, 0, '可加热榨汁机小型便携式豆浆机破壁机多功能家用料理电动炸果汁杯', '202106201604013717', '1000.00', '149.00', '499.00', '120.00', 931, '/uploads/images/20210620/5e54988c5ecd9b0633f6582ccc6c7ca1.jpg', '可加热榨汁机豆浆机破壁机便携式多功能小型', '<p><br/></p><p><img src=\"/uploads/images/20210620/9b8940e8e44172a5a3f09ce61b33d2d6.jpg\" alt=\"9b8940e8e44172a5a3f09ce61b33d2d6.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1624176241, 1624176241),
-(9, 0, 4, 0, 0, 0, 1, 0, '小米净水器厨下式600G家用自来水RO反渗透直饮纯水机1年滤芯套装', '202106201605475810', '600.00', '1799.00', '3299.00', '550.00', 423, '/uploads/images/20210620/aa2a37d5dc927634a9fe4f06465e91fe.jpg', '600G净水器+PP棉2只+前置炭1只+后置炭1只', '<p><br/></p><p><img src=\"/uploads/images/20210620/40ae56ce482921d2d6e9ebafd63b830e.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1624176347, 1624176347),
-(10, 0, 10, 0, 0, 0, 1, 0, '格力烘干机家用干衣机省电杀菌速干衣小型烤衣服烘被烘干器烘衣机', '202106201609089312', '2500.00', '288.00', '799.00', '59.00', 9631, '/uploads/images/20210620/87499eb9cbea7b846f09dbd5a05fe88e.jpg', '格力干衣机 速干衣 一机多用', '<p><br/></p><p><img src=\"/uploads/images/20210620/e0ec5133a34d429eb6c23cd853875ed0.jpg\" alt=\"e0ec5133a34d429eb6c23cd853875ed0.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624176548, 1624176548),
-(11, 0, 10, 0, 0, 0, 1, 0, 'CTT烘干机家用速干衣全自动烘衣机小型烘干器6kg滚筒式衣服干衣机', '202106201614339811', '2600.00', '1999.00', '3782.00', '999.00', 851, '/uploads/images/20210620/6fa4b7f9bc3c496e92739163c488e8a6.jpg', '双向翻转 全自动干衣 插电即用', '<p><br /></p><p><img src=\"/uploads/images/20210620/f3177bbbe19cc75280f0e02e4d8ca7e3.jpg\" alt=\"f3177bbbe19cc75280f0e02e4d8ca7e3.jpg\" /></p>', NULL, '', 100, 0, 0, 0, 0, 78, 0, 0, 0, 0, 1624176874, 1624176874),
-(12, 0, 10, 0, 0, 0, 1, 0, '小型家用速干迷你干衣机烘干机滚筒', '202106201616245288', '4700.00', '1358.00', '1598.00', '410.00', 563, '/uploads/images/20210620/845ca8585e859ce67acd00fc0069dbb6.png', '限时下单满减160元', '<p><br/></p><p><img src=\"/uploads/images/20210620/42996edc9b1a9753c70d65dedb0ce37e.jpg\" alt=\"42996edc9b1a9753c70d65dedb0ce37e.jpg\"/></p>', NULL, '', 500, 0, 0, 0, 0, 230, 0, 0, 0, 0, 1624176984, 1624176984),
-(13, 0, 12, 0, 0, 0, 1, 0, '三叶落地扇家用台式立式摇头学生宿舍电扇轻便音轻节能', '202106201618313277', '1750.00', '169.00', '169.00', '45.00', 781, '/uploads/images/20210620/29aeed5db3e4dd320f18bc4116c25943.jpg', '台式立式两用 3档风量 85度广角送风', '<p><br/></p><p><img src=\"/uploads/images/20210620/84589e6c22c3d272300094a43c58c1c4.jpg\" alt=\"84589e6c22c3d272300094a43c58c1c4.jpg\"/></p>', NULL, '', 85, 0, 0, 0, 0, 65, 0, 0, 0, 0, 1624177111, 1624177111),
-(14, 0, 12, 0, 0, 0, 1, 0, '壁扇壁挂空气循环扇家用静音厨房免打孔电风扇挂壁式摇头电扇', '202106201620122748', '2000.00', '299.00', '699.00', '89.00', 32, '/uploads/images/20210620/e8a752868d9ba48b01614bc35036e6a0.jpg', '免打孔 轻音空气循环 摇头 定时', '<p><br/></p><p><img src=\"/uploads/images/20210620/273de724a6ed5c113159497c4efbcead.jpg\" alt=\"273de724a6ed5c113159497c4efbcead.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624177212, 1624177212),
-(15, 0, 7, 0, 0, 0, 1, 0, '志高可移动空调2匹单冷立式1.5p冷暖免安装便携式 家用办公一体机', '202106201623222657', '1700.00', '1279.00', '1599.00', '610.00', 851, '/uploads/images/20210620/7ad3ec9371ee7c55d7f17638541a4d49.jpg', '免专用安装 免排水', '<p><br/></p><p><img src=\"/uploads/images/20210620/d1f49d7b78eab7f34f0fc4ce5f6ee7ad.jpg\" alt=\"d1f49d7b78eab7f34f0fc4ce5f6ee7ad.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624177402, 1624177402),
-(16, 0, 39, 0, 0, 0, 1, 0, '隔水炖锅迷你宝宝煲粥煮粥神器2人3家用煲汤电炖盅bb煲专用', '202106291014335482', '250.00', '109.90', '199.00', '50.00', 611, '/uploads/images/20210629/bd98e35dc761aaf9093cf1acee93db6a.jpg', '①1.5升容量 ②1-3人使用 ③24小时预约', '<p><br /></p><p><img src=\"/uploads/images/20210629/12f3f93b0bc82d24d60e638c7170d237.jpg\" alt=\"12f3f93b0bc82d24d60e638c7170d237.jpg\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624932873, 1624932873),
-(17, 0, 5, 0, 0, 0, 1, 0, '榨汁机榨汁杯果汁杯多功能家用无线迷你料理机', '202106291018094120', '125.00', '49.90', '99.00', '24.00', 931, '/uploads/images/20210629/2c0a5eea458466c8ecdf254d08f79d7c.jpg', '无线｜便携｜健康材质', '<p><br /></p><p><img src=\"/uploads/images/20210629/497701b19a6625fb62994757b9d85689.png\" alt=\"497701b19a6625fb62994757b9d85689.png\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624933089, 1624933089),
-(18, 0, 3, 0, 0, 0, 1, 0, '智能定时预约 3L 4L大容量饭煲', '202106291020310277', '235.00', '238.00', '279.00', '100.00', 1235, '/uploads/images/20210629/fff8007f3ed4d9d356c2e4bc2eddb949.jpg', '', '<p><br /></p><p><img src=\"/uploads/images/20210629/90cb1827b1c9d563f894a3ad84bde1b0.jpg\" alt=\"90cb1827b1c9d563f894a3ad84bde1b0.jpg\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1624933231, 1624933231),
-(19, 0, 3, 0, 0, 0, 1, 0, '电饭煲家用智能定时预约新款多功能蒸饭蛋糕锅2-3-4-5升6人', '202106291022513360', '190.00', '99.00', '99.00', '35.00', 53, '/uploads/images/20210629/da986e0513db8d7c38daf94cd76db3b7.jpg', '', '<p><br /></p><p><img src=\"/uploads/images/20210629/8dba3bacf1bce921181dba8250edfe93.jpg\" alt=\"8dba3bacf1bce921181dba8250edfe93.jpg\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624933371, 1624933371),
-(20, 0, 15, 0, 0, 0, 1, 0, '凯膳怡家用厨师机和面机全自动进口ka搅拌揉面机4.8L', '202106291027125543', '2965.00', '4598.00', '4599.00', '2300.00', 5619, '/uploads/images/20210629/6a5d41a2e66555f020dd08618242242e.jpg', '', '<p><br /></p><p><img src=\"/uploads/images/20210629/903f091ec1ead74232851d8169a20b62.jpg\" alt=\"903f091ec1ead74232851d8169a20b62.jpg\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 1624933632, 1624933632),
-(21, 0, 7, 0, 0, 0, 1, 0, '客厅圆柱空调立式柜机', '202106291031233239', '2691.00', '8599.00', '8599.00', '4100.00', 120, '/uploads/images/20210629/b6b30888e0bf75f95ed825abc2b382a2.jpg', '', '<p><br /></p><p><img src=\"/uploads/images/20210629/715b212cb9ef014f75bb3a5727be9222.jpg\" alt=\"715b212cb9ef014f75bb3a5727be9222.jpg\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624933883, 1624933883),
-(22, 0, 8, 0, 0, 0, 1, 0, '小型婴儿迷你洗衣机6T 全自动滚筒家用杀菌宝宝儿童内衣专用', '202106291040090585', '2150.00', '2399.00', '3299.00', '1400.00', 951, '/uploads/images/20210629/f4a10dfe755dddb7c9049c4fe296b105.jpg', '11种智能程序 99.99%杀菌', '<p><br/></p><p><img src=\"/uploads/images/20210629/92826c6438d685527da6853754a14343.jpg\" alt=\"92826c6438d685527da6853754a14343.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624934409, 1624934409),
-(23, 0, 8, 0, 0, 0, 1, 0, '内衣裤洗衣机高温煮洗袜子小型迷你清洗内裤机全自动杀菌家用', '202106291043541421', '1250.00', '1699.00', '2299.00', '899.00', 562, '/uploads/images/20210629/6c5a2c54169f6623d6f15937f506d7fc.jpg', '自动杀菌家用', '<p><br /></p><p><img src=\"/uploads/images/20210629/207640cacadcc8789d2d4a66ccf54f2d.jpg\" alt=\"207640cacadcc8789d2d4a66ccf54f2d.jpg\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1624934634, 1624934634),
-(24, 0, 9, 0, 0, 0, 1, 0, '43英寸高清智能网络WIFI家用液晶电视机40 42', '202106291053392022', '1590.00', '1899.00', '2399.00', '899.00', 569, '/uploads/images/20210629/8f2f8f19cb29693bc6187a24df7a3fb2.jpg', '1+16GB大存储 智能语音全面屏', '<p><br /></p><p><img src=\"/uploads/images/20210629/82119ed84676ecd0d191beac877d3af9.jpg\" alt=\"82119ed84676ecd0d191beac877d3af9.jpg\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624935219, 1624935219),
-(25, 0, 9, 0, 0, 0, 1, 0, '43英寸4K超高清QLED电视机Serif画境', '202106291056040790', '1290.00', '6999.00', '7999.00', '4500.00', 562, '/uploads/images/20210629/c4351e4d8d0ee22c6297f6bb69a022a7.jpg', '新品上市 The Serif画境融入屏', '<p><br/></p><p><img src=\"/uploads/images/20210629/46acb89040bbd6a9b5cf2856effea612.jpg\" alt=\"46acb89040bbd6a9b5cf2856effea612.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1624935364, 1624935364),
-(26, 0, 13, 0, 0, 0, 1, 0, '小米有品负离子空气净化器家用除甲醛房间卧室内去烟味小型清新机', '202106291103151848', '200.00', '469.00', '569.00', '200.00', 5632, '/uploads/images/20210629/fa5999001af8114d7103752e3256743f.jpg', '', '<p><br /></p><p><img src=\"/uploads/images/20210629/2b8d3df354f77cc3c556a29661864f8f.jpg\" alt=\"2b8d3df354f77cc3c556a29661864f8f.jpg\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624935795, 1624935795),
-(27, 0, 13, 0, 0, 0, 1, 0, '空气净化器滤网除甲醛雾霾PM2.5办公室氧吧', '202106291105199793', '2500.00', '6399.00', '12798.00', '2590.00', 63, '/uploads/images/20210629/8282e88b1a1636783180391fcd5aa80b.jpg', '', '<p><br /></p><p><img src=\"/uploads/images/20210629/1fd2ae927c19bb8ee656d4364eab5537.jpg\" alt=\"1fd2ae927c19bb8ee656d4364eab5537.jpg\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624935920, 1624935920),
-(28, 0, 16, 0, 0, 0, 1, 0, '扬子暖风机取暖器家用速热静音卧室小型浴室电暖气器小太阳办公室', '202106291108166349', '250.00', '78.00', '198.00', '42.00', 631, '/uploads/images/20210629/c358df55c899b282423216bc4d573766.jpg', '', '<p><br /></p><p><img src=\"/uploads/images/20210629/76a9b769c241a4f4c0457b969d22d4bc.jpg\" width=\"695\" height=\"898\" alt=\"76a9b769c241a4f4c0457b969d22d4bc.jpg\" /></p>', NULL, '', 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1624936096, 1624936096),
-(29, 0, 16, 0, 0, 0, 1, 0, '户外电暖器 户外取暖器 商用电暖器 商用取暖器', '202106291110101932', '200.00', '3199.00', '3899.00', '1500.00', 541, '/uploads/images/20210629/ecb81e80c456f0fbdbbf66eb16f5356c.jpg', '', '<p><br/></p><p><img src=\"/uploads/images/20210629/3f73732f5486794add6f94fc170fc0fd.jpg\" alt=\"3f73732f5486794add6f94fc170fc0fd.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1624936210, 1624936210),
-(30, 0, 16, 0, 0, 0, 1, 0, '日本丰臣(TOYOTOMI)取暖器灯芯炉RL-F2500(H）室内户外取暖器', '202106291112060840', '290.00', '6288.00', '6288.00', '2500.00', 560, '/uploads/images/20210725/824d423420ec2da587b9eb2a086bb89c.jpg', '', '<p><br/></p><p><img src=\"/uploads/images/20210725/d76f767736d756cd2997d809e510fe00.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1624936326, 1624936326),
-(31, 0, 16, 1, 0, 0, 1, 0, '桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能', '202106291113391136', '190.00', '399.00', '1299.00', '125.00', 558, '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '', '<p><br/></p><p><img src=\"/uploads/images/20210629/2951ace17e97f3e36829030b4907c7fa.jpg\" alt=\"2951ace17e97f3e36829030b4907c7fa.jpg\"/></p>', NULL, '', 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 1624936419, 1624936419);
-
 CREATE TABLE `mall_goods_attribute` (
   `id` bigint(20) NOT NULL,
   `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品id',
@@ -4607,12 +4111,6 @@ CREATE TABLE `mall_goods_attribute` (
   `thumb_image` varchar(128) NOT NULL DEFAULT '' COMMENT '规格图'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `mall_goods_attribute` (`id`, `goods_id`, `attr_id`, `attr_data_id`, `name`, `value`, `thumb_image`) VALUES
-(5, 2, 2, 1, '颜色分类', '香槟色', ''),
-(6, 2, 2, 2, '颜色分类', '经典蓝', ''),
-(11, 31, 2, 1, '颜色分类', '香槟色', ''),
-(12, 31, 2, 2, '颜色分类', '经典蓝', '');
-
 CREATE TABLE `mall_goods_card` (
   `id` bigint(20) NOT NULL,
   `name` varchar(50) CHARACTER SET utf8 NOT NULL COMMENT '卡券名称',
@@ -4621,9 +4119,6 @@ CREATE TABLE `mall_goods_card` (
   `end_time` int(10) DEFAULT 0 COMMENT '结束时间',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品卡密表';
-
-INSERT INTO `mall_goods_card` (`id`, `name`, `status`, `start_time`, `end_time`, `create_time`) VALUES
-(1, 'QQ靓号', 0, 0, 0, 1635217019);
 
 CREATE TABLE `mall_goods_card_template` (
   `id` bigint(20) NOT NULL COMMENT '编号',
@@ -4639,53 +4134,11 @@ CREATE TABLE `mall_goods_card_template` (
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='卡券模板表';
 
-INSERT INTO `mall_goods_card_template` (`id`, `card_id`, `user_id`, `order_id`, `name`, `content`, `sort`, `status`, `start_time`, `end_time`, `create_time`) VALUES
-(6, 1, 0, 0, '12345', '123', 0, 1, 1639186245, 1639107045, 1639186245),
-(7, 1, 0, 0, '56789', '123', 1, 1, 1639186245, 1639107045, 1639186245);
-
 CREATE TABLE `mall_goods_extends` (
   `id` bigint(20) NOT NULL,
   `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品ID',
   `attribute` varchar(32) NOT NULL DEFAULT '' COMMENT '类型'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `mall_goods_extends` (`id`, `goods_id`, `attribute`) VALUES
-(3, 15, 'news'),
-(4, 14, 'news'),
-(5, 13, 'news'),
-(6, 12, 'news'),
-(7, 10, 'news'),
-(8, 9, 'news'),
-(9, 8, 'news'),
-(10, 7, 'news'),
-(11, 6, 'news'),
-(12, 5, 'news'),
-(13, 4, 'news'),
-(14, 4, 'recommend'),
-(15, 3, 'news'),
-(16, 2, 'news'),
-(17, 1, 'news'),
-(18, 16, 'news'),
-(19, 17, 'news'),
-(20, 18, 'news'),
-(21, 19, 'news'),
-(22, 20, 'news'),
-(23, 21, 'news'),
-(25, 23, 'news'),
-(26, 24, 'news'),
-(28, 26, 'news'),
-(29, 27, 'news'),
-(30, 28, 'news'),
-(68, 31, 'news'),
-(69, 31, 'hot'),
-(70, 30, 'news'),
-(71, 30, 'hot'),
-(72, 29, 'news'),
-(73, 29, 'hot'),
-(74, 22, 'news'),
-(75, 22, 'recommend'),
-(76, 25, 'news'),
-(77, 25, 'recommend');
 
 CREATE TABLE `mall_goods_image` (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '主键ID',
@@ -4693,165 +4146,6 @@ CREATE TABLE `mall_goods_image` (
   `path` varchar(255) NOT NULL DEFAULT '' COMMENT '图片路径',
   `create_time` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品相册表';
-
-INSERT INTO `mall_goods_image` (`id`, `goods_id`, `path`, `create_time`) VALUES
-(18, 2, '/uploads/images/20210620/bc6a18bbb4c2caeba6941a61b9e36d27.jpg', 1624156205),
-(19, 3, '/uploads/images/20210620/bd6dd6ece8fce1f63b012c797ce65b5a.jpg', 1624156360),
-(20, 2, '/uploads/images/20210620/ab473d73baf5a03cb71557c10c81d641.jpg', 1624156427),
-(21, 4, '/uploads/images/20210620/1c088ab8f7bd787610c6aa3480c4eeef.jpg', 1624157009),
-(22, 5, '/uploads/images/20210620/fbfbaa88c13c83debd6c0082bd4691b4.jpg', 1624157180),
-(23, 7, '/uploads/images/20210620/55a35d91d53f9e749ce844a13ed64f45.jpg', 1624157346),
-(24, 8, '/uploads/images/20210620/5dc770b9f7cb1e406a9a735792d7ceb8.jpg', 1624157511),
-(25, 9, '/uploads/images/20210620/4deb6d34b203afd26e30f23728cfaa0f.jpg', 1624157705),
-(26, 10, '/uploads/images/20210620/38a0065078b668836f485805ddcba4ce.jpg', 1624157836),
-(27, 12, '/uploads/images/20210620/cfe01e3817aa27cd1a71f72b08d92d56.jpg', 1624157943),
-(28, 13, '/uploads/images/20210620/7fa61b0a93487e53d73fc9d737816267.jpg', 1624171102),
-(29, 1, '/uploads/images/20210620/38df08051f4045a3f5f4cea31dc77e0a.jpg', 1624172682),
-(30, 1, '/uploads/images/20210620/9e31b4b103881f8cc8774fab368015f1.jpg', 1624172686),
-(31, 1, '/uploads/images/20210620/6a2792be8a7f66a88b515523e62fcd06.jpg', 1624172690),
-(32, 1, '/uploads/images/20210620/6569318e3a45982e03be54f18fae5e2d.jpg', 1624172700),
-(33, 14, '/uploads/images/20210620/badcaad291399325618b457eeb5892f9.jpg', 1624172923),
-(34, 2, '/uploads/images/20210620/79ba441fa3d86860cb96e715e971f3bb.jpg', 1624173111),
-(35, 2, '/uploads/images/20210620/b072ada5f82db058f393a2abdb804d98.jpg', 1624173135),
-(36, 3, '/uploads/images/20210620/d0e8d7628fb72b94022e1aad195ca6ec.jpg', 1624173600),
-(37, 3, '/uploads/images/20210620/22c0bdbb97bbe113caec2d7c14fe4762.jpg', 1624173617),
-(38, 15, '/uploads/images/20210620/c0b6ef3a6e5edf59f27dab0bbfb3c97a.jpg', 1624173838),
-(39, 4, '/uploads/images/20210620/dd98030081e82739063f4cf1d767ac5a.jpg', 1624174011),
-(40, 4, '/uploads/images/20210620/57169675efcd0a3307320370a6d0a4a7.jpg', 1624174031),
-(41, 4, '/uploads/images/20210620/e0084ae32a71d329f9adca333ba81d9d.jpg', 1624174035),
-(42, 4, '/uploads/images/20210620/cbb143cd52d8a6aaee10a1fb643c5740.jpg', 1624174067),
-(43, 5, '/uploads/images/20210620/e4a00e263b4860a9d8a3d4847eba60f5.jpg', 1624174215),
-(44, 5, '/uploads/images/20210620/e1bd7fb3825fda587732cd425acae49c.jpg', 1624174285),
-(45, 16, '/uploads/images/20210620/cbe1dc41b912f1f886f1e5a7e4721e3d.jpg', 1624174472),
-(46, 6, '/uploads/images/20210620/62c22c9b45ee3fcc84b1b7dcda490b17.jpg', 1624174584),
-(47, 6, '/uploads/images/20210620/f89a94acad037bc2c08143f897a8bae6.jpg', 1624174610),
-(48, 4, '/uploads/images/20210620/233f62d5706a1cc7fda7ac00cb2cc4c6.jpg', 1624174794),
-(49, 1, '/uploads/images/20210620/c036a1725a4c3990d2736189809ecc7d.jpg', 1624174942),
-(50, 1, '/uploads/images/20210620/39595d0887b6e95d884ce354f6e4b43d.jpg', 1624174995),
-(51, 1, '/uploads/images/20210620/3b3c5f5344fb931d12f3676860a7f612.jpg', 1624175038),
-(52, 1, '/uploads/images/20210620/06a8dae3d765b0f51afe2171fd9e15cb.jpg', 1624175068),
-(53, 1, '/uploads/images/20210620/aa1a63838483224cd500b312280a37fc.jpg', 1624175326),
-(54, 7, '/uploads/images/20210620/5a9f561d486000295bbd4a2c7d05aa66.png', 1624175824),
-(55, 7, '/uploads/images/20210620/93a52ddbac7966bf440062082651b1e6.jpg', 1624175841),
-(56, 8, '/uploads/images/20210620/5e54988c5ecd9b0633f6582ccc6c7ca1.jpg', 1624176220),
-(57, 8, '/uploads/images/20210620/9b8940e8e44172a5a3f09ce61b33d2d6.jpg', 1624176235),
-(58, 9, '/uploads/images/20210620/aa2a37d5dc927634a9fe4f06465e91fe.jpg', 1624176360),
-(59, 9, '/uploads/images/20210620/6501bdd2bc07452311590f557a2957be.jpg', 1624176386),
-(60, 9, '/uploads/images/20210620/40ae56ce482921d2d6e9ebafd63b830e.jpg', 1624176401),
-(61, 10, '/uploads/images/20210620/87499eb9cbea7b846f09dbd5a05fe88e.jpg', 1624176516),
-(62, 10, '/uploads/images/20210620/e0ec5133a34d429eb6c23cd853875ed0.jpg', 1624176537),
-(63, 11, '/uploads/images/20210620/6fa4b7f9bc3c496e92739163c488e8a6.jpg', 1624176850),
-(64, 11, '/uploads/images/20210620/f3177bbbe19cc75280f0e02e4d8ca7e3.jpg', 1624176869),
-(65, 12, '/uploads/images/20210620/845ca8585e859ce67acd00fc0069dbb6.png', 1624176962),
-(66, 12, '/uploads/images/20210620/42996edc9b1a9753c70d65dedb0ce37e.jpg', 1624176980),
-(67, 13, '/uploads/images/20210620/29aeed5db3e4dd320f18bc4116c25943.jpg', 1624177092),
-(68, 13, '/uploads/images/20210620/84589e6c22c3d272300094a43c58c1c4.jpg', 1624177106),
-(69, 14, '/uploads/images/20210620/e8a752868d9ba48b01614bc35036e6a0.jpg', 1624177183),
-(70, 14, '/uploads/images/20210620/273de724a6ed5c113159497c4efbcead.jpg', 1624177203),
-(71, 15, '/uploads/images/20210620/7ad3ec9371ee7c55d7f17638541a4d49.jpg', 1624177383),
-(72, 15, '/uploads/images/20210620/d1f49d7b78eab7f34f0fc4ce5f6ee7ad.jpg', 1624177399),
-(73, 1, '/uploads/images/20210621/f45841b06cd4572fd92d7a97ea8e01eb.png', 1624239733),
-(74, 1, '/uploads/images/20210621/7f0ef60468472dcf5b9362205ae152ea.png', 1624239858),
-(75, 1, '/uploads/images/20210621/8392092cca58d49dab5ffe6b4385559d.png', 1624239863),
-(76, 1, '/uploads/images/20210621/2a054c5008896ac84507c585078f75df.png', 1624239866),
-(77, 1, '/uploads/images/20210621/9c330f85494080e18eb7a3ee443ee9db.png', 1624239870),
-(78, 1, '/uploads/images/20210621/9276c0cf66d1511313e756553017a8f6.png', 1624239872),
-(79, 1, '/uploads/images/20210621/64d7b06ce969b84ab7e90afee09d7273.png', 1624239875),
-(80, 1, '/uploads/images/20210621/c4b620aa9df643fa09ed378c5e816b8a.png', 1624239880),
-(81, 1, '/uploads/images/20210621/fa2f082dbeef079179a18cf6ea885b5a.png', 1624242026),
-(82, 1, '/uploads/images/20210621/7423b99985f3d37ed20b710aac7e87cd.png', 1624242031),
-(83, 1, '/uploads/images/20210621/a51d3f2ce13aa38a2024b963d3c620b3.png', 1624242459),
-(84, 1, '/uploads/images/20210621/b4b5575b58c610fc2af4537ffa62283a.png', 1624277426),
-(85, 3, '/uploads/images/20210628/0ecd70bd0356bef76f9ca357a6a4f420.png', 1624850567),
-(86, 3, '/uploads/images/20210628/484281dec32fb72c524a966a078da82a.png', 1624850570),
-(87, 3, '/uploads/images/20210628/8308eeb6d77b226b90bb3c13f3fda495.png', 1624850573),
-(88, 1, '/uploads/images/20210628/93f1b375bfac116d07608d806bd88092.png', 1624850818),
-(89, 4, '/uploads/images/20210629/b2588b5f48d5f974758de3eccc35b436.png', 1624927353),
-(90, 4, '/uploads/images/20210629/87cb7b1c8375038a7edb7b56b9bd7348.png', 1624927359),
-(91, 4, '/uploads/images/20210629/eb027fa9a6592952a3173d7d435746b9.png', 1624927363),
-(92, 1, '/uploads/images/20210629/367438ffd4b3204030dfc5e12411ed98.png', 1624927618),
-(93, 999, '/uploads/images/20210629/53d96fb806405481384f473e54d08aa7.png', 1624927685),
-(94, 999, '/uploads/images/20210629/17153cb3e3f841b672b9edbe0af37702.png', 1624927780),
-(95, 39, '/uploads/images/20210629/fe1935f48863c4e8046c618acc50ec78.jpg', 1624932663),
-(96, 16, '/uploads/images/20210629/bd98e35dc761aaf9093cf1acee93db6a.jpg', 1624932839),
-(97, 16, '/uploads/images/20210629/18ff080b99228a04362dfd5b6a68f824.jpg', 1624932843),
-(98, 16, '/uploads/images/20210629/12f3f93b0bc82d24d60e638c7170d237.jpg', 1624932867),
-(99, 17, '/uploads/images/20210629/2c0a5eea458466c8ecdf254d08f79d7c.jpg', 1624933078),
-(100, 17, '/uploads/images/20210629/497701b19a6625fb62994757b9d85689.png', 1624933084),
-(101, 18, '/uploads/images/20210629/fff8007f3ed4d9d356c2e4bc2eddb949.jpg', 1624933221),
-(102, 18, '/uploads/images/20210629/90cb1827b1c9d563f894a3ad84bde1b0.jpg', 1624933226),
-(103, 19, '/uploads/images/20210629/da986e0513db8d7c38daf94cd76db3b7.jpg', 1624933361),
-(104, 19, '/uploads/images/20210629/8dba3bacf1bce921181dba8250edfe93.jpg', 1624933367),
-(105, 20, '/uploads/images/20210629/6a5d41a2e66555f020dd08618242242e.jpg', 1624933623),
-(106, 20, '/uploads/images/20210629/903f091ec1ead74232851d8169a20b62.jpg', 1624933629),
-(107, 21, '/uploads/images/20210629/b6b30888e0bf75f95ed825abc2b382a2.jpg', 1624933847),
-(108, 21, '/uploads/images/20210629/715b212cb9ef014f75bb3a5727be9222.jpg', 1624933879),
-(111, 23, '/uploads/images/20210629/6c5a2c54169f6623d6f15937f506d7fc.jpg', 1624934624),
-(112, 23, '/uploads/images/20210629/207640cacadcc8789d2d4a66ccf54f2d.jpg', 1624934630),
-(113, 24, '/uploads/images/20210629/8f2f8f19cb29693bc6187a24df7a3fb2.jpg', 1624935196),
-(114, 24, '/uploads/images/20210629/82119ed84676ecd0d191beac877d3af9.jpg', 1624935215),
-(117, 26, '/uploads/images/20210629/fa5999001af8114d7103752e3256743f.jpg', 1624935786),
-(118, 26, '/uploads/images/20210629/2b8d3df354f77cc3c556a29661864f8f.jpg', 1624935792),
-(119, 27, '/uploads/images/20210629/8282e88b1a1636783180391fcd5aa80b.jpg', 1624935897),
-(120, 27, '/uploads/images/20210629/1fd2ae927c19bb8ee656d4364eab5537.jpg', 1624935916),
-(121, 28, '/uploads/images/20210629/c358df55c899b282423216bc4d573766.jpg', 1624936050),
-(122, 28, '/uploads/images/20210629/76a9b769c241a4f4c0457b969d22d4bc.jpg', 1624936063),
-(127, 3, '/uploads/images/20210629/c20c3583824ae6cf65708e19fa9622df.jpg', 1624936936),
-(128, 3, '/uploads/images/20210629/9cc9d629da0ed19d525cb09419fb4317.jpg', 1624936940),
-(129, 3, '/uploads/images/20210629/6ca3e3f72ffc53b4202ba1b6e16c947d.png', 1624937200),
-(130, 3, '/uploads/images/20210629/9d28e5e8f58e6a0bde48da995b9ac3b3.png', 1624937205),
-(131, 3, '/uploads/images/20210629/b97565734538d52c8ed29221fcbaab85.png', 1624937208),
-(132, 3, '/uploads/images/20210629/78738a8bc9376739b23e3399170214c3.png', 1624937211),
-(133, 3, '/uploads/images/20210629/a3fed9f07fb7702bff5a6f38bf4df3db.png', 1624937216),
-(134, 3, '/uploads/images/20210629/16d1a8b2dc8868ed4cc81903d435d6e0.png', 1624937219),
-(135, 3, '/uploads/images/20210629/53f90a0ed66cade5ed5d199168d2f804.png', 1624937222),
-(136, 3, '/uploads/images/20210629/e10c3ff076e73a53c59eee357d922c04.png', 1624937225),
-(137, 3, '/uploads/images/20210629/3e7dee845e3e536694733c211b63c8d7.png', 1624937257),
-(138, 3, '/uploads/images/20210629/dae403959e85f09778057198e8377e4b.png', 1624937418),
-(139, 3, '/uploads/images/20210629/8660b7dc52e240c86dcf55f6ec6f0203.png', 1624937423),
-(140, 3, '/uploads/images/20210629/93e365d97d6b7c48cc19a3d87cc545b3.png', 1624937428),
-(141, 3, '/uploads/images/20210629/11183b9d92bd5b654de38dbba2c3345d.png', 1624937431),
-(142, 5, '/uploads/images/20210629/04bdc66bdc402a371efa8186a8a36e52.jpg', 1624937452),
-(143, 5, '/uploads/images/20210629/4d3d9e2819d652f80d47f4dd9f6c1c49.jpg', 1624937455),
-(144, 5, '/uploads/images/20210629/872811236c7e0d7ad2e505cb616461b8.png', 1624937463),
-(145, 5, '/uploads/images/20210629/aba1cd3a8a3efdb6695c29db5de57817.png', 1624937466),
-(146, 5, '/uploads/images/20210629/840bd03b7d2084b6db46304eb100532a.png', 1624937469),
-(147, 5, '/uploads/images/20210629/2a897c804d0ee851ed440db30ed13ae0.png', 1624937472),
-(148, 5, '/uploads/images/20210629/8812b4bddf2f04e1d51a49241484cb7d.png', 1624937476),
-(149, 5, '/uploads/images/20210629/0fbc29c933d513c8ac0eb849dfe364e2.png', 1624937479),
-(150, 5, '/uploads/images/20210629/51a53efb14dfebb0bd1f3a993fa54b59.png', 1624937482),
-(151, 5, '/uploads/images/20210629/f9d73efba8a3ae6766d812eeeffce2dc.png', 1624937485),
-(152, 5, '/uploads/images/20210629/4e5a035ea8eda87a02a4c43d072e45e8.png', 1624937520),
-(153, 5, '/uploads/images/20210629/e7fb6bf07c5c28e9696bb820dbf0a286.png', 1624937542),
-(154, 5, '/uploads/images/20210629/f35745f921d002d69e84ac4f2a0fb752.png', 1624937547),
-(155, 5, '/uploads/images/20210629/cc63d4e2175f52c8405e604308b70281.png', 1624937551),
-(156, 5, '/uploads/images/20210629/a1dd20dbe04338f520b8de342d16abc1.png', 1624937554),
-(157, 1, '/uploads/images/20210629/fdf091206c89aeecf7963c01f7c06cd5.jpg', 1624957793),
-(161, 34, '/uploads/images/20210705/3fa4015765248e68101f90a6e80c94e6.png', 1625419130),
-(162, 34, '/uploads/images/20210705/c08c04e0b912d6d35fbdedb172f30b71.png', 1625419139),
-(163, 34, '/uploads/images/20210705/fbe14f1dfb5bfd0b4ca8e7c8fa150f18.png', 1625419144),
-(164, 34, '/uploads/images/20210705/ee9c1f7bb55f7cf6dcdf3bcded43c774.png', 1625419149),
-(165, 34, '/uploads/images/20210705/458fab1af868de74fe6d9a1b69b8957d.png', 1625452336),
-(166, 34, '/uploads/images/20210705/c36c6a55d48b2b1cfa3a527d4c47bba4.png', 1625452343),
-(167, 34, '/uploads/images/20210705/bba4fc120a2f4613df7b82e5e7e10111.png', 1625452357),
-(168, 34, '/uploads/images/20210705/6e0e6e0325ebeef5f1c0dbd75417e9f4.png', 1625452367),
-(169, 1, '/uploads/images/20210705/416e88984f1a300404352029f90e5c9a.png', 1625452460),
-(170, 3, '/uploads/images/20210705/166fa1c5ed6682a0a529a894665aa674.png', 1625452477),
-(171, 5, '/uploads/images/20210705/2a62d728ec9e089991366c0e3e1af4fc.png', 1625452498),
-(172, 5, '/uploads/images/20210705/3bd1aaa8969dea6c1c3e6e4771f9e1de.png', 1625454964),
-(173, 3, '/uploads/images/20210705/4eecb93f02447ea307dc5c129b2267ee.png', 1625454992),
-(174, 1, '/uploads/images/20210705/89a285935317c100599da2c3cc611d61.png', 1625455009),
-(177, 32, '/uploads/file/20211027/32c26f1ba00b35a372781604935994d1.rarfile/20211027/32c26f1ba00b35a372781604935994d1.rar', 1635297022),
-(178, 32, '/uploads/file/20211027/ef9aadd0c45909cb71cc705289ac7855.rarfile/20211027/ef9aadd0c45909cb71cc705289ac7855.rar', 1635316732),
-(192, 31, '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', 1639308858),
-(193, 31, '/uploads/images/20210629/2951ace17e97f3e36829030b4907c7fa.jpg', 1639308858),
-(194, 30, '/uploads/images/20210725/d76f767736d756cd2997d809e510fe00.jpg', 1639308872),
-(195, 29, '/uploads/images/20210629/ecb81e80c456f0fbdbbf66eb16f5356c.jpg', 1639308878),
-(196, 29, '/uploads/images/20210629/3f73732f5486794add6f94fc170fc0fd.jpg', 1639308878),
-(197, 22, '/uploads/images/20210629/f4a10dfe755dddb7c9049c4fe296b105.jpg', 1639308895),
-(198, 22, '/uploads/images/20210629/92826c6438d685527da6853754a14343.jpg', 1639308895),
-(199, 25, '/uploads/images/20210629/c4351e4d8d0ee22c6297f6bb69a022a7.jpg', 1639308905),
-(200, 25, '/uploads/images/20210629/46acb89040bbd6a9b5cf2856effea612.jpg', 1639308905);
 
 CREATE TABLE `mall_goods_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -4864,12 +4158,6 @@ CREATE TABLE `mall_goods_item` (
   `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '成本价格',
   `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '重量'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='货品表';
-
-INSERT INTO `mall_goods_item` (`id`, `goods_id`, `goods_number`, `spec_key`, `store_nums`, `market_price`, `sell_price`, `cost_price`, `goods_weight`) VALUES
-(5, 2, 'dfa-1', '2:1', 521, '4999.00', '3299.00', '1500.00', '1500.00'),
-(6, 2, 'dfa-2', '2:2', 456, '4999.00', '3299.00', '1500.00', '1500.00'),
-(11, 31, '202106291113391136-1', '2:1', 111, '66.00', '55.00', '22.00', '111.00'),
-(12, 31, '202106291113391136-2', '2:2', 108, '66.00', '55.00', '22.00', '111.00');
 
 CREATE TABLE `mall_goods_model` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -4890,10 +4178,6 @@ CREATE TABLE `mall_luckdraw` (
   `chance` int(10) NOT NULL DEFAULT 0 COMMENT '概率',
   `photo` varchar(255) NOT NULL DEFAULT '' COMMENT '图片'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='抽奖奖品表';
-
-INSERT INTO `mall_luckdraw` (`id`, `attachment_id`, `name`, `type`, `value`, `store_nums`, `chance`, `photo`) VALUES
-(200, 0, '谢谢参与', 0, 0, 11111, 50, '/uploads/images/20210705/6e0e6e0325ebeef5f1c0dbd75417e9f4.png'),
-(201, 0, '5积分', 1, 5, 111, 2, '/uploads/images/20210705/fbe14f1dfb5bfd0b4ca8e7c8fa150f18.png');
 
 CREATE TABLE `mall_navigation` (
   `id` int(11) NOT NULL,
@@ -4981,46 +4265,6 @@ CREATE TABLE `mall_order` (
   `completion_time` int(10) DEFAULT 0 COMMENT '订单完成时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单表';
 
-INSERT INTO `mall_order` (`id`, `activity_id`, `shipping_type`, `store_id`, `user_id`, `type`, `order_no`, `pay_type`, `distribution_id`, `status`, `pay_status`, `distribution_status`, `delivery_status`, `evaluate_status`, `accept_name`, `zip`, `mobile`, `phone`, `country`, `province`, `city`, `area`, `address`, `message`, `note`, `remarks`, `is_delete`, `insured`, `pay_fee`, `taxes`, `promotions`, `discount`, `increase_amount`, `reduce_amount`, `real_freight`, `payable_freight`, `real_point`, `real_amount`, `payable_amount`, `order_amount`, `shipping_code`, `exp`, `point`, `trade_no`, `source`, `admin_id`, `send_time`, `accept_time`, `evaluate_time`, `pay_time`, `create_time`, `completion_time`) VALUES
-(1, 1, 1, 0, 1, 3, '2021070315322170704', 9, 0, 1, 0, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '23.00', '23.00', 0, '3280.00', '3303.00', '3303.00', '', 0, 0, NULL, 4, 0, 0, 0, 0, 0, 1625297541, 0),
-(2, 0, 1, 0, 1, 0, '2021072610530525141', 10, 0, 1, 0, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '399.00', '400.00', '400.00', '', 0, 0, NULL, 4, 0, 0, 0, 0, 0, 1627267985, 0),
-(3, 0, 1, 0, 1, 0, '2021072610534140210', 10, 0, 1, 0, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '399.00', '400.00', '400.00', '', 0, 0, NULL, 4, 0, 0, 0, 0, 0, 1627268021, 0),
-(4, 0, 1, 0, 1, 0, '2021072610535856684', 10, 0, 1, 0, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '399.00', '400.00', '400.00', '', 0, 0, NULL, 4, 0, 0, 0, 0, 0, 1627268038, 0),
-(5, 0, 1, 0, 1, 0, '2021072611094537489', 14, 0, 3, 0, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '399.00', '400.00', '400.00', '', 0, 0, NULL, 1, 0, 0, 0, 0, 0, 1627268985, 0),
-(6, 0, 1, 0, 1, 0, '2021072616065366362', 8, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', 'a', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '399.00', '400.00', '400.00', '', 0, 0, '', 1, 1, 1631366449, 0, 0, 1631366437, 1627286813, 0),
-(7, 0, 1, 0, 1, 0, '2021072616085073826', 8, 0, 3, 0, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '399.00', '400.00', '400.00', '', 0, 0, NULL, 1, 0, 0, 0, 0, 0, 1627286930, 0),
-(8, 0, 1, 0, 1, 0, '2021091903464774473', 1, 0, 6, 1, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '9.00', '9.00', 0, '4598.00', '4607.00', '4607.00', '', 0, 0, '', 1, 0, 0, 0, 0, 1631994407, 1631994407, 0),
-(9, 0, 1, 0, 1, 0, '2021101114472655926', 1, 0, 2, 1, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '9.00', '9.00', 0, '4598.00', '4607.00', '4607.00', '', 0, 0, '', 1, 0, 0, 0, 0, 1638608227, 1633934846, 0),
-(10, 0, 1, 0, 1, 0, '2021102118220135951', 1, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '9.00', '9.00', 0, '515.00', '524.00', '524.00', '', 0, 0, '', 1, 0, 1634812588, 0, 0, 1634811721, 1634811721, 0),
-(11, 0, 2, 1, 1, 0, '2021102217152133119', 1, 0, 5, 1, 1, 0, 0, '', '', '', '', '', '', '', '', '', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '399.00', '399.00', '399.00', '163489721425', 0, 0, '', 1, 0, 1634894121, 0, 0, 1634894121, 1634894121, 1634901765),
-(12, 0, 2, 1, 1, 0, '2021102219245687321', 1, 0, 5, 1, 1, 0, 0, '', '', '', '', '', '', '', '', '', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '6288.00', '6288.00', '6288.00', '163544130153', 0, 0, '', 1, 0, 1634901897, 0, 0, 1634901897, 1634901896, 1634901916),
-(13, 0, 2, 1, 1, 0, '2021102219273974823', 1, 0, 5, 1, 1, 0, 0, '', '', '', '', '', '', '', '', '', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '78.00', '78.00', '78.00', '163565718483', 0, 0, '', 1, 0, 1634902059, 0, 0, 1634902059, 1634902059, 1637651083),
-(14, 0, 2, 1, 1, 0, '2021102219291682869', 1, 0, 5, 1, 1, 0, 0, '', '', '', '', '', '', '', '', '', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '6288.00', '6288.00', '6288.00', '163589121119', 0, 0, '', 1, 0, 1634902156, 0, 0, 1634902156, 1634902156, 1637651061),
-(15, 0, 1, 0, 1, 0, '2021102713112049196', 1, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1.00', '2.00', '2.00', '', 0, 0, '', 1, 0, 1636031514, 0, 0, 1635311480, 1635311480, 0),
-(16, 0, 1, 0, 1, 0, '2021102715010224490', 1, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1.00', '2.00', '2.00', '', 0, 0, '', 1, 0, 1635318196, 0, 0, 1635318062, 1635318062, 0),
-(17, 0, 1, 0, 1, 0, '2021102716080150746', 1, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1.00', '2.00', '2.00', '', 0, 0, '', 1, 0, 1635322097, 0, 0, 1635322081, 1635322081, 0),
-(18, 0, 1, 0, 1, 0, '2021102716381319947', 1, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1.00', '2.00', '2.00', '', 0, 0, '', 1, 0, 1635323905, 0, 0, 1635323893, 1635323893, 0),
-(19, 0, 1, 0, 1, 0, '2021102716411990183', 1, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1.00', '2.00', '2.00', '', 0, 0, '', 1, 0, 1635324093, 0, 0, 1635324079, 1635324079, 0),
-(20, 0, 1, 0, 1, 0, '2021102716451363785', 1, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1.00', '2.00', '2.00', '', 0, 0, '', 1, 0, 1635325693, 0, 0, 1635324313, 1635324313, 0),
-(21, 0, 1, 0, 1, 0, '2021102717082712472', 1, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1.00', '2.00', '2.00', '', 0, 0, '', 1, 0, 1635337857, 0, 0, 1635325707, 1635325707, 0),
-(22, 0, 1, 0, 1, 0, '2021102721474236850', 1, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1.00', '2.00', '2.00', '', 0, 0, '', 1, 0, 1635342479, 0, 0, 1635342462, 1635342462, 0),
-(23, 0, 1, 0, 1, 0, '2021111716243599835', 1, 0, 5, 1, 1, 1, 1, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '55.00', '56.00', '56.00', '', 0, 0, '', 1, 0, 1637138216, 0, 0, 1637137476, 1637137475, 1637201434),
-(24, 0, 2, 1, 1, 0, '2021112315051499264', 1, 0, 5, 1, 1, 0, 0, '', '', '', '', '', '', '', '', '', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '4598.00', '4598.00', '4598.00', '163860123681', 0, 0, '', 1, 0, 1637651115, 0, 0, 1637651115, 1637651114, 1637651132),
-(25, 0, 2, 1, 1, 0, '2021112315072119954', 1, 0, 5, 1, 1, 0, 0, '', '', '', '', '', '', '', '', '', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '238.00', '238.00', '238.00', '163805539858', 0, 0, '', 1, 0, 1637651241, 0, 0, 1637651241, 1637651241, 1637651255),
-(26, 0, 1, 0, 1, 0, '2021112321065644220', 13, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', 'a', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '99.00', '100.00', '100.00', '', 0, 0, '', 1, 1, 1637722883, 0, 0, 1637672867, 1637672816, 0),
-(27, 0, 1, 0, 1, 0, '2021112321083566936', 13, 0, 2, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', 'a', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '149.00', '150.00', '150.00', '', 0, 0, '', 1, 1, 1637676221, 0, 0, 1637672922, 1637672915, 0),
-(28, 0, 1, 0, 1, 0, '2021112322114654932', 12, 0, 4, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '11.00', '3.00', '3.00', 0, '6999.00', '7002.00', '6991.00', '', 0, 0, '', 1, 1, 1637722698, 0, 0, 1637718818, 1637676706, 1639194311),
-(29, 0, 1, 0, 1, 0, '2021112323472768200', 1, 0, 4, 1, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '9.00', '9.00', 0, '4598.00', '4607.00', '4607.00', '', 0, 0, '', 1, 0, 0, 0, 0, 1637682447, 1637682447, 1639194057),
-(30, 1, 1, 0, 1, 2, '2021113021545498466', 1, 0, 2, 1, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '6288.00', '6289.00', '6289.00', '', 0, 0, '', 1, 0, 0, 0, 0, 1638280495, 1638280494, 0),
-(31, 0, 1, 0, 4, 0, '2021120109423882408', 11, 0, 1, 0, 0, 0, 0, '森', '', '18026740326', '', '', '1', '2', '3', '源城区', '', NULL, NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '55.00', '56.00', '56.00', '', 0, 0, NULL, 3, 0, 0, 0, 0, 0, 1638322958, 0),
-(32, 0, 1, 0, 1, 0, '2021120511201376516', 1, 0, 2, 1, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '55.00', '56.00', '56.00', '', 0, 0, '', 1, 0, 0, 0, 0, 1638674414, 1638674413, 0),
-(33, 0, 1, 0, 1, 0, '2021120523052024694', 1, 0, 4, 1, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '9.00', '9.00', 0, '515.00', '524.00', '524.00', '', 0, 0, '', 1, 0, 0, 0, 0, 1638716720, 1638716720, 1639194040),
-(34, 0, 1, 0, 1, 0, '2021121020222441945', 1, 0, 2, 1, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1799.00', '1800.00', '1800.00', '', 0, 0, '', 5, 0, 0, 0, 0, 1639138944, 1639138944, 0),
-(35, 0, 1, 0, 1, 0, '2021121020223905446', 1, 0, 4, 1, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1799.00', '1800.00', '1800.00', '', 0, 0, '', 5, 0, 0, 0, 0, 1639138959, 1639138959, 1639193596),
-(36, 0, 1, 0, 1, 0, '2021121020232518892', 1, 0, 4, 1, 1, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1.00', '1.00', 0, '1799.00', '1800.00', '1800.00', '', 0, 0, '', 5, 0, 1639186279, 0, 0, 1639139005, 1639139005, 1639193543),
-(37, 0, 1, 0, 1, 0, '2021121110153814527', 1, 0, 4, 1, 0, 1, 1, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '27.00', '27.00', 0, '6769.00', '6796.00', '6796.00', '', 0, 0, '', 1, 0, 0, 0, 0, 1639188939, 1639188938, 1639193392),
-(38, 0, 1, 0, 1, 0, '2021121219395254521', 1, 0, 2, 1, 0, 0, 0, '余越', '', '18963214578', '', '', '1', '2', '3', '东栋大楼', '', '', NULL, 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '3.00', '3.00', 0, '1699.00', '1702.00', '1702.00', '', 0, 0, '', 1, 0, 0, 0, 0, 1639309192, 1639309192, 0);
-
 CREATE TABLE `mall_order_batch_shipping` (
   `id` bigint(20) NOT NULL COMMENT 'ID',
   `order_sn` varchar(255) NOT NULL DEFAULT '' COMMENT '发货号',
@@ -5044,39 +4288,6 @@ CREATE TABLE `mall_order_collection` (
   `is_delete` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0:未删除 1:删除',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='收款单';
-
-INSERT INTO `mall_order_collection` (`id`, `order_id`, `user_id`, `amount`, `payment_id`, `admin_id`, `pay_status`, `note`, `is_delete`, `create_time`) VALUES
-(1, 6, 1, '400.00', 8, 1, 1, 'a', 0, 1631366437),
-(2, 8, 1, '4607.00', 1, 0, 1, '', 0, 1631994407),
-(3, 10, 1, '524.00', 1, 0, 1, '', 0, 1634811721),
-(4, 11, 1, '399.00', 1, 0, 1, '', 0, 1634894121),
-(5, 12, 1, '6288.00', 1, 0, 1, '', 0, 1634901897),
-(6, 13, 1, '78.00', 1, 0, 1, '', 0, 1634902059),
-(7, 14, 1, '6288.00', 1, 0, 1, '', 0, 1634902156),
-(8, 15, 1, '2.00', 1, 0, 1, '', 0, 1635311480),
-(9, 16, 1, '2.00', 1, 0, 1, '', 0, 1635318062),
-(10, 17, 1, '2.00', 1, 0, 1, '', 0, 1635322081),
-(11, 18, 1, '2.00', 1, 0, 1, '', 0, 1635323893),
-(12, 19, 1, '2.00', 1, 0, 1, '', 0, 1635324079),
-(13, 20, 1, '2.00', 1, 0, 1, '', 0, 1635324313),
-(14, 21, 1, '2.00', 1, 0, 1, '', 0, 1635325707),
-(15, 22, 1, '2.00', 1, 0, 1, '', 0, 1635342462),
-(16, 23, 1, '56.00', 1, 0, 1, '', 0, 1637137476),
-(17, 24, 1, '4598.00', 1, 0, 1, '', 0, 1637651115),
-(18, 25, 1, '238.00', 1, 0, 1, '', 0, 1637651241),
-(19, 26, 1, '100.00', 13, 1, 1, 'a', 0, 1637672867),
-(20, 27, 1, '150.00', 13, 1, 1, 'a', 0, 1637672922),
-(21, 29, 1, '4607.00', 1, 0, 1, '', 0, 1637682447),
-(22, 28, 1, '6991.00', 12, 1, 1, '', 0, 1637718818),
-(23, 30, 1, '6289.00', 1, 0, 1, '', 0, 1638280495),
-(24, 9, 1, '4607.00', 1, 0, 1, '', 0, 1638608227),
-(25, 32, 1, '56.00', 1, 0, 1, '', 0, 1638674414),
-(26, 33, 1, '524.00', 1, 0, 1, '', 0, 1638716720),
-(27, 34, 1, '1800.00', 1, 0, 1, '', 0, 1639138944),
-(28, 35, 1, '1800.00', 1, 0, 1, '', 0, 1639138959),
-(29, 36, 1, '1800.00', 1, 0, 1, '', 0, 1639139005),
-(30, 37, 1, '6796.00', 1, 0, 1, '', 0, 1639188939),
-(31, 38, 1, '1702.00', 1, 0, 1, '', 0, 1639309192);
 
 CREATE TABLE `mall_order_delivery` (
   `id` bigint(20) NOT NULL COMMENT '发货单ID',
@@ -5102,23 +4313,6 @@ CREATE TABLE `mall_order_delivery` (
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='发货单';
 
-INSERT INTO `mall_order_delivery` (`id`, `type`, `order_id`, `user_id`, `admin_id`, `name`, `zip`, `phone`, `country`, `province`, `city`, `area`, `address`, `mobile`, `freight`, `distribution_code`, `distribution_id`, `note`, `is_delete`, `freight_id`, `create_time`) VALUES
-(1, 0, 6, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'aaa', 0, 'aa', 0, 2, 1631366449),
-(2, 0, 10, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '9.00', 'aaaa', 0, '', 0, 2, 1634812588),
-(3, 0, 16, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'a', 0, '', 0, 8, 1635318196),
-(4, 0, 17, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'aa', 0, 'a', 0, 3, 1635322097),
-(5, 0, 18, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'a', 0, '', 0, 3, 1635323905),
-(6, 0, 19, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'a', 0, 'a', 0, 8, 1635324093),
-(10, 0, 20, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'a', 0, 'a', 0, 7, 1635325693),
-(12, 0, 21, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'a', 0, 'a', 0, 3, 1635337857),
-(13, 0, 22, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'a', 0, 'a', 0, 7, 1635342479),
-(14, 0, 15, 1, 1, '', '', '', 0, 0, 0, 0, '', '', '1.00', 'f', 0, '', 0, 2, 1636028096),
-(17, 0, 23, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', '1111', 0, 'aaa', 0, 2, 1637138216),
-(18, 0, 27, 1, 1, '余越', '0', '0', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'dfd', 0, 'asdf', 0, 8, 1637676221),
-(19, 0, 28, 1, 1, '余越', '', '', 0, 1, 2, 3, '东栋大楼', '18963214578', '3.00', 'asdf', 0, 'adf', 0, 2, 1637722698),
-(20, 0, 26, 1, 1, '余越', '', '', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'fgsd', 0, 'fdgs', 0, 2, 1637722883),
-(21, 0, 36, 1, 1, '余越', '', '', 0, 1, 2, 3, '东栋大楼', '18963214578', '1.00', 'aa', 0, 'a', 0, 3, 1639186279);
-
 CREATE TABLE `mall_order_goods` (
   `id` bigint(20) NOT NULL,
   `order_id` bigint(20) NOT NULL COMMENT '订单ID',
@@ -5138,48 +4332,6 @@ CREATE TABLE `mall_order_goods` (
   `is_send` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否已发货 0:未发货;1:已发货;2:已经退货',
   `distribution_id` int(11) NOT NULL DEFAULT 0 COMMENT '配送单ID'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单商品表';
-
-INSERT INTO `mall_order_goods` (`id`, `order_id`, `goods_id`, `product_id`, `spec_key`, `goods_no`, `thumb_image`, `real_price`, `goods_nums`, `goods_weight`, `goods_array`, `fictitious_array`, `market_price`, `sell_price`, `cost_price`, `is_send`, `distribution_id`) VALUES
-(1, 1, 4, 0, NULL, '202106201527535537', '/uploads/images/20210620/dd98030081e82739063f4cf1d767ac5a.jpg', '3280.00', 1, '6500.00', '{\"title\":\"阿诗顿厨师机A6家用7升商用小型和面机静音自动多功能鲜奶揉面机\",\"spec\":\"\"}', NULL, '3880.00', '3280.00', '0.00', 0, 1),
-(2, 2, 31, 0, NULL, '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '399.00', 1, '190.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"\"}', NULL, '1299.00', '399.00', '0.00', 0, 1),
-(3, 3, 31, 0, NULL, '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '399.00', 1, '190.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"\"}', NULL, '1299.00', '399.00', '0.00', 0, 1),
-(4, 4, 31, 0, NULL, '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '399.00', 1, '190.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"\"}', NULL, '1299.00', '399.00', '0.00', 0, 1),
-(5, 5, 31, 0, NULL, '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '399.00', 1, '190.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"\"}', NULL, '1299.00', '399.00', '0.00', 0, 1),
-(6, 6, 31, 0, NULL, '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '399.00', 1, '190.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"\"}', NULL, '1299.00', '399.00', '0.00', 1, 1),
-(7, 7, 31, 0, NULL, '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '399.00', 1, '190.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"\"}', NULL, '1299.00', '399.00', '0.00', 0, 1),
-(8, 8, 20, 0, NULL, '202106291027125543', '/uploads/images/20210629/6a5d41a2e66555f020dd08618242242e.jpg', '4598.00', 1, '2965.00', '{\"title\":\"凯膳怡家用厨师机和面机全自动进口ka搅拌揉面机4.8L\",\"spec\":\"\"}', NULL, '4599.00', '4598.00', '0.00', 2, 1),
-(9, 9, 20, 0, NULL, '202106291027125543', '/uploads/images/20210629/6a5d41a2e66555f020dd08618242242e.jpg', '4598.00', 1, '2965.00', '{\"title\":\"凯膳怡家用厨师机和面机全自动进口ka搅拌揉面机4.8L\",\"spec\":\"\"}', NULL, '4599.00', '4598.00', '0.00', 0, 1),
-(10, 10, 1, 0, NULL, '202106201443246392', '/uploads/images/20210620/6a2792be8a7f66a88b515523e62fcd06.jpg', '515.00', 1, '3000.00', '{\"title\":\"小米有品负离子空气净化器家用除甲醛去二手烟味卧室内小型清新机\",\"spec\":\"\"}', NULL, '626.00', '515.00', '0.00', 1, 2),
-(11, 11, 31, 0, NULL, '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '399.00', 1, '190.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"\"}', NULL, '1299.00', '399.00', '0.00', 1, 0),
-(12, 12, 30, 0, NULL, '202106291112060840', '/uploads/images/20210725/824d423420ec2da587b9eb2a086bb89c.jpg', '6288.00', 1, '290.00', '{\"title\":\"日本丰臣(TOYOTOMI)取暖器灯芯炉RL-F2500(H）室内户外取暖器\",\"spec\":\"\"}', NULL, '6288.00', '6288.00', '0.00', 1, 0),
-(13, 13, 28, 0, NULL, '202106291108166349', '/uploads/images/20210629/c358df55c899b282423216bc4d573766.jpg', '78.00', 1, '250.00', '{\"title\":\"扬子暖风机取暖器家用速热静音卧室小型浴室电暖气器小太阳办公室\",\"spec\":\"\"}', NULL, '198.00', '78.00', '0.00', 1, 0),
-(14, 14, 30, 0, NULL, '202106291112060840', '/uploads/images/20210725/824d423420ec2da587b9eb2a086bb89c.jpg', '6288.00', 1, '290.00', '{\"title\":\"日本丰臣(TOYOTOMI)取暖器灯芯炉RL-F2500(H）室内户外取暖器\",\"spec\":\"\"}', NULL, '6288.00', '6288.00', '0.00', 1, 0),
-(15, 15, 32, 0, NULL, '1', '/', '1.00', 1, '1.00', '{\"title\":\"aaa\",\"spec\":\"\"}', '{\"goods_type\":2,\"value\":\"a\"}', '1.00', '1.00', '0.00', 1, 16),
-(16, 16, 32, 0, NULL, '1', '/', '1.00', 1, '1.00', '{\"title\":\"aaa\",\"spec\":\"\"}', '{\"goods_type\":3,\"value\":\"\\/uploads\\/file\\/20211027\\/ef9aadd0c45909cb71cc705289ac7855.rar\"}', '1.00', '1.00', '0.00', 1, 3),
-(17, 17, 32, 0, NULL, '1', '/', '1.00', 1, '1.00', '{\"title\":\"aaa\",\"spec\":\"\"}', '{\"goods_type\":1,\"value\":1}', '1.00', '1.00', '0.00', 1, 4),
-(18, 18, 32, 0, NULL, '1', '/', '1.00', 1, '1.00', '{\"title\":\"aaa\",\"spec\":\"\"}', '{\"goods_type\":1,\"value\":1}', '1.00', '1.00', '0.00', 1, 5),
-(19, 19, 32, 0, NULL, '1', '/', '1.00', 1, '1.00', '{\"title\":\"aaa\",\"spec\":\"\"}', '{\"goods_type\":1,\"value\":1}', '1.00', '1.00', '0.00', 1, 6),
-(20, 20, 32, 0, NULL, '1', '/', '1.00', 1, '1.00', '{\"title\":\"aaa\",\"spec\":\"\"}', '{\"goods_type\":1,\"value\":1}', '1.00', '1.00', '0.00', 1, 10),
-(21, 21, 32, 0, NULL, '1', '/', '1.00', 1, '1.00', '{\"title\":\"aaa\",\"spec\":\"\"}', '{\"goods_type\":1,\"value\":1,\"card\":\"帐号12345 密码：123\"}', '1.00', '1.00', '0.00', 1, 12),
-(22, 22, 32, 0, NULL, '1', '/static/images/default.jpg', '1.00', 1, '1.00', '{\"title\":\"aaa\",\"spec\":\"\"}', '{\"goods_type\":1,\"value\":1,\"card\":\"帐号56789 密码：123\"}', '1.00', '1.00', '0.00', 1, 13),
-(23, 23, 31, 8, '2:2', '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '55.00', 1, '111.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"颜色分类：经典蓝\"}', '', '66.00', '55.00', '0.00', 1, 17),
-(24, 24, 20, 0, NULL, '202106291027125543', '/uploads/images/20210629/6a5d41a2e66555f020dd08618242242e.jpg', '4598.00', 1, '2965.00', '{\"title\":\"凯膳怡家用厨师机和面机全自动进口ka搅拌揉面机4.8L\",\"spec\":\"\"}', '', '4599.00', '4598.00', '0.00', 1, 0),
-(25, 25, 18, 0, NULL, '202106291020310277', '/uploads/images/20210629/fff8007f3ed4d9d356c2e4bc2eddb949.jpg', '238.00', 1, '235.00', '{\"title\":\"智能定时预约 3L 4L大容量饭煲\",\"spec\":\"\"}', '', '279.00', '238.00', '0.00', 1, 0),
-(26, 26, 19, 0, NULL, '202106291022513360', '/uploads/images/20210629/da986e0513db8d7c38daf94cd76db3b7.jpg', '99.00', 1, '190.00', '{\"title\":\"电饭煲家用智能定时预约新款多功能蒸饭蛋糕锅2-3-4-5升6人\",\"spec\":\"\"}', '', '99.00', '99.00', '0.00', 1, 20),
-(27, 27, 8, 0, NULL, '202106201604013717', '/uploads/images/20210620/5e54988c5ecd9b0633f6582ccc6c7ca1.jpg', '149.00', 1, '1000.00', '{\"title\":\"可加热榨汁机小型便携式豆浆机破壁机多功能家用料理电动炸果汁杯\",\"spec\":\"\"}', '', '499.00', '149.00', '0.00', 1, 18),
-(28, 28, 25, 0, NULL, '202106291056040790', '/uploads/images/20210629/c4351e4d8d0ee22c6297f6bb69a022a7.jpg', '6999.00', 1, '1290.00', '{\"title\":\"43英寸4K超高清QLED电视机Serif画境\",\"spec\":\"\"}', '', '7999.00', '6999.00', '0.00', 1, 19),
-(29, 29, 20, 0, NULL, '202106291027125543', '/uploads/images/20210629/6a5d41a2e66555f020dd08618242242e.jpg', '4598.00', 1, '2965.00', '{\"title\":\"凯膳怡家用厨师机和面机全自动进口ka搅拌揉面机4.8L\",\"spec\":\"\"}', '', '4599.00', '4598.00', '0.00', 2, 1),
-(30, 30, 30, 0, NULL, '202106291112060840', '/uploads/images/20210725/824d423420ec2da587b9eb2a086bb89c.jpg', '6288.00', 1, '290.00', '{\"title\":\"日本丰臣(TOYOTOMI)取暖器灯芯炉RL-F2500(H）室内户外取暖器\",\"spec\":\"\"}', '', '6288.00', '6288.00', '0.00', 0, 1),
-(31, 31, 31, 8, '2:2', '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '55.00', 1, '111.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"颜色分类：经典蓝\"}', '', '66.00', '55.00', '0.00', 0, 1),
-(32, 32, 31, 8, '2:2', '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '55.00', 1, '111.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"颜色分类：经典蓝\"}', '', '66.00', '55.00', '0.00', 0, 1),
-(33, 33, 1, 0, NULL, '202106201443246392', '/uploads/images/20210620/6a2792be8a7f66a88b515523e62fcd06.jpg', '515.00', 1, '3000.00', '{\"title\":\"小米有品负离子空气净化器家用除甲醛去二手烟味卧室内小型清新机\",\"spec\":\"\"}', '', '626.00', '515.00', '0.00', 0, 1),
-(34, 34, 9, 0, NULL, '202106201605475810', '/uploads/images/20210620/aa2a37d5dc927634a9fe4f06465e91fe.jpg', '1799.00', 1, '600.00', '{\"title\":\"小米净水器厨下式600G家用自来水RO反渗透直饮纯水机1年滤芯套装\",\"spec\":\"\"}', '', '3299.00', '1799.00', '0.00', 0, 1),
-(35, 35, 9, 0, NULL, '202106201605475810', '/uploads/images/20210620/aa2a37d5dc927634a9fe4f06465e91fe.jpg', '1799.00', 1, '600.00', '{\"title\":\"小米净水器厨下式600G家用自来水RO反渗透直饮纯水机1年滤芯套装\",\"spec\":\"\"}', '', '3299.00', '1799.00', '0.00', 0, 1),
-(36, 36, 9, 0, NULL, '202106201605475810', '/uploads/images/20210620/aa2a37d5dc927634a9fe4f06465e91fe.jpg', '1799.00', 1, '600.00', '{\"title\":\"小米净水器厨下式600G家用自来水RO反渗透直饮纯水机1年滤芯套装\",\"spec\":\"\"}', '', '3299.00', '1799.00', '0.00', 1, 21),
-(37, 37, 31, 10, '2:2', '202106291113391136', '/uploads/images/20210629/455e551e15c75f6ff5cdd9278c6e2ab3.jpg', '55.00', 1, '111.00', '{\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"spec\":\"颜色分类：经典蓝\"}', '', '66.00', '55.00', '0.00', 0, 1),
-(38, 37, 3, 0, NULL, '202106201520250113', '/uploads/images/20210620/d0e8d7628fb72b94022e1aad195ca6ec.jpg', '6199.00', 1, '5000.00', '{\"title\":\"Hisense\\/海信 75E3F-PRO 75英寸4K智慧全面屏电视机智能网络高清\",\"spec\":\"\"}', '', '6499.00', '6199.00', '0.00', 0, 1),
-(39, 37, 1, 0, NULL, '202106201443246392', '/uploads/images/20210620/6a2792be8a7f66a88b515523e62fcd06.jpg', '515.00', 1, '3000.00', '{\"title\":\"小米有品负离子空气净化器家用除甲醛去二手烟味卧室内小型清新机\",\"spec\":\"\"}', '', '626.00', '515.00', '0.00', 0, 1),
-(40, 38, 23, 0, NULL, '202106291043541421', '/uploads/images/20210629/6c5a2c54169f6623d6f15937f506d7fc.jpg', '1699.00', 1, '1250.00', '{\"title\":\"内衣裤洗衣机高温煮洗袜子小型迷你清洗内裤机全自动杀菌家用\",\"spec\":\"\"}', '', '2299.00', '1699.00', '0.00', 0, 1);
 
 CREATE TABLE `mall_order_group` (
   `id` int(10) NOT NULL,
@@ -5211,83 +4363,6 @@ CREATE TABLE `mall_order_log` (
   `create_time` int(10) DEFAULT 0 COMMENT '操作时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单日志表';
 
-INSERT INTO `mall_order_log` (`id`, `order_id`, `username`, `action`, `result`, `note`, `create_time`) VALUES
-(1, 7, 'demo', '取消订单', '成功', '订单【2021072616085073826】客户取消订单', 1627288255),
-(2, 6, 'admin', '付款', '成功', '订单【2021072616065366362】付款400.00元', 1631366437),
-(3, 6, 'admin', '发货', '成功', '订单【2021072616065366362】由【管理员】admin发货', 1631366449),
-(4, 8, 'system', '付款', '成功', '订单【2021091903464774473】付款4607.00元', 1631994407),
-(5, 10, 'system', '付款', '成功', '订单【2021102118220135951】付款524.00元', 1634811721),
-(6, 10, 'admin', '发货', '成功', '订单【2021102118220135951】由【管理员】admin发货', 1634812588),
-(7, 11, 'system', '发货', '成功', '订单【2021102217152133119】由 system 发货', 1634894121),
-(8, 11, 'system', '付款', '成功', '订单【2021102217152133119】付款399.00元', 1634894121),
-(9, 11, '核销员：demo', '完成', '成功', '订单【2021102217152133119】核销成功', 1634901766),
-(10, 12, 'system', '发货', '成功', '订单【2021102219245687321】由 system 发货', 1634901897),
-(11, 12, 'system', '付款', '成功', '订单【2021102219245687321】付款6288.00元', 1634901897),
-(12, 12, '核销员：demo', '完成', '成功', '订单【2021102219245687321】核销成功', 1634901916),
-(13, 13, 'system', '发货', '成功', '订单【2021102219273974823】由 system 发货', 1634902059),
-(14, 13, 'system', '付款', '成功', '订单【2021102219273974823】付款78.00元', 1634902059),
-(15, 13, '核销员：demo', '完成', '成功', '订单【2021102219273974823】核销成功', 1634902082),
-(16, 14, 'system', '发货', '成功', '订单【2021102219291682869】由 system 发货', 1634902156),
-(17, 14, 'system', '付款', '成功', '订单【2021102219291682869】付款6288.00元', 1634902157),
-(18, 15, 'system', '付款', '成功', '订单【2021102713112049196】付款2.00元', 1635311480),
-(19, 16, 'system', '付款', '成功', '订单【2021102715010224490】付款2.00元', 1635318062),
-(20, 16, 'admin', '发货', '成功', '订单【2021102715010224490】由【管理员】admin发货', 1635318196),
-(21, 17, 'system', '付款', '成功', '订单【2021102716080150746】付款2.00元', 1635322081),
-(22, 17, 'admin', '发货', '成功', '订单【2021102716080150746】由【管理员】admin发货', 1635322097),
-(23, 18, 'system', '付款', '成功', '订单【2021102716381319947】付款2.00元', 1635323893),
-(24, 18, 'admin', '发货', '成功', '订单【2021102716381319947】由【管理员】admin发货', 1635323905),
-(25, 19, 'system', '付款', '成功', '订单【2021102716411990183】付款2.00元', 1635324080),
-(26, 19, 'admin', '发货', '成功', '订单【2021102716411990183】由【管理员】admin发货', 1635324093),
-(27, 20, 'system', '付款', '成功', '订单【2021102716451363785】付款2.00元', 1635324313),
-(28, 20, 'admin', '发货', '成功', '订单【2021102716451363785】由【管理员】admin发货', 1635325693),
-(29, 21, 'system', '付款', '成功', '订单【2021102717082712472】付款2.00元', 1635325707),
-(30, 21, 'admin', '发货', '成功', '订单【2021102717082712472】由【管理员】admin发货', 1635337857),
-(31, 22, 'system', '付款', '成功', '订单【2021102721474236850】付款2.00元', 1635342462),
-(32, 22, 'admin', '发货', '成功', '订单【2021102721474236850】由【管理员】admin发货', 1635342479),
-(33, 15, 'admin', '发货', '成功', '订单【2021102713112049196】由【管理员】admin发货', 1636028097),
-(34, 15, 'admin', '发货', '成功', '订单【2021102713112049196】由【管理员】admin发货', 1636031506),
-(35, 15, 'admin', '发货', '成功', '订单【2021102713112049196】由【管理员】admin发货', 1636031514),
-(36, 8, 'admin', '退款', '成功', '订单【2021091903464774473】退款，退款金额：4607.00', 1637136863),
-(37, 23, 'system', '付款', '成功', '订单【2021111716243599835】付款56.00元', 1637137476),
-(38, 23, 'admin', '发货', '成功', '订单【2021111716243599835】由【管理员】admin发货', 1637138216),
-(39, 24, 'system', '发货', '成功', '订单【2021112315051499264】由 system 发货', 1637651115),
-(40, 24, 'system', '付款', '成功', '订单【2021112315051499264】付款4598.00元', 1637651115),
-(41, 25, 'system', '发货', '成功', '订单【2021112315072119954】由 system 发货', 1637651241),
-(42, 25, 'system', '付款', '成功', '订单【2021112315072119954】付款238.00元', 1637651241),
-(43, 25, 'admin', '完成', '成功', '订单【2021112315072119954】核销成功', 1637651255),
-(44, 27, 'admin', '付款', '成功', '订单【2021112321083566936】付款150.00元', 1637672922),
-(45, 27, 'admin', '发货', '成功', '订单【2021112321083566936】由【管理员】admin发货', 1637676221),
-(46, 28, 'admin', '减少金额', '成功', '修改订单金额', 1637676803),
-(47, 29, 'system', '付款', '成功', '订单【2021112323472768200】付款4607.00元', 1637682447),
-(48, 29, 'admin', '退款', '成功', '订单【2021112323472768200】退款，退款金额：4598', 1637682460),
-(49, 28, 'admin', '付款', '成功', '订单【2021112322114654932】付款6991.00元', 1637718818),
-(50, 28, 'admin', '发货', '成功', '订单【2021112322114654932】由【管理员】admin发货', 1637722698),
-(51, 26, 'admin', '发货', '成功', '订单【2021112321065644220】由【管理员】admin发货', 1637722883),
-(52, 30, 'system', '付款', '成功', '订单【2021113021545498466】付款6289.00元', 1638280495),
-(53, 9, 'system', '付款', '成功', '订单【2021101114472655926】付款4607.00元', 1638608227),
-(54, 5, 'demo', '取消订单', '成功', '订单【2021072611094537489】客户取消订单', 1638610055),
-(55, 32, 'system', '付款', '成功', '订单【2021120511201376516】付款56.00元', 1638674414),
-(56, 33, 'system', '付款', '成功', '订单【2021120523052024694】付款524.00元', 1638716720),
-(57, 34, 'system', '付款', '成功', '订单【2021121020222441945】付款1800.00元', 1639138944),
-(58, 35, 'system', '付款', '成功', '订单【2021121020223905446】付款1800.00元', 1639138959),
-(59, 36, 'system', '付款', '成功', '订单【2021121020232518892】付款1800.00元', 1639139005),
-(60, 36, 'admin', '发货', '成功', '订单【2021121020232518892】由【管理员】admin发货', 1639186279),
-(61, 37, 'system', '付款', '成功', '订单【2021121110153814527】付款6796.00元', 1639188939),
-(62, 37, 'admin', '作废', '成功', '订单【2021121110153814527】作废成功', 1639193239),
-(63, 37, 'admin', '作废', '成功', '订单【2021121110153814527】作废成功', 1639193262),
-(64, 37, 'admin', '作废', '成功', '订单【2021121110153814527】作废成功', 1639193322),
-(65, 37, 'admin', '作废', '成功', '订单【2021121110153814527】作废成功', 1639193324),
-(66, 37, 'admin', '作废', '成功', '订单【2021121110153814527】作废成功', 1639193357),
-(67, 37, 'admin', '作废', '成功', '订单【2021121110153814527】作废成功', 1639193358),
-(68, 37, 'admin', '作废', '成功', '订单【2021121110153814527】作废成功', 1639193392),
-(69, 36, 'admin', '作废', '成功', '订单【2021121020232518892】作废成功', 1639193543),
-(70, 35, 'admin', '作废', '成功', '订单【2021121020223905446】作废成功', 1639193596),
-(71, 33, 'admin', '作废', '成功', '订单【2021120523052024694】作废成功', 1639193630),
-(72, 33, 'admin', '作废', '成功', '订单【2021120523052024694】作废成功', 1639194040),
-(73, 29, 'admin', '作废', '成功', '订单【2021112323472768200】作废成功', 1639194057),
-(74, 28, 'admin', '作废', '成功', '订单【2021112322114654932】作废成功', 1639194311),
-(75, 38, 'system', '付款', '成功', '订单【2021121219395254521】付款1702.00元', 1639309192);
-
 CREATE TABLE `mall_order_refundment` (
   `id` bigint(20) NOT NULL,
   `order_no` varchar(255) NOT NULL DEFAULT '' COMMENT '订单号',
@@ -5306,12 +4381,6 @@ CREATE TABLE `mall_order_refundment` (
   `create_time` int(10) DEFAULT 0 COMMENT '时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='退款单';
 
-INSERT INTO `mall_order_refundment` (`id`, `order_no`, `out_refund_no`, `order_id`, `user_id`, `type`, `amount`, `admin_id`, `pay_status`, `content`, `dispose_idea`, `is_delete`, `order_goods_id`, `dispose_time`, `create_time`) VALUES
-(1, '2021091903464774473', '2021111716142334990', 8, 1, 0, '4607.00', 1, 2, 'aaaaa', 'a', 0, '8', 1637136863, 1631994416),
-(2, '2021111716243599835', '', 23, 1, 0, '56.00', 1, 1, 'a', 's', 0, '23', 1637137500, 1637137482),
-(3, '2021112323472768200', '2021112323474026214', 29, 1, 0, '4598.00', 1, 2, '系统退款', 'aaa', 0, '29', 1637682460, 1637682460),
-(4, '2021113021545498466', '', 30, 1, 0, '6289.00', 0, 0, 'aaa', NULL, 0, '30', 0, 1638607550);
-
 CREATE TABLE `mall_pages` (
   `id` int(10) NOT NULL,
   `type` varchar(16) DEFAULT '',
@@ -5321,15 +4390,6 @@ CREATE TABLE `mall_pages` (
   `is_lock` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0不锁定'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `mall_pages` (`id`, `type`, `code`, `name`, `intro`, `is_lock`) VALUES
-(1, 'h5', 'home', '首页装修', '', 1),
-(2, 'h5', 'category', '分类页面', '', 1),
-(3, 'mini', 'home', '首页装修', '', 1),
-(4, 'mini', 'category', '分类页面', '', 1),
-(5, 'app', 'home', '首页装修', '', 1),
-(6, 'app', 'category', '分类页面', '', 1),
-(10, 'mini', 'mobile', '手机专题', '', 0);
-
 CREATE TABLE `mall_pages_items` (
   `id` int(10) NOT NULL,
   `pid` int(10) NOT NULL DEFAULT 0,
@@ -5338,49 +4398,6 @@ CREATE TABLE `mall_pages_items` (
   `params` longtext CHARACTER SET utf8 DEFAULT NULL COMMENT '组件配置内容'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `mall_pages_items` (`id`, `pid`, `widget_name`, `position_id`, `params`) VALUES
-(2574, 10, 'textarea', 0, '\"<p>这是手机专题页，可以在后台自己排版的哦！！！！！<\\/p>\"'),
-(2575, 10, 'more', 1, '{\"title\":\"自定义上拉加载内容\",\"status\":\"0\",\"category_id\":\"\",\"brand_id\":\"\",\"limit\":\"10\",\"column\":\"2\"}'),
-(3886, 5, 'slider', 0, '{\"duration\":\"5000\",\"height\":\"150\",\"border\":\"0\",\"marginTop\":\"0\",\"marginBottom\":\"0\",\"marginLeft\":\"0\",\"marginRight\":\"0\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/04bdc66bdc402a371efa8186a8a36e52.jpg\",\"type\":\"2\",\"url\":\"38\",\"select\":\"2\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/4d3d9e2819d652f80d47f4dd9f6c1c49.jpg\",\"type\":\"2\",\"url\":\"37\",\"select\":\"2\"}]}'),
-(3887, 5, 'notice', 1, '{\"color\":\"#9499AA\",\"type\":\"auto\",\"list\":[{\"id\":\"1\",\"pid\":\"59\",\"title\":\"A3Mall企业版v1.0发布啦！\",\"hits\":\"0\",\"status\":\"0\",\"sort\":\"0\",\"photo\":\"http:\\/\\/a3mall-pro.top\\/static\\/images\\/default.jpg\",\"intro\":\"\",\"content\":\"<p>A3Mall企业版v1.0发布啦！<\\/p>\",\"create_time\":\"2021-06-29 21:46:22\",\"update_time\":\"1624974382\",\"cat_name\":\"平台公告\",\"profile\":{\"id\":\"59\",\"pid\":\"0\",\"title\":\"平台公告\",\"photo\":\"\",\"content\":\"\",\"module\":\"article\",\"status\":\"0\",\"sort\":\"0\",\"hits\":\"0\",\"is_menu\":\"0\",\"is_hot\":\"0\",\"is_recommend\":\"1\",\"is_lock\":\"0\",\"create_time\":\"2021-06-29 21:23:17\",\"update_time\":\"1624972997\"}}]}'),
-(3888, 5, 'navbar', 2, '{\"limit\":\"4\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/872811236c7e0d7ad2e505cb616461b8.png\",\"text\":\"拼团\",\"type\":\"5\",\"url\":\"group\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/aba1cd3a8a3efdb6695c29db5de57817.png\",\"text\":\"领劵\",\"type\":\"5\",\"url\":\"coupon\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/840bd03b7d2084b6db46304eb100532a.png\",\"text\":\"团购\",\"type\":\"5\",\"url\":\"regiment\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/2a897c804d0ee851ed440db30ed13ae0.png\",\"text\":\"秒杀\",\"type\":\"5\",\"url\":\"second\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/8812b4bddf2f04e1d51a49241484cb7d.png\",\"type\":\"5\",\"url\":\"special\",\"text\":\"会员特价\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/0fbc29c933d513c8ac0eb849dfe364e2.png\",\"type\":\"5\",\"url\":\"point\",\"text\":\"积分商城\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210705\\/3bd1aaa8969dea6c1c3e6e4771f9e1de.png\",\"type\":\"5\",\"url\":\"luckdraw\",\"text\":\"抽奖活动\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/f9d73efba8a3ae6766d812eeeffce2dc.png\",\"type\":\"5\",\"url\":\"sign\",\"text\":\"我要签到\"}]}'),
-(3889, 5, 'blank', 3, '{\"height\":\"10\",\"backgroundColor\":\"#F8F8F8\"}'),
-(3890, 5, 'images', 4, '{\"height\":\"100\",\"border\":\"0\",\"marginTop\":\"0\",\"marginBottom\":\"0\",\"marginLeft\":\"0\",\"marginRight\":\"0\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/4e5a035ea8eda87a02a4c43d072e45e8.png\",\"type\":\"6\",\"url\":\"\",\"select\":\"2\"}]}'),
-(3891, 5, 'blank', 5, '{\"height\":\"10\",\"backgroundColor\":\"#F8F8F8\"}'),
-(3892, 5, 'blank', 6, '{\"height\":\"10\",\"backgroundColor\":\"#F8F8F8\"}'),
-(3893, 5, 'second', 7, '{\"title\":\"秒杀\",\"limit\":\"10\",\"list\":[{\"id\":\"1\",\"title\":\"阿诗顿厨师机A6家用7升商用小型和面机静音自动多功能鲜奶揉面机\",\"goods_id\":\"4\",\"sell_price\":\"3280\",\"start_time\":\"1624327200\",\"end_time\":\"1753927580\",\"photo\":\"\\/uploads\\/images\\/20210620\\/dd98030081e82739063f4cf1d767ac5a.jpg\",\"now_time\":\"1625456022\"},{\"id\":\"2\",\"title\":\"扬子烘干机干衣机家用小型圆形衣服衣物速干衣柜折叠烘衣风干机器\",\"goods_id\":\"5\",\"sell_price\":\"179\",\"start_time\":\"1624932137\",\"end_time\":\"1660010537\",\"photo\":\"\\/uploads\\/images\\/20210620\\/e4a00e263b4860a9d8a3d4847eba60f5.jpg\",\"now_time\":\"1625456022\"}]}'),
-(3894, 5, 'image-group', 8, '{\"style\":\"0\",\"margin\":\"0\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/e7fb6bf07c5c28e9696bb820dbf0a286.png\",\"type\":\"2\",\"url\":\"29\",\"select\":\"2\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/f35745f921d002d69e84ac4f2a0fb752.png\",\"type\":\"2\",\"url\":\"38\",\"select\":\"2\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/cc63d4e2175f52c8405e604308b70281.png\",\"type\":\"2\",\"url\":\"34\",\"select\":\"2\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/a1dd20dbe04338f520b8de342d16abc1.png\",\"type\":\"2\",\"url\":\"29\",\"select\":\"2\"}]}'),
-(3895, 5, 'blank', 9, '{\"height\":\"10\",\"backgroundColor\":\"#F8F8F8\"}'),
-(3896, 5, 'goods', 10, '{\"title\":\"推荐商品\",\"lookMore\":\"1\",\"layout\":\"1\",\"type\":\"auto\",\"category_id\":\"\",\"brand_id\":\"\",\"limit\":\"10\",\"display\":\"slide\",\"column\":\"3\",\"list\":[{\"id\":\"1\",\"cat_id\":\"13\",\"title\":\"小米有品负离子空气净化器家用除甲醛去二手烟味卧室内小型清新机\",\"goods_number\":\"202106201443246400\",\"goods_weight\":\"3000\",\"sell_price\":\"515\",\"market_price\":\"626\",\"store_nums\":\"951\",\"photo\":\"\\/uploads\\/images\\/20210620\\/6a2792be8a7f66a88b515523e62fcd06.jpg\",\"briefly\":\"\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"2\",\"cat_id\":\"1\",\"title\":\"卓力电熨斗家用蒸汽手持小型挂烫机平挂烫衣服机熨烫机TS3000\",\"goods_number\":\"dfa\",\"goods_weight\":\"1500\",\"sell_price\":\"3299\",\"market_price\":\"4999\",\"store_nums\":\"235\",\"photo\":\"\\/uploads\\/images\\/20210620\\/79ba441fa3d86860cb96e715e971f3bb.jpg\",\"briefly\":\"精致熨烫 细致呵护面料\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"3\",\"cat_id\":\"9\",\"title\":\"Hisense\\/海信 75E3F-PRO 75英寸4K智慧全面屏电视机智能网络高清\",\"goods_number\":\"202106201520250100\",\"goods_weight\":\"5000\",\"sell_price\":\"6199\",\"market_price\":\"6499\",\"store_nums\":\"128\",\"photo\":\"\\/uploads\\/images\\/20210620\\/d0e8d7628fb72b94022e1aad195ca6ec.jpg\",\"briefly\":\"AI声控 2+32GB MEMC运动补偿\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"4\",\"cat_id\":\"15\",\"title\":\"阿诗顿厨师机A6家用7升商用小型和面机静音自动多功能鲜奶揉面机\",\"goods_number\":\"202106201527535550\",\"goods_weight\":\"6500\",\"sell_price\":\"3280\",\"market_price\":\"3880\",\"store_nums\":\"297\",\"photo\":\"\\/uploads\\/images\\/20210620\\/dd98030081e82739063f4cf1d767ac5a.jpg\",\"briefly\":\"直流静音马达，12分钟出膜，家商两用\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"5\",\"cat_id\":\"10\",\"title\":\"扬子烘干机干衣机家用小型圆形衣服衣物速干衣柜折叠烘衣风干机器\",\"goods_number\":\"202106201531313950\",\"goods_weight\":\"1500\",\"sell_price\":\"179\",\"market_price\":\"369\",\"store_nums\":\"98\",\"photo\":\"\\/uploads\\/images\\/20210620\\/e4a00e263b4860a9d8a3d4847eba60f5.jpg\",\"briefly\":\"高温杀菌，拆装简便\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"6\",\"cat_id\":\"16\",\"title\":\"鸟笼烤火炉桌下烤脚烤火器小太阳取暖器家用小型节能电暖器电烤炉\",\"goods_number\":\"a30-1\",\"goods_weight\":\"45000\",\"sell_price\":\"109.9\",\"market_price\":\"109.9\",\"store_nums\":\"954\",\"photo\":\"\\/uploads\\/images\\/20210620\\/62c22c9b45ee3fcc84b1b7dcda490b17.jpg\",\"briefly\":\"360度防倾倒，安全防漏电速热\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"7\",\"cat_id\":\"2\",\"title\":\"浅杉绿电水壶304不锈钢自动断电电热水壶\",\"goods_number\":\"202106201557259600\",\"goods_weight\":\"1900\",\"sell_price\":\"798\",\"market_price\":\"798\",\"store_nums\":\"523\",\"photo\":\"\\/uploads\\/images\\/20210620\\/5a9f561d486000295bbd4a2c7d05aa66.png\",\"briefly\":\"\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"8\",\"cat_id\":\"5\",\"title\":\"可加热榨汁机小型便携式豆浆机破壁机多功能家用料理电动炸果汁杯\",\"goods_number\":\"202106201604013730\",\"goods_weight\":\"1000\",\"sell_price\":\"149\",\"market_price\":\"499\",\"store_nums\":\"932\",\"photo\":\"\\/uploads\\/images\\/20210620\\/5e54988c5ecd9b0633f6582ccc6c7ca1.jpg\",\"briefly\":\"可加热榨汁机豆浆机破壁机便携式多功能小型\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"9\",\"cat_id\":\"4\",\"title\":\"小米净水器厨下式600G家用自来水RO反渗透直饮纯水机1年滤芯套装\",\"goods_number\":\"202106201605475800\",\"goods_weight\":\"600\",\"sell_price\":\"1799\",\"market_price\":\"3299\",\"store_nums\":\"426\",\"photo\":\"\\/uploads\\/images\\/20210620\\/aa2a37d5dc927634a9fe4f06465e91fe.jpg\",\"briefly\":\"600G净水器+PP棉2只+前置炭1只+后置炭1只\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"10\",\"cat_id\":\"10\",\"title\":\"格力烘干机家用干衣机省电杀菌速干衣小型烤衣服烘被烘干器烘衣机\",\"goods_number\":\"202106201609089300\",\"goods_weight\":\"2500\",\"sell_price\":\"288\",\"market_price\":\"799\",\"store_nums\":\"9631\",\"photo\":\"\\/uploads\\/images\\/20210620\\/87499eb9cbea7b846f09dbd5a05fe88e.jpg\",\"briefly\":\"格力干衣机 速干衣 一机多用\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"}]}'),
-(3897, 5, 'more', 11, '{\"title\":\"猜你喜欢\",\"status\":\"0\",\"category_id\":\"\",\"brand_id\":\"\",\"limit\":\"10\",\"column\":\"2\"}'),
-(4087, 3, 'slider', 0, '{\"duration\":\"5000\",\"height\":\"150\",\"border\":\"0\",\"marginTop\":\"0\",\"marginBottom\":\"0\",\"marginLeft\":\"0\",\"marginRight\":\"0\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/c20c3583824ae6cf65708e19fa9622df.jpg\",\"type\":\"1\",\"url\":\"\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/9cc9d629da0ed19d525cb09419fb4317.jpg\",\"type\":\"1\",\"url\":\"\"}]}'),
-(4088, 3, 'notice', 1, '{\"color\":\"#9499AA\",\"type\":\"auto\",\"list\":[{\"id\":\"1\",\"pid\":\"59\",\"title\":\"A3Mall企业版v1.0发布啦！\",\"hits\":\"0\",\"status\":\"0\",\"sort\":\"0\",\"photo\":\"http:\\/\\/a3mall-pro.top\\/static\\/images\\/default.jpg\",\"intro\":\"\",\"content\":\"<p>A3Mall企业版v1.0发布啦！<\\/p>\",\"create_time\":\"2021-06-29 21:46:22\",\"update_time\":\"1624974382\",\"cat_name\":\"平台公告\",\"profile\":{\"id\":\"59\",\"pid\":\"0\",\"title\":\"平台公告\",\"photo\":\"\",\"content\":\"\",\"module\":\"article\",\"status\":\"0\",\"sort\":\"0\",\"hits\":\"0\",\"is_menu\":\"0\",\"is_hot\":\"0\",\"is_recommend\":\"1\",\"is_lock\":\"0\",\"create_time\":\"2021-06-29 21:23:17\",\"update_time\":\"1624972997\"}}]}'),
-(4089, 3, 'navbar', 2, '{\"limit\":\"4\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/6ca3e3f72ffc53b4202ba1b6e16c947d.png\",\"text\":\"拼团\",\"type\":\"5\",\"url\":\"group\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/9d28e5e8f58e6a0bde48da995b9ac3b3.png\",\"text\":\"领劵\",\"type\":\"5\",\"url\":\"coupon\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/b97565734538d52c8ed29221fcbaab85.png\",\"text\":\"团购\",\"type\":\"5\",\"url\":\"regiment\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/78738a8bc9376739b23e3399170214c3.png\",\"text\":\"秒杀\",\"type\":\"5\",\"url\":\"second\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/a3fed9f07fb7702bff5a6f38bf4df3db.png\",\"type\":\"5\",\"url\":\"special\",\"text\":\"会员特价\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/16d1a8b2dc8868ed4cc81903d435d6e0.png\",\"type\":\"5\",\"url\":\"point\",\"text\":\"积分商城\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210705\\/4eecb93f02447ea307dc5c129b2267ee.png\",\"type\":\"5\",\"url\":\"luckdraw\",\"text\":\"抽奖活动\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/e10c3ff076e73a53c59eee357d922c04.png\",\"type\":\"5\",\"url\":\"sign\",\"text\":\"我要签到\"}]}'),
-(4090, 3, 'blank', 3, '{\"height\":\"10\",\"backgroundColor\":\"\"}'),
-(4091, 3, 'images', 4, '{\"height\":\"100\",\"border\":\"0\",\"marginTop\":\"0\",\"marginBottom\":\"0\",\"marginLeft\":\"0\",\"marginRight\":\"0\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/3e7dee845e3e536694733c211b63c8d7.png\",\"type\":\"6\",\"url\":\"10\"}]}'),
-(4092, 3, 'blank', 5, '{\"height\":\"10\",\"backgroundColor\":\"\"}'),
-(4093, 3, 'blank', 6, '{\"height\":\"10\",\"backgroundColor\":\"\"}'),
-(4094, 3, 'second', 7, '{\"title\":\"秒杀\",\"limit\":\"10\",\"list\":[{\"id\":\"1\",\"title\":\"阿诗顿厨师机A6家用7升商用小型和面机静音自动多功能鲜奶揉面机\",\"goods_id\":\"4\",\"sell_price\":\"3280\",\"start_time\":\"1624327200\",\"end_time\":\"1753927580\",\"photo\":\"\\/uploads\\/images\\/20210620\\/dd98030081e82739063f4cf1d767ac5a.jpg\",\"now_time\":\"1638440994\"},{\"id\":\"2\",\"title\":\"扬子烘干机干衣机家用小型圆形衣服衣物速干衣柜折叠烘衣风干机器\",\"goods_id\":\"5\",\"sell_price\":\"179\",\"start_time\":\"1624932137\",\"end_time\":\"1660010537\",\"photo\":\"\\/uploads\\/images\\/20210620\\/e4a00e263b4860a9d8a3d4847eba60f5.jpg\",\"now_time\":\"1638440994\"}]}'),
-(4095, 3, 'image-group', 8, '{\"style\":\"0\",\"margin\":\"0\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/dae403959e85f09778057198e8377e4b.png\",\"type\":\"1\",\"url\":\"\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/8660b7dc52e240c86dcf55f6ec6f0203.png\",\"type\":\"1\",\"url\":\"\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/93e365d97d6b7c48cc19a3d87cc545b3.png\",\"type\":\"1\",\"url\":\"\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210629\\/11183b9d92bd5b654de38dbba2c3345d.png\",\"type\":\"1\",\"url\":\"\"}]}'),
-(4096, 3, 'blank', 9, '{\"height\":\"10\",\"backgroundColor\":\"\"}'),
-(4097, 3, 'goods', 10, '{\"title\":\"精品推荐\",\"lookMore\":\"0\",\"layout\":\"1\",\"type\":\"auto\",\"category_id\":\"\",\"brand_id\":\"\",\"limit\":\"10\",\"display\":\"slide\",\"column\":\"3\",\"list\":[{\"id\":\"20\",\"cat_id\":\"15\",\"title\":\"凯膳怡家用厨师机和面机全自动进口ka搅拌揉面机4.8L\",\"goods_number\":\"202106291027125540\",\"goods_weight\":\"2965\",\"sell_price\":\"4598\",\"market_price\":\"4599\",\"store_nums\":\"5620\",\"photo\":\"\\/uploads\\/images\\/20210629\\/6a5d41a2e66555f020dd08618242242e.jpg\",\"briefly\":\"\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"3\"},{\"id\":\"30\",\"cat_id\":\"16\",\"title\":\"日本丰臣(TOYOTOMI)取暖器灯芯炉RL-F2500(H）室内户外取暖器\",\"goods_number\":\"202106291112060830\",\"goods_weight\":\"290\",\"sell_price\":\"6288\",\"market_price\":\"6288\",\"store_nums\":\"560\",\"photo\":\"\\/uploads\\/images\\/20210725\\/824d423420ec2da587b9eb2a086bb89c.jpg\",\"briefly\":\"\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"3\"},{\"id\":\"31\",\"cat_id\":\"16\",\"title\":\"桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能\",\"goods_number\":\"202106291113391140\",\"goods_weight\":\"190\",\"sell_price\":\"399\",\"market_price\":\"1299\",\"store_nums\":\"560\",\"photo\":\"\\/uploads\\/images\\/20210629\\/455e551e15c75f6ff5cdd9278c6e2ab3.jpg\",\"briefly\":\"\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"3\"},{\"id\":\"1\",\"cat_id\":\"13\",\"title\":\"小米有品负离子空气净化器家用除甲醛去二手烟味卧室内小型清新机\",\"goods_number\":\"202106201443246400\",\"goods_weight\":\"3000\",\"sell_price\":\"515\",\"market_price\":\"626\",\"store_nums\":\"950\",\"photo\":\"\\/uploads\\/images\\/20210620\\/6a2792be8a7f66a88b515523e62fcd06.jpg\",\"briefly\":\"\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"1\"},{\"id\":\"8\",\"cat_id\":\"5\",\"title\":\"可加热榨汁机小型便携式豆浆机破壁机多功能家用料理电动炸果汁杯\",\"goods_number\":\"202106201604013730\",\"goods_weight\":\"1000\",\"sell_price\":\"149\",\"market_price\":\"499\",\"store_nums\":\"931\",\"photo\":\"\\/uploads\\/images\\/20210620\\/5e54988c5ecd9b0633f6582ccc6c7ca1.jpg\",\"briefly\":\"可加热榨汁机豆浆机破壁机便携式多功能小型\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"1\"},{\"id\":\"18\",\"cat_id\":\"3\",\"title\":\"智能定时预约 3L 4L大容量饭煲\",\"goods_number\":\"202106291020310270\",\"goods_weight\":\"235\",\"sell_price\":\"238\",\"market_price\":\"279\",\"store_nums\":\"1235\",\"photo\":\"\\/uploads\\/images\\/20210629\\/fff8007f3ed4d9d356c2e4bc2eddb949.jpg\",\"briefly\":\"\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"1\"},{\"id\":\"25\",\"cat_id\":\"9\",\"title\":\"43英寸4K超高清QLED电视机Serif画境\",\"goods_number\":\"202106291056040800\",\"goods_weight\":\"1290\",\"sell_price\":\"6999\",\"market_price\":\"7999\",\"store_nums\":\"562\",\"photo\":\"\\/uploads\\/images\\/20210629\\/c4351e4d8d0ee22c6297f6bb69a022a7.jpg\",\"briefly\":\"新品上市 The Serif画境融入屏\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"1\"},{\"id\":\"28\",\"cat_id\":\"16\",\"title\":\"扬子暖风机取暖器家用速热静音卧室小型浴室电暖气器小太阳办公室\",\"goods_number\":\"202106291108166340\",\"goods_weight\":\"250\",\"sell_price\":\"78\",\"market_price\":\"198\",\"store_nums\":\"631\",\"photo\":\"\\/uploads\\/images\\/20210629\\/c358df55c899b282423216bc4d573766.jpg\",\"briefly\":\"\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"1\"},{\"id\":\"2\",\"cat_id\":\"1\",\"title\":\"卓力电熨斗家用蒸汽手持小型挂烫机平挂烫衣服机熨烫机TS3000\",\"goods_number\":\"dfa\",\"goods_weight\":\"1500\",\"sell_price\":\"3299\",\"market_price\":\"4999\",\"store_nums\":\"235\",\"photo\":\"\\/uploads\\/images\\/20210620\\/79ba441fa3d86860cb96e715e971f3bb.jpg\",\"briefly\":\"精致熨烫 细致呵护面料\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"3\",\"cat_id\":\"9\",\"title\":\"Hisense\\/海信 75E3F-PRO 75英寸4K智慧全面屏电视机智能网络高清\",\"goods_number\":\"202106201520250100\",\"goods_weight\":\"5000\",\"sell_price\":\"6199\",\"market_price\":\"6499\",\"store_nums\":\"128\",\"photo\":\"\\/uploads\\/images\\/20210620\\/d0e8d7628fb72b94022e1aad195ca6ec.jpg\",\"briefly\":\"AI声控 2+32GB MEMC运动补偿\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"}]}'),
-(4098, 3, 'more', 11, '{\"title\":\"猜你喜欢\",\"status\":\"0\",\"category_id\":\"\",\"brand_id\":\"\",\"limit\":\"10\",\"column\":\"2\"}'),
-(4129, 1, 'header', 0, '{\"title\":\"A3Mall\",\"titleColor\":\"#FFFFFF\",\"ctitle\":\"泰誉凡\",\"ctitleColor\":\"#FFF000\",\"background\":\"#b91922\"}'),
-(4130, 1, 'search', 1, '{\"keywords\":\"请输入关键字搜索\",\"border\":\"15\",\"marginTop\":\"15\",\"marginBottom\":\"15\",\"marginLeft\":\"12\",\"marginRight\":\"12\"}'),
-(4131, 1, 'slider', 2, '{\"duration\":\"5000\",\"height\":\"150\",\"border\":\"6\",\"marginTop\":\"0\",\"marginBottom\":\"0\",\"marginLeft\":\"12\",\"marginRight\":\"12\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210621\\/fa2f082dbeef079179a18cf6ea885b5a.png\",\"type\":\"2\",\"url\":\"38\",\"select\":\"2\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210621\\/7423b99985f3d37ed20b710aac7e87cd.png\",\"type\":\"2\",\"url\":\"36\",\"select\":\"2\"}]}'),
-(4132, 1, 'notice', 3, '{\"color\":\"#9499AA\",\"type\":\"auto\",\"list\":[{\"id\":\"1\",\"pid\":\"59\",\"title\":\"A3Mall企业版v1.0发布啦！\",\"hits\":\"0\",\"status\":\"0\",\"sort\":\"0\",\"photo\":\"\\/static\\/images\\/default.jpg\",\"intro\":\"\",\"content\":\"<p>A3Mall企业版v1.0发布啦！<\\/p>\",\"create_time\":\"2021-06-29 21:46:22\",\"update_time\":\"2021-06-29 21:46:22\",\"cat_name\":\"平台公告\",\"category\":{\"id\":\"59\",\"pid\":\"0\",\"title\":\"平台公告\",\"photo\":\"\",\"content\":\"\",\"module\":\"article\",\"status\":\"0\",\"sort\":\"0\",\"hits\":\"0\",\"is_menu\":\"0\",\"is_hot\":\"0\",\"is_recommend\":\"1\",\"is_lock\":\"0\",\"create_time\":\"1624972997\",\"update_time\":\"1624972997\"}}]}'),
-(4133, 1, 'navbar', 4, '{\"limit\":\"4\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210621\\/f45841b06cd4572fd92d7a97ea8e01eb.png\",\"text\":\"拼团\",\"type\":\"5\",\"url\":\"group\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210621\\/7f0ef60468472dcf5b9362205ae152ea.png\",\"text\":\"领劵\",\"type\":\"5\",\"url\":\"coupon\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210621\\/8392092cca58d49dab5ffe6b4385559d.png\",\"text\":\"团购\",\"type\":\"5\",\"url\":\"regiment\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210621\\/2a054c5008896ac84507c585078f75df.png\",\"text\":\"秒杀\",\"type\":\"5\",\"url\":\"second\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210621\\/9c330f85494080e18eb7a3ee443ee9db.png\",\"type\":\"5\",\"url\":\"special\",\"text\":\"会员特价\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210621\\/9276c0cf66d1511313e756553017a8f6.png\",\"type\":\"5\",\"url\":\"point\",\"text\":\"积分商城\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210705\\/89a285935317c100599da2c3cc611d61.png\",\"type\":\"5\",\"url\":\"luckdraw\",\"text\":\"抽奖活动\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210621\\/c4b620aa9df643fa09ed378c5e816b8a.png\",\"type\":\"5\",\"url\":\"sign\",\"text\":\"我要签到\"}]}'),
-(4134, 1, 'blank', 5, '{\"height\":\"10\",\"backgroundColor\":\"\"}'),
-(4135, 1, 'images', 6, '{\"height\":\"100\",\"border\":\"0\",\"marginTop\":\"0\",\"marginBottom\":\"0\",\"marginLeft\":\"0\",\"marginRight\":\"0\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210620\\/aa1a63838483224cd500b312280a37fc.jpg\",\"type\":\"6\",\"url\":\"9\"}]}'),
-(4136, 1, 'blank', 7, '{\"height\":\"10\",\"backgroundColor\":\"\"}'),
-(4137, 1, 'second', 8, '{\"title\":\"秒杀\",\"limit\":\"10\",\"list\":[{\"id\":\"1\",\"title\":\"阿诗顿厨师机A6家用7升商用小型和面机静音自动多功能鲜奶揉面机\",\"goods_id\":\"4\",\"sell_price\":\"3280\",\"start_time\":\"1624327200\",\"end_time\":\"1753927580\",\"photo\":\"\\/uploads\\/images\\/20210620\\/dd98030081e82739063f4cf1d767ac5a.jpg\",\"now_time\":\"1639186138\"},{\"id\":\"2\",\"title\":\"扬子烘干机干衣机家用小型圆形衣服衣物速干衣柜折叠烘衣风干机器\",\"goods_id\":\"5\",\"sell_price\":\"179\",\"start_time\":\"1624932137\",\"end_time\":\"1660010537\",\"photo\":\"\\/uploads\\/images\\/20210620\\/e4a00e263b4860a9d8a3d4847eba60f5.jpg\",\"now_time\":\"1639186138\"},{\"id\":\"3\",\"title\":\"小米有品负离子空气净化器家用除甲醛去二手烟味卧室内小型清新机\",\"goods_id\":\"1\",\"sell_price\":\"515\",\"start_time\":\"1624932216\",\"end_time\":\"1662689016\",\"photo\":\"\\/uploads\\/images\\/20210620\\/6a2792be8a7f66a88b515523e62fcd06.jpg\",\"now_time\":\"1639186138\"},{\"id\":\"4\",\"title\":\"智能定时预约 3L 4L大容量饭煲\",\"goods_id\":\"18\",\"sell_price\":\"238\",\"start_time\":\"1624933235\",\"end_time\":\"1665282035\",\"photo\":\"\\/uploads\\/images\\/20210629\\/fff8007f3ed4d9d356c2e4bc2eddb949.jpg\",\"now_time\":\"1639186138\"}]}'),
-(4138, 1, 'blank', 9, '{\"height\":\"10\",\"backgroundColor\":\"\"}'),
-(4139, 1, 'image-group', 10, '{\"style\":\"0\",\"margin\":\"0\",\"list\":[{\"thumb_image\":\"\\/uploads\\/images\\/20210620\\/c036a1725a4c3990d2736189809ecc7d.jpg\",\"type\":\"1\",\"url\":\"http:\\/\\/pink.a3-mall.com\\/wap\\/pages\\/goods\\/view?id=6\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210620\\/39595d0887b6e95d884ce354f6e4b43d.jpg\",\"type\":\"1\",\"url\":\"http:\\/\\/pink.a3-mall.com\\/wap\\/pages\\/goods\\/view?id=2\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210620\\/3b3c5f5344fb931d12f3676860a7f612.jpg\",\"type\":\"1\",\"url\":\"http:\\/\\/pink.a3-mall.com\\/wap\\/pages\\/goods\\/view?id=1\"},{\"thumb_image\":\"\\/uploads\\/images\\/20210620\\/06a8dae3d765b0f51afe2171fd9e15cb.jpg\",\"type\":\"1\",\"url\":\"http:\\/\\/pink.a3-mall.com\\/wap\\/pages\\/goods\\/view?id=3\"}]}'),
-(4140, 1, 'blank', 11, '{\"height\":\"10\",\"backgroundColor\":\"\"}'),
-(4141, 1, 'goods', 12, '{\"title\":\"精品推荐\",\"lookMore\":\"0\",\"layout\":\"1\",\"type\":\"choose\",\"category_id\":\"\",\"brand_id\":\"\",\"limit\":\"10\",\"display\":\"slide\",\"column\":\"3\",\"list\":[{\"id\":\"1\",\"cat_id\":\"13\",\"title\":\"小米有品负离子空气净化器家用除甲醛去二手烟味卧室内小型清新机\",\"goods_number\":\"202106201443246400\",\"goods_weight\":\"3000\",\"sell_price\":\"515\",\"market_price\":\"626\",\"store_nums\":\"949\",\"photo\":\"\\/uploads\\/images\\/20210620\\/6a2792be8a7f66a88b515523e62fcd06.jpg\",\"briefly\":\"\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"2\"},{\"id\":\"3\",\"cat_id\":\"9\",\"title\":\"Hisense\\/海信 75E3F-PRO 75英寸4K智慧全面屏电视机智能网络高清\",\"goods_number\":\"202106201520250100\",\"goods_weight\":\"5000\",\"sell_price\":\"6199\",\"market_price\":\"6499\",\"store_nums\":\"128\",\"photo\":\"\\/uploads\\/images\\/20210620\\/d0e8d7628fb72b94022e1aad195ca6ec.jpg\",\"briefly\":\"AI声控 2+32GB MEMC运动补偿\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"4\",\"cat_id\":\"15\",\"title\":\"阿诗顿厨师机A6家用7升商用小型和面机静音自动多功能鲜奶揉面机\",\"goods_number\":\"202106201527535550\",\"goods_weight\":\"6500\",\"sell_price\":\"3280\",\"market_price\":\"3880\",\"store_nums\":\"297\",\"photo\":\"\\/uploads\\/images\\/20210620\\/dd98030081e82739063f4cf1d767ac5a.jpg\",\"briefly\":\"直流静音马达，12分钟出膜，家商两用\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"5\",\"cat_id\":\"10\",\"title\":\"扬子烘干机干衣机家用小型圆形衣服衣物速干衣柜折叠烘衣风干机器\",\"goods_number\":\"202106201531313950\",\"goods_weight\":\"1500\",\"sell_price\":\"179\",\"market_price\":\"369\",\"store_nums\":\"98\",\"photo\":\"\\/uploads\\/images\\/20210620\\/e4a00e263b4860a9d8a3d4847eba60f5.jpg\",\"briefly\":\"高温杀菌，拆装简便\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"},{\"id\":\"6\",\"cat_id\":\"16\",\"title\":\"鸟笼烤火炉桌下烤脚烤火器小太阳取暖器家用小型节能电暖器电烤炉\",\"goods_number\":\"a30-1\",\"goods_weight\":\"45000\",\"sell_price\":\"109.9\",\"market_price\":\"109.9\",\"store_nums\":\"954\",\"photo\":\"\\/uploads\\/images\\/20210620\\/62c22c9b45ee3fcc84b1b7dcda490b17.jpg\",\"briefly\":\"360度防倾倒，安全防漏电速热\",\"status\":\"0\",\"visit\":\"0\",\"favorite\":\"0\",\"sale\":\"0\"}]}'),
-(4142, 1, 'body', 13, '{\"type\":\"2\",\"backgroundColor\":\"#F53535\",\"thumb_image\":\"\\/uploads\\/images\\/20210621\\/b4b5575b58c610fc2af4537ffa62283a.png\"}'),
-(4143, 1, 'more', 14, '{\"title\":\"猜你喜欢\",\"status\":\"0\",\"category_id\":\"\",\"brand_id\":\"\",\"limit\":\"10\",\"column\":\"2\"}');
-
 CREATE TABLE `mall_pages_relation` (
   `id` int(10) NOT NULL,
   `type` varchar(16) CHARACTER SET utf8 DEFAULT '',
@@ -5388,22 +4405,12 @@ CREATE TABLE `mall_pages_relation` (
   `relation_id` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `mall_pages_relation` (`id`, `type`, `code`, `relation_id`) VALUES
-(1, 'h5', '', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'),
-(2, 'app', '', '1,2,3,4,5,6,8,9,10,11,12,13,14,15,17,18,20'),
-(3, 'mini', '', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,20');
-
 CREATE TABLE `mall_pages_type` (
   `id` int(11) NOT NULL,
   `type` varchar(16) NOT NULL DEFAULT '',
   `name` varchar(32) NOT NULL DEFAULT '',
   `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `mall_pages_type` (`id`, `type`, `name`, `status`) VALUES
-(1, 'h5', 'H5/公众号', 0),
-(2, 'mini', '小程序', 0),
-(3, 'app', 'APP', 0);
 
 CREATE TABLE `mall_pages_widget` (
   `id` int(10) NOT NULL,
@@ -5413,28 +4420,6 @@ CREATE TABLE `mall_pages_widget` (
   `name` varchar(128) CHARACTER SET utf8 DEFAULT '' COMMENT '名称',
   `value` text CHARACTER SET utf8 DEFAULT NULL COMMENT '组件初始数据'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='装修组件';
-
-INSERT INTO `mall_pages_widget` (`id`, `cat`, `icon`, `type`, `name`, `value`) VALUES
-(1, 'media', 'el-icon-picture', 'slider', '图片轮播', '{\"duration\":\"5000\",\"height\":\"150\",\"border\":\"0\",\"marginTop\":\"0\",\"marginBottom\":\"0\",\"marginLeft\":\"0\",\"marginRight\":\"0\",\"list\":[{\"thumb_image\":\"\",\"type\":\"\",\"url\":\"\"}]}'),
-(2, 'media', 'el-icon-picture-outline', 'images', '图片', '{\"height\":150,\"border\":\"0\",\"marginTop\":\"0\",\"marginBottom\":\"0\",\"marginLeft\":\"0\",\"marginRight\":\"0\",\"list\":[{\"thumb_image\":\"\",\"type\":\"\",\"url\":\"\"}]}'),
-(3, 'media', 'el-icon-s-grid', 'image-group', '图片分组', '{\"style\":\"2\",\"margin\":\"0\",\"list\":[{\"thumb_image\":\"\",\"type\":\"\",\"url\":\"\"},{\"thumb_image\":\"\",\"type\":\"\",\"url\":\"\"},{\"thumb_image\":\"\",\"type\":\"\",\"url\":\"\"},{\"thumb_image\":\"\",\"type\":\"\",\"url\":\"\"}]}'),
-(4, 'media', 'el-icon-video-play', 'video', '视频', '{\"autoplay\":\"false\",\"list\":[{\"thumb_image\":\"\",\"url\":\"\"}]}'),
-(5, 'media', 'el-icon-document-copy', 'article', '文章内容', '{\"title\":\"栏目标题\",\"list\":[{\"title\":\"\",\"id\":\"\"}]}'),
-(6, 'media', 'el-icon-document-add', 'article-group', '文章分类', '{\"title\":\"栏目标题\",\"limit\":\"3\",\"article_id\":\"\",\"list\":\"\"}'),
-(7, 'shop', 'el-icon-search', 'search', '搜索框', '{\"keywords\":\"请输入关键字搜索\",\"border\":\"15\",\"marginTop\":\"15\",\"marginBottom\":\"15\",\"marginLeft\":\"12\",\"marginRight\":\"12\"}'),
-(8, 'shop', 'fa-volume-off', 'notice', '公告', '{\"color\":\"#333\",\"type\":\"auto\",\"list\":[{\"title\":\"这里是第一条公告的标题\",\"id\":\"\"}]}'),
-(9, 'shop', 'el-icon-menu', 'navbar', '图文导航', '{\"limit\":\"4\",\"list\":[{\"thumb_image\":\"\",\"text\":\"按钮1\",\"type\":\"1\",\"url\":\"\"},{\"thumb_image\":\"\",\"text\":\"按钮2\",\"type\":\"1\",\"url\":\"\"},{\"thumb_image\":\"\",\"text\":\"按钮3\",\"type\":\"1\",\"url\":\"\"},{\"thumb_image\":\"\",\"text\":\"按钮4\",\"type\":\"1\",\"url\":\"\"}]}'),
-(10, 'shop', 'el-icon-c-scale-to-original', 'textbar', '文字导航', '{\"limit\":\"5\",\"list\":[{\"text\":\"按钮1\",\"type\":\"1\",\"url\":\"\"},{\"text\":\"按钮2\",\"type\":\"1\",\"url\":\"\"},{\"text\":\"按钮3\",\"type\":\"1\",\"url\":\"\"},{\"text\":\"按钮4\",\"type\":\"1\",\"url\":\"\"},{\"text\":\"按钮5\",\"type\":\"1\",\"url\":\"\"}]}'),
-(11, 'shop', 'el-icon-shopping-cart-1', 'goods', '商品', '{\"title\":\"商品列表名称\",\"lookMore\":\"1\",\"layout\":\"1\",\"type\":\"auto\",\"category_id\":\"\",\"brand_id\":\"\",\"limit\":\"10\",\"display\":\"list\",\"column\":\"2\",\"list\":[{\"photo\":\"\",\"title\":\"\",\"sell_price\":\"\"},{\"photo\":\"\",\"title\":\"\",\"sell_price\":\"\"},{\"photo\":\"\",\"title\":\"\",\"sell_price\":\"\"}]}'),
-(12, 'shop', 'el-icon-user', 'group', '拼团', '{\"title\":\"活动名称\",\"limit\":\"10\",\"list\":[{\"photo\":\"\",\"title\":\"标题\",\"sell_price\":\"\"},{\"photo\":\"\",\"title\":\"标题\",\"sell_price\":\"\"}]}'),
-(13, 'shop', 'el-icon-shopping-bag-1', 'regiment', '团购', '{\"title\":\"活动名称\",\"limit\":\"10\",\"list\":[{\"photo\":\"\",\"title\":\"\",\"sell_price\":\"\"},{\"photo\":\"\",\"title\":\"\",\"sell_price\":\"\"}]}'),
-(14, 'shop', 'el-icon-timer', 'second', '秒杀', '{\"title\":\"活动名称\",\"limit\":\"10\",\"list\":[{\"photo\":\"\",\"title\":\"\",\"sell_price\":\"\"},{\"photo\":\"\",\"title\":\"\",\"sell_price\":\"\"}]}'),
-(15, 'shop', 'el-icon-s-ticket', 'bonus', '优惠券', '{\"limit\":\"2\"}'),
-(16, 'utils', 'el-icon-house', 'header', '头部', '{\"title\":\"A3Mall\",\"titleColor\":\"#333\",\"ctitle\":\"素烟姿\",\"ctitleColor\":\"#333\",\"background\":\"#b91922\"}'),
-(17, 'utils', 'el-icon-collection-tag', 'blank', '辅助空白', '{\"height\":\"30\",\"backgroundColor\":\"#FFFFFF\"}'),
-(18, 'utils', 'el-icon-tickets', 'textarea', '文本域', ''),
-(19, 'setting', 'el-icon-s-open', 'body', '设置背景', '{\"type\":\"1\",\"backgroundColor\":\"\",\"thumb_image\":\"\"}'),
-(20, 'setting', 'el-icon-upload2', 'more', '加载更多', '{\"title\":\"猜你喜欢\",\"status\":\"0\",\"category_id\":\"\",\"brand_id\":\"\",\"limit\":\"10\",\"column\":\"2\"}');
 
 CREATE TABLE `mall_payment` (
   `id` bigint(20) NOT NULL,
@@ -5467,20 +4452,12 @@ CREATE TABLE `mall_products_attribute` (
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='规格表';
 
-INSERT INTO `mall_products_attribute` (`id`, `pid`, `name`, `note`, `status`, `create_time`) VALUES
-(1, 0, '颜色', '', 0, 1624173200),
-(2, 1, '颜色分类', '', 0, 1624173241);
-
 CREATE TABLE `mall_products_attribute_data` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `pid` bigint(20) NOT NULL DEFAULT 0,
   `value` text DEFAULT NULL COMMENT '规格值',
   `sort` int(10) NOT NULL DEFAULT 0 COMMENT '排序'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='规格表';
-
-INSERT INTO `mall_products_attribute_data` (`id`, `pid`, `value`, `sort`) VALUES
-(1, 2, '香槟色', 0),
-(2, 2, '经典蓝', 1);
 
 CREATE TABLE `mall_products_brand` (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '品牌ID',
@@ -5493,9 +4470,6 @@ CREATE TABLE `mall_products_brand` (
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='品牌表';
-
-INSERT INTO `mall_products_brand` (`id`, `is_hot`, `name`, `photo`, `url`, `content`, `sort`, `status`, `create_time`) VALUES
-(1, 0, '卓力', '/uploads/images/20210725/d76f767736d756cd2997d809e510fe00.jpg', NULL, '', 0, 0, 1624172977);
 
 CREATE TABLE `mall_products_model` (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '模型ID',
@@ -5527,9 +4501,6 @@ CREATE TABLE `mall_promotion_bonus` (
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='红包表';
 
-INSERT INTO `mall_promotion_bonus` (`id`, `name`, `amount`, `type`, `point`, `giveout`, `used`, `order_amount`, `status`, `start_time`, `end_time`, `create_time`) VALUES
-(1, '10优惠劵', '10.00', 0, 0, 0, 3, '1000.00', 0, 1625021836, 1656518400, 1625021840);
-
 CREATE TABLE `mall_promotion_group` (
   `id` bigint(20) NOT NULL,
   `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品id',
@@ -5550,9 +4521,6 @@ CREATE TABLE `mall_promotion_group` (
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='拼团产品表';
 
-INSERT INTO `mall_promotion_group` (`id`, `goods_id`, `thumb_image`, `title`, `people`, `info`, `sell_price`, `sort`, `sum_count`, `store_nums`, `status`, `content`, `start_time`, `end_time`, `effective_time`, `browse`, `create_time`) VALUES
-(1, 31, '', '桌面取暖器暖风机迷你小型取暖器家用风扇电暖气节能', 2, '', '399.00', 0, 307, 561, 0, NULL, 1636807716, 1669737600, 24, 0, 1636807728);
-
 CREATE TABLE `mall_promotion_group_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `pid` bigint(20) NOT NULL DEFAULT 0 COMMENT '货品ID',
@@ -5562,10 +4530,6 @@ CREATE TABLE `mall_promotion_group_item` (
   `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '销售价格',
   `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '成本价格'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='拼团货品表';
-
-INSERT INTO `mall_promotion_group_item` (`id`, `pid`, `spec_key`, `store_nums`, `market_price`, `sell_price`, `cost_price`) VALUES
-(7, 1, '2:1', 111, '66.00', '55.00', '22.00'),
-(8, 1, '2:2', 111, '66.00', '55.00', '22.00');
 
 CREATE TABLE `mall_promotion_order` (
   `id` bigint(20) NOT NULL,
@@ -5684,13 +4648,6 @@ CREATE TABLE `mall_search_keywords` (
   `create_time` int(11) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='关键字表';
 
-INSERT INTO `mall_search_keywords` (`id`, `name`, `is_top`, `is_hot`, `sort`, `create_time`) VALUES
-(3, '夏装', 0, 1, 0, 1589453019),
-(4, '夏季', 0, 1, 0, 1589453033),
-(5, '眼影', 0, 1, 0, 1589453048),
-(6, '润白', 0, 1, 0, 1589453055),
-(7, '桃子', 0, 1, 0, 1589453066);
-
 CREATE TABLE `mall_setting` (
   `id` bigint(20) NOT NULL,
   `name` varchar(32) DEFAULT NULL COMMENT '名称',
@@ -5754,10 +4711,6 @@ CREATE TABLE `mall_statistics_search` (
   `num` bigint(20) NOT NULL DEFAULT 0 COMMENT '搜索次数'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='搜索关键字统计表';
 
-INSERT INTO `mall_statistics_search` (`id`, `name`, `num`) VALUES
-(1, 'a', 1),
-(2, '手', 1);
-
 CREATE TABLE `mall_statistics_search_goods` (
   `id` bigint(20) NOT NULL,
   `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品id',
@@ -5766,10 +4719,6 @@ CREATE TABLE `mall_statistics_search_goods` (
   `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: PC 1: 手机网页 2: APP(0: android 1: ios) 3: 公众号 4: 小程序(0:微信 1:支付宝 2:百度 3:字节跳动 4:QQ)',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='搜索关键字表';
-
-INSERT INTO `mall_statistics_search_goods` (`id`, `goods_id`, `name`, `referer`, `type`, `create_time`) VALUES
-(1, 31, 'a', 0, 0, 1636888979),
-(2, 1, '手', 0, 0, 1639032842);
 
 CREATE TABLE `mall_store` (
   `id` int(10) NOT NULL,
@@ -5790,11 +4739,6 @@ CREATE TABLE `mall_store` (
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='门店自提';
 
-INSERT INTO `mall_store` (`id`, `shop_name`, `intro`, `phone`, `country`, `province`, `city`, `area`, `address`, `logo`, `lat`, `lng`, `day_time`, `status`, `is_del`, `create_time`) VALUES
-(1, '北京分店', '小吃店', '18026740326', 0, 1, 2, 3, '东城3号', '', '', '', '00:00:00 - 00:00:00', 0, 0, 1634716118),
-(2, '北京分店', '小吃店', '18026740326', 0, 1, 2, 3, '东城3号', '', '', '', '00:00:00 - 00:00:00', 0, 1, 1639186574),
-(3, '北京分店', '小吃店', '18026740326', 0, 1, 2, 3, '东城3号', '', '', '', '00:00:00 - 00:00:00', 0, 1, 1639186578);
-
 CREATE TABLE `mall_store_users` (
   `id` bigint(20) NOT NULL,
   `shop_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '门店id',
@@ -5802,9 +4746,6 @@ CREATE TABLE `mall_store_users` (
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态 0开启 1关闭',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='门店员工表';
-
-INSERT INTO `mall_store_users` (`id`, `shop_id`, `user_id`, `status`, `create_time`) VALUES
-(3, 1, 0, 0, 1634783249);
 
 CREATE TABLE `mall_system_manage` (
   `id` bigint(20) NOT NULL,
@@ -6356,13 +5297,6 @@ CREATE TABLE `mall_system_queue` (
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='定时任务';
 
-INSERT INTO `mall_system_queue` (`id`, `type`, `value`, `title`, `command`, `exec_data`, `exec_type`, `exec_time`, `exec_desc`, `start_time`, `end_time`, `count`, `status`, `create_time`) VALUES
-(1, 1, 1, '自动取消超时未付款订单', 'Order::cancle', '', 1, 1619411627, '执行完成,处理订单数:0 条', '1619407968.9060', '1619407969.0546', 6, 1, 1604838764),
-(2, 2, 1, '订单自动超时自动收货', 'Order::sign', '', 1, 1619410699, '执行完成,处理订单数:0 条', '1619410580.3842', '1619410580.3918', 42, 1, 1619405234),
-(3, 0, 1, '未评价订单自动完成', 'Order::complete', '', 1, 1619487084, '执行完成,处理订单数:0 条', '1619400625.3130', '1619400625.7156', 3, 1, 1604838757),
-(4, 0, 1, '自动清理购物车', 'Cart::clear', '', 1, 1619487084, '执行完成,清理购物车数据:0 条', '1619400626.0675', '1619400626.9343', 2, 1, 1604838796),
-(5, 2, 1, '自动清理临时分享图片', 'Share::clear', '', 0, 1636967563, '', '1619400627.2180', '1619400628.0947', 0, 1, 1636967563);
-
 CREATE TABLE `mall_system_users` (
   `id` smallint(8) NOT NULL,
   `role_id` smallint(8) NOT NULL DEFAULT 0 COMMENT '权限id',
@@ -6390,55 +5324,6 @@ CREATE TABLE `mall_system_users_log` (
   `ip` varchar(30) NOT NULL DEFAULT '' COMMENT 'ip地址',
   `time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `mall_system_users_log` (`id`, `user_id`, `type`, `intro`, `ip`, `time`) VALUES
-(1, 0, 0, '状态：用户 [ adf ] 用户不存在 时间：2021-11-08 10:38:40', '127.0.0.1', 1636339120),
-(2, 1, 0, '状态：用户 [ admin ] 密码不正确 时间：2021-11-08 10:38:52', '127.0.0.1', 1636339132),
-(3, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-08 10:40:43 登录地点：127.0.0.1', '127.0.0.1', 1636339243),
-(4, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-09 09:38:31 登录地点：127.0.0.1', '127.0.0.1', 1636421911),
-(5, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-09 14:05:31 登录地点：127.0.0.1', '127.0.0.1', 1636437931),
-(6, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-10 09:49:59 登录地点：127.0.0.1', '127.0.0.1', 1636508999),
-(7, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-11 13:56:25 登录地点：127.0.0.1', '127.0.0.1', 1636610185),
-(8, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-12 09:22:17 登录地点：127.0.0.1', '127.0.0.1', 1636680137),
-(9, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-13 09:13:51 登录地点：127.0.0.1', '127.0.0.1', 1636766031),
-(10, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-13 13:52:38 登录地点：127.0.0.1', '127.0.0.1', 1636782758),
-(11, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-14 09:16:45 登录地点：127.0.0.1', '127.0.0.1', 1636852605),
-(12, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-15 09:30:27 登录地点：127.0.0.1', '127.0.0.1', 1636939827),
-(13, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-15 14:55:59 登录地点：127.0.0.1', '127.0.0.1', 1636959359),
-(14, 2, 0, '状态：用户 [ demo ] 登录成功 时间：2021-11-15 17:52:15 登录地点：127.0.0.1', '127.0.0.1', 1636969935),
-(15, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-15 17:52:52 登录地点：127.0.0.1', '127.0.0.1', 1636969972),
-(16, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-16 08:46:55 登录地点：127.0.0.1', '127.0.0.1', 1637023615),
-(17, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-16 14:25:55 登录地点：127.0.0.1', '127.0.0.1', 1637043955),
-(18, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-17 08:59:05 登录地点：127.0.0.1', '127.0.0.1', 1637110745),
-(19, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-17 15:51:10 登录地点：127.0.0.1', '127.0.0.1', 1637135470),
-(20, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-18 09:30:56 登录地点：127.0.0.1', '127.0.0.1', 1637199056),
-(21, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-18 14:28:14 登录地点：127.0.0.1', '127.0.0.1', 1637216894),
-(22, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-20 09:05:50 登录地点：127.0.0.1', '127.0.0.1', 1637370350),
-(23, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-20 14:37:33 登录地点：127.0.0.1', '127.0.0.1', 1637390253),
-(24, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-21 08:38:20 登录地点：127.0.0.1', '127.0.0.1', 1637455100),
-(25, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-21 14:40:28 登录地点：127.0.0.1', '127.0.0.1', 1637476828),
-(26, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-22 10:26:29 登录地点：127.0.0.1', '127.0.0.1', 1637547989),
-(27, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-22 15:54:15 登录地点：127.0.0.1', '127.0.0.1', 1637567655),
-(28, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-23 09:15:21 登录地点：127.0.0.1', '127.0.0.1', 1637630121),
-(29, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-24 09:29:11 登录地点：127.0.0.1', '127.0.0.1', 1637717351),
-(30, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-24 16:04:22 登录地点：127.0.0.1', '127.0.0.1', 1637741062),
-(31, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-25 17:31:10 登录地点：127.0.0.1', '127.0.0.1', 1637832670),
-(32, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-26 16:51:14 登录地点：127.0.0.1', '127.0.0.1', 1637916674),
-(33, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-28 10:23:37 登录地点：127.0.0.1', '127.0.0.1', 1638066217),
-(34, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-28 14:47:00 登录地点：127.0.0.1', '127.0.0.1', 1638082020),
-(35, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-29 16:13:42 登录地点：127.0.0.1', '127.0.0.1', 1638173622),
-(36, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-11-30 09:28:25 登录地点：127.0.0.1', '127.0.0.1', 1638235705),
-(37, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-01 09:41:04 登录地点：127.0.0.1', '127.0.0.1', 1638322864),
-(38, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-01 14:34:53 登录地点：127.0.0.1', '127.0.0.1', 1638340493),
-(39, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-02 18:24:34 登录地点：127.0.0.1', '127.0.0.1', 1638440674),
-(40, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-03 10:20:43 登录地点：127.0.0.1', '127.0.0.1', 1638498043),
-(41, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-05 21:36:26 登录地点：127.0.0.1', '127.0.0.1', 1638711386),
-(42, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-06 10:58:39 登录地点：127.0.0.1', '127.0.0.1', 1638759519),
-(43, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-06 19:34:12 登录地点：127.0.0.1', '127.0.0.1', 1638790452),
-(44, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-08 11:18:17 登录地点：127.0.0.1', '127.0.0.1', 1638933497),
-(45, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-11 09:25:47 登录地点：127.0.0.1', '127.0.0.1', 1639185947),
-(46, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-12 15:52:33 登录地点：127.0.0.1', '127.0.0.1', 1639295553),
-(47, 1, 0, '状态：用户 [ admin ] 登录成功 时间：2021-12-12 18:58:42 登录地点：127.0.0.1', '127.0.0.1', 1639306722);
 
 CREATE TABLE `mall_users` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -6470,14 +5355,6 @@ CREATE TABLE `mall_users` (
   `last_login` int(10) DEFAULT 0 COMMENT '最后一次登录时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
-INSERT INTO `mall_users` (`id`, `group_id`, `username`, `password`, `email`, `avatar`, `nickname`, `realname`, `mobile`, `birthday`, `sex`, `exp`, `point`, `status`, `tags`, `is_spread`, `spread_id`, `spread_time`, `pay_count`, `spread_count`, `amount`, `spread_amount`, `sign_count`, `create_ip`, `last_ip`, `create_time`, `last_login`) VALUES
-(1, 1, 'demo', '7fef6171469e80d32c0559f88b377245', '', '', '', '', '18026740326', 0, 0, 222, 537, 0, '', 1, 0, 0, 0, 0, '967132.00', '0.00', 1, '', '127.0.0.1', 1624242612, 1639308956),
-(2, 1, 'test', '7fef6171469e80d32c0559f88b377245', 'test@qq.com', '', 'test', '', '18026740325', 0, 0, 0, 0, 0, '', 1, 0, 1625290691, 0, 0, '0.00', '0.00', 0, '', '127.0.0.1', 1625168337, 1625168507),
-(3, 1, 'a3mall', '7fef6171469e80d32c0559f88b377245', 'aaaaa@qq.com', '', 'a3mall', 'a3mall', '', 0, 0, 0, 0, 0, '1,2', 0, 0, 0, 0, 0, '111.00', '0.00', 0, '', '', 1634718098, 0),
-(4, 1, 'wx_619dc978cdb0b', 'a42363a178968d7fca5ccd993398f22e', '', 'https://thirdwx.qlogo.cn/mmopen/vi_32/pldHJtJTYWV2iaFym1vQibEWNlKm5MJOptdp3I3FUYBb6PEIo4wm6StL1nicDHd4LHDhUJp16QsYlg4tJYOd5pQCw/132', 'webjs - 超哥', '', '', 0, 0, 0, 0, 0, '', 1, 0, 1637730680, 0, 0, '0.00', '0.00', 0, '127.0.0.1', '127.0.0.1', 1637730680, 1637730680),
-(5, 1, '18026740321', '7fef6171469e80d32c0559f88b377245', '', '', '', '', '18026740321', 0, 1, 0, 0, 0, '', 1, 1, 1638445013, 0, 0, '0.00', '0.00', 0, '127.0.0.1', '127.0.0.1', 1638445013, 1638445013),
-(6, 1, 'aaaaaa', '7fef6171469e80d32c0559f88b377245', '', '', '', '', '18122647309', 0, 1, 0, 0, 0, '', 1, 0, 1639050080, 0, 0, '0.00', '0.00', 0, '127.0.0.1', '127.0.0.1', 1639050080, 1639050080);
-
 CREATE TABLE `mall_users_address` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户ID',
@@ -6495,10 +5372,6 @@ CREATE TABLE `mall_users_address` (
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='收货信息表';
 
-INSERT INTO `mall_users_address` (`id`, `user_id`, `accept_name`, `zip`, `mobile`, `phone`, `country`, `province`, `city`, `area`, `address`, `is_default`, `extends_info`, `create_time`) VALUES
-(1, 1, '余越', '', '18963214578', '', 0, 1, 2, 3, '东栋大楼', 1, '{\"areaCode\":[1,2,3]}', 1624674514),
-(2, 4, '森', '', '18026740326', '', 0, 1, 2, 3, '源城区', 1, '{\"areaCode\":[1,2,3]}', 1638322953);
-
 CREATE TABLE `mall_users_bonus` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT 0,
@@ -6509,9 +5382,6 @@ CREATE TABLE `mall_users_bonus` (
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '红包状态',
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='红包用户表';
-
-INSERT INTO `mall_users_bonus` (`id`, `user_id`, `order_id`, `bonus_id`, `type`, `used_time`, `status`, `create_time`) VALUES
-(2, 1, 0, 1, 0, 0, 0, 1637835610);
 
 CREATE TABLE `mall_users_comment` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -6531,18 +5401,6 @@ CREATE TABLE `mall_users_comment` (
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品评论表';
 
-INSERT INTO `mall_users_comment` (`id`, `goods_id`, `order_no`, `user_id`, `admin_id`, `contents`, `reply_content`, `point`, `describes`, `service`, `logistics`, `status`, `comment_time`, `reply_time`, `create_time`) VALUES
-(1, 31, '2021102217152133119', 1, 0, NULL, NULL, 5, 5, 5, 5, 0, 1634901766, 0, 1634901766),
-(2, 30, '2021102219245687321', 1, 0, NULL, NULL, 5, 5, 5, 5, 0, 1634901916, 0, 1634901916),
-(3, 28, '2021102219273974823', 1, 0, NULL, NULL, 5, 5, 5, 5, 0, 1634902082, 0, 1634902082),
-(4, 31, '2021111716243599835', 1, 0, 'aa', NULL, 5, 5, 5, 5, 1, 1637201451, 0, 1637201434),
-(5, 30, '2021102219291682869', 1, 0, NULL, NULL, 5, 5, 5, 5, 0, 1637651048, 0, 1637651048),
-(6, 20, '2021112315051499264', 1, 0, NULL, NULL, 5, 5, 5, 5, 0, 1637651132, 0, 1637651132),
-(7, 18, '2021112315072119954', 1, 1, NULL, '<p>a</p>', 5, 5, 5, 5, 1, 1637651255, 1639186454, 1637651255),
-(8, 1, '2021121110153814527', 1, 0, 'aaa', NULL, 5, 5, 5, 5, 1, 1639188955, 0, 1639188949),
-(9, 3, '2021121110153814527', 1, 0, 'aaa', NULL, 5, 5, 5, 5, 1, 1639188955, 0, 1639188949),
-(10, 31, '2021121110153814527', 1, 0, 'aaa', NULL, 5, 5, 5, 5, 1, 1639188955, 0, 1639188949);
-
 CREATE TABLE `mall_users_consult` (
   `id` bigint(20) NOT NULL,
   `pid` bigint(20) NOT NULL DEFAULT 0,
@@ -6561,9 +5419,6 @@ CREATE TABLE `mall_users_favorite` (
   `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品id',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `mall_users_favorite` (`id`, `user_id`, `goods_id`, `create_time`) VALUES
-(1, 1, 1, 1624674479);
 
 CREATE TABLE `mall_users_group` (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '用户组ID',
@@ -6594,45 +5449,6 @@ CREATE TABLE `mall_users_log` (
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '发生时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会员提现日志表';
 
-INSERT INTO `mall_users_log` (`id`, `order_no`, `user_id`, `admin_id`, `action`, `operation`, `amount`, `point`, `exp`, `description`, `create_time`) VALUES
-(1, '', 1, 0, 1, 0, '0.00', 1, 0, '签到奖励', 1624886254),
-(2, '', 1, 1, 1, 0, '0.00', 11111, 0, '管理员对您的【积分】执行了充值操作,操作数值【11111】', 1625403211),
-(3, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(4, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(5, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(6, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(10, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(11, '', 1, 0, 1, 0, '0.00', 20, 0, '您在抽奖活动抽中了 10 积分', 0),
-(12, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(13, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(14, '', 1, 0, 1, 0, '0.00', 20, 0, '您在抽奖活动抽中了 5 积分', 0),
-(15, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(16, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(17, '', 1, 0, 1, 0, '0.00', 20, 0, '您在抽奖活动抽中了 20 积分', 0),
-(18, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(19, '', 1, 0, 1, 0, '0.00', 20, 0, '您在抽奖活动抽中了 10 积分', 0),
-(20, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(21, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(22, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(23, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(24, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(25, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(26, '', 1, 0, 1, 0, '0.00', 20, 0, '您在抽奖活动抽中了 5 积分', 0),
-(27, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(28, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(29, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(30, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(31, '', 1, 0, 1, 0, '0.00', 20, 0, '您参与抽奖活动抽中了 5 积分', 0),
-(32, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(33, '', 1, 0, 1, 1, '0.00', 20, 0, '您在抽奖活动消费了 20 积分', 0),
-(34, '', 1, 1, 0, 0, '11111.00', 0, 0, '管理员对您的【金额】执行了充值操作,操作数值【11111】', 1627263795),
-(35, '', 1, 1, 0, 0, '1000000.00', 0, 0, '管理员对您的【金额】执行了充值操作,操作数值【1000000】', 1634811709),
-(36, '', 3, 1, 0, 0, '111.00', 0, 0, '管理员对您的【金额】执行了充值操作,操作数值【111】', 1637060556),
-(37, '2021091903464774473', 1, 1, 3, 1, '4607.00', 0, 0, '退款订单号：2021091903464774473中的商品,退款金额 -￥4607.00', 1637136863),
-(38, '2021112323472768200', 1, 1, 3, 1, '4598.00', 0, 0, '退款订单号：2021112323472768200中的商品,退款金额 -￥4598', 1637682460),
-(39, '', 1, 0, 1, 0, '0.00', 1, 0, '签到奖励', 1638408003),
-(40, '', 1, 0, 1, 0, '0.00', 1, 0, '签到奖励', 1639188982);
-
 CREATE TABLE `mall_users_luckdraw` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT 0 COMMENT '用户uid',
@@ -6642,11 +5458,6 @@ CREATE TABLE `mall_users_luckdraw` (
   `result` longtext DEFAULT NULL COMMENT '中奖商品数据',
   `create_time` int(11) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='抽奖记录表';
-
-INSERT INTO `mall_users_luckdraw` (`id`, `user_id`, `type`, `description`, `point`, `result`, `create_time`) VALUES
-(1, 1, 1, '您参与抽奖活动抽中了 5 积分', 5, '{\"prizeId\":61,\"name\":\"5积分\",\"store_nums\":998,\"chance\":50,\"type\":1,\"value\":5}', 1625421461),
-(2, 1, 0, '很遗憾，没有中奖，请再接再厉！', 0, '{\"prizeId\":62,\"name\":\"谢谢参与\",\"store_nums\":1000,\"chance\":50,\"type\":0,\"value\":0}', 1625421502),
-(3, 1, 0, '很遗憾，没有中奖，请再接再厉！', 0, '{\"prizeId\":67,\"name\":\"谢谢参与\",\"store_nums\":999,\"chance\":50,\"type\":0,\"value\":0}', 1625421505);
 
 CREATE TABLE `mall_users_rechange` (
   `id` bigint(20) NOT NULL,
@@ -6660,9 +5471,6 @@ CREATE TABLE `mall_users_rechange` (
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间',
   `pay_time` int(10) NOT NULL DEFAULT 0 COMMENT '支付时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='在线充值表';
-
-INSERT INTO `mall_users_rechange` (`id`, `user_id`, `pay_type`, `order_no`, `order_amount`, `payment_name`, `status`, `transaction_id`, `create_time`, `pay_time`) VALUES
-(1, 1, 14, 'P2021072619534744904', '10.00', '支付宝wap支付', 0, '', 1627300427, 0);
 
 CREATE TABLE `mall_users_report` (
   `id` bigint(20) NOT NULL,
@@ -6684,9 +5492,6 @@ CREATE TABLE `mall_users_share_temp` (
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='分享临时附件表';
 
-INSERT INTO `mall_users_share_temp` (`id`, `user_id`, `type`, `path`, `create_time`) VALUES
-(1, 1, 1, '/uploads/images/20210628/52b1ea1f15aab076461c519f2b1f7e09.png', 1624885197);
-
 CREATE TABLE `mall_users_sign` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT 0 COMMENT '用户uid',
@@ -6694,11 +5499,6 @@ CREATE TABLE `mall_users_sign` (
   `point` int(11) NOT NULL DEFAULT 0 COMMENT '积分',
   `create_time` int(11) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='签到记录表';
-
-INSERT INTO `mall_users_sign` (`id`, `user_id`, `description`, `point`, `create_time`) VALUES
-(1, 1, '签到奖励', 1, 1624886254),
-(2, 1, '签到奖励', 1, 1638408003),
-(3, 1, '签到奖励', 1, 1639188982);
 
 CREATE TABLE `mall_users_sms` (
   `id` int(11) NOT NULL,
@@ -6727,10 +5527,6 @@ CREATE TABLE `mall_users_tags` (
   `intro` text NOT NULL COMMENT '备注',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会员标签';
-
-INSERT INTO `mall_users_tags` (`id`, `name`, `intro`, `create_time`) VALUES
-(1, '老客户', '', 1637052794),
-(2, '常客', '', 1637052800);
 
 CREATE TABLE `mall_users_token` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -6762,9 +5558,6 @@ CREATE TABLE `mall_users_withdraw_log` (
   `update_time` int(10) DEFAULT 0 COMMENT '处理时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户提现表';
 
-INSERT INTO `mall_users_withdraw_log` (`id`, `user_id`, `withdraw_type`, `bank_name`, `bank_real_name`, `type`, `code`, `address`, `account`, `price`, `mark`, `msg`, `status`, `create_time`, `update_time`) VALUES
-(1, 1, 1, '中国工商银行', '林子', 1, '9559980868435875810', '', '', '111.00', NULL, '', 1, 1637029988, 1637029999);
-
 CREATE TABLE `mall_version` (
   `id` int(11) NOT NULL COMMENT '自增',
   `type` varchar(32) DEFAULT '' COMMENT '资源类型 1.android 2.ios 3.其他',
@@ -6776,10 +5569,6 @@ CREATE TABLE `mall_version` (
   `content` longtext DEFAULT NULL COMMENT '内容',
   `create_time` int(11) NOT NULL COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `mall_version` (`id`, `type`, `title`, `sign`, `version`, `url`, `status`, `content`, `create_time`) VALUES
-(1, '3', '公众号商城', 'wechat', '1.0', 'http://pc.a3-mall.com/wap', 0, '', 1608143950),
-(2, '3', '小程序商城', 'mini', '1.0', 'http://pc.a3-mall.com/wap', 0, NULL, 1608143977);
 
 CREATE TABLE `mall_wechat_keys` (
   `id` bigint(20) NOT NULL,
@@ -6802,12 +5591,6 @@ CREATE TABLE `mall_wechat_keys` (
   `admin_id` int(11) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信-关键字';
-
-INSERT INTO `mall_wechat_keys` (`id`, `appid`, `type`, `keys`, `content`, `image_url`, `voice_url`, `music_title`, `music_url`, `music_image`, `music_desc`, `video_title`, `video_url`, `video_desc`, `news_id`, `sort`, `status`, `admin_id`, `create_time`) VALUES
-(1, '', 'text', 'a', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 1637157316),
-(2, '', 'text', 'b', 'a', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 1637157397),
-(3, '', 'text', 'subscribe', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 1639185990),
-(4, '', 'text', 'defaults', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 1639185992);
 
 CREATE TABLE `mall_wechat_media` (
   `id` bigint(20) UNSIGNED NOT NULL,
@@ -6903,9 +5686,6 @@ CREATE TABLE `mall_wechat_users` (
   `qr_scene_str` varchar(200) DEFAULT '' COMMENT '二维码场景内容',
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信-粉丝';
-
-INSERT INTO `mall_wechat_users` (`id`, `user_id`, `appid`, `unionid`, `openid`, `mp_openid`, `weixin_openid`, `open_weixin`, `open_qq`, `tagid_list`, `is_black`, `subscribe`, `nickname`, `sex`, `country`, `province`, `city`, `language`, `headimgurl`, `subscribe_time`, `subscribe_create_time`, `mp_create_time`, `remark`, `subscribe_scene`, `qr_scene`, `qr_scene_str`, `create_time`) VALUES
-(1, 4, '', '', '', 'od9Og5S2_txEj63G2ub44sRDinzo', '', '', '', '', 0, 0, 'webjs - 超哥', 0, '', '', '', 'zh_CN', 'https://thirdwx.qlogo.cn/mmopen/vi_32/pldHJtJTYWV2iaFym1vQibEWNlKm5MJOptdp3I3FUYBb6PEIo4wm6StL1nicDHd4LHDhUJp16QsYlg4tJYOd5pQCw/132', 1637730681, 1637730681, 1637730681, '', '', '', '', 1637730681);
 
 CREATE TABLE `mall_wechat_users_tags` (
   `id` bigint(20) NOT NULL COMMENT '标签ID',
@@ -7291,40 +6071,40 @@ ALTER TABLE `mall_wechat_users_tags`
 
 
 ALTER TABLE `mall_archives`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_area`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3749;
 
 ALTER TABLE `mall_attachments`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_attachment_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_card`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_card_order`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_card_template`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号', AUTO_INCREMENT=101;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号';
 
 ALTER TABLE `mall_cart`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_chat_friends`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键';
 
 ALTER TABLE `mall_chat_group`
   MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_chat_message`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键';
 
 ALTER TABLE `mall_chat_phrase`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
@@ -7333,13 +6113,13 @@ ALTER TABLE `mall_chat_rating`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_chat_service`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键';
 
 ALTER TABLE `mall_chat_service_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_chat_session`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_data`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
@@ -7351,40 +6131,40 @@ ALTER TABLE `mall_data_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_deliver`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_distribution`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_freight`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_goods`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '商品ID', AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '商品ID';
 
 ALTER TABLE `mall_goods_attribute`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_goods_card`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_goods_card_template`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号', AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号';
 
 ALTER TABLE `mall_goods_extends`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_goods_image`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID', AUTO_INCREMENT=201;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID';
 
 ALTER TABLE `mall_goods_item`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_goods_model`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_luckdraw`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_navigation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
@@ -7393,100 +6173,100 @@ ALTER TABLE `mall_oauth`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `mall_order`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_order_batch_shipping`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID';
 
 ALTER TABLE `mall_order_collection`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_order_delivery`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '发货单ID', AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '发货单ID';
 
 ALTER TABLE `mall_order_goods`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_order_group`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_order_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_order_refundment`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_pages`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_pages_items`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4145;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_pages_relation`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_pages_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_pages_widget`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_payment`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 ALTER TABLE `mall_products_attribute`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_products_attribute_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_products_brand`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '品牌ID', AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '品牌ID';
 
 ALTER TABLE `mall_products_model`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '模型ID', AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '模型ID';
 
 ALTER TABLE `mall_products_model_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '属性ID', AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '属性ID';
 
 ALTER TABLE `mall_promotion_bonus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_group`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_group_item`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_order`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_point`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_point_item`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_price`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_price_item`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_regiment`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_regiment_item`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_second`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_promotion_second_item`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_search_keywords`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_setting`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
@@ -7495,16 +6275,16 @@ ALTER TABLE `mall_sms_template`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 ALTER TABLE `mall_statistics_search`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_statistics_search_goods`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_store`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_store_users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_system_manage`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
@@ -7516,73 +6296,73 @@ ALTER TABLE `mall_system_purview`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
 
 ALTER TABLE `mall_system_queue`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_system_users`
   MODIFY `id` smallint(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `mall_system_users_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_address`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_bonus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_comment`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_consult`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_favorite`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_group`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户组ID', AUTO_INCREMENT=7;
 
 ALTER TABLE `mall_users_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_luckdraw`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_rechange`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_report`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_share_temp`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_sign`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_sms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_suggest`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_tags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_token`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_users_withdraw_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_version`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增', AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增';
 
 ALTER TABLE `mall_wechat_keys`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_wechat_media`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
@@ -7597,10 +6377,10 @@ ALTER TABLE `mall_wechat_news_article`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_wechat_qrcode`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_wechat_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mall_wechat_users_tags`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '标签ID';
