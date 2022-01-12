@@ -72,6 +72,21 @@
 					return false;
 				}
 				
+				this.$http.sendSMS({
+					username: this.phone,
+					type: "register"
+				}).then((result)=>{
+					this.$utils.msg(result.info);
+					if(result.status){
+						this.countdown();
+					}else{
+						clearInterval(this.timer);
+					}
+				}).catch((error)=>{
+					this.$utils.msg("连接网络错误，请检查网络是否连接！");
+				});
+			},
+			countdown(){
 				let time = 60;
 				clearInterval(this.timer);
 				this.timer = setInterval(() => {
@@ -84,15 +99,6 @@
 				        clearInterval(this.timer);
 				    }
 				}, 1000);
-				
-				this.$http.sendSMS({
-					username: this.phone,
-					type: "register"
-				}).then((result)=>{
-					this.$utils.msg(result.info);
-				}).catch((error)=>{
-					this.$utils.msg("连接网络错误，请检查网络是否连接！");
-				});
 			},
 			onSubmit(e){
 				let formData = e.detail.value;
