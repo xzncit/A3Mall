@@ -10,6 +10,7 @@ namespace app\api\controller;
 
 use app\api\validate\Login;
 use app\api\validate\Register;
+use app\api\validate\Forget;
 use app\api\validate\Sms;
 use think\exception\ValidateException;
 use think\facade\Request;
@@ -56,7 +57,7 @@ class Users extends Base {
     public function forget(){
         try{
             $post = Request::param();
-            validate(Register::class)->scene('forget')->check($post);
+            validate(Forget::class)->scene('forget')->check($post);
             return $this->returnAjax("修改密码成功!", 1,UsersService::forget($post));
         }catch (ValidateException $e){
             return $this->returnAjax($e->getError(), 0);
