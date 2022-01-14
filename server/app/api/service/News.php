@@ -12,6 +12,7 @@ use mall\utils\Tool;
 use app\common\models\Archives as ArchivesModel;
 use app\common\models\Category as CategoryModel;
 use think\facade\Config;
+use app\common\exception\BaseException;
 
 class News extends Service {
 
