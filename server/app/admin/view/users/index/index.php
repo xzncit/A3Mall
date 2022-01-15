@@ -237,9 +237,12 @@ layui.config({
             form.on('submit(*)', function(res){
                 res.field.user_id = data.id;
                 $.post('{:createUrl("tags")}',res.field,function (res) {
-
+                    if(res.code){
+                        window.location.reload();
+                    }else{
+                        layer.msg(res.msg,{ icon : 2 });
+                    }
                 });
-                window.location.reload();
                 return false;
             });
         }
