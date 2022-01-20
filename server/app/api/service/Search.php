@@ -67,16 +67,15 @@ class Search extends Service {
     public static function getList($data){
         $keywords = strip_tags($data["keywords"])??"";
         $condition = [
-            ["status","=",0],
-            ["title","like",'%'.$keywords.'%']
+            ["status","=",0]
         ];
 
         $sort = self::getOrder($data);
         $size = Config::get("website.pageSize");
         $page = $data["page"]??1;
 
-        $count = GoodsModel::where($condition)->whereOr("content","like",'%'.$keywords.'%')->count();
-        $result = GoodsModel::field("id,title,photo,sell_price as price,sale")->where($condition)->whereOr("content","like",'%'.$keywords.'%')->order($sort["field"],$sort["order"])->page($page,$size)->select()->toArray();
+        $count = GoodsModel::where($condition)->where("title|content","like",'%'.$keywords.'%')->count();
+        $result = GoodsModel::field("id,title,photo,sell_price as price,sale")->where($condition)->where("title|content","like",'%'.$keywords.'%')->order($sort["field"],$sort["order"])->page($page,$size)->select()->toArray();
 
         $array = [ "list"=>array_map(function ($res){
             $res["photo"] = Tool::thumb($res["photo"],"medium",true);
