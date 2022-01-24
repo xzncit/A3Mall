@@ -194,7 +194,7 @@ class Users extends Service {
     public static function sendSMS($data){
         $config = SettingModel::getArrayData("sms");
         $sms = UsersSmsModel::where("mobile",$data["username"])->order("id","DESC")->find();
-        if(!empty($sms) && ($sms["create_time"] + (60 * $config["duration_time"])) > time()){
+        if(!empty($sms) && (strtotime($sms["create_time"]) + (60 * $config["duration_time"])) > time()){
             throw new \Exception("您的验证码己发送，请注意查收",1);
         }
 
