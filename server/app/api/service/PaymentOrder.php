@@ -110,30 +110,7 @@ class PaymentOrder extends Service {
             }
         }else{
             if($num <= 0) $num = 1;
-
             $promotion = Promotion::checkOrderType($id,$product_id,$num,$type);
-            $groupKid = Request::param("kid","0","intval");
-            if($groupKid != 0){
-                $orderGroup = Db::name("order_group")->where(["id"=>$groupKid,"is_refund"=>0,"status"=>1])->find();
-                if(empty($orderGroup)){
-                    throw new \Exception("获取拼团信息失败",0);
-                }
-
-                if($orderGroup["user_id"] == Users::get("id")){
-                    throw new \Exception("亲不能和自己拼单哦！",0);
-                }
-
-                $orderGroupList = Db::name("order_group")->where("pid",$groupKid)->select()->toArray();
-                $orderGroupArray = [];
-                foreach($orderGroupList as $value){
-                    $orderGroupArray[] = $value["user_id"];
-                }
-
-                if(in_array(Users::get("id"),$orderGroupArray)){
-                    throw new \Exception("您己加入该团，请勿重复加入！",0);
-                }
-            }
-
             array_push($cart,$promotion);
         }
 
@@ -264,30 +241,7 @@ class PaymentOrder extends Service {
             }
         }else{
             if($num <= 0) $num = 1;
-
             $promotion = Promotion::checkOrderType($id,$product_id,$num,$type);
-
-            $groupKid = Request::param("kid","0","intval");
-            if($groupKid != 0){
-                $orderGroup = Db::name("order_group")->where(["id"=>$groupKid,"is_refund"=>0,"status"=>1])->find();
-                if(empty($orderGroup)){
-                    throw new \Exception("获取拼团信息失败",0);
-                }
-
-                if($orderGroup["user_id"] == Users::get("id")){
-                    throw new \Exception("亲不能和自己拼单哦！",0);
-                }
-
-                $orderGroupList = Db::name("order_group")->where("pid",$groupKid)->select()->toArray();
-                $orderGroupArray = [];
-                foreach($orderGroupList as $value){
-                    $orderGroupArray[] = $value["user_id"];
-                }
-
-                if(in_array(Users::get("id"),$orderGroupArray)){
-                    throw new \Exception("您己加入该团，请勿重复加入！",0);
-                }
-            }
             array_push($cart,$promotion);
         }
 

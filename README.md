@@ -58,12 +58,12 @@
 A3Mall开源商城官方群: 892150829  <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=lBxucAil6e6WTlwX0tNvQwpOtfLP2ptd&jump_from=webapi"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="A3Mall官方交流1群" title="A3Mall官方交流1群"></a>
 
 ### 页面展示
-![输入图片说明](https://gitee.com/a3mall/A3Mall/raw/master/readme/images/1.png "1.png")
-![输入图片说明](https://gitee.com/a3mall/A3Mall/raw/master/readme/images/2.png "2.png")
-![输入图片说明](https://gitee.com/a3mall/A3Mall/raw/master/readme/images/3.png "3.png")
+![输入图片说明](https://github.com/xzncit/A3Mall/blob/master/readme/images/1.png "1.png")
+![输入图片说明](https://github.com/xzncit/A3Mall/blob/master/readme/images/2.png "2.png")
+![输入图片说明](https://github.com/xzncit/A3Mall/blob/master/readme/images/3.png "3.png")
 
 ### 产品终端
-![输入图片说明](https://gitee.com/a3mall/A3Mall/raw/master/readme/images/4.png "4.png")
+![输入图片说明](https://github.com/xzncit/A3Mall/blob/master/readme/images/4.png "4.png")
 
 ### 后端演示
 后台地址：https://demo.a3-mall.com/admin
