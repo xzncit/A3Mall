@@ -81,8 +81,8 @@ class Users extends Service {
      * @throws \think\db\exception\ModelNotFoundException
      */
     public static function register($data){
-        $username = strip_tags($data["username"])??"";
-        $password = strip_tags($data["password"])??"";
+        $username = strip_tags($data["username"]??"");
+        $password = strip_tags($data["password"]??"");
 
         $group_id = UsersGroupModel::order('minexp','ASC')->value("id");
         $data = [
@@ -128,8 +128,8 @@ class Users extends Service {
      * @throws \think\db\exception\ModelNotFoundException
      */
     public static function forget($data){
-        $username = strip_tags($data["username"])??"";
-        $password = strip_tags($data["password"])??"";
+        $username = strip_tags($data["username"]??"");
+        $password = strip_tags($data["password"]??"");
 
         if(!$users = Db::name("users")->where("mobile",$username)->find()){
             throw new \Exception("您填写的手机号码不存在！",0);

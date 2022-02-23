@@ -16,13 +16,13 @@ class Sms extends Validate {
     protected $rule = [
         "username"  => "require|mobile",
         "type"      => "checkSmsType",
-        "code"      => "require|checkCodes"
+        "code"      => "checkCodes"
     ];
 
     protected $message  =   [
         "username.require"  => "请填写手机号码",
         "username.mobile"   => "您填写的手机号码不正确",
-        "code.require"      => "请填写验证码"
+        //"code.require"      => "请填写验证码"
     ];
 
     protected $scene = [
