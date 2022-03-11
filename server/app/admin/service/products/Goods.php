@@ -320,7 +320,7 @@ class Goods extends Service {
                 if(empty($row)) continue;
 
                 GoodsModel::where("id",$id)->delete();
-                AttributeModel::where(['goods_id' => $id])->delete();
+                GoodsAttributeModel::where(['goods_id' => $id])->delete();
                 GoodsExtendsModel::where(['goods_id' => $id])->delete();
                 GoodsItemModel::where(['goods_id' => $id])->delete();
                 GoodsParamsModel::where(['goods_id' => $id])->delete();
