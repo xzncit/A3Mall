@@ -15,6 +15,7 @@ use think\facade\Request;
 class Tool {
 
     public static function thumb($image="",$prefix=null,$root=false){
+        if(Check::url($image)) return $image;
         $domain = $root ? trim(Request::domain(),"/") : "";
         if(empty($image) || !file_exists(self::getRootPath() . "public/" . trim($image,"/"))){
             return $domain . "/static/images/default.jpg";
