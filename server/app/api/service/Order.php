@@ -540,14 +540,15 @@ class Order extends Service {
             throw new \Exception("您要查找的订单不存在！",0);
         }
 
-        $type = strtolower(Db::name("freight")->where("id",$orderDelivery["freight_id"])->value("type"));
+        $freightData = Db::name("freight")->where("id",$orderDelivery["freight_id"])->find();
+        $type = strtolower($freightData["type"]);
         if($type == 'sfexpress'){
             $orderDelivery["distribution_code"] = $orderDelivery["distribution_code"] . ":" . substr($orderDelivery["mobile"],-4);
         }
 
         $order["region"] = AreaModel::getArea([$order['province'],$order['city'],$order['area']],' ');
 
-        $express = ["expName"=>"", "number"=>"", "takeTime"=>"", "updateTime"=>""];
+        $express = ["expName"=>$freightData["title"]??"", "number"=>$orderDelivery["distribution_code"]??"", "takeTime"=>"", "updateTime"=>""];
         try{
             $express = Aliyun::query($orderDelivery["distribution_code"],$type);
         }catch(\Exception $ex){
