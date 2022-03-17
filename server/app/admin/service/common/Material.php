@@ -88,7 +88,7 @@ class Material extends Service {
             throw new \Exception("请填写分类名称",0);
         }
 
-        if(AttachmentCategoryModelwhere([ "name"=>$data["name"]])->count()){
+        if(AttachmentCategoryModel::where([ "name"=>$data["name"]])->count()){
             throw new \Exception("分类名称己存在",0);
         }
 
