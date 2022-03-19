@@ -50,7 +50,7 @@
             },
             finishTexts: {
                 type: String,
-                default: "活动己结束"
+                default: "活动已结束"
             },
             dayText: {
                 type: String,

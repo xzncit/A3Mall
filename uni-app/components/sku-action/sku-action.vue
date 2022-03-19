@@ -178,7 +178,7 @@
 
                     if(s.length > 0){
                         this.selectedGoodsInfo.selectedSku.specSelected = s.join(",");
-                        this.specSelected = "己选择：" + s.join(",");
+                        this.specSelected = "已选择：" + s.join(",");
                     }
                 },
                 deep: true

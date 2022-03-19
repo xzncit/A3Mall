@@ -23,7 +23,7 @@
 							<text>到期：{{ item.end_time }}</text>
 						</view>
 						<view class="r" :class="{'active':item.is_receive == 1,'disable': item.is_receive==2}">
-							<text @click="onReceive(index)">{{item.is_receive ? (item.is_receive == 1 ? "己领" : "领完") : "领劵"}}</text>
+							<text @click="onReceive(index)">{{item.is_receive ? (item.is_receive == 1 ? "已领" : "领完") : "领劵"}}</text>
 						</view>
 					</view>
 				</view>
@@ -109,7 +109,7 @@
 	
 					this.result[index].is_receive = res.data;
 				}).catch(err=>{
-					this.$utils.msg("网络出错，请检查是否己连接");
+					this.$utils.msg("网络出错，请检查是否已连接");
 				});
 			},
 			upCallback(page) {

@@ -157,7 +157,7 @@ export default {
 					paySign: params.paySign,
 					success (res) { 
 						uni.showToast({
-							title: "您己支付成功!",
+							title: "您已支付成功!",
 							success: function (res){
 								if(that.payType == "pay" || that.payType == "order"){
 									utils.redirectTo('order/detail',{ id: data.order_id });
@@ -187,7 +187,7 @@ export default {
 				let that = this;
 				options.success = function(){
 					uni.showToast({
-						title: "您己支付成功!",
+						title: "您已支付成功!",
 						success: function (res){
 							if(that.payType == "pay" || that.payType == "order"){
 								utils.redirectTo('order/detail',{ id: data.order_id });
@@ -245,7 +245,7 @@ export default {
 			orderInfo: orderInfo,
 			success: (e) => {
 				uni.showToast({
-					title: "您己支付成功!",
+					title: "您已支付成功!",
 					success: function (res){
 						if(that.payType == "pay" || that.payType == "order"){
 							utils.redirectTo('order/detail',orderParams);

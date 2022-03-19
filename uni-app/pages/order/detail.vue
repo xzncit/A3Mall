@@ -224,7 +224,7 @@
 					},{
 						title: '待评价'
 					},{
-						title: '己完成'
+						title: '已完成'
 					}
 				],
 				stepsShopOptions:[
@@ -237,7 +237,7 @@
 					},{
 						title: '待评价'
 					},{
-						title: '己完成'
+						title: '已完成'
 					}
 				],
 				payment: "wechat",
@@ -316,13 +316,13 @@
 				            console.log('下载成功');
 				        }
 						// #ifdef H5
-						that.$utils.msg("己将文件保存在："+res.tempFilePath);
+						that.$utils.msg("已将文件保存在："+res.tempFilePath);
 						// #endif
 						// #ifndef H5
 						uni.saveFile({
 							tempFilePath: res.tempFilePath,
 							success: function(file) {
-								that.$utils.msg("己将文件保存在："+file.savedFilePath);
+								that.$utils.msg("已将文件保存在："+file.savedFilePath);
 							}
 						});
 						// #endif

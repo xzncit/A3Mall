@@ -8,7 +8,7 @@
 					<text @click="go('2')" :class="{active: activeId == '2'}">待发货</text>
 					<text @click="go('3')" :class="{active: activeId == '3'}">待收货</text>
 					<text @click="go('4')" :class="{active: activeId == '4'}">待评价</text>
-					<text @click="go('5')" :class="{active: activeId == '5'}">己完成</text>
+					<text @click="go('5')" :class="{active: activeId == '5'}">已完成</text>
 				</view>
 			</view>
 			<view class="placeholder-box"></view>

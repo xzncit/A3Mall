@@ -3,7 +3,7 @@
 		<navbar v-model="screenHeight" title-color="#ffffff" background="#1b43c4" :iSimmersive="false" :placeholder="true" title="优惠劵"></navbar>
 		<view class="top">
 			<text :class="{active: isActive == 1}" @click="changeCoupon(1)">未使用</text>
-			<text :class="{active: isActive == 2}" @click="changeCoupon(2)">己使用/己过期</text>
+			<text :class="{active: isActive == 2}" @click="changeCoupon(2)">已使用/已过期</text>
 		</view>
 		<view class="top-placeholder"></view>
 		
