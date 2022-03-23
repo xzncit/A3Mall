@@ -113,7 +113,6 @@
 		}, 
         data() {
             return {
-				isSpread: 0,
 				isShop: 0,
 				isAuthShow: false,
 				static: '',
@@ -135,14 +134,12 @@
 				this.amount = users.amount;
 				this.coupon = users.coupon_count;
 				this.avatar = users.avatar;
-				this.isSpread = users.spread != undefined ? users.spread : 0;
 				this.$http.getUcenter().then((res)=>{
 				    if(res.status){
 				        this.username = res.data.nickname || res.data.username || res.data.mobile;
 				        this.amount = users.amount = res.data.amount;
 				        this.coupon = users.coupon_count = res.data.coupon_count;
 				        this.avatar = users.avatar = res.data.avatar;
-						this.isSpread = users.spread = res.data.spread;
 						this.isShop = users.shop = res.data.shop;
 				        this.order_count = res.data.order_count;
 				        this.$store.commit("UPDATEUSERS",users);

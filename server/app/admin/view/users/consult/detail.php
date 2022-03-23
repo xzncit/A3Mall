@@ -65,7 +65,7 @@
                                         {/if}
                                         <tr>
                                             <td>状态：</td>
-                                            <td>{if $data.status==1}己回复{else}未回复{/if}</td>
+                                            <td>{if $data.status==1}已回复{else}未回复{/if}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -79,7 +79,7 @@ layui.use(['table','form'], function () {
                             case 0:
                                 return "<span style='color:#FFB800;'>未回复</span>";
                             case 1:
-                                return "<span style='color:green;'>己回复</span>";
+                                return "<span style='color:green;'>已回复</span>";
                         }
                   }}
                 , {field: 'create_time', title: '创建时间',width:180,align:'center'}

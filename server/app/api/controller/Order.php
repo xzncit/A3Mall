@@ -88,7 +88,7 @@ class Order extends Base {
     public function apply_refund(){
         try{
             OrderService::applyRefund(Request::param());
-            return $this->returnAjax("您的退款申请己提交，请等待管理员审核");
+            return $this->returnAjax("您的退款申请已提交，请等待管理员审核");
         }catch (\Exception $ex){
             return $this->returnAjax($ex->getMessage(),$ex->getCode());
         }

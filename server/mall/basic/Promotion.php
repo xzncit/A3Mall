@@ -44,7 +44,7 @@ class Promotion {
         if(($point = Db::name("promotion_point")
                 ->where("unix_timestamp(now()) between start_time AND end_time")
                 ->where(["id"=>$order["activity_id"],"status"=>0])->find()) == false){
-            throw new \Exception("您要兑换的商品己过期",0);
+            throw new \Exception("您要兑换的商品已过期",0);
         }
 
         $goods = current($order["item"]);
@@ -95,7 +95,7 @@ class Promotion {
                     ->where(["id"=>$id,"status"=>0])->find();
 
                 if(empty($regiment)){
-                    throw new \Exception("您要购买的商品团购己结束",0);
+                    throw new \Exception("您要购买的商品团购已结束",0);
                 }
 
                 if($num < $regiment["limit_min_count"]){
@@ -139,7 +139,7 @@ class Promotion {
                 if(($seckill = Db::name("promotion_second")
                         ->where("unix_timestamp(now()) between start_time AND end_time")
                         ->where(["id"=>$id,"status"=>0])->find()) == false){
-                    throw new \Exception("您要购买的商品秒杀己结束",0);
+                    throw new \Exception("您要购买的商品秒杀已结束",0);
                 }
 
                 $goods = current($order["item"]);
@@ -175,7 +175,7 @@ class Promotion {
                 break;
             case '4':
                 if(($row = Db::name("promotion_price")->where("id",$id)->find()) == false){
-                    throw new \Exception("您要购买的商品活动己结束",0);
+                    throw new \Exception("您要购买的商品活动已结束",0);
                 }
 
                 $price = floatval(Db::name("promotion_price_item")->where([
@@ -201,7 +201,7 @@ class Promotion {
                 if(($group = Db::name("promotion_group")
                         ->where("unix_timestamp(now()) between start_time AND end_time")
                         ->where(["id"=>$id,"status"=>0])->find()) == false){
-                    throw new \Exception("您要购买的拼团商品己结束",0);
+                    throw new \Exception("您要购买的拼团商品已结束",0);
                 }
 
                 $goods = current($order["item"]);
@@ -289,7 +289,7 @@ class Promotion {
                         ->where("store_nums",">","0")
                         ->where("end_time",">",time())
                         ->where(["id"=>$id,"status"=>0])->find()) == false){
-                    throw new \Exception("您选择的拼团商品己下架",0);
+                    throw new \Exception("您选择的拼团商品已下架",0);
                 }
 
                 $data["activity_id"] = $group["id"];
@@ -300,7 +300,7 @@ class Promotion {
                         ->where("store_nums",">","0")
                         ->where("end_time",">",time())
                         ->where(["id"=>$id,"status"=>0])->find()) == false){
-                    throw new \Exception("您选择的秒杀商品己下架",0);
+                    throw new \Exception("您选择的秒杀商品已下架",0);
                 }
 
                 $data["activity_id"] = $second["id"];
@@ -311,7 +311,7 @@ class Promotion {
                         ->where("store_nums",">","0")
                         ->where("end_time",">",time())
                         ->where(["id"=>$id,"status"=>0])->find()) == false){
-                    throw new \Exception("您选择的积分商品己下架",0);
+                    throw new \Exception("您选择的积分商品已下架",0);
                 }
 
                 $data["activity_id"] = $point["id"];
@@ -322,7 +322,7 @@ class Promotion {
                         ->where("store_nums",">","0")
                         ->where("end_time",">",time())
                         ->where(["id"=>$id,"status"=>0])->find()) == false){
-                    throw new \Exception("您选择的团购商品己下架",0);
+                    throw new \Exception("您选择的团购商品已下架",0);
                 }
 
                 if($num > $regiment["limit_max_count"]){
@@ -336,7 +336,7 @@ class Promotion {
                 break;
             case "special":
                 if(($special = Db::name("promotion_price")->where(["id"=>$id])->find()) == false){
-                    throw new \Exception("您选择的特价商品己下架",0);
+                    throw new \Exception("您选择的特价商品已下架",0);
                 }
 
                 $data["activity_id"] = $special["id"];
@@ -346,7 +346,7 @@ class Promotion {
 
         if(Db::name("goods_item")->where("goods_id",$data["goods_id"])->count()){
             if(($products=Db::name("goods_item")->where("goods_id",$data["goods_id"])->where("id",$product_id)->find()) == false){
-                throw new \Exception("您选择的商品己下架",0);
+                throw new \Exception("您选择的商品已下架",0);
             }
 
             $data["spec_key"] = $products["spec_key"];

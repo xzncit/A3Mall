@@ -73,7 +73,7 @@ class Subscribe extends Service {
         foreach($config['attribute'] as $key=>$value){
             $field = isset($orderDelivery[$value['field']]) ? $orderDelivery[$value['field']] : "";
             if($value["field"] == "{{custom}}"){
-                $field = "您的订单己发货";
+                $field = "您的订单已发货";
             }
 
             $data[$value["value"]] = [

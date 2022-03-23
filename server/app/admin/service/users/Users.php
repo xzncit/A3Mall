@@ -111,7 +111,7 @@ class Users extends Service {
             }
 
             if(UsersModel::where("username",$data["username"])->where("id","<>",$data["id"])->count()){
-                throw new \Exception("该用户名己存在，请更换用户名。",0);
+                throw new \Exception("该用户名已存在，请更换用户名。",0);
             }
 
             UsersModel::where("id",$data["id"])->save($data);
@@ -125,7 +125,7 @@ class Users extends Service {
             }
 
             if(UsersModel::where("username",$data["username"])->count()){
-                throw new \Exception("该用户名己存在，请更换用户名。",0);
+                throw new \Exception("该用户名已存在，请更换用户名。",0);
             }
 
             $data["password"] = md5($data["password"]);

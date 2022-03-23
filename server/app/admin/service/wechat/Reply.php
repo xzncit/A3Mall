@@ -57,13 +57,13 @@ class Reply extends Service {
         if($obj = WechatKeysModel::where(["id"=>$data["id"]])->find()){
             $k = WechatKeysModel::where(["keys"=>$data["keys"]])->find();
             if($k["id"] != $obj["id"]){
-                throw new \Exception("关键字己存在！",0);
+                throw new \Exception("关键字已存在！",0);
             }
 
             WechatKeysModel::where(["id"=>$data["id"]])->save($data);
         }else{
             if(WechatKeysModel::where(["keys"=>$data["keys"]])->count()){
-                throw new \Exception("关键字己存在！",0);
+                throw new \Exception("关键字已存在！",0);
             }
 
             WechatKeysModel::save($data);

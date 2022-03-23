@@ -39,7 +39,7 @@ class Sms extends Validate {
         }
 
         if($value == "register" && Db::name("users")->where("mobile",$data["username"])->count() > 0){
-            return "您填写的手机号码己被使用！";
+            return "您填写的手机号码已被使用！";
         }
 
         return true;

@@ -516,7 +516,7 @@ class Order extends OrderService {
             if(empty($order)){
                 throw new \Exception("您要操作的订单不存在",0);
             }else if($order["pay_status"] == 1){
-                throw new \Exception("您要操作的订单己支付",0);
+                throw new \Exception("您要操作的订单已支付",0);
             }
 
             if($action == 1 && $num > $order["order_amount"]){

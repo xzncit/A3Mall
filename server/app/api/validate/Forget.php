@@ -63,7 +63,7 @@ class Forget extends Validate {
 
         $config = Setting::getArrayData("sms");
         if(($sms["create_time"] + (60 * $config["duration_time"])) < time()){
-            return "您的验证码己过期，请重新发送。";
+            return "您的验证码已过期，请重新发送。";
         }
 
         return true;

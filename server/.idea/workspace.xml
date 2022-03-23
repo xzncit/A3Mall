@@ -3,7 +3,62 @@
   <component name="ChangeListManager">
     <list default="true" id="657d58cc-4f99-4b69-a470-826bcbd644b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/service/SystemUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/service/SystemUsers.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/admin/service/common/Material.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/service/common/Material.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/service/order/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/service/order/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/service/platform/Dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/service/platform/Dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/service/system/Purview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/service/system/Purview.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/service/system/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/service/system/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/service/users/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/service/users/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/service/wechat/Reply.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/service/wechat/Reply.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/order/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/order/index/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/order/index/update_amount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/order/index/update_amount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/statistics/sale/sale_order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/statistics/sale/sale_order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/users/comment/detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/users/comment/detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/users/comment/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/users/comment/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/users/consult/detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/users/consult/detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/users/consult/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/users/consult/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/users/finance/apply.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/users/finance/apply.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/users/report/detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/users/report/detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/users/report/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/users/report/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/users/spread/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/users/spread/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/users/suggest/detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/users/suggest/detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/users/suggest/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/users/suggest/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/view/wechat/fans/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/wechat/fans/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/controller/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/controller/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/service/Bonus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/service/Bonus.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/service/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/service/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/service/Ucenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/service/Ucenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/service/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/service/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/service/Version.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/service/Version.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/validate/Forget.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/validate/Forget.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/validate/Register.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/validate/Register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/validate/Sms.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/validate/Sms.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/common/library/payment/Payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/library/payment/Payment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/common/library/payment/wechat/WeChat.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/library/payment/wechat/WeChat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/common/library/sms/Sms.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/library/sms/Sms.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/common/service/order/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/service/order/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/common/service/subscribe/mini/Subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/service/subscribe/mini/Subscribe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/common/service/subscribe/wechat/Subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/common/service/subscribe/wechat/Subscribe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/install/data/a3mall.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/install/data/a3mall.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/install/data/a3mall_demo.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/install/data/a3mall_demo.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/version.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/version.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall/basic/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/mall/basic/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall/basic/Promotion.php" beforeDir="false" afterPath="$PROJECT_DIR$/mall/basic/Promotion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall/basic/Shopping.php" beforeDir="false" afterPath="$PROJECT_DIR$/mall/basic/Shopping.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall/basic/Sms.php" beforeDir="false" afterPath="$PROJECT_DIR$/mall/basic/Sms.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall/library/tools/jwt/Token.php" beforeDir="false" afterPath="$PROJECT_DIR$/mall/library/tools/jwt/Token.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/wap/js/chunk-0f52bc5e.07ed8caa.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/wap/js/chunk-0f52bc5e.07ed8caa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/wap/js/chunk-0f52bc5e.ff66c399.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/wap/js/chunk-0f52bc5e.ff66c399.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/wap/js/chunk-19fc8744.5c84741a.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/wap/js/chunk-19fc8744.5c84741a.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/wap/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/wap/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/wap/static/js/index.a67461c2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/wap/static/js/pages-cart-confirm~pages-order-detail.acef2b52.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/wap/static/js/pages-coupon-index.c1bf1e21.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/wap/static/js/pages-goods-view.3d549f58.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/wap/static/js/pages-order-detail.06f695ae.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/wap/static/js/pages-order-list.891ed987.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/wap/static/js/pages-ucenter-coupon.a865b3a3.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +167,9 @@
       <workItem from="1647220434029" duration="25000" />
       <workItem from="1647395484274" duration="111000" />
       <workItem from="1647496797103" duration="27000" />
+      <workItem from="1647654419561" duration="417000" />
+      <workItem from="1647655465802" duration="121000" />
+      <workItem from="1648003388526" duration="67000" />
     </task>
     <servers />
   </component>

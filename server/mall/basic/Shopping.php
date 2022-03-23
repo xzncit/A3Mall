@@ -41,7 +41,7 @@ class Shopping {
                     ->where("spec_key",$val["spec_key"])->find();
 
                 if(empty($products)){
-                    throw new \Exception("您选择的商品己下架",0);
+                    throw new \Exception("您选择的商品已下架",0);
                 }
 
                 if($val["nums"] > $products["store_nums"]){
@@ -51,7 +51,7 @@ class Shopping {
 
             $goods = Db::name("goods")->where("id",$val["goods_id"])->find();
             if(empty($goods)){
-                throw new \Exception("您选择的商品己下架",0);
+                throw new \Exception("您选择的商品已下架",0);
             }
 
             if(empty($products) && $val["nums"] > $goods["store_nums"]){
@@ -118,7 +118,7 @@ class Shopping {
 
         $goods = Db::name("goods")->where("id",$id)->find();
         if(empty($goods) || $goods["status"] != 0){
-            throw new \Exception("该商品己下架！",0);
+            throw new \Exception("该商品已下架！",0);
         }
 
         $products = null;
@@ -129,7 +129,7 @@ class Shopping {
             ])->find();
 
             if(empty($products)){
-                throw new \Exception("该商品己下架。",0);
+                throw new \Exception("该商品已下架。",0);
             }
         }
 

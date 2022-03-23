@@ -411,7 +411,7 @@ class Order extends Service {
     }
 
     /**
-     *  获取己退款金额
+     *  获取已退款金额
      * @param array $data
      * @return float|int
      */
@@ -435,7 +435,7 @@ class Order extends Service {
         }
 
         if($order["pay_status"] == 1){
-            throw new \Exception("您查找的订单己支付！",0);
+            throw new \Exception("您查找的订单已支付！",0);
         }
 
         if(!OrderModel::where(["order_no"=>$order_no])->save([
@@ -727,7 +727,7 @@ class Order extends Service {
         if($order["status"] == 5){
             if(in_array($order["evaluate_status"],[0,2])){ // 待评价
                 return 5;
-            }else if($order["evaluate_status"] == 1){ // 己完成
+            }else if($order["evaluate_status"] == 1){ // 已完成
                 return 6;
             }
         }else if ($order['status'] == 3 || $order['status'] == 4) { // 取消或者作废订单
@@ -753,7 +753,7 @@ class Order extends Service {
     public static function getStatusText($code) {
         $result = [
             0=>'未知',1=>'等待付款',2=>'等待发货',3=>'待收货',4 => '部份发货',
-            5=>'待评价',6=>'已完成',7=>'己取消',8=>'退款成功',9=>'未发货',
+            5=>'待评价',6=>'已完成',7=>'已取消',8=>'退款成功',9=>'未发货',
             10=>'部分退款',11=>'申请退款',12=>'拒绝退款'
         ];
 
@@ -766,7 +766,7 @@ class Order extends Service {
      * @return string
      */
     public static function getPaymentStatusText($status){
-        return $status == 0 ? "未支付" : "己支付";
+        return $status == 0 ? "未支付" : "已支付";
     }
 
     /**

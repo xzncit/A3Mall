@@ -45,7 +45,7 @@ class Order extends Service {
             case 4: // 待评价
                 $condition .= 'status=5 and pay_status=1 and delivery_status=1 and evaluate_status in(0,2)';
                 break;
-            case 5: // 己完成
+            case 5: // 已完成
                 $condition .= 'status=5 and pay_status=1 and delivery_status=1 and evaluate_status=1';
                 break;
         }
@@ -363,7 +363,7 @@ class Order extends Service {
         if($order["status"] != 5){
             throw new \Exception("该订单不允许此操作",0);
         }else if($order["evaluate_status"] == 1){
-            throw new \Exception("该订单己评价",2);
+            throw new \Exception("该订单已评价",2);
         }
 
         $order_goods = OrderGoodsModel::where([ "order_id"=>$id ])->select()->toArray();
@@ -408,7 +408,7 @@ class Order extends Service {
         }
 
         if($order["evaluate_status"] == 1){
-            throw new \Exception("您的订单己评价！",0);
+            throw new \Exception("您的订单已评价！",0);
         }
 
         try{
@@ -465,7 +465,7 @@ class Order extends Service {
             throw new \Exception("非法操作",0);
         }
 
-        throw new \Exception("您的订单己付款，不允许此操作",0);
+        throw new \Exception("您的订单已付款，不允许此操作",0);
     }
 
     /**

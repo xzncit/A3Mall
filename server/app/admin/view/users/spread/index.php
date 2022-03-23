@@ -80,7 +80,7 @@
                 , {field: 'pay_count', title: '订单数量',width:100,align:"center"}
                 , {field: 'order_amount', title: '订单金额',width:100,align:"center"}
                 , {field: 'brokerage_amount', title: '佣金金额',width:100,align:"center"}
-                , {field: 'withdraw_amount', title: '己提现金额',width:100,align:"center"}
+                , {field: 'withdraw_amount', title: '已提现金额',width:100,align:"center"}
                 , {field: 'spread_amount', title: '待提现金额',width:100,align:"center"}
                 , {field: 'is_spread', title: '状态',width:80,align:"center",templet:function (res){
                     return res.is_spread ==1 ? "<span style='color: green'>开启</span>" : "<span style='color:red'>冻结</span>"

@@ -69,7 +69,7 @@
             </script>
 
             <script type="text/html" id="list-bar">
-                <a class="layui-btn layui-btn-xs" lay-event="edit">{{ d.is_black ? '己拉黑' : '拉黑' }}</a>
+                <a class="layui-btn layui-btn-xs" lay-event="edit">{{ d.is_black ? '已拉黑' : '拉黑' }}</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
             </script>
 
@@ -113,9 +113,9 @@
                   }}
                 , {field: 'status', title: '状态', width: 80,align:"center", templet(res){
                     var str = '';
-                    str += '<span class="layui-badge">'+(res.subscribe ? "己关注" : "未关注")+'</span>';
+                    str += '<span class="layui-badge">'+(res.subscribe ? "已关注" : "未关注")+'</span>';
                     str += '<br>';
-                    str += '<span class="layui-badge layui-bg-green layui-is-black">'+(res.is_black ? "己拉黑" : "未拉黑")+'</span>';
+                    str += '<span class="layui-badge layui-bg-green layui-is-black">'+(res.is_black ? "已拉黑" : "未拉黑")+'</span>';
                     return str;
                   }}
                 , {field: 'create_time', title: '关注时间', width: 180, align: "center"}
@@ -276,7 +276,7 @@
                     $.post("{:createUrl('wechat.fans/add_black')}",{ openid : data.openid },function (result){
                         if(result.code){
                             $('[lay-event="edit"]',$(obj.tr)).html("移出黑名单");
-                            $(".layui-is-black",$(obj.tr)).html("己拉黑");
+                            $(".layui-is-black",$(obj.tr)).html("已拉黑");
                             obj.update({
                                 is_black : 1
                             });

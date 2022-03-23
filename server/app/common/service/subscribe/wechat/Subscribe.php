@@ -66,7 +66,7 @@ class Subscribe {
         $data = [];
         foreach($config['attribute'] as $key=>$value){
             if($value["field"] == "first"){
-                $data[$value["value"]] = ["value" => "您的订单己发货", "color" => "#173177"];
+                $data[$value["value"]] = ["value" => "您的订单已发货", "color" => "#173177"];
             }else if($value["field"] == "remark"){
                 $data[$value["value"]] = ["value" => '请注意关注签收', "color" => "#173177"];
             }else if($value["field"] == "send_time"){

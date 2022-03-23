@@ -84,7 +84,7 @@
             {/if}
 
             {if !empty($order) && $order.pay_status == 1}
-                layer.msg("您要操作的订单己支付",{ time: 3000 },function (){
+                layer.msg("您要操作的订单已支付",{ time: 3000 },function (){
                     parent.layer.closeAll();
                 });
             {/if}

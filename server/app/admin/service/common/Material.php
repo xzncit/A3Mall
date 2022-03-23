@@ -89,7 +89,7 @@ class Material extends Service {
         }
 
         if(AttachmentCategoryModel::where([ "name"=>$data["name"]])->count()){
-            throw new \Exception("分类名称己存在",0);
+            throw new \Exception("分类名称已存在",0);
         }
 
         AttachmentCategoryModel::create([ "name"=>$data["name"],"type"=>$data["type"]??"image" ]);

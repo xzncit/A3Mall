@@ -31,7 +31,7 @@ class Version extends Service {
 
         $row = VersionModel::where("type='{$type}' AND version > '" . $ver . "'")->order("version","ASC")->find();
         if(empty($row)){
-            throw new \Exception("当前己是最新版本",0);
+            throw new \Exception("当前已是最新版本",0);
         }
 
         if(!Check::url($row["url"])){

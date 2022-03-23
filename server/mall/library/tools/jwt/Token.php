@@ -90,9 +90,9 @@ class Token {
              throw new \Exception("token还未生效",4001);
          }
 
-         // 己过期
+         // 已过期
          if($exp < $now) {
-             throw new \Exception("token己过期",401);
+             throw new \Exception("token已过期",401);
          }
 
         $timezone = new DateTimeZone('Asia/Shanghai');

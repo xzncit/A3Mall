@@ -52,13 +52,13 @@ class SystemUsers extends Service {
                 "ip" => $get_ip, "time" => time()
             ));
 
-            throw new \Exception("您的帐号己被禁止使用！", 0);
+            throw new \Exception("您的帐号已被禁止使用！", 0);
         }
 
         Users::where(['id' => $user['id']])->update(['count' => ($user['count'] + 1), 'time' => time(), 'ip' => $get_ip]);
 
         if (Manage::where(["id" => $user["role_id"], "status" => 0])->count() <= 0) {
-            throw new \Exception("您所在的权限组己被管理员禁用！", 0);
+            throw new \Exception("您所在的权限组已被管理员禁用！", 0);
         }
 
         UsersLog::create([

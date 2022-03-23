@@ -18,8 +18,8 @@
         <div class="layui-form-pos-btn">
             <div class="tab-list-btn active">全部</div>
             <div class="tab-list-btn">未处理</div>
-            <div class="tab-list-btn">己处理</div>
-            <div class="tab-list-btn">己拒绝</div>
+            <div class="tab-list-btn">已处理</div>
+            <div class="tab-list-btn">已拒绝</div>
         </div>
     </div>
 </script>
@@ -30,7 +30,7 @@
     {{# } }}
 
     {{# if(d.status != 0){ }}
-    <a class="layui-btn layui-btn-xs layui-btn-danger">己处理</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger">已处理</a>
     {{# } }}
 </script>
 

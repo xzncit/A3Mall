@@ -33,7 +33,7 @@ class Register extends Validate {
 
     protected function checkMobiles($value, $rule, $data=[]){
         if(Db::name("users")->where("mobile",$value)->count()){
-            return "您填写的手机号码己被注册！";
+            return "您填写的手机号码已被注册！";
         }
 
         return true;
@@ -63,7 +63,7 @@ class Register extends Validate {
 
         $config = Setting::getArrayData("sms");
         if(($sms["create_time"] + (60 * $config["duration_time"])) < time()){
-            return "您的验证码己过期，请重新发送。";
+            return "您的验证码已过期，请重新发送。";
         }
 
         return true;

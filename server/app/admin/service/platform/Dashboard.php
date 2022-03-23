@@ -93,7 +93,7 @@ class Dashboard extends Service {
         $path = Tool::getRootPath() . 'runtime/';
         return ["code"=>0,"msg"=>"","data"=>[
             [
-                "type"=>"db-sms","info"=>"清理己过期短信验证码",
+                "type"=>"db-sms","info"=>"清理已过期短信验证码",
                 'size'=>Db::name("users_sms")->where("create_time","<=", strtotime("-1 day"))->count() . " 条"
             ],
             [

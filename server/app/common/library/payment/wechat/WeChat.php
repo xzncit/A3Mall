@@ -188,7 +188,7 @@ class WeChat {
             $rechange = Db::name("users_rechange")->where("order_no",$data["out_trade_no"])->find();
             if(empty($rechange)) return $obj->getNotifyErrorReply();
 
-            // 己充值成功的订单直接返回通知微信成功
+            // 已充值成功的订单直接返回通知微信成功
             if($rechange["status"] == 1) return $obj->getNotifySuccessReply();
 
             // 按支付方式对签名验证,并校验返回的订单金额是否与商户侧的订单金额一致

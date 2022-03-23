@@ -37,7 +37,7 @@ class Users extends Service {
         }
 
         if($users["status"] == 3){
-            throw new \Exception("您的用户己被管理员禁止登录！",0);
+            throw new \Exception("您的用户已被管理员禁止登录！",0);
         }
 
         if($users["password"] != md5($password)){
@@ -195,7 +195,7 @@ class Users extends Service {
         $config = SettingModel::getArrayData("sms");
         $sms = UsersSmsModel::where("mobile",$data["username"])->order("id","DESC")->find();
         if(!empty($sms) && (strtotime($sms["create_time"]) + (60 * $config["duration_time"])) > time()){
-            throw new \Exception("您的验证码己发送，请注意查收",1);
+            throw new \Exception("您的验证码已发送，请注意查收",1);
         }
 
         sendSMS(["mobile"=>$data["username"]],$data["type"]);

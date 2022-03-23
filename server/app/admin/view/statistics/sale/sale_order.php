@@ -72,7 +72,7 @@
                     }}
                 , {field: 'goods_name', title: '商品名称'}
                 , {field: 'goods_no', width: 200, title: '货号',align: "center"}
-                , {field: 'num', width: 130, title: '己售数量',sort: true,align: "center"}
+                , {field: 'num', width: 130, title: '已售数量',sort: true,align: "center"}
                 , {field: 'price', width: 130, title: '销售额',sort: true,align: "center"}
                 , {field: 'average', width: 160, title: '均价',align: "center"}
             ]]

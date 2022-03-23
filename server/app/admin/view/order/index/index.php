@@ -18,7 +18,7 @@
                         <select name="pay_type">
                             <option value="-1">全部</option>
                             <option value="0">未支付</option>
-                            <option value="1">己支付</option>
+                            <option value="1">已支付</option>
                         </select>   
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         <select name="distribution_status">
                             <option value="-1">全部</option>
                             <option value="0">未发货</option>
-                            <option value="1">己发货</option>
+                            <option value="1">已发货</option>
                         </select>   
                         </div>
                     </div>

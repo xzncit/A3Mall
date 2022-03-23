@@ -23,7 +23,7 @@ class Sms {
             if(empty($config)){
                 throw new \Exception("短信模板不存在");
             }else if($config["status"] == 1){
-                throw new \Exception("当前短信模板己被禁用");
+                throw new \Exception("当前短信模板已被禁用");
             }
 
             switch($type){

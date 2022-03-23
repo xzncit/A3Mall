@@ -324,7 +324,7 @@ class Ucenter extends Service {
         }
 
         $list = [];
-        $status = ["0"=>"审核中","1"=>"己提现","2"=>"未通过"];
+        $status = ["0"=>"审核中","1"=>"已提现","2"=>"未通过"];
         foreach($result as $key=>$value){
             $list[$key]["description"] = $value["msg"];
             $list[$key]["amount"] = $value["price"];

@@ -40,7 +40,7 @@ class Purview extends Service {
     public static function detail($id){
         $row = ManageModel::where("id",$id)->find();
         if(isset($row["lock"]) && $row["lock"] == 1) {
-            throw new \Exception("该分组己被锁定，不允许修改",0);
+            throw new \Exception("该分组已被锁定，不允许修改",0);
         }
 
         $systemMenu = PurviewModel::where(['status'=>0,"pid"=>0])->select()->toArray();

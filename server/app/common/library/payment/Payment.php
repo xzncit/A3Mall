@@ -45,10 +45,10 @@ class Payment {
         }
 
         if($order["pay_status"] == 1){
-            throw new PaymentException("您的订单己支付，请勿重复支付。",0,[
+            throw new PaymentException("您的订单已支付，请勿重复支付。",0,[
                 "pay"       => 99,
                 "order_id"  => $order["id"],
-                "msg"       => "您的订单己支付，请勿重复支付。"
+                "msg"       => "您的订单已支付，请勿重复支付。"
             ]);
         }
 

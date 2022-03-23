@@ -81,15 +81,15 @@ class Bonus extends Service {
             ["status","=",0],
             ["end_time",">",time()],
         ])->find()){
-            throw new BaseException("优惠劵己过期",0,2);
+            throw new BaseException("优惠劵已过期",0,2);
         }
 
         if($row["giveout"] != 0 && ($row["used"] >= $row["giveout"])){
-            throw new BaseException("优惠劵己领完",0,1);
+            throw new BaseException("优惠劵已领完",0,1);
         }
 
         if(UsersBonusModel::where(["user_id"=>Users::get("id"),"bonus_id"=>$id])->count()){
-            throw new BaseException("该优惠劵您己领取过了",0,1);
+            throw new BaseException("该优惠劵您已领取过了",0,1);
         }
 
         UsersBonusModel::create([ "user_id"=>Users::get("id"), "type"=>$row["type"], "bonus_id"=>$id, "create_time"=>time() ]);
