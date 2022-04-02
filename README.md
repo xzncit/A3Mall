@@ -66,7 +66,7 @@ A3Mall开源商城官方群: 892150829  <a target="_blank" href="https://qm.qq.c
 ![输入图片说明](https://github.com/xzncit/A3Mall/blob/master/readme/images/4.png "4.png")
 
 ### 后端演示
-后台地址：https://demo.a3-mall.com/admin
+后台地址：http://demo.a3-mall.com/admin
 用户：admin
 密码：admin888
 
@@ -76,12 +76,12 @@ A3Mall开源商城官方群: 892150829  <a target="_blank" href="https://qm.qq.c
 
 ### 商业版演示
 后台演示
-地址：http://b2cv2.a3-mall.com/admin
+地址：https://b2cv2.a3-mall.com/admin
 账号：admin
 密码：admin888
 
 PC商城演示
-网址：http://b2cv2.a3-mall.com/
+网址：https://b2cv2.a3-mall.com/
 账号：18026740326
 密码：admin888
 
@@ -91,7 +91,7 @@ PC商城演示
 密码：admin888
 
 客服端
-网址：http://b2cv2.a3-mall.com/online
+网址：https://b2cv2.a3-mall.com/online
 账号：demo
 密码：admin888
 
