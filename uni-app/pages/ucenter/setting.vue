@@ -1,10 +1,10 @@
 <template>
 	<view class="wrap">
 		<navbar :iSimmersive="false" title-color="#ffffff" background="#1b43c4" :placeholder="true" title="会员设置"></navbar>
-		<view class="avatar">
+		<view class="avatar" @click="upload">
 			<view>
 				<image :src="avatar">
-				<view class="file" @click="upload">上传</view>
+				<view class="file">上传</view>
 			</view>
 		</view>
 		
