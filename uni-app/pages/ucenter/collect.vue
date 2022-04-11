@@ -87,9 +87,7 @@
 		},
 		methods: {
 			downCallback(){
-				setTimeout(()=>{
-					this.mescroll.resetUpScroll();
-				},200);
+				this.mescroll.resetUpScroll();
 			},
 			triggerDownScroll(){
 				this.mescroll.triggerDownScroll();
