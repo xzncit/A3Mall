@@ -52,6 +52,7 @@ class Ucenter extends Service {
         foreach($result as $key=>$value){
             $list[$key] = [
                 "id"=>$value["f_id"],
+                "goods_id"=>$value["id"],
                 "title"=>$value["title"],
                 "price"=>$value["sell_price"],
                 "origin_price"=>$value["market_price"],

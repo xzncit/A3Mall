@@ -15,6 +15,7 @@
 					class="list-item"
 					v-for="item in result"
 					:key="item.id"
+					@click="$utils.navigateTo('goods/view',{ id: item.goods_id })"
 				>
 					<view class="left-pic">
 						<view class="pic">
