@@ -423,10 +423,24 @@
             return false;
         });
 
-        layui.use(["form", "element",'layer','upload'], function () {
+        layui.use(["form", "element",'layer','upload','colorpicker'], function () {
             var form = layui.form;
             var layer = layui.layer;
             var upload = layui.upload;
+
+            var colorpicker = layui.colorpicker;
+
+            colorpicker.render({
+                elem: '#picker-box',color: '{$data.briefly_color|default="#333333"}',change: function(color){
+                    if(color == ""){
+                        $("[name='briefly_color']").val("");
+                        $('[name="briefly"]').removeAttr("style");
+                    }else{
+                        $("[name='briefly_color']").val(color);
+                        $('[name="briefly"]').css("color", color);
+                    }
+                }
+            });
 
            {if !empty($data.id)}
                 {if !empty($data.attr_id)}

@@ -3811,7 +3811,7 @@ CREATE TABLE `mall_card` (
   `id` bigint(20) NOT NULL,
   `goods_id` text CHARACTER SET utf8 DEFAULT NULL COMMENT '关联的商品ID',
   `name` varchar(50) CHARACTER SET utf8 NOT NULL COMMENT '卡券名称',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: 已发放',
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: 己发放',
   `start_time` int(10) NOT NULL DEFAULT 0 COMMENT '开始时间',
   `end_time` int(10) DEFAULT 0 COMMENT '结束时间',
   `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间'
@@ -3824,7 +3824,7 @@ CREATE TABLE `mall_card_order` (
   `freight_id` int(11) NOT NULL DEFAULT 0,
   `distribution_code` varchar(255) DEFAULT '' COMMENT '物流单号',
   `status` tinyint(1) DEFAULT 1 COMMENT '订单状态 1生成订单,2发货订单,3取消订单,4作废订单,5完成订单',
-  `distribution_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: 未发货 1: 已发货',
+  `distribution_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: 未发货 1: 己发货',
   `accept_name` varchar(32) NOT NULL DEFAULT '' COMMENT '收货人姓名',
   `mobile` varchar(20) DEFAULT '' COMMENT '手机',
   `country` varchar(32) DEFAULT '' COMMENT '国',
@@ -3913,7 +3913,7 @@ CREATE TABLE `mall_chat_message` (
   `send_type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '发送者(0商家,1会员)',
   `service_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商家客服id',
   `user_id` bigint(20) NOT NULL COMMENT '会员id',
-  `is_read` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否已读(1已读,0未读)',
+  `is_read` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否己读(1己读,0未读)',
   `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品id',
   `sku_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品规格',
   `order_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '订单id',
@@ -4084,6 +4084,7 @@ CREATE TABLE `mall_goods` (
   `store_nums` bigint(20) NOT NULL DEFAULT 0 COMMENT '库存',
   `photo` varchar(255) DEFAULT '' COMMENT '封面图',
   `briefly` text DEFAULT NULL COMMENT '简要',
+  `briefly_color` varchar(32) NOT NULL DEFAULT '' COMMENT '',
   `content` longtext DEFAULT NULL COMMENT '商品描述',
   `goods_content` longtext DEFAULT NULL COMMENT '自动发货内容',
   `down_url` varchar(255) NOT NULL DEFAULT '' COMMENT '下载链接',
@@ -4223,8 +4224,8 @@ CREATE TABLE `mall_order` (
   `status` tinyint(1) DEFAULT 1 COMMENT '订单状态 1生成订单,2支付订单,3取消订单(客户触发),4作废订单(管理员触发),5完成订单,6退款,7部分退款',
   `pay_status` tinyint(1) DEFAULT 0 COMMENT '支付状态 0：未支付; 1：已支付;',
   `distribution_status` tinyint(1) DEFAULT 0 COMMENT '配送状态 0：未发送,1：已发送,2：部分发送',
-  `delivery_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: 未收货 1: 已收货',
-  `evaluate_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0：未评价 1：已评价 2：部份评价',
+  `delivery_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: 未收货 1: 己收货',
+  `evaluate_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0：未评价 1：己评价 2：部份评价',
   `accept_name` varchar(32) NOT NULL DEFAULT '' COMMENT '收货人姓名',
   `zip` varchar(6) DEFAULT '' COMMENT '邮编',
   `mobile` varchar(20) DEFAULT '' COMMENT '手机',
@@ -4493,7 +4494,7 @@ CREATE TABLE `mall_promotion_bonus` (
   `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '红包类型',
   `point` int(11) NOT NULL DEFAULT 0 COMMENT '兑换需要的积分',
   `giveout` int(11) NOT NULL DEFAULT 0 COMMENT '发放数量  ',
-  `used` int(11) NOT NULL DEFAULT 0 COMMENT '已使用的数量',
+  `used` int(11) NOT NULL DEFAULT 0 COMMENT '己使用的数量',
   `order_amount` decimal(15,2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '订单金额',
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态',
   `start_time` int(11) NOT NULL DEFAULT 0 COMMENT '开始时间',
@@ -4702,8 +4703,8 @@ CREATE TABLE `mall_sms_template` (
 INSERT INTO `mall_sms_template` (`id`, `sign`, `sign_name`, `template_code`, `template_name`, `template_param`, `status`, `create_time`) VALUES
 (1, 'register', 'AAAMall', 'SMS_153055060', '您正在申请手机注册，验证码为：${code}，5分钟内有效！', '{\"code\":\"${code}\"}', 0, 0),
 (2, 'repassword', 'AAAMall', 'SMS_153055061', '您的动态码为：${code}，您正在进行密码重置操作，如非本人操作，请忽略本短信！', '{\"code\":\"${code}\"}', 0, 0),
-(3, 'payment_success', 'AAAMall', 'SMS_153055062', '您的订单已支付成功，订单号:${order_no}。', '{\"order_no\":\"${order_no}\"}', 0, 0),
-(4, 'deliver_goods', 'AAAMall', 'SMS_153055062', '您的订单已发货，订单号:${order_no}，请注意查收。', '{\"order_no\":\"${order_no}\"}', 0, 0);
+(3, 'payment_success', 'AAAMall', 'SMS_153055062', '您的订单己支付成功，订单号:${order_no}。', '{\"order_no\":\"${order_no}\"}', 0, 0),
+(4, 'deliver_goods', 'AAAMall', 'SMS_153055062', '您的订单己发货，订单号:${order_no}，请注意查收。', '{\"order_no\":\"${order_no}\"}', 0, 0);
 
 CREATE TABLE `mall_statistics_search` (
   `id` bigint(20) NOT NULL,
