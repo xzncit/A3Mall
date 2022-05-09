@@ -40,6 +40,9 @@
 						<view class="goods-name">
 							{{ products.title || '' }}
 						</view>
+						<view v-if="products.briefly.length" class="goods-name" style="font-size: 29rpx;" :style="{'color':products.briefly_color.length ? products.briefly_color : '#333'}">
+							{{ products.briefly || '' }}
+						</view>
 					</view>
 					<view class="goods-info-box">
 						<text>库存: {{ products.store_nums || '' }}件</text>

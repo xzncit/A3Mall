@@ -166,6 +166,8 @@ class Goods extends Service {
         $data["goods"] = [
             "id"=>$id,
             "title"=>$goods["title"],
+            "briefly"=>$goods["briefly"],
+            "briefly_color"=>$goods["briefly_color"],
             "photo"=>Tool::thumb($goods["photo"],'medium ',true),
             "sell_price"=>$goods["sell_price"],
             "market_price"=>$goods["market_price"],

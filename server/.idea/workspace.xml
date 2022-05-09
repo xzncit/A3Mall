@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="657d58cc-4f99-4b69-a470-826bcbd644b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/view/products/index/editor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/products/index/editor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/install/data/a3mall.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/install/data/a3mall.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/install/data/a3mall_demo.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/install/data/a3mall_demo.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/service/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/service/Goods.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uni-app/pages/goods/view.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../uni-app/pages/goods/view.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +117,8 @@
       <workItem from="1647655465802" duration="121000" />
       <workItem from="1648003388526" duration="67000" />
       <workItem from="1651735751241" duration="65000" />
+      <workItem from="1652005456017" duration="25000" />
+      <workItem from="1652006292911" duration="21000" />
     </task>
     <servers />
   </component>
