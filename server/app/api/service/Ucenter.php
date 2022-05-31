@@ -160,6 +160,7 @@ class Ucenter extends Service {
             ];
         }
 
+        $array["point"] = Users::get("point");
         $array["list"] = $list;
         return $array;
     }

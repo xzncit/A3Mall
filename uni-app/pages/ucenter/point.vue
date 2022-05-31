@@ -51,8 +51,9 @@
 				result: []
 			}
 		},
-		onShow() {
+		onLoad() {
 			let users = this.$storage.getJson("users");	
+			console.log(users);
 			this.point = users.point;
 		},
 		methods: {
@@ -72,6 +73,7 @@
 					if(result.status==1){
 						if(page.num == 1) this.result = [];
 						this.point = result.data.point;
+						console.log(result.data);
 						this.result = this.result.concat(result.data.list);
 					}else if(result.status == -1){
 						this.mescroll.endErr();

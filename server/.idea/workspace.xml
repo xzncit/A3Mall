@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="657d58cc-4f99-4b69-a470-826bcbd644b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/service/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/service/Goods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../uni-app/pages/goods/view.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../uni-app/pages/goods/view.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/service/Ucenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/service/Ucenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uni-app/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../uni-app/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uni-app/pages/ucenter/point.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../uni-app/pages/ucenter/point.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +18,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/xzncit/A3Mall" />
+      </set>
+    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -119,6 +127,8 @@
       <workItem from="1651735751241" duration="65000" />
       <workItem from="1652005456017" duration="25000" />
       <workItem from="1652006292911" duration="21000" />
+      <workItem from="1653979913856" duration="10000" />
+      <workItem from="1653980269161" duration="114000" />
     </task>
     <servers />
   </component>
