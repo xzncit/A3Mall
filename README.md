@@ -57,6 +57,10 @@
 ## QQ交流群
 A3Mall开源商城官方群: 892150829  <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=lBxucAil6e6WTlwX0tNvQwpOtfLP2ptd&jump_from=webapi"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="A3Mall官方交流1群" title="A3Mall官方交流1群"></a>
 
+### 数循通科技承接软件定制开发
+    QQ：3439167048 
+    数循通科技官网 https://a3-mall.com 
+
 ### 页面展示
 ![输入图片说明](https://github.com/xzncit/A3Mall/blob/master/readme/images/1.png "1.png")
 ![输入图片说明](https://github.com/xzncit/A3Mall/blob/master/readme/images/2.png "2.png")

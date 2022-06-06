@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="657d58cc-4f99-4b69-a470-826bcbd644b9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/service/Ucenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/service/Ucenter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../uni-app/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../uni-app/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../uni-app/pages/ucenter/point.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../uni-app/pages/ucenter/point.vue" afterDir="false" />
-    </list>
+    <list default="true" id="657d58cc-4f99-4b69-a470-826bcbd644b9" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -128,7 +123,7 @@
       <workItem from="1652005456017" duration="25000" />
       <workItem from="1652006292911" duration="21000" />
       <workItem from="1653979913856" duration="10000" />
-      <workItem from="1653980269161" duration="114000" />
+      <workItem from="1653980269161" duration="350000" />
     </task>
     <servers />
   </component>
