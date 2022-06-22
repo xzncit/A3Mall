@@ -27,8 +27,8 @@ class Distribution {
             $data["payable_freight"] = BC::add($delivery["payable_freight"],$data["payable_freight"]);
         }
 
-        $data["payable_amount"] = BC::add($data["real_freight"],$data["real_amount"]);
         $data = Promotion::run($data);
+        $data["payable_amount"] = BC::add($data["real_freight"],$data["real_amount"]);
         $data["order_amount"] = $data["payable_amount"];
         return $data;
     }

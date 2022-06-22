@@ -219,7 +219,7 @@ PC商城演示
 ### 版权信息
 本项目包含的第三方源码和二进制文件之版权信息另行标注。
 
-版权所有Copyright © 2020-2021 by A3Mall (http://www.a3-mall.com) All rights reserved。
+版权所有Copyright © 2020-2022 by A3Mall (http://www.a3-mall.com) All rights reserved。
 
  **bug反馈**
 
