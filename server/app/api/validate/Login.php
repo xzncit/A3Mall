@@ -14,13 +14,13 @@ use app\common\validate\Validate;
 class Login extends Validate {
 
     protected $rule = [
-        "username"  => "require|mobile",
+        "username"  => "require",
         "password"  => "require"
     ];
 
     protected $message  =   [
-        "username.require"  => "请填写手机号码",
-        "username.mobile"   => "您填写的手机号码不正确",
+        "username.require"  => "请填写帐号",
+        //"username.mobile"   => "您填写的手机号码不正确",
         "password.require"  => "请填写密码"
     ];
 

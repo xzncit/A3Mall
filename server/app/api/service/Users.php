@@ -10,6 +10,7 @@ namespace app\api\service;
 
 use app\common\models\users\Users as UsersModel;
 use mall\library\tools\jwt\Token;
+use mall\utils\Check;
 use think\facade\Db;
 use think\facade\Request;
 use mall\basic\Users as UsersUtils;
@@ -31,7 +32,16 @@ class Users extends Service {
         $username = $data["username"]??"";
         $password = $data["password"]??"";
 
-        $users = UsersModel::where([ "mobile"=>$username ])->find();
+        $condition = [];
+        if(Check::mobile($username)){
+            $condition["mobile"] = $username;
+        }else if(Check::email($username)){
+            $condition["email"] = $username;
+        }else{
+            $condition["username"] = $username;
+        }
+
+        $users = UsersModel::where($condition)->find();
         if(empty($users)){
             throw new \Exception("用户不存在！",0);
         }

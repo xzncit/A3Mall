@@ -11,7 +11,7 @@
 				<form @submit="onSubmit">
 					<view class="fields-box">
 						<view class="field-box iconfont">
-							<input type="number" class="uni-input" name="phone" value="18026740326" placeholder="手机号" />
+							<input type="text" class="uni-input" name="phone" value="18026740326" placeholder="用户名/邮箱/手机号" />
 						</view>
 						<view class="field-box iconfont">
 							<input type="password" class="uni-input" name="password" value="admin888" placeholder="密码" />
@@ -113,11 +113,7 @@
 				this.isSubmit = true;
 				if(formData.phone == ''){
 					this.isSubmit = false;
-					this.$utils.msg("请填写手机号码！");
-					return ;
-				}else if(!checkPhone(formData.phone)){
-					this.isSubmit = false;
-					this.$utils.msg("您填写的手机号码不正确！");
+					this.$utils.msg("请填写帐号！");
 					return ;
 				}else if(formData.password == ''){
 					this.isSubmit = false;
