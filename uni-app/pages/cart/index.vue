@@ -17,19 +17,18 @@
 						class="list-item"
 						v-for="item in goods"
 						:key="item.id"
-						@click="$utils.navigateTo('goods/view',{id: item.goods_id})"
 					>
 						<view class="left-pic">
 							<view class="item-check">
 								<checkbox :value="item.id+''" :checked="item.checked" />
 							</view>
-							<view class="pic">
+							<view class="pic" @click="$utils.navigateTo('goods/view',{id: item.goods_id})">
 								<image :src="item.photo"></image>
 							</view>
 						</view>
 						<view class="goods">
-							<view class="t">{{ item.title }}</view>
-							<view class="m">{{ item.attr }}</view>
+							<view class="t" @click="$utils.navigateTo('goods/view',{id: item.goods_id})">{{ item.title }}</view>
+							<view class="m" @click="$utils.navigateTo('goods/view',{id: item.goods_id})">{{ item.attr }}</view>
 							<view class="b">
 								<view>￥{{ item.price }}</view>
 								<view>
