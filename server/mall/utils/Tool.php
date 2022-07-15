@@ -31,7 +31,7 @@ class Tool {
             '/(<img.*?)((height)=[\'"]+[0-9|%]+[\'"]+)/',
             '/(<img.*?)((style)=[\'"]+(.*?)+[\'"]+)/',
             '/(<img.*?)((alt)=[\'"]+(.*?)+[\'"]+)/'
-        ],['$1', '$1', '$1'],$content);
+        ],'$1',$content);
     }
 
     public static function replaceContentImage($content){

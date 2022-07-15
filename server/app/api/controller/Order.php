@@ -35,7 +35,7 @@ class Order extends Base {
         try{
             return $this->returnAjax("ok",1,PaymentOrderService::create(Request::param()));
         }catch (\Exception $ex){
-            return $this->returnAjax($ex->getMessage().' file: '.$ex->getFile() . ' line: ' . $ex->getLine(),$ex->getCode());
+            return $this->returnAjax($ex->getMessage(),$ex->getCode());
         }
     }
 

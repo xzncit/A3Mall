@@ -68,12 +68,17 @@ class Data extends Service {
             ];
 
             if(DataItemModel::where("id",$value)->count()){
+                $in[] = $value;
                 DataItemModel::where("id",$value)->save($arr);
             }else{
-                DataItemModel::create($arr)->id;
+                $in[] = DataItemModel::create($arr)->id;
             }
 
             $i++;
+        }
+
+        if(!empty($in)){
+            DataItemModel::where("pid",$data['id'])->where("id","not in",$in)->delete();
         }
 
         return true;
