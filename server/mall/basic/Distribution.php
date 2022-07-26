@@ -21,7 +21,7 @@ class Distribution {
         }
 
         foreach($data["item"] as $key=>$value){
-            $delivery = self::compute($value["distribution_id"],$address["province"],$value["goods_weight"]);
+            $delivery = self::compute($value["distribution_id"],$address["province"],$value["goods_weight"] * $value["goods_nums"]);
             $data["item"][$key]["delivery"] = $delivery["delivery"];
             $data["real_freight"] = BC::add($delivery["real_freight"],$data["real_freight"]);
             $data["payable_freight"] = BC::add($delivery["payable_freight"],$data["payable_freight"]);
