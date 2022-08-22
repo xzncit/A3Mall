@@ -87,6 +87,7 @@
 </script>
 
 <script type="text/html" id="list-bar">
+    <button lay-event="detail" type="button" class="layui-btn layui-btn-normal layui-btn-xs">预览</button>
     <button class="layui-btn layui-btn-xs layui-btn-danger" lay-dropdown="{align:'right', menus: [{layIcon: 'layui-icon-edit',txt: '编辑', event:'edit'}, {layIcon: 'layui-icon-delete', txt: '删除', event:'del'}]}">
         <span>操作</span>
         <i class="layui-icon layui-icon-triangle-d"></i>
@@ -118,7 +119,7 @@ layui.config({
                 , {field: 'sell_price', title: '商品价格',width:150,align:'center'}
                 , {field: 'sort', title: '排序', edit:true, width: 100, align:"center"}
                 , {field: 'create_time', title: '创建时间',width:180,align:'center'}
-                , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 100}
+                , {fixed: 'right', align: 'center', title: '操作', toolbar: '#list-bar', width: 140}
             ]]
         , text: {
             none: '<div><i class="layui-icon">&#xe702;</i>暂无相关数据</div>'
@@ -194,7 +195,17 @@ layui.config({
     //监听行工具事件
     table.on('tool(list-box)', function (obj) {
         var data = obj.data;
-        if (obj.event === 'del') {
+        if(obj.event === 'detail'){
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['400px', '600px'],
+                shade: 0.5,
+                closeBtn: 1,
+                shadeClose: true,
+                content: '{:request()->domain()}/wap/pages/goods/view?id=' + data.id
+            });
+        }else if (obj.event === 'del') {
             layer.confirm('你确定要删除吗？', function (index) {
                 $.get('{:createUrl("delete")}',{
                     id : data.id
