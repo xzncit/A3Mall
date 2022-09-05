@@ -67,7 +67,7 @@ class Users extends Service {
         ])->withJoin("group")->where($condition)->page($data["page"]??1,$data["limit"]??10)->order("users.id","desc")->select()->toArray();
 
         return [ "count"=>$count, "data"=>array_map(function ($res){
-            $res["username"] = getUserName($res);
+            $res["nickname"] = getUserName($res);
             $tags = UsersTagsModel::where('id','in',$res['tags'])->select()->toArray();
             $arr = [];
             foreach($tags as $val){
