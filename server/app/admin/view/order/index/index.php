@@ -196,7 +196,7 @@ layui.use(['table','form'], function () {
           ,where: {
             key: {
               pay_type : $('[name="pay_type"]').val(),
-              distribution_id : $('[name="distribution_id"]').val(),
+              distribution_status : $('[name="distribution_status"]').val(),
               status : $('[name="status"]').val(),
               title : $('[name="title"]').val()
             }
