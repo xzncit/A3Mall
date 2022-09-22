@@ -110,10 +110,10 @@
 		<view class="order">
 			<view class="title">
 				<text>备注内容</text>
-			</view>
+			</view> 
 			<view class="list clear">
 				<view style="padding: 20rpx 25rpx;">
-					<textarea :value="remarks" placeholder="请输入留言" style="width: 100%; height: 100rpx;"></textarea>
+					<textarea @input="onRemarks" placeholder="请输入留言" style="width: 100%; height: 100rpx;"></textarea>
 				</view>
 			</view>
 		</view>
@@ -273,6 +273,9 @@
 			this.scrollNum = obj.scrollTop;
 		},
 		methods: {
+			onRemarks(ev){
+				this.remarks = ev.detail.value;
+			},
 			onShipping(type){
 				this.shippingType = type;
 				this.params.shipping_type = type;
