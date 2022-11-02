@@ -327,7 +327,7 @@ class Users extends Service {
     public static function getAddressList($id){
         $result = UsersAddressModel::where("user_id",$id)->select()->toArray();
         foreach($result as $key=>$value){
-            $result[$key]["create_time"] = date("Y-m-d H:i:s",$value["create_time"]);
+            //$result[$key]["create_time"] = date("Y-m-d H:i:s",$value["create_time"]);
             $result[$key]["province"] = AreaModel::getArea([$value["province"],$value["city"],$value["area"]],",");
         }
 
