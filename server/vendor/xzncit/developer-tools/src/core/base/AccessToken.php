@@ -30,24 +30,52 @@ class AccessToken {
     }
 
     public static function set(){
-        $config = Config::get();
-        return HttpClient::create()->get(self::getUri($config["mode"]),[
-            "grant_type"=>"client_credential",
-            "appid"=>$config["appid"],
-            "secret"=>$config["appsecret"],
-        ])->toArray();
+        return self::getRequestData();
     }
 
     public static function delete(){
         Cache::create()->delete(self::getCacheName());
     }
 
-    private static function getUri($mode="wechat"){
-        switch($mode){
+    private static function getRequestData(){
+        $config = Config::get();
+        switch($config["mode"]){
             case "wechat":
-                return "cgi-bin/token";
+                return HttpClient::create()->get("cgi-bin/token",[
+                    "grant_type"=>"client_credential",
+                    "appid"=>$config["appid"],
+                    "secret"=>$config["appsecret"],
+                ])->toArray();
+            case "qq":
+                $res = HttpClient::create()->get("api/getToken",[
+                    "grant_type"=>"client_credential",
+                    "appid"=>$config["appid"],
+                    "secret"=>$config["appsecret"],
+                ])->toArray();
+
+                if(isset($res["errcode"]) && $res["errcode"] != 0){
+                    throw new \Exception($res["errmsg"].":".$res["err_no"],0);
+                }
+
+                return [
+                    "access_token"=>$res["access_token"],
+                    "expires_in"=>$res["expires_in"]
+                ];
             case "microapp":
-                return "api/apps/v2/token";
+                $res = HttpClient::create()->postJson("api/apps/v2/token",[
+                    "grant_type"=>"client_credential",
+                    "appid"=>$config["appid"],
+                    "secret"=>$config["appsecret"],
+                ])->toArray();
+
+                if($res["err_no"] == 0 && $res["err_tips"] == "success"){
+                    return [
+                        "access_token"=>$res["data"]["access_token"],
+                        "expires_in"=>$res["data"]["expires_in"]
+                    ];
+                }
+
+                throw new \Exception($res["err_tips"].":".$res["err_no"],0);
         }
     }
 

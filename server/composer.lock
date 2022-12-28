@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "926f2807fe227be738afad43fb0411f6",
+    "content-hash": "188670b4c235e7c6faa1580943806345",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -4051,23 +4051,17 @@
         },
         {
             "name": "xzncit/developer-tools",
-            "version": "0.3.2",
+            "version": "0.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xzncit/developer-tools.git",
-                "reference": "1058ae2d4b8fed2d3b648886db887b174a484b58"
+                "reference": "d96706bd640d0acaecbdfd4d1450649427b30af3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xzncit/developer-tools/zipball/1058ae2d4b8fed2d3b648886db887b174a484b58",
-                "reference": "1058ae2d4b8fed2d3b648886db887b174a484b58",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "url": "https://api.github.com/repos/xzncit/developer-tools/zipball/d96706bd640d0acaecbdfd4d1450649427b30af3",
+                "reference": "d96706bd640d0acaecbdfd4d1450649427b30af3",
+                "shasum": ""
             },
             "require": {
                 "alibabacloud/client": "^1.5",
@@ -4085,12 +4079,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "xzncit\\": "src/"
-                },
                 "files": [
                     "src/helper.php"
-                ]
+                ],
+                "psr-4": {
+                    "xzncit\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4113,9 +4107,9 @@
             ],
             "support": {
                 "issues": "https://github.com/xzncit/developer-tools/issues",
-                "source": "https://github.com/xzncit/developer-tools/tree/0.3.2"
+                "source": "https://github.com/xzncit/developer-tools/tree/0.5.2"
             },
-            "time": "2021-12-11T11:28:43+00:00"
+            "time": "2022-08-09T01:55:33+00:00"
         }
     ],
     "packages-dev": [

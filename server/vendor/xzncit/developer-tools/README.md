@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v0.3.2-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v0.5.2-blue.svg" />
     </a>
 </p>
 <p align="center">    

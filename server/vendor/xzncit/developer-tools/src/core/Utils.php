@@ -30,9 +30,10 @@ class Utils {
     /**
      * 数组KEY全部转小写
      * @param $data
-     * @return array
+     * @return array|mixed
      */
     public static function lowerCase($data){
+        if(!is_array($data)) return strtolower($data);
         $data = array_change_key_case($data, CASE_LOWER);
         foreach ($data as $key => $vo) {
             if (is_array($vo)) {

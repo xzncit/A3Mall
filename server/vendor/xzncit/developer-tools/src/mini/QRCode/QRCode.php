@@ -19,13 +19,13 @@ class QRCode extends App {
      * 获取小程序二维码，适用于需要的码数量较少的业务场景。通过该接口生成的小程序码，永久有效，有数量限制，详见获取二维码。
      * @param $path     扫码进入的小程序页面路径，最大长度 128 字节，不能为空；对于小游戏，可以只传入 query 部分，来实现传参效果，如：传入 "?foo=bar"，即可在 wx.getLaunchOptionsSync 接口中的 query 参数获取到 {foo:"bar"}。
      * @param $width    二维码的宽度，单位 px。最小 280px，最大 1280px
-     * @return array
+     * @return mixed
      * @throws \Exception
      */
     public function create($path,$width){
         return HttpClient::create()->postJson("cgi-bin/wxaapp/createwxaqrcode?access_token=ACCESS_TOKEN",[
             "path"=>$path,"width"=>$width
-        ])->toArray();
+        ])->getResponse();
     }
 
     /**
@@ -36,14 +36,14 @@ class QRCode extends App {
      * @param false $auto_color     自动配置线条颜色，如果颜色依然是黑色，则说明不建议配置主色调
      * @param string $line_color    auto_color 为 false 时生效，使用 rgb 设置颜色 例如 {"r":"xxx","g":"xxx","b":"xxx"} 十进制表示
      * @param false $is_hyaline     是否需要透明底色，为 true 时，生成透明底色的小程序码
-     * @return array
+     * @return mixed
      * @throws \Exception
      */
     public function get($path,$width=430,$auto_color=false,$line_color='{"r":0,"g":0,"b":0}',$is_hyaline=false){
         return HttpClient::create()->postJson("wxa/getwxacode?access_token=ACCESS_TOKEN",[
             "path"=>$path,"width"=>$width,"auto_color"=>$auto_color,"line_color"=>$line_color,
             "is_hyaline"=>$is_hyaline
-        ])->toArray();
+        ])->getResponse();
     }
 
     /**
@@ -55,14 +55,14 @@ class QRCode extends App {
      * @param false $auto_color     自动配置线条颜色，如果颜色依然是黑色，则说明不建议配置主色调，默认 false
      * @param string $line_color    auto_color 为 false 时生效，使用 rgb 设置颜色 例如 {"r":"xxx","g":"xxx","b":"xxx"} 十进制表示
      * @param false $is_hyaline     是否需要透明底色，为 true 时，生成透明底色的小程序
-     * @return array
+     * @return mixed
      * @throws \Exception
      */
     public function getUnlimited(string $scene,$page='pages/index/index',$width=430,$auto_color=false,$line_color=["r"=>0,"g"=>0,"b"=>0],$is_hyaline=false){
         return HttpClient::create()->postJson("wxa/getwxacodeunlimit?access_token=ACCESS_TOKEN",[
             "scene"=>$scene,"page"=>$page,"width"=>$width,"auto_color"=>$auto_color,
             "line_color"=>$line_color,"is_hyaline"=>$is_hyaline
-        ])->toArray();
+        ])->getResponse();
     }
 
 }

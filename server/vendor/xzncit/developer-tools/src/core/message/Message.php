@@ -61,7 +61,7 @@ class Message {
      * @param $value
      */
     protected function setAttrValue($name,$value){
-        if(property_exists($name)){
+        if(property_exists($this,$name)){
             $this->$name = $value;
         }else{
             $this->attribute[$name] = $value;

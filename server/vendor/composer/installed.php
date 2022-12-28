@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '25b75b039e2ecaf9ecda4a8da079e7cbbb57e319',
     'name' => 'topthink/think',
   ),
   'versions' => 
@@ -496,12 +496,12 @@
     ),
     'topthink/think' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '25b75b039e2ecaf9ecda4a8da079e7cbbb57e319',
     ),
     'topthink/think-captcha' => 
     array (
@@ -622,12 +622,12 @@
     ),
     'xzncit/developer-tools' => 
     array (
-      'pretty_version' => '0.3.2',
-      'version' => '0.3.2.0',
+      'pretty_version' => '0.5.2',
+      'version' => '0.5.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1058ae2d4b8fed2d3b648886db887b174a484b58',
+      'reference' => 'd96706bd640d0acaecbdfd4d1450649427b30af3',
     ),
   ),
 );
