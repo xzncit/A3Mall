@@ -24,7 +24,7 @@ class OAuth extends Base {
         try {
             return $this->returnAjax("ok",1,OAuthService::login(Request::param()));
         }catch (\Exception $ex){
-            return $this->returnAjax($ex->getMessage().' file: '.$ex->getFile().' line: '.$ex->getLine(),$ex->getCode());
+            return $this->returnAjax($ex->getMessage(),$ex->getCode());
         }
     }
 
