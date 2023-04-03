@@ -126,7 +126,7 @@
                     Object.assign(fields,{
                         num: this.number,
                         isSubmit:true,
-                        selectedSku: { id: "", specSelected: "" }
+                        selectedSku: { id: "" }
                     });
 
                     this.selectedGoodsInfo = fields;
@@ -177,7 +177,6 @@
                     }
 
                     if(s.length > 0){
-                        this.selectedGoodsInfo.selectedSku.specSelected = s.join(",");
                         this.specSelected = "已选择：" + s.join(",");
                     }
                 },
