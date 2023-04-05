@@ -56,7 +56,7 @@ class Reply extends Service {
     public static function save($data){
         if($obj = WechatKeysModel::where(["id"=>$data["id"]])->find()){
             $k = WechatKeysModel::where(["keys"=>$data["keys"]])->find();
-            if($k["id"] != $obj["id"]){
+            if(!empty($k) && $k["id"] != $obj["id"]){
                 throw new \Exception("关键字已存在！",0);
             }
 
@@ -66,7 +66,7 @@ class Reply extends Service {
                 throw new \Exception("关键字已存在！",0);
             }
 
-            WechatKeysModel::save($data);
+            (new WechatKeysModel())->save($data);
         }
 
         return true;

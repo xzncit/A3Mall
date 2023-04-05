@@ -29,10 +29,15 @@ class Index extends Base {
     public function index(){
         try{
             $response = Factory::wechat()->server->push(function ($data){
-                $msgType = Utils::lowerCase($data["MsgType"] ?? "");
+                $data = Utils::lowerCase($data ?? []);
+                if(empty($data["msgtype"])){
+                    throw new \Exception("empty msgtype.",0);
+                }
+
                 $message = new Message($data);
-                if(!empty($msgType) && method_exists($message,$msgType)){
-                    return $message->$msgType();
+                $method = $data["msgtype"];
+                if(!empty($method) && method_exists($message,$method)){
+                    return $message->$method();
                 }else{
                     return new Raw("success");
                 }

@@ -48,13 +48,13 @@ class Wechat extends Service {
      * @return array
      */
     public static function getArticle($data){
-        $count = WechatUsersModel::withSearch(["title"],[ 'title'=>$data['key']["title"]??'' ])->count();
-        $result = WechatUsersModel::withSearch(["title"],[ 'title'=>$data['key']["title"]??'' ])->order("id","desc")->page($data["page"]??1,$data["limit"]??10)->select()->toArray();
+        $count = (new WechatNewsModel())->count();
+        $result = (new WechatNewsModel())->order("id","desc")->page($data["page"]??1,$data["limit"]??10)->select()->toArray();
 
         foreach($result as $key=>$item){
             $article = WechatNewsArticleModel::where("id","in",$item["article_id"])->orderRaw('find_in_set(id,"'.$item["article_id"].'")')->find();
-            $list[$key]["title"] = $article["title"];
-            $list[$key]["local_url"] = $article["local_url"];
+            $result[$key]["title"] = $article["title"];
+            $result[$key]["local_url"] = $article["local_url"];
         }
 
         return ["count"=>$count, "data"=>$result];

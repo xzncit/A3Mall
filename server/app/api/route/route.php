@@ -40,6 +40,7 @@ Route::group(function(){
     Route::get('goods/view', 'api/goods/view');
     Route::get('news', 'api/news/index');
     Route::get('news/view', 'api/news/view');
+    Route::get('article/view', 'api/wechat.news/view');
     Route::post('payment/index', 'api/payment/index');
 })->middleware(AllowOrigin::class);
 

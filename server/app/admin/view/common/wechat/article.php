@@ -15,29 +15,6 @@
     <script src="{__SYSTEM_PATH__}/js/common/common.js"></script>
 </head>
 <body>
-<div class="layui-fluid" id="search-box">
-    <div class="layui-card">
-        <div class="layui-card-body">
-            <form class="layui-form layui-form-pane" action="">
-
-                <div class="layui-form-item">
-
-                    <div class="layui-inline">
-                        <label class="layui-form-label seller-inline-2">关键字：</label>
-                        <div class="layui-input-inline seller-inline-4">
-                            <input type="text" name="title" placeholder="请输入关键字" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-
-                    <div class="layui-inline">
-                        <button type="button" id="search-btn" class="layui-btn layui-btn-sm layui-bg-light-blue"><i class="layui-icon layui-icon-search"></i> 搜索</button>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div>
 
 <section class="content clearfix">
     <div class="layui-list-box">

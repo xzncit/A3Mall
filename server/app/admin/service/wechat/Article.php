@@ -14,6 +14,7 @@ use app\common\models\wechat\WechatNews as WechatNewsModel;
 use app\common\models\wechat\WechatNewsArticle as WechatNewsArticleModel;
 use mall\utils\CString;
 use app\common\models\Attachments as AttachmentsModel;
+use think\facade\Db;
 
 class Article extends Service {
 
@@ -95,8 +96,13 @@ class Article extends Service {
                     $value["digest"] = CString::msubstr($value["content"],100,false);
                 }
 
+                if(!empty($value["create_time"])){
+                    unset($value["create_time"]);
+                }
+
                 if($value["id"] == 0){
                     $value["create_time"] = time();
+                    unset($value["id"]);
                     $value["id"] = WechatNewsArticleModel::create($value)->id;
                     $arrIds[] = $value["id"];
                 }else{

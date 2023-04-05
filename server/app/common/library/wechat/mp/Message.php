@@ -77,21 +77,26 @@ class Message {
             case "text":
                 return new Text($data['content']);
             case 'image':
-                if (empty($data['image_url']) || !($mediaId = $this->upload(Tool::thumb($data['image_url'],"",true), 'image'))) {
+                if (empty($data['image_url']) || !($mediaId = $this->upload(Tool::getRootPath().'public/' . $data['image_url'], 'image'))) {
                     return false;
                 }
 
                 return new ImageUtils($mediaId);
             case 'news':
-                list($news, $articles) = [$this->news($data['news_id']), []];
+                $news = $this->news($data['news_id']);
                 if (empty($news['articles'])) {
                     return false;
                 }
 
-                foreach ($news['articles'] as $vo) array_push($articles, [
-                    'url'   => createUrl("api/wechat.news/view", [], false, true) . "?id={$vo['id']}",
-                    'title' => $vo['title'], 'picurl' => Tool::thumb($vo['local_url'],"",true), 'description' => $vo['digest'],
-                ]);
+                $articles = [];
+                foreach ($news['articles'] as $vo){
+                    $articles[] = [
+                        'Url'   => createUrl("api/wechat.news/view", [], false, true) . "?id={$vo['id']}",
+                        'Title' => $vo['title'],
+                        'PicUrl' => Tool::thumb($vo['local_url'],"",true),
+                        'Description' => $vo['digest'],
+                    ];
+                }
 
                 return new News($articles);
             default:
